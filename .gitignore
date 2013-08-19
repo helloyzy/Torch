@@ -1,0 +1,4 @@
+*.xcuserstate
+.idea
+xcuserdata
+.DS_Store
