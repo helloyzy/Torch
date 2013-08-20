@@ -26,7 +26,10 @@
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
 		DC0383A417C3044300BBD02A /* HersheysLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A217C3044300BBD02A /* HersheysLogo.png */; };
 		DC0383A517C3044300BBD02A /* iPhone_BG.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A317C3044300BBD02A /* iPhone_BG.png */; };
-		DC0383A917C3067B00BBD02A /* TCLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A817C3067B00BBD02A /* TCLoginView.xib */; };
+		DC0383A917C3067B00BBD02A /* TCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */; };
+		DC0383C617C3455A00BBD02A /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */; };
+		DC0383C917C3463C00BBD02A /* TCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0383C817C3463C00BBD02A /* TCLoginViewController.m */; };
+		DC0383CC17C3469700BBD02A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC0383CE17C3469700BBD02A /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +68,12 @@
 		1C713C2017C2058100A903A6 /* TorchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TorchTests.m; sourceTree = "<group>"; };
 		DC0383A217C3044300BBD02A /* HersheysLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HersheysLogo.png; sourceTree = "<group>"; };
 		DC0383A317C3044300BBD02A /* iPhone_BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone_BG.png; sourceTree = "<group>"; };
-		DC0383A817C3067B00BBD02A /* TCLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCLoginView.xib; sourceTree = "<group>"; };
+		DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCLoginViewController.xib; sourceTree = "<group>"; };
+		DC0383C417C3455A00BBD02A /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
+		DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
+		DC0383C717C3463C00BBD02A /* TCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLoginViewController.h; sourceTree = "<group>"; };
+		DC0383C817C3463C00BBD02A /* TCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLoginViewController.m; sourceTree = "<group>"; };
+		DC0383CD17C3469700BBD02A /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -130,6 +138,7 @@
 		1C713BF517C2058100A903A6 /* Torch */ = {
 			isa = PBXGroup;
 			children = (
+				DC0383C317C343D500BBD02A /* Utils */,
 				DC0383A717C305C800BBD02A /* View */,
 				DC0383A617C3058500BBD02A /* Controller */,
 				1C713BFE17C2058100A903A6 /* TCAppDelegate.h */,
@@ -149,6 +158,7 @@
 				1C713C0117C2058100A903A6 /* Default.png */,
 				1C713C0317C2058100A903A6 /* Default@2x.png */,
 				1C713C0517C2058100A903A6 /* Default-568h@2x.png */,
+				DC0383CE17C3469700BBD02A /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -186,6 +196,8 @@
 			children = (
 				1C713C0717C2058100A903A6 /* TCViewController.h */,
 				1C713C0817C2058100A903A6 /* TCViewController.m */,
+				DC0383C717C3463C00BBD02A /* TCLoginViewController.h */,
+				DC0383C817C3463C00BBD02A /* TCLoginViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -193,10 +205,19 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DC0383A817C3067B00BBD02A /* TCLoginView.xib */,
+				DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */,
 				1C713C0A17C2058100A903A6 /* TCViewController.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		DC0383C317C343D500BBD02A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DC0383C417C3455A00BBD02A /* UIViewController+Utils.h */,
+				DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,7 +301,8 @@
 				1C713C0C17C2058100A903A6 /* TCViewController.xib in Resources */,
 				DC0383A417C3044300BBD02A /* HersheysLogo.png in Resources */,
 				DC0383A517C3044300BBD02A /* iPhone_BG.png in Resources */,
-				DC0383A917C3067B00BBD02A /* TCLoginView.xib in Resources */,
+				DC0383A917C3067B00BBD02A /* TCLoginViewController.xib in Resources */,
+				DC0383CC17C3469700BBD02A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +370,8 @@
 				1C713BFC17C2058100A903A6 /* main.m in Sources */,
 				1C713C0017C2058100A903A6 /* TCAppDelegate.m in Sources */,
 				1C713C0917C2058100A903A6 /* TCViewController.m in Sources */,
+				DC0383C617C3455A00BBD02A /* UIViewController+Utils.m in Sources */,
+				DC0383C917C3463C00BBD02A /* TCLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +416,14 @@
 				1C713C1D17C2058100A903A6 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DC0383CE17C3469700BBD02A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC0383CD17C3469700BBD02A /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
