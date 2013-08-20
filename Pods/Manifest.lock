@@ -18,10 +18,12 @@ PODS:
     - TransitionKit (= 1.1.1)
   - SOCKit (1.1)
   - TransitionKit (1.1.1)
+  - ViewDeck (2.2.11)
 
 DEPENDENCIES:
   - InnerBand (~> 1.0.5)
   - RestKit (~> 0.20.3)
+  - ViewDeck (~> 2.2.11)
 
 SPEC CHECKSUMS:
   AFNetworking: 7f9bcd7c287a75476cd5c61e82fd3380e93e4c54
@@ -29,5 +31,6 @@ SPEC CHECKSUMS:
   RestKit: 1f181c180105a92f11ec4f6cd7de37625e516d83
   SOCKit: 2f3bc4d07910de12dcc202815e07db68a3802581
   TransitionKit: d0e3344aac92991395d4c2e72d9c5a8ceeb12910
+  ViewDeck: b5eddc8559b0e47259ab7addbf2de6768061f139
 
 COCOAPODS: 0.23.0
