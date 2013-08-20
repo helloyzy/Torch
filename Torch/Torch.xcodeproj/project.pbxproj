@@ -10,6 +10,7 @@
 		1C65E2E417C33CE100FA94B2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C65E2E317C33CE100FA94B2 /* MapKit.framework */; };
 		1C65E2E617C33D6700FA94B2 /* TCRouteMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */; };
 		1C65E2E817C3416B00FA94B2 /* TCRouteTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */; };
+		1C65E2EB17C346A600FA94B2 /* TCRouteMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65E2EA17C346A600FA94B2 /* TCRouteMapViewController.m */; };
 		1C713BF017C2058100A903A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713BEF17C2058100A903A6 /* UIKit.framework */; };
 		1C713BF217C2058100A903A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713BF117C2058100A903A6 /* Foundation.framework */; };
 		1C713BF417C2058100A903A6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713BF317C2058100A903A6 /* CoreGraphics.framework */; };
@@ -47,6 +48,8 @@
 		1C65E2E317C33CE100FA94B2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRouteMapView.xib; sourceTree = "<group>"; };
 		1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRouteTableView.xib; sourceTree = "<group>"; };
+		1C65E2E917C346A600FA94B2 /* TCRouteMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRouteMapViewController.h; sourceTree = "<group>"; };
+		1C65E2EA17C346A600FA94B2 /* TCRouteMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteMapViewController.m; sourceTree = "<group>"; };
 		1C713BEC17C2058000A903A6 /* Torch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Torch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C713BEF17C2058100A903A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C713BF117C2058100A903A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -194,6 +197,8 @@
 			children = (
 				1C713C0717C2058100A903A6 /* TCViewController.h */,
 				1C713C0817C2058100A903A6 /* TCViewController.m */,
+				1C65E2E917C346A600FA94B2 /* TCRouteMapViewController.h */,
+				1C65E2EA17C346A600FA94B2 /* TCRouteMapViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				1C713BFC17C2058100A903A6 /* main.m in Sources */,
 				1C713C0017C2058100A903A6 /* TCAppDelegate.m in Sources */,
 				1C713C0917C2058100A903A6 /* TCViewController.m in Sources */,
+				1C65E2EB17C346A600FA94B2 /* TCRouteMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

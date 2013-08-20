@@ -10,12 +10,13 @@
 
 #import "TCViewController.h"
 #import "IIViewDeckController.h"
+#import "TCRouteMapViewController.h"
 
 @implementation TCAppDelegate
 
 - (UIViewController *)newDeckController
 {
-    UIViewController* left = [[UIViewController alloc] initWithNibName:@"TCRouteMapView" bundle:nil];
+    UIViewController* left = [[TCRouteMapViewController alloc] initWithNibName:@"TCRouteMapView" bundle:nil];
     UIViewController* center = [[UIViewController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
 
     return [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
