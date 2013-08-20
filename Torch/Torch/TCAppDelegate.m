@@ -9,15 +9,25 @@
 #import "TCAppDelegate.h"
 
 #import "TCViewController.h"
+#import "IIViewDeckController.h"
 
 @implementation TCAppDelegate
+
+- (UIViewController *)newDeckController
+{
+    UIViewController* left = [[UIViewController alloc] initWithNibName:@"TCRouteMapView" bundle:nil];
+    UIViewController* center = [[UIViewController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
+
+    return [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     // self.viewController = [[TCViewController alloc] initWithNibName:@"TCViewController" bundle:nil];
-    self.viewController = [[TCViewController alloc] initWithNibName:@"TCLoginView" bundle:nil];
+    /*self.viewController = [[TCViewController alloc] initWithNibName:@"TCLoginView" bundle:nil]; */    
+    self.viewController = [self newDeckController];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C65E2E417C33CE100FA94B2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C65E2E317C33CE100FA94B2 /* MapKit.framework */; };
+		1C65E2E617C33D6700FA94B2 /* TCRouteMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */; };
+		1C65E2E817C3416B00FA94B2 /* TCRouteTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */; };
 		1C713BF017C2058100A903A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713BEF17C2058100A903A6 /* UIKit.framework */; };
 		1C713BF217C2058100A903A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713BF117C2058100A903A6 /* Foundation.framework */; };
 		1C713BF417C2058100A903A6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713BF317C2058100A903A6 /* CoreGraphics.framework */; };
@@ -44,6 +47,9 @@
 
 /* Begin PBXFileReference section */
 		0720A63C03844476B25F3606 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C65E2E317C33CE100FA94B2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRouteMapView.xib; sourceTree = "<group>"; };
+		1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRouteTableView.xib; sourceTree = "<group>"; };
 		1C713BEC17C2058000A903A6 /* Torch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Torch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C713BEF17C2058100A903A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C713BF117C2058100A903A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -82,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C65E2E417C33CE100FA94B2 /* MapKit.framework in Frameworks */,
 				1C713BF017C2058100A903A6 /* UIKit.framework in Frameworks */,
 				1C713BF217C2058100A903A6 /* Foundation.framework in Frameworks */,
 				1C713BF417C2058100A903A6 /* CoreGraphics.framework in Frameworks */,
@@ -126,6 +133,7 @@
 		1C713BEE17C2058000A903A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1C65E2E317C33CE100FA94B2 /* MapKit.framework */,
 				1C713BEF17C2058100A903A6 /* UIKit.framework */,
 				1C713BF117C2058100A903A6 /* Foundation.framework */,
 				1C713BF317C2058100A903A6 /* CoreGraphics.framework */,
@@ -207,6 +215,8 @@
 			children = (
 				DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */,
 				1C713C0A17C2058100A903A6 /* TCViewController.xib */,
+				1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */,
+				1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -303,6 +313,8 @@
 				DC0383A517C3044300BBD02A /* iPhone_BG.png in Resources */,
 				DC0383A917C3067B00BBD02A /* TCLoginViewController.xib in Resources */,
 				DC0383CC17C3469700BBD02A /* Localizable.strings in Resources */,
+				1C65E2E617C33D6700FA94B2 /* TCRouteMapView.xib in Resources */,
+				1C65E2E817C3416B00FA94B2 /* TCRouteTableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
