@@ -11,6 +11,8 @@
 #import "TCViewController.h"
 #import "IIViewDeckController.h"
 #import "TCRouteMapViewController.h"
+#import "TCLoginViewController.h"
+#import "TCDisclaimerVwCtl.h"
 
 @implementation TCAppDelegate
 
@@ -28,7 +30,8 @@
     // Override point for customization after application launch.
     // self.viewController = [[TCViewController alloc] initWithNibName:@"TCViewController" bundle:nil];
     /*self.viewController = [[TCViewController alloc] initWithNibName:@"TCLoginView" bundle:nil]; */    
-    self.viewController = [self newDeckController];
+    // self.viewController = [self newDeckController];
+    self.viewController = [[TCDisclaimerVwCtl alloc] init];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
