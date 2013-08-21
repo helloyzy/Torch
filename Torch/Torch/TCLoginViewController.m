@@ -27,7 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.lblUsername.text = [self localString:@"Username"];
+    lblUsername.text = [self localString:@"login.username"];
+    lblPwd.text = [self localString:@"login.password"];
+    txtUsername.placeholder =[self localString:@"login.username.placeholder"];
+    txtPwd.placeholder = [self localString:@"login.password"];
 	// Do any additional setup after loading the view.
 }
 

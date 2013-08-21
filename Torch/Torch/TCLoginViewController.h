@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "TCBaseVwCtl.h"
 
-@interface TCLoginViewController : TCBaseVwCtl
+@interface TCLoginViewController : TCBaseVwCtl {
+    
+    __weak IBOutlet UILabel *lblUsername;
+    __weak IBOutlet UITextField *txtUsername;
+    __weak IBOutlet UITextField *txtPwd;
+    __weak IBOutlet UIButton *btnSignin;
+    __weak IBOutlet UILabel *lblPwd;
+}
 
 - (IBAction)displayDisclaimView:(id)sender;
-
-@property (weak, nonatomic) IBOutlet UILabel *lblUsername;
 
 @end

@@ -8,3 +8,5 @@
 "Done" = "Done";
 
 "login.username" = "User Name";
+"login.username.placeholder" = "HFXXXXXX";
+"login.password" = "Password";
