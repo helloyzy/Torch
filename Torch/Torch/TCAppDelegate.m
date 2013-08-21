@@ -11,6 +11,7 @@
 #import "TCViewController.h"
 #import "IIViewDeckController.h"
 #import "TCRouteMapViewController.h"
+#import "TCMyDayController.h"
 #import "TCLoginViewController.h"
 #import "TCDisclaimerVwCtl.h"
 
@@ -19,7 +20,7 @@
 - (UIViewController *)newDeckController
 {
     UIViewController* left = [[TCRouteMapViewController alloc] initWithNibName:@"TCRouteMapView" bundle:nil];
-    UIViewController* center = [[UIViewController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
+    UIViewController* center = [[TCMyDayController alloc] initWithStyle:UITableViewStylePlain];
 
     return [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
 }

@@ -27,6 +27,8 @@
 		1C713C1617C2058100A903A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713BF117C2058100A903A6 /* Foundation.framework */; };
 		1C713C1E17C2058100A903A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C713C1C17C2058100A903A6 /* InfoPlist.strings */; };
 		1C713C2117C2058100A903A6 /* TorchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C713C2017C2058100A903A6 /* TorchTests.m */; };
+		1C8187A517C4569D00AF7AF0 /* TCMyDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187A417C4569D00AF7AF0 /* TCMyDayCell.xib */; };
+		1C8187A817C45A0B00AF7AF0 /* TCMyDayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */; };
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
 		DC0383A417C3044300BBD02A /* HersheysLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A217C3044300BBD02A /* HersheysLogo.png */; };
 		DC0383A517C3044300BBD02A /* iPhone_BG.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A317C3044300BBD02A /* iPhone_BG.png */; };
@@ -77,6 +79,9 @@
 		1C713C1D17C2058100A903A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1C713C1F17C2058100A903A6 /* TorchTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorchTests.h; sourceTree = "<group>"; };
 		1C713C2017C2058100A903A6 /* TorchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TorchTests.m; sourceTree = "<group>"; };
+		1C8187A417C4569D00AF7AF0 /* TCMyDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCMyDayCell.xib; sourceTree = "<group>"; };
+		1C8187A617C45A0B00AF7AF0 /* TCMyDayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMyDayController.h; sourceTree = "<group>"; };
+		1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMyDayController.m; sourceTree = "<group>"; };
 		DC0383A217C3044300BBD02A /* HersheysLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HersheysLogo.png; sourceTree = "<group>"; };
 		DC0383A317C3044300BBD02A /* iPhone_BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone_BG.png; sourceTree = "<group>"; };
 		DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCLoginViewController.xib; sourceTree = "<group>"; };
@@ -218,6 +223,8 @@
 				DC0383C817C3463C00BBD02A /* TCLoginViewController.m */,
 				DC0383CF17C360F400BBD02A /* TCDisclaimerVwCtl.h */,
 				DC0383D017C360F400BBD02A /* TCDisclaimerVwCtl.m */,
+				1C8187A617C45A0B00AF7AF0 /* TCMyDayController.h */,
+				1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 				1C713C0A17C2058100A903A6 /* TCViewController.xib */,
 				1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */,
 				1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */,
+				1C8187A417C4569D00AF7AF0 /* TCMyDayCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -329,6 +337,7 @@
 				1C65E2E617C33D6700FA94B2 /* TCRouteMapView.xib in Resources */,
 				1C65E2E817C3416B00FA94B2 /* TCRouteTableView.xib in Resources */,
 				DC0383D317C3614100BBD02A /* TCDisclaimerVwCtl.xib in Resources */,
+				1C8187A517C4569D00AF7AF0 /* TCMyDayCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +409,7 @@
 				DC0383C617C3455A00BBD02A /* UIViewController+Utils.m in Sources */,
 				DC0383C917C3463C00BBD02A /* TCLoginViewController.m in Sources */,
 				DC0383D117C360F400BBD02A /* TCDisclaimerVwCtl.m in Sources */,
+				1C8187A817C45A0B00AF7AF0 /* TCMyDayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
