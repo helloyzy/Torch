@@ -75,57 +75,35 @@
         storeLabel.shadowOffset = CGSizeMake(0.0, -1.0);
         storeLabel.text = @"Store Name Here";
         storeLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:16];
-        storeLabel.userInteractionEnabled = NO;
-        
-        UIView *cellView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 20.0, 320.0, 548.0)];
-        cellView.alpha = 1.000;
-        cellView.autoresizesSubviews = YES;
-        cellView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        cellView.backgroundColor = [UIColor colorWithWhite:1.000 alpha:1.000];
-        cellView.clearsContextBeforeDrawing = YES;
-        cellView.clipsToBounds = NO;
-        cellView.contentMode = UIViewContentModeScaleToFill;
-        cellView.multipleTouchEnabled = NO;
-        cellView.opaque = YES;
-        cellView.userInteractionEnabled = YES;
-        
-       /* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        */
+
         UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 30.0, 209.0, 63.0)];
         addressLabel.adjustsFontSizeToFitWidth = NO;
-        addressLabel.alpha = 1.000;
         addressLabel.autoresizesSubviews = YES;
         addressLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
         addressLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
         addressLabel.clearsContextBeforeDrawing = YES;
         addressLabel.clipsToBounds = YES;
         addressLabel.contentMode = UIViewContentModeLeft;
-        addressLabel.multipleTouchEnabled = NO;
         addressLabel.numberOfLines = 3;
         addressLabel.opaque = NO;
         addressLabel.shadowOffset = CGSizeMake(0.0, -1.0);
-        addressLabel.tag = 0;
         addressLabel.text = @"Line1\nLine2\nLine3";
+        addressLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:16];
         addressLabel.textColor = [UIColor colorWithWhite:0.667 alpha:1.000];
-        addressLabel.userInteractionEnabled = NO;
-        
-        UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(237.0, 70.0, 19.0, 21.0)];
+
+        UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(237.0, 30.0, 40.0, 33.0)];
         numberLabel.adjustsFontSizeToFitWidth = NO;
-        numberLabel.alpha = 1.000;
         numberLabel.backgroundColor = [UIColor colorWithRed:0.231 green:0.431 blue:0.627 alpha:1.000];
         numberLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
         numberLabel.clearsContextBeforeDrawing = YES;
         numberLabel.clipsToBounds = YES;
         numberLabel.contentMode = UIViewContentModeCenter;
-        numberLabel.frame = CGRectMake(237.0, 30.0, 40.0, 33.0);
         numberLabel.numberOfLines = 1;
         numberLabel.opaque = NO;
         numberLabel.textAlignment = NSTextAlignmentCenter;
         numberLabel.shadowOffset = CGSizeMake(0.0, -1.0);
         numberLabel.textColor = [UIColor whiteColor];
-        numberLabel.tag = 0;
         numberLabel.text = @"#1";
-        numberLabel.userInteractionEnabled = NO;
         numberLabel.layer.cornerRadius = 3;
         
         [cell addSubview:storeLabel];

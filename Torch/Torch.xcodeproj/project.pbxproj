@@ -31,6 +31,7 @@
 		1C8187A817C45A0B00AF7AF0 /* TCMyDayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */; };
 		1C8187AB17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AA17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf */; };
 		1C8187AD17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */; };
+		1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */; };
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
 		D6D2EC7617C4897400D12795 /* TCPriorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */; };
 		D6D2EC7717C4897400D12795 /* TCPriorityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */; };
@@ -89,6 +90,7 @@
 		1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMyDayController.m; sourceTree = "<group>"; };
 		1C8187AA17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Lt.ttf"; path = "fonts/HelveticaNeueLTCom-Lt.ttf"; sourceTree = "<group>"; };
 		1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Bd.ttf"; path = "fonts/HelveticaNeueLTCom-Bd.ttf"; sourceTree = "<group>"; };
+		1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Md.ttf"; path = "fonts/HelveticaNeueLTCom-Md.ttf"; sourceTree = "<group>"; };
 		D6D2EC7317C4897400D12795 /* TCPriorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPriorityViewController.h; sourceTree = "<group>"; };
 		D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPriorityViewController.m; sourceTree = "<group>"; };
 		D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPriorityViewController.xib; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 		1C8187A917C490B700AF7AF0 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */,
 				1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */,
 				1C8187AA17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf */,
 			);
@@ -368,6 +371,7 @@
 				1C8187AB17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf in Resources */,
 				1C8187AD17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf in Resources */,
 				D6D2EC7717C4897400D12795 /* TCPriorityViewController.xib in Resources */,
+				1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
