@@ -33,6 +33,8 @@
 		1C8187AD17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */; };
 		1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */; };
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
+		D6CB682117C4A04500D290D7 /* TCInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */; };
+		D6CB682217C4A04500D290D7 /* TCInventoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */; };
 		D6D2EC7617C4897400D12795 /* TCPriorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */; };
 		D6D2EC7717C4897400D12795 /* TCPriorityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */; };
 		DC0383A417C3044300BBD02A /* HersheysLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A217C3044300BBD02A /* HersheysLogo.png */; };
@@ -91,6 +93,9 @@
 		1C8187AA17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Lt.ttf"; path = "fonts/HelveticaNeueLTCom-Lt.ttf"; sourceTree = "<group>"; };
 		1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Bd.ttf"; path = "fonts/HelveticaNeueLTCom-Bd.ttf"; sourceTree = "<group>"; };
 		1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Md.ttf"; path = "fonts/HelveticaNeueLTCom-Md.ttf"; sourceTree = "<group>"; };
+		D6CB681E17C4A04500D290D7 /* TCInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCInventoryViewController.h; sourceTree = "<group>"; };
+		D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCInventoryViewController.m; sourceTree = "<group>"; };
+		D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCInventoryViewController.xib; sourceTree = "<group>"; };
 		D6D2EC7317C4897400D12795 /* TCPriorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPriorityViewController.h; sourceTree = "<group>"; };
 		D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPriorityViewController.m; sourceTree = "<group>"; };
 		D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPriorityViewController.xib; sourceTree = "<group>"; };
@@ -240,6 +245,8 @@
 		DC0383A617C3058500BBD02A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D6CB681E17C4A04500D290D7 /* TCInventoryViewController.h */,
+				D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */,
 				D6D2EC7317C4897400D12795 /* TCPriorityViewController.h */,
 				D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */,
 				DC0383D417C453F900BBD02A /* TCBaseVwCtl.h */,
@@ -261,6 +268,7 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */,
 				D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */,
 				DC0383D217C3614100BBD02A /* TCDisclaimerVwCtl.xib */,
 				DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */,
@@ -372,6 +380,7 @@
 				1C8187AD17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf in Resources */,
 				D6D2EC7717C4897400D12795 /* TCPriorityViewController.xib in Resources */,
 				1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */,
+				D6CB682217C4A04500D290D7 /* TCInventoryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +455,7 @@
 				1C8187A817C45A0B00AF7AF0 /* TCMyDayController.m in Sources */,
 				DC0383D617C453F900BBD02A /* TCBaseVwCtl.m in Sources */,
 				D6D2EC7617C4897400D12795 /* TCPriorityViewController.m in Sources */,
+				D6CB682117C4A04500D290D7 /* TCInventoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
