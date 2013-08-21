@@ -33,10 +33,10 @@
     txtUsername.placeholder =[self localString:@"login.username.placeholder"];
     txtPwd.placeholder = [self localString:@"login.password"];
     
-    CALayer* btnLayer = [btnSignin layer];
-    [btnLayer setCornerRadius:8.0f];
-    [btnLayer setMasksToBounds:YES];
-    [btnLayer setBorderWidth:1.0f];
+//    CALayer* btnLayer = [btnSignin layer];
+//    [btnLayer setCornerRadius:8.0f];
+//    [btnLayer setMasksToBounds:YES];
+//    [btnLayer setBorderWidth:1.0f];
     
     CALayer * txtLayer = [txtUsername layer];
     [txtLayer setCornerRadius:8.0f];
@@ -61,6 +61,10 @@
     TCDisclaimerVwCtl * disclaimerVwCtl = [[TCDisclaimerVwCtl alloc] init];
     [self presentViewController:disclaimerVwCtl animated:YES completion:nil];
     
+}
+
+- (IBAction)login:(id)sender {
+    NSLog(@"login ...");
 }
 
 @end

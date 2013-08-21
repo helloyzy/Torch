@@ -14,10 +14,11 @@
     __weak IBOutlet UILabel *lblUsername;
     __weak IBOutlet UITextField *txtUsername;
     __weak IBOutlet UITextField *txtPwd;
-    __weak IBOutlet UIButton *btnSignin;
+   //  __weak IBOutlet UIButton *btnSignin;
     __weak IBOutlet UILabel *lblPwd;
 }
 
 - (IBAction)displayDisclaimView:(id)sender;
+- (IBAction)login:(id)sender;
 
 @end
