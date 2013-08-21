@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCBaseVwCtl.h"
 
-@interface TCLoginViewController : UIViewController
+@interface TCLoginViewController : TCBaseVwCtl
 
 @property (weak, nonatomic) IBOutlet UILabel *lblUsername;
 
