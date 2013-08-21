@@ -10,4 +10,6 @@
 
 @interface TCDisclaimerVwCtl : UIViewController
 
+- (IBAction)dismissView:(id)sender;
+
 @end

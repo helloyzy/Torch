@@ -7,7 +7,7 @@
 //
 
 #import "TCLoginViewController.h"
-#import "UIViewController+Utils.h"
+#import "TCDisclaimerVwCtl.h"
 
 @interface TCLoginViewController ()
 
@@ -35,6 +35,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)displayDisclaimView:(id)sender {
+    TCDisclaimerVwCtl * disclaimerVwCtl = [[TCDisclaimerVwCtl alloc] init];
+    [self presentViewController:disclaimerVwCtl animated:YES completion:nil];
+    
 }
 
 @end

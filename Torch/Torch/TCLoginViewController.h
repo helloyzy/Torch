@@ -11,6 +11,8 @@
 
 @interface TCLoginViewController : TCBaseVwCtl
 
+- (IBAction)displayDisclaimView:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UILabel *lblUsername;
 
 @end
