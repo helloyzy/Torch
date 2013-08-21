@@ -34,6 +34,8 @@
 		1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */; };
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
 		C5C26C4B17C4A37F0090CDC1 /* img__line.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4A17C4A37F0090CDC1 /* img__line.png */; };
+		C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */; };
+		C5C26C5017C4A5E70090CDC1 /* TCStoreHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */; };
 		D6CB682117C4A04500D290D7 /* TCInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */; };
 		D6CB682217C4A04500D290D7 /* TCInventoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */; };
 		D6D2EC7617C4897400D12795 /* TCPriorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */; };
@@ -95,6 +97,9 @@
 		1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Bd.ttf"; path = "fonts/HelveticaNeueLTCom-Bd.ttf"; sourceTree = "<group>"; };
 		1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Md.ttf"; path = "fonts/HelveticaNeueLTCom-Md.ttf"; sourceTree = "<group>"; };
 		C5C26C4A17C4A37F0090CDC1 /* img__line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img__line.png; sourceTree = "<group>"; };
+		C5C26C4C17C4A5E70090CDC1 /* TCStoreHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStoreHomeView.h; sourceTree = "<group>"; };
+		C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStoreHomeView.m; sourceTree = "<group>"; };
+		C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCStoreHomeView.xib; sourceTree = "<group>"; };
 		D6CB681E17C4A04500D290D7 /* TCInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCInventoryViewController.h; sourceTree = "<group>"; };
 		D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCInventoryViewController.m; sourceTree = "<group>"; };
 		D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCInventoryViewController.xib; sourceTree = "<group>"; };
@@ -248,6 +253,8 @@
 		DC0383A617C3058500BBD02A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C5C26C4C17C4A5E70090CDC1 /* TCStoreHomeView.h */,
+				C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */,
 				D6CB681E17C4A04500D290D7 /* TCInventoryViewController.h */,
 				D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */,
 				D6D2EC7317C4897400D12795 /* TCPriorityViewController.h */,
@@ -279,6 +286,7 @@
 				1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */,
 				1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */,
 				1C8187A417C4569D00AF7AF0 /* TCMyDayCell.xib */,
+				C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -385,6 +393,7 @@
 				1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */,
 				D6CB682217C4A04500D290D7 /* TCInventoryViewController.xib in Resources */,
 				C5C26C4B17C4A37F0090CDC1 /* img__line.png in Resources */,
+				C5C26C5017C4A5E70090CDC1 /* TCStoreHomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +469,7 @@
 				DC0383D617C453F900BBD02A /* TCBaseVwCtl.m in Sources */,
 				D6D2EC7617C4897400D12795 /* TCPriorityViewController.m in Sources */,
 				D6CB682117C4A04500D290D7 /* TCInventoryViewController.m in Sources */,
+				C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
