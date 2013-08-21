@@ -33,6 +33,7 @@
 		1C8187AD17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */; };
 		1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */; };
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
+		C5C26C4B17C4A37F0090CDC1 /* img__line.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4A17C4A37F0090CDC1 /* img__line.png */; };
 		D6CB682117C4A04500D290D7 /* TCInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */; };
 		D6CB682217C4A04500D290D7 /* TCInventoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */; };
 		D6D2EC7617C4897400D12795 /* TCPriorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */; };
@@ -93,6 +94,7 @@
 		1C8187AA17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Lt.ttf"; path = "fonts/HelveticaNeueLTCom-Lt.ttf"; sourceTree = "<group>"; };
 		1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Bd.ttf"; path = "fonts/HelveticaNeueLTCom-Bd.ttf"; sourceTree = "<group>"; };
 		1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Md.ttf"; path = "fonts/HelveticaNeueLTCom-Md.ttf"; sourceTree = "<group>"; };
+		C5C26C4A17C4A37F0090CDC1 /* img__line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img__line.png; sourceTree = "<group>"; };
 		D6CB681E17C4A04500D290D7 /* TCInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCInventoryViewController.h; sourceTree = "<group>"; };
 		D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCInventoryViewController.m; sourceTree = "<group>"; };
 		D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCInventoryViewController.xib; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			children = (
 				DC0383D717C45C5000BBD02A /* HersheysBG.png */,
 				DC0383A217C3044300BBD02A /* HersheysLogo.png */,
+				C5C26C4A17C4A37F0090CDC1 /* img__line.png */,
 			);
 			path = Res;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				D6D2EC7717C4897400D12795 /* TCPriorityViewController.xib in Resources */,
 				1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */,
 				D6CB682217C4A04500D290D7 /* TCInventoryViewController.xib in Resources */,
+				C5C26C4B17C4A37F0090CDC1 /* img__line.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
