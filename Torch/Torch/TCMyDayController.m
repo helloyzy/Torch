@@ -74,6 +74,7 @@
         storeLabel.opaque = NO;
         storeLabel.shadowOffset = CGSizeMake(0.0, -1.0);
         storeLabel.text = @"Store Name Here";
+        storeLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:16];
         storeLabel.userInteractionEnabled = NO;
         
         UIView *cellView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 20.0, 320.0, 548.0)];
