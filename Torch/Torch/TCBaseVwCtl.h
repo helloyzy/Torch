@@ -10,7 +10,7 @@
 
 @interface TCBaseVwCtl : UIViewController <UITextFieldDelegate>
 
-- (IBAction) backgroundTapped:(id)sender;
+- (UIView *) bgViewForEvents;
 
 - (BOOL) shouldRegisterDismissKeyboardOnClick;
 

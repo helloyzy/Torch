@@ -63,6 +63,10 @@
     
 }
 
+- (UIView *) bgViewForEvents {
+    return bgImgView;
+}
+
 - (IBAction)login:(id)sender {
     NSLog(@"login ...");
 }
