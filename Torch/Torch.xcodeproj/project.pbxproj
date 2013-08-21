@@ -31,13 +31,14 @@
 		1C8187A817C45A0B00AF7AF0 /* TCMyDayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */; };
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
 		DC0383A417C3044300BBD02A /* HersheysLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A217C3044300BBD02A /* HersheysLogo.png */; };
-		DC0383A517C3044300BBD02A /* iPhone_BG.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A317C3044300BBD02A /* iPhone_BG.png */; };
 		DC0383A917C3067B00BBD02A /* TCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */; };
 		DC0383C617C3455A00BBD02A /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */; };
 		DC0383C917C3463C00BBD02A /* TCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0383C817C3463C00BBD02A /* TCLoginViewController.m */; };
 		DC0383CC17C3469700BBD02A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC0383CE17C3469700BBD02A /* Localizable.strings */; };
 		DC0383D117C360F400BBD02A /* TCDisclaimerVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0383D017C360F400BBD02A /* TCDisclaimerVwCtl.m */; };
 		DC0383D317C3614100BBD02A /* TCDisclaimerVwCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC0383D217C3614100BBD02A /* TCDisclaimerVwCtl.xib */; };
+		DC0383D617C453F900BBD02A /* TCBaseVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0383D517C453F900BBD02A /* TCBaseVwCtl.m */; };
+		DC0383D817C45C5000BBD02A /* HersheysBG.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383D717C45C5000BBD02A /* HersheysBG.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +84,6 @@
 		1C8187A617C45A0B00AF7AF0 /* TCMyDayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMyDayController.h; sourceTree = "<group>"; };
 		1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMyDayController.m; sourceTree = "<group>"; };
 		DC0383A217C3044300BBD02A /* HersheysLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HersheysLogo.png; sourceTree = "<group>"; };
-		DC0383A317C3044300BBD02A /* iPhone_BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone_BG.png; sourceTree = "<group>"; };
 		DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCLoginViewController.xib; sourceTree = "<group>"; };
 		DC0383C417C3455A00BBD02A /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
 		DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
@@ -93,6 +93,9 @@
 		DC0383CF17C360F400BBD02A /* TCDisclaimerVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDisclaimerVwCtl.h; sourceTree = "<group>"; };
 		DC0383D017C360F400BBD02A /* TCDisclaimerVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDisclaimerVwCtl.m; sourceTree = "<group>"; };
 		DC0383D217C3614100BBD02A /* TCDisclaimerVwCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCDisclaimerVwCtl.xib; sourceTree = "<group>"; };
+		DC0383D417C453F900BBD02A /* TCBaseVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBaseVwCtl.h; sourceTree = "<group>"; };
+		DC0383D517C453F900BBD02A /* TCBaseVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBaseVwCtl.m; sourceTree = "<group>"; };
+		DC0383D717C45C5000BBD02A /* HersheysBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HersheysBG.png; sourceTree = "<group>"; };
 		FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -206,8 +209,8 @@
 		DC0383A117C3044300BBD02A /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				DC0383D717C45C5000BBD02A /* HersheysBG.png */,
 				DC0383A217C3044300BBD02A /* HersheysLogo.png */,
-				DC0383A317C3044300BBD02A /* iPhone_BG.png */,
 			);
 			path = Res;
 			sourceTree = "<group>";
@@ -215,6 +218,8 @@
 		DC0383A617C3058500BBD02A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DC0383D417C453F900BBD02A /* TCBaseVwCtl.h */,
+				DC0383D517C453F900BBD02A /* TCBaseVwCtl.m */,
 				1C713C0717C2058100A903A6 /* TCViewController.h */,
 				1C713C0817C2058100A903A6 /* TCViewController.m */,
 				1C65E2E917C346A600FA94B2 /* TCRouteMapViewController.h */,
@@ -331,13 +336,13 @@
 				1C713C0617C2058100A903A6 /* Default-568h@2x.png in Resources */,
 				1C713C0C17C2058100A903A6 /* TCViewController.xib in Resources */,
 				DC0383A417C3044300BBD02A /* HersheysLogo.png in Resources */,
-				DC0383A517C3044300BBD02A /* iPhone_BG.png in Resources */,
 				DC0383A917C3067B00BBD02A /* TCLoginViewController.xib in Resources */,
 				DC0383CC17C3469700BBD02A /* Localizable.strings in Resources */,
 				1C65E2E617C33D6700FA94B2 /* TCRouteMapView.xib in Resources */,
 				1C65E2E817C3416B00FA94B2 /* TCRouteTableView.xib in Resources */,
 				DC0383D317C3614100BBD02A /* TCDisclaimerVwCtl.xib in Resources */,
 				1C8187A517C4569D00AF7AF0 /* TCMyDayCell.xib in Resources */,
+				DC0383D817C45C5000BBD02A /* HersheysBG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +415,7 @@
 				DC0383C917C3463C00BBD02A /* TCLoginViewController.m in Sources */,
 				DC0383D117C360F400BBD02A /* TCDisclaimerVwCtl.m in Sources */,
 				1C8187A817C45A0B00AF7AF0 /* TCMyDayController.m in Sources */,
+				DC0383D617C453F900BBD02A /* TCBaseVwCtl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
