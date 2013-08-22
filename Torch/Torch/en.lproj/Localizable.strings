@@ -8,6 +8,7 @@
 
 /*wm*/
 "Done" = "Done";
+"Back" = "Back";
 
 "login.username" = "User Name";
 "login.username.placeholder" = "HFXXXXXX";
