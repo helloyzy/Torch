@@ -37,8 +37,6 @@
 		C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */; };
 		C5C26C5017C4A5E70090CDC1 /* TCStoreHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */; };
 		C5C26C5417C5A5200090CDC1 /* sliderbg.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C5317C5A5200090CDC1 /* sliderbg.png */; };
-		C5C26C5717C5D5780090CDC1 /* Button-DirectionsBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C5517C5D5780090CDC1 /* Button-DirectionsBg.png */; };
-		C5C26C5817C5D5780090CDC1 /* Button-View-Store.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C5617C5D5780090CDC1 /* Button-View-Store.png */; };
 		D6CB682117C4A04500D290D7 /* TCInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */; };
 		D6CB682217C4A04500D290D7 /* TCInventoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */; };
 		D6CB682417C5A65600D290D7 /* InventoryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CB682317C5A65600D290D7 /* InventoryTableCell.xib */; };
@@ -57,6 +55,8 @@
 		DC0383DF17C4CE7F00BBD02A /* loginBtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */; };
 		DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */; };
 		DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */ = {isa = PBXBuildFile; fileRef = DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */; };
+		DC9979C317C5D4510044C917 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C117C5D4510044C917 /* navbar_bg.png */; };
+		DC9979C417C5D4510044C917 /* navbar_righticon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C217C5D4510044C917 /* navbar_righticon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +104,7 @@
 		1C8187AA17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Lt.ttf"; path = "fonts/HelveticaNeueLTCom-Lt.ttf"; sourceTree = "<group>"; };
 		1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Bd.ttf"; path = "fonts/HelveticaNeueLTCom-Bd.ttf"; sourceTree = "<group>"; };
 		1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Md.ttf"; path = "fonts/HelveticaNeueLTCom-Md.ttf"; sourceTree = "<group>"; };
+		1CE7C73B17C5E5B6008B0F2C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C5C26C4A17C4A37F0090CDC1 /* img__line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img__line.png; sourceTree = "<group>"; };
 		C5C26C4C17C4A5E70090CDC1 /* TCStoreHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStoreHomeView.h; sourceTree = "<group>"; };
 		C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStoreHomeView.m; sourceTree = "<group>"; };
@@ -137,6 +138,8 @@
 		DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_border.png; sourceTree = "<group>"; };
 		DC51EA0917C5A2BE00E5DD3C /* UIViewController+Torch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Torch.h"; sourceTree = "<group>"; };
 		DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Torch.m"; sourceTree = "<group>"; };
+		DC9979C117C5D4510044C917 /* navbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_bg.png; sourceTree = "<group>"; };
+		DC9979C217C5D4510044C917 /* navbar_righticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_righticon.png; sourceTree = "<group>"; };
 		FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -145,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CE7C73C17C5E5B6008B0F2C /* CoreLocation.framework in Frameworks */,
 				1C65E2E417C33CE100FA94B2 /* MapKit.framework in Frameworks */,
 				1C713BF017C2058100A903A6 /* UIKit.framework in Frameworks */,
 				1C713BF217C2058100A903A6 /* Foundation.framework in Frameworks */,
@@ -190,6 +194,7 @@
 		1C713BEE17C2058000A903A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1CE7C73B17C5E5B6008B0F2C /* CoreLocation.framework */,
 				1C65E2E317C33CE100FA94B2 /* MapKit.framework */,
 				1C713BEF17C2058100A903A6 /* UIKit.framework */,
 				1C713BF117C2058100A903A6 /* Foundation.framework */,
@@ -261,6 +266,8 @@
 		DC0383A117C3044300BBD02A /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				DC9979C117C5D4510044C917 /* navbar_bg.png */,
+				DC9979C217C5D4510044C917 /* navbar_righticon.png */,
 				C5C26C5517C5D5780090CDC1 /* Button-DirectionsBg.png */,
 				C5C26C5617C5D5780090CDC1 /* Button-View-Store.png */,
 				DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */,
@@ -426,6 +433,8 @@
 				DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */,
 				D6CB682417C5A65600D290D7 /* InventoryTableCell.xib in Resources */,
 				C5C26C5417C5A5200090CDC1 /* sliderbg.png in Resources */,
+				DC9979C317C5D4510044C917 /* navbar_bg.png in Resources */,
+				DC9979C417C5D4510044C917 /* navbar_righticon.png in Resources */,
 				C5C26C5717C5D5780090CDC1 /* Button-DirectionsBg.png in Resources */,
 				C5C26C5817C5D5780090CDC1 /* Button-View-Store.png in Resources */,
 			);
