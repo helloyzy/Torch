@@ -10,4 +10,8 @@
 
 @interface UIViewController (Torch)
 
+- (void) decorateNavBar;
+
++ (UINavigationController *) customNavCtr:(UIViewController *)rootVwCtl;
+
 @end
