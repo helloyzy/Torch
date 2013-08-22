@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCStoreHomeView : UIViewController
+@interface TCStoreHomeView : UIViewController {
+    
+    __weak IBOutlet UILabel *lblStoredetail;
+    __weak IBOutlet UILabel *lblStorename;
+}
+// @property (weak, nonatomic) IBOutlet UILabel *lblStoreName;
+// @property (weak, nonatomic) IBOutlet UILabel *lblStoreDetail;
 
 @end
