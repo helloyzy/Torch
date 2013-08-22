@@ -20,7 +20,7 @@
 - (UIViewController *)newDeckController
 {
     UIViewController* left = [[TCRouteMapViewController alloc] initWithNibName:@"TCRouteMapView" bundle:nil];
-    UIViewController* center = [[TCMyDayController alloc] initWithStyle:UITableViewStylePlain];
+    UIViewController* center = [[TCMyDayController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
 
     return [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
 }

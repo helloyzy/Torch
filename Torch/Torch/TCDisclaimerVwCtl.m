@@ -7,6 +7,7 @@
 //
 
 #import "TCDisclaimerVwCtl.h"
+#import "UIViewController+Utils.h"
 
 @interface TCDisclaimerVwCtl ()
 
@@ -26,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.btnDone.title = [self localString:@"Done"];
 }
 
 - (void)didReceiveMemoryWarning

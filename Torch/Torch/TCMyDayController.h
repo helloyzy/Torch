@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCMyDayController : UITableViewController
+@interface TCMyDayController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
+@property(nonatomic, strong) IBOutlet UITableView* tableView;
+@property(nonatomic, strong) IBOutlet UILabel * header;
+
+@property(nonatomic, strong) IBOutlet UIView* shadow;
 @end

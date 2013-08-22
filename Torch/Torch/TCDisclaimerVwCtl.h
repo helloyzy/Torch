@@ -10,6 +10,8 @@
 
 @interface TCDisclaimerVwCtl : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnDone;
+
 - (IBAction)dismissView:(id)sender;
 
 @end
