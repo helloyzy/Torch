@@ -1,19 +1,18 @@
 //
-//  TCDisclaimerVwCtl.m
+//  TCInventoryViewController.m
 //  Torch
 //
-//  Created by Whitman Yang on 8/20/13.
+//  Created by bo hu on 8/21/13.
 //  Copyright (c) 2013 Hershey. All rights reserved.
 //
 
-#import "TCDisclaimerVwCtl.h"
-#import "UIViewController+Utils.h"
+#import "TCInventoryViewController.h"
 
-@interface TCDisclaimerVwCtl ()
+@interface TCInventoryViewController ()
 
 @end
 
-@implementation TCDisclaimerVwCtl
+@implementation TCInventoryViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.btnDone.title = [self localString:@"Done"];
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,7 +35,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)dismissView:(id)sender {
-    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-}
 @end
