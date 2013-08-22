@@ -8,6 +8,7 @@
 
 #import "TCDisclaimerVwCtl.h"
 #import "UIViewController+Utils.h"
+#import "UIViewController+Torch.h"
 
 @interface TCDisclaimerVwCtl ()
 
@@ -27,7 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.btnDone.title = [self localString:@"Done"];
+    btnDone.title = [self localString:@"Done"];
+    [self decorateNavBar:navBar needRightItem:NO];
 }
 
 - (void)didReceiveMemoryWarning

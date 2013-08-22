@@ -13,6 +13,8 @@
 "login.username" = "User Name";
 "login.username.placeholder" = "HFXXXXXX";
 "login.password" = "Password";
+"login.signIn" = "Sign In";
+"login.readMore" = "Read More..";
 
 
 
