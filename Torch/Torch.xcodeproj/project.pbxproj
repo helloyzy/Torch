@@ -32,6 +32,7 @@
 		1C8187AB17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AA17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf */; };
 		1C8187AD17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */; };
 		1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */; };
+		1CE7C73C17C5E5B6008B0F2C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE7C73B17C5E5B6008B0F2C /* CoreLocation.framework */; };
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
 		C5C26C4B17C4A37F0090CDC1 /* img__line.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4A17C4A37F0090CDC1 /* img__line.png */; };
 		C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */; };
@@ -104,6 +105,7 @@
 		1C8187AA17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Lt.ttf"; path = "fonts/HelveticaNeueLTCom-Lt.ttf"; sourceTree = "<group>"; };
 		1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Bd.ttf"; path = "fonts/HelveticaNeueLTCom-Bd.ttf"; sourceTree = "<group>"; };
 		1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Md.ttf"; path = "fonts/HelveticaNeueLTCom-Md.ttf"; sourceTree = "<group>"; };
+		1CE7C73B17C5E5B6008B0F2C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C5C26C4A17C4A37F0090CDC1 /* img__line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img__line.png; sourceTree = "<group>"; };
 		C5C26C4C17C4A5E70090CDC1 /* TCStoreHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStoreHomeView.h; sourceTree = "<group>"; };
 		C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStoreHomeView.m; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CE7C73C17C5E5B6008B0F2C /* CoreLocation.framework in Frameworks */,
 				1C65E2E417C33CE100FA94B2 /* MapKit.framework in Frameworks */,
 				1C713BF017C2058100A903A6 /* UIKit.framework in Frameworks */,
 				1C713BF217C2058100A903A6 /* Foundation.framework in Frameworks */,
@@ -190,6 +193,7 @@
 		1C713BEE17C2058000A903A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1CE7C73B17C5E5B6008B0F2C /* CoreLocation.framework */,
 				1C65E2E317C33CE100FA94B2 /* MapKit.framework */,
 				1C713BEF17C2058100A903A6 /* UIKit.framework */,
 				1C713BF117C2058100A903A6 /* Foundation.framework */,
