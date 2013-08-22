@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCBaseVwCtl.h"
 
-@interface TCNavVwCtl : UIViewController
+@interface TCNavVwCtl : TCBaseVwCtl
 
 @end

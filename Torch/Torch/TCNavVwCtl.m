@@ -7,6 +7,7 @@
 //
 
 #import "TCNavVwCtl.h"
+#import "UIViewController+Torch.h"
 
 @interface TCNavVwCtl ()
 
@@ -26,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	[self decorateNavBar];
 }
 
 - (void)didReceiveMemoryWarning
