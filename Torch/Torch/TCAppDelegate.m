@@ -14,6 +14,8 @@
 #import "TCMyDayController.h"
 #import "TCLoginViewController.h"
 #import "TCDisclaimerVwCtl.h"
+#import "UIViewController+Torch.h"
+#import "TCPriorityViewController.h"
 
 @implementation TCAppDelegate
 
@@ -25,6 +27,12 @@
     return [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
 }
 
+- (UIViewController *)controllerWithinNavCtr {
+    UIViewController * viewController = [[TCViewController alloc] init];
+    UINavigationController * navCtr = [UIViewController customNavCtr:viewController];
+    return navCtr;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -34,6 +42,7 @@
     // self.viewController = [self newDeckController];
     // self.viewController = [[TCDisclaimerVwCtl alloc] init];
     self.viewController = [[TCLoginViewController alloc] init];
+    // self.viewController = [self controllerWithinNavCtr];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
