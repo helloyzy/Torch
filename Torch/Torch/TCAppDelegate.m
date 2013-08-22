@@ -14,6 +14,7 @@
 #import "TCMyDayController.h"
 #import "TCLoginViewController.h"
 #import "TCDisclaimerVwCtl.h"
+#import "TCStoreHomeView.h"
 
 @implementation TCAppDelegate
 
@@ -33,8 +34,11 @@
     /*self.viewController = [[TCViewController alloc] initWithNibName:@"TCLoginView" bundle:nil]; */    
     // self.viewController = [self newDeckController];
     // self.viewController = [[TCDisclaimerVwCtl alloc] init];
-    self.viewController = [[TCLoginViewController alloc] init];
+    //self.viewController = [[TCLoginViewController alloc] init];
+    //self.window.rootViewController = self.viewController;
+    self.viewController = [[TCStoreHomeView alloc] init];
     self.window.rootViewController = self.viewController;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

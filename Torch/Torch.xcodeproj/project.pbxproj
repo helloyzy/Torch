@@ -37,6 +37,8 @@
 		C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */; };
 		C5C26C5017C4A5E70090CDC1 /* TCStoreHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */; };
 		C5C26C5417C5A5200090CDC1 /* sliderbg.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C5317C5A5200090CDC1 /* sliderbg.png */; };
+		C5C26C5717C5D5780090CDC1 /* Button-DirectionsBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C5517C5D5780090CDC1 /* Button-DirectionsBg.png */; };
+		C5C26C5817C5D5780090CDC1 /* Button-View-Store.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C5617C5D5780090CDC1 /* Button-View-Store.png */; };
 		D6CB682117C4A04500D290D7 /* TCInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */; };
 		D6CB682217C4A04500D290D7 /* TCInventoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */; };
 		D6CB682417C5A65600D290D7 /* InventoryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CB682317C5A65600D290D7 /* InventoryTableCell.xib */; };
@@ -107,6 +109,8 @@
 		C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStoreHomeView.m; sourceTree = "<group>"; };
 		C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCStoreHomeView.xib; sourceTree = "<group>"; };
 		C5C26C5317C5A5200090CDC1 /* sliderbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderbg.png; sourceTree = "<group>"; };
+		C5C26C5517C5D5780090CDC1 /* Button-DirectionsBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-DirectionsBg.png"; sourceTree = "<group>"; };
+		C5C26C5617C5D5780090CDC1 /* Button-View-Store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-View-Store.png"; sourceTree = "<group>"; };
 		D6CB681E17C4A04500D290D7 /* TCInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCInventoryViewController.h; sourceTree = "<group>"; };
 		D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCInventoryViewController.m; sourceTree = "<group>"; };
 		D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCInventoryViewController.xib; sourceTree = "<group>"; };
@@ -257,6 +261,8 @@
 		DC0383A117C3044300BBD02A /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				C5C26C5517C5D5780090CDC1 /* Button-DirectionsBg.png */,
+				C5C26C5617C5D5780090CDC1 /* Button-View-Store.png */,
 				DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */,
 				DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */,
 				C5C26C5317C5A5200090CDC1 /* sliderbg.png */,
@@ -420,6 +426,8 @@
 				DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */,
 				D6CB682417C5A65600D290D7 /* InventoryTableCell.xib in Resources */,
 				C5C26C5417C5A5200090CDC1 /* sliderbg.png in Resources */,
+				C5C26C5717C5D5780090CDC1 /* Button-DirectionsBg.png in Resources */,
+				C5C26C5817C5D5780090CDC1 /* Button-View-Store.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
