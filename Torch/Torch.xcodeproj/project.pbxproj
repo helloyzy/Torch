@@ -57,6 +57,7 @@
 		DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */ = {isa = PBXBuildFile; fileRef = DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */; };
 		DC9979C317C5D4510044C917 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C117C5D4510044C917 /* navbar_bg.png */; };
 		DC9979C417C5D4510044C917 /* navbar_righticon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C217C5D4510044C917 /* navbar_righticon.png */; };
+		DC997A0217C60A010044C917 /* TCNavVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC997A0117C60A010044C917 /* TCNavVwCtl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,8 @@
 		DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Torch.m"; sourceTree = "<group>"; };
 		DC9979C117C5D4510044C917 /* navbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_bg.png; sourceTree = "<group>"; };
 		DC9979C217C5D4510044C917 /* navbar_righticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_righticon.png; sourceTree = "<group>"; };
+		DC997A0017C60A010044C917 /* TCNavVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNavVwCtl.h; sourceTree = "<group>"; };
+		DC997A0117C60A010044C917 /* TCNavVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNavVwCtl.m; sourceTree = "<group>"; };
 		FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -303,6 +306,8 @@
 				DC0383D017C360F400BBD02A /* TCDisclaimerVwCtl.m */,
 				1C8187A617C45A0B00AF7AF0 /* TCMyDayController.h */,
 				1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */,
+				DC997A0017C60A010044C917 /* TCNavVwCtl.h */,
+				DC997A0117C60A010044C917 /* TCNavVwCtl.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -515,6 +520,7 @@
 				C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */,
 				DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */,
 				D6CB682717C5A98A00D290D7 /* InventoryTableCell.m in Sources */,
+				DC997A0217C60A010044C917 /* TCNavVwCtl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
