@@ -51,6 +51,7 @@
 		DC0383D817C45C5000BBD02A /* HersheysBG.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383D717C45C5000BBD02A /* HersheysBG.png */; };
 		DC0383DF17C4CE7F00BBD02A /* loginBtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */; };
 		DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */; };
+		DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */ = {isa = PBXBuildFile; fileRef = DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,8 @@
 		DC0383D717C45C5000BBD02A /* HersheysBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HersheysBG.png; sourceTree = "<group>"; };
 		DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_bg.png; sourceTree = "<group>"; };
 		DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_border.png; sourceTree = "<group>"; };
+		DC51EA0917C5A2BE00E5DD3C /* UIViewController+Torch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Torch.h"; sourceTree = "<group>"; };
+		DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Torch.m"; sourceTree = "<group>"; };
 		FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -302,6 +305,8 @@
 			children = (
 				DC0383C417C3455A00BBD02A /* UIViewController+Utils.h */,
 				DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */,
+				DC51EA0917C5A2BE00E5DD3C /* UIViewController+Torch.h */,
+				DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -478,6 +483,7 @@
 				D6D2EC7617C4897400D12795 /* TCPriorityViewController.m in Sources */,
 				D6CB682117C4A04500D290D7 /* TCInventoryViewController.m in Sources */,
 				C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */,
+				DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
