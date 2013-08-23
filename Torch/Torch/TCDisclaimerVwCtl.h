@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCDisclaimerVwCtl : UIViewController
-
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnDone;
+@interface TCDisclaimerVwCtl : UIViewController {
+    __weak IBOutlet UIBarButtonItem *btnDone;
+    __weak IBOutlet UINavigationBar *navBar;
+}
 
 - (IBAction)dismissView:(id)sender;
 

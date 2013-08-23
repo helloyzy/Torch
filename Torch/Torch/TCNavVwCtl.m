@@ -1,20 +1,19 @@
 //
-//  TCDisclaimerVwCtl.m
+//  TCNavVwCtl.m
 //  Torch
 //
-//  Created by Whitman Yang on 8/20/13.
+//  Created by Whitman Yang on 8/22/13.
 //  Copyright (c) 2013 Hershey. All rights reserved.
 //
 
-#import "TCDisclaimerVwCtl.h"
-#import "UIViewController+Utils.h"
+#import "TCNavVwCtl.h"
 #import "UIViewController+Torch.h"
 
-@interface TCDisclaimerVwCtl ()
+@interface TCNavVwCtl ()
 
 @end
 
-@implementation TCDisclaimerVwCtl
+@implementation TCNavVwCtl
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,8 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    btnDone.title = [self localString:@"Done"];
-    [self decorateNavBar:navBar needRightItem:NO];
+	[self decorateNavBar];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,7 +36,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)dismissView:(id)sender {
-    [[self presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-}
 @end

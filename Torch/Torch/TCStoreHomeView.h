@@ -12,8 +12,10 @@
     
     __weak IBOutlet UILabel *lblStoredetail;
     __weak IBOutlet UILabel *lblStorename;
+    NSArray *displayList;
+
 }
 // @property (weak, nonatomic) IBOutlet UILabel *lblStoreName;
 // @property (weak, nonatomic) IBOutlet UILabel *lblStoreDetail;
-
+@property (nonatomic, retain) NSArray *displayList;
 @end
