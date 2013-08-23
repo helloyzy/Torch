@@ -1053,7 +1053,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="Button-DirectionsBg.png">{180, 32}</string>
 			<string key="Button-View-Store.png">{291, 32}</string>
-			<string key="img__line.png">{300, 2}</string>
+			<string key="img__line.png">{16, 16}</string>
 			<string key="sliderbg.png">{320, 80}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>

@@ -35,7 +35,8 @@
 		1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */; };
 		1CA64AF817C6F54D004D58B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE7C73B17C5E5B6008B0F2C /* CoreLocation.framework */; };
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
-		C5C26C4B17C4A37F0090CDC1 /* img__line.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4A17C4A37F0090CDC1 /* img__line.png */; };
+		C587B86C17C72B6C00ED6DAB /* mapicon.png in Resources */ = {isa = PBXBuildFile; fileRef = C587B86B17C72B6C00ED6DAB /* mapicon.png */; };
+		C587B86E17C72B9200ED6DAB /* divide.png in Resources */ = {isa = PBXBuildFile; fileRef = C587B86D17C72B9200ED6DAB /* divide.png */; };
 		C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */; };
 		C5C26C5017C4A5E70090CDC1 /* TCStoreHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */; };
 		C5C26C5417C5A5200090CDC1 /* sliderbg.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C5317C5A5200090CDC1 /* sliderbg.png */; };
@@ -110,7 +111,8 @@
 		1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Bd.ttf"; path = "fonts/HelveticaNeueLTCom-Bd.ttf"; sourceTree = "<group>"; };
 		1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Md.ttf"; path = "fonts/HelveticaNeueLTCom-Md.ttf"; sourceTree = "<group>"; };
 		1CE7C73B17C5E5B6008B0F2C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		C5C26C4A17C4A37F0090CDC1 /* img__line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img__line.png; sourceTree = "<group>"; };
+		C587B86B17C72B6C00ED6DAB /* mapicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapicon.png; sourceTree = "<group>"; };
+		C587B86D17C72B9200ED6DAB /* divide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divide.png; sourceTree = "<group>"; };
 		C5C26C4C17C4A5E70090CDC1 /* TCStoreHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStoreHomeView.h; sourceTree = "<group>"; };
 		C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStoreHomeView.m; sourceTree = "<group>"; };
 		C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCStoreHomeView.xib; sourceTree = "<group>"; };
@@ -275,6 +277,8 @@
 		DC0383A117C3044300BBD02A /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				C587B86D17C72B9200ED6DAB /* divide.png */,
+				C587B86B17C72B6C00ED6DAB /* mapicon.png */,
 				1C40315517C5FB1F007D58CC /* client-pin.png */,
 				DC9979C117C5D4510044C917 /* navbar_bg.png */,
 				DC9979C217C5D4510044C917 /* navbar_righticon.png */,
@@ -285,7 +289,6 @@
 				C5C26C5317C5A5200090CDC1 /* sliderbg.png */,
 				DC0383D717C45C5000BBD02A /* HersheysBG.png */,
 				DC0383A217C3044300BBD02A /* HersheysLogo.png */,
-				C5C26C4A17C4A37F0090CDC1 /* img__line.png */,
 			);
 			path = Res;
 			sourceTree = "<group>";
@@ -441,7 +444,6 @@
 				D6D2EC7717C4897400D12795 /* TCPriorityViewController.xib in Resources */,
 				1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */,
 				D6CB682217C4A04500D290D7 /* TCInventoryViewController.xib in Resources */,
-				C5C26C4B17C4A37F0090CDC1 /* img__line.png in Resources */,
 				C5C26C5017C4A5E70090CDC1 /* TCStoreHomeView.xib in Resources */,
 				DC0383DF17C4CE7F00BBD02A /* loginBtn_bg.png in Resources */,
 				DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */,
@@ -450,6 +452,8 @@
 				DC9979C317C5D4510044C917 /* navbar_bg.png in Resources */,
 				DC9979C417C5D4510044C917 /* navbar_righticon.png in Resources */,
 				1C40315617C5FB1F007D58CC /* client-pin.png in Resources */,
+				C587B86C17C72B6C00ED6DAB /* mapicon.png in Resources */,
+				C587B86E17C72B9200ED6DAB /* divide.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
