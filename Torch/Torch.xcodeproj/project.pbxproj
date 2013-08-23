@@ -33,6 +33,7 @@
 		1C8187AB17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AA17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf */; };
 		1C8187AD17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */; };
 		1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */; };
+		1CA64AF817C6F54D004D58B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE7C73B17C5E5B6008B0F2C /* CoreLocation.framework */; };
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
 		C5C26C4B17C4A37F0090CDC1 /* img__line.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4A17C4A37F0090CDC1 /* img__line.png */; };
 		C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */; };
@@ -153,9 +154,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CE7C73C17C5E5B6008B0F2C /* CoreLocation.framework in Frameworks */,
 				1C65E2E417C33CE100FA94B2 /* MapKit.framework in Frameworks */,
 				1C713BF017C2058100A903A6 /* UIKit.framework in Frameworks */,
+				1CA64AF817C6F54D004D58B9 /* CoreLocation.framework in Frameworks */,
 				1C713BF217C2058100A903A6 /* Foundation.framework in Frameworks */,
 				1C713BF417C2058100A903A6 /* CoreGraphics.framework in Frameworks */,
 				829F9074DC7949F595F20110 /* libPods.a in Frameworks */,
@@ -444,8 +445,6 @@
 				DC9979C317C5D4510044C917 /* navbar_bg.png in Resources */,
 				DC9979C417C5D4510044C917 /* navbar_righticon.png in Resources */,
 				1C40315617C5FB1F007D58CC /* client-pin.png in Resources */,
-				C5C26C5717C5D5780090CDC1 /* Button-DirectionsBg.png in Resources */,
-				C5C26C5817C5D5780090CDC1 /* Button-View-Store.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
