@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCNavVwCtl.h"
 
-@interface TCStoreHomeView : UIViewController {
+
+@interface TCStoreHomeView : TCNavVwCtl {
     
     __weak IBOutlet UILabel *lblStoredetail;
     __weak IBOutlet UILabel *lblStorename;
