@@ -39,6 +39,7 @@
 		C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */; };
 		C5C26C5017C4A5E70090CDC1 /* TCStoreHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */; };
 		C5C26C5417C5A5200090CDC1 /* sliderbg.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C5317C5A5200090CDC1 /* sliderbg.png */; };
+		D6C5A31417C7014400C0C657 /* ProductItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C5A31317C7014400C0C657 /* ProductItemObject.m */; };
 		D6CB682117C4A04500D290D7 /* TCInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */; };
 		D6CB682217C4A04500D290D7 /* TCInventoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */; };
 		D6CB682417C5A65600D290D7 /* InventoryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CB682317C5A65600D290D7 /* InventoryTableCell.xib */; };
@@ -116,6 +117,8 @@
 		C5C26C5317C5A5200090CDC1 /* sliderbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderbg.png; sourceTree = "<group>"; };
 		C5C26C5517C5D5780090CDC1 /* Button-DirectionsBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-DirectionsBg.png"; sourceTree = "<group>"; };
 		C5C26C5617C5D5780090CDC1 /* Button-View-Store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-View-Store.png"; sourceTree = "<group>"; };
+		D6C5A31217C7014400C0C657 /* ProductItemObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductItemObject.h; path = ../ProductItemObject.h; sourceTree = "<group>"; };
+		D6C5A31317C7014400C0C657 /* ProductItemObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductItemObject.m; path = ../ProductItemObject.m; sourceTree = "<group>"; };
 		D6CB681E17C4A04500D290D7 /* TCInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCInventoryViewController.h; sourceTree = "<group>"; };
 		D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCInventoryViewController.m; sourceTree = "<group>"; };
 		D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCInventoryViewController.xib; sourceTree = "<group>"; };
@@ -290,6 +293,8 @@
 		DC0383A617C3058500BBD02A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D6C5A31217C7014400C0C657 /* ProductItemObject.h */,
+				D6C5A31317C7014400C0C657 /* ProductItemObject.m */,
 				D6CB682517C5A98A00D290D7 /* InventoryTableCell.h */,
 				D6CB682617C5A98A00D290D7 /* InventoryTableCell.m */,
 				C5C26C4C17C4A5E70090CDC1 /* TCStoreHomeView.h */,
@@ -524,6 +529,7 @@
 				DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */,
 				D6CB682717C5A98A00D290D7 /* InventoryTableCell.m in Sources */,
 				DC997A0217C60A010044C917 /* TCNavVwCtl.m in Sources */,
+				D6C5A31417C7014400C0C657 /* ProductItemObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
