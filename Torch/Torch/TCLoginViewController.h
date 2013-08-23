@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TCBaseVwCtl.h"
 
+@class YIInnerShadowView;
 @interface TCLoginViewController : TCBaseVwCtl {
     
     __weak IBOutlet UILabel *lblUsername;
@@ -19,9 +20,11 @@
     __weak IBOutlet UIImageView *bgImgView;
     __weak IBOutlet UIButton *btnReadMore;
     __weak IBOutlet UIButton *btnSignIn;
+    __weak IBOutlet YIInnerShadowView *bgVwUsername;
+    __weak IBOutlet YIInnerShadowView *bgVwPwd;
 }
 
 - (IBAction)displayDisclaimView:(id)sender;
-- (IBAction)login:(id)sender;
+- (IBAction)signIn:(id)sender;
 
 @end
