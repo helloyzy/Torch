@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface TCRouteMapViewController : UIViewController
+@interface TCRouteMapViewController : UIViewController<MKMapViewDelegate>
 
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 
