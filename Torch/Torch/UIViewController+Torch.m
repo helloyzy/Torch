@@ -7,48 +7,62 @@
 //
 
 #import "UIViewController+Torch.h"
+#import "TCViewController.h"
 
 @implementation UIViewController (Torch)
 
 #pragma mark - customized navigation bar
 
++ (void) setNavbarBgImg:(UINavigationBar *)navBar {
+    // need a image sized 320 * 44 (or even bigger)
+    UIImage * navBgImg = [UIImage imageNamed:@"navbar_bg.png"];
+    [navBar setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsDefault];
+    [navBar setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsLandscapePhone];
+}
+
 + (UINavigationController *) customNavCtr:(UIViewController *)rootVwCtl {
-    UINavigationController * result = nil;
+    UINavigationController * result;
     if (rootVwCtl) {
         result = [[UINavigationController alloc] initWithRootViewController:rootVwCtl];
     } else {
         result = [[UINavigationController alloc] init];
     }
-    UIImage * navBgImg = [UIImage imageNamed:@"navbar_bg.png"];
-    [result.navigationBar setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsDefault];
-    [result.navigationBar setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsLandscapePhone];
+    [self setNavbarBgImg:result.navigationBar];    
+//    result.navigationBar.clipsToBounds = YES;
+//    [result.navigationBar setBarStyle:UIBarStyleBlackOpaque];
     return result;
 }
 
-+ (UIImageView *) navBarTitleView {
-    static UIImageView * navBarTitleView = nil;
-    if (!navBarTitleView) {
-        UIImage * image = [UIImage imageNamed:@"HersheysLogo.png"];
-        navBarTitleView = [[UIImageView alloc] initWithImage:image];
-    }
-    return navBarTitleView;
-}
-
-+ (UIBarButtonItem *) navBarRightItem {
+- (UIBarButtonItem *) navBarRightItem {
     static UIBarButtonItem * navBarRightItem = nil;
     if (!navBarRightItem) {
         UIImage * image = [UIImage imageNamed:@"navbar_righticon.png"];
-        navBarRightItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleBordered target:nil action:nil];
+        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(0, 0, 33, 30);
+        [btn setBackgroundImage:image forState:UIControlStateNormal];
+        // [btn addTarget:self action:@selector(testJump) forControlEvents:UIControlEventTouchUpInside];
+        navBarRightItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     }
     return navBarRightItem;
 }
 
+- (void) decorateNavItem:(UINavigationItem *)navItem needRightItem:(BOOL)flag {
+    if (flag) {
+        navItem.rightBarButtonItem = [self navBarRightItem];
+    }
+    navItem.backBarButtonItem.title = NSLocalizedString(@"Back", nil);
+}
+
 - (void) decorateNavBar {
     if (self.navigationController) {
-        self.navigationItem.titleView = [UIViewController navBarTitleView];
-        self.navigationItem.rightBarButtonItem = [UIViewController navBarRightItem];
-        self.navigationItem.backBarButtonItem.title = @"Back";
+        [self decorateNavItem:self.navigationItem needRightItem:YES];
     }
+}
+
+- (void) decorateNavBar:(UINavigationBar *)navBar needRightItem:(BOOL)flag {
+    [UIViewController setNavbarBgImg:navBar];
+    UINavigationItem * item = [[UINavigationItem alloc] init];
+    [self decorateNavItem:item needRightItem:flag];
 }
 
 

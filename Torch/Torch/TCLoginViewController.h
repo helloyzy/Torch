@@ -17,6 +17,8 @@
    //  __weak IBOutlet UIButton *btnSignin;
     __weak IBOutlet UILabel *lblPwd;
     __weak IBOutlet UIImageView *bgImgView;
+    __weak IBOutlet UIButton *btnReadMore;
+    __weak IBOutlet UIButton *btnSignIn;
 }
 
 - (IBAction)displayDisclaimView:(id)sender;

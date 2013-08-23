@@ -11,6 +11,7 @@
 @interface UIViewController (Torch)
 
 - (void) decorateNavBar;
+- (void) decorateNavBar:(UINavigationBar *)navBar needRightItem:(BOOL)flag;
 
 + (UINavigationController *) customNavCtr:(UIViewController *)rootVwCtl;
 
