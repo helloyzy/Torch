@@ -314,6 +314,7 @@
 		DC0383A617C3058500BBD02A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DC9D57E517C74B1900EAFD2F /* Base */,
 				D6C5A31217C7014400C0C657 /* ProductItemObject.h */,
 				D6C5A31317C7014400C0C657 /* ProductItemObject.m */,
 				D6CB682517C5A98A00D290D7 /* InventoryTableCell.h */,
@@ -324,8 +325,6 @@
 				D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */,
 				D6D2EC7317C4897400D12795 /* TCPriorityViewController.h */,
 				D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */,
-				DC0383D417C453F900BBD02A /* TCBaseVwCtl.h */,
-				DC0383D517C453F900BBD02A /* TCBaseVwCtl.m */,
 				1C713C0717C2058100A903A6 /* TCViewController.h */,
 				1C713C0817C2058100A903A6 /* TCViewController.m */,
 				1C65E2E917C346A600FA94B2 /* TCRouteMapViewController.h */,
@@ -336,8 +335,6 @@
 				DC0383D017C360F400BBD02A /* TCDisclaimerVwCtl.m */,
 				1C8187A617C45A0B00AF7AF0 /* TCMyDayController.h */,
 				1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */,
-				DC997A0017C60A010044C917 /* TCNavVwCtl.h */,
-				DC997A0117C60A010044C917 /* TCNavVwCtl.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -387,6 +384,17 @@
 				DC9D57E217C7382A00EAFD2F /* YIInnerShadowView.m */,
 			);
 			name = YIInnerShadowView;
+			sourceTree = "<group>";
+		};
+		DC9D57E517C74B1900EAFD2F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				DC0383D417C453F900BBD02A /* TCBaseVwCtl.h */,
+				DC0383D517C453F900BBD02A /* TCBaseVwCtl.m */,
+				DC997A0017C60A010044C917 /* TCNavVwCtl.h */,
+				DC997A0117C60A010044C917 /* TCNavVwCtl.m */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
