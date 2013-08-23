@@ -67,6 +67,8 @@
 		DC9979C317C5D4510044C917 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C117C5D4510044C917 /* navbar_bg.png */; };
 		DC9979C417C5D4510044C917 /* navbar_righticon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C217C5D4510044C917 /* navbar_righticon.png */; };
 		DC997A0217C60A010044C917 /* TCNavVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC997A0117C60A010044C917 /* TCNavVwCtl.m */; };
+		DC9D57E317C7382A00EAFD2F /* YIInnerShadowLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D57E017C7382A00EAFD2F /* YIInnerShadowLayer.m */; };
+		DC9D57E417C7382A00EAFD2F /* YIInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D57E217C7382A00EAFD2F /* YIInnerShadowView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +161,10 @@
 		DC9979C217C5D4510044C917 /* navbar_righticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_righticon.png; sourceTree = "<group>"; };
 		DC997A0017C60A010044C917 /* TCNavVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNavVwCtl.h; sourceTree = "<group>"; };
 		DC997A0117C60A010044C917 /* TCNavVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNavVwCtl.m; sourceTree = "<group>"; };
+		DC9D57DF17C7382A00EAFD2F /* YIInnerShadowLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YIInnerShadowLayer.h; sourceTree = "<group>"; };
+		DC9D57E017C7382A00EAFD2F /* YIInnerShadowLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowLayer.m; sourceTree = "<group>"; };
+		DC9D57E117C7382A00EAFD2F /* YIInnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YIInnerShadowView.h; sourceTree = "<group>"; };
+		DC9D57E217C7382A00EAFD2F /* YIInnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowView.m; sourceTree = "<group>"; };
 		FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -227,6 +233,7 @@
 		1C713BF517C2058100A903A6 /* Torch */ = {
 			isa = PBXGroup;
 			children = (
+				DC9D57DD17C737C400EAFD2F /* 3rdparty */,
 				1C8187A917C490B700AF7AF0 /* Fonts */,
 				DC0383C317C343D500BBD02A /* Utils */,
 				DC0383A717C305C800BBD02A /* View */,
@@ -361,6 +368,25 @@
 				DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		DC9D57DD17C737C400EAFD2F /* 3rdparty */ = {
+			isa = PBXGroup;
+			children = (
+				DC9D57DE17C7380300EAFD2F /* YIInnerShadowView */,
+			);
+			name = 3rdparty;
+			sourceTree = "<group>";
+		};
+		DC9D57DE17C7380300EAFD2F /* YIInnerShadowView */ = {
+			isa = PBXGroup;
+			children = (
+				DC9D57DF17C7382A00EAFD2F /* YIInnerShadowLayer.h */,
+				DC9D57E017C7382A00EAFD2F /* YIInnerShadowLayer.m */,
+				DC9D57E117C7382A00EAFD2F /* YIInnerShadowView.h */,
+				DC9D57E217C7382A00EAFD2F /* YIInnerShadowView.m */,
+			);
+			name = YIInnerShadowView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -550,6 +576,8 @@
 				D6CB682717C5A98A00D290D7 /* InventoryTableCell.m in Sources */,
 				DC997A0217C60A010044C917 /* TCNavVwCtl.m in Sources */,
 				D6C5A31417C7014400C0C657 /* ProductItemObject.m in Sources */,
+				DC9D57E317C7382A00EAFD2F /* YIInnerShadowLayer.m in Sources */,
+				DC9D57E417C7382A00EAFD2F /* YIInnerShadowView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
