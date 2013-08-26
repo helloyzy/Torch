@@ -10,6 +10,12 @@
 #import "TCDisclaimerVwCtl.h"
 #import <QuartzCore/QuartzCore.h>
 #import "YIInnerShadowView.h"
+#import "UIViewController+Torch.h"
+
+#import "TCMyDayController.h"
+#import "TCRouteMapViewController.h"
+#import "IIViewDeckController.h"
+#import "TCStoreHomeView.h"
 
 @interface TCLoginViewController ()
 
@@ -66,9 +72,20 @@
 }
 
 - (IBAction)signIn:(id)sender {
-    NSLog(@"login ...");
-    NSLog(@"%@", [self.view viewWithTag:1999]);
+    [self jumpToMyDay];
 }
+
+#pragma mark - navigation between controllers
+
+- (void)jumpToMyDay
+{
+    UIViewController* left = [[TCRouteMapViewController alloc] initWithNibName:@"TCRouteMapView" bundle:nil];
+    UIViewController* center = [[TCMyDayController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
+    IIViewDeckController * deckController = [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
+    UINavigationController * navCtr = [UIViewController customNavCtr:deckController];
+    [self.view.window setRootViewController:navCtr];
+}
+
 
 #pragma mark - override super
 
