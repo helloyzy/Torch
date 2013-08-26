@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C21A52117CB214100627852 /* TCMyDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C21A52017CB214100627852 /* TCMyDayCell.m */; };
 		1C40315617C5FB1F007D58CC /* client-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C40315517C5FB1F007D58CC /* client-pin.png */; };
 		1C65E2E417C33CE100FA94B2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C65E2E317C33CE100FA94B2 /* MapKit.framework */; };
 		1C65E2E617C33D6700FA94B2 /* TCRouteMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */; };
@@ -90,6 +91,8 @@
 
 /* Begin PBXFileReference section */
 		0720A63C03844476B25F3606 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C21A51F17CB214100627852 /* TCMyDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMyDayCell.h; sourceTree = "<group>"; };
+		1C21A52017CB214100627852 /* TCMyDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMyDayCell.m; sourceTree = "<group>"; };
 		1C40315517C5FB1F007D58CC /* client-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "client-pin.png"; sourceTree = "<group>"; };
 		1C65E2E317C33CE100FA94B2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRouteMapView.xib; sourceTree = "<group>"; };
@@ -375,6 +378,8 @@
 				1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */,
 				1C8187A417C4569D00AF7AF0 /* TCMyDayCell.xib */,
 				C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */,
+				1C21A51F17CB214100627852 /* TCMyDayCell.h */,
+				1C21A52017CB214100627852 /* TCMyDayCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -616,6 +621,7 @@
 				DC9D57E317C7382A00EAFD2F /* YIInnerShadowLayer.m in Sources */,
 				DC9D57E417C7382A00EAFD2F /* YIInnerShadowView.m in Sources */,
 				DCC8387417CB0FC70046E999 /* TCProfileController.m in Sources */,
+				1C21A52117CB214100627852 /* TCMyDayCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
