@@ -18,6 +18,12 @@
     UIImage * navBgImg = [UIImage imageNamed:@"navbar_bg.png"];
     [navBar setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsDefault];
     [navBar setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsLandscapePhone];
+    
+    // block the bottom gray line
+    UIView * bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, navBar.bounds.size.height - 4, navBar.bounds.size.width, 2)];
+    bottomView.userInteractionEnabled = NO;
+    bottomView.backgroundColor = [UIColor blackColor];
+    [navBar addSubview:bottomView];
 }
 
 + (UINavigationController *) customNavCtr:(UIViewController *)rootVwCtl {
