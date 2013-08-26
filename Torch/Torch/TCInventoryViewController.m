@@ -20,8 +20,21 @@
 @implementation TCInventoryViewController {
     UIView *seperator1;
     NSArray *tableData;
+    NSMutableArray *displayData;
     NSArray *searchResults;
     NSMutableDictionary *productCollection;
+}
+
+-(void)generateDisplayDataArray {
+    displayData = [[NSMutableArray alloc] init];
+    for (id key in productCollection) {
+        ProductItemObject *productObject = (ProductItemObject *)[productCollection objectForKey:key];
+        if (![productObject.productUnitNum isEqualToString: @"0"]) {
+            [displayData addObject:productObject.productSN];
+        }
+    }
+    NSLog(@"displayData==%@",displayData);
+
 }
 
 
@@ -39,10 +52,34 @@
     
     productItem = [ProductItemObject alloc];
     productItem.productName = @"HerShey Chocolate2";
-    productItem.productSN = @"#12112";
+    productItem.productSN = @"#121121";
     productItem.productUnit = @"Boxes";
     productItem.productPrice = @"$2.1 per box";
-     productItem.productUnitNum = @"0";
+    productItem.productUnitNum = @"0";
+    [productCollection setObject:productItem forKey:productItem.productSN];
+    
+    productItem = [ProductItemObject alloc];
+    productItem.productName = @"HerShey Chocolate3";
+    productItem.productSN = @"#121122";
+    productItem.productUnit = @"Boxes";
+    productItem.productPrice = @"$2.1 per box";
+    productItem.productUnitNum = @"0";
+    [productCollection setObject:productItem forKey:productItem.productSN];
+    
+    productItem = [ProductItemObject alloc];
+    productItem.productName = @"HerShey Chocolate2";
+    productItem.productSN = @"#121123";
+    productItem.productUnit = @"Boxes";
+    productItem.productPrice = @"$2.1 per box";
+    productItem.productUnitNum = @"0";
+    [productCollection setObject:productItem forKey:productItem.productSN];
+    
+    productItem = [ProductItemObject alloc];
+    productItem.productName = @"HerShey Chocolate2";
+    productItem.productSN = @"#121124";
+    productItem.productUnit = @"Boxes";
+    productItem.productPrice = @"$2.1 per box";
+    productItem.productUnitNum = @"0";
     [productCollection setObject:productItem forKey:productItem.productSN];
     
     //create an array to used in tablecell loop
@@ -50,22 +87,18 @@
     
     for (id key in productCollection) {
         ProductItemObject *tempObject = (ProductItemObject *)[productCollection objectForKey:key];
-        
         [productArray addObject:[tempObject productSN]];
     }
     
     tableData = [productArray copy];
+    [self generateDisplayDataArray];
     productArray = nil;
 }
 
 -(BOOL) doesTableViewDisplayRequired {
     BOOL display = NO;
-    for (id key in productCollection) {
-        ProductItemObject *productObject = (ProductItemObject *)[productCollection objectForKey:key];
-        if (![productObject.productUnitNum isEqualToString: @"0"]) {
-            display = YES;
-            break;
-        }
+    if ([displayData count] > 0) {
+        display = YES;
     }
     return display;
 }
@@ -101,6 +134,7 @@
     if (![self doesTableViewDisplayRequired]) {
         self.tableView.hidden = YES;
     } else {
+
         self.tableView.hidden = NO;
     }
 
@@ -115,23 +149,37 @@
     }
 }
 
--(void)updateUnitLabel:(UIStepper *)sender {
+-(void)updateUnitLabel:(UIStepper *)sender{
     
     NSString *productQuantityValue = [NSString stringWithFormat:@"%g",sender.value];
     InventoryTableCell *currentCell = (InventoryTableCell *)[sender.superview superview];
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:currentCell];
-    
+    BOOL isUnderSearchResultView = NO;
+    NSIndexPath *indexPath;
     NSString *itemKey;
-    if(self.tableView ==self.searchDisplayController.searchResultsTableView) {
+    
+    
+    if ([self.searchDisplayController isActive]) {
+        isUnderSearchResultView = YES;
+    }
+    
+    if(isUnderSearchResultView) {
+        indexPath = [self.searchDisplayController.searchResultsTableView indexPathForCell:currentCell];
         itemKey = [searchResults objectAtIndex:indexPath.row];
-    } else {
-        itemKey = [tableData objectAtIndex:indexPath.row];
+
+    }else {
+        indexPath = [self.tableView indexPathForCell:currentCell];
+        itemKey = [displayData objectAtIndex:indexPath.row];
+
     }
     
     [self updateProduct:itemKey withQuantity:productQuantityValue];
     
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+
+    if(isUnderSearchResultView) {
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    } else {
+        [self.tableView reloadData];
+    }
 
 }
 
@@ -142,6 +190,16 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void)showInitialORProductTableListView {
+    
+    if (![self doesTableViewDisplayRequired]) {
+        self.tableView.hidden = YES;
+    }else {
+        self.tableView.hidden = NO;
+        seperator1.hidden = YES;
+    }
 }
 
 - (void)viewDidLoad
@@ -161,13 +219,7 @@
     [self.view addSubview:seperator1];
 
     [self popupProductItems];
-    
-    if (![self doesTableViewDisplayRequired]) {
-        self.tableView.hidden = YES;
-    }else {
-        self.tableView.hidden = NO;
-        seperator1.hidden = YES;
-    }
+    [self showInitialORProductTableListView];
 }
 
 
@@ -181,7 +233,7 @@
     if(tableView == self.searchDisplayController.searchResultsTableView) {
         return [searchResults count];
     } else {
-        return [productCollection count];
+        return [displayData count];
     }
 }
 
@@ -218,7 +270,7 @@
     if(tableView ==self.searchDisplayController.searchResultsTableView) {
         itemKey = [searchResults objectAtIndex:indexPath.row];
     } else {
-       itemKey = [tableData objectAtIndex:indexPath.row];
+       itemKey = [displayData objectAtIndex:indexPath.row];
     }
     
     [self populateCell:cell withKeyName:itemKey];
@@ -228,6 +280,14 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 118;
 }
+- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView {
+    [self generateDisplayDataArray];
+    [self showInitialORProductTableListView];
 
+    [self.tableView reloadData];
+    //NSLog(@"tableView ID %@",tableView);
+   // NSLog(@"self tableview %@",self.tableView);
+    //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+}
 
 @end
