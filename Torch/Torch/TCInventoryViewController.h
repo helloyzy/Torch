@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+Utils.h"
 
-@interface TCInventoryViewController : UIViewController
+@interface TCInventoryViewController : UIViewController <UITableViewDelegate , UITableViewDataSource>
 
 @end

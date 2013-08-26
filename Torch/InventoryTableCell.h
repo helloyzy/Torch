@@ -10,4 +10,14 @@
 
 @interface InventoryTableCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UILabel *productName;
+@property (nonatomic, weak) IBOutlet UILabel *productSequenceNum;
+@property (nonatomic, weak) IBOutlet UILabel *unitPrice;
+@property (nonatomic, weak) IBOutlet UILabel *productDescription;
+
+@property (nonatomic, weak) IBOutlet UILabel *productQuantity;
+@property (nonatomic, weak) IBOutlet UILabel *productQuantityUnitLabel;
+
+@property (nonatomic, weak) IBOutlet UIStepper *stepper;
+
 @end

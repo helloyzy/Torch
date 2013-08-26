@@ -10,4 +10,12 @@
 
 @implementation ProductItemObject
 
+@synthesize productName;
+@synthesize productSN;
+@synthesize productPrice;
+@synthesize productDescription;
+@synthesize productUnitNum;
+@synthesize productUnit;
+
+
 @end

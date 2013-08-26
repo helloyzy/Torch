@@ -10,4 +10,10 @@
 
 @interface ProductItemObject : NSObject
 
+@property (nonatomic) NSString *productName;
+@property (nonatomic) NSString *productSN;
+@property (nonatomic) NSString *productPrice;
+@property (nonatomic) NSString *productDescription;
+@property (nonatomic) NSString *productUnitNum;
+@property (nonatomic) NSString *productUnit;
 @end

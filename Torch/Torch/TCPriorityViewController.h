@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+Utils.h"
 
 @interface TCPriorityViewController : UIViewController <UITableViewDelegate , UITableViewDataSource>
 

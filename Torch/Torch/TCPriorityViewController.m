@@ -66,7 +66,7 @@
     [view setBackgroundColor:[UIColor colorWithRed:0.816 green:0.878 blue:0.91 alpha:1]];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10,8,tableView.frame.size.width, 40)];
-    label.text = @"Prioridades";
+    label.text = [self localString:@"priority.title"];
     label.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
     label.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
     label.backgroundColor = [UIColor clearColor];
