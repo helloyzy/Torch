@@ -43,7 +43,7 @@
 						<string key="NSFrameSize">{320, 548}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="253941779"/>
+						<reference key="NSNextKeyView" ref="1043328998"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -62,7 +62,7 @@
 								<string key="NSFrame">{{0, 81}, {320, 352}}</string>
 								<reference key="NSSuperview" ref="1073408322"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="820800789"/>
+								<reference key="NSNextKeyView" ref="329644480"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -125,7 +125,7 @@
 								<string key="NSFrame">{{0, 41}, {320, 43}}</string>
 								<reference key="NSSuperview" ref="1073408322"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="261223662"/>
+								<reference key="NSNextKeyView" ref="820800789"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -158,6 +158,7 @@
 								<string key="NSFrame">{{0, 42}, {320, 1}}</string>
 								<reference key="NSSuperview" ref="1073408322"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="261223662"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -303,6 +304,23 @@
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 						<double key="preferredMaxLayoutWidth">157</double>
 					</object>
+					<object class="IBUIView" id="1043328998">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrameSize">{5, 548}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="253941779"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+							<object class="NSColorSpace" key="NSCustomColorSpace">
+								<int key="NSID">2</int>
+							</object>
+						</object>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 548}}</string>
 				<reference key="NSSuperview"/>
@@ -341,6 +359,14 @@
 					</object>
 					<int key="connectionID">3</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">vwLeftShadow</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1043328998"/>
+					</object>
+					<int key="connectionID">65</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -371,6 +397,7 @@
 							<reference ref="284225817"/>
 							<reference ref="822573481"/>
 							<reference ref="421987787"/>
+							<reference ref="1043328998"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -412,6 +439,7 @@
 							<reference ref="329644480"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
+						<string key="objectName">vwBottom</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">59</int>
@@ -449,6 +477,12 @@
 						<reference key="object" ref="329644480"/>
 						<reference key="parent" ref="1073408322"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">64</int>
+						<reference key="object" ref="1043328998"/>
+						<reference key="parent" ref="191373211"/>
+						<string key="objectName">vwLeftShadow</string>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -470,21 +504,42 @@
 				<string key="61.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="62.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="63.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="64.CustomClassName">YIInnerShadowView</string>
+				<string key="64.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">63</int>
+			<int key="maxID">65</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">TCProfileController</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">vwLeftShadow</string>
+						<string key="NS.object.0">YIInnerShadowView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">vwLeftShadow</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">vwLeftShadow</string>
+							<string key="candidateClassName">YIInnerShadowView</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/TCProfileController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">YIInnerShadowView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/YIInnerShadowView.h</string>
 					</object>
 				</object>
 			</array>

@@ -7,6 +7,7 @@
 //
 
 #import "TCProfileController.h"
+#import "YIInnerShadowView.h"
 
 @interface TCProfileController ()
 
@@ -26,7 +27,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    vwLeftShadow.bounds = CGRectMake(0, 0, 15, self.view.bounds.size.height);
+    vwLeftShadow.backgroundColor = [UIColor clearColor];
+    vwLeftShadow.shadowMask = YIInnerShadowMaskLeft;
+    vwLeftShadow.shadowColor = [UIColor blackColor];
+    vwLeftShadow.shadowRadius = 9;
 }
 
 - (void)didReceiveMemoryWarning

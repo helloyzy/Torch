@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCProfileController : UIViewController
+@class YIInnerShadowView;
+
+@interface TCProfileController : UIViewController {
+    
+    __weak IBOutlet YIInnerShadowView *vwLeftShadow;
+}
 
 @end
