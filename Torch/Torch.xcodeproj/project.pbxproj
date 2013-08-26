@@ -74,6 +74,8 @@
 		DC997A0217C60A010044C917 /* TCNavVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC997A0117C60A010044C917 /* TCNavVwCtl.m */; };
 		DC9D57E317C7382A00EAFD2F /* YIInnerShadowLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D57E017C7382A00EAFD2F /* YIInnerShadowLayer.m */; };
 		DC9D57E417C7382A00EAFD2F /* YIInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D57E217C7382A00EAFD2F /* YIInnerShadowView.m */; };
+		DCC8387417CB0FC70046E999 /* TCProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC8387317CB0FC70046E999 /* TCProfileController.m */; };
+		DCC8387617CB0FD80046E999 /* TCProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCC8387517CB0FD80046E999 /* TCProfileController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +177,9 @@
 		DC9D57E017C7382A00EAFD2F /* YIInnerShadowLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowLayer.m; sourceTree = "<group>"; };
 		DC9D57E117C7382A00EAFD2F /* YIInnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YIInnerShadowView.h; sourceTree = "<group>"; };
 		DC9D57E217C7382A00EAFD2F /* YIInnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowView.m; sourceTree = "<group>"; };
+		DCC8387217CB0FC70046E999 /* TCProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCProfileController.h; sourceTree = "<group>"; };
+		DCC8387317CB0FC70046E999 /* TCProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCProfileController.m; sourceTree = "<group>"; };
+		DCC8387517CB0FD80046E999 /* TCProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCProfileController.xib; sourceTree = "<group>"; };
 		FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -329,6 +334,8 @@
 		DC0383A617C3058500BBD02A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DCC8387217CB0FC70046E999 /* TCProfileController.h */,
+				DCC8387317CB0FC70046E999 /* TCProfileController.m */,
 				DC9D57E517C74B1900EAFD2F /* Base */,
 				D6C5A31217C7014400C0C657 /* ProductItemObject.h */,
 				D6C5A31317C7014400C0C657 /* ProductItemObject.m */,
@@ -357,6 +364,7 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DCC8387517CB0FD80046E999 /* TCProfileController.xib */,
 				D6CB682317C5A65600D290D7 /* InventoryTableCell.xib */,
 				D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */,
 				D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */,
@@ -519,6 +527,7 @@
 				C587B87617C73A5900ED6DAB /* client-pin@2x.png in Resources */,
 				C587B87717C73A5900ED6DAB /* divide@2x.png in Resources */,
 				C587B87817C73A5900ED6DAB /* navbar_bg@2x.png in Resources */,
+				DCC8387617CB0FD80046E999 /* TCProfileController.xib in Resources */,
 				C53AB24117CB143A003B3812 /* mapwithhint@2x.png in Resources */,
 				C53AB26817CB1548003B3812 /* mapwithhint.png in Resources */,
 				C53AB26B17CB16D8003B3812 /* slideback.png in Resources */,
@@ -606,6 +615,7 @@
 				D6C5A31417C7014400C0C657 /* ProductItemObject.m in Sources */,
 				DC9D57E317C7382A00EAFD2F /* YIInnerShadowLayer.m in Sources */,
 				DC9D57E417C7382A00EAFD2F /* YIInnerShadowView.m in Sources */,
+				DCC8387417CB0FC70046E999 /* TCProfileController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
