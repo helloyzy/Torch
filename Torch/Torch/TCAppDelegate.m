@@ -43,9 +43,9 @@
     /*self.viewController = [[TCViewController alloc] initWithNibName:@"TCLoginView" bundle:nil]; */    
     // self.viewController = [self newDeckController];
     // self.viewController = [[TCDisclaimerVwCtl alloc] init];
-    self.viewController = [[TCLoginViewController alloc] init];
+    //self.viewController = [[TCLoginViewController alloc] init];
     //self.viewController = [self controllerWithinNavCtr];
-     //self.viewController = [[TCStoreHomeView alloc] init];
+     self.viewController = [[TCStoreHomeView alloc] init];
     self.window.rootViewController = self.viewController;
     
     [self.window makeKeyAndVisible];
