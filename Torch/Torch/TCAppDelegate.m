@@ -45,7 +45,8 @@
     // self.viewController = [[TCDisclaimerVwCtl alloc] init];
     //self.viewController = [[TCLoginViewController alloc] init];
     //self.viewController = [self controllerWithinNavCtr];
-     self.viewController = [[TCStoreHomeView alloc] init];
+    // self.viewController = [[TCStoreHomeView alloc] init];
+    self.viewController = [self controllerWithinNavCtr];
     self.window.rootViewController = self.viewController;
     
     [self.window makeKeyAndVisible];

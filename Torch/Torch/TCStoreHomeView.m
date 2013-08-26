@@ -8,6 +8,7 @@
 
 #import "TCStoreHomeView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TCPriorityViewController.h"
 
 #define ROW_HEIGHT 40
 
@@ -142,4 +143,7 @@ _tvItemList.rowHeight = ROW_HEIGHT;
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (IBAction)jump:(id)sender {
+    [self.navigationController pushViewController:[[TCPriorityViewController alloc] init] animated:YES];
+}
 @end

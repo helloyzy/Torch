@@ -17,4 +17,5 @@
 @property (nonatomic, retain) NSArray *displayList;
 @property (weak, nonatomic) IBOutlet UITableView *tvItemList;
 @property(nonatomic, strong) IBOutlet UIView* shadow;
+- (IBAction)jump:(id)sender;
 @end
