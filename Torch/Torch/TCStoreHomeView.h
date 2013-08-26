@@ -14,6 +14,7 @@
     
     __weak IBOutlet UILabel *lblStoredetail;
     __weak IBOutlet UILabel *lblStorename;
+    __weak IBOutlet UITableView *tvItemList;
     NSArray *displayList;
 
 }

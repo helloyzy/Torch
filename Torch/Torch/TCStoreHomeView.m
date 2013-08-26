@@ -30,8 +30,8 @@
 {
     [super viewDidLoad];
     displayList = @[@"Priorities",@"Take Inventory",@"Create Order",@"Order History",@"Call History",@"Notes"];
-    
-    // Do any additional setup after loading the view from its nib.
+    tvItemList.scrollEnabled = NO;
+// Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,15 +42,31 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	// There is only one section.
-	return 1;
+	return 2;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	// Return the number of time zone names.
-	return [displayList count];
-}
+    if (section == 0) {
+        // first section
+        
+        return [displayList count];
 
+    } else         // second section
+        return [displayList count];
+
+    
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	// The header for the section is the region name -- get this from the region at the section index.
+    if (section == 0) {
+        // first section
+        
+        return @"Contacts";
+        
+    } else         // second section
+        return @"To Do List";
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
