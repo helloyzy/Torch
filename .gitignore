@@ -3,4 +3,4 @@
 xcuserdata
 .DS_Store
 
-Torch.xcworkspace/xcshareddata/Torch.xccheckout
+*.xccheckout
