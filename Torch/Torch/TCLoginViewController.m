@@ -9,6 +9,13 @@
 #import "TCLoginViewController.h"
 #import "TCDisclaimerVwCtl.h"
 #import <QuartzCore/QuartzCore.h>
+#import "YIInnerShadowView.h"
+#import "UIViewController+Torch.h"
+
+#import "TCMyDayController.h"
+#import "TCRouteMapViewController.h"
+#import "IIViewDeckController.h"
+#import "TCStoreHomeView.h"
 
 @interface TCLoginViewController ()
 
@@ -35,22 +42,21 @@
     btnSignIn.titleLabel.text = [self localString:@"login.signIn"];
     btnReadMore.titleLabel.text = [self localString:@"login.readMore"];
     
-//    CALayer* btnLayer = [btnSignin layer];
-//    [btnLayer setCornerRadius:8.0f];
-//    [btnLayer setMasksToBounds:YES];
-//    [btnLayer setBorderWidth:1.0f];
-    
-    CALayer * txtLayer = [txtUsername layer];
-    [txtLayer setCornerRadius:8.0f];
-    [txtLayer setMasksToBounds:YES];
-    [txtLayer setBorderWidth:2.0f];
-    UIColor * borderColor = [UIColor colorWithRed:97/255.0f green:116/255.0f blue:142/255.0f alpha:1];
-    // UIColor grayColor
-    [txtLayer setBorderColor:[borderColor CGColor]];
-    txtLayer.shadowColor = [[UIColor blackColor] CGColor];
-    txtLayer.shadowOpacity = 0.8f;
-    txtLayer.shadowOffset = CGSizeMake(0, 3);
-    
+    [self initTextFields];
+}
+
+- (void)addInnerShadow:(YIInnerShadowView *) view {
+    view.shadowMask = YIInnerShadowMaskTop;
+    view.shadowColor = [UIColor blackColor];
+    view.shadowRadius = 5;
+    view.layer.borderColor = [[UIColor colorWithRed:97/255.0f green:116/255.0f blue:142/255.0f alpha:1] CGColor];
+    [view.layer setCornerRadius:8];
+    [view.layer setBorderWidth:2.5];
+}
+
+- (void)initTextFields {
+    [self addInnerShadow:bgVwUsername];
+    [self addInnerShadow:bgVwPwd];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,12 +71,26 @@
     
 }
 
-- (UIView *) bgViewForEvents {
-    return bgImgView;
+- (IBAction)signIn:(id)sender {
+    [self jumpToMyDay];
 }
 
-- (IBAction)login:(id)sender {
-    NSLog(@"login ...");
+#pragma mark - navigation between controllers
+
+- (void)jumpToMyDay
+{
+    UIViewController* left = [[TCRouteMapViewController alloc] initWithNibName:@"TCRouteMapView" bundle:nil];
+    UIViewController* center = [[TCMyDayController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
+    IIViewDeckController * deckController = [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
+    UINavigationController * navCtr = [UIViewController customNavCtr:deckController];
+    [self.view.window setRootViewController:navCtr];
+}
+
+
+#pragma mark - override super
+
+- (UIView *) viewForTapToDismissKeyboard {
+    return self.view;
 }
 
 @end

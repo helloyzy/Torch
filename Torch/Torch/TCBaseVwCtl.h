@@ -10,8 +10,6 @@
 
 @interface TCBaseVwCtl : UIViewController <UITextFieldDelegate>
 
-- (UIView *) bgViewForEvents;
-
-- (BOOL) shouldRegisterDismissKeyboardOnClick;
+- (UIView *) viewForTapToDismissKeyboard;
 
 @end

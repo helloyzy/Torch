@@ -17,38 +17,38 @@ static int END_EDIT_VIEW_TAG = 1999;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if ([self bgViewForEvents] && [self shouldRegisterDismissKeyboardOnClick]) {
-        UIView * view = [self bgViewForEvents];
-        UITapGestureRecognizer * clickRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyBoard:)];
+    UIView * viewForTapToDismissKeyboard = [self viewForTapToDismissKeyboard];
+    if (viewForTapToDismissKeyboard) {
+        UITapGestureRecognizer * clickRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
         [clickRecognizer setNumberOfTapsRequired:1];
         [clickRecognizer setNumberOfTouchesRequired:1];
-        [view addGestureRecognizer:clickRecognizer];
+        [viewForTapToDismissKeyboard addGestureRecognizer:clickRecognizer];
     }
 }
 
 #pragma mark - defined protected methods
 
-- (UIView *) bgViewForEvents {
+- (UIView *) viewForTapToDismissKeyboard {
     return nil;
-}
-
-- (BOOL) shouldRegisterDismissKeyboardOnClick {
-    return YES;
 }
 
 #pragma mark - private methods
 
-- (void) dismissKeyBoard:(id)sender {
+- (void) dismissKeyboard:(id)sender {
     [self.view endEditing:YES];
+}
+
+- (UIView *) findView:(int)tag {
+    return [self.view viewWithTag:tag];
 }
 
 - (UIView *) findNextEditingView:(UIView *) curEditingView {
     UIView * result = nil;
     if (curEditingView.tag >= START_EDIT_VIEW_TAG && curEditingView.tag < END_EDIT_VIEW_TAG) {
-        result = [curEditingView.superview viewWithTag:(curEditingView.tag + 1)];
+        result = [self findView:(curEditingView.tag + 1)];
         if (!result) {
             // find the last editing control
-            result = [curEditingView.superview viewWithTag:END_EDIT_VIEW_TAG];
+            result = [self findView:END_EDIT_VIEW_TAG];
         }
     }
     return result;
@@ -64,7 +64,7 @@ static int END_EDIT_VIEW_TAG = 1999;
 
 - (void) handleEditingView:(UIView *) editingView {
     if (editingView.tag == END_EDIT_VIEW_TAG) {
-        [self dismissKeyBoard:nil];
+        [self dismissKeyboard:nil];
         return;
     } else {
         [self switchToNextEditingView:editingView];

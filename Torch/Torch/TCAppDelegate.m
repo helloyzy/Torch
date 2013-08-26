@@ -30,7 +30,7 @@
 
 - (UIViewController *)controllerWithinNavCtr {
     // UIViewController * viewController = [[TCViewController alloc] init];
-    UIViewController * viewController = [[TCPriorityViewController alloc] init];
+    UIViewController * viewController = [[TCStoreHomeView alloc] init];
     UINavigationController * navCtr = [UIViewController customNavCtr:viewController];
     return navCtr;
 }
@@ -43,9 +43,10 @@
     /*self.viewController = [[TCViewController alloc] initWithNibName:@"TCLoginView" bundle:nil]; */    
     // self.viewController = [self newDeckController];
     // self.viewController = [[TCDisclaimerVwCtl alloc] init];
-    self.viewController = [[TCLoginViewController alloc] init];
-    // self.viewController = [self controllerWithinNavCtr];
+    //self.viewController = [[TCLoginViewController alloc] init];
+    //self.viewController = [self controllerWithinNavCtr];
     // self.viewController = [[TCStoreHomeView alloc] init];
+    self.viewController = [self controllerWithinNavCtr];
     self.window.rootViewController = self.viewController;
     
     [self.window makeKeyAndVisible];

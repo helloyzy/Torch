@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+Utils.h"
+#import "TCNavVwCtl.h"
 
-@interface TCPriorityViewController : UIViewController <UITableViewDelegate , UITableViewDataSource>
+@interface TCPriorityViewController : TCNavVwCtl <UITableViewDelegate , UITableViewDataSource>
 
 @end
