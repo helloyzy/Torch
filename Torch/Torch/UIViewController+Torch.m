@@ -11,6 +11,66 @@
 
 @implementation UIViewController (Torch)
 
+#pragma mark - dismiss keyboard 
+
+- (UIView *) viewForTapToDismissKeyboard {
+    return nil;
+}
+
+- (void) dismissKeyboard:(id)sender {
+    [self.view endEditing:YES];
+}
+
+- (void) registerDismissKeyboardOnContainerView {
+    UIView * viewForTapToDismissKeyboard = [self viewForTapToDismissKeyboard];
+    if (viewForTapToDismissKeyboard) {
+        UITapGestureRecognizer * clickRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
+        [clickRecognizer setNumberOfTapsRequired:1];
+        [clickRecognizer setNumberOfTouchesRequired:1];
+        [viewForTapToDismissKeyboard addGestureRecognizer:clickRecognizer];
+    }
+}
+
+#pragma mark - editing view finish editing
+
+static int START_EDIT_VIEW_TAG = 1900;
+// tag for the last editing view, should dismiss keyboard when click
+static int END_EDIT_VIEW_TAG = 1999;
+
+- (void) viewFinishEditing:(UIView *)editingView {
+    if (editingView.tag == END_EDIT_VIEW_TAG) {
+        [self dismissKeyboard:nil];
+        return;
+    } else {
+        [self switchToNextEditingView:editingView];
+    }
+}
+
+- (UIView *) findView:(int)tag {
+    return [self.view viewWithTag:tag];
+}
+
+- (UIView *) findNextEditingView:(UIView *) curEditingView {
+    UIView * result = nil;
+    if (curEditingView.tag >= START_EDIT_VIEW_TAG && curEditingView.tag < END_EDIT_VIEW_TAG) {
+        result = [self findView:(curEditingView.tag + 1)];
+        if (!result) {
+            // find the last editing control
+            result = [self findView:END_EDIT_VIEW_TAG];
+        }
+    }
+    return result;
+}
+
+- (void) switchToNextEditingView:(UIView *) curEditingView {
+    UIView * nextView = [self findNextEditingView:curEditingView];
+    [curEditingView resignFirstResponder];
+    if (nextView) {
+        [nextView becomeFirstResponder];
+    }
+}
+
+
 #pragma mark - customized navigation bar
 
 + (void) setNavbarBgImg:(UINavigationBar *)navBar {

@@ -18,6 +18,8 @@ void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor
     
     CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
     CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+//    CGPoint startPoint = CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect));
+//    CGPoint endPoint = CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect));
     
     CGContextSaveGState(context);
     CGContextAddRect(context, rect);

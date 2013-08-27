@@ -7,9 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "UIViewController+Utils.h"
+#import "UIViewController+Torch.h"
 
 @interface TCBaseVwCtl : UIViewController <UITextFieldDelegate>
-
-- (UIView *) viewForTapToDismissKeyboard;
 
 @end
