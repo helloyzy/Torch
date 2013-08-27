@@ -20,10 +20,15 @@
     [navBar setBackgroundImage:navBgImg forBarMetrics:UIBarMetricsLandscapePhone];
     
     // block the bottom gray line
-    UIView * bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, navBar.bounds.size.height - 4, navBar.bounds.size.width, 2)];
+    UIView * bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, navBar.bounds.size.height - 4, navBar.bounds.size.width, 4)];
     bottomView.userInteractionEnabled = NO;
-    bottomView.backgroundColor = [UIColor blackColor];
+    bottomView.backgroundColor = [UIColor colorWithRed:36/255.0f green:36/255.0f blue:36/255.0f alpha:1];
     [navBar addSubview:bottomView];
+//    UIView * bottomSeparator = [[UIView alloc] initWithFrame:CGRectMake(0, navBar.bounds.size.height - 1, navBar.bounds.size.width, 1)];
+//    bottomSeparator.userInteractionEnabled = NO;
+//    bottomSeparator.backgroundColor = [UIColor colorWithRed:134/255.0f green:134/255.0f blue:134/255.0f alpha:1];
+//    [navBar addSubview:bottomSeparator];
+
 }
 
 + (UINavigationController *) customNavCtr:(UIViewController *)rootVwCtl {
