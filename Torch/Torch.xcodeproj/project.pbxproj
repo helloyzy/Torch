@@ -76,6 +76,7 @@
 		DC997A0217C60A010044C917 /* TCNavVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC997A0117C60A010044C917 /* TCNavVwCtl.m */; };
 		DC9D57E317C7382A00EAFD2F /* YIInnerShadowLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D57E017C7382A00EAFD2F /* YIInnerShadowLayer.m */; };
 		DC9D57E417C7382A00EAFD2F /* YIInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D57E217C7382A00EAFD2F /* YIInnerShadowView.m */; };
+		DCAFC89417CC7181006DEBB2 /* GraphicsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAFC89317CC7181006DEBB2 /* GraphicsUtils.m */; };
 		DCC8387417CB0FC70046E999 /* TCProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC8387317CB0FC70046E999 /* TCProfileController.m */; };
 		DCC8387617CB0FD80046E999 /* TCProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCC8387517CB0FD80046E999 /* TCProfileController.xib */; };
 		DCC8389517CB42970046E999 /* profile_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8388F17CB42970046E999 /* profile_bg.png */; };
@@ -189,6 +190,8 @@
 		DC9D57E017C7382A00EAFD2F /* YIInnerShadowLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowLayer.m; sourceTree = "<group>"; };
 		DC9D57E117C7382A00EAFD2F /* YIInnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YIInnerShadowView.h; sourceTree = "<group>"; };
 		DC9D57E217C7382A00EAFD2F /* YIInnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowView.m; sourceTree = "<group>"; };
+		DCAFC89217CC7181006DEBB2 /* GraphicsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsUtils.h; sourceTree = "<group>"; };
+		DCAFC89317CC7181006DEBB2 /* GraphicsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicsUtils.m; sourceTree = "<group>"; };
 		DCC8387217CB0FC70046E999 /* TCProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCProfileController.h; sourceTree = "<group>"; };
 		DCC8387317CB0FC70046E999 /* TCProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCProfileController.m; sourceTree = "<group>"; };
 		DCC8387517CB0FD80046E999 /* TCProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCProfileController.xib; sourceTree = "<group>"; };
@@ -414,6 +417,8 @@
 				DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */,
 				DC51EA0917C5A2BE00E5DD3C /* UIViewController+Torch.h */,
 				DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */,
+				DCAFC89217CC7181006DEBB2 /* GraphicsUtils.h */,
+				DCAFC89317CC7181006DEBB2 /* GraphicsUtils.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -652,6 +657,7 @@
 				DCC8387417CB0FC70046E999 /* TCProfileController.m in Sources */,
 				1C21A52117CB214100627852 /* TCMyDayCell.m in Sources */,
 				1C21A52417CB22E700627852 /* TCCallHighlightCell.m in Sources */,
+				DCAFC89417CC7181006DEBB2 /* GraphicsUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
