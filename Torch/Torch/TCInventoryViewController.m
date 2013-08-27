@@ -19,7 +19,6 @@
 
 @implementation TCInventoryViewController {
     UIView *seperator1;
-    NSArray *tableData;
     NSMutableArray *displayData;
     NSArray *searchResults;
     NSMutableDictionary *productCollection;
@@ -33,8 +32,6 @@
             [displayData addObject:productObject.productSN];
         }
     }
-    NSLog(@"displayData==%@",displayData);
-
 }
 
 
@@ -85,12 +82,7 @@
     //create an array to used in tablecell loop
     NSMutableArray *productArray = [[NSMutableArray alloc] initWithCapacity:1];
     
-    for (id key in productCollection) {
-        ProductItemObject *tempObject = (ProductItemObject *)[productCollection objectForKey:key];
-        [productArray addObject:[tempObject productSN]];
-    }
     
-    tableData = [productArray copy];
     [self generateDisplayDataArray];
     productArray = nil;
 }

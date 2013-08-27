@@ -7,6 +7,7 @@
 //
 
 #import "TCPriorityViewController.h"
+#import "TCPriorityObject.h"
 
 @interface TCPriorityViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *storeNameLable;
@@ -19,8 +20,20 @@
     NSArray *tableData;
 }
 
-+ (void) createHorizontalLine {
-        
+-(NSArray *)populatePriorityData {
+    NSMutableArray *priorityDataArray = [[NSMutableArray alloc] init];
+    
+    TCPriorityObject *priority1 = [TCPriorityObject new];
+    priority1.priorityTitle =   @"Helloworld";
+    priority1.priorityDescription = @"This is a new fancy world, do you like it or now? welcome to the world of ios";
+    [priorityDataArray addObject:priority1];
+    
+    TCPriorityObject *priority2 = [TCPriorityObject new];
+    priority2.priorityTitle =   @"Nota Anaota";
+    priority2.priorityDescription = @"$345 value product should be checked without hesitation";
+    [priorityDataArray addObject:priority2];
+    
+    return priorityDataArray;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,9 +50,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.storeNameLable.text = @"BOHU STORE";
-    self.storeNameLable.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
-    self.storeNameLable.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:17];
-    tableData = [NSArray arrayWithObjects:@"Egg bendedict", @"Mushroom", @"Helloworld", nil];
+    tableData = [self populatePriorityData];
 
 
 }
@@ -91,19 +102,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PriorityCell"];
     }
    
-	cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
+    TCPriorityObject *priorityObject = [tableData objectAtIndex:indexPath.row];
+	cell.textLabel.text = priorityObject.priorityTitle;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
-    cell.detailTextLabel.text = @"MR. hellow";
+    cell.detailTextLabel.text = priorityObject.priorityDescription;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:12];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    //UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(28,0,cell.frame.size.width, cell.frame.size.height)];
-    //label.text = [tableData objectAtIndex:indexPath.row];
-    //[cell addSubview:label];
 	return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:@"Row Selected" message:@"You've selected a row" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+     TCPriorityObject *priorityObject = [tableData objectAtIndex:indexPath.row];
+    UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:priorityObject.priorityTitle message:priorityObject.priorityDescription delegate:nil cancelButtonTitle:[self localString:@"priority.buttonName"] otherButtonTitles:nil, nil];
     [messageAlert show];
 }
 

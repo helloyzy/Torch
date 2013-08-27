@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+Utils.h"
+#import "TCNavVwCtl.h"
 
 @interface TCInventoryViewController : UIViewController <UITableViewDelegate , UITableViewDataSource>
 
