@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class TCDeckViewCtl;
+@class IIViewDeckController;
 
 @interface UIViewController (Torch)
 
 // section deck view controller
-+ (TCDeckViewCtl *) deckViewWithCtl:(UINavigationController *)navCtl;
++ (IIViewDeckController *) rootDeckView:(UIViewController *)firstCtl;
 
 // section for dismiss keyboard 
 - (UIView *) viewForTapToDismissKeyboard;
@@ -24,7 +24,7 @@
 
 // section for customize navigation bar -- start
 - (void) decorateNavBar;
-- (void) decorateNavBar:(UINavigationBar *)navBar needRightItem:(BOOL)flag;
+- (void) decorateNavBar:(UINavigationBar *)navBar;
 
 + (UINavigationController *) customNavCtr:(UIViewController *)rootVwCtl;
 // section for customize navigation bar -- end

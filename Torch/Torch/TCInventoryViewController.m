@@ -13,6 +13,8 @@
 @interface TCInventoryViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *inventoryLabel;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UILabel *summaryText;
+@property (nonatomic, weak) IBOutlet UILabel *summaryAmount;
 
 
 @end
@@ -167,13 +169,12 @@
     [self updateProduct:itemKey withQuantity:productQuantityValue];
     
 
-    if(isUnderSearchResultView) {
-        [self.searchDisplayController.searchResultsTableView reloadData];
-    } else {
-        [self.tableView reloadData];
-    }
+    [self.searchDisplayController.searchResultsTableView reloadData];
+    [self.tableView reloadData];
 
 }
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -201,15 +202,17 @@
     self.inventoryLabel.text = [self localString:@"inventory.title"];
     self.inventoryLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
     self.inventoryLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:17];
+    self.summaryText.text = [self localString:@"inventory.summaryText"];
+    self.summaryAmount.text= [self localString:@"inventory.summaryAmount"];
     
-    UIView *sepertor = [[UIView alloc] initWithFrame:CGRectMake(0, 80, 320, 2)];
+    UIView *sepertor = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 320, 2)];
     sepertor.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
     
-    seperator1 = [[UIView alloc] initWithFrame:CGRectMake(10, 190, 300, 2)];
+    seperator1 = [[UIView alloc] initWithFrame:CGRectMake(10, 126, 300, 2)];
     seperator1.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
     [self.view addSubview:sepertor];
     [self.view addSubview:seperator1];
-
+    
     [self popupProductItems];
     [self showInitialORProductTableListView];
 }
@@ -275,11 +278,40 @@
 - (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView {
     [self generateDisplayDataArray];
     [self showInitialORProductTableListView];
-
     [self.tableView reloadData];
-    //NSLog(@"tableView ID %@",tableView);
-   // NSLog(@"self tableview %@",self.tableView);
-    //[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 50;
+}
+
+-(void)inventoryCompletionButtonClicked:(UIButton *)sender {
+    NSLog(@"Yes, I am clicked");
+    for (id key in productCollection) {
+        ProductItemObject *productObject = (ProductItemObject *)[productCollection objectForKey:key];
+        if (![productObject.productUnitNum isEqualToString: @"0"]) {
+            NSLog(@"product SN===%@",productObject.productSN);
+        }
+    }
+
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+     if(tableView != self.searchDisplayController.searchResultsTableView) {
+         footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+         UIButton *completionButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 0, 305, 30)];
+         UIImage *buttonImage = [UIImage imageNamed:@"bluebutton"];
+         [completionButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+         [completionButton setTitle:[self localString:@"inventory.completionButtonText"] forState:UIControlStateNormal];
+         [completionButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14]];
+         //completionButton.contentHorizontalAlignment = UIControlContentVerticalAlignmentCenter;
+         [completionButton setTitleEdgeInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
+         [completionButton addTarget:self action:@selector(inventoryCompletionButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+         [footerView addSubview:completionButton];
+     }
+
+    return footerView;
 }
 
 @end

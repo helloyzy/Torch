@@ -7,6 +7,7 @@
 //
 
 #import "TCDeckViewCtl.h"
+#import "UIViewController+Torch.h"
 
 @interface TCDeckViewCtl ()
 
@@ -26,7 +27,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	[self decorateNavBar];
+    self.panningMode = IIViewDeckNoPanning;
+}
+
+- (void)toggleProfileView:(id)sender {
+    NSLog(@"show profile");
+    [self toggleRightViewAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
