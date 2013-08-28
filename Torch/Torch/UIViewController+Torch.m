@@ -8,8 +8,17 @@
 
 #import "UIViewController+Torch.h"
 #import "TCViewController.h"
+#import "TCDeckViewCtl.h"
+#import "TCProfileController.h"
 
 @implementation UIViewController (Torch)
+
++ (TCDeckViewCtl *) deckViewWithCtl:(UIViewController *)centerCtl {
+    TCDeckViewCtl * result = [[TCDeckViewCtl alloc] initWithCenterViewController:centerCtl];
+    TCProfileController * profileCtl = [[TCProfileController alloc] init];
+    
+    // deckViewCtl.rightController
+}
 
 #pragma mark - dismiss keyboard 
 

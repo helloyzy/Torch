@@ -11,9 +11,9 @@
 #import "TCPriorityViewController.h"
 #import "TCInventoryViewController.h"
 
-#define ROW_HEIGHT_MAX 80
-#define ROW_HEIGHT 30
-#define ROW_HEIGHT_MIN 20
+#define ROW_HEIGHT_MAX 100
+#define ROW_HEIGHT 40
+#define ROW_HEIGHT_MIN 30
 #define SECTION_TITLE_HEIGHT 25
 #define FONT_SIZE 12.0f
 
@@ -24,7 +24,7 @@ static NSString *kViewControllerKey = @"viewController";
 @interface TCStoreHomeView ()
 
 @property (nonatomic, strong) NSMutableArray *menuList;
-
+@property (nonatomic, strong) UIButton *btnDirection;
 @end
 
 @implementation TCStoreHomeView
@@ -57,7 +57,6 @@ static NSString *kViewControllerKey = @"viewController";
 	[self.menuList addObject:@{ kTitleKey:@"Take Inventory",
                  kExplainKey:@"go to inventory page",
           kViewControllerKey:tcInventoryViewController } ];
-    self.tableView.backgroundColor= [UIColor clearColor];
     
 
 }
@@ -103,23 +102,26 @@ static NSString *kViewControllerKey = @"viewController";
 {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(5, 0, tableView.bounds.size.width-5, tableView.sectionHeaderHeight)];
     UIImageView *headerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divide.png"]];
-    UILabel *headerLbl = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 290, 20)];
+    UILabel *headerLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, tableView.bounds.size.width-100, 20)];
     if (section == 0) {
 
         headerLbl.backgroundColor = [UIColor clearColor];
         headerLbl.text = @"Store Name";
-        headerImage.frame = CGRectMake(5, 20, 290, 2);
+        headerImage.frame = CGRectMake(5, 20, tableView.bounds.size.width-10, 2);
+        headerLbl.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
+        headerLbl.textColor =[UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
         [headerView addSubview:headerLbl];
         [headerView addSubview:headerImage];
 
     
     }else if (section==1){
         headerLbl.backgroundColor = [UIColor clearColor];
-        headerLbl.text = @"Contactors";
-        headerImage.frame = CGRectMake(5, 20, 290, 2);
+        headerLbl.text = @"Contractors";
+        headerImage.frame = CGRectMake(5, 20, tableView.bounds.size.width-10, 2);
+        headerLbl.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
+        headerLbl.textColor =[UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
         [headerView addSubview:headerLbl];
         [headerView addSubview:headerImage];
-
         
     }else{
         headerView = nil;
@@ -134,48 +136,70 @@ static NSString *kViewControllerKey = @"viewController";
 	
 	static NSString *MyIdentifier = @"MyIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-// Try to retrieve from the table view a now-unused cell with the given identifier.
     if (indexPath.section ==0) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];        
+        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,  0, 320, ROW_HEIGHT_MAX)];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
         UIImageView *mapImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapwithhint.png"]];
         mapImage.frame = CGRectMake(240, 2, 50, 70);
 
         UILabel *lblNumber = [[UILabel alloc] initWithFrame:CGRectMake(15,5,20,20)];
         lblNumber.text = @"#3";
         lblNumber.textColor = [UIColor whiteColor];
-        //lblNumber.textAlignment = nste;
+        lblNumber.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14];
         lblNumber.backgroundColor =[UIColor clearColor];
-       // mapImage.opaque = YES;
-        UITextField *txtStoreDetail = [[UITextField alloc] initWithFrame:CGRectMake(5,0,200,20)];
-        txtStoreDetail.text = @"put store details here....";
+        UITextView *txtStoreDetail = [[UITextView alloc] initWithFrame:CGRectMake(0,0,tableView.bounds.size.width-100,ROW_HEIGHT_MAX)];
+        //txtStoreDetail.m
+        txtStoreDetail.text = @"put store details here..ddddddddddddddddd..sfasadfsd";
+        txtStoreDetail.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:14];
+        txtStoreDetail.textColor = [UIColor grayColor];
+        txtStoreDetail.editable = NO;
         [mapImage addSubview:lblNumber];
+		UIImage *buttonBackground = [UIImage imageNamed:@"loginBtn_bg.png"];
+		UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"loginBtn_border.png"];
+		
+		CGRect frame = CGRectMake(200, 80, 100, 30);
+		
+		_btnDirection = [TCStoreHomeView newButtonWithTitle:@"Directions"
+                                                         target:self
+                                                       selector:@selector(action:)
+                                                          frame:frame
+                                                          image:buttonBackground
+                                                   imagePressed:buttonBackgroundPressed
+                                                  darkTextColor:YES];               
         [cell.contentView addSubview:mapImage];
         [cell.contentView addSubview:txtStoreDetail];
-        //cell.accessoryView =lblNumber;
+        [cell.contentView addSubview:_btnDirection];
+        //[cell setUserInteractionEnabled:NO];
+        //_btnDirection.enabled = YES;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundView = backgroundView;
         
        
     }else if (indexPath.section ==1){
 	if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
-        UITextField *_txtName=[[UITextField alloc]initWithFrame:CGRectMake(12.0, 2.0, 100.0, ROW_HEIGHT/2)];
-        [_txtName setPlaceholder:@"Type Data Here"];
+        UITextField *_txtName=[[UITextField alloc]initWithFrame:CGRectMake(5.0, 0.0, 150.0, ROW_HEIGHT/2)];
+        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,  0, 320, ROW_HEIGHT)];
+        [_txtName setPlaceholder:@"Join Type Data Here........"];
         _txtName.enabled = NO;
-        _txtName.font = [UIFont systemFontOfSize:FONT_SIZE];
-        UITextField *_txtTitle=[[UITextField alloc]initWithFrame:CGRectMake(12.0, 20.0, 100.0, ROW_HEIGHT/2)];
-        [_txtTitle setPlaceholder:@"Type Data Here"];
-        _txtTitle.font = [UIFont systemFontOfSize:FONT_SIZE];
-
-        UITextField *_txtPhone=[[UITextField alloc]initWithFrame:CGRectMake(110.0, 2.0, 120.0, ROW_HEIGHT/2)];
-        [_txtPhone setPlaceholder:@"Type Data Here"];
-        _txtPhone.font = [UIFont systemFontOfSize:FONT_SIZE];
-        
-
-        cell.accessoryType = UITableViewCellAccessoryNone;
-
+        _txtName.textAlignment = NSTextAlignmentLeft;
+        _txtName.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:14];
+        UITextField *_txtTitle=[[UITextField alloc]initWithFrame:CGRectMake(5.0, (ROW_HEIGHT/2)+2, 150.0, ROW_HEIGHT/2)];
+        [_txtTitle setPlaceholder:@"join Type Data Here........"];
+        _txtTitle.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:12];
+        _txtTitle.enabled = NO;
+        _txtTitle.textAlignment = NSTextAlignmentLeft;
+        UITextField *_txtPhone=[[UITextField alloc]initWithFrame:CGRectMake(160.0, 2.0, 150.0, ROW_HEIGHT/2)];
+        [_txtPhone setPlaceholder:@"820-734-8976"];
+        _txtPhone.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:14];
+        _txtPhone.textAlignment = NSTextAlignmentRight;
+        _txtPhone.enabled=NO;
+        cell.backgroundView = backgroundView;
         [cell addSubview:_txtName];
         [cell addSubview:_txtTitle];
         [cell addSubview:_txtPhone];
-      
+        [cell setUserInteractionEnabled:NO];
+
 	}
 	
     }else {
@@ -186,7 +210,11 @@ static NSString *kViewControllerKey = @"viewController";
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kTitleKey];
+            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
+            cell.textLabel.textColor = [UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
             cell.detailTextLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kExplainKey];
+
+            cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
         
     }
@@ -207,5 +235,54 @@ static NSString *kViewControllerKey = @"viewController";
 	UIViewController *targetViewController = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kViewControllerKey];
 	[[self navigationController] pushViewController:targetViewController animated:YES];
 }
++ (UIButton *)newButtonWithTitle:(NSString *)title
+                          target:(id)target
+                        selector:(SEL)selector
+                           frame:(CGRect)frame
+                           image:(UIImage *)image
+                    imagePressed:(UIImage *)imagePressed
+                   darkTextColor:(BOOL)darkTextColor
+{
+	UIButton *button = [[UIButton alloc] initWithFrame:frame];
+	// or you can do this:
+	//		UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+	
+	button.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+	button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+	
+	[button setTitle:title forState:UIControlStateNormal];
+	if (darkTextColor)
+	{
+		[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+	}
+	else
+	{
+		[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	}
+	
+	UIImage *newImage = [image stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+	[button setBackgroundImage:newImage forState:UIControlStateNormal];
+	
+	UIImage *newPressedImage = [imagePressed stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+	[button setBackgroundImage:newPressedImage forState:UIControlStateHighlighted];
+	
+	[button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+	
+    // in case the parent view draws with a custom color or gradient, use a transparent color
+	button.backgroundColor = [UIColor clearColor];
+    
+	return button;
+}
+
+- (void)action:(id)sender
+{
+    UIViewController *targetViewController = [[TCPriorityViewController alloc]init];
+	[[self navigationController] pushViewController:targetViewController animated:YES];
+    //NSLog(@"UIButton was clicked");
+}
+
+
+#pragma mark - Lazy creation of buttons
+
 
 @end

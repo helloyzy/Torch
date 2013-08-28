@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class TCDeckViewCtl;
+
 @interface UIViewController (Torch)
+
+// section deck view controller
++ (TCDeckViewCtl *) deckViewWithCtl:(UINavigationController *)navCtl;
 
 // section for dismiss keyboard 
 - (UIView *) viewForTapToDismissKeyboard;
