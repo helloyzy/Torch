@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1C21A52117CB214100627852 /* TCMyDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C21A52017CB214100627852 /* TCMyDayCell.m */; };
 		1C21A52417CB22E700627852 /* TCCallHighlightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C21A52317CB22E700627852 /* TCCallHighlightCell.m */; };
+		1C28602F17CDC967002E4CD0 /* TCSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28602D17CDC967002E4CD0 /* TCSummaryViewController.m */; };
+		1C28603017CDC967002E4CD0 /* TCSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C28602E17CDC967002E4CD0 /* TCSummaryViewController.xib */; };
 		1C40315617C5FB1F007D58CC /* client-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C40315517C5FB1F007D58CC /* client-pin.png */; };
 		1C65E2E417C33CE100FA94B2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C65E2E317C33CE100FA94B2 /* MapKit.framework */; };
 		1C65E2E617C33D6700FA94B2 /* TCRouteMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */; };
@@ -80,6 +82,7 @@
 		DC0383DF17C4CE7F00BBD02A /* loginBtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */; };
 		DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */; };
 		DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */ = {isa = PBXBuildFile; fileRef = DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */; };
+		DC74E34617CD8AEB00953259 /* TCDeckViewCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */; };
 		DC9979C317C5D4510044C917 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C117C5D4510044C917 /* navbar_bg.png */; };
 		DC9979C417C5D4510044C917 /* navbar_righticon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C217C5D4510044C917 /* navbar_righticon.png */; };
 		DC997A0217C60A010044C917 /* TCNavVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC997A0117C60A010044C917 /* TCNavVwCtl.m */; };
@@ -113,6 +116,9 @@
 		1C21A52017CB214100627852 /* TCMyDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMyDayCell.m; sourceTree = "<group>"; };
 		1C21A52217CB22E700627852 /* TCCallHighlightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCallHighlightCell.h; sourceTree = "<group>"; };
 		1C21A52317CB22E700627852 /* TCCallHighlightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCallHighlightCell.m; sourceTree = "<group>"; };
+		1C28602C17CDC967002E4CD0 /* TCSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSummaryViewController.h; sourceTree = "<group>"; };
+		1C28602D17CDC967002E4CD0 /* TCSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSummaryViewController.m; sourceTree = "<group>"; };
+		1C28602E17CDC967002E4CD0 /* TCSummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCSummaryViewController.xib; sourceTree = "<group>"; };
 		1C40315517C5FB1F007D58CC /* client-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "client-pin.png"; sourceTree = "<group>"; };
 		1C65E2E317C33CE100FA94B2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRouteMapView.xib; sourceTree = "<group>"; };
@@ -202,6 +208,8 @@
 		DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_border.png; sourceTree = "<group>"; };
 		DC51EA0917C5A2BE00E5DD3C /* UIViewController+Torch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Torch.h"; sourceTree = "<group>"; };
 		DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Torch.m"; sourceTree = "<group>"; };
+		DC74E34417CD8AEB00953259 /* TCDeckViewCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDeckViewCtl.h; sourceTree = "<group>"; };
+		DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDeckViewCtl.m; sourceTree = "<group>"; };
 		DC9979C117C5D4510044C917 /* navbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_bg.png; sourceTree = "<group>"; };
 		DC9979C217C5D4510044C917 /* navbar_righticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_righticon.png; sourceTree = "<group>"; };
 		DC997A0017C60A010044C917 /* TCNavVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNavVwCtl.h; sourceTree = "<group>"; };
@@ -416,6 +424,8 @@
 				DC0383D017C360F400BBD02A /* TCDisclaimerVwCtl.m */,
 				1C8187A617C45A0B00AF7AF0 /* TCMyDayController.h */,
 				1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */,
+				1C28602C17CDC967002E4CD0 /* TCSummaryViewController.h */,
+				1C28602D17CDC967002E4CD0 /* TCSummaryViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -437,6 +447,7 @@
 				1C21A51F17CB214100627852 /* TCMyDayCell.h */,
 				1C21A52017CB214100627852 /* TCMyDayCell.m */,
 				1C21A52217CB22E700627852 /* TCCallHighlightCell.h */,
+				1C28602E17CDC967002E4CD0 /* TCSummaryViewController.xib */,
 				1C21A52317CB22E700627852 /* TCCallHighlightCell.m */,
 			);
 			name = View;
@@ -483,6 +494,8 @@
 				DC997A0117C60A010044C917 /* TCNavVwCtl.m */,
 				DCAFC89817CCA09A006DEBB2 /* TCNavTblVwCtl.h */,
 				DCAFC89917CCA09A006DEBB2 /* TCNavTblVwCtl.m */,
+				DC74E34417CD8AEB00953259 /* TCDeckViewCtl.h */,
+				DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -608,6 +621,7 @@
 				DCC8389A17CB42970046E999 /* profile_person.png in Resources */,
 				D6CD428817CC99FD00A499A4 /* bluebutton.png in Resources */,
 				D6CD428917CC99FD00A499A4 /* bluebutton@2x.png in Resources */,
+				1C28603017CDC967002E4CD0 /* TCSummaryViewController.xib in Resources */,
 				C53C8CF217CD9FA7000E978D /* directionbtn.png in Resources */,
 				C53C8CF317CD9FA7000E978D /* directionbtn@2x.png in Resources */,
 				C53C8CF617CDA057000E978D /* directionbtn_pressed.png in Resources */,
@@ -702,6 +716,8 @@
 				DCAFC89417CC7181006DEBB2 /* GraphicsUtils.m in Sources */,
 				D6CD428517CC706100A499A4 /* TCPriorityObject.m in Sources */,
 				DCAFC89A17CCA09A006DEBB2 /* TCNavTblVwCtl.m in Sources */,
+				DC74E34617CD8AEB00953259 /* TCDeckViewCtl.m in Sources */,
+				1C28602F17CDC967002E4CD0 /* TCSummaryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

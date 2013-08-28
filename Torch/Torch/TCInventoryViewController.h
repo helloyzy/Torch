@@ -10,6 +10,6 @@
 #import "UIViewController+Utils.h"
 #import "TCNavVwCtl.h"
 
-@interface TCInventoryViewController : UIViewController <UITableViewDelegate , UITableViewDataSource>
+@interface TCInventoryViewController : TCNavVwCtl <UITableViewDelegate , UITableViewDataSource>
 
 @end

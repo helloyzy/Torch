@@ -23,7 +23,10 @@
 "priority.title" = "Prioridades";
 
 "inventory.title" = "INVENTARIO";
+"inventory.summaryAmount" = "$0.00";
+"inventory.summaryText" = "0 Elementos en Inventario";
 "priority.buttonName" = "Cerrar";
+"inventory.completionButtonText" = "Inventory Completo";
 
 
 

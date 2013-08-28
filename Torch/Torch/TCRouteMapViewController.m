@@ -81,7 +81,7 @@
     MKAnnotationView *annView = [[MKAnnotationView alloc ] initWithAnnotation:annotation reuseIdentifier:@"ClientPin"];
     annView.image = [UIImage imageNamed:@"client-pin.png"];
     annView.canShowCallout = YES;
-    annView.calloutOffset = (CGPoint) {10, 10};
+    annView.calloutOffset = (CGPoint) {0, 48};
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //    [rightButton addTarget:nil action:nil forControlEvents:UIControlEventTouchUpInside];
     annView.rightCalloutAccessoryView = rightButton;
