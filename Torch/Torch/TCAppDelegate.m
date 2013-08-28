@@ -17,6 +17,7 @@
 #import "UIViewController+Torch.h"
 #import "TCPriorityViewController.h"
 #import "TCStoreHomeView.h"
+#import "TCSummaryViewController.h"
 
 @implementation TCAppDelegate
 
