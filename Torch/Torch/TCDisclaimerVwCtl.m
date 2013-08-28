@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     btnDone.title = [self localString:@"Done"];
-    [self decorateNavBar:navBar needRightItem:NO];
+    [self decorateNavBar:navBar];
 }
 
 - (void)didReceiveMemoryWarning

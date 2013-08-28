@@ -8,16 +8,19 @@
 
 #import "UIViewController+Torch.h"
 #import "TCViewController.h"
-#import "TCDeckViewCtl.h"
+#import "IIViewDeckController.h"
 #import "TCProfileController.h"
 
 @implementation UIViewController (Torch)
 
-+ (TCDeckViewCtl *) deckViewWithCtl:(UIViewController *)centerCtl {
-    TCDeckViewCtl * result = [[TCDeckViewCtl alloc] initWithCenterViewController:centerCtl];
-    TCProfileController * profileCtl = [[TCProfileController alloc] init];
-    
-    // deckViewCtl.rightController
++ (IIViewDeckController *) rootDeckView:(UIViewController *)firstCtl {
+    // construct a deck view ctl as the window's rootViewController, and then set its center ctl as a nav ctl, right ctl as a profile ctl
+    UINavigationController * navCtr = [UIViewController customNavCtr:firstCtl];
+    UIViewController * profile = [[TCProfileController alloc] init];
+    IIViewDeckController * result = [[IIViewDeckController alloc] initWithCenterViewController:navCtr rightViewController:profile];
+    result.panningMode = IIViewDeckNoPanning;
+    result.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
+    return result;
 }
 
 #pragma mark - dismiss keyboard 
@@ -113,36 +116,42 @@ static int END_EDIT_VIEW_TAG = 1999;
     return result;
 }
 
-- (UIBarButtonItem *) navBarRightItem {
-    static UIBarButtonItem * navBarRightItem = nil;
-    if (!navBarRightItem) {
-        UIImage * image = [UIImage imageNamed:@"navbar_righticon.png"];
-        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, 0, 33, 30);
-        [btn setBackgroundImage:image forState:UIControlStateNormal];
-        // [btn addTarget:self action:@selector(testJump) forControlEvents:UIControlEventTouchUpInside];
-        navBarRightItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+- (void) toggleProfileView:(id)sender {
+    // we have a deckViewController sitting on top of the nav controller
+    IIViewDeckController * deckCtl = self.navigationController.viewDeckController;
+    if (deckCtl) {
+        [deckCtl toggleRightViewAnimated:YES];
     }
-    return navBarRightItem;
 }
 
-- (void) decorateNavItem:(UINavigationItem *)navItem needRightItem:(BOOL)flag {
-    if (flag) {
+- (UIBarButtonItem *) navBarRightItem {
+    UIImage * image = [UIImage imageNamed:@"navbar_righticon.png"];
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, 33, 30);
+    [btn setBackgroundImage:image forState:UIControlStateNormal];
+    if ([self respondsToSelector:@selector(toggleProfileView:)]) {
+        [btn addTarget:self action:@selector(toggleProfileView:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return [[UIBarButtonItem alloc] initWithCustomView:btn];
+}
+
+- (void) decorateNavItem:(UINavigationItem *)navItem isDecorateBkItem:(BOOL)bkItemFlag isDecorateRtItem:(BOOL)rtItemFlag {
+    if (bkItemFlag) {
+        navItem.backBarButtonItem.title = NSLocalizedString(@"Back", nil);
+    }
+    if (rtItemFlag) {
         navItem.rightBarButtonItem = [self navBarRightItem];
     }
-    navItem.backBarButtonItem.title = NSLocalizedString(@"Back", nil);
 }
 
 - (void) decorateNavBar {
     if (self.navigationController) {
-        [self decorateNavItem:self.navigationItem needRightItem:YES];
+        [self decorateNavItem:self.navigationItem isDecorateBkItem:YES isDecorateRtItem:YES];
     }
 }
 
-- (void) decorateNavBar:(UINavigationBar *)navBar needRightItem:(BOOL)flag {
+- (void) decorateNavBar:(UINavigationBar *)navBar {
     [UIViewController setNavbarBgImg:navBar];
-    UINavigationItem * item = [[UINavigationItem alloc] init];
-    [self decorateNavItem:item needRightItem:flag];
 }
 
 
