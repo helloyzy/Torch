@@ -23,9 +23,12 @@
 - (UIViewController *)newDeckController
 {
     UIViewController* left = [[TCRouteMapViewController alloc] initWithNibName:@"TCRouteMapView" bundle:nil];
-    UIViewController* center = [[TCMyDayController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
+    TCMyDayController* center = [[TCMyDayController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
 
-    return [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
+    IIViewDeckController* controller = [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
+    controller.panningMode = IIViewDeckPanningViewPanning;
+    controller.panningView = center.tableView;
+    return controller;
 }
 
 - (UIViewController *)controllerWithinNavCtr {
