@@ -32,6 +32,11 @@
     return controller;
 }
 
+- (UIViewController *)rootDeckCtrl {
+    UIViewController * ctl = [[TCStoreHomeView alloc] init];
+    return [UIViewController rootDeckView:ctl];
+}
+
 - (UIViewController *)controllerWithinNavCtr {
     // UIViewController * viewController = [[TCViewController alloc] init];
     UIViewController * viewController = [[TCStoreHomeView alloc] init];
@@ -50,6 +55,7 @@
     //self.viewController = [[TCLoginViewController alloc] init];
     //self.viewController = [self controllerWithinNavCtr];
     // self.viewController = [[TCStoreHomeView alloc] init];
+    // self.viewController = [self rootDeckCtrl];
     self.viewController = [self controllerWithinNavCtr];
     self.window.rootViewController = self.viewController;
     
