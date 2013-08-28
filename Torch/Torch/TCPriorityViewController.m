@@ -114,6 +114,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
      TCPriorityObject *priorityObject = [tableData objectAtIndex:indexPath.row];
     UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:priorityObject.priorityTitle message:priorityObject.priorityDescription delegate:nil cancelButtonTitle:[self localString:@"priority.buttonName"] otherButtonTitles:nil, nil];
+     //   UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HersheysBG"]];
+    //image.frame = CGRectMake(0, 0, messageAlert.frame.size.height,messageAlert.frame.size.width);
+    //image.contentMode = UIViewContentModeScaleToFill;
+   //[messageAlert addSubview:image];
+   // [messageAlert sendSubviewToBack:image];
+    
     [messageAlert show];
 }
 
