@@ -70,6 +70,8 @@
 		D6CD428917CC99FD00A499A4 /* bluebutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6CD428717CC99FC00A499A4 /* bluebutton@2x.png */; };
 		D6D2EC7617C4897400D12795 /* TCPriorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */; };
 		D6D2EC7717C4897400D12795 /* TCPriorityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */; };
+		D6D68DE417CDDEB400477060 /* TCOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D68DE217CDDEB400477060 /* TCOrderViewController.m */; };
+		D6D68DE517CDDEB400477060 /* TCOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */; };
 		DC0383A417C3044300BBD02A /* HersheysLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A217C3044300BBD02A /* HersheysLogo.png */; };
 		DC0383A917C3067B00BBD02A /* TCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */; };
 		DC0383C617C3455A00BBD02A /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */; };
@@ -191,6 +193,9 @@
 		D6D2EC7317C4897400D12795 /* TCPriorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPriorityViewController.h; sourceTree = "<group>"; };
 		D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPriorityViewController.m; sourceTree = "<group>"; };
 		D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPriorityViewController.xib; sourceTree = "<group>"; };
+		D6D68DE117CDDEB400477060 /* TCOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOrderViewController.h; sourceTree = "<group>"; };
+		D6D68DE217CDDEB400477060 /* TCOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOrderViewController.m; sourceTree = "<group>"; };
+		D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCOrderViewController.xib; sourceTree = "<group>"; };
 		DC0383A217C3044300BBD02A /* HersheysLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HersheysLogo.png; sourceTree = "<group>"; };
 		DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCLoginViewController.xib; sourceTree = "<group>"; };
 		DC0383C417C3455A00BBD02A /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
@@ -400,6 +405,8 @@
 			isa = PBXGroup;
 			children = (
 				D6CD428317CC706100A499A4 /* TCPriorityObject.h */,
+				D6D68DE117CDDEB400477060 /* TCOrderViewController.h */,
+				D6D68DE217CDDEB400477060 /* TCOrderViewController.m */,
 				D6CD428417CC706100A499A4 /* TCPriorityObject.m */,
 				DCC8387217CB0FC70046E999 /* TCProfileController.h */,
 				DCC8387317CB0FC70046E999 /* TCProfileController.m */,
@@ -433,6 +440,7 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */,
 				DCC8387517CB0FD80046E999 /* TCProfileController.xib */,
 				D6CB682317C5A65600D290D7 /* InventoryTableCell.xib */,
 				D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */,
@@ -628,6 +636,7 @@
 				C53C8CF717CDA057000E978D /* directionbtn_pressed@2x.png in Resources */,
 				C53C8CFA17CDCAC1000E978D /* bluebtn_pressed.png in Resources */,
 				C53C8CFB17CDCAC1000E978D /* bluebtn_pressed@2x.png in Resources */,
+				D6D68DE517CDDEB400477060 /* TCOrderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,6 +727,7 @@
 				DCAFC89A17CCA09A006DEBB2 /* TCNavTblVwCtl.m in Sources */,
 				DC74E34617CD8AEB00953259 /* TCDeckViewCtl.m in Sources */,
 				1C28602F17CDC967002E4CD0 /* TCSummaryViewController.m in Sources */,
+				D6D68DE417CDDEB400477060 /* TCOrderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
