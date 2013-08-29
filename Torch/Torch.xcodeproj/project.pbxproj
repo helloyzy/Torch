@@ -54,6 +54,14 @@
 		C53C8D0E17CED92C000E978D /* slideend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C53C8D0A17CED92C000E978D /* slideend@2x.png */; };
 		C53C8D0F17CED92C000E978D /* slidestart.png in Resources */ = {isa = PBXBuildFile; fileRef = C53C8D0B17CED92C000E978D /* slidestart.png */; };
 		C53C8D1017CED92C000E978D /* slidestart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C53C8D0C17CED92C000E978D /* slidestart@2x.png */; };
+		C53C8D1417CEE2CA000E978D /* TCOrderHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C53C8D1217CEE2CA000E978D /* TCOrderHistory.m */; };
+		C53C8D1517CEE2CA000E978D /* TCOrderHistory.xib in Resources */ = {isa = PBXBuildFile; fileRef = C53C8D1317CEE2CA000E978D /* TCOrderHistory.xib */; };
+		C53C8D1A17CEE669000E978D /* historybg.png in Resources */ = {isa = PBXBuildFile; fileRef = C53C8D1617CEE669000E978D /* historybg.png */; };
+		C53C8D1B17CEE669000E978D /* historybg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C53C8D1717CEE669000E978D /* historybg@2x.png */; };
+		C53C8D1C17CEE669000E978D /* tapretrun.png in Resources */ = {isa = PBXBuildFile; fileRef = C53C8D1817CEE669000E978D /* tapretrun.png */; };
+		C53C8D1D17CEE669000E978D /* tapreturn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C53C8D1917CEE669000E978D /* tapreturn@2x.png */; };
+		C53C8D2117CEE9DE000E978D /* TCOrderStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C53C8D1F17CEE9DD000E978D /* TCOrderStatusCell.m */; };
+		C53C8D2217CEE9DE000E978D /* TCOrderStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C53C8D2017CEE9DD000E978D /* TCOrderStatusCell.xib */; };
 		C587B86C17C72B6C00ED6DAB /* mapicon.png in Resources */ = {isa = PBXBuildFile; fileRef = C587B86B17C72B6C00ED6DAB /* mapicon.png */; };
 		C587B86E17C72B9200ED6DAB /* divide.png in Resources */ = {isa = PBXBuildFile; fileRef = C587B86D17C72B9200ED6DAB /* divide.png */; };
 		C587B87417C73A5900ED6DAB /* backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = C587B86F17C73A5900ED6DAB /* backbutton.png */; };
@@ -175,6 +183,16 @@
 		C53C8D0A17CED92C000E978D /* slideend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slideend@2x.png"; sourceTree = "<group>"; };
 		C53C8D0B17CED92C000E978D /* slidestart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slidestart.png; sourceTree = "<group>"; };
 		C53C8D0C17CED92C000E978D /* slidestart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slidestart@2x.png"; sourceTree = "<group>"; };
+		C53C8D1117CEE2CA000E978D /* TCOrderHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOrderHistory.h; sourceTree = "<group>"; };
+		C53C8D1217CEE2CA000E978D /* TCOrderHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOrderHistory.m; sourceTree = "<group>"; };
+		C53C8D1317CEE2CA000E978D /* TCOrderHistory.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCOrderHistory.xib; sourceTree = "<group>"; };
+		C53C8D1617CEE669000E978D /* historybg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = historybg.png; sourceTree = "<group>"; };
+		C53C8D1717CEE669000E978D /* historybg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "historybg@2x.png"; sourceTree = "<group>"; };
+		C53C8D1817CEE669000E978D /* tapretrun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tapretrun.png; sourceTree = "<group>"; };
+		C53C8D1917CEE669000E978D /* tapreturn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tapreturn@2x.png"; sourceTree = "<group>"; };
+		C53C8D1E17CEE9DD000E978D /* TCOrderStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOrderStatusCell.h; sourceTree = "<group>"; };
+		C53C8D1F17CEE9DD000E978D /* TCOrderStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOrderStatusCell.m; sourceTree = "<group>"; };
+		C53C8D2017CEE9DD000E978D /* TCOrderStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCOrderStatusCell.xib; sourceTree = "<group>"; };
 		C587B86B17C72B6C00ED6DAB /* mapicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapicon.png; sourceTree = "<group>"; };
 		C587B86D17C72B9200ED6DAB /* divide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divide.png; sourceTree = "<group>"; };
 		C587B86F17C73A5900ED6DAB /* backbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backbutton.png; sourceTree = "<group>"; };
@@ -371,6 +389,10 @@
 		DC0383A117C3044300BBD02A /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				C53C8D1617CEE669000E978D /* historybg.png */,
+				C53C8D1717CEE669000E978D /* historybg@2x.png */,
+				C53C8D1817CEE669000E978D /* tapretrun.png */,
+				C53C8D1917CEE669000E978D /* tapreturn@2x.png */,
 				C53C8D0917CED92C000E978D /* slideend.png */,
 				C53C8D0A17CED92C000E978D /* slideend@2x.png */,
 				C53C8D0B17CED92C000E978D /* slidestart.png */,
@@ -416,12 +438,16 @@
 		DC0383A617C3058500BBD02A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C53C8D1E17CEE9DD000E978D /* TCOrderStatusCell.h */,
+				C53C8D1F17CEE9DD000E978D /* TCOrderStatusCell.m */,
+				C53C8D1117CEE2CA000E978D /* TCOrderHistory.h */,
+				C53C8D1217CEE2CA000E978D /* TCOrderHistory.m */,
 				D6CD428317CC706100A499A4 /* TCPriorityObject.h */,
 				D6D68DE117CDDEB400477060 /* TCOrderViewController.h */,
 				D6D68DE217CDDEB400477060 /* TCOrderViewController.m */,
+				DCC8387317CB0FC70046E999 /* TCProfileController.m */,
 				D6CD428417CC706100A499A4 /* TCPriorityObject.m */,
 				DCC8387217CB0FC70046E999 /* TCProfileController.h */,
-				DCC8387317CB0FC70046E999 /* TCProfileController.m */,
 				DC9D57E517C74B1900EAFD2F /* Base */,
 				D6C5A31217C7014400C0C657 /* ProductItemObject.h */,
 				D6C5A31317C7014400C0C657 /* ProductItemObject.m */,
@@ -455,6 +481,7 @@
 				D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */,
 				DCC8387517CB0FD80046E999 /* TCProfileController.xib */,
 				D6CB682317C5A65600D290D7 /* InventoryTableCell.xib */,
+				C53C8D2017CEE9DD000E978D /* TCOrderStatusCell.xib */,
 				D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */,
 				D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */,
 				DC0383D217C3614100BBD02A /* TCDisclaimerVwCtl.xib */,
@@ -462,6 +489,7 @@
 				1C713C0A17C2058100A903A6 /* TCViewController.xib */,
 				1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */,
 				1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */,
+				C53C8D1317CEE2CA000E978D /* TCOrderHistory.xib */,
 				1C8187A417C4569D00AF7AF0 /* TCMyDayCell.xib */,
 				C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */,
 				1C21A51F17CB214100627852 /* TCMyDayCell.h */,
@@ -653,6 +681,12 @@
 				C53C8D0E17CED92C000E978D /* slideend@2x.png in Resources */,
 				C53C8D0F17CED92C000E978D /* slidestart.png in Resources */,
 				C53C8D1017CED92C000E978D /* slidestart@2x.png in Resources */,
+				C53C8D1517CEE2CA000E978D /* TCOrderHistory.xib in Resources */,
+				C53C8D1A17CEE669000E978D /* historybg.png in Resources */,
+				C53C8D1B17CEE669000E978D /* historybg@2x.png in Resources */,
+				C53C8D1C17CEE669000E978D /* tapretrun.png in Resources */,
+				C53C8D1D17CEE669000E978D /* tapreturn@2x.png in Resources */,
+				C53C8D2217CEE9DE000E978D /* TCOrderStatusCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,6 +778,8 @@
 				DC74E34617CD8AEB00953259 /* TCDeckViewCtl.m in Sources */,
 				1C28602F17CDC967002E4CD0 /* TCSummaryViewController.m in Sources */,
 				D6D68DE417CDDEB400477060 /* TCOrderViewController.m in Sources */,
+				C53C8D1417CEE2CA000E978D /* TCOrderHistory.m in Sources */,
+				C53C8D2117CEE9DE000E978D /* TCOrderStatusCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
