@@ -11,6 +11,7 @@
 #import "TCPriorityViewController.h"
 #import "TCInventoryViewController.h"
 
+
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
 #define ROW_HEIGHT_MIN 35
@@ -58,15 +59,7 @@ static NSString *kViewControllerKey = @"viewController";
 	[self.menuList addObject:@{ kTitleKey:@"Hacer un Inventario",
                  kExplainKey:@"go to inventory page",
           kViewControllerKey:tcInventoryViewController } ];
-    [[TCInventoryViewController alloc] initWithNibName:@"TCInventoryViewController" bundle:nil];
-	[self.menuList addObject:@{ kTitleKey:@"Hacer un Inventario",
-                 kExplainKey:@"go to inventory page",
-          kViewControllerKey:tcInventoryViewController } ];
-    [[TCInventoryViewController alloc] initWithNibName:@"TCInventoryViewController" bundle:nil];
-	[self.menuList addObject:@{ kTitleKey:@"Hacer un Inventario",
-                 kExplainKey:@"go to inventory page",
-          kViewControllerKey:tcInventoryViewController } ];
-    [[TCInventoryViewController alloc] initWithNibName:@"TCInventoryViewController" bundle:nil];
+
 	[self.menuList addObject:@{ kTitleKey:@"Hacer un Inventario",
                  kExplainKey:@"go to inventory page",
           kViewControllerKey:tcInventoryViewController } ];
@@ -322,8 +315,8 @@ static NSString *kViewControllerKey = @"viewController";
 {
     NSLog(@"UIButton was clicked");
 
-    UIViewController *targetViewController = [[TCStoreHomeView alloc]init];
-	[[self navigationController] pushViewController:targetViewController animated:YES];
+    //UIViewController *targetViewController = [[TCDirectionViewController alloc]init];
+	//[[self navigationController] pushViewController:targetViewController animated:YES];
 }
 - (void) notAbleVisit:(id)sender
 {
