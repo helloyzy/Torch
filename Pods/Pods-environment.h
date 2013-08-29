@@ -24,6 +24,12 @@
 #define COCOAPODS_VERSION_MINOR_MGBox2 0
 #define COCOAPODS_VERSION_PATCH_MGBox2 0
 
+// OCTotallyLazy
+#define COCOAPODS_POD_AVAILABLE_OCTotallyLazy
+#define COCOAPODS_VERSION_MAJOR_OCTotallyLazy 1
+#define COCOAPODS_VERSION_MINOR_OCTotallyLazy 1
+#define COCOAPODS_VERSION_PATCH_OCTotallyLazy 0
+
 // RestKit
 #define COCOAPODS_POD_AVAILABLE_RestKit
 #define COCOAPODS_VERSION_MAJOR_RestKit 0
@@ -77,12 +83,6 @@
 #define COCOAPODS_VERSION_MAJOR_TransitionKit 1
 #define COCOAPODS_VERSION_MINOR_TransitionKit 1
 #define COCOAPODS_VERSION_PATCH_TransitionKit 1
-
-// Underscore.m
-#define COCOAPODS_POD_AVAILABLE_Underscore_m
-#define COCOAPODS_VERSION_MAJOR_Underscore_m 0
-#define COCOAPODS_VERSION_MINOR_Underscore_m 2
-#define COCOAPODS_VERSION_PATCH_Underscore_m 1
 
 // ViewDeck
 #define COCOAPODS_POD_AVAILABLE_ViewDeck

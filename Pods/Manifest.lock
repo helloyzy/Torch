@@ -2,6 +2,7 @@ PODS:
   - AFNetworking (1.3.2)
   - InnerBand (1.0.5)
   - MGBox2 (2.0.0)
+  - OCTotallyLazy (1.1.0)
   - RestKit (0.20.3):
     - RestKit/Core
   - RestKit/Core (0.20.3):
@@ -20,26 +21,25 @@ PODS:
   - Reveal-iOS-SDK (0.9.0)
   - SOCKit (1.1)
   - TransitionKit (1.1.1)
-  - Underscore.m (0.2.1)
   - ViewDeck (2.2.11)
 
 DEPENDENCIES:
   - InnerBand (~> 1.0.5)
   - MGBox2 (~> 2.0.0)
+  - OCTotallyLazy (~> 1.1.0)
   - RestKit (~> 0.20.3)
   - Reveal-iOS-SDK (~> 0.9.0)
-  - Underscore.m (~> 0.2.1)
   - ViewDeck (~> 2.2.11)
 
 SPEC CHECKSUMS:
   AFNetworking: 7f9bcd7c287a75476cd5c61e82fd3380e93e4c54
   InnerBand: 04bd2f47bdda0c64a1ebcbf9698a643e5ea19da5
   MGBox2: 7c09e36c2271f9af16fdb5141a0ca554ecee4d8d
+  OCTotallyLazy: 6ebd5658e16e1ce3d93e05e3907762b8d61b1c66
   RestKit: 1f181c180105a92f11ec4f6cd7de37625e516d83
   Reveal-iOS-SDK: 2f011ee3e4653abc92b652f409f1641c7a1dae00
   SOCKit: 2f3bc4d07910de12dcc202815e07db68a3802581
   TransitionKit: d0e3344aac92991395d4c2e72d9c5a8ceeb12910
-  Underscore.m: 593ea54a19d3cc4439387a83d36eb7ba6ffd1707
   ViewDeck: b5eddc8559b0e47259ab7addbf2de6768061f139
 
 COCOAPODS: 0.23.0
