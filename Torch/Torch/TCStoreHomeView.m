@@ -10,7 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TCPriorityViewController.h"
 #import "TCInventoryViewController.h"
-
+#import "TCOrderViewController.h"
+#import "TCSummaryViewController.h"
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -59,11 +60,16 @@ static NSString *kViewControllerKey = @"viewController";
 	[self.menuList addObject:@{ kTitleKey:@"Hacer un Inventario",
                  kExplainKey:@"go to inventory page",
           kViewControllerKey:tcInventoryViewController } ];
-
-	[self.menuList addObject:@{ kTitleKey:@"Hacer un Inventario",
-                 kExplainKey:@"go to inventory page",
-          kViewControllerKey:tcInventoryViewController } ];
-
+    TCOrderViewController *tcOrderViewController =
+    [[TCOrderViewController alloc] initWithNibName:@"TCOrderViewController" bundle:nil];
+	[self.menuList addObject:@{ kTitleKey:@"Crear Orden",
+                 kExplainKey:@"create order",
+          kViewControllerKey:tcOrderViewController } ];
+    TCSummaryViewController *tcSummaryViewController =
+    [[TCSummaryViewController alloc] initWithNibName:@"TCSummaryViewController" bundle:nil];
+	[self.menuList addObject:@{ kTitleKey:@"Notas",
+                 kExplainKey:@"Visit summary and notes",
+          kViewControllerKey:tcSummaryViewController } ];
 
 }
 
