@@ -8,3 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+// font HelveticaNeueLTCom-Bd
+UIFont * TCFont_HNLTComBd(CGFloat size);
+// font HelveticaNeueLTCom-Md
+UIFont * TCFont_HNLTComMd(CGFloat size);
+// font HelveticaNeueLTCom-Lt
+UIFont * TCFont_HNLTComLt(CGFloat size);

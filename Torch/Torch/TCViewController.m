@@ -18,7 +18,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    sliderVw.direction = TCSliderViewDirectionBackward;
+    // sliderVw.direction = TCSliderViewDirectionBackward;
 }
 
 - (void)didReceiveMemoryWarning
@@ -28,7 +28,7 @@
 }
 
 - (void) sliderDidSlideToEnd:(TCSliderView *)slideView {
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure to start" message:@"Are you sure to start" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"yes", nil];
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Choice" message:@"Are you sure to start?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
     [alertView show];
     //    return YES;
 }
@@ -39,7 +39,7 @@
 }
 
 - (void) sliderDidSlideToStart:(TCSliderView *)slideView {
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure to end" message:@"Are you sure to end" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"yes", nil];
+    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Choice" message:@"Are you sure to end?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
     [alertView show];
     //    return YES;
 }
