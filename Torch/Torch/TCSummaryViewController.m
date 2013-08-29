@@ -20,39 +20,82 @@
 
 @implementation TCSummaryViewController
 
+static const CGSize rowSize = (CGSize){320, 40};
+static const CGSize cellSize = (CGSize){(320-32)/3, 50};
+
+- (MGTableBox *)callItemWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
+    MGTableBox *item = MGTableBox.box;
+    [item.topLines addObjectsFromArray:@[
+     [MGLine lineWithLeft:title right:nil size:(CGSize) {300, 40}],
+     [MGLine lineWithLeft:subtitle right:nil size:(CGSize) {300, 40}]
+     ]];
+    item.borderStyle = MGBorderEtchedBottom;
+    item.bottomBorderColor = [UIColor redColor];
+    item.leftPadding = 16;
+    return item;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        MGScrollView *scroller = [MGScrollView scrollerWithSize:self.view.bounds.size];
-        CGSize rowSize = (CGSize){304, 40};
-        [self.view addSubview:scroller];
-        MGTableBox *section = MGTableBox.box;
-        [scroller.boxes addObject:section];
-        MGLineStyled *storeName = [MGLineStyled lineWithLeft:@"Store Name Here" right:nil size:rowSize];
-        storeName.borderStyle = MGBorderEtchedBottom;
-        storeName.bottomBorderColor = [UIColor blueColor];
-        storeName.leftPadding = storeName.rightPadding = 16;
-        
-        MGLineStyled *summaryTitle = [MGLineStyled lineWithLeft:@"Call Summary" right:nil size:rowSize];
-        
-        MGBox *summary = [MGBox boxWithSize:(CGSize) {300, 100}];
+        MGBox *summary = [MGBox boxWithSize:(CGSize) {320, 100}];
         summary.contentLayoutMode = MGLayoutGridStyle;
+        summary.leftPadding = summary.rightPadding = 16;
+        [summary.boxes addObjectsFromArray:@[
+                [self cell:@"$354" numberOfLines:1],
+                [self cell:@"3" numberOfLines:1],
+                [self cell:@"21min" numberOfLines:1],
+                [self cell:@"Retail Ordered Total" numberOfLines:2],
+                [self cell:@"Out of Stocks Filled" numberOfLines:2],
+                [self cell:@"Call Time" numberOfLines:1]
+        ]];
+
+        MGScrollView *scroller = [MGScrollView scrollerWithSize:self.view.bounds.size];
+        [scroller.boxes addObjectsFromArray:@[
+                [self sectionHeader:@"Store Name Here"],
+                [self sectionHeader:@"Call Summary"],
+                summary,
+                [self sectionHeader:@"Call Highlights"],
+                [self callItemWithTitle:@"Title1" subtitle:@"subTitle"],
+                [self callItemWithTitle:@"Title2" subtitle:@"subTitle"],
+                [self callItemWithTitle:@"Title3" subtitle:@"subTitle"],
+                [self callItemWithTitle:@"Title4" subtitle:@"subTitle"],
+                [self callItemWithTitle:@"Title5" subtitle:@"subTitle"]
+        ]];
         
-        CGSize cellSize = (CGSize){ 100, 50 };
-        
-        MGLineStyled *total = [MGLineStyled lineWithLeft:@"$354" right:nil size:cellSize];
-        MGLineStyled *outOfStock = [MGLineStyled lineWithLeft:@"3" right:nil size:cellSize];
-        MGLineStyled *callTime = [MGLineStyled lineWithLeft:@"21min" right:nil size:cellSize];
-        MGLineStyled *totalTxt = [MGLineStyled lineWithLeft:@"Retail Ordered Total" right:nil size:cellSize];
-        MGLineStyled *outOfStockTxt = [MGLineStyled lineWithLeft:@"Out of Stocks Filled" right:nil size:cellSize];
-        MGLineStyled *callTimeTxt = [MGLineStyled lineWithLeft:@"Call Time" right:nil size:cellSize];
-        [summary.boxes addObjectsFromArray:@[total, outOfStock, callTime,
-         totalTxt, outOfStockTxt, callTimeTxt]];
-        [section.topLines addObjectsFromArray:@[storeName, summaryTitle, summary]];
         [scroller layout];
+        [self.view addSubview:scroller];
     }
     return self;
+}
+
+- (MGLine *)cell:(NSString *)text numberOfLines:(int)numberOfLines {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, cellSize.width, cellSize.height)];
+    label.adjustsFontSizeToFitWidth = NO;
+    label.alpha = 1.000;
+    label.autoresizesSubviews = YES;
+    label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    label.baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
+    label.clearsContextBeforeDrawing = YES;
+    label.clipsToBounds = YES;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.numberOfLines = numberOfLines;
+    label.backgroundColor = [UIColor clearColor];
+    label.opaque = NO;
+    label.text = text;
+    label.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:16];
+
+    MGLine *result = [MGLine lineWithLeft:label right:nil size:cellSize];
+    return result;
+}
+
+- (MGLineStyled *)sectionHeader:(NSString *)title {
+    MGLineStyled *storeName = [MGLineStyled lineWithLeft:title right:nil size:rowSize];
+    storeName.borderStyle = MGBorderEtchedBottom;
+    storeName.bottomBorderColor = [UIColor blueColor];
+    storeName.leftPadding = 16;
+    return storeName;
 }
 
 - (void)viewDidLoad
