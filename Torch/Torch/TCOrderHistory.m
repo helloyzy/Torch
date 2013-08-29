@@ -9,7 +9,7 @@
 #import "TCOrderHistory.h"
 #import "TCOrderStatusCell.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "TCOrderDetailView.h"
 
 @interface TCOrderHistory ()
 
@@ -29,8 +29,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.layer.cornerRadius =5;
+    self.lblStoreName.text = @"Store Name Here";
+    self.lblStoreName.textColor =[UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
+    self.lblStoreName.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
+    self.lblHistory.text = @"Order History";
+    self.lblHistory.textColor =[UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
+    self.lblHistory.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:15];
+
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
 	// Number of sections is the number of regions
 	return 1;
@@ -44,7 +51,6 @@
 {
     return 80;
 }
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -53,11 +59,11 @@
 	TCOrderStatusCell *cell = (TCOrderStatusCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
 	if (cell == nil) {
-		NSArray *xib = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+		NSArray *xib = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:nil options:nil];
         cell = [xib objectAtIndex:0];
     }
      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    
 	return cell;
 }
 
@@ -68,6 +74,8 @@
 	 To conform to the Human Interface Guidelines, selections should not be persistent --
 	 deselect the row after it has been selected.
 	 */
+    UIViewController *targetViewController = [[TCOrderDetailView alloc]init];
+    [[self navigationController] pushViewController:targetViewController animated:YES];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

@@ -44,7 +44,6 @@ static NSString *kViewControllerKey = @"viewController";
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -252,6 +251,7 @@ static NSString *kViewControllerKey = @"viewController";
         [cell addSubview:_txtName];
         [cell addSubview:_txtTitle];
         [cell addSubview:_txtPhone];
+        cell.selectionStyle = UITableViewCellEditingStyleNone;
         //cell.contentView.layer.borderColor = [[UIColor redColor] CGColor];
         //cell.contentView.layer.borderWidth = 2;
 
