@@ -8,6 +8,7 @@
 
 #import "TCMyDayController.h"
 #import "TCMyDayCell.h"
+#import "GraphicsUtils.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface TCMyDayController ()
@@ -40,7 +41,7 @@ static NSString *CellIdentifier = @"MyDayCell";
     CALayer *band = [CALayer layer];
     band.borderWidth = 3;
     band.frame = CGRectMake(0, _header.layer.frame.size.height-2, _header.layer.frame.size.width, 2);
-    band.borderColor = [UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1].CGColor;
+    band.borderColor = TCColorLineBlue.CGColor;
     [_header.layer addSublayer:band];
 
     UIView *topShadowView = [[UIView alloc] initWithFrame:CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.bounds.size.width, 10)];

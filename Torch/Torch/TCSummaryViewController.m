@@ -7,6 +7,7 @@
 //
 
 #import "TCSummaryViewController.h"
+#import "GraphicsUtils.h"
 #import <MGBox2/MGBox.h>
 #import <MGLine.h>
 #import <MGScrollView.h>
@@ -25,9 +26,11 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
 
 - (MGTableBox *)callItemWithTitle:(NSString *)title subtitle:(NSString *)subtitle {
     MGTableBox *item = MGTableBox.box;
+    MGLine *sub = [MGLine lineWithLeft:subtitle right:nil size:(CGSize) {300, 40}];
+    sub.textColor = TCColorSubtitleGray;
     [item.topLines addObjectsFromArray:@[
      [MGLine lineWithLeft:title right:nil size:(CGSize) {300, 40}],
-     [MGLine lineWithLeft:subtitle right:nil size:(CGSize) {300, 40}]
+     sub
      ]];
     item.borderStyle = MGBorderEtchedBottom;
     item.bottomBorderColor = [UIColor redColor];
@@ -63,7 +66,7 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
                 [self callItemWithTitle:@"Title4" subtitle:@"subTitle"],
                 [self callItemWithTitle:@"Title5" subtitle:@"subTitle"]
         ]];
-        
+
         [scroller layout];
         [self.view addSubview:scroller];
     }
@@ -93,7 +96,7 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
 - (MGLineStyled *)sectionHeader:(NSString *)title {
     MGLineStyled *storeName = [MGLineStyled lineWithLeft:title right:nil size:rowSize];
     storeName.borderStyle = MGBorderEtchedBottom;
-    storeName.bottomBorderColor = [UIColor blueColor];
+    storeName.bottomBorderColor = TCColorLineBlue;
     storeName.leftPadding = 16;
     return storeName;
 }
