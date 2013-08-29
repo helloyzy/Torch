@@ -8,6 +8,7 @@
 
 #import "TCSliderView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "GraphicsUtils.h"
 
 NSString * localString(NSString * key) {
     return NSLocalizedString(key, nil);
@@ -60,7 +61,7 @@ NSString * localString(NSString * key) {
     
     lbl = [[UILabel alloc] initWithFrame:CGRectZero];
     lbl.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    lbl.textColor = [UIColor colorWithRed:61/255.0f green:111/255.0f blue:153/255.0f alpha:0.8];
+    lbl.textColor = [UIColor colorWithRed:61/255.0f green:111/255.0f blue:153/255.0f alpha:1.0];
     lbl.textAlignment = NSTextAlignmentCenter;
     lbl.backgroundColor = [UIColor clearColor];
     lbl.font = [UIFont systemFontOfSize:24];
@@ -91,6 +92,9 @@ NSString * localString(NSString * key) {
                 action:@selector(sliderChanged:)
       forControlEvents:UIControlEventValueChanged];
     
+    self.startText = localString(@"sliderview.startText");
+    self.endText = localString(@"sliderview.endText");
+    
     _direction = TCSliderViewDirectionForward;
     [self onDirectionChanged];
     
@@ -101,14 +105,7 @@ NSString * localString(NSString * key) {
 }
 
 - (UIImage *) clearPixel {
-    CGRect rect = CGRectMake(0.0, 0.0, 1.0, 1.0);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
+    return clearColorImage(CGRectMake(0, 0, 1, 1));
 }
 
 - (void)layoutSubviews {
@@ -137,11 +134,11 @@ NSString * localString(NSString * key) {
 
 - (void)onDirectionChanged {
     if (_direction == TCSliderViewDirectionForward) {
-        lbl.text = @"Slide to start";
+        lbl.text = self.startText;
         [slider setThumbImage:startImg forState:UIControlStateNormal];
         slider.value = 0;
     } else {
-        lbl.text = @"Slide to end";
+        lbl.text = self.endText;
         [slider setThumbImage:endImg forState:UIControlStateNormal];
         slider.value = 1;
     }
@@ -164,32 +161,6 @@ NSString * localString(NSString * key) {
 #pragma mark - UISlider actions
 
 - (void) sliderUp:(UISlider *)sender {
-//    BOOL shouldChangeDirection = NO;
-//    if (_direction == TCSliderViewDirectionForward) {
-//        if (slider.value == 1.0) {
-//            shouldChangeDirection = [self.delegate sliderDidSlideToEnd:self];
-//        }
-//        if (shouldChangeDirection) {
-//            [self setDirection:TCSliderViewDirectionBackward];
-//        } else {
-//            [slider setValue:0.0 animated: YES];
-//        }
-//        // lbl.alpha = 1.0;
-//    } else { // backward
-//        if (slider.value == 0.0) {
-//            shouldChangeDirection = [self.delegate sliderDidSlideToStart:self];
-//        }
-//        if (shouldChangeDirection) {
-//            [self setDirection:TCSliderViewDirectionForward];
-//        } else {
-//            [slider setValue:1.0 animated:YES];
-//        }
-//        // lbl.alpha = 1.0;
-//    }
-//    if (!shouldChangeDirection) {
-//        lbl.alpha = 1.0;
-//    }
-    
     if (_direction == TCSliderViewDirectionForward && slider.value == 1) {
         [self.delegate sliderDidSlideToEnd:self];
     } else if (_direction == TCSliderViewDirectionBackward && slider.value == 0) {
