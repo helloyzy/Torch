@@ -13,3 +13,6 @@
 
 void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor);
 
+// create a clear color image
+UIImage * clearColorImage(CGRect rect);
+

@@ -16,7 +16,8 @@
 "login.signIn" = "Sign In";
 "login.readMore" = "Read More..";
 
-
+"sliderview.startText" = "Slide to Start Call";
+"sliderview.endText" = "Slide to End Call";
 
 
 /*Bo*/
