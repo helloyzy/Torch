@@ -22,7 +22,7 @@ static NSString *kTitleKey = @"title";
 static NSString *kExplainKey = @"explanation";
 static NSString *kViewControllerKey = @"viewController";
 
-@interface TCStoreHomeView ()
+@interface TCStoreHomeView () <UIAlertViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) NSMutableArray *menuList;
 @property (nonatomic, strong) UIButton *btnDirection;
@@ -313,10 +313,9 @@ static NSString *kViewControllerKey = @"viewController";
 
 - (void)viewDirection:(id)sender
 {
-    NSLog(@"UIButton was clicked");
+    //NSLog(@"UIButton was clicked");
 
-    //UIViewController *targetViewController = [[TCDirectionViewController alloc]init];
-	//[[self navigationController] pushViewController:targetViewController animated:YES];
+    [self alertPriorityAction];
 }
 - (void) notAbleVisit:(id)sender
 {
@@ -326,8 +325,29 @@ static NSString *kViewControllerKey = @"viewController";
 	[[self navigationController] pushViewController:targetViewController animated:YES];
 }
 
+- (void)alertPriorityAction
+{
+	// open a alert with an OK and cancel button
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Review Priorities"
+                                                    message:@"Please reivew....SFSFSFSFSFSFSFSFSFSDFSFSF.otra tarea"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancelarar"
+                                          otherButtonTitles:@"Revisar las \n Prioridades",nil];
+	[alert show];
+}
 
-#pragma mark - Lazy creation of buttons
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex==0){
+        //
+
+    }else {
+        
+        UIViewController *targetViewController = [[TCPriorityViewController alloc]init];
+        [[self navigationController] pushViewController:targetViewController animated:YES];
+    }
+}
 
 
 @end
