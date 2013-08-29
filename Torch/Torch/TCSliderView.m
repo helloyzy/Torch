@@ -9,6 +9,7 @@
 #import "TCSliderView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "GraphicsUtils.h"
+#import "TCSysRes.h"
 
 NSString * localString(NSString * key) {
     return NSLocalizedString(key, nil);
