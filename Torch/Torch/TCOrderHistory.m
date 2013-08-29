@@ -7,6 +7,9 @@
 //
 
 #import "TCOrderHistory.h"
+#import "TCOrderStatusCell.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface TCOrderHistory ()
 
@@ -18,16 +21,57 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-    }
+        
+             }
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.tableView.layer.cornerRadius =5;
 }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
+	// Number of sections is the number of regions
+	return 1;
+}
+
+
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
+	return 5;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+	static NSString *CellIdentifier = @"TCOrderStatusCell";
+    
+	TCOrderStatusCell *cell = (TCOrderStatusCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	
+	if (cell == nil) {
+		NSArray *xib = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+        cell = [xib objectAtIndex:0];
+    }
+     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+	return cell;
+}
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	/*
+	 To conform to the Human Interface Guidelines, selections should not be persistent --
+	 deselect the row after it has been selected.
+	 */
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

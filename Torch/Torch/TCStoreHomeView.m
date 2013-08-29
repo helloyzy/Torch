@@ -12,6 +12,7 @@
 #import "TCInventoryViewController.h"
 #import "TCOrderViewController.h"
 #import "TCSummaryViewController.h"
+#import "TCOrderHistory.h"
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -65,6 +66,12 @@ static NSString *kViewControllerKey = @"viewController";
 	[self.menuList addObject:@{ kTitleKey:@"Crear Orden",
                  kExplainKey:@"create order",
           kViewControllerKey:tcOrderViewController } ];
+    TCOrderHistory *tcOrderHistory =
+    [[TCOrderHistory alloc] initWithNibName:@"TCOrderHistory" bundle:nil];
+	[self.menuList addObject:@{ kTitleKey:@"Historia de la Orden",
+                 kExplainKey:@"Order History",
+          kViewControllerKey:tcOrderHistory } ];
+
     TCSummaryViewController *tcSummaryViewController =
     [[TCSummaryViewController alloc] initWithNibName:@"TCSummaryViewController" bundle:nil];
 	[self.menuList addObject:@{ kTitleKey:@"Notas",
