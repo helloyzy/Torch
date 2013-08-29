@@ -27,6 +27,8 @@
 "inventory.summaryText" = "0 Elementos en Inventario";
 "priority.buttonName" = "Cerrar";
 "inventory.completionButtonText" = "Inventory Completo";
+"order.emptySummary" = "0 Elementos en Orden";
+"order.summaryAmount" = "$0.00";
 
 
 

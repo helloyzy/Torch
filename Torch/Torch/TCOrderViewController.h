@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+Utils.h"
+#import "TCNavVwCtl.h"
 
-@interface TCOrderViewController : UIViewController
+@interface TCOrderViewController : TCNavVwCtl <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @end
