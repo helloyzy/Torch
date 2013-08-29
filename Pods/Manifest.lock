@@ -20,6 +20,7 @@ PODS:
   - Reveal-iOS-SDK (0.9.0)
   - SOCKit (1.1)
   - TransitionKit (1.1.1)
+  - Underscore.m (0.2.1)
   - ViewDeck (2.2.11)
 
 DEPENDENCIES:
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - MGBox2 (~> 2.0.0)
   - RestKit (~> 0.20.3)
   - Reveal-iOS-SDK (~> 0.9.0)
+  - Underscore.m (~> 0.2.1)
   - ViewDeck (~> 2.2.11)
 
 SPEC CHECKSUMS:
@@ -37,6 +39,7 @@ SPEC CHECKSUMS:
   Reveal-iOS-SDK: 2f011ee3e4653abc92b652f409f1641c7a1dae00
   SOCKit: 2f3bc4d07910de12dcc202815e07db68a3802581
   TransitionKit: d0e3344aac92991395d4c2e72d9c5a8ceeb12910
+  Underscore.m: 593ea54a19d3cc4439387a83d36eb7ba6ffd1707
   ViewDeck: b5eddc8559b0e47259ab7addbf2de6768061f139
 
 COCOAPODS: 0.23.0
