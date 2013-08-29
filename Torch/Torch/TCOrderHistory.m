@@ -9,7 +9,7 @@
 #import "TCOrderHistory.h"
 #import "TCOrderStatusCell.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "TCOrderDetailView.h"
 
 @interface TCOrderHistory ()
 
@@ -29,7 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.layer.cornerRadius =5;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
 	// Number of sections is the number of regions
@@ -44,7 +43,6 @@
 {
     return 80;
 }
-
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -53,11 +51,11 @@
 	TCOrderStatusCell *cell = (TCOrderStatusCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
 	if (cell == nil) {
-		NSArray *xib = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+		NSArray *xib = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:nil options:nil];
         cell = [xib objectAtIndex:0];
     }
      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    
 	return cell;
 }
 
@@ -68,6 +66,8 @@
 	 To conform to the Human Interface Guidelines, selections should not be persistent --
 	 deselect the row after it has been selected.
 	 */
+    UIViewController *targetViewController = [[TCOrderDetailView alloc]init];
+    [[self navigationController] pushViewController:targetViewController animated:YES];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
