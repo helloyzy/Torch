@@ -29,7 +29,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.lblStoreName.text = @"Store Name Here";
+    self.lblStoreName.textColor =[UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
+    self.lblStoreName.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
+    self.lblHistory.text = @"Order History";
+    self.lblHistory.textColor =[UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
+    self.lblHistory.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:15];
+
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
 	// Number of sections is the number of regions
 	return 1;
