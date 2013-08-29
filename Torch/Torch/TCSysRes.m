@@ -8,3 +8,14 @@
 
 #import "TCSysRes.h"
 
+UIFont * TCFont_HNLTComBd(CGFloat size) {
+    return [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:size];
+}
+
+UIFont * TCFont_HNLTComMd(CGFloat size) {
+    return [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:size];
+}
+
+UIFont * TCFont_HNLTComLt(CGFloat size) {
+    return [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:size];
+}
