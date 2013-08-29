@@ -47,6 +47,15 @@ static NSString *kViewControllerKey = @"viewController";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImageView *topView  =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,320,72)];
+    topView.image = [UIImage imageNamed:@"slideback.png"];
+    [self.view addSubview:topView];
+   
+    TCSliderView *tcSliderView = [[TCSliderView alloc] initWithFrame:CGRectMake(10,14,300,50)];
+    tcSliderView.delegate = self;
+    [topView addSubview:tcSliderView];
+    topView.userInteractionEnabled = YES;
+  
     self.menuList = [NSMutableArray array];
 	
 	// object in the menu
@@ -98,7 +107,7 @@ static NSString *kViewControllerKey = @"viewController";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section==2) {
-        return SECTION_TITLE_HEIGHT ;
+        return 40 ;
     }else return 0;
 }
 
@@ -360,6 +369,14 @@ static NSString *kViewControllerKey = @"viewController";
         UIViewController *targetViewController = [[TCPriorityViewController alloc]init];
         [[self navigationController] pushViewController:targetViewController animated:YES];
     }
+}
+
+- (void) sliderDidSlideToEnd:(TCSliderView *)slideView {
+    [slideView changeDirection:YES];
+}
+
+- (void) sliderDidSlideToStart:(TCSliderView *)slideView {
+    [slideView changeDirection:YES];
 }
 
 

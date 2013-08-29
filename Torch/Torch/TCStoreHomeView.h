@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "TCNavVwCtl.h"
+#import "TCSliderView.h"
 
-
-@interface TCStoreHomeView : TCNavVwCtl 
+@interface TCStoreHomeView : TCNavVwCtl<TCSliderViewDelegate> {
+    
+    //__weak IBOutlet TCSliderView *sliderVw;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
