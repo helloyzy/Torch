@@ -99,6 +99,8 @@
 		DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */; };
 		DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */ = {isa = PBXBuildFile; fileRef = DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */; };
 		DC74E34617CD8AEB00953259 /* TCDeckViewCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */; };
+		DC96805017CF22700079D230 /* TCSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC96804F17CF22700079D230 /* TCSliderView.m */; };
+		DC96805317CF2E320079D230 /* TCSysRes.m in Sources */ = {isa = PBXBuildFile; fileRef = DC96805217CF2E320079D230 /* TCSysRes.m */; };
 		DC9979C317C5D4510044C917 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C117C5D4510044C917 /* navbar_bg.png */; };
 		DC9979C417C5D4510044C917 /* navbar_righticon.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C217C5D4510044C917 /* navbar_righticon.png */; };
 		DC997A0217C60A010044C917 /* TCNavVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC997A0117C60A010044C917 /* TCNavVwCtl.m */; };
@@ -246,6 +248,10 @@
 		DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Torch.m"; sourceTree = "<group>"; };
 		DC74E34417CD8AEB00953259 /* TCDeckViewCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDeckViewCtl.h; sourceTree = "<group>"; };
 		DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDeckViewCtl.m; sourceTree = "<group>"; };
+		DC96804E17CF22700079D230 /* TCSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSliderView.h; sourceTree = "<group>"; };
+		DC96804F17CF22700079D230 /* TCSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSliderView.m; sourceTree = "<group>"; };
+		DC96805117CF2E320079D230 /* TCSysRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSysRes.h; sourceTree = "<group>"; };
+		DC96805217CF2E320079D230 /* TCSysRes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSysRes.m; sourceTree = "<group>"; };
 		DC9979C117C5D4510044C917 /* navbar_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_bg.png; sourceTree = "<group>"; };
 		DC9979C217C5D4510044C917 /* navbar_righticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_righticon.png; sourceTree = "<group>"; };
 		DC997A0017C60A010044C917 /* TCNavVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNavVwCtl.h; sourceTree = "<group>"; };
@@ -505,6 +511,8 @@
 				1C21A52217CB22E700627852 /* TCCallHighlightCell.h */,
 				1C28602E17CDC967002E4CD0 /* TCSummaryViewController.xib */,
 				1C21A52317CB22E700627852 /* TCCallHighlightCell.m */,
+				DC96804E17CF22700079D230 /* TCSliderView.h */,
+				DC96804F17CF22700079D230 /* TCSliderView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -518,6 +526,8 @@
 				DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */,
 				DCAFC89217CC7181006DEBB2 /* GraphicsUtils.h */,
 				DCAFC89317CC7181006DEBB2 /* GraphicsUtils.m */,
+				DC96805117CF2E320079D230 /* TCSysRes.h */,
+				DC96805217CF2E320079D230 /* TCSysRes.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -790,6 +800,8 @@
 				C53C8D1417CEE2CA000E978D /* TCOrderHistory.m in Sources */,
 				C53C8D2117CEE9DE000E978D /* TCOrderStatusCell.m in Sources */,
 				C53C8D2617CF17B8000E978D /* TCOrderDetailView.m in Sources */,
+				DC96805017CF22700079D230 /* TCSliderView.m in Sources */,
+				DC96805317CF2E320079D230 /* TCSysRes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

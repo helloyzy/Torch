@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCSliderView.h"
 
-@interface TCViewController : UIViewController
-
+@interface TCViewController : UIViewController <TCSliderViewDelegate> {
+    
+    __weak IBOutlet TCSliderView *sliderVw;
+}
 @end

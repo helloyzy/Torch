@@ -30,3 +30,14 @@ void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
 }
+
+UIImage * clearColorImage(CGRect rect) {
+    // CGRect rect = CGRectMake(0.0, 0.0, 1.0, 1.0);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}

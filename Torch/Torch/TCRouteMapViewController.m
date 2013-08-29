@@ -28,6 +28,14 @@
 {
     [super viewDidLoad];
     self.mapView.delegate = self;
+    CLLocationCoordinate2D endingCoord = CLLocationCoordinate2DMake(30.446947, 120.047607);
+    MKPlacemark *endLocation = [[MKPlacemark alloc] initWithCoordinate:endingCoord addressDictionary:nil];
+    MKMapItem *endingItem = [[MKMapItem alloc] initWithPlacemark:endLocation];
+    
+    NSMutableDictionary *launchOptions = [[NSMutableDictionary alloc] init];
+    [launchOptions setObject:MKLaunchOptionsDirectionsModeDriving forKey:MKLaunchOptionsDirectionsModeKey];
+    
+    [endingItem openInMapsWithLaunchOptions:launchOptions];
 }
 
 - (void)centerMap {
