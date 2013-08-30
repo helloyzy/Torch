@@ -8,6 +8,7 @@
 
 #import "TCPromotionVwCtl.h"
 #import "TCSysRes.h"
+#import "TCPromotionDetailVwCtl.h"
 
 @interface TCPromotionVwCtl () {
     NSArray * data;
@@ -90,6 +91,11 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return TCVw_TblVw_SectHeader(@"promotion.section.title");
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    TCPromotionDetailVwCtl * ctl = [[TCPromotionDetailVwCtl alloc] init];
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 @end

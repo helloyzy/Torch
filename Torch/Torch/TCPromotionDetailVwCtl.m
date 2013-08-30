@@ -8,6 +8,7 @@
 
 #import "TCPromotionDetailVwCtl.h"
 #import "TCSysRes.h"
+#import "DateUtils.h"
 
 @interface TCPromotionDetailVwCtl ()
 
@@ -53,6 +54,8 @@
     lblPromoDetail.textColor = subTitleColor;
     lblExpDesp.textColor = subTitleColor;
     lblExpDate.textColor = subTitleColor;
+    
+    lblExpDate.text = [DateUtils stringFromDate:[NSDate date] withFormat:kDateFormatShort];
     
     btnAddProm.titleLabel.font = TCFont_HNLTComBd(17);
     

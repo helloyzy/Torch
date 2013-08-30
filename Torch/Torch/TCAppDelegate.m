@@ -41,8 +41,8 @@
 
 - (UIViewController *)controllerWithinNavCtr {
     // UIViewController * viewController = [[TCViewController alloc] init];
-    // UIViewController * viewController = [[TCPromotionDetailVwCtl alloc] init];
-    UIViewController * viewController = [[TCStoreHomeView alloc] init];
+    UIViewController * viewController = [[TCPromotionVwCtl alloc] init];
+    // UIViewController * viewController = [[TCStoreHomeView alloc] init];
     UINavigationController * navCtr = [UIViewController customNavCtr:viewController];
     return navCtr;
 }

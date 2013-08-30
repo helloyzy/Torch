@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define kDateFormatShort @"dd/MM/yyyy"
 #define kDateFormat @"yyyy-MM-dd HH:mm:ss"
 
 @interface DateUtils : NSObject
