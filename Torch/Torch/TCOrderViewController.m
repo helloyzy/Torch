@@ -11,20 +11,27 @@
 #import "ProductItemObject.h"
 
 @interface TCOrderViewController ()
+
 @property (nonatomic,weak) IBOutlet UILabel *createOrderLabel;
 @property (nonatomic,weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic,weak) IBOutlet UITableView *tableView;
-@property (nonatomic,weak) IBOutlet UILabel *orderSummary;
-@property (nonatomic,weak) IBOutlet UILabel *orderAmount;
 
 @end
 
 @implementation TCOrderViewController
 {
-    UIView *seperator1;
+
     NSMutableArray *displayData;
     NSArray *searchResults;
     NSMutableDictionary *productCollection;
+}
+
+-(BOOL)isInSearchResultSection:(NSInteger)section {
+    BOOL flag = NO;
+    if (section ==0 && [searchResults count] >0) {
+        flag = YES;
+    }
+return flag;
 }
 
 -(void)generateDisplayDataArray {
@@ -94,25 +101,10 @@
 
 -(BOOL) doesTableViewDisplayRequired {
     BOOL display = NO;
-    if ([displayData count] > 0) {
+    if ([displayData count] > 0 || [searchResults count] >0) {
         display = YES;
     }
     return display;
-}
-
-
--(void)showInitialORProductTableListView {
-    
-    if (![self doesTableViewDisplayRequired]) {
-        self.tableView.hidden = YES;
-        self.orderSummary.text = [self localString:@"order.emptySummary"];
-        self.orderAmount.text = [self localString:@"order.summaryAmount"];
-    }else {
-        self.tableView.hidden = NO;
-        seperator1.hidden = YES; 
-        self.orderSummary.text = @"";
-        self.orderAmount.text = @"";
-    }
 }
 
 
@@ -125,6 +117,31 @@
     return self;
 }
 
+- (UIView *)drawOrderItemSummary:(NSInteger)orderNumber withOrderAmountText:(NSString *)orderAmount {
+    
+    UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(5, 0, 300, 50)];
+    
+    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake(10, 50, 300, 2)];
+    seperator1.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
+    
+    UILabel *orderSummarylabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 15, 200, 35)];
+    orderSummarylabel.text = [NSString stringWithFormat:@"%d%@",orderNumber,[self localString:@"order.orderSummary"]];
+    [orderSummarylabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:16]];
+    orderSummarylabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
+    
+    UILabel *orderAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 15, 50, 35)];
+    orderAmountLabel.text = orderAmount;
+    [orderAmountLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:16]];
+    orderAmountLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
+
+    
+    [customView addSubview:orderSummarylabel];
+    [customView addSubview:orderAmountLabel];
+    [customView addSubview:seperator1];
+    return customView;
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -133,13 +150,10 @@
     UIView *seperator = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 320, 2)];
     seperator.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
 
-    seperator1 = [[UIView alloc] initWithFrame:CGRectMake(10, 140, 300, 2)];
-    seperator1.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
+
     [self.view addSubview:seperator];
-    [self.view addSubview:seperator1];
-    
     [self popupProductItems];
-    [self showInitialORProductTableListView];
+    //[self showInitialORProductTableListView];
     
     for (UIView *view in [self.searchBar subviews]) {
         if ([view isKindOfClass:[UITextField class]]) {
@@ -148,6 +162,8 @@
             break;
         }
     }
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 }
 
 - (void)didReceiveMemoryWarning
@@ -169,7 +185,6 @@
         [searchResultsMutableArray addObject: productObject.productSN];
         
     }
-    // searchResults = [tableData filteredArrayUsingPredicate:resultPredicate];
     searchResults = [searchResultsMutableArray copy];
     
     
@@ -177,13 +192,9 @@
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if ([searchText length] ==0) {
-        NSLog(@"wo shi ling");
         [searchBar resignFirstResponder];
     } else {
         [self filterInventoryContentForSearch:searchText];
-        displayData = [searchResults copy];
-        NSLog(@"%@", searchText);
-        [self showInitialORProductTableListView];
         [self.tableView reloadData];
     }
 }
@@ -191,16 +202,17 @@
 
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    //[searchBar setText:@""];
     [searchBar resignFirstResponder];
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    //searchBar.text= @"";
-    NSLog(@"I am clicked");
     [searchBar resignFirstResponder];
-    //[searchBar setShowsCancelButton:NO];
-   
+    searchResults = nil;
+    [self generateDisplayDataArray];
+    [self.tableView reloadData];
+    //scroll the tableview to the top
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    
 }
 
 
@@ -221,11 +233,14 @@
     NSString *itemKey;
     
     indexPath = [self.tableView indexPathForCell:currentCell];
-    itemKey = [displayData objectAtIndex:indexPath.row];
-
+    NSInteger section = indexPath.section;
+    if ([self isInSearchResultSection:section]) {
+        itemKey = [searchResults objectAtIndex:indexPath.row];
+    } else {
+        itemKey = [displayData objectAtIndex:indexPath.row];
+    }
     
     [self updateProduct:itemKey withQuantity:productQuantityValue];
-    
     
     [self.tableView reloadData];
     
@@ -246,12 +261,30 @@
     return cell;
 }
 
+-(void)slideInDeletionButton:(UITableViewCell *)cell {
+    UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(200, 0, 50, 40)];
+    [blankView setBackgroundColor:[UIColor whiteColor]];
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    deleteButton.frame =  CGRectMake(20, 30, 150, 50);
+    [deleteButton setTitle:@"delete" forState:UIControlStateNormal];
+    deleteButton.backgroundColor = [UIColor blueColor];
+    [blankView addSubview:deleteButton];
+    [cell.contentView addSubview:blankView];
+    //[cell addSubview:deleteButton];
+}
+
+
 -(void)cellSwiped:(UIGestureRecognizer *)gestureRecognizer {
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         NSLog(@"swipe just happened");
         InventoryTableCell *cell = (InventoryTableCell *)gestureRecognizer.view;
         NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-        NSLog(@"%@",indexPath);
+        NSInteger sectionId = [indexPath section];
+        if (![self isInSearchResultSection:sectionId]) {
+            NSLog(@"%@",indexPath);
+            [self slideInDeletionButton:cell];
+        }
+
     }
 }
 
@@ -270,21 +303,29 @@
     UIStepper *numStepper = cell.stepper;
    [numStepper addTarget:self action:@selector(updateUnitLabel:) forControlEvents:UIControlEventValueChanged];
     
-    //add swipe gesture to delete
+    NSInteger sectionId = [indexPath section];
     
-    UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
-    [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [cell addGestureRecognizer:sgr];
     
+
+
     NSString *itemKey;
-    
-    itemKey = [displayData objectAtIndex:indexPath.row];
-    
+    if ([self isInSearchResultSection:sectionId]) {
+        itemKey = [searchResults objectAtIndex:indexPath.row];
+    } else {
+        itemKey = [displayData objectAtIndex:indexPath.row];
+        
+        //add swipe gesture to delete
+        UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
+        [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
+        [cell addGestureRecognizer:sgr];
+    }
     [self populateCell:cell withKeyName:itemKey];
-    NSLog(@"yes");
+    cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];
     return cell;
     
 }
+
+
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -292,9 +333,13 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-       NSLog(@"2222");
-    NSLog(@"%i", [displayData count]);
-    return [displayData count];
+    if ([self isInSearchResultSection:section]) {
+        return [searchResults count];
+    } else {
+        return [displayData count];
+    }
+
+
 }
 
 -(BOOL) textFieldShouldClear:(UITextField *)textField {
@@ -302,5 +347,24 @@
     return YES;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if ([searchResults count]>0) {
+        return 2;
+    }
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if ([self isInSearchResultSection:section]) {
+        return 0;
+    }
+    return 50;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if ([self isInSearchResultSection:section]) {
+        return nil;
+    }
+    return [self drawOrderItemSummary:[displayData count] withOrderAmountText:@"$0.00"];
+}
 
 @end
