@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define TC_TblVw_SectHeader_Height 42
+
 // font HelveticaNeueLTCom-Bd
 UIFont * TCFont_HNLTComBd(CGFloat size);
 // font HelveticaNeueLTCom-Md
@@ -21,7 +23,7 @@ UIColor * TCColor_DarkBlue();
 UILabel * TCLbl_Title_Ext(UILabel * lbl);
 
 // table view section header
-UIView * TCVw_TblVw_SectHeader(UITableView * tblVw, NSInteger section, NSString * titleKey);
+UIView * TCVw_TblVw_SectHeader(NSString * titleKey);
 
 // table view cell - subtitle style
 UITableViewCell * TCTblVwCell_SubtitleStyle(UITableView * tblVw, NSString * reuseIdentifier);

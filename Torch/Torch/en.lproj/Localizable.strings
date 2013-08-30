@@ -19,6 +19,12 @@
 "sliderview.startText" = "Slide to Start Call";
 "sliderview.endText" = "Slide to End Call";
 
+"promotion.title" = "Promotion";
+"promotion.section.title" = "All available promotions";
+
+"promotion.detail.title" = "Promotion detail";
+"promotion.detail.section.title" = "Promotion detail";
+
 
 /*Bo*/
 "priority.title" = "Prioridades";

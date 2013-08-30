@@ -33,7 +33,7 @@
 - (void)initTopView {
     vwTop.backgroundColor = [UIColor whiteColor];
     TCLbl_Title_Ext(lblTitle);
-    lblTitle.text = @"Priority";
+    lblTitle.text = [self localString:@"promotion.title"];
 }
 
 - (void)initTableView {
@@ -64,7 +64,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%i%@", [data count], data[0]);
     return [data count];
 }
 
@@ -78,7 +77,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 45;
+    return TC_TblVw_SectHeader_Height;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -90,7 +89,7 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return TCVw_TblVw_SectHeader(tableView, section, @"priority.title");
+    return TCVw_TblVw_SectHeader(@"promotion.section.title");
 }
 
 @end
