@@ -261,35 +261,47 @@ return flag;
     return cell;
 }
 
--(void)slideInDeletionButton:(UITableViewCell *)cell {
-    UIView *blankView = [[UIView alloc]initWithFrame:CGRectMake(200, 0, 50, 40)];
-    [blankView setBackgroundColor:[UIColor whiteColor]];
-    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    deleteButton.frame =  CGRectMake(20, 30, 150, 50);
-    [deleteButton setTitle:@"delete" forState:UIControlStateNormal];
-    deleteButton.backgroundColor = [UIColor blueColor];
-    [blankView addSubview:deleteButton];
-    [cell.contentView addSubview:blankView];
-    //[cell addSubview:deleteButton];
+
+-(void)hideTheDeleteButton:(InventoryTableCell *)cell hidden:(BOOL)hiddenFlag {
+    if (!hiddenFlag) {
+        cell.vwDelete.hidden = NO;
+        cell.productQuantity.hidden = YES;
+        cell.productQuantityUnitLabel.hidden = YES;
+        cell.stepper.hidden = YES;
+        [cell.contentView bringSubviewToFront:cell.vwDelete];
+    } else {
+        cell.vwDelete.hidden = YES;
+        cell.productQuantity.hidden = NO;
+        cell.productQuantityUnitLabel.hidden=NO;
+        cell.stepper.hidden = NO;
+        [cell.contentView sendSubviewToBack:cell.vwDelete];
+    }
 }
 
 
 -(void)cellSwiped:(UIGestureRecognizer *)gestureRecognizer {
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"swipe just happened");
         InventoryTableCell *cell = (InventoryTableCell *)gestureRecognizer.view;
         NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
         NSInteger sectionId = [indexPath section];
         if (![self isInSearchResultSection:sectionId]) {
-            NSLog(@"%@",indexPath);
             // [self slideInDeletionButton:cell];
-            cell.vwDelete.hidden = NO;
-            cell.productQuantity.hidden = YES;
-            cell.productQuantityUnitLabel.hidden = YES;
-            cell.stepper.hidden = YES;
-            [cell.contentView bringSubviewToFront:cell.vwDelete];
+        [self hideTheDeleteButton:cell hidden:NO];
         }
 
+    }
+}
+
+-(void)cellDeleteCancelled:(UIGestureRecognizer *)gestureRecognizer {
+    if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        InventoryTableCell *cell = (InventoryTableCell *)gestureRecognizer.view;
+        NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+        NSInteger sectionId = [indexPath section];
+        if (![self isInSearchResultSection:sectionId]) {
+            // [self slideInDeletionButton:cell];
+            [self hideTheDeleteButton:cell hidden:YES];
+        }
+       
     }
 }
 
@@ -312,12 +324,10 @@ return flag;
     
     NSInteger sectionId = [indexPath section];
     
-    
-
-
     NSString *itemKey;
     if ([self isInSearchResultSection:sectionId]) {
         itemKey = [searchResults objectAtIndex:indexPath.row];
+        [self hideTheDeleteButton:cell hidden:YES];
     } else {
         itemKey = [displayData objectAtIndex:indexPath.row];
         
@@ -325,6 +335,10 @@ return flag;
         UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
         [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
         [cell addGestureRecognizer:sgr];
+        
+        UISwipeGestureRecognizer *sgr1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellDeleteCancelled:)];
+        [sgr1 setDirection:UISwipeGestureRecognizerDirectionRight];
+        [cell addGestureRecognizer:sgr1];
     }
     [self populateCell:cell withKeyName:itemKey];
     cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];
