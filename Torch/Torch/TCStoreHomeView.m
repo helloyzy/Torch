@@ -10,7 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TCPriorityViewController.h"
 #import "TCInventoryViewController.h"
-
+#import "TCOrderViewController.h"
+#import "TCSummaryViewController.h"
+#import "TCOrderHistory.h"
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -27,6 +29,7 @@ static NSString *kViewControllerKey = @"viewController";
 @property (nonatomic, strong) NSMutableArray *menuList;
 @property (nonatomic, strong) UIButton *btnDirection;
 @property (nonatomic, strong) UIButton *btnNovisit;
+@property (nonatomic, strong) TCSliderView *tcSliderView;
 @end
 
 @implementation TCStoreHomeView
@@ -42,10 +45,18 @@ static NSString *kViewControllerKey = @"viewController";
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImageView *topView  =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,320,72)];
+    topView.image = [UIImage imageNamed:@"slideback.png"];
+    [self.view addSubview:topView];
+   
+    _tcSliderView = [[TCSliderView alloc] initWithFrame:CGRectMake(10,14,300,50)];
+    _tcSliderView.delegate = self;
+    [topView addSubview:_tcSliderView];
+    topView.userInteractionEnabled = YES;
+  
     self.menuList = [NSMutableArray array];
 	
 	// object in the menu
@@ -59,11 +70,22 @@ static NSString *kViewControllerKey = @"viewController";
 	[self.menuList addObject:@{ kTitleKey:@"Hacer un Inventario",
                  kExplainKey:@"go to inventory page",
           kViewControllerKey:tcInventoryViewController } ];
+    TCOrderViewController *tcOrderViewController =
+    [[TCOrderViewController alloc] initWithNibName:@"TCOrderViewController" bundle:nil];
+	[self.menuList addObject:@{ kTitleKey:@"Crear Orden",
+                 kExplainKey:@"create order",
+          kViewControllerKey:tcOrderViewController } ];
+    TCOrderHistory *tcOrderHistory =
+    [[TCOrderHistory alloc] initWithNibName:@"TCOrderHistory" bundle:nil];
+	[self.menuList addObject:@{ kTitleKey:@"Historia de la Orden",
+                 kExplainKey:@"Order History",
+          kViewControllerKey:tcOrderHistory } ];
 
-	[self.menuList addObject:@{ kTitleKey:@"Hacer un Inventario",
-                 kExplainKey:@"go to inventory page",
-          kViewControllerKey:tcInventoryViewController } ];
-
+    TCSummaryViewController *tcSummaryViewController =
+    [[TCSummaryViewController alloc] initWithNibName:@"TCSummaryViewController" bundle:nil];
+	[self.menuList addObject:@{ kTitleKey:@"Notas",
+                 kExplainKey:@"Visit summary and notes",
+          kViewControllerKey:tcSummaryViewController } ];
 
 }
 
@@ -86,7 +108,7 @@ static NSString *kViewControllerKey = @"viewController";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section==2) {
-        return SECTION_TITLE_HEIGHT ;
+        return 40 ;
     }else return 0;
 }
 
@@ -239,6 +261,7 @@ static NSString *kViewControllerKey = @"viewController";
         [cell addSubview:_txtName];
         [cell addSubview:_txtTitle];
         [cell addSubview:_txtPhone];
+        cell.selectionStyle = UITableViewCellEditingStyleNone;
         //cell.contentView.layer.borderColor = [[UIColor redColor] CGColor];
         //cell.contentView.layer.borderWidth = 2;
 
@@ -265,6 +288,8 @@ static NSString *kViewControllerKey = @"viewController";
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"UIButton was selected");
+
        UIViewController *targetViewController = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kViewControllerKey];
     switch (indexPath.section) {
         case 0:
@@ -313,9 +338,9 @@ static NSString *kViewControllerKey = @"viewController";
 
 - (void)viewDirection:(id)sender
 {
-    //NSLog(@"UIButton was clicked");
+    NSLog(@"DirectionButton was clicked");
 
-    [self alertPriorityAction];
+
 }
 - (void) notAbleVisit:(id)sender
 {
@@ -325,9 +350,23 @@ static NSString *kViewControllerKey = @"viewController";
 	[[self navigationController] pushViewController:targetViewController animated:YES];
 }
 
-- (void)alertPriorityAction
-{
-	// open a alert with an OK and cancel button
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex==0){
+       
+        
+    }else {
+        
+        UIViewController *targetViewController = [[TCPriorityViewController alloc]init];
+        [[self navigationController] pushViewController:targetViewController animated:YES];
+    }
+     [_tcSliderView changeDirection:buttonIndex == 0 ? NO : YES];
+}
+
+
+- (void) sliderDidSlideToEnd:(TCSliderView *)slideView {
+    // open a alert with an OK and cancel button
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Review Priorities"
                                                     message:@"Please reivew....SFSFSFSFSFSFSFSFSFSDFSFSF.otra tarea"
                                                    delegate:self
@@ -335,19 +374,13 @@ static NSString *kViewControllerKey = @"viewController";
                                           otherButtonTitles:@"Revisar las \n Prioridades",nil];
 	[alert show];
 }
-
-
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	if (buttonIndex==0){
-        //
-
-    }else {
-        
-        UIViewController *targetViewController = [[TCPriorityViewController alloc]init];
-        [[self navigationController] pushViewController:targetViewController animated:YES];
-    }
+- (void) sliderDidSlideToStart:(TCSliderView *)slideView {
+    // Go to summary page
+    UIViewController *targetViewController = [[TCSummaryViewController alloc]init];
+    [[self navigationController] pushViewController:targetViewController animated:YES];
+    [_tcSliderView changeDirection:YES];
 }
+
 
 
 @end

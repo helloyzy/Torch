@@ -7,6 +7,7 @@
 //
 
 #import "TCCallHighlightCell.h"
+#import "GraphicsUtils.h"
 
 @implementation TCCallHighlightCell
 
@@ -44,7 +45,7 @@
         subtitle.shadowOffset = CGSizeMake(0.0, -1.0);
         subtitle.text = @"Line1 abbb dddd eeee eeee eeee eeee eeee eee";
         subtitle.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:16];
-        subtitle.textColor = [UIColor colorWithWhite:0.667 alpha:1.000];    
+        subtitle.textColor = TCColorSubtitleGray;
         
         [self addSubview:title];
         [self addSubview:subtitle];
