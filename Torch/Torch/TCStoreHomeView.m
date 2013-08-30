@@ -378,6 +378,7 @@ static NSString *kViewControllerKey = @"viewController";
     // Go to summary page
     UIViewController *targetViewController = [[TCSummaryViewController alloc]init];
     [[self navigationController] pushViewController:targetViewController animated:YES];
+    [_tcSliderView changeDirection:YES];
 }
 
 
