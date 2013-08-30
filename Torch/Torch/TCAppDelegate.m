@@ -18,6 +18,8 @@
 #import "TCPriorityViewController.h"
 #import "TCStoreHomeView.h"
 #import "TCSummaryViewController.h"
+#import "TCPromotionVwCtl.h"
+#import "TCPromotionDetailVwCtl.h"
 
 @implementation TCAppDelegate
 
@@ -39,7 +41,8 @@
 
 - (UIViewController *)controllerWithinNavCtr {
     // UIViewController * viewController = [[TCViewController alloc] init];
-    UIViewController * viewController = [[TCStoreHomeView alloc] init];
+    UIViewController * viewController = [[TCPromotionVwCtl alloc] init];
+    // UIViewController * viewController = [[TCStoreHomeView alloc] init];
     UINavigationController * navCtr = [UIViewController customNavCtr:viewController];
     return navCtr;
 }

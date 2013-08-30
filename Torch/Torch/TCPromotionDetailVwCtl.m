@@ -7,6 +7,8 @@
 //
 
 #import "TCPromotionDetailVwCtl.h"
+#import "TCSysRes.h"
+#import "DateUtils.h"
 
 @interface TCPromotionDetailVwCtl ()
 
@@ -26,7 +28,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self initCtl];
+}
+
+- (void)initCtl {
+    TCLbl_Title_Ext(lblTitle);
+    lblTitle.text = [self localString:@"promotion.detail.title"];
+    
+    vwHeader.backgroundColor = [UIColor clearColor];
+    CGRect bounds = vwHeader.bounds;
+    bounds.size.height = TC_TblVw_SectHeader_Height;
+    vwHeader.bounds = bounds;
+    UIView * vwHeaderContent = TCVw_TblVw_SectHeader(@"promotion.detail.section.title");
+    [vwHeader addSubview:vwHeaderContent];
+    
+    lblPromoTitle.font = TCFont_HNLTComBd(17);
+    lblExpTitle.font = TCFont_HNLTComBd(17);
+    
+    CGFloat subTitleFontSize = 15;
+    lblPromoDetail.font = TCFont_HNLTComLt(subTitleFontSize);
+    lblExpDesp.font = TCFont_HNLTComLt(subTitleFontSize);
+    lblExpDate.font = TCFont_HNLTComLt(subTitleFontSize);
+    
+    UIColor * subTitleColor = [UIColor colorWithRed:130/255.0f green:130/255.0f blue:130/255.0f alpha:1];
+    lblPromoDetail.textColor = subTitleColor;
+    lblExpDesp.textColor = subTitleColor;
+    lblExpDate.textColor = subTitleColor;
+    
+    lblExpDate.text = [DateUtils stringFromDate:[NSDate date] withFormat:kDateFormatShort];
+    
+    btnAddProm.titleLabel.font = TCFont_HNLTComBd(17);
+    
 }
 
 - (void)didReceiveMemoryWarning
