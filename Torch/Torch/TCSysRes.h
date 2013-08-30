@@ -14,3 +14,14 @@ UIFont * TCFont_HNLTComBd(CGFloat size);
 UIFont * TCFont_HNLTComMd(CGFloat size);
 // font HelveticaNeueLTCom-Lt
 UIFont * TCFont_HNLTComLt(CGFloat size);
+
+UIColor * TCColor_DarkBlue();
+
+// extend the label with the Title style
+UILabel * TCLbl_Title_Ext(UILabel * lbl);
+
+// table view section header
+UIView * TCVw_TblVw_SectHeader(UITableView * tblVw, NSInteger section, NSString * titleKey);
+
+// table view cell - subtitle style
+UITableViewCell * TCTblVwCell_SubtitleStyle(UITableView * tblVw, NSString * reuseIdentifier);

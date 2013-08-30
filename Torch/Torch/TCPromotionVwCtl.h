@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCNavVwCtl.h"
 
-@interface TCPromotionVwCtl : UIViewController
+@interface TCPromotionVwCtl : TCNavVwCtl <UITableViewDataSource, UITableViewDelegate> {
+    
+    __weak IBOutlet UIView *vwTop;
+    __weak IBOutlet UILabel *lblTitle;
+    __weak IBOutlet UITableView *tblVw;
+}
 
 @end
