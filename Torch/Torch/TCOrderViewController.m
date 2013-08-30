@@ -282,7 +282,12 @@ return flag;
         NSInteger sectionId = [indexPath section];
         if (![self isInSearchResultSection:sectionId]) {
             NSLog(@"%@",indexPath);
-            [self slideInDeletionButton:cell];
+            // [self slideInDeletionButton:cell];
+            cell.vwDelete.hidden = NO;
+            cell.productQuantity.hidden = YES;
+            cell.productQuantityUnitLabel.hidden = YES;
+            cell.stepper.hidden = YES;
+            [cell.contentView bringSubviewToFront:cell.vwDelete];
         }
 
     }
@@ -298,6 +303,8 @@ return flag;
     if(cell ==nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:orderTableCell owner:self options:nil] ;
         cell = [nib objectAtIndex:0];
+        [cell.contentView sendSubviewToBack:cell.vwDelete];
+        cell.vwDelete.hidden=YES;
     }
   
     UIStepper *numStepper = cell.stepper;

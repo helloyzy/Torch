@@ -256,6 +256,7 @@
     if(cell ==nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:inventoryTableCell owner:self options:nil] ;
         cell = [nib objectAtIndex:0];
+        [cell sendSubviewToBack:cell.vwDelete];
     }
     UIStepper *numStepper = cell.stepper;
     [numStepper addTarget:self action:@selector(updateUnitLabel:) forControlEvents:UIControlEventValueChanged];
