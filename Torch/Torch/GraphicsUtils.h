@@ -7,12 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MGLine.h"
 
 #define TCColorLineBlue [UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1]
 #define TCColorSubtitleGray [UIColor colorWithWhite:0.667 alpha:1.000]
+#define TCColorTitleBlue [UIColor colorWithRed:208.0/255 green:224.0/255 blue:232.0/255 alpha:1]
+#define TCColorTitleGray  [UIColor colorWithWhite:73.0/255 alpha:1]
 
 void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor);
 
 // create a clear color image
 UIImage * clearColorImage(CGRect rect);
 
+MGLine *mgline(UIView* leftView);

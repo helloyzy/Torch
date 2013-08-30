@@ -7,6 +7,7 @@
 //
 
 #import "GraphicsUtils.h"
+#import "MGLine.h"
 
 void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor) {
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -40,4 +41,8 @@ UIImage * clearColorImage(CGRect rect) {
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+MGLine *mgline(UIView* leftView) {
+    return [MGLine lineWithLeft:leftView right:nil size:leftView.size];
 }
