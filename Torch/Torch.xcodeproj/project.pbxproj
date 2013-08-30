@@ -108,6 +108,10 @@
 		DC9D57E417C7382A00EAFD2F /* YIInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D57E217C7382A00EAFD2F /* YIInnerShadowView.m */; };
 		DCAFC89417CC7181006DEBB2 /* GraphicsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAFC89317CC7181006DEBB2 /* GraphicsUtils.m */; };
 		DCAFC89A17CCA09A006DEBB2 /* TCNavTblVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAFC89917CCA09A006DEBB2 /* TCNavTblVwCtl.m */; };
+		DCB2381D17D0454C000CC087 /* TCPromotionVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB2381B17D0454C000CC087 /* TCPromotionVwCtl.m */; };
+		DCB2381E17D0454C000CC087 /* TCPromotionVwCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCB2381C17D0454C000CC087 /* TCPromotionVwCtl.xib */; };
+		DCB2382217D0741A000CC087 /* TCPromotionDetailVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB2382017D0741A000CC087 /* TCPromotionDetailVwCtl.m */; };
+		DCB2382317D0741A000CC087 /* TCPromotionDetailVwCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCB2382117D0741A000CC087 /* TCPromotionDetailVwCtl.xib */; };
 		DCC8387417CB0FC70046E999 /* TCProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC8387317CB0FC70046E999 /* TCProfileController.m */; };
 		DCC8387617CB0FD80046E999 /* TCProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCC8387517CB0FD80046E999 /* TCProfileController.xib */; };
 		DCC8389517CB42970046E999 /* profile_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8388F17CB42970046E999 /* profile_bg.png */; };
@@ -264,6 +268,12 @@
 		DCAFC89317CC7181006DEBB2 /* GraphicsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicsUtils.m; sourceTree = "<group>"; };
 		DCAFC89817CCA09A006DEBB2 /* TCNavTblVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNavTblVwCtl.h; sourceTree = "<group>"; };
 		DCAFC89917CCA09A006DEBB2 /* TCNavTblVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNavTblVwCtl.m; sourceTree = "<group>"; };
+		DCB2381A17D0454C000CC087 /* TCPromotionVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPromotionVwCtl.h; sourceTree = "<group>"; };
+		DCB2381B17D0454C000CC087 /* TCPromotionVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPromotionVwCtl.m; sourceTree = "<group>"; };
+		DCB2381C17D0454C000CC087 /* TCPromotionVwCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPromotionVwCtl.xib; sourceTree = "<group>"; };
+		DCB2381F17D07419000CC087 /* TCPromotionDetailVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPromotionDetailVwCtl.h; sourceTree = "<group>"; };
+		DCB2382017D0741A000CC087 /* TCPromotionDetailVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPromotionDetailVwCtl.m; sourceTree = "<group>"; };
+		DCB2382117D0741A000CC087 /* TCPromotionDetailVwCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPromotionDetailVwCtl.xib; sourceTree = "<group>"; };
 		DCC8387217CB0FC70046E999 /* TCProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCProfileController.h; sourceTree = "<group>"; };
 		DCC8387317CB0FC70046E999 /* TCProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCProfileController.m; sourceTree = "<group>"; };
 		DCC8387517CB0FD80046E999 /* TCProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCProfileController.xib; sourceTree = "<group>"; };
@@ -484,6 +494,10 @@
 				1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */,
 				1C28602C17CDC967002E4CD0 /* TCSummaryViewController.h */,
 				1C28602D17CDC967002E4CD0 /* TCSummaryViewController.m */,
+				DCB2381A17D0454C000CC087 /* TCPromotionVwCtl.h */,
+				DCB2381B17D0454C000CC087 /* TCPromotionVwCtl.m */,
+				DCB2381F17D07419000CC087 /* TCPromotionDetailVwCtl.h */,
+				DCB2382017D0741A000CC087 /* TCPromotionDetailVwCtl.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -491,6 +505,8 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DCB2382117D0741A000CC087 /* TCPromotionDetailVwCtl.xib */,
+				DCB2381C17D0454C000CC087 /* TCPromotionVwCtl.xib */,
 				D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */,
 				DCC8387517CB0FD80046E999 /* TCProfileController.xib */,
 				D6CB682317C5A65600D290D7 /* InventoryTableCell.xib */,
@@ -706,6 +722,8 @@
 				C53C8D1D17CEE669000E978D /* tapreturn@2x.png in Resources */,
 				C53C8D2217CEE9DE000E978D /* TCOrderStatusCell.xib in Resources */,
 				C53C8D2717CF17B8000E978D /* TCOrderDetailView.xib in Resources */,
+				DCB2381E17D0454C000CC087 /* TCPromotionVwCtl.xib in Resources */,
+				DCB2382317D0741A000CC087 /* TCPromotionDetailVwCtl.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +820,8 @@
 				C53C8D2617CF17B8000E978D /* TCOrderDetailView.m in Sources */,
 				DC96805017CF22700079D230 /* TCSliderView.m in Sources */,
 				DC96805317CF2E320079D230 /* TCSysRes.m in Sources */,
+				DCB2381D17D0454C000CC087 /* TCPromotionVwCtl.m in Sources */,
+				DCB2382217D0741A000CC087 /* TCPromotionDetailVwCtl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

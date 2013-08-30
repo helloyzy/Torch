@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCNavVwCtl.h"
 
-@interface TCOrderDetailView : UIViewController
+@interface TCOrderDetailView : TCNavVwCtl
 
 @end
