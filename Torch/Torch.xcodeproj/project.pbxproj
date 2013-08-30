@@ -112,6 +112,7 @@
 		DCB2381E17D0454C000CC087 /* TCPromotionVwCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCB2381C17D0454C000CC087 /* TCPromotionVwCtl.xib */; };
 		DCB2382217D0741A000CC087 /* TCPromotionDetailVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB2382017D0741A000CC087 /* TCPromotionDetailVwCtl.m */; };
 		DCB2382317D0741A000CC087 /* TCPromotionDetailVwCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCB2382117D0741A000CC087 /* TCPromotionDetailVwCtl.xib */; };
+		DCB2382617D088EC000CC087 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB2382517D088EC000CC087 /* DateUtils.m */; };
 		DCC8387417CB0FC70046E999 /* TCProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC8387317CB0FC70046E999 /* TCProfileController.m */; };
 		DCC8387617CB0FD80046E999 /* TCProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCC8387517CB0FD80046E999 /* TCProfileController.xib */; };
 		DCC8389517CB42970046E999 /* profile_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8388F17CB42970046E999 /* profile_bg.png */; };
@@ -274,6 +275,8 @@
 		DCB2381F17D07419000CC087 /* TCPromotionDetailVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPromotionDetailVwCtl.h; sourceTree = "<group>"; };
 		DCB2382017D0741A000CC087 /* TCPromotionDetailVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPromotionDetailVwCtl.m; sourceTree = "<group>"; };
 		DCB2382117D0741A000CC087 /* TCPromotionDetailVwCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPromotionDetailVwCtl.xib; sourceTree = "<group>"; };
+		DCB2382417D088EC000CC087 /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
+		DCB2382517D088EC000CC087 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
 		DCC8387217CB0FC70046E999 /* TCProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCProfileController.h; sourceTree = "<group>"; };
 		DCC8387317CB0FC70046E999 /* TCProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCProfileController.m; sourceTree = "<group>"; };
 		DCC8387517CB0FD80046E999 /* TCProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCProfileController.xib; sourceTree = "<group>"; };
@@ -536,6 +539,8 @@
 		DC0383C317C343D500BBD02A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DCB2382417D088EC000CC087 /* DateUtils.h */,
+				DCB2382517D088EC000CC087 /* DateUtils.m */,
 				DC0383C417C3455A00BBD02A /* UIViewController+Utils.h */,
 				DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */,
 				DC51EA0917C5A2BE00E5DD3C /* UIViewController+Torch.h */,
@@ -822,6 +827,7 @@
 				DC96805317CF2E320079D230 /* TCSysRes.m in Sources */,
 				DCB2381D17D0454C000CC087 /* TCPromotionVwCtl.m in Sources */,
 				DCB2382217D0741A000CC087 /* TCPromotionDetailVwCtl.m in Sources */,
+				DCB2382617D088EC000CC087 /* DateUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
