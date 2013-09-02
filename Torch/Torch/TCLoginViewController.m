@@ -15,7 +15,6 @@
 #import "TCMyDayController.h"
 #import "TCRouteMapViewController.h"
 #import "IIViewDeckController.h"
-#import "TCStoreHomeView.h"
 
 @interface TCLoginViewController ()
 
@@ -82,8 +81,10 @@
     UIViewController* left = [[TCRouteMapViewController alloc] initWithNibName:@"TCRouteMapView" bundle:nil];
     UIViewController* center = [[TCMyDayController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
     IIViewDeckController * deckController = [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
-    UINavigationController * navCtr = [UIViewController customNavCtr:deckController];
-    [self.view.window setRootViewController:navCtr];
+    // UINavigationController * navCtr = [UIViewController customNavCtr:deckController];
+    
+    UIViewController * rootVwCtl = [UIViewController rootDeckView:deckController];
+    [self.view.window setRootViewController:rootVwCtl];
 }
 
 
