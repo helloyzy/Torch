@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+Utils.h"
 #import "TCNavVwCtl.h"
+#import "PromotionItem.h"
 
 @interface TCOrderViewController : TCNavVwCtl <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
+
+-(void)setSelectedPromotionItem:(PromotionItem *)promotionItem;
 
 @end
