@@ -36,6 +36,9 @@
 "inventory.completionButtonText" = "Inventory Completo";
 "order.orderSummary" = " Elementos en Orden";
 "order.summaryAmount" = "$0.00";
+"order.viewPromotion" = "View Promotion";
+"order.completionButton" = "Order Completion";
+"order.title"= "Crear Orden";
 
 
 

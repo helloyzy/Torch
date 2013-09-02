@@ -20,5 +20,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *productQuantityUnitLabel;
 
 @property (nonatomic, weak) IBOutlet UIStepper *stepper;
+@property (nonatomic, weak) IBOutlet UIButton *deleteButton;
 
 @end

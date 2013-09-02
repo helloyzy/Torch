@@ -9,6 +9,7 @@
 #import "TCOrderViewController.h"
 #import "InventoryTableCell.h"
 #import "ProductItemObject.h"
+#import "TCPromotionVwCtl.h"
 
 @interface TCOrderViewController ()
 
@@ -142,6 +143,43 @@ return flag;
     
 }
 
+-(void)gotoPromotionScreen {
+    UIViewController *targetViewController = [[TCPromotionVwCtl alloc]init];
+	[[self navigationController] pushViewController:targetViewController animated:YES];
+}
+
+- (UIView *)drawFooterButtons {
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 300, 120)];
+    
+    
+    UIButton *promotionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 40, 290, 30)];
+    [promotionButton setBackgroundImage:[UIImage imageNamed:@"bluebutton"] forState:UIControlStateNormal];
+
+    [promotionButton setTitle:[self localString:@"order.viewPromotion"] forState:UIControlStateNormal];
+    [promotionButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14]];
+    //completionButton.contentHorizontalAlignment = UIControlContentVerticalAlignmentCenter;
+    [promotionButton setTitleEdgeInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
+    
+    [promotionButton addTarget:self action:@selector(gotoPromotionScreen) forControlEvents:UIControlEventTouchDown];
+    
+    
+    if ([displayData count] >0) {
+        UIButton *orderCompletionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 80, 290, 30)];
+        [orderCompletionButton setBackgroundImage:[UIImage imageNamed:@"bluebutton"] forState:UIControlStateNormal];
+        
+        [orderCompletionButton setTitle:[self localString:@"order.completionButton"] forState:UIControlStateNormal];
+        [orderCompletionButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14]];
+        //completionButton.contentHorizontalAlignment = UIControlContentVerticalAlignmentCenter;
+        [orderCompletionButton setTitleEdgeInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
+        [footerView addSubview:orderCompletionButton];
+    }
+    
+    [footerView addSubview:promotionButton];
+    
+    
+    return footerView;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -164,6 +202,8 @@ return flag;
     }
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
+    self.createOrderLabel.text = [self localString:@"order.title"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -224,6 +264,14 @@ return flag;
     }
 }
 
+-(void) deleteOrderItem:(NSString *)productSN {
+    ProductItemObject *productItem = [productCollection objectForKey:productSN];
+    if (productItem) {
+        productItem.productUnitNum = @"0";
+        [productCollection setObject:productItem forKey:productSN];
+    }
+}
+
 -(void)updateUnitLabel:(UIStepper *)sender{
     
     NSString *productQuantityValue = [NSString stringWithFormat:@"%g",sender.value];
@@ -244,6 +292,25 @@ return flag;
     
     [self.tableView reloadData];
     
+}
+
+-(void) deleteCurrentOrderItem:(UIButton *)sender {
+    
+
+    InventoryTableCell *currentCell = (InventoryTableCell *)sender.superview.superview.superview;
+    
+    NSIndexPath *indexPath;
+    NSString *itemKey;
+    
+    indexPath = [self.tableView indexPathForCell:currentCell];
+
+    itemKey = [displayData objectAtIndex:indexPath.row];
+
+    
+    [self deleteOrderItem:itemKey];
+    [self hideTheDeleteButton:currentCell hidden:YES];
+    [self generateDisplayDataArray];
+    [self.tableView reloadData];
 }
 
 -(UITableViewCell *)populateCell:(InventoryTableCell *)cell withKeyName:(NSString *)keyName {
@@ -288,7 +355,6 @@ return flag;
             // [self slideInDeletionButton:cell];
         [self hideTheDeleteButton:cell hidden:NO];
         }
-
     }
 }
 
@@ -339,6 +405,9 @@ return flag;
         UISwipeGestureRecognizer *sgr1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellDeleteCancelled:)];
         [sgr1 setDirection:UISwipeGestureRecognizerDirectionRight];
         [cell addGestureRecognizer:sgr1];
+        UIButton *deleteButton = cell.deleteButton;
+        [deleteButton addTarget:self action:@selector(deleteCurrentOrderItem:) forControlEvents:UIControlEventTouchDown];
+        
     }
     [self populateCell:cell withKeyName:itemKey];
     cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];
@@ -386,6 +455,20 @@ return flag;
         return nil;
     }
     return [self drawOrderItemSummary:[displayData count] withOrderAmountText:@"$0.00"];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if ([self isInSearchResultSection:section]) {
+        return nil;
+    }
+    return [self drawFooterButtons];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if ([self isInSearchResultSection:section]) {
+        return 0;
+    }
+    return 120;
 }
 
 @end
