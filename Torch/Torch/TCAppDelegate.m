@@ -50,19 +50,21 @@
     return navCtr;
 }
 
+- (UIViewController *)loginController {
+    return [[TCLoginViewController alloc] init];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     // self.viewController = [[TCViewController alloc] initWithNibName:@"TCViewController" bundle:nil];
-    /*self.viewController = [[TCViewController alloc] initWithNibName:@"TCLoginView" bundle:nil]; */    
     // self.viewController = [self newDeckController];
     // self.viewController = [[TCDisclaimerVwCtl alloc] init];
-    //self.viewController = [[TCLoginViewController alloc] init];
-    //self.viewController = [self controllerWithinNavCtr];
     // self.viewController = [[TCStoreHomeView alloc] init];
     // self.viewController = [self rootDeckCtrl];
-    self.viewController = [self controllerWithinNavCtr];
+    // self.viewController = [self controllerWithinNavCtr];
+    self.viewController = [self loginController];
     self.window.rootViewController = self.viewController;
     
     [self.window makeKeyAndVisible];
