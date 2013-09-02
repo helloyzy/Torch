@@ -10,11 +10,11 @@
 
 @implementation PromotionItem
 
-+ (PromotionItem *) newPromotion:(long)key {
++ (PromotionItem *) newPromotion:(NSString *)key {
     PromotionItem * result = [PromotionItem new];
     result.key = key;
-    result.name = [NSString stringWithFormat:@"Promotion %li", key];
-    result.description = [NSString stringWithFormat:@"Promotion %li description", key];
+    result.name = [NSString stringWithFormat:@"Promotion %@", key];
+    result.description = [NSString stringWithFormat:@"Promotion %@ description", key];
     result.expiration = [NSDate date];
     return result;
 }

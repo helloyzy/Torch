@@ -29,9 +29,9 @@
 }
 
 - (void)initData {
-    PromotionItem * item1 = [PromotionItem newPromotion:1];
-    PromotionItem * item2 = [PromotionItem newPromotion:2];
-    PromotionItem * item3 = [PromotionItem newPromotion:3];
+    PromotionItem * item1 = [PromotionItem newPromotion:@"1"];
+    PromotionItem * item2 = [PromotionItem newPromotion:@"2"];
+    PromotionItem * item3 = [PromotionItem newPromotion:@"3"];
     data = @[item1, item2, item3];
 }
 

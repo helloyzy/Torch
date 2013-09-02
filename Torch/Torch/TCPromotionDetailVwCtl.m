@@ -10,6 +10,7 @@
 #import "TCSysRes.h"
 #import "DateUtils.h"
 #import "PromotionItem.h"
+#import "TCOrderViewController.h"
 
 @interface TCPromotionDetailVwCtl ()
 
@@ -75,9 +76,14 @@
 }
 
 - (IBAction)addPromoToOrder:(id)sender {
-    UIViewController * parentViewController = self.navigationController.childViewControllers[self.navigationController.childViewControllers.count - 2]
-    ;
-    [self.navigationController popToViewController:parentViewController animated:NO];
+    NSArray * ctls = self.navigationController.childViewControllers;
+    if (ctls.count >= 3) {
+        TCOrderViewController * orderVwCtl = self.navigationController.childViewControllers[self.navigationController.childViewControllers.count - 3];
+        [orderVwCtl setSelectedPromotionItem:self.item];
+        // jump to order page
+        [self.navigationController popToViewController:orderVwCtl animated:NO];
+    }
+    
 }
 
 @end

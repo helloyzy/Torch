@@ -10,9 +10,9 @@
 
 @interface PromotionItem : NSObject
 
-+ (PromotionItem *) newPromotion:(long)key;
++ (PromotionItem *) newPromotion:(NSString *)key;
 
-@property(nonatomic, assign)long key;
+@property(nonatomic, copy)NSString * key;
 @property(nonatomic, copy)NSString * name;
 @property(nonatomic, copy)NSString * description;
 @property(nonatomic, copy)NSDate * expiration;
