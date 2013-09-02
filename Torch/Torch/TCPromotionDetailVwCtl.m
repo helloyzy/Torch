@@ -30,6 +30,7 @@
 {
     [super viewDidLoad];
     [self initCtl];
+    [self databind];
 }
 
 - (void)initCtl {
@@ -37,36 +38,46 @@
     lblTitle.text = [self localString:@"promotion.detail.title"];
     
     vwHeader.backgroundColor = [UIColor clearColor];
-    CGRect bounds = vwHeader.bounds;
-    bounds.size.height = TC_TblVw_SectHeader_Height;
-    vwHeader.bounds = bounds;
-    UIView * vwHeaderContent = TCVw_TblVw_SectHeader(@"promotion.detail.section.title");
-    [vwHeader addSubview:vwHeaderContent];
+//    CGRect bounds = vwHeader.bounds;
+//    bounds.size.height = TC_TblVw_SectHeader_Height;
+//    vwHeader.bounds = bounds;
+//    UIView * vwHeaderContent = TCVw_TblVw_SectHeader(@"promotion.detail.section.title");
+//    [vwHeader addSubview:vwHeaderContent];
     vwHeader.hidden = YES;
     
-    lblPromoTitle.font = TCFont_HNLTComBd(17);
+    lblPromoName.font = TCFont_HNLTComBd(17);
     lblExpTitle.font = TCFont_HNLTComBd(17);
     
     CGFloat subTitleFontSize = 15;
-    lblPromoDetail.font = TCFont_HNLTComLt(subTitleFontSize);
+    lblPromoDesp.font = TCFont_HNLTComLt(subTitleFontSize);
     lblExpDesp.font = TCFont_HNLTComLt(subTitleFontSize);
     lblExpDate.font = TCFont_HNLTComLt(subTitleFontSize);
     
     UIColor * subTitleColor = [UIColor colorWithRed:130/255.0f green:130/255.0f blue:130/255.0f alpha:1];
-    lblPromoDetail.textColor = subTitleColor;
+    lblPromoDesp.textColor = subTitleColor;
     lblExpDesp.textColor = subTitleColor;
     lblExpDate.textColor = subTitleColor;
     
-    lblExpDate.text = [DateUtils stringFromDate:self.item.expiration withFormat:kDateFormatShort];
-    
     btnAddProm.titleLabel.font = TCFont_HNLTComBd(17);
     
+}
+
+- (void) databind {
+    lblPromoName.text = self.item.name;
+    lblPromoDesp.text = self.item.description;
+    lblExpDate.text = [DateUtils stringFromDate:self.item.expiration withFormat:kDateFormatShort];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)addPromoToOrder:(id)sender {
+    UIViewController * parentViewController = self.navigationController.childViewControllers[self.navigationController.childViewControllers.count - 2]
+    ;
+    [self.navigationController popToViewController:parentViewController animated:NO];
 }
 
 @end

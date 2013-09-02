@@ -76,6 +76,7 @@
 {
     UITableViewCell * cell = TCTblVwCell_SubtitleStyle(tableView, @"PromotionCell");
     PromotionItem * item = data[indexPath.row];
+//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	cell.textLabel.text = item.name;
     cell.detailTextLabel.text = item.description;
 	return cell;
@@ -98,6 +99,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     TCPromotionDetailVwCtl * ctl = [[TCPromotionDetailVwCtl alloc] init];
     ctl.item = data[indexPath.row];
     [self.navigationController pushViewController:ctl animated:YES];
