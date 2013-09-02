@@ -87,6 +87,7 @@
 		D6D68DE417CDDEB400477060 /* TCOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D68DE217CDDEB400477060 /* TCOrderViewController.m */; };
 		D6D68DE517CDDEB400477060 /* TCOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */; };
 		D6D68DF217D4785E00477060 /* TCPromotionTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D68DF117D4785E00477060 /* TCPromotionTableCell.xib */; };
+		D6D68DFA17D47C8F00477060 /* TCPromotionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D68DF917D47C8F00477060 /* TCPromotionTableCell.m */; };
 		DC0383A417C3044300BBD02A /* HersheysLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A217C3044300BBD02A /* HersheysLogo.png */; };
 		DC0383A917C3067B00BBD02A /* TCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */; };
 		DC0383C617C3455A00BBD02A /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */; };
@@ -237,6 +238,8 @@
 		D6D68DE217CDDEB400477060 /* TCOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOrderViewController.m; sourceTree = "<group>"; };
 		D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCOrderViewController.xib; sourceTree = "<group>"; };
 		D6D68DF117D4785E00477060 /* TCPromotionTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPromotionTableCell.xib; sourceTree = "<group>"; };
+		D6D68DF817D47C8F00477060 /* TCPromotionTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPromotionTableCell.h; sourceTree = "<group>"; };
+		D6D68DF917D47C8F00477060 /* TCPromotionTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPromotionTableCell.m; sourceTree = "<group>"; };
 		DC0383A217C3044300BBD02A /* HersheysLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HersheysLogo.png; sourceTree = "<group>"; };
 		DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCLoginViewController.xib; sourceTree = "<group>"; };
 		DC0383C417C3455A00BBD02A /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
@@ -505,6 +508,8 @@
 				DCB2381B17D0454C000CC087 /* TCPromotionVwCtl.m */,
 				DCB2381F17D07419000CC087 /* TCPromotionDetailVwCtl.h */,
 				DCB2382017D0741A000CC087 /* TCPromotionDetailVwCtl.m */,
+				D6D68DF817D47C8F00477060 /* TCPromotionTableCell.h */,
+				D6D68DF917D47C8F00477060 /* TCPromotionTableCell.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -846,6 +851,7 @@
 				DCB2382217D0741A000CC087 /* TCPromotionDetailVwCtl.m in Sources */,
 				DCB2382617D088EC000CC087 /* DateUtils.m in Sources */,
 				DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */,
+				D6D68DFA17D47C8F00477060 /* TCPromotionTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
