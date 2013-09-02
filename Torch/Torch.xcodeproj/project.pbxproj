@@ -121,6 +121,7 @@
 		DCC8389817CB42970046E999 /* profile_btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389217CB42970046E999 /* profile_btn_bg.png */; };
 		DCC8389917CB42970046E999 /* profile_person_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389317CB42970046E999 /* profile_person_bg.png */; };
 		DCC8389A17CB42970046E999 /* profile_person.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389417CB42970046E999 /* profile_person.png */; };
+		DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D9EC17D468EF00823475 /* PromotionItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -286,6 +287,8 @@
 		DCC8389217CB42970046E999 /* profile_btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_btn_bg.png; sourceTree = "<group>"; };
 		DCC8389317CB42970046E999 /* profile_person_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_person_bg.png; sourceTree = "<group>"; };
 		DCC8389417CB42970046E999 /* profile_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_person.png; sourceTree = "<group>"; };
+		DCE1D9EB17D468EF00823475 /* PromotionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionItem.h; sourceTree = "<group>"; };
+		DCE1D9EC17D468EF00823475 /* PromotionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionItem.m; sourceTree = "<group>"; };
 		FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -357,6 +360,7 @@
 				DC9D57DD17C737C400EAFD2F /* 3rdparty */,
 				1C8187A917C490B700AF7AF0 /* Fonts */,
 				DC0383C317C343D500BBD02A /* Utils */,
+				DCE1D9EA17D468AA00823475 /* Model */,
 				DC0383A717C305C800BBD02A /* View */,
 				DC0383A617C3058500BBD02A /* Controller */,
 				1C713BFE17C2058100A903A6 /* TCAppDelegate.h */,
@@ -585,6 +589,15 @@
 				DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */,
 			);
 			name = Base;
+			sourceTree = "<group>";
+		};
+		DCE1D9EA17D468AA00823475 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DCE1D9EB17D468EF00823475 /* PromotionItem.h */,
+				DCE1D9EC17D468EF00823475 /* PromotionItem.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -828,6 +841,7 @@
 				DCB2381D17D0454C000CC087 /* TCPromotionVwCtl.m in Sources */,
 				DCB2382217D0741A000CC087 /* TCPromotionDetailVwCtl.m in Sources */,
 				DCB2382617D088EC000CC087 /* DateUtils.m in Sources */,
+				DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

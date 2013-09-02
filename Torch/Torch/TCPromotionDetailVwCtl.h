@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "TCNavVwCtl.h"
 
+@class PromotionItem;
+
 @interface TCPromotionDetailVwCtl : TCNavVwCtl {
     
     __weak IBOutlet UIView *vwHeader;
@@ -20,5 +22,7 @@
     __weak IBOutlet UILabel *lblExpDate;
     __weak IBOutlet UIButton *btnAddProm;
 }
+
+@property(nonatomic,strong)PromotionItem * item;
 
 @end

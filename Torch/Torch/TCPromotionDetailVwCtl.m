@@ -9,6 +9,7 @@
 #import "TCPromotionDetailVwCtl.h"
 #import "TCSysRes.h"
 #import "DateUtils.h"
+#import "PromotionItem.h"
 
 @interface TCPromotionDetailVwCtl ()
 
@@ -41,6 +42,7 @@
     vwHeader.bounds = bounds;
     UIView * vwHeaderContent = TCVw_TblVw_SectHeader(@"promotion.detail.section.title");
     [vwHeader addSubview:vwHeaderContent];
+    vwHeader.hidden = YES;
     
     lblPromoTitle.font = TCFont_HNLTComBd(17);
     lblExpTitle.font = TCFont_HNLTComBd(17);
@@ -55,7 +57,7 @@
     lblExpDesp.textColor = subTitleColor;
     lblExpDate.textColor = subTitleColor;
     
-    lblExpDate.text = [DateUtils stringFromDate:[NSDate date] withFormat:kDateFormatShort];
+    lblExpDate.text = [DateUtils stringFromDate:self.item.expiration withFormat:kDateFormatShort];
     
     btnAddProm.titleLabel.font = TCFont_HNLTComBd(17);
     

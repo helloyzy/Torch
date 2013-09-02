@@ -9,6 +9,7 @@
 #import "TCPromotionVwCtl.h"
 #import "TCSysRes.h"
 #import "TCPromotionDetailVwCtl.h"
+#import "PromotionItem.h"
 
 @interface TCPromotionVwCtl () {
     NSArray * data;
@@ -28,7 +29,10 @@
 }
 
 - (void)initData {
-    data = @[@"Promotion 1", @"Promotion 2",@"Promotion 3"];
+    PromotionItem * item1 = [PromotionItem newPromotion:1];
+    PromotionItem * item2 = [PromotionItem newPromotion:2];
+    PromotionItem * item3 = [PromotionItem newPromotion:3];
+    data = @[item1, item2, item3];
 }
 
 - (void)initTopView {
@@ -71,9 +75,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell = TCTblVwCell_SubtitleStyle(tableView, @"PromotionCell");
-    NSString * priority = data[indexPath.row];
-	cell.textLabel.text = priority;
-    cell.detailTextLabel.text = [priority stringByAppendingString: @" detail ajfidjafijsodjfdojfoajdojodjfosajfodjasojdfoajsfojsoj"];
+    PromotionItem * item = data[indexPath.row];
+	cell.textLabel.text = item.name;
+    cell.detailTextLabel.text = item.description;
 	return cell;
 }
 
@@ -95,6 +99,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TCPromotionDetailVwCtl * ctl = [[TCPromotionDetailVwCtl alloc] init];
+    ctl.item = data[indexPath.row];
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
