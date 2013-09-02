@@ -89,6 +89,23 @@
     productArray = nil;
 }
 
+
+-(void)hideTheDeleteButton:(InventoryTableCell *)cell hidden:(BOOL)hiddenFlag {
+    if (!hiddenFlag) {
+        cell.vwDelete.hidden = NO;
+        cell.productQuantity.hidden = YES;
+        cell.productQuantityUnitLabel.hidden = YES;
+        cell.stepper.hidden = YES;
+        [cell.contentView bringSubviewToFront:cell.vwDelete];
+    } else {
+        cell.vwDelete.hidden = YES;
+        cell.productQuantity.hidden = NO;
+        cell.productQuantityUnitLabel.hidden=NO;
+        cell.stepper.hidden = NO;
+        [cell.contentView sendSubviewToBack:cell.vwDelete];
+    }
+}
+
 -(BOOL) doesTableViewDisplayRequired {
     BOOL display = NO;
     if ([displayData count] > 0) {
@@ -189,6 +206,7 @@
     
     if (![self doesTableViewDisplayRequired]) {
         self.tableView.hidden = YES;
+        seperator1.hidden=NO;
     }else {
         self.tableView.hidden = NO;
         seperator1.hidden = YES;
@@ -270,16 +288,20 @@
     }
     
     [self populateCell:cell withKeyName:itemKey];
+    [self hideTheDeleteButton:cell hidden:YES];
     return cell;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 116;
 }
+
+
 - (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView {
     [self generateDisplayDataArray];
-    [self showInitialORProductTableListView];
+
     [self.tableView reloadData];
+    [self showInitialORProductTableListView];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -314,5 +336,7 @@
 
     return footerView;
 }
+
+
 
 @end
