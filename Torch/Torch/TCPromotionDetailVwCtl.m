@@ -60,7 +60,7 @@
     lblExpDate.textColor = subTitleColor;
     
     btnAddProm.titleLabel.font = TCFont_HNLTComBd(17);
-    
+    btnAddProm.titleLabel.text = [self localString:@"promotion.detail.btn.addpromotion"];
 }
 
 - (void) databind {

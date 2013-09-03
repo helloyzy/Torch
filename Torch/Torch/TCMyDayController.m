@@ -141,7 +141,7 @@ static NSString *CellIdentifier = @"MyDayCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TCStoreHomeView *controller = [[TCStoreHomeView alloc] initWithNibName:@"StoreHomeView" bundle:nil];
+    TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

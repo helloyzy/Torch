@@ -13,7 +13,8 @@
 @interface UIViewController (Torch)
 
 // section deck view controller
-+ (IIViewDeckController *) rootDeckView:(UIViewController *)firstCtl;
++ (UIViewController *) rootDeckView:(UIViewController *)firstCtl;
++ (UIViewController *) myDayDeckAsRoot;
 
 // section for dismiss keyboard 
 - (UIView *) viewForTapToDismissKeyboard;
