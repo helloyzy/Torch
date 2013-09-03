@@ -12,6 +12,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking 2
 
+// DDProgressView
+#define COCOAPODS_POD_AVAILABLE_DDProgressView
+#define COCOAPODS_VERSION_MAJOR_DDProgressView 0
+#define COCOAPODS_VERSION_MINOR_DDProgressView 1
+#define COCOAPODS_VERSION_PATCH_DDProgressView 0
+
 // InnerBand
 #define COCOAPODS_POD_AVAILABLE_InnerBand
 #define COCOAPODS_VERSION_MAJOR_InnerBand 1
