@@ -10,6 +10,7 @@
 #import "InventoryTableCell.h"
 #import "ProductItemObject.h"
 #import "TCPromotionVwCtl.h"
+#import "TCPromotionTableCell.h"
 
 @interface TCOrderViewController ()
 
@@ -25,6 +26,30 @@
     NSMutableArray *displayData;
     NSArray *searchResults;
     NSMutableDictionary *productCollection;
+    NSMutableDictionary *promotionItems;
+    NSMutableArray *displayPromotionItems;
+}
+
+
+-(void)regenerateDisplayPromotionItemArray {
+    displayPromotionItems = [[NSMutableArray alloc] init];
+    for (id key in promotionItems) {
+        PromotionItem *promotionObject = (PromotionItem *)[promotionItems objectForKey:key];
+        [displayPromotionItems addObject:promotionObject.key];
+    }
+
+}
+
+
+-(void)setSelectedPromotionItem:(PromotionItem *)promotionItem {
+    if(!promotionItems) promotionItems = [[NSMutableDictionary alloc] init];
+    
+    if(promotionItem) {
+        NSString *key = promotionItem.key; 
+        [promotionItems setObject:promotionItem forKey:key];
+        [self regenerateDisplayPromotionItemArray];
+        [self.tableView reloadData];
+    }
 }
 
 -(BOOL)isInSearchResultSection:(NSInteger)section {
@@ -94,8 +119,6 @@ return flag;
     
     //create an array to used in tablecell loop
     NSMutableArray *productArray = [[NSMutableArray alloc] initWithCapacity:1];
-    
-    
     [self generateDisplayDataArray];
     productArray = nil;
 }
@@ -202,7 +225,7 @@ return flag;
     }
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    
+    self.tableView.separatorColor = [UIColor blueColor];
     self.createOrderLabel.text = [self localString:@"order.title"];
 }
 
@@ -312,6 +335,26 @@ return flag;
     [self generateDisplayDataArray];
     [self.tableView reloadData];
 }
+-(void) deleteCurrentPromotionItem:(UIButton *)sender {
+    
+    
+    TCPromotionTableCell *currentCell = (TCPromotionTableCell *)sender.superview.superview;
+    
+    NSIndexPath *indexPath;
+    NSString *itemKey;
+    
+    indexPath = [self.tableView indexPathForCell:currentCell];
+    NSInteger indexInPromotionArray = indexPath.row - [displayData count];
+    itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
+    
+    PromotionItem *promotionitem  = [promotionItems objectForKey:itemKey];
+    if (promotionitem) {
+        [promotionItems removeObjectForKey:itemKey];
+    }
+    
+    [self regenerateDisplayPromotionItemArray];
+    [self.tableView reloadData];
+}
 
 -(UITableViewCell *)populateCell:(InventoryTableCell *)cell withKeyName:(NSString *)keyName {
     ProductItemObject *productItem = [productCollection objectForKey:keyName];
@@ -371,25 +414,91 @@ return flag;
     }
 }
 
+-(void)promotionCellSwiped:(UIGestureRecognizer *)gestureRecognizer {
+    if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        TCPromotionTableCell *cell = (TCPromotionTableCell *)gestureRecognizer.view;
+        [cell bringSubviewToFront:cell.deleteButton];
+        cell.deleteButton.hidden=NO;
+        
+    }
+}
+
+-(void)promotionCellDeleteCancelled:(UIGestureRecognizer *)gestureRecognizer {
+    if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        TCPromotionTableCell *cell = (TCPromotionTableCell *)gestureRecognizer.view;
+        [cell sendSubviewToBack:cell.deleteButton];
+        cell.deleteButton.hidden=YES;
+        
+    }
+}
+
+-(BOOL)isPromotionItem:(NSIndexPath *)indexPath inSection:(NSInteger)sectionId {
+    BOOL promotionItemFlag = NO;
+    if (indexPath.row>=[displayData count]&&![self isInSearchResultSection:sectionId]) {
+        promotionItemFlag = YES;
+    }
+    return promotionItemFlag;
+}
+
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *orderTableCell = @"InventoryTableCell";
-    
+    NSInteger sectionId = [indexPath section];
+        
+    if ([self isPromotionItem:indexPath inSection:sectionId]) {
+        //generate promotionItemCell and return Here;
+        TCPromotionTableCell *cell = (TCPromotionTableCell *)[tableView dequeueReusableCellWithIdentifier:@"TCPromotionTableCell"];
+        if (!cell) {
+            NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"TCPromotionTableCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+            [cell.contentView sendSubviewToBack:cell.deleteButton];
+            cell.deleteButton.hidden = YES;
+        }
+        
+        NSInteger indexInPromotionArray = indexPath.row - [displayData count];
+        NSString *itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
+        
+        if (itemKey) {
+            PromotionItem *pi = [promotionItems objectForKey:itemKey];
+            if (pi) {
+                cell.promotionTitle.text = pi.name;
+                cell.promotionDetails.text=pi.description;
+            }
+        }
+        
+        //add swipe gesture to delete
+        UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(promotionCellSwiped:)];
+        [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
+        [cell addGestureRecognizer:sgr];
+        
+        UISwipeGestureRecognizer *sgr1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(promotionCellDeleteCancelled:)];
+        [sgr1 setDirection:UISwipeGestureRecognizerDirectionRight];
+        [cell addGestureRecognizer:sgr1];
+        UIButton *deleteButton = cell.deleteButton;
+        [deleteButton addTarget:self action:@selector(deleteCurrentPromotionItem:) forControlEvents:UIControlEventTouchDown];
+        
+        UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
+        UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 78, 295, 1)];
+        seperate2.backgroundColor = [UIColor grayColor];
+        [cellSeperatorLine addSubview:seperate2];
+        cell.backgroundView = cellSeperatorLine;
+        
+        return cell;
+        
+    }else {
+        
     InventoryTableCell *cell = (InventoryTableCell *)[tableView dequeueReusableCellWithIdentifier:orderTableCell];
-    
     if(cell ==nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:orderTableCell owner:self options:nil] ;
         cell = [nib objectAtIndex:0];
         [cell.contentView sendSubviewToBack:cell.vwDelete];
         cell.vwDelete.hidden=YES;
     }
-  
+    
     UIStepper *numStepper = cell.stepper;
-   [numStepper addTarget:self action:@selector(updateUnitLabel:) forControlEvents:UIControlEventValueChanged];
-    
-    NSInteger sectionId = [indexPath section];
-    
+    [numStepper addTarget:self action:@selector(updateUnitLabel:) forControlEvents:UIControlEventValueChanged];
     NSString *itemKey;
     if ([self isInSearchResultSection:sectionId]) {
         itemKey = [searchResults objectAtIndex:indexPath.row];
@@ -409,24 +518,38 @@ return flag;
         [deleteButton addTarget:self action:@selector(deleteCurrentOrderItem:) forControlEvents:UIControlEventTouchDown];
         
     }
-    [self populateCell:cell withKeyName:itemKey];
-    cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];
-    return cell;
     
+    [self populateCell:cell withKeyName:itemKey];
+        
+    UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
+    UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 110, 295, 1)];
+    seperate2.backgroundColor = [UIColor grayColor];
+    [cellSeperatorLine addSubview:seperate2];
+    cell.backgroundView = cellSeperatorLine;
+    return cell;
+    }
+
 }
 
 
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 114;
+    
+    NSInteger sectionId = [indexPath section];
+    if ([self isPromotionItem:indexPath inSection:sectionId]) {
+        return 80;
+    }else {
+        return 114;
+    }
+   
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([self isInSearchResultSection:section]) {
         return [searchResults count];
     } else {
-        return [displayData count];
+        return [displayData count]+[promotionItems count];
     }
 
 
@@ -454,7 +577,13 @@ return flag;
     if ([self isInSearchResultSection:section]) {
         return nil;
     }
-    return [self drawOrderItemSummary:[displayData count] withOrderAmountText:@"$0.00"];
+    
+    NSInteger itemCounts = 0;
+    if ([displayPromotionItems count] >0) {
+        itemCounts += [displayPromotionItems count];
+    }
+    itemCounts += [displayData count];
+    return [self drawOrderItemSummary:itemCounts withOrderAmountText:@"$0.00"];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
