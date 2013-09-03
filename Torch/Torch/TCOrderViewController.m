@@ -187,7 +187,7 @@ return flag;
     
     
     if ([displayData count] >0) {
-        UIButton *orderCompletionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 80, 290, 30)];
+        UIButton *orderCompletionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 80, 290, 29)];
         [orderCompletionButton setBackgroundImage:[UIImage imageNamed:@"bluebutton"] forState:UIControlStateNormal];
         
         [orderCompletionButton setTitle:[self localString:@"order.completionButton"] forState:UIControlStateNormal];
@@ -597,7 +597,7 @@ return flag;
     if ([self isInSearchResultSection:section]) {
         return 0;
     }
-    return 120;
+    return 140;
 }
 
 @end
