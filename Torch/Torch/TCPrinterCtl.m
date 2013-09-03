@@ -72,7 +72,7 @@ static CGFloat FONT_SIZE = 15.0f;
     
     slCopy.value = 1;
     
-    btnPrint.titleLabel.font = TCFont_HNLTComBd(17);
+    btnPrint.titleLabel.font = TCFont_HNLTComBd(14);
     btnPrint.titleLabel.text = [self localString:@"printer.btn.print"];
 }
 
