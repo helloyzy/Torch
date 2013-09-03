@@ -8,6 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCPrinterCtl : UIViewController
+@interface TCPrinterCtl : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate> {
+    
+    __weak IBOutlet UILabel *lblTitle;
+    
+    __weak IBOutlet UIView *vwPrintName;
+    __weak IBOutlet UILabel *lblPrinter;
+    __weak IBOutlet UILabel *lblPrinterName;
+    
+    __weak IBOutlet UIView *vwNumOfCopy;
+    __weak IBOutlet UILabel *lblNumOfCopy;
+    __weak IBOutlet UILabel *lblCopy;
+    __weak IBOutlet UIStepper *slCopy;
+    __weak IBOutlet UIButton *btnPrint;
+    __weak IBOutlet UIPickerView *pVPrinters;
+}
+- (IBAction)printCopyChanged:(id)sender;
 
+- (IBAction)showAvailablePrinters:(id)sender;
 @end
