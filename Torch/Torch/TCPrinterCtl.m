@@ -8,6 +8,7 @@
 
 #import "TCPrinterCtl.h"
 #import "TCSysRes.h"
+#import "UIViewController+Utils.h"
 #import "UIViewController+Torch.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -56,12 +57,15 @@ static CGFloat FONT_SIZE = 15.0f;
 
 - (void) initCtl {
     TCLbl_Title_Ext(lblTitle);
+    lblTitle.text = [self localString:@"printer.title"];
     
     [self initVwContainer:vwPrintName];
     [self initVwContainer:vwNumOfCopy];
     
     [self initStaticLbl:lblPrinter];
     [self initStaticLbl:lblCopy];
+    lblPrinter.text = [self localString:@"printer.lbl.titleName"];
+    lblCopy.text = [self localString:@"printer.lbl.copy"];
     
     [self initTextLbl:lblPrinterName];
     [self initTextLbl:lblNumOfCopy];
@@ -69,6 +73,7 @@ static CGFloat FONT_SIZE = 15.0f;
     slCopy.value = 1;
     
     btnPrint.titleLabel.font = TCFont_HNLTComBd(17);
+    btnPrint.titleLabel.text = [self localString:@"printer.btn.print"];
 }
 
 - (void)didReceiveMemoryWarning

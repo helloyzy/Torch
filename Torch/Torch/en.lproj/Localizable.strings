@@ -24,6 +24,12 @@
 
 "promotion.detail.title" = "Promotion detail";
 "promotion.detail.section.title" = "Promotion detail";
+"promotion.detail.btn.addpromotion" = "Add this promotion";
+
+"printer.title" = "Printers";
+"printer.lbl.titleName" = "Printer";
+"printer.lbl.copy" = "copy";
+"printer.btn.print" = "Print";
 
 
 /*Bo*/

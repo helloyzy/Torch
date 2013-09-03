@@ -64,8 +64,8 @@
     // self.viewController = [[TCStoreHomeView alloc] init];
     // self.viewController = [self rootDeckCtrl];
     // self.viewController = [self controllerWithinNavCtr];
-    self.viewController = [[TCPrinterCtl alloc] init];
-    // self.viewController = [self loginController];
+    // self.viewController = [[TCPrinterCtl alloc] init];
+    self.viewController = [self loginController];
     self.window.rootViewController = self.viewController;
     
     [self.window makeKeyAndVisible];
