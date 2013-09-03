@@ -7,7 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCNavVwCtl.h"
 
-@interface TCPromotionDetailVwCtl : UIViewController
+@class PromotionItem;
+
+@interface TCPromotionDetailVwCtl : TCNavVwCtl {
+    
+    __weak IBOutlet UIView *vwHeader;
+    __weak IBOutlet UILabel *lblTitle;
+    __weak IBOutlet UILabel *lblPromoName;
+    __weak IBOutlet UILabel *lblPromoDesp;
+    __weak IBOutlet UILabel *lblExpTitle;
+    __weak IBOutlet UILabel *lblExpDesp;
+    __weak IBOutlet UILabel *lblExpDate;
+    __weak IBOutlet UIButton *btnAddProm;
+}
+
+- (IBAction)addPromoToOrder:(id)sender;
+
+@property(nonatomic,strong)PromotionItem * item;
 
 @end

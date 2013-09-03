@@ -10,6 +10,7 @@
 
 @interface InventoryTableCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *vwDelete;
 @property (nonatomic, weak) IBOutlet UILabel *productName;
 @property (nonatomic, weak) IBOutlet UILabel *productSequenceNum;
 @property (nonatomic, weak) IBOutlet UILabel *unitPrice;
@@ -19,5 +20,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *productQuantityUnitLabel;
 
 @property (nonatomic, weak) IBOutlet UIStepper *stepper;
+@property (nonatomic, weak) IBOutlet UIButton *deleteButton;
 
 @end

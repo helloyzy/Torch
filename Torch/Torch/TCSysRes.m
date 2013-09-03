@@ -60,26 +60,27 @@ UILabel * TCLbl_Title_Ext(UILabel * lbl) {
 
 #pragma mark - view
 
-UIView * TCVw_TblVw_SectHeader(UITableView * tblVw, NSInteger section, NSString * titleKey) {
-    id<UITableViewDelegate> tblVwDelegate = tblVw.delegate;
-    CGFloat headerHeight = [tblVwDelegate tableView:tblVw heightForHeaderInSection:section];
-    CGFloat tblVwWidth = tblVw.bounds.size.width;
-    UIView * result = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tblVwWidth, headerHeight)];
-    [result setBackgroundColor:TCColor_LtBlue_TblVwSectHeaderBg()];
+
+
+UIView * TCVw_TblVw_SectHeader(NSString * titleKey) {
+    CGFloat vwWidth = [UIScreen mainScreen].bounds.size.width;
+    UIImage * bgImage = [UIImage imageNamed:@"historybg.png"];
+    CGFloat vwHeight = TC_TblVw_SectHeader_Height;
+    UIView * result = [[UIView alloc] initWithFrame:CGRectMake(0, 0, vwWidth, vwHeight)];
+    [result setBackgroundColor:[[UIColor alloc] initWithPatternImage:bgImage]];
     
-    CGFloat headerWidth = tblVwWidth;
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 6, headerWidth, headerHeight - 6)];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, vwWidth, vwHeight - 3)];
     label.text = NSLocalizedString(titleKey, nil);
     label.textColor = TCColor_DarkBlue();
     label.font = TCFont_HNLTComBd(17);
     label.backgroundColor = [UIColor clearColor];
     [result addSubview:label];
     
-    UIView * separator_top = [[UIView alloc] initWithFrame:CGRectMake(0, 0, headerWidth, 2)];
+    UIView * separator_top = [[UIView alloc] initWithFrame:CGRectMake(0, 0, vwWidth, 2)];
     separator_top.backgroundColor = TCColor_DarkBlue_TblVwSectTopSep();
     [result addSubview:separator_top];
     
-    UIView * separator_bottom = [[UIView alloc] initWithFrame:CGRectMake(0, headerHeight - 2, headerWidth, 2)];
+    UIView * separator_bottom = [[UIView alloc] initWithFrame:CGRectMake(0, vwHeight - 2, vwWidth, 2)];
     separator_bottom.backgroundColor = [UIColor colorWithRed:206/255.0f green:206/255.0f blue:206/255.0f alpha:1];
     [result addSubview:separator_bottom];
     return result;

@@ -86,6 +86,8 @@
 		D6D2EC7717C4897400D12795 /* TCPriorityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */; };
 		D6D68DE417CDDEB400477060 /* TCOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D68DE217CDDEB400477060 /* TCOrderViewController.m */; };
 		D6D68DE517CDDEB400477060 /* TCOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */; };
+		D6D68DF217D4785E00477060 /* TCPromotionTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D68DF117D4785E00477060 /* TCPromotionTableCell.xib */; };
+		D6D68DFA17D47C8F00477060 /* TCPromotionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D68DF917D47C8F00477060 /* TCPromotionTableCell.m */; };
 		DC0383A417C3044300BBD02A /* HersheysLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A217C3044300BBD02A /* HersheysLogo.png */; };
 		DC0383A917C3067B00BBD02A /* TCLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */; };
 		DC0383C617C3455A00BBD02A /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */; };
@@ -112,6 +114,7 @@
 		DCB2381E17D0454C000CC087 /* TCPromotionVwCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCB2381C17D0454C000CC087 /* TCPromotionVwCtl.xib */; };
 		DCB2382217D0741A000CC087 /* TCPromotionDetailVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB2382017D0741A000CC087 /* TCPromotionDetailVwCtl.m */; };
 		DCB2382317D0741A000CC087 /* TCPromotionDetailVwCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCB2382117D0741A000CC087 /* TCPromotionDetailVwCtl.xib */; };
+		DCB2382617D088EC000CC087 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB2382517D088EC000CC087 /* DateUtils.m */; };
 		DCC8387417CB0FC70046E999 /* TCProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC8387317CB0FC70046E999 /* TCProfileController.m */; };
 		DCC8387617CB0FD80046E999 /* TCProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCC8387517CB0FD80046E999 /* TCProfileController.xib */; };
 		DCC8389517CB42970046E999 /* profile_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8388F17CB42970046E999 /* profile_bg.png */; };
@@ -120,6 +123,7 @@
 		DCC8389817CB42970046E999 /* profile_btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389217CB42970046E999 /* profile_btn_bg.png */; };
 		DCC8389917CB42970046E999 /* profile_person_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389317CB42970046E999 /* profile_person_bg.png */; };
 		DCC8389A17CB42970046E999 /* profile_person.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389417CB42970046E999 /* profile_person.png */; };
+		DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D9EC17D468EF00823475 /* PromotionItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -233,6 +237,9 @@
 		D6D68DE117CDDEB400477060 /* TCOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOrderViewController.h; sourceTree = "<group>"; };
 		D6D68DE217CDDEB400477060 /* TCOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOrderViewController.m; sourceTree = "<group>"; };
 		D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCOrderViewController.xib; sourceTree = "<group>"; };
+		D6D68DF117D4785E00477060 /* TCPromotionTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPromotionTableCell.xib; sourceTree = "<group>"; };
+		D6D68DF817D47C8F00477060 /* TCPromotionTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPromotionTableCell.h; sourceTree = "<group>"; };
+		D6D68DF917D47C8F00477060 /* TCPromotionTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPromotionTableCell.m; sourceTree = "<group>"; };
 		DC0383A217C3044300BBD02A /* HersheysLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HersheysLogo.png; sourceTree = "<group>"; };
 		DC0383A817C3067B00BBD02A /* TCLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCLoginViewController.xib; sourceTree = "<group>"; };
 		DC0383C417C3455A00BBD02A /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
@@ -274,6 +281,8 @@
 		DCB2381F17D07419000CC087 /* TCPromotionDetailVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPromotionDetailVwCtl.h; sourceTree = "<group>"; };
 		DCB2382017D0741A000CC087 /* TCPromotionDetailVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPromotionDetailVwCtl.m; sourceTree = "<group>"; };
 		DCB2382117D0741A000CC087 /* TCPromotionDetailVwCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPromotionDetailVwCtl.xib; sourceTree = "<group>"; };
+		DCB2382417D088EC000CC087 /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
+		DCB2382517D088EC000CC087 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
 		DCC8387217CB0FC70046E999 /* TCProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCProfileController.h; sourceTree = "<group>"; };
 		DCC8387317CB0FC70046E999 /* TCProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCProfileController.m; sourceTree = "<group>"; };
 		DCC8387517CB0FD80046E999 /* TCProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCProfileController.xib; sourceTree = "<group>"; };
@@ -283,6 +292,8 @@
 		DCC8389217CB42970046E999 /* profile_btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_btn_bg.png; sourceTree = "<group>"; };
 		DCC8389317CB42970046E999 /* profile_person_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_person_bg.png; sourceTree = "<group>"; };
 		DCC8389417CB42970046E999 /* profile_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_person.png; sourceTree = "<group>"; };
+		DCE1D9EB17D468EF00823475 /* PromotionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionItem.h; sourceTree = "<group>"; };
+		DCE1D9EC17D468EF00823475 /* PromotionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionItem.m; sourceTree = "<group>"; };
 		FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -354,6 +365,7 @@
 				DC9D57DD17C737C400EAFD2F /* 3rdparty */,
 				1C8187A917C490B700AF7AF0 /* Fonts */,
 				DC0383C317C343D500BBD02A /* Utils */,
+				DCE1D9EA17D468AA00823475 /* Model */,
 				DC0383A717C305C800BBD02A /* View */,
 				DC0383A617C3058500BBD02A /* Controller */,
 				1C713BFE17C2058100A903A6 /* TCAppDelegate.h */,
@@ -472,8 +484,6 @@
 				D6CD428417CC706100A499A4 /* TCPriorityObject.m */,
 				DCC8387217CB0FC70046E999 /* TCProfileController.h */,
 				DC9D57E517C74B1900EAFD2F /* Base */,
-				D6C5A31217C7014400C0C657 /* ProductItemObject.h */,
-				D6C5A31317C7014400C0C657 /* ProductItemObject.m */,
 				D6CB682517C5A98A00D290D7 /* InventoryTableCell.h */,
 				D6CB682617C5A98A00D290D7 /* InventoryTableCell.m */,
 				C5C26C4C17C4A5E70090CDC1 /* TCStoreHomeView.h */,
@@ -498,6 +508,8 @@
 				DCB2381B17D0454C000CC087 /* TCPromotionVwCtl.m */,
 				DCB2381F17D07419000CC087 /* TCPromotionDetailVwCtl.h */,
 				DCB2382017D0741A000CC087 /* TCPromotionDetailVwCtl.m */,
+				D6D68DF817D47C8F00477060 /* TCPromotionTableCell.h */,
+				D6D68DF917D47C8F00477060 /* TCPromotionTableCell.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -505,6 +517,7 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D6D68DF117D4785E00477060 /* TCPromotionTableCell.xib */,
 				DCB2382117D0741A000CC087 /* TCPromotionDetailVwCtl.xib */,
 				DCB2381C17D0454C000CC087 /* TCPromotionVwCtl.xib */,
 				D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */,
@@ -536,6 +549,8 @@
 		DC0383C317C343D500BBD02A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DCB2382417D088EC000CC087 /* DateUtils.h */,
+				DCB2382517D088EC000CC087 /* DateUtils.m */,
 				DC0383C417C3455A00BBD02A /* UIViewController+Utils.h */,
 				DC0383C517C3455A00BBD02A /* UIViewController+Utils.m */,
 				DC51EA0917C5A2BE00E5DD3C /* UIViewController+Torch.h */,
@@ -580,6 +595,17 @@
 				DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */,
 			);
 			name = Base;
+			sourceTree = "<group>";
+		};
+		DCE1D9EA17D468AA00823475 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DCE1D9EB17D468EF00823475 /* PromotionItem.h */,
+				DCE1D9EC17D468EF00823475 /* PromotionItem.m */,
+				D6C5A31217C7014400C0C657 /* ProductItemObject.h */,
+				D6C5A31317C7014400C0C657 /* ProductItemObject.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -724,6 +750,7 @@
 				C53C8D2717CF17B8000E978D /* TCOrderDetailView.xib in Resources */,
 				DCB2381E17D0454C000CC087 /* TCPromotionVwCtl.xib in Resources */,
 				DCB2382317D0741A000CC087 /* TCPromotionDetailVwCtl.xib in Resources */,
+				D6D68DF217D4785E00477060 /* TCPromotionTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,6 +849,9 @@
 				DC96805317CF2E320079D230 /* TCSysRes.m in Sources */,
 				DCB2381D17D0454C000CC087 /* TCPromotionVwCtl.m in Sources */,
 				DCB2382217D0741A000CC087 /* TCPromotionDetailVwCtl.m in Sources */,
+				DCB2382617D088EC000CC087 /* DateUtils.m in Sources */,
+				DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */,
+				D6D68DFA17D47C8F00477060 /* TCPromotionTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

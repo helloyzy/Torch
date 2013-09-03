@@ -8,6 +8,8 @@
 
 #import "TCPromotionVwCtl.h"
 #import "TCSysRes.h"
+#import "TCPromotionDetailVwCtl.h"
+#import "PromotionItem.h"
 
 @interface TCPromotionVwCtl () {
     NSArray * data;
@@ -27,13 +29,16 @@
 }
 
 - (void)initData {
-    data = @[@"Promotion 1", @"Promotion 2",@"Promotion 3"];
+    PromotionItem * item1 = [PromotionItem newPromotion:@"1"];
+    PromotionItem * item2 = [PromotionItem newPromotion:@"2"];
+    PromotionItem * item3 = [PromotionItem newPromotion:@"3"];
+    data = @[item1, item2, item3];
 }
 
 - (void)initTopView {
     vwTop.backgroundColor = [UIColor whiteColor];
     TCLbl_Title_Ext(lblTitle);
-    lblTitle.text = @"Priority";
+    lblTitle.text = [self localString:@"promotion.title"];
 }
 
 - (void)initTableView {
@@ -64,21 +69,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%i%@", [data count], data[0]);
     return [data count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell = TCTblVwCell_SubtitleStyle(tableView, @"PromotionCell");
-    NSString * priority = data[indexPath.row];
-	cell.textLabel.text = priority;
-    cell.detailTextLabel.text = [priority stringByAppendingString: @" detail ajfidjafijsodjfdojfoajdojodjfosajfodjasojdfoajsfojsoj"];
+    PromotionItem * item = data[indexPath.row];
+//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+	cell.textLabel.text = item.name;
+    cell.detailTextLabel.text = item.description;
 	return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 45;
+    return TC_TblVw_SectHeader_Height;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -90,7 +95,14 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return TCVw_TblVw_SectHeader(tableView, section, @"priority.title");
+    return TCVw_TblVw_SectHeader(@"promotion.section.title");
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    TCPromotionDetailVwCtl * ctl = [[TCPromotionDetailVwCtl alloc] init];
+    ctl.item = data[indexPath.row];
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 @end

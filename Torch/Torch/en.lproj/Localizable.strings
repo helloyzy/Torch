@@ -19,6 +19,12 @@
 "sliderview.startText" = "Slide to Start Call";
 "sliderview.endText" = "Slide to End Call";
 
+"promotion.title" = "Promotion";
+"promotion.section.title" = "All available promotions";
+
+"promotion.detail.title" = "Promotion detail";
+"promotion.detail.section.title" = "Promotion detail";
+
 
 /*Bo*/
 "priority.title" = "Prioridades";
@@ -28,6 +34,11 @@
 "inventory.summaryText" = "0 Elementos en Inventario";
 "priority.buttonName" = "Cerrar";
 "inventory.completionButtonText" = "Inventory Completo";
+"order.orderSummary" = " Elementos en Orden";
+"order.summaryAmount" = "$0.00";
+"order.viewPromotion" = "View Promotion";
+"order.completionButton" = "Order Completion";
+"order.title"= "Crear Orden";
 
 
 

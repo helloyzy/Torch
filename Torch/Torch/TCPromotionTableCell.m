@@ -1,14 +1,14 @@
 //
-//  InventoryTableCell.m
+//  TCPromotionTableCell.m
 //  Torch
 //
-//  Created by bo hu on 8/22/13.
+//  Created by bo hu on 9/2/13.
 //  Copyright (c) 2013 Hershey. All rights reserved.
 //
 
-#import "InventoryTableCell.h"
+#import "TCPromotionTableCell.h"
 
-@implementation InventoryTableCell
+@implementation TCPromotionTableCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -19,20 +19,11 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-    }
-    return self;
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
-
-
 
 @end
