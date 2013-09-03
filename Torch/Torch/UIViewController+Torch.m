@@ -10,18 +10,10 @@
 #import "TCViewController.h"
 #import "IIViewDeckController.h"
 #import "TCProfileController.h"
+#import "TCMyDayController.h"
+#import "TCRouteMapViewController.h"
 
 @implementation UIViewController (Torch)
-
-+ (IIViewDeckController *) rootDeckView:(UIViewController *)firstCtl {
-    // construct a deck view ctl as the window's rootViewController, and then set its center ctl as a nav ctl, right ctl as a profile ctl
-    UINavigationController * navCtr = [UIViewController customNavCtr:firstCtl];
-    UIViewController * profile = [[TCProfileController alloc] init];
-    IIViewDeckController * result = [[IIViewDeckController alloc] initWithCenterViewController:navCtr rightViewController:profile];
-    result.panningMode = IIViewDeckNoPanning;
-    result.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
-    return result;
-}
 
 #pragma mark - dismiss keyboard 
 
@@ -153,6 +145,33 @@ static int END_EDIT_VIEW_TAG = 1999;
 - (void) decorateNavBar:(UINavigationBar *)navBar {
     [UIViewController setNavbarBgImg:navBar];
 }
+
+# pragma mark - deck view controllers
+
++ (UIViewController *) rootDeckView:(UIViewController *)firstCtl {
+    // construct a deck view ctl as the window's rootViewController, and then set its center ctl as a nav ctl, right ctl as a profile ctl
+    UINavigationController * navCtr = [UIViewController customNavCtr:firstCtl];
+    UIViewController * profile = [[TCProfileController alloc] init];
+    IIViewDeckController * result = [[IIViewDeckController alloc] initWithCenterViewController:navCtr rightViewController:profile];
+    result.panningMode = IIViewDeckNoPanning;
+    result.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
+    return result;
+}
+
++ (UIViewController *) myDayDeckAsRoot {
+    UIViewController * left = [[TCRouteMapViewController alloc] initWithNibName:@"TCRouteMapView" bundle:nil];
+    TCMyDayController * center = [[TCMyDayController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
+    
+    IIViewDeckController * controller = [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
+    controller.panningMode = IIViewDeckPanningViewPanning;
+    controller.panningView = center.tableView;
+    [controller decorateNavItem:controller.navigationItem isDecorateBkItem:YES isDecorateRtItem:YES];
+    
+    UIViewController * result = [self rootDeckView:controller];
+    
+    return result;
+}
+
 
 
 

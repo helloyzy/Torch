@@ -35,7 +35,7 @@
     NSMutableDictionary *launchOptions = [[NSMutableDictionary alloc] init];
     [launchOptions setObject:MKLaunchOptionsDirectionsModeDriving forKey:MKLaunchOptionsDirectionsModeKey];
     
-    [endingItem openInMapsWithLaunchOptions:launchOptions];
+    // [endingItem openInMapsWithLaunchOptions:launchOptions];
 }
 
 - (void)centerMap {
