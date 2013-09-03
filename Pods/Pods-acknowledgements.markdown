@@ -39,9 +39,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## MCSwipeTableViewCell
+## MBProgressHUD
 
-Copyright (c) 2013 Ali Karagoz (http://alikaragoz.net/)
+Copyright (c) 2013 Matej Bukovinski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
