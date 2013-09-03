@@ -100,6 +100,8 @@
 		DC0383DF17C4CE7F00BBD02A /* loginBtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */; };
 		DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */; };
 		DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */ = {isa = PBXBuildFile; fileRef = DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */; };
+		DC6CB0BD17D5B2490091EFAB /* TCPrinterCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6CB0BB17D5B2490091EFAB /* TCPrinterCtl.m */; };
+		DC6CB0BE17D5B2490091EFAB /* TCPrinterCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC6CB0BC17D5B2490091EFAB /* TCPrinterCtl.xib */; };
 		DC74E34617CD8AEB00953259 /* TCDeckViewCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */; };
 		DC96805017CF22700079D230 /* TCSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC96804F17CF22700079D230 /* TCSliderView.m */; };
 		DC96805317CF2E320079D230 /* TCSysRes.m in Sources */ = {isa = PBXBuildFile; fileRef = DC96805217CF2E320079D230 /* TCSysRes.m */; };
@@ -257,6 +259,9 @@
 		DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_border.png; sourceTree = "<group>"; };
 		DC51EA0917C5A2BE00E5DD3C /* UIViewController+Torch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Torch.h"; sourceTree = "<group>"; };
 		DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Torch.m"; sourceTree = "<group>"; };
+		DC6CB0BA17D5B2490091EFAB /* TCPrinterCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPrinterCtl.h; sourceTree = "<group>"; };
+		DC6CB0BB17D5B2490091EFAB /* TCPrinterCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPrinterCtl.m; sourceTree = "<group>"; };
+		DC6CB0BC17D5B2490091EFAB /* TCPrinterCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPrinterCtl.xib; sourceTree = "<group>"; };
 		DC74E34417CD8AEB00953259 /* TCDeckViewCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDeckViewCtl.h; sourceTree = "<group>"; };
 		DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDeckViewCtl.m; sourceTree = "<group>"; };
 		DC96804E17CF22700079D230 /* TCSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSliderView.h; sourceTree = "<group>"; };
@@ -510,6 +515,8 @@
 				DCB2382017D0741A000CC087 /* TCPromotionDetailVwCtl.m */,
 				D6D68DF817D47C8F00477060 /* TCPromotionTableCell.h */,
 				D6D68DF917D47C8F00477060 /* TCPromotionTableCell.m */,
+				DC6CB0BA17D5B2490091EFAB /* TCPrinterCtl.h */,
+				DC6CB0BB17D5B2490091EFAB /* TCPrinterCtl.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -517,6 +524,7 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DC6CB0BC17D5B2490091EFAB /* TCPrinterCtl.xib */,
 				D6D68DF117D4785E00477060 /* TCPromotionTableCell.xib */,
 				DCB2382117D0741A000CC087 /* TCPromotionDetailVwCtl.xib */,
 				DCB2381C17D0454C000CC087 /* TCPromotionVwCtl.xib */,
@@ -751,6 +759,7 @@
 				DCB2381E17D0454C000CC087 /* TCPromotionVwCtl.xib in Resources */,
 				DCB2382317D0741A000CC087 /* TCPromotionDetailVwCtl.xib in Resources */,
 				D6D68DF217D4785E00477060 /* TCPromotionTableCell.xib in Resources */,
+				DC6CB0BE17D5B2490091EFAB /* TCPrinterCtl.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,6 +861,7 @@
 				DCB2382617D088EC000CC087 /* DateUtils.m in Sources */,
 				DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */,
 				D6D68DFA17D47C8F00477060 /* TCPromotionTableCell.m in Sources */,
+				DC6CB0BD17D5B2490091EFAB /* TCPrinterCtl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
