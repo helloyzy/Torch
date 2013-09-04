@@ -38,6 +38,8 @@
 		1C8187AD17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */; };
 		1C8187AF17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */; };
 		1CA64AF817C6F54D004D58B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CE7C73B17C5E5B6008B0F2C /* CoreLocation.framework */; };
+		1CFE598117D6C7950041FF95 /* TCSurveyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE597F17D6C7950041FF95 /* TCSurveyController.m */; };
+		1CFE598217D6C7950041FF95 /* TCSurveyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CFE598017D6C7950041FF95 /* TCSurveyController.xib */; };
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
 		C52FE56117D5DAA300BDC9C9 /* redbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = C52FE55F17D5DAA300BDC9C9 /* redbutton.png */; };
 		C52FE56217D5DAA300BDC9C9 /* redbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C52FE56017D5DAA300BDC9C9 /* redbutton@2x.png */; };
@@ -184,6 +186,9 @@
 		1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Bd.ttf"; path = "fonts/HelveticaNeueLTCom-Bd.ttf"; sourceTree = "<group>"; };
 		1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Md.ttf"; path = "fonts/HelveticaNeueLTCom-Md.ttf"; sourceTree = "<group>"; };
 		1CE7C73B17C5E5B6008B0F2C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1CFE597E17D6C7950041FF95 /* TCSurveyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSurveyController.h; sourceTree = "<group>"; };
+		1CFE597F17D6C7950041FF95 /* TCSurveyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSurveyController.m; sourceTree = "<group>"; };
+		1CFE598017D6C7950041FF95 /* TCSurveyController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCSurveyController.xib; sourceTree = "<group>"; };
 		C52FE55F17D5DAA300BDC9C9 /* redbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbutton.png; sourceTree = "<group>"; };
 		C52FE56017D5DAA300BDC9C9 /* redbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redbutton@2x.png"; sourceTree = "<group>"; };
 		C53AB23E17CB143A003B3812 /* mapwithhint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapwithhint@2x.png"; sourceTree = "<group>"; };
@@ -494,6 +499,7 @@
 				DCC8387317CB0FC70046E999 /* TCProfileController.m */,
 				D6CD428417CC706100A499A4 /* TCPriorityObject.m */,
 				DCC8387217CB0FC70046E999 /* TCProfileController.h */,
+				1CFE598017D6C7950041FF95 /* TCSurveyController.xib */,
 				DC9D57E517C74B1900EAFD2F /* Base */,
 				D6CB682517C5A98A00D290D7 /* InventoryTableCell.h */,
 				D6CB682617C5A98A00D290D7 /* InventoryTableCell.m */,
@@ -523,6 +529,8 @@
 				D6D68DF917D47C8F00477060 /* TCPromotionTableCell.m */,
 				DC6CB0BA17D5B2490091EFAB /* TCPrinterCtl.h */,
 				DC6CB0BB17D5B2490091EFAB /* TCPrinterCtl.m */,
+				1CFE597E17D6C7950041FF95 /* TCSurveyController.h */,
+				1CFE597F17D6C7950041FF95 /* TCSurveyController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -768,6 +776,7 @@
 				DC6CB0BE17D5B2490091EFAB /* TCPrinterCtl.xib in Resources */,
 				C52FE56117D5DAA300BDC9C9 /* redbutton.png in Resources */,
 				C52FE56217D5DAA300BDC9C9 /* redbutton@2x.png in Resources */,
+				1CFE598217D6C7950041FF95 /* TCSurveyController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,6 +879,7 @@
 				DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */,
 				D6D68DFA17D47C8F00477060 /* TCPromotionTableCell.m in Sources */,
 				DC6CB0BD17D5B2490091EFAB /* TCPrinterCtl.m in Sources */,
+				1CFE598117D6C7950041FF95 /* TCSurveyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,7 +20,7 @@ PODS:
   - RestKit/ObjectMapping (0.20.3)
   - RestKit/Support (0.20.3):
     - TransitionKit (= 1.1.1)
-  - Reveal-iOS-SDK (0.9.0)
+  - Reveal-iOS-SDK (0.9.1)
   - SOCKit (1.1)
   - TransitionKit (1.1.1)
   - ViewDeck (2.2.11)
@@ -32,7 +32,7 @@ DEPENDENCIES:
   - MGBox2 (~> 2.0.0)
   - OCTotallyLazy (~> 1.1.0)
   - RestKit (~> 0.20.3)
-  - Reveal-iOS-SDK (~> 0.9.0)
+  - Reveal-iOS-SDK (~> 0.9.1)
   - ViewDeck (~> 2.2.11)
 
 SPEC CHECKSUMS:
@@ -43,7 +43,7 @@ SPEC CHECKSUMS:
   MGBox2: 7c09e36c2271f9af16fdb5141a0ca554ecee4d8d
   OCTotallyLazy: 6ebd5658e16e1ce3d93e05e3907762b8d61b1c66
   RestKit: 1f181c180105a92f11ec4f6cd7de37625e516d83
-  Reveal-iOS-SDK: 2f011ee3e4653abc92b652f409f1641c7a1dae00
+  Reveal-iOS-SDK: 7396a20e743807b1e6f1caae664e1a9dc0cc442c
   SOCKit: 2f3bc4d07910de12dcc202815e07db68a3802581
   TransitionKit: d0e3344aac92991395d4c2e72d9c5a8ceeb12910
   ViewDeck: b5eddc8559b0e47259ab7addbf2de6768061f139
