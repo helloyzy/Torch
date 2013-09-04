@@ -22,6 +22,7 @@
 #import "TCPromotionDetailVwCtl.h"
 #import "TCOrderViewController.h"
 #import "TCPrinterCtl.h"
+#import "TCSurveyController.h"
 
 @implementation TCAppDelegate
 
