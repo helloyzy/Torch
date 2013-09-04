@@ -11,6 +11,7 @@
 #import "ProductItemObject.h"
 #import "TCPromotionVwCtl.h"
 #import "TCPromotionTableCell.h"
+#import "TCPrinterCtl.h"
 
 @interface TCOrderViewController ()
 
@@ -176,14 +177,14 @@ return flag;
 }
 
 -(void)orderCompleted {
-    UIAlertView *confirmView = [[UIAlertView alloc]initWithTitle:@"Order Confirm" message:@"Do you really want to submit this order?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"Confirmed", nil];
+    UIAlertView *confirmView = [[UIAlertView alloc]initWithTitle:[self localString:@"order.confirmAlertTitle"] message:[self localString:@"order.confirmMessage"] delegate:self cancelButtonTitle:[self localString:@"order.confirmNoButton"] otherButtonTitles:[self localString:@"order.confirmYesButton"], nil];
     //give a tag as 10 to indicate current alertview
     [confirmView setTag:10];
     [confirmView show];
 }
 
 -(void)promptPrint {
-    UIAlertView *printView = [[UIAlertView alloc]initWithTitle:@"" message:@"Do you want to print this order?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Si", nil];
+    UIAlertView *printView = [[UIAlertView alloc]initWithTitle:[self localString:@"order.printAlertTitle"] message:[self localString:@"order.printAlertMessage"] delegate:self cancelButtonTitle:[self localString:@"order.confirmNoButton"] otherButtonTitles:[self localString:@"order.confirmYesButton"], nil];
     [printView setTag:20];
     [printView show];
 }
@@ -197,7 +198,12 @@ return flag;
         }
     }else {
         //this is confirm from printprompt alertview
-        
+            if (buttonIndex==1) {
+                //confirm button clicked, populate the order data;
+                TCPrinterCtl *printScreen = [[TCPrinterCtl alloc] init];
+                [self.navigationController pushViewController:printScreen animated:YES];
+            }
+
     }
    
 }
