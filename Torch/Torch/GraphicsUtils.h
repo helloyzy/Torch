@@ -13,6 +13,8 @@
 #define TCColorSubtitleGray [UIColor colorWithWhite:0.667 alpha:1.000]
 #define TCColorTitleBlue [UIColor colorWithRed:208.0/255 green:224.0/255 blue:232.0/255 alpha:1]
 #define TCColorTitleGray  [UIColor colorWithWhite:73.0/255 alpha:1]
+#define TCColorProgressBlue [UIColor colorWithRed:61.0/255 green:111.0/255 blue:153.0/255 alpha:1]
+#define TCColorProgressLtBlue [UIColor colorWithRed:139.0/255 green:181.0/255 blue:205.0/255 alpha:1]
 
 void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor);
 
