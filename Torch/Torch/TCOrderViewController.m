@@ -166,9 +166,40 @@ return flag;
     
 }
 
+-(void)generateOrderJSONData {
+    NSLog(@"create Jason Data now");
+}
+
 -(void)gotoPromotionScreen {
     UIViewController *targetViewController = [[TCPromotionVwCtl alloc]init];
 	[[self navigationController] pushViewController:targetViewController animated:YES];
+}
+
+-(void)orderCompleted {
+    UIAlertView *confirmView = [[UIAlertView alloc]initWithTitle:@"Order Confirm" message:@"Do you really want to submit this order?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"Confirmed", nil];
+    //give a tag as 10 to indicate current alertview
+    [confirmView setTag:10];
+    [confirmView show];
+}
+
+-(void)promptPrint {
+    UIAlertView *printView = [[UIAlertView alloc]initWithTitle:@"" message:@"Do you want to print this order?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Si", nil];
+    [printView setTag:20];
+    [printView show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView tag] ==10) {
+        if (buttonIndex==1) {
+            //confirm button clicked, populate the order data;
+            [self generateOrderJSONData];
+            [self  promptPrint];
+        }
+    }else {
+        //this is confirm from printprompt alertview
+        
+    }
+   
 }
 
 - (UIView *)drawFooterButtons {
@@ -192,6 +223,7 @@ return flag;
         
         [orderCompletionButton setTitle:[self localString:@"order.completionButton"] forState:UIControlStateNormal];
         [orderCompletionButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14]];
+        [orderCompletionButton addTarget:self action:@selector(orderCompleted) forControlEvents:UIControlEventTouchDown];
         //completionButton.contentHorizontalAlignment = UIControlContentVerticalAlignmentCenter;
         [orderCompletionButton setTitleEdgeInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
         [footerView addSubview:orderCompletionButton];

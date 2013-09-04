@@ -11,7 +11,7 @@
 #import "TCNavVwCtl.h"
 #import "PromotionItem.h"
 
-@interface TCOrderViewController : TCNavVwCtl <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface TCOrderViewController : TCNavVwCtl <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
 -(void)setSelectedPromotionItem:(PromotionItem *)promotionItem;
 
