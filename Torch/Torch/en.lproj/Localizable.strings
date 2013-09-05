@@ -45,7 +45,6 @@
 "order.viewPromotion" = "View Promotion";
 "order.completionButton" = "Order Completion";
 "order.title"= "Crear Orden";
-
 "order.confirmAlertTitle"= "Confirmacion del Pedido";
 "order.confirmMessage"= "Do you really want to submit this order?";
 "order.confirmNoButton"= "No";
@@ -53,7 +52,7 @@
 "order.printAlertTitle" = "Order Print";
 "order.printAlertMessage" = "Do you want to print this order?";
 
-
+"orderHistory.title" = "Order History";
 
 
 
