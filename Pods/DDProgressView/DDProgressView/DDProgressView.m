@@ -8,7 +8,7 @@
 
 #import "DDProgressView.h"
 
-#define kProgressBarHeight  42.0f
+#define kProgressBarHeight  40.0f
 #define kProgressBarWidth	160.0f
 
 @implementation DDProgressView
@@ -101,7 +101,7 @@
     
     // draw the empty rounded rectangle (shown for the "unfilled" portions of the progress
     rect = CGRectInset(rect, 3.0f, 3.0f) ;
-	radius = 0.5f * rect.size.height ;
+	radius = 0.3f * rect.size.height ;
 	
 	[emptyColor setFill] ;
 	
@@ -115,7 +115,7 @@
 	CGContextFillPath(context) ;
     
 	// draw the inside moving filled rounded rectangle
-	radius = 0.5f * rect.size.height ;
+	radius = 0.3f * rect.size.height ;
 	
 	// make sure the filled rounded rectangle is not smaller than 2 times the radius
 	rect.size.width *= progress ;

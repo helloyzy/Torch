@@ -163,8 +163,6 @@ static int END_EDIT_VIEW_TAG = 1999;
     TCMyDayController * center = [[TCMyDayController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
     
     IIViewDeckController * controller = [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
-    controller.panningMode = IIViewDeckPanningViewPanning;
-    controller.panningView = center.tableView;
     [controller decorateNavItem:controller.navigationItem isDecorateBkItem:YES isDecorateRtItem:YES];
     
     UIViewController * result = [self rootDeckView:controller];

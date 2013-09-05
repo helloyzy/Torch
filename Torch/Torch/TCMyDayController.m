@@ -38,6 +38,8 @@ static NSString *CellIdentifier = @"MyDayCell";
 
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    self.view.autoresizesSubviews = YES;
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
     CALayer *band = [CALayer layer];
     band.borderWidth = 3;
