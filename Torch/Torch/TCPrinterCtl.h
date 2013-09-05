@@ -21,7 +21,6 @@
     __weak IBOutlet UILabel *lblCopy;
     __weak IBOutlet UIStepper *slCopy;
     __weak IBOutlet UIButton *btnPrint;
-    __weak IBOutlet UIPickerView *pVPrinters;
 }
 - (IBAction)printCopyChanged:(id)sender;
 

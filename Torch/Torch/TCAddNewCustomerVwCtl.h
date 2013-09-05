@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCAddNewCustomerVwCtl : UIViewController
+@interface TCAddNewCustomerVwCtl : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+    __weak IBOutlet UILabel *lblTitle;
+    
+}
 
 @end
