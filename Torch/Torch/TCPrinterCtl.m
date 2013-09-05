@@ -11,9 +11,10 @@
 #import "UIViewController+Utils.h"
 #import "UIViewController+Torch.h"
 #import <QuartzCore/QuartzCore.h>
-#import "GraphicsUtils.h"
+#import "TCComboVw.h"
 
 @interface TCPrinterCtl () {
+    TCComboVw * printCombo;
 }
 
 @end
@@ -88,27 +89,13 @@ static CGFloat FONT_SIZE = 15.0f;
 }
 
 - (IBAction)showAvailablePrinters:(id)sender {
-    // pVPrinters.hidden = NO;
-    UIActionSheet * menu = [[UIActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:nil
-						 destructiveButtonTitle:nil otherButtonTitles:nil];
-	CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
-	
-	UIPickerView * statePicker = [[UIPickerView alloc] initWithFrame:pickerFrame];
-	statePicker.dataSource = self;
-	statePicker.delegate = self;
-	statePicker.showsSelectionIndicator= YES;
-	[menu addSubview:statePicker];
-	
-	UISegmentedControl *closeButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:@"Done"]];
-	closeButton.momentary = YES;
-	closeButton.frame = CGRectMake(260, 7.0f, 50.0f, 30.0f);
-	closeButton.segmentedControlStyle = UISegmentedControlStyleBar;
-	closeButton.tintColor = TCColorProgressBlue;
-	[closeButton addTarget:self action:@selector(dismissStateActionSheet:) forControlEvents:UIControlEventValueChanged];
-	[menu addSubview:closeButton];
-	
-	[menu showInView:self.view];
-	[menu setBounds:CGRectMake(0, 0, 320, 485)];
+    if (!printCombo) {
+        __block TCPrinterCtl * temp = self;
+        printCombo = [TCComboVw instance:self callback:^(TCComboVw * combo) {
+            [temp dismissCombo:combo];
+        }];
+    }
+    [printCombo showInView:self.view];
 }
 
 
@@ -126,13 +113,10 @@ static CGFloat FONT_SIZE = 15.0f;
     return [NSString stringWithFormat:@"Printer %i", row];
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    // lblPrinterName.text = [NSString stringWithFormat:@"Printer %i", row];
-    // pickerView.hidden = YES;
-}
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {}
 
-- (void)dismissStateActionSheet:(id)sender {
-    
+- (void)dismissCombo:(TCComboVw *)combo {
+    lblPrinterName.text = [NSString stringWithFormat:@"Printer %i", [combo selectedRow]];
 }
 
 @end

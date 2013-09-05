@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class TCComboVw;
+typedef void(^TCComboVwCallback)(TCComboVw * picker);
+
 @interface TCComboVw : UIActionSheet
+
+- (NSUInteger) selectedRow;
+
++ (TCComboVw *) instance:(id)delegate callback:(TCComboVwCallback)callback;
++ (TCComboVw *) instance:(id)delegate;
 
 @end
