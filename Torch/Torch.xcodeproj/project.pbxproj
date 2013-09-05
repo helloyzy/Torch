@@ -41,6 +41,12 @@
 		1CFE598117D6C7950041FF95 /* TCSurveyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE597F17D6C7950041FF95 /* TCSurveyController.m */; };
 		1CFE598217D6C7950041FF95 /* TCSurveyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CFE598017D6C7950041FF95 /* TCSurveyController.xib */; };
 		829F9074DC7949F595F20110 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0720A63C03844476B25F3606 /* libPods.a */; };
+		C51E9B5717D826CD006E99B9 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = C51E9B5117D826CD006E99B9 /* cancel.png */; };
+		C51E9B5817D826CD006E99B9 /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C51E9B5217D826CD006E99B9 /* cancel@2x.png */; };
+		C51E9B5917D826CD006E99B9 /* focus.png in Resources */ = {isa = PBXBuildFile; fileRef = C51E9B5317D826CD006E99B9 /* focus.png */; };
+		C51E9B5A17D826CD006E99B9 /* focus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C51E9B5417D826CD006E99B9 /* focus@2x.png */; };
+		C51E9B5B17D826CD006E99B9 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = C51E9B5517D826CD006E99B9 /* save.png */; };
+		C51E9B5C17D826CD006E99B9 /* save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C51E9B5617D826CD006E99B9 /* save@2x.png */; };
 		C52FE56117D5DAA300BDC9C9 /* redbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = C52FE55F17D5DAA300BDC9C9 /* redbutton.png */; };
 		C52FE56217D5DAA300BDC9C9 /* redbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C52FE56017D5DAA300BDC9C9 /* redbutton@2x.png */; };
 		C53AB24117CB143A003B3812 /* mapwithhint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C53AB23E17CB143A003B3812 /* mapwithhint@2x.png */; };
@@ -189,6 +195,12 @@
 		1CFE597E17D6C7950041FF95 /* TCSurveyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSurveyController.h; sourceTree = "<group>"; };
 		1CFE597F17D6C7950041FF95 /* TCSurveyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSurveyController.m; sourceTree = "<group>"; };
 		1CFE598017D6C7950041FF95 /* TCSurveyController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCSurveyController.xib; sourceTree = "<group>"; };
+		C51E9B5117D826CD006E99B9 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		C51E9B5217D826CD006E99B9 /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
+		C51E9B5317D826CD006E99B9 /* focus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = focus.png; sourceTree = "<group>"; };
+		C51E9B5417D826CD006E99B9 /* focus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "focus@2x.png"; sourceTree = "<group>"; };
+		C51E9B5517D826CD006E99B9 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		C51E9B5617D826CD006E99B9 /* save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save@2x.png"; sourceTree = "<group>"; };
 		C52FE55F17D5DAA300BDC9C9 /* redbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redbutton.png; sourceTree = "<group>"; };
 		C52FE56017D5DAA300BDC9C9 /* redbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "redbutton@2x.png"; sourceTree = "<group>"; };
 		C53AB23E17CB143A003B3812 /* mapwithhint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapwithhint@2x.png"; sourceTree = "<group>"; };
@@ -436,6 +448,12 @@
 		DC0383A117C3044300BBD02A /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				C51E9B5117D826CD006E99B9 /* cancel.png */,
+				C51E9B5217D826CD006E99B9 /* cancel@2x.png */,
+				C51E9B5317D826CD006E99B9 /* focus.png */,
+				C51E9B5417D826CD006E99B9 /* focus@2x.png */,
+				C51E9B5517D826CD006E99B9 /* save.png */,
+				C51E9B5617D826CD006E99B9 /* save@2x.png */,
 				C52FE55F17D5DAA300BDC9C9 /* redbutton.png */,
 				C52FE56017D5DAA300BDC9C9 /* redbutton@2x.png */,
 				C53C8D1617CEE669000E978D /* historybg.png */,
@@ -777,6 +795,12 @@
 				C52FE56117D5DAA300BDC9C9 /* redbutton.png in Resources */,
 				C52FE56217D5DAA300BDC9C9 /* redbutton@2x.png in Resources */,
 				1CFE598217D6C7950041FF95 /* TCSurveyController.xib in Resources */,
+				C51E9B5717D826CD006E99B9 /* cancel.png in Resources */,
+				C51E9B5817D826CD006E99B9 /* cancel@2x.png in Resources */,
+				C51E9B5917D826CD006E99B9 /* focus.png in Resources */,
+				C51E9B5A17D826CD006E99B9 /* focus@2x.png in Resources */,
+				C51E9B5B17D826CD006E99B9 /* save.png in Resources */,
+				C51E9B5C17D826CD006E99B9 /* save@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
