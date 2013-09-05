@@ -110,6 +110,9 @@
 		DC0383D817C45C5000BBD02A /* HersheysBG.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383D717C45C5000BBD02A /* HersheysBG.png */; };
 		DC0383DF17C4CE7F00BBD02A /* loginBtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */; };
 		DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */; };
+		DC20E24B17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20E24917D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m */; };
+		DC20E24C17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC20E24A17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib */; };
+		DC20E24F17D85C5A009FFC84 /* TCComboVw.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20E24E17D85C5A009FFC84 /* TCComboVw.m */; };
 		DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */ = {isa = PBXBuildFile; fileRef = DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */; };
 		DC6CB0BD17D5B2490091EFAB /* TCPrinterCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6CB0BB17D5B2490091EFAB /* TCPrinterCtl.m */; };
 		DC6CB0BE17D5B2490091EFAB /* TCPrinterCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC6CB0BC17D5B2490091EFAB /* TCPrinterCtl.xib */; };
@@ -281,6 +284,11 @@
 		DC0383D717C45C5000BBD02A /* HersheysBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HersheysBG.png; sourceTree = "<group>"; };
 		DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_bg.png; sourceTree = "<group>"; };
 		DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_border.png; sourceTree = "<group>"; };
+		DC20E24817D85BE1009FFC84 /* TCAddNewCustomerVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAddNewCustomerVwCtl.h; sourceTree = "<group>"; };
+		DC20E24917D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAddNewCustomerVwCtl.m; sourceTree = "<group>"; };
+		DC20E24A17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCAddNewCustomerVwCtl.xib; sourceTree = "<group>"; };
+		DC20E24D17D85C5A009FFC84 /* TCComboVw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCComboVw.h; sourceTree = "<group>"; };
+		DC20E24E17D85C5A009FFC84 /* TCComboVw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCComboVw.m; sourceTree = "<group>"; };
 		DC51EA0917C5A2BE00E5DD3C /* UIViewController+Torch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Torch.h"; sourceTree = "<group>"; };
 		DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Torch.m"; sourceTree = "<group>"; };
 		DC6CB0BA17D5B2490091EFAB /* TCPrinterCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPrinterCtl.h; sourceTree = "<group>"; };
@@ -552,6 +560,8 @@
 				DC6CB0BB17D5B2490091EFAB /* TCPrinterCtl.m */,
 				1CFE597E17D6C7950041FF95 /* TCSurveyController.h */,
 				1CFE597F17D6C7950041FF95 /* TCSurveyController.m */,
+				DC20E24817D85BE1009FFC84 /* TCAddNewCustomerVwCtl.h */,
+				DC20E24917D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -559,6 +569,7 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DC20E24A17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib */,
 				DC6CB0BC17D5B2490091EFAB /* TCPrinterCtl.xib */,
 				D6D68DF117D4785E00477060 /* TCPromotionTableCell.xib */,
 				DCB2382117D0741A000CC087 /* TCPromotionDetailVwCtl.xib */,
@@ -585,6 +596,8 @@
 				1C21A52317CB22E700627852 /* TCCallHighlightCell.m */,
 				DC96804E17CF22700079D230 /* TCSliderView.h */,
 				DC96804F17CF22700079D230 /* TCSliderView.m */,
+				DC20E24D17D85C5A009FFC84 /* TCComboVw.h */,
+				DC20E24E17D85C5A009FFC84 /* TCComboVw.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -806,6 +819,7 @@
 				C51E9B5A17D826CD006E99B9 /* focus@2x.png in Resources */,
 				C51E9B5B17D826CD006E99B9 /* save.png in Resources */,
 				C51E9B5C17D826CD006E99B9 /* save@2x.png in Resources */,
+				DC20E24C17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,6 +924,8 @@
 				DC6CB0BD17D5B2490091EFAB /* TCPrinterCtl.m in Sources */,
 				1CFE598117D6C7950041FF95 /* TCSurveyController.m in Sources */,
 				D6831BC817D84E7100718881 /* TCOrderObject.m in Sources */,
+				DC20E24B17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m in Sources */,
+				DC20E24F17D85C5A009FFC84 /* TCComboVw.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
