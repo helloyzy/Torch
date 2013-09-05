@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TCNavVwCtl.h"
 
-@interface TCOrderHistory : TCNavVwCtl
+@interface TCOrderHistory : TCNavVwCtl <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lblStoreName;
 @property (weak, nonatomic) IBOutlet UILabel *lblHistory;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

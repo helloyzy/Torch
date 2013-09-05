@@ -53,7 +53,7 @@
 "order.printAlertMessage" = "Do you want to print this order?";
 
 "orderHistory.title" = "Order History";
-
+"orderhistory.statusLabel"= "Estado";
 
 
 /*daxian*/

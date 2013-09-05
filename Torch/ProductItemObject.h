@@ -10,10 +10,10 @@
 
 @interface ProductItemObject : NSObject
 
-@property (nonatomic) NSString *productName;
-@property (nonatomic) NSString *productSN;
-@property (nonatomic) NSString *productPrice;
-@property (nonatomic) NSString *productDescription;
-@property (nonatomic) NSString *productUnitNum;
-@property (nonatomic) NSString *productUnit;
+@property (nonatomic,copy) NSString *productName;
+@property (nonatomic,copy) NSString *productSN;
+@property (nonatomic,copy) NSString *productPrice;
+@property (nonatomic,copy) NSString *productDescription;
+@property (nonatomic,copy) NSString *productUnitNum;
+@property (nonatomic,copy) NSString *productUnit;
 @end

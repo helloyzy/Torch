@@ -10,4 +10,12 @@
 
 @interface TCOrderObject : NSObject
 
+@property (nonatomic,copy) NSString *storeName;
+@property (nonatomic,copy) NSString *orderID;
+@property (nonatomic,copy) NSString *orderAmount;
+@property (nonatomic,copy) NSDate   *orderDate;
+@property (nonatomic,copy) NSString *orderStatus;
+
+@property (nonatomic,copy) NSMutableArray *orderItems;
+
 @end
