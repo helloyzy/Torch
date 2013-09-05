@@ -32,8 +32,6 @@
     TCMyDayController* center = [[TCMyDayController alloc] initWithNibName:@"TCRouteTableView" bundle:nil];
 
     IIViewDeckController* controller = [[IIViewDeckController alloc] initWithCenterViewController:center leftViewController:left rightViewController:nil];
-    controller.panningMode = IIViewDeckPanningViewPanning;
-    controller.panningView = center.tableView;
     return controller;
 }
 
