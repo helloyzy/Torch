@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#define START_EDIT_VIEW_TAG 1900
+// tag for the last editing view, should dismiss keyboard when click
+#define END_EDIT_VIEW_TAG 1999
+
 @class IIViewDeckController;
 
 @interface UIViewController (Torch)

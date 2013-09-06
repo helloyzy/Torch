@@ -75,7 +75,7 @@ static CGFloat FONT_SIZE = 15.0f;
     slCopy.value = 1;
     
     btnPrint.titleLabel.font = TCFont_HNLTComBd(14);
-    btnPrint.titleLabel.text = [self localString:@"printer.btn.print"];
+    [btnPrint setTitle:[self localString:@"printer.btn.print"] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning

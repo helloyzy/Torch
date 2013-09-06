@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCBaseVwCtl.h"
 
-@interface TCAddNewCustomerVwCtl : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface TCAddNewCustomerVwCtl : TCBaseVwCtl <UITableViewDataSource, UITableViewDelegate> {
     __weak IBOutlet UILabel *lblTitle;
     
 }

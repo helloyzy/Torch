@@ -37,10 +37,6 @@
 
 #pragma mark - editing view finish editing
 
-static int START_EDIT_VIEW_TAG = 1900;
-// tag for the last editing view, should dismiss keyboard when click
-static int END_EDIT_VIEW_TAG = 1999;
-
 - (void) viewFinishEditing:(UIView *)editingView {
     if (editingView.tag == END_EDIT_VIEW_TAG) {
         [self dismissKeyboard:nil];

@@ -9,6 +9,8 @@
 /*wm*/
 "Done" = "Done";
 "Back" = "Back";
+"Cancel" = "Cancel";
+"Save" = "Save";
 
 "login.username" = "User Name";
 "login.username.placeholder" = "HFXXXXXX";
@@ -30,6 +32,8 @@
 "printer.lbl.titleName" = "Printer";
 "printer.lbl.copy" = "copy";
 "printer.btn.print" = "Print";
+
+"addnewcustomer.title" = "ADD NEW CUSTOMER";
 
 
 /*Bo*/

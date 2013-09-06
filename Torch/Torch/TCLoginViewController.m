@@ -34,8 +34,8 @@
     lblPwd.text = [self localString:@"login.password"];
     txtUsername.placeholder =[self localString:@"login.username.placeholder"];
     txtPwd.placeholder = [self localString:@"login.password"];
-    btnSignIn.titleLabel.text = [self localString:@"login.signIn"];
-    btnReadMore.titleLabel.text = [self localString:@"login.readMore"];
+    [btnSignIn setTitle:[self localString:@"login.signIn"] forState:UIControlStateNormal];
+    [btnReadMore setTitle:[self localString:@"login.readMore"] forState:UIControlStateNormal];
     
     [self initTextFields];
 }
