@@ -119,6 +119,9 @@
 		DC6CB0BD17D5B2490091EFAB /* TCPrinterCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6CB0BB17D5B2490091EFAB /* TCPrinterCtl.m */; };
 		DC6CB0BE17D5B2490091EFAB /* TCPrinterCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC6CB0BC17D5B2490091EFAB /* TCPrinterCtl.xib */; };
 		DC74E34617CD8AEB00953259 /* TCDeckViewCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */; };
+		DC76817617DD718A0039DE1B /* NSObject+Association.m in Sources */ = {isa = PBXBuildFile; fileRef = DC76817517DD718A0039DE1B /* NSObject+Association.m */; };
+		DC76817917DD75C50039DE1B /* TCCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC76817817DD75C50039DE1B /* TCCustomer.m */; };
+		DC76817C17DD76DF0039DE1B /* DRTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DC76817B17DD76DF0039DE1B /* DRTextField.m */; };
 		DC96805017CF22700079D230 /* TCSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC96804F17CF22700079D230 /* TCSliderView.m */; };
 		DC96805317CF2E320079D230 /* TCSysRes.m in Sources */ = {isa = PBXBuildFile; fileRef = DC96805217CF2E320079D230 /* TCSysRes.m */; };
 		DC9979C317C5D4510044C917 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C117C5D4510044C917 /* navbar_bg.png */; };
@@ -301,6 +304,12 @@
 		DC6CB0BC17D5B2490091EFAB /* TCPrinterCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPrinterCtl.xib; sourceTree = "<group>"; };
 		DC74E34417CD8AEB00953259 /* TCDeckViewCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDeckViewCtl.h; sourceTree = "<group>"; };
 		DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDeckViewCtl.m; sourceTree = "<group>"; };
+		DC76817417DD718A0039DE1B /* NSObject+Association.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Association.h"; sourceTree = "<group>"; };
+		DC76817517DD718A0039DE1B /* NSObject+Association.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Association.m"; sourceTree = "<group>"; };
+		DC76817717DD75C50039DE1B /* TCCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCustomer.h; sourceTree = "<group>"; };
+		DC76817817DD75C50039DE1B /* TCCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCustomer.m; sourceTree = "<group>"; };
+		DC76817A17DD76DF0039DE1B /* DRTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRTextField.h; sourceTree = "<group>"; };
+		DC76817B17DD76DF0039DE1B /* DRTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRTextField.m; sourceTree = "<group>"; };
 		DC96804E17CF22700079D230 /* TCSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSliderView.h; sourceTree = "<group>"; };
 		DC96804F17CF22700079D230 /* TCSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSliderView.m; sourceTree = "<group>"; };
 		DC96805117CF2E320079D230 /* TCSysRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSysRes.h; sourceTree = "<group>"; };
@@ -606,6 +615,8 @@
 				DC96804F17CF22700079D230 /* TCSliderView.m */,
 				DC20E24D17D85C5A009FFC84 /* TCComboVw.h */,
 				DC20E24E17D85C5A009FFC84 /* TCComboVw.m */,
+				DC76817A17DD76DF0039DE1B /* DRTextField.h */,
+				DC76817B17DD76DF0039DE1B /* DRTextField.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -623,6 +634,8 @@
 				DCAFC89317CC7181006DEBB2 /* GraphicsUtils.m */,
 				DC96805117CF2E320079D230 /* TCSysRes.h */,
 				DC96805217CF2E320079D230 /* TCSysRes.m */,
+				DC76817417DD718A0039DE1B /* NSObject+Association.h */,
+				DC76817517DD718A0039DE1B /* NSObject+Association.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -670,6 +683,8 @@
 				DCE1D9EC17D468EF00823475 /* PromotionItem.m */,
 				D6C5A31217C7014400C0C657 /* ProductItemObject.h */,
 				D6C5A31317C7014400C0C657 /* ProductItemObject.m */,
+				DC76817717DD75C50039DE1B /* TCCustomer.h */,
+				DC76817817DD75C50039DE1B /* TCCustomer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -936,6 +951,9 @@
 				DC20E24B17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m in Sources */,
 				DC20E24F17D85C5A009FFC84 /* TCComboVw.m in Sources */,
 				D6831BCD17D8730700718881 /* TCOrderHistoryDetailCell.m in Sources */,
+				DC76817617DD718A0039DE1B /* NSObject+Association.m in Sources */,
+				DC76817917DD75C50039DE1B /* TCCustomer.m in Sources */,
+				DC76817C17DD76DF0039DE1B /* DRTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

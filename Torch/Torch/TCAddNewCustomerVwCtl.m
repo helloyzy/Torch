@@ -8,108 +8,58 @@
 
 #import "TCAddNewCustomerVwCtl.h"
 #import "TCSysRes.h"
-#import <objc/runtime.h>
+#import "NSObject+Association.h"
+#import "TCCustomer.h"
+#import "DRTextField.h"
 
 #define _TV_ROW_HEIGHT 40
 #define _TV_FIELD_FONTSIZE 14
 #define WIDTH(x) x.size.width
 #define HEIGHT(x) x.size.height
 
-//@interface DRTextPropObserver : NSObject
+//@interface DRTextField : UITextField
 //
-//@property (nonatomic, weak) UITextField * target;
+//+(DRTextField *) instance:(CGRect)frame data:(NSObject *)object prop:(NSString *)prop;
+//
+//@property (nonatomic, weak) NSObject * dataObject;
+//@property (nonatomic, copy) NSString * dataProperty;
 //
 //@end
 //
-//@implementation DRTextPropObserver
+//@implementation DRTextField
 //
-//-(id) initWithTarget:(UITextField *)target {
-//    self = [super init];
+//#define DRTextField_PropObserved @"text"
+//
+//- (void) dealloc {
+//    [self removeObserver:self forKeyPath:DRTextField_PropObserved];
+//}
+//
+//- (id) initWithFrame:(CGRect)frame {
+//    self = [super initWithFrame:frame];
 //    if (self) {
-//        self.target = target;
+//        // observe self's text property
+//        [self addObserver:self forKeyPath:DRTextField_PropObserved options:NSKeyValueObservingOptionNew context:NULL];
+//    }
+//    return self;
+//}
+//
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+//    if ([keyPath isEqualToString:DRTextField_PropObserved]) { // text change, save change to the dataObject
+//        if (self.dataObject && self.dataProperty) {
+//            [self.dataObject setValue:[change objectForKey:NSKeyValueChangeNewKey] forKey:self.dataProperty];
+//            [self.dataObject setModified];
+//        }
 //    }
 //}
 //
+//+ (DRTextField *) instance:(CGRect)frame data:(NSObject *)object prop:(NSString *)prop {
+//    DRTextField * result = [[DRTextField alloc] initWithFrame:frame];
+//    result.dataObject = object;
+//    result.dataProperty = prop;
+//    return result;
+//}
+//
 //@end
-
-@interface NSObject(Association)
-
-@end
-
-@implementation NSObject(Association)
-
-#define KEY_MODIFY @"KEY_MODIFY"
-
-- (BOOL)isModified {
-    return (objc_getAssociatedObject(self, KEY_MODIFY) != nil);
-}
-
-- (void)setModified {
-    NSNumber * value = [NSNumber numberWithInt:1];
-    objc_setAssociatedObject(self, KEY_MODIFY, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-@end
-
-@interface TCCustomer : NSObject
-
-@property(nonatomic, copy) NSString * storeName;
-@property(nonatomic, copy) NSString * streetName;
-@property(nonatomic, copy) NSString * city;
-@property(nonatomic, copy) NSString * state;
-@property(nonatomic, copy) NSString * zip;
-@property(nonatomic, copy) NSString * Mexico;
-@property(nonatomic, copy) NSString * storePhoneNum;
-
-@end
-
-@implementation TCCustomer
-
-@end
-
-@interface DRTextField : UITextField
-
-+(DRTextField *) instance:(CGRect)frame data:(NSObject *)object prop:(NSString *)prop;
-
-@property (nonatomic, weak) NSObject * dataObject;
-@property (nonatomic, copy) NSString * dataProperty;
-
-@end
-
-@implementation DRTextField
-
-#define DRTextField_PropObserved @"text"
-
-- (void) dealloc {
-    [self removeObserver:self forKeyPath:DRTextField_PropObserved];
-}
-
-- (id) initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // observe self's text property
-        [self addObserver:self forKeyPath:DRTextField_PropObserved options:NSKeyValueObservingOptionNew context:NULL];
-    }
-    return self;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:DRTextField_PropObserved]) { // text change, save change to the dataObject
-        if (self.dataObject && self.dataProperty) {
-            [self.dataObject setValue:[change objectForKey:NSKeyValueChangeNewKey] forKey:self.dataProperty];
-            [self.dataObject setModified];
-        }
-    }
-}
-
-+ (DRTextField *) instance:(CGRect)frame data:(NSObject *)object prop:(NSString *)prop {
-    DRTextField * result = [[DRTextField alloc] initWithFrame:frame];
-    result.dataObject = object;
-    result.dataProperty = prop;
-    return result;
-}
-
-@end
 
 
 DRTextField * _createTextField(CGFloat p_x, CGFloat p_y, CGFloat s_w, CGFloat s_h) {
