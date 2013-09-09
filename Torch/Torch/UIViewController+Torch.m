@@ -31,6 +31,7 @@
         UITapGestureRecognizer * clickRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
         [clickRecognizer setNumberOfTapsRequired:1];
         [clickRecognizer setNumberOfTouchesRequired:1];
+        clickRecognizer.cancelsTouchesInView = NO;
         [viewForTapToDismissKeyboard addGestureRecognizer:clickRecognizer];
     }
 }
