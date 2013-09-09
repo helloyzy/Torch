@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    TCEditingCellStyleCenter,
+    TCEditingCellStyleLeftRight
+} TCEditingCellStyle;
+
+@class DRTextField;
+
 @interface TCEditingCell : UITableViewCell
+
+- (id)initWithEditStyle:(TCEditingCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+
+@property(nonatomic, readonly) DRTextField * centerField;
+@property(nonatomic, readonly) DRTextField * leftField;
+@property(nonatomic, readonly) DRTextField * rightField;
 
 @end

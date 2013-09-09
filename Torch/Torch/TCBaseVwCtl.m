@@ -20,4 +20,12 @@
     return YES;
 }
 
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+//    return NO;
+//}
+
+//- (void)textFieldDidBeginEditing:(UITextField *)textField {
+//    NSLog(@"Did begin");
+//}
+
 @end

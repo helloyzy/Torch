@@ -11,6 +11,7 @@
 
 @interface TCAddNewCustomerVwCtl : TCBaseVwCtl <UITableViewDataSource, UITableViewDelegate> {
     __weak IBOutlet UILabel *lblTitle;
+    __weak IBOutlet UITableView *tblVw;
     
 }
 

@@ -23,6 +23,7 @@
 #import "TCOrderViewController.h"
 #import "TCPrinterCtl.h"
 #import "TCSurveyController.h"
+#import "TCAddNewCustomerVwCtl.h"
 
 @implementation TCAppDelegate
 

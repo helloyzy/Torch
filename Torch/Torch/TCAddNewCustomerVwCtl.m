@@ -11,67 +11,12 @@
 #import "NSObject+Association.h"
 #import "TCCustomer.h"
 #import "DRTextField.h"
+#import "TCEditingCell.h"
 
 #define _TV_ROW_HEIGHT 40
 #define _TV_FIELD_FONTSIZE 14
 #define WIDTH(x) x.size.width
 #define HEIGHT(x) x.size.height
-
-//@interface DRTextField : UITextField
-//
-//+(DRTextField *) instance:(CGRect)frame data:(NSObject *)object prop:(NSString *)prop;
-//
-//@property (nonatomic, weak) NSObject * dataObject;
-//@property (nonatomic, copy) NSString * dataProperty;
-//
-//@end
-//
-//@implementation DRTextField
-//
-//#define DRTextField_PropObserved @"text"
-//
-//- (void) dealloc {
-//    [self removeObserver:self forKeyPath:DRTextField_PropObserved];
-//}
-//
-//- (id) initWithFrame:(CGRect)frame {
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        // observe self's text property
-//        [self addObserver:self forKeyPath:DRTextField_PropObserved options:NSKeyValueObservingOptionNew context:NULL];
-//    }
-//    return self;
-//}
-//
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-//    if ([keyPath isEqualToString:DRTextField_PropObserved]) { // text change, save change to the dataObject
-//        if (self.dataObject && self.dataProperty) {
-//            [self.dataObject setValue:[change objectForKey:NSKeyValueChangeNewKey] forKey:self.dataProperty];
-//            [self.dataObject setModified];
-//        }
-//    }
-//}
-//
-//+ (DRTextField *) instance:(CGRect)frame data:(NSObject *)object prop:(NSString *)prop {
-//    DRTextField * result = [[DRTextField alloc] initWithFrame:frame];
-//    result.dataObject = object;
-//    result.dataProperty = prop;
-//    return result;
-//}
-//
-//@end
-
-
-DRTextField * _createTextField(CGFloat p_x, CGFloat p_y, CGFloat s_w, CGFloat s_h) {
-    DRTextField * result = [[DRTextField alloc] initWithFrame:CGRectMake(p_x, p_y, s_w, s_h)];
-    
-    // [cell.contentView addSubview:result];
-    return result;
-}
-
-DRTextField * createCenterTextField(UITableViewCell * cell) {
-    return  _createTextField(15, 11, 270, HEIGHT(cell.bounds) - 2 * 10);
-}
 
 static int textFieldTag = START_EDIT_VIEW_TAG;
 
@@ -87,7 +32,7 @@ int calculateTag(NSIndexPath * indexPath) {
     return textFieldTag ++;
 }
 
-void setupTextField(DRTextField * textField, NSIndexPath * indexPath, NSObject * modelObject, NSString * modelProp, NSString * textPlaceHolder, UIKeyboardType keyboardType, id delegate) {
+void customizeField(DRTextField * textField, NSIndexPath * indexPath, NSObject * modelObject, NSString * modelProp, NSString * textPlaceHolder, UIKeyboardType keyboardType, id delegate) {
     textField.font = TCFont_HNLTComLt(_TV_FIELD_FONTSIZE);
     textField.placeholder = textPlaceHolder;
     textField.dataObject = modelObject;
@@ -97,12 +42,6 @@ void setupTextField(DRTextField * textField, NSIndexPath * indexPath, NSObject *
     textField.returnKeyType = UIReturnKeyNext;
     textField.delegate = delegate;
     
-}
-
-void customizeSingleTextCell(UITableViewCell * cell, NSIndexPath * indexPath, NSObject * modelObject, NSString * modelProp, NSString * textPlaceHolder, UIKeyboardType keyboardType, id delegate) {
-    DRTextField * field = createCenterTextField(cell);
-    setupTextField(field, indexPath, modelObject, modelProp, textPlaceHolder, keyboardType, delegate);
-    [cell.contentView addSubview:field];
 }
 
 @interface TCAddNewCustomerVwCtl () {
@@ -164,16 +103,28 @@ void customizeSingleTextCell(UITableViewCell * cell, NSIndexPath * indexPath, NS
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - table view delegate 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return 1;
+            break;
+        case 1:
+            return 7;
+            break;
+        case 2:
+            return 4;
+            break;
+        default:
+            break;
+    }
     return 2;
 }
 
@@ -181,39 +132,96 @@ void customizeSingleTextCell(UITableViewCell * cell, NSIndexPath * indexPath, NS
     return _TV_ROW_HEIGHT;
 }
 
-//- (UITextField *)createTextField:(UITableViewCell *)cell {
-//    CGFloat p_x = 15;
-//    CGFloat p_y = 11;
-//    CGRect textFrame = CGRectMake(p_x, p_y, 270, HEIGHT(cell.bounds) - 2 * 10);
-//    UITextField * result = [[DRTextField alloc] initWithFrame:textFrame]; // [[UITextField alloc] initWithFrame:textFrame];
-//    // result.borderStyle = UITextBorderStyleLine;
-//    result.font = TCFont_HNLTComLt(14);
-//    result.placeholder = @"123";
-//    // result.text = @"123";
-//    [cell.contentView addSubview:result];
-//    return result;
-//}
+- (TCEditingCell *)singleTextCell {
+    return [[TCEditingCell alloc] initWithEditStyle:TCEditingCellStyleCenter reuseIdentifier:nil];
+}
+
+- (TCEditingCell *)doubleTextCell {
+    return [[TCEditingCell alloc] initWithEditStyle:TCEditingCellStyleLeftRight reuseIdentifier:nil];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UITableViewCell * cell;
+    TCEditingCell * editCell;
     if (indexPath.section == 0) {
+        editCell = [self singleTextCell];
+        customizeField(editCell.centerField, indexPath, self.customer, @"storeName", [self localString:@"storeName"], UIKeyboardTypeDefault, self);
+    } else if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
-                customizeSingleTextCell(cell, indexPath, self.customer, @"storeName", [self localString:@"storeName"], UIKeyboardTypeDefault, self);
+                editCell = [self singleTextCell];
+                customizeField(editCell.centerField, indexPath, self.customer, @"streetName", [self localString:@"streetName"], UIKeyboardTypeDefault, self);
                 break;
             case 1:
-                 customizeSingleTextCell(cell, indexPath, self.customer, @"streetName", [self localString:@"streetName"], UIKeyboardTypeDefault, self);
+                editCell = [self doubleTextCell];
+                customizeField(editCell.leftField, indexPath, self.customer, @"city", [self localString:@"city"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.rightField, indexPath, self.customer, @"state", [self localString:@"state"], UIKeyboardTypeDefault, self);
+                break;
+            case 2:
+                editCell = [self doubleTextCell];
+                customizeField(editCell.leftField, indexPath, self.customer, @"zip", [self localString:@"zip"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.rightField, indexPath, self.customer, @"mexico", [self localString:@"mexico"], UIKeyboardTypeDefault, self);
+                break;
+            case 3:
+                editCell = [self singleTextCell];
+                customizeField(editCell.centerField, indexPath, nil, nil, [self localString:@"Pais"], UIKeyboardTypeDefault, self);
+                break;
+            case 4:
+                editCell = [self singleTextCell];
+                customizeField(editCell.centerField, indexPath, nil, nil, [self localString:@"Calle de 1"], UIKeyboardTypeDefault, self);
+                break;
+            case 5:
+                editCell = [self singleTextCell];
+                customizeField(editCell.centerField, indexPath, nil, nil, [self localString:@"Calle de 2"], UIKeyboardTypeDefault, self);
+                break;
+            case 6:
+                editCell = [self singleTextCell];
+                customizeField(editCell.centerField, indexPath, self.customer, @"storePhoneNum", [self localString:@"storePhoneNum"], UIKeyboardTypePhonePad, self);
+                break;
+            default:
+                break;
+        }
+
+    } else if (indexPath.section == 2) {
+        switch (indexPath.row) {
+            case 0:
+                editCell = [self singleTextCell];
+                customizeField(editCell.centerField, indexPath, self.customer, @"streetName", [self localString:@"streetName"], UIKeyboardTypeDefault, self);
+                break;
+            case 1:
+                editCell = [self doubleTextCell];
+                customizeField(editCell.leftField, indexPath, self.customer, @"city", [self localString:@"city"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.rightField, indexPath, self.customer, @"state", [self localString:@"state"], UIKeyboardTypeDefault, self);
+                break;
+            case 2:
+                editCell = [self doubleTextCell];
+                customizeField(editCell.leftField, indexPath, self.customer, @"zip", [self localString:@"zip"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.rightField, indexPath, self.customer, @"mexico", [self localString:@"mexico"], UIKeyboardTypeDefault, self);
+                break;
+            case 3:
+                editCell = [self singleTextCell];
+                customizeField(editCell.centerField, indexPath, self.customer, @"storePhoneNum", [self localString:@"storePhoneNum"], UIKeyboardTypeDefault, self);
                 break;
             default:
                 break;
         }
     }
-    return cell;
+    if (cell) {
+        return cell;
+    } else if (editCell) {
+        return editCell;
+    }
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@_%@_%i", self.customer.storeName, self.customer.streetName, [self.customer isModified]);
+}
+
+#pragma mark - text field delegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [tblVw scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 @end
