@@ -122,6 +122,7 @@
 		DC76817617DD718A0039DE1B /* NSObject+Association.m in Sources */ = {isa = PBXBuildFile; fileRef = DC76817517DD718A0039DE1B /* NSObject+Association.m */; };
 		DC76817917DD75C50039DE1B /* TCCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC76817817DD75C50039DE1B /* TCCustomer.m */; };
 		DC76817C17DD76DF0039DE1B /* DRTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DC76817B17DD76DF0039DE1B /* DRTextField.m */; };
+		DC76817F17DD8F9F0039DE1B /* TCEditingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC76817E17DD8F9F0039DE1B /* TCEditingCell.m */; };
 		DC96805017CF22700079D230 /* TCSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC96804F17CF22700079D230 /* TCSliderView.m */; };
 		DC96805317CF2E320079D230 /* TCSysRes.m in Sources */ = {isa = PBXBuildFile; fileRef = DC96805217CF2E320079D230 /* TCSysRes.m */; };
 		DC9979C317C5D4510044C917 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C117C5D4510044C917 /* navbar_bg.png */; };
@@ -310,6 +311,8 @@
 		DC76817817DD75C50039DE1B /* TCCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCustomer.m; sourceTree = "<group>"; };
 		DC76817A17DD76DF0039DE1B /* DRTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRTextField.h; sourceTree = "<group>"; };
 		DC76817B17DD76DF0039DE1B /* DRTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRTextField.m; sourceTree = "<group>"; };
+		DC76817D17DD8F9F0039DE1B /* TCEditingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCEditingCell.h; sourceTree = "<group>"; };
+		DC76817E17DD8F9F0039DE1B /* TCEditingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEditingCell.m; sourceTree = "<group>"; };
 		DC96804E17CF22700079D230 /* TCSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSliderView.h; sourceTree = "<group>"; };
 		DC96804F17CF22700079D230 /* TCSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSliderView.m; sourceTree = "<group>"; };
 		DC96805117CF2E320079D230 /* TCSysRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSysRes.h; sourceTree = "<group>"; };
@@ -617,6 +620,8 @@
 				DC20E24E17D85C5A009FFC84 /* TCComboVw.m */,
 				DC76817A17DD76DF0039DE1B /* DRTextField.h */,
 				DC76817B17DD76DF0039DE1B /* DRTextField.m */,
+				DC76817D17DD8F9F0039DE1B /* TCEditingCell.h */,
+				DC76817E17DD8F9F0039DE1B /* TCEditingCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -954,6 +959,7 @@
 				DC76817617DD718A0039DE1B /* NSObject+Association.m in Sources */,
 				DC76817917DD75C50039DE1B /* TCCustomer.m in Sources */,
 				DC76817C17DD76DF0039DE1B /* DRTextField.m in Sources */,
+				DC76817F17DD8F9F0039DE1B /* TCEditingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

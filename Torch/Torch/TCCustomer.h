@@ -15,7 +15,7 @@
 @property(nonatomic, copy) NSString * city;
 @property(nonatomic, copy) NSString * state;
 @property(nonatomic, copy) NSString * zip;
-@property(nonatomic, copy) NSString * Mexico;
+@property(nonatomic, copy) NSString * mexico;
 @property(nonatomic, copy) NSString * storePhoneNum;
 
 @end
