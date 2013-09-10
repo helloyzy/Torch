@@ -127,6 +127,28 @@
 		DC0383DF17C4CE7F00BBD02A /* loginBtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */; };
 		DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */; };
 		DC16559E17DEF57000DD57D6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC16559C17DEF57000DD57D6 /* Model.xcdatamodeld */; };
+		DC1655CC17DF092500DD57D6 /* _Account.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655A117DF092500DD57D6 /* _Account.m */; };
+		DC1655CD17DF092500DD57D6 /* _Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655A317DF092500DD57D6 /* _Banner.m */; };
+		DC1655CE17DF092500DD57D6 /* _CalItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655A517DF092500DD57D6 /* _CalItem.m */; };
+		DC1655CF17DF092500DD57D6 /* _Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655A717DF092500DD57D6 /* _Contact.m */; };
+		DC1655D017DF092500DD57D6 /* _Note.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655A917DF092500DD57D6 /* _Note.m */; };
+		DC1655D117DF092500DD57D6 /* _Order.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655AB17DF092500DD57D6 /* _Order.m */; };
+		DC1655D217DF092500DD57D6 /* _OrderCredit.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655AD17DF092500DD57D6 /* _OrderCredit.m */; };
+		DC1655D317DF092500DD57D6 /* _OrderCreditItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655AF17DF092500DD57D6 /* _OrderCreditItem.m */; };
+		DC1655D417DF092500DD57D6 /* _SalesRep.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655B117DF092500DD57D6 /* _SalesRep.m */; };
+		DC1655D517DF092500DD57D6 /* _Store.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655B317DF092500DD57D6 /* _Store.m */; };
+		DC1655D617DF092500DD57D6 /* _StoreCall.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655B517DF092500DD57D6 /* _StoreCall.m */; };
+		DC1655D717DF092500DD57D6 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655B717DF092500DD57D6 /* Account.m */; };
+		DC1655D817DF092500DD57D6 /* Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655B917DF092500DD57D6 /* Banner.m */; };
+		DC1655D917DF092500DD57D6 /* CalItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655BB17DF092500DD57D6 /* CalItem.m */; };
+		DC1655DA17DF092500DD57D6 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655BD17DF092500DD57D6 /* Contact.m */; };
+		DC1655DB17DF092500DD57D6 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655BF17DF092500DD57D6 /* Note.m */; };
+		DC1655DC17DF092500DD57D6 /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655C117DF092500DD57D6 /* Order.m */; };
+		DC1655DD17DF092500DD57D6 /* OrderCredit.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655C317DF092500DD57D6 /* OrderCredit.m */; };
+		DC1655DE17DF092500DD57D6 /* OrderCreditItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655C517DF092500DD57D6 /* OrderCreditItem.m */; };
+		DC1655DF17DF092500DD57D6 /* SalesRep.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655C717DF092500DD57D6 /* SalesRep.m */; };
+		DC1655E017DF092500DD57D6 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655C917DF092500DD57D6 /* Store.m */; };
+		DC1655E117DF092500DD57D6 /* StoreCall.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655CB17DF092500DD57D6 /* StoreCall.m */; };
 		DC20E24B17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20E24917D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m */; };
 		DC20E24C17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC20E24A17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib */; };
 		DC20E24F17D85C5A009FFC84 /* TCComboVw.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20E24E17D85C5A009FFC84 /* TCComboVw.m */; };
@@ -309,6 +331,50 @@
 		DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_bg.png; sourceTree = "<group>"; };
 		DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_border.png; sourceTree = "<group>"; };
 		DC16559D17DEF57000DD57D6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DC1655A017DF092500DD57D6 /* _Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Account.h; sourceTree = "<group>"; };
+		DC1655A117DF092500DD57D6 /* _Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Account.m; sourceTree = "<group>"; };
+		DC1655A217DF092500DD57D6 /* _Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Banner.h; sourceTree = "<group>"; };
+		DC1655A317DF092500DD57D6 /* _Banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Banner.m; sourceTree = "<group>"; };
+		DC1655A417DF092500DD57D6 /* _CalItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CalItem.h; sourceTree = "<group>"; };
+		DC1655A517DF092500DD57D6 /* _CalItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _CalItem.m; sourceTree = "<group>"; };
+		DC1655A617DF092500DD57D6 /* _Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Contact.h; sourceTree = "<group>"; };
+		DC1655A717DF092500DD57D6 /* _Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Contact.m; sourceTree = "<group>"; };
+		DC1655A817DF092500DD57D6 /* _Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Note.h; sourceTree = "<group>"; };
+		DC1655A917DF092500DD57D6 /* _Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Note.m; sourceTree = "<group>"; };
+		DC1655AA17DF092500DD57D6 /* _Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Order.h; sourceTree = "<group>"; };
+		DC1655AB17DF092500DD57D6 /* _Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Order.m; sourceTree = "<group>"; };
+		DC1655AC17DF092500DD57D6 /* _OrderCredit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _OrderCredit.h; sourceTree = "<group>"; };
+		DC1655AD17DF092500DD57D6 /* _OrderCredit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _OrderCredit.m; sourceTree = "<group>"; };
+		DC1655AE17DF092500DD57D6 /* _OrderCreditItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _OrderCreditItem.h; sourceTree = "<group>"; };
+		DC1655AF17DF092500DD57D6 /* _OrderCreditItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _OrderCreditItem.m; sourceTree = "<group>"; };
+		DC1655B017DF092500DD57D6 /* _SalesRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SalesRep.h; sourceTree = "<group>"; };
+		DC1655B117DF092500DD57D6 /* _SalesRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SalesRep.m; sourceTree = "<group>"; };
+		DC1655B217DF092500DD57D6 /* _Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Store.h; sourceTree = "<group>"; };
+		DC1655B317DF092500DD57D6 /* _Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Store.m; sourceTree = "<group>"; };
+		DC1655B417DF092500DD57D6 /* _StoreCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _StoreCall.h; sourceTree = "<group>"; };
+		DC1655B517DF092500DD57D6 /* _StoreCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _StoreCall.m; sourceTree = "<group>"; };
+		DC1655B617DF092500DD57D6 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		DC1655B717DF092500DD57D6 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		DC1655B817DF092500DD57D6 /* Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Banner.h; sourceTree = "<group>"; };
+		DC1655B917DF092500DD57D6 /* Banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Banner.m; sourceTree = "<group>"; };
+		DC1655BA17DF092500DD57D6 /* CalItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalItem.h; sourceTree = "<group>"; };
+		DC1655BB17DF092500DD57D6 /* CalItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalItem.m; sourceTree = "<group>"; };
+		DC1655BC17DF092500DD57D6 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		DC1655BD17DF092500DD57D6 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		DC1655BE17DF092500DD57D6 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		DC1655BF17DF092500DD57D6 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		DC1655C017DF092500DD57D6 /* Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
+		DC1655C117DF092500DD57D6 /* Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Order.m; sourceTree = "<group>"; };
+		DC1655C217DF092500DD57D6 /* OrderCredit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCredit.h; sourceTree = "<group>"; };
+		DC1655C317DF092500DD57D6 /* OrderCredit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCredit.m; sourceTree = "<group>"; };
+		DC1655C417DF092500DD57D6 /* OrderCreditItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCreditItem.h; sourceTree = "<group>"; };
+		DC1655C517DF092500DD57D6 /* OrderCreditItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCreditItem.m; sourceTree = "<group>"; };
+		DC1655C617DF092500DD57D6 /* SalesRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalesRep.h; sourceTree = "<group>"; };
+		DC1655C717DF092500DD57D6 /* SalesRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalesRep.m; sourceTree = "<group>"; };
+		DC1655C817DF092500DD57D6 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
+		DC1655C917DF092500DD57D6 /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
+		DC1655CA17DF092500DD57D6 /* StoreCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreCall.h; sourceTree = "<group>"; };
+		DC1655CB17DF092500DD57D6 /* StoreCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreCall.m; sourceTree = "<group>"; };
 		DC20E24817D85BE1009FFC84 /* TCAddNewCustomerVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAddNewCustomerVwCtl.h; sourceTree = "<group>"; };
 		DC20E24917D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAddNewCustomerVwCtl.m; sourceTree = "<group>"; };
 		DC20E24A17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCAddNewCustomerVwCtl.xib; sourceTree = "<group>"; };
@@ -432,6 +498,7 @@
 		1C713BF517C2058100A903A6 /* Torch */ = {
 			isa = PBXGroup;
 			children = (
+				DC16559F17DF092500DD57D6 /* CoreData */,
 				DC9D57DD17C737C400EAFD2F /* 3rdparty */,
 				1C8187A917C490B700AF7AF0 /* Fonts */,
 				DC0383C317C343D500BBD02A /* Utils */,
@@ -660,6 +727,57 @@
 				DC76817517DD718A0039DE1B /* NSObject+Association.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		DC16559F17DF092500DD57D6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				DC1655A017DF092500DD57D6 /* _Account.h */,
+				DC1655A117DF092500DD57D6 /* _Account.m */,
+				DC1655A217DF092500DD57D6 /* _Banner.h */,
+				DC1655A317DF092500DD57D6 /* _Banner.m */,
+				DC1655A417DF092500DD57D6 /* _CalItem.h */,
+				DC1655A517DF092500DD57D6 /* _CalItem.m */,
+				DC1655A617DF092500DD57D6 /* _Contact.h */,
+				DC1655A717DF092500DD57D6 /* _Contact.m */,
+				DC1655A817DF092500DD57D6 /* _Note.h */,
+				DC1655A917DF092500DD57D6 /* _Note.m */,
+				DC1655AA17DF092500DD57D6 /* _Order.h */,
+				DC1655AB17DF092500DD57D6 /* _Order.m */,
+				DC1655AC17DF092500DD57D6 /* _OrderCredit.h */,
+				DC1655AD17DF092500DD57D6 /* _OrderCredit.m */,
+				DC1655AE17DF092500DD57D6 /* _OrderCreditItem.h */,
+				DC1655AF17DF092500DD57D6 /* _OrderCreditItem.m */,
+				DC1655B017DF092500DD57D6 /* _SalesRep.h */,
+				DC1655B117DF092500DD57D6 /* _SalesRep.m */,
+				DC1655B217DF092500DD57D6 /* _Store.h */,
+				DC1655B317DF092500DD57D6 /* _Store.m */,
+				DC1655B417DF092500DD57D6 /* _StoreCall.h */,
+				DC1655B517DF092500DD57D6 /* _StoreCall.m */,
+				DC1655B617DF092500DD57D6 /* Account.h */,
+				DC1655B717DF092500DD57D6 /* Account.m */,
+				DC1655B817DF092500DD57D6 /* Banner.h */,
+				DC1655B917DF092500DD57D6 /* Banner.m */,
+				DC1655BA17DF092500DD57D6 /* CalItem.h */,
+				DC1655BB17DF092500DD57D6 /* CalItem.m */,
+				DC1655BC17DF092500DD57D6 /* Contact.h */,
+				DC1655BD17DF092500DD57D6 /* Contact.m */,
+				DC1655BE17DF092500DD57D6 /* Note.h */,
+				DC1655BF17DF092500DD57D6 /* Note.m */,
+				DC1655C017DF092500DD57D6 /* Order.h */,
+				DC1655C117DF092500DD57D6 /* Order.m */,
+				DC1655C217DF092500DD57D6 /* OrderCredit.h */,
+				DC1655C317DF092500DD57D6 /* OrderCredit.m */,
+				DC1655C417DF092500DD57D6 /* OrderCreditItem.h */,
+				DC1655C517DF092500DD57D6 /* OrderCreditItem.m */,
+				DC1655C617DF092500DD57D6 /* SalesRep.h */,
+				DC1655C717DF092500DD57D6 /* SalesRep.m */,
+				DC1655C817DF092500DD57D6 /* Store.h */,
+				DC1655C917DF092500DD57D6 /* Store.m */,
+				DC1655CA17DF092500DD57D6 /* StoreCall.h */,
+				DC1655CB17DF092500DD57D6 /* StoreCall.m */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		DC9D57DD17C737C400EAFD2F /* 3rdparty */ = {
@@ -992,6 +1110,28 @@
 				DC76817C17DD76DF0039DE1B /* DRTextField.m in Sources */,
 				DC76817F17DD8F9F0039DE1B /* TCEditingCell.m in Sources */,
 				DC16559E17DEF57000DD57D6 /* Model.xcdatamodeld in Sources */,
+				DC1655CC17DF092500DD57D6 /* _Account.m in Sources */,
+				DC1655CD17DF092500DD57D6 /* _Banner.m in Sources */,
+				DC1655CE17DF092500DD57D6 /* _CalItem.m in Sources */,
+				DC1655CF17DF092500DD57D6 /* _Contact.m in Sources */,
+				DC1655D017DF092500DD57D6 /* _Note.m in Sources */,
+				DC1655D117DF092500DD57D6 /* _Order.m in Sources */,
+				DC1655D217DF092500DD57D6 /* _OrderCredit.m in Sources */,
+				DC1655D317DF092500DD57D6 /* _OrderCreditItem.m in Sources */,
+				DC1655D417DF092500DD57D6 /* _SalesRep.m in Sources */,
+				DC1655D517DF092500DD57D6 /* _Store.m in Sources */,
+				DC1655D617DF092500DD57D6 /* _StoreCall.m in Sources */,
+				DC1655D717DF092500DD57D6 /* Account.m in Sources */,
+				DC1655D817DF092500DD57D6 /* Banner.m in Sources */,
+				DC1655D917DF092500DD57D6 /* CalItem.m in Sources */,
+				DC1655DA17DF092500DD57D6 /* Contact.m in Sources */,
+				DC1655DB17DF092500DD57D6 /* Note.m in Sources */,
+				DC1655DC17DF092500DD57D6 /* Order.m in Sources */,
+				DC1655DD17DF092500DD57D6 /* OrderCredit.m in Sources */,
+				DC1655DE17DF092500DD57D6 /* OrderCreditItem.m in Sources */,
+				DC1655DF17DF092500DD57D6 /* SalesRep.m in Sources */,
+				DC1655E017DF092500DD57D6 /* Store.m in Sources */,
+				DC1655E117DF092500DD57D6 /* StoreCall.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
