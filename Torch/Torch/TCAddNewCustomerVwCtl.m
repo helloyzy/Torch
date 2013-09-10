@@ -18,8 +18,6 @@
 #define WIDTH(x) x.size.width
 #define HEIGHT(x) x.size.height
 
-static int textFieldTag = START_EDIT_VIEW_TAG;
-
 int rowDeviation(NSIndexPath * indexPath) {
     int result = 0;
     if (indexPath.section == 1 || indexPath.section == 2) {
@@ -46,18 +44,8 @@ int calculateTag(NSIndexPath * indexPath, int column) {
         NSLog(@"Not enough tag values in 'Add New Customer' view");
         return -1; // NOT ENOUGH TAG VALUES!
     }
-    NSLog(@"Section: %i, Row: %i, Tag is %i", indexPath.section, indexPath.row, result);
+    // NSLog(@"Section: %i, Row: %i, Tag is %i", indexPath.section, indexPath.row, result);
     return result;
-
-//    if (indexPath.section == 0 && indexPath.row == 0) {
-//        // reset on first editing control
-//        textFieldTag = START_EDIT_VIEW_TAG;
-//    }
-//    if (textFieldTag == END_EDIT_VIEW_TAG) {
-//        NSLog(@"Not enough tag values in 'Add New Customer' view");
-//        return -1; // NOT ENOUGH TAG VALUES!
-//    }
-//    return textFieldTag ++;
 }
 
 void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column, NSObject * modelObject, NSString * modelProp, NSString * textPlaceHolder, UIKeyboardType keyboardType, id delegate) {
@@ -160,12 +148,22 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     return _TV_ROW_HEIGHT;
 }
 
+- (TCEditingCell *)editingCell:(TCEditingCellStyle)editingStyle reuseIdentifier:(NSString *)reuseIdentifier {
+    TCEditingCell * cell = (TCEditingCell *)[tblVw dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (!cell) {
+        cell = [[TCEditingCell alloc] initWithEditStyle:editingStyle reuseIdentifier:reuseIdentifier];
+    }
+    return cell;
+}
+
 - (TCEditingCell *)singleTextCell {
-    return [[TCEditingCell alloc] initWithEditStyle:TCEditingCellStyleCenter reuseIdentifier:nil];
+    static NSString * singleReuseIdentifier = @"SingleCell";
+    return [self editingCell:TCEditingCellStyleCenter reuseIdentifier:singleReuseIdentifier];
 }
 
 - (TCEditingCell *)doubleTextCell {
-    return [[TCEditingCell alloc] initWithEditStyle:TCEditingCellStyleLeftRight reuseIdentifier:nil];
+    static NSString * doubleTextReuseIdentifier = @"DoubleTextCell";
+    return [self editingCell:TCEditingCellStyleLeftRight reuseIdentifier:doubleTextReuseIdentifier];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -278,7 +276,9 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 #pragma mark - text field delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [tblVw scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
+    NSLog(@"did begin");
+    // [tblVw scrollRectToVisible:textField.frame animated:YES];
+    // [tblVw scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 @end
