@@ -126,6 +126,7 @@
 		DC0383D817C45C5000BBD02A /* HersheysBG.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383D717C45C5000BBD02A /* HersheysBG.png */; };
 		DC0383DF17C4CE7F00BBD02A /* loginBtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */; };
 		DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */; };
+		DC16559E17DEF57000DD57D6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC16559C17DEF57000DD57D6 /* Model.xcdatamodeld */; };
 		DC20E24B17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20E24917D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m */; };
 		DC20E24C17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC20E24A17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib */; };
 		DC20E24F17D85C5A009FFC84 /* TCComboVw.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20E24E17D85C5A009FFC84 /* TCComboVw.m */; };
@@ -307,6 +308,7 @@
 		DC0383D717C45C5000BBD02A /* HersheysBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HersheysBG.png; sourceTree = "<group>"; };
 		DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_bg.png; sourceTree = "<group>"; };
 		DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_border.png; sourceTree = "<group>"; };
+		DC16559D17DEF57000DD57D6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DC20E24817D85BE1009FFC84 /* TCAddNewCustomerVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAddNewCustomerVwCtl.h; sourceTree = "<group>"; };
 		DC20E24917D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAddNewCustomerVwCtl.m; sourceTree = "<group>"; };
 		DC20E24A17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCAddNewCustomerVwCtl.xib; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 				DC0383A617C3058500BBD02A /* Controller */,
 				1C713BFE17C2058100A903A6 /* TCAppDelegate.h */,
 				1C713BFF17C2058100A903A6 /* TCAppDelegate.m */,
+				DC16559C17DEF57000DD57D6 /* Model.xcdatamodeld */,
 				1C713BF617C2058100A903A6 /* Supporting Files */,
 			);
 			path = Torch;
@@ -917,7 +920,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/mogenerator -m Model.xcdatamodeld/Model.xcdatamodel/ --template-var arc=true --output-dir CoreData/";
+			shellScript = "cd Torch\n/usr/bin/mogenerator -m Model.xcdatamodeld/Model.xcdatamodel/ --template-var arc=true --output-dir CoreData/";
 		};
 		ED860B94875F45BB9E5B58F1 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -988,6 +991,7 @@
 				DC76817917DD75C50039DE1B /* TCCustomer.m in Sources */,
 				DC76817C17DD76DF0039DE1B /* DRTextField.m in Sources */,
 				DC76817F17DD8F9F0039DE1B /* TCEditingCell.m in Sources */,
+				DC16559E17DEF57000DD57D6 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1212,6 +1216,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DC16559C17DEF57000DD57D6 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DC16559D17DEF57000DD57D6 /* Model.xcdatamodel */,
+			);
+			currentVersion = DC16559D17DEF57000DD57D6 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1C713BE417C2058000A903A6 /* Project object */;
 }
