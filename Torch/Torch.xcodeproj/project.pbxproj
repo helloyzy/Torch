@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		DC16559717DEE86200DD57D6 /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = DC16559817DEE86200DD57D6 /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				DC16559B17DEE87900DD57D6 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1C21A52117CB214100627852 /* TCMyDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C21A52017CB214100627852 /* TCMyDayCell.m */; };
 		1C21A52417CB22E700627852 /* TCCallHighlightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C21A52317CB22E700627852 /* TCCallHighlightCell.m */; };
@@ -759,6 +773,7 @@
 			targets = (
 				1C713BEB17C2058000A903A6 /* Torch */,
 				1C713C1117C2058100A903A6 /* TorchTests */,
+				DC16559717DEE86200DD57D6 /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -890,6 +905,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		DC16559B17DEE87900DD57D6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/mogenerator -m Model.xcdatamodeld/Model.xcdatamodel/ --template-var arc=true --output-dir CoreData/";
 		};
 		ED860B94875F45BB9E5B58F1 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1131,6 +1159,20 @@
 			};
 			name = Release;
 		};
+		DC16559917DEE86200DD57D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DC16559A17DEE86200DD57D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1160,6 +1202,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		DC16559817DEE86200DD57D6 /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC16559917DEE86200DD57D6 /* Debug */,
+				DC16559A17DEE86200DD57D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
