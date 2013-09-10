@@ -20,25 +20,53 @@
 
 static int textFieldTag = START_EDIT_VIEW_TAG;
 
-int calculateTag(NSIndexPath * indexPath) {
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        // reset on first editing control
-        textFieldTag = START_EDIT_VIEW_TAG;
+int rowDeviation(NSIndexPath * indexPath) {
+    int result = 0;
+    if (indexPath.section == 1 || indexPath.section == 2) {
+        if (indexPath.row == 2) {
+            result = 1;
+        } else if (indexPath.row > 2) {
+            result = 2;
+        }
     }
-    if (textFieldTag == END_EDIT_VIEW_TAG) {
+    return result;
+}
+
+int calculateTag(NSIndexPath * indexPath, int column) {
+    static int countPerSection[] = {1, 9, 6, 0};
+    int result = 0;
+    // previous sections
+    for (int i = 0; i < indexPath.section; i++) {
+        result += countPerSection[i];
+    }
+    result += indexPath.row + rowDeviation(indexPath);
+    result += column;
+    result += START_EDIT_VIEW_TAG;
+    if (result >= END_EDIT_VIEW_TAG) {
         NSLog(@"Not enough tag values in 'Add New Customer' view");
         return -1; // NOT ENOUGH TAG VALUES!
     }
-    return textFieldTag ++;
+    NSLog(@"Section: %i, Row: %i, Tag is %i", indexPath.section, indexPath.row, result);
+    return result;
+
+//    if (indexPath.section == 0 && indexPath.row == 0) {
+//        // reset on first editing control
+//        textFieldTag = START_EDIT_VIEW_TAG;
+//    }
+//    if (textFieldTag == END_EDIT_VIEW_TAG) {
+//        NSLog(@"Not enough tag values in 'Add New Customer' view");
+//        return -1; // NOT ENOUGH TAG VALUES!
+//    }
+//    return textFieldTag ++;
 }
 
-void customizeField(DRTextField * textField, NSIndexPath * indexPath, NSObject * modelObject, NSString * modelProp, NSString * textPlaceHolder, UIKeyboardType keyboardType, id delegate) {
+void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column, NSObject * modelObject, NSString * modelProp, NSString * textPlaceHolder, UIKeyboardType keyboardType, id delegate) {
     textField.font = TCFont_HNLTComLt(_TV_FIELD_FONTSIZE);
     textField.placeholder = textPlaceHolder;
     textField.dataObject = modelObject;
     textField.dataProperty = modelProp;
     textField.keyboardType = keyboardType;
-    textField.tag = calculateTag(indexPath);
+    textField.tag = calculateTag(indexPath, column);
     textField.returnKeyType = UIReturnKeyNext;
     textField.delegate = delegate;
     
@@ -145,38 +173,38 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, NSObject *
     TCEditingCell * editCell;
     if (indexPath.section == 0) {
         editCell = [self singleTextCell];
-        customizeField(editCell.centerField, indexPath, self.customer, @"storeName", [self localString:@"storeName"], UIKeyboardTypeDefault, self);
+        customizeField(editCell.centerField, indexPath, 0, self.customer, @"storeName", [self localString:@"storeName"], UIKeyboardTypeDefault, self);
     } else if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, self.customer, @"streetName", [self localString:@"streetName"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetName", [self localString:@"streetName"], UIKeyboardTypeDefault, self);
                 break;
             case 1:
                 editCell = [self doubleTextCell];
-                customizeField(editCell.leftField, indexPath, self.customer, @"city", [self localString:@"city"], UIKeyboardTypeDefault, self);
-                customizeField(editCell.rightField, indexPath, self.customer, @"state", [self localString:@"state"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.leftField, indexPath, 0, self.customer, @"city", [self localString:@"city"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.rightField, indexPath, 1, self.customer, @"state", [self localString:@"state"], UIKeyboardTypeDefault, self);
                 break;
             case 2:
                 editCell = [self doubleTextCell];
-                customizeField(editCell.leftField, indexPath, self.customer, @"zip", [self localString:@"zip"], UIKeyboardTypeDefault, self);
-                customizeField(editCell.rightField, indexPath, self.customer, @"mexico", [self localString:@"mexico"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.leftField, indexPath, 0, self.customer, @"zip", [self localString:@"zip"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.rightField, indexPath, 1, self.customer, @"mexico", [self localString:@"mexico"], UIKeyboardTypeDefault, self);
                 break;
             case 3:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, nil, nil, [self localString:@"Pais"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0,  nil, nil, [self localString:@"Pais"], UIKeyboardTypeDefault, self);
                 break;
             case 4:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, nil, nil, [self localString:@"Calle de 1"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, nil, nil, [self localString:@"Calle de 1"], UIKeyboardTypeDefault, self);
                 break;
             case 5:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, nil, nil, [self localString:@"Calle de 2"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, nil, nil, [self localString:@"Calle de 2"], UIKeyboardTypeDefault, self);
                 break;
             case 6:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, self.customer, @"storePhoneNum", [self localString:@"storePhoneNum"], UIKeyboardTypePhonePad, self);
+                customizeField(editCell.centerField, indexPath, 0, self.customer, @"storePhoneNum", [self localString:@"storePhoneNum"], UIKeyboardTypePhonePad, self);
                 break;
             default:
                 break;
@@ -186,21 +214,21 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, NSObject *
         switch (indexPath.row) {
             case 0:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, self.customer, @"streetName", [self localString:@"streetName"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetName", [self localString:@"streetName"], UIKeyboardTypeDefault, self);
                 break;
             case 1:
                 editCell = [self doubleTextCell];
-                customizeField(editCell.leftField, indexPath, self.customer, @"city", [self localString:@"city"], UIKeyboardTypeDefault, self);
-                customizeField(editCell.rightField, indexPath, self.customer, @"state", [self localString:@"state"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.leftField, indexPath, 0, self.customer, @"city", [self localString:@"city"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.rightField, indexPath, 1, self.customer, @"state", [self localString:@"state"], UIKeyboardTypeDefault, self);
                 break;
             case 2:
                 editCell = [self doubleTextCell];
-                customizeField(editCell.leftField, indexPath, self.customer, @"zip", [self localString:@"zip"], UIKeyboardTypeDefault, self);
-                customizeField(editCell.rightField, indexPath, self.customer, @"mexico", [self localString:@"mexico"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.leftField, indexPath, 0, self.customer, @"zip", [self localString:@"zip"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.rightField, indexPath, 1, self.customer, @"mexico", [self localString:@"mexico"], UIKeyboardTypeDefault, self);
                 break;
             case 3:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, self.customer, @"storePhoneNum", [self localString:@"storePhoneNum"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, self.customer, @"storePhoneNum", [self localString:@"storePhoneNum"], UIKeyboardTypeDefault, self);
                 break;
             default:
                 break;
@@ -217,6 +245,35 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, NSObject *
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@_%@_%i", self.customer.storeName, self.customer.streetName, [self.customer isModified]);
 }
+
+#pragma mark - decorate text field for cell
+
+//- (NSInteger) availableViewTags:(UIView *)superVw initialTagVal:(NSInteger)tagVal {
+//    NSInteger result = tagVal;
+//    while ([superVw viewWithTag:result]) {
+//        result ++;
+//    }
+//    return result;
+//}
+//
+//- (NSInteger) calculateTag:(NSIndexPath *)indexPath column:(NSInteger)column {
+//    static int countPerSection[] = {1, 9, 6, 0};
+//    int result = 0;
+//    // previous sections
+//    for (int i = 0; i < indexPath.section; i++) {
+//        result += countPerSection[i];
+//    }
+//    result += indexPath.row;
+//    result += column;
+//    result += START_EDIT_VIEW_TAG;
+//    result = [self availableViewTags:tblVw initialTagVal:result];
+//    if (result >= END_EDIT_VIEW_TAG) {
+//        NSLog(@"Not enough tag values in 'Add New Customer' view");
+//        return -1; // NOT ENOUGH TAG VALUES!
+//    }
+//    NSLog(@"Tag is %i", result);
+//    return result;
+//}
 
 #pragma mark - text field delegate
 
