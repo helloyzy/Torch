@@ -13,14 +13,14 @@
 #import "DRTextField.h"
 #import "TCEditingCell.h"
 
-#define _TV_ROW_HEIGHT 40
+#define _TV_ROW_HEIGHT 36
 #define _TV_FIELD_FONTSIZE 14
 #define WIDTH(x) x.size.width
 #define HEIGHT(x) x.size.height
 
 int rowDeviation(NSIndexPath * indexPath) {
     int result = 0;
-    if (indexPath.section == 1 || indexPath.section == 2) {
+    if (indexPath.section == 1) {  // || indexPath.section == 2
         if (indexPath.row == 2) {
             result = 1;
         } else if (indexPath.row > 2) {
@@ -31,7 +31,7 @@ int rowDeviation(NSIndexPath * indexPath) {
 }
 
 int calculateTag(NSIndexPath * indexPath, int column) {
-    static int countPerSection[] = {1, 9, 6, 0};
+    static int countPerSection[] = {1, 9, 0, 1, 0, 0};
     int result = 0;
     // previous sections
     for (int i = 0; i < indexPath.section; i++) {
@@ -124,7 +124,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 #pragma mark - table view delegate 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 8;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -136,34 +136,35 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             return 7;
             break;
         case 2:
-            return 4;
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+            return 1;
             break;
         default:
             break;
     }
-    return 2;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return _TV_ROW_HEIGHT;
 }
 
-- (TCEditingCell *)editingCell:(TCEditingCellStyle)editingStyle reuseIdentifier:(NSString *)reuseIdentifier {
-    TCEditingCell * cell = (TCEditingCell *)[tblVw dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (!cell) {
-        cell = [[TCEditingCell alloc] initWithEditStyle:editingStyle reuseIdentifier:reuseIdentifier];
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == 2) { //section ==2 --> button section
+        return 13.0;
     }
-    return cell;
+    return 5.0;
 }
 
-- (TCEditingCell *)singleTextCell {
-    static NSString * singleReuseIdentifier = @"SingleCell";
-    return [self editingCell:TCEditingCellStyleCenter reuseIdentifier:singleReuseIdentifier];
-}
-
-- (TCEditingCell *)doubleTextCell {
-    static NSString * doubleTextReuseIdentifier = @"DoubleTextCell";
-    return [self editingCell:TCEditingCellStyleLeftRight reuseIdentifier:doubleTextReuseIdentifier];
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return  10.0;
+    }
+    return 5.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -209,27 +210,41 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         }
 
     } else if (indexPath.section == 2) {
-        switch (indexPath.row) {
-            case 0:
-                editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetName", [self localString:@"streetName"], UIKeyboardTypeDefault, self);
-                break;
-            case 1:
-                editCell = [self doubleTextCell];
-                customizeField(editCell.leftField, indexPath, 0, self.customer, @"city", [self localString:@"city"], UIKeyboardTypeDefault, self);
-                customizeField(editCell.rightField, indexPath, 1, self.customer, @"state", [self localString:@"state"], UIKeyboardTypeDefault, self);
-                break;
-            case 2:
-                editCell = [self doubleTextCell];
-                customizeField(editCell.leftField, indexPath, 0, self.customer, @"zip", [self localString:@"zip"], UIKeyboardTypeDefault, self);
-                customizeField(editCell.rightField, indexPath, 1, self.customer, @"mexico", [self localString:@"mexico"], UIKeyboardTypeDefault, self);
-                break;
-            case 3:
-                editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, self.customer, @"storePhoneNum", [self localString:@"storePhoneNum"], UIKeyboardTypeDefault, self);
-                break;
-            default:
-                break;
+        static NSString * btnCellIdentifier = @"btnCell";
+        cell = [tblVw dequeueReusableCellWithIdentifier:btnCellIdentifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:btnCellIdentifier];
+            UIView * bgVw = [[UIView alloc] initWithFrame:CGRectZero];
+            bgVw.backgroundColor = [UIColor clearColor];
+            cell.backgroundView = bgVw;
+            // cell.backgroundColor = [UIColor clearColor];
+            // cell.contentView.backgroundColor = [UIColor clearColor];
+            CGRect btnFrame = CGRectMake(0, 0, cell.contentView.bounds.size.width - 18, CGRectGetHeight(cell.contentView.bounds));
+            UIButton * btn = [[UIButton alloc] initWithFrame:btnFrame]; // CGRectInset(cell.bounds, 5, 5)
+            btn.titleLabel.font = TCFont_HNLTComBd(14);
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [btn setTitle:[self localString:@"ObtainGPSInfo"] forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"bluebutton.png"] forState:UIControlStateNormal];
+            [cell.contentView addSubview:btn];
+        }
+    } else if (indexPath.section == 3) {
+        editCell = [self singleTextCell];
+        customizeField(editCell.centerField, indexPath, 0, nil, nil, [self localString:@"RFC"], UIKeyboardTypeDefault, self);
+    } else if (indexPath.section == 4) {
+        editCell = [self comboCell];
+        editCell.backgroundColor = [UIColor darkGrayColor];
+        customizeField(editCell.leftField, indexPath, 0, nil, nil, [self localString:@"Tipo de Cliente"], UIKeyboardTypeDefault, self);
+        // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    } else if (indexPath.section == 5) {
+        editCell = [self comboCell];
+        editCell.backgroundColor = [UIColor darkGrayColor];
+        customizeField(editCell.leftField, indexPath, 0, nil, nil, [self localString:@"Visita Dia"], UIKeyboardTypeDefault, self);
+        // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    } else if (indexPath.section == 6 || indexPath.section == 7) {
+        static NSString * addCellIdentifier = @"addCell";
+        cell = [tblVw dequeueReusableCellWithIdentifier:addCellIdentifier];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:addCellIdentifier];
         }
     }
     if (cell) {
@@ -242,6 +257,31 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@_%@_%i", self.customer.storeName, self.customer.streetName, [self.customer isModified]);
+}
+
+#pragma mark - customized table view cell
+
+- (TCEditingCell *)editingCell:(TCEditingCellStyle)editingStyle reuseIdentifier:(NSString *)reuseIdentifier {
+    TCEditingCell * cell = (TCEditingCell *)[tblVw dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (!cell) {
+        cell = [[TCEditingCell alloc] initWithEditStyle:editingStyle reuseIdentifier:reuseIdentifier];
+    }
+    return cell;
+}
+
+- (TCEditingCell *)singleTextCell {
+    static NSString * singleReuseIdentifier = @"SingleCell";
+    return [self editingCell:TCEditingCellStyleCenter reuseIdentifier:singleReuseIdentifier];
+}
+
+- (TCEditingCell *)doubleTextCell {
+    static NSString * doubleTextReuseIdentifier = @"DoubleTextCell";
+    return [self editingCell:TCEditingCellStyleLeftRight reuseIdentifier:doubleTextReuseIdentifier];
+}
+
+- (TCEditingCell *)comboCell {
+    static NSString * comboCellIdentifier = @"ComboCell";
+    return [self editingCell:TCEditingCellStyleLeftFieldRightBtn reuseIdentifier:comboCellIdentifier];
 }
 
 #pragma mark - decorate text field for cell

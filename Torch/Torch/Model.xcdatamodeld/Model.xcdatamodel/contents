@@ -16,6 +16,8 @@
         <relationship name="orderCredit" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OrderCredit" inverseName="account" inverseEntity="OrderCredit" syncable="YES"/>
     </entity>
     <entity name="Banner" representedClassName="Banner" syncable="YES">
+        <attribute name="analytics" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bannerId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bannerName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
@@ -52,12 +54,14 @@
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isKdm" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobilePhone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="picture" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="preferredContactMethod" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="textNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="contact" inverseEntity="Note" syncable="YES"/>
         <relationship name="orderCredit" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OrderCredit" inverseName="contact" inverseEntity="OrderCredit" syncable="YES"/>
         <relationship name="store" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="contacts" inverseEntity="Store" syncable="YES"/>
     </entity>
@@ -66,9 +70,10 @@
         <attribute name="createdDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="externalDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="noteType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="notes" inverseEntity="Contact" syncable="YES"/>
         <relationship name="storeCall" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="StoreCall" inverseName="notes" inverseEntity="StoreCall" syncable="YES"/>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES">
@@ -123,21 +128,25 @@
         <attribute name="managerNetworkId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="networkId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="banners" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Banner" inverseName="salesRep" inverseEntity="Banner" syncable="YES"/>
     </entity>
     <entity name="Store" representedClassName="Store" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="analytics" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="creditAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="creditType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="distributor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="faxNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="modelTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postalCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="products" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="schedule" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
@@ -157,16 +166,16 @@
         <relationship name="store" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="storeCalls" inverseEntity="Store" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="801" positionY="279" width="135" height="283"/>
-        <element name="StoreCall" positionX="1206" positionY="72" width="135" height="178"/>
-        <element name="Note" positionX="1386" positionY="72" width="135" height="163"/>
-        <element name="Banner" positionX="792" positionY="81" width="135" height="118"/>
-        <element name="SalesRep" positionX="585" positionY="27" width="135" height="180"/>
-        <element name="Store" positionX="1000" positionY="0" width="135" height="298"/>
-        <element name="Account" positionX="1150" positionY="828" width="128" height="238"/>
-        <element name="CalItem" positionX="1143" positionY="450" width="128" height="328"/>
-        <element name="OrderCreditItem" positionX="954" positionY="585" width="128" height="208"/>
-        <element name="OrderCredit" positionX="790" positionY="602" width="128" height="343"/>
+        <element name="Account" positionX="763" positionY="860" width="128" height="238"/>
+        <element name="Banner" positionX="792" positionY="81" width="135" height="148"/>
+        <element name="CalItem" positionX="1188" positionY="617" width="128" height="328"/>
+        <element name="Contact" positionX="999" positionY="389" width="135" height="313"/>
+        <element name="Note" positionX="1179" positionY="369" width="135" height="178"/>
         <element name="Order" positionX="621" positionY="608" width="128" height="148"/>
+        <element name="OrderCredit" positionX="799" positionY="378" width="128" height="343"/>
+        <element name="OrderCreditItem" positionX="1015" positionY="881" width="128" height="208"/>
+        <element name="SalesRep" positionX="585" positionY="27" width="135" height="193"/>
+        <element name="Store" positionX="1000" positionY="0" width="135" height="343"/>
+        <element name="StoreCall" positionX="1206" positionY="72" width="135" height="178"/>
     </elements>
 </model>

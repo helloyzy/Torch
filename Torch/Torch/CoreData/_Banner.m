@@ -4,6 +4,8 @@
 #import "_Banner.h"
 
 const struct BannerAttributes BannerAttributes = {
+	.analytics = @"analytics",
+	.bannerId = @"bannerId",
 	.bannerName = @"bannerName",
 	.lastModifiedDate = @"lastModifiedDate",
 	.remoteKey = @"remoteKey",
@@ -51,6 +53,20 @@ const struct BannerFetchedProperties BannerFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic analytics;
+
+
+
+
+
+
+@dynamic bannerId;
+
+
 
 
 

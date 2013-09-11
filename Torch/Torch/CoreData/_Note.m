@@ -8,12 +8,13 @@ const struct NoteAttributes NoteAttributes = {
 	.createdDate = @"createdDate",
 	.externalDate = @"externalDate",
 	.lastModifiedDate = @"lastModifiedDate",
-	.noteType = @"noteType",
 	.remoteKey = @"remoteKey",
 	.title = @"title",
+	.type = @"type",
 };
 
 const struct NoteRelationships NoteRelationships = {
+	.contact = @"contact",
 	.storeCall = @"storeCall",
 };
 
@@ -153,13 +154,6 @@ const struct NoteFetchedProperties NoteFetchedProperties = {
 
 
 
-@dynamic noteType;
-
-
-
-
-
-
 @dynamic remoteKey;
 
 
@@ -173,6 +167,17 @@ const struct NoteFetchedProperties NoteFetchedProperties = {
 
 
 
+
+@dynamic type;
+
+
+
+
+
+
+@dynamic contact;
+
+	
 
 @dynamic storeCall;
 

@@ -9,18 +9,20 @@ extern const struct NoteAttributes {
 	__unsafe_unretained NSString *createdDate;
 	__unsafe_unretained NSString *externalDate;
 	__unsafe_unretained NSString *lastModifiedDate;
-	__unsafe_unretained NSString *noteType;
 	__unsafe_unretained NSString *remoteKey;
 	__unsafe_unretained NSString *title;
+	__unsafe_unretained NSString *type;
 } NoteAttributes;
 
 extern const struct NoteRelationships {
+	__unsafe_unretained NSString *contact;
 	__unsafe_unretained NSString *storeCall;
 } NoteRelationships;
 
 extern const struct NoteFetchedProperties {
 } NoteFetchedProperties;
 
+@class Contact;
 @class StoreCall;
 
 
@@ -96,16 +98,6 @@ extern const struct NoteFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* noteType;
-
-
-
-//- (BOOL)validateNoteType:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 @property (nonatomic, strong) NSString* remoteKey;
 
 
@@ -122,6 +114,23 @@ extern const struct NoteFetchedProperties {
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
 
+
+
+
+
+@property (nonatomic, strong) NSString* type;
+
+
+
+//- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) Contact *contact;
+
+//- (BOOL)validateContact:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -176,12 +185,6 @@ extern const struct NoteFetchedProperties {
 
 
 
-- (NSString*)primitiveNoteType;
-- (void)setPrimitiveNoteType:(NSString*)value;
-
-
-
-
 - (NSString*)primitiveRemoteKey;
 - (void)setPrimitiveRemoteKey:(NSString*)value;
 
@@ -192,6 +195,17 @@ extern const struct NoteFetchedProperties {
 - (void)setPrimitiveTitle:(NSString*)value;
 
 
+
+
+- (NSString*)primitiveType;
+- (void)setPrimitiveType:(NSString*)value;
+
+
+
+
+
+- (Contact*)primitiveContact;
+- (void)setPrimitiveContact:(Contact*)value;
 
 
 

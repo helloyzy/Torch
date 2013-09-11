@@ -13,6 +13,7 @@ extern const struct ContactAttributes {
 	__unsafe_unretained NSString *firstName;
 	__unsafe_unretained NSString *isKdm;
 	__unsafe_unretained NSString *lastName;
+	__unsafe_unretained NSString *mobilePhone;
 	__unsafe_unretained NSString *phoneNumber;
 	__unsafe_unretained NSString *picture;
 	__unsafe_unretained NSString *preferredContactMethod;
@@ -22,6 +23,7 @@ extern const struct ContactAttributes {
 } ContactAttributes;
 
 extern const struct ContactRelationships {
+	__unsafe_unretained NSString *notes;
 	__unsafe_unretained NSString *orderCredit;
 	__unsafe_unretained NSString *store;
 } ContactRelationships;
@@ -29,8 +31,10 @@ extern const struct ContactRelationships {
 extern const struct ContactFetchedProperties {
 } ContactFetchedProperties;
 
+@class Note;
 @class OrderCredit;
 @class Store;
+
 
 
 
@@ -152,6 +156,16 @@ extern const struct ContactFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* mobilePhone;
+
+
+
+//- (BOOL)validateMobilePhone:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* phoneNumber;
 
 
@@ -212,6 +226,13 @@ extern const struct ContactFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *notes;
+
+- (NSMutableSet*)notesSet;
+
+
+
+
 @property (nonatomic, strong) OrderCredit *orderCredit;
 
 //- (BOOL)validateOrderCredit:(id*)value_ error:(NSError**)error_;
@@ -230,6 +251,11 @@ extern const struct ContactFetchedProperties {
 @end
 
 @interface _Contact (CoreDataGeneratedAccessors)
+
+- (void)addNotes:(NSSet*)value_;
+- (void)removeNotes:(NSSet*)value_;
+- (void)addNotesObject:(Note*)value_;
+- (void)removeNotesObject:(Note*)value_;
 
 @end
 
@@ -293,6 +319,12 @@ extern const struct ContactFetchedProperties {
 
 
 
+- (NSString*)primitiveMobilePhone;
+- (void)setPrimitiveMobilePhone:(NSString*)value;
+
+
+
+
 - (NSString*)primitivePhoneNumber;
 - (void)setPrimitivePhoneNumber:(NSString*)value;
 
@@ -327,6 +359,11 @@ extern const struct ContactFetchedProperties {
 - (void)setPrimitiveTitle:(NSString*)value;
 
 
+
+
+
+- (NSMutableSet*)primitiveNotes;
+- (void)setPrimitiveNotes:(NSMutableSet*)value;
 
 
 

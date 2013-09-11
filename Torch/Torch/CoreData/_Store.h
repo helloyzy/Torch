@@ -6,16 +6,19 @@
 
 extern const struct StoreAttributes {
 	__unsafe_unretained NSString *address;
+	__unsafe_unretained NSString *analytics;
 	__unsafe_unretained NSString *city;
 	__unsafe_unretained NSString *country;
 	__unsafe_unretained NSString *creditAddress;
 	__unsafe_unretained NSString *creditType;
 	__unsafe_unretained NSString *distributor;
+	__unsafe_unretained NSString *faxNumber;
 	__unsafe_unretained NSString *lastModifiedDate;
 	__unsafe_unretained NSString *modelTime;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *number;
 	__unsafe_unretained NSString *postalCode;
+	__unsafe_unretained NSString *products;
 	__unsafe_unretained NSString *remoteKey;
 	__unsafe_unretained NSString *schedule;
 	__unsafe_unretained NSString *state;
@@ -33,6 +36,9 @@ extern const struct StoreFetchedProperties {
 @class Banner;
 @class Contact;
 @class StoreCall;
+
+
+
 
 
 
@@ -67,6 +73,16 @@ extern const struct StoreFetchedProperties {
 
 
 //- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* analytics;
+
+
+
+//- (BOOL)validateAnalytics:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -117,6 +133,16 @@ extern const struct StoreFetchedProperties {
 
 
 //- (BOOL)validateDistributor:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* faxNumber;
+
+
+
+//- (BOOL)validateFaxNumber:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -175,6 +201,16 @@ extern const struct StoreFetchedProperties {
 
 
 //- (BOOL)validatePostalCode:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* products;
+
+
+
+//- (BOOL)validateProducts:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -257,6 +293,12 @@ extern const struct StoreFetchedProperties {
 
 
 
+- (NSString*)primitiveAnalytics;
+- (void)setPrimitiveAnalytics:(NSString*)value;
+
+
+
+
 - (NSString*)primitiveCity;
 - (void)setPrimitiveCity:(NSString*)value;
 
@@ -283,6 +325,12 @@ extern const struct StoreFetchedProperties {
 
 - (NSString*)primitiveDistributor;
 - (void)setPrimitiveDistributor:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveFaxNumber;
+- (void)setPrimitiveFaxNumber:(NSString*)value;
 
 
 
@@ -319,6 +367,12 @@ extern const struct StoreFetchedProperties {
 
 - (NSString*)primitivePostalCode;
 - (void)setPrimitivePostalCode:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveProducts;
+- (void)setPrimitiveProducts:(NSString*)value;
 
 
 

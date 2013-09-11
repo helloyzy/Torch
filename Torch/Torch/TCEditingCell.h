@@ -10,7 +10,9 @@
 
 typedef enum {
     TCEditingCellStyleCenter,
-    TCEditingCellStyleLeftRight
+    TCEditingCellStyleLeftRight,
+    TCEditingCellStyleLeftFieldRightBtn,
+    TCEditingCellStyleCombo
 } TCEditingCellStyle;
 
 @class DRTextField;
@@ -22,5 +24,6 @@ typedef enum {
 @property(nonatomic, readonly) DRTextField * centerField;
 @property(nonatomic, readonly) DRTextField * leftField;
 @property(nonatomic, readonly) DRTextField * rightField;
+@property(nonatomic, readonly) UIButton * rightBtn;
 
 @end
