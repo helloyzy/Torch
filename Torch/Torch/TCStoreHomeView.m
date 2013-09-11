@@ -62,28 +62,28 @@ static NSString *kViewControllerKey = @"viewController";
 	// object in the menu
 	TCPriorityViewController *tcPriorityViewController =
     [[TCPriorityViewController alloc] initWithNibName:@"TCPriorityViewController" bundle:nil];
-	[self.menuList addObject:@{ kTitleKey:@"Prioridades",
+	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.priority"],
                  kExplainKey:@"go to priorities page",
           kViewControllerKey:tcPriorityViewController } ];
     TCInventoryViewController *tcInventoryViewController =
     [[TCInventoryViewController alloc] initWithNibName:@"TCInventoryViewController" bundle:nil];
-	[self.menuList addObject:@{ kTitleKey:@"Hacer un Inventario",
+	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.takeInventory"],
                  kExplainKey:@"go to inventory page",
           kViewControllerKey:tcInventoryViewController } ];
     TCOrderViewController *tcOrderViewController =
     [[TCOrderViewController alloc] initWithNibName:@"TCOrderViewController" bundle:nil];
-	[self.menuList addObject:@{ kTitleKey:@"Crear Orden",
+	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.createOrder"],
                  kExplainKey:@"create order",
           kViewControllerKey:tcOrderViewController } ];
     TCOrderHistory *tcOrderHistory =
     [[TCOrderHistory alloc] initWithNibName:@"TCOrderHistory" bundle:nil];
-	[self.menuList addObject:@{ kTitleKey:@"Historia de la Orden",
+	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.orderHistory"],
                  kExplainKey:@"Order History",
           kViewControllerKey:tcOrderHistory } ];
 
     TCSummaryViewController *tcSummaryViewController =
     [[TCSummaryViewController alloc] initWithNibName:@"TCSummaryViewController" bundle:nil];
-	[self.menuList addObject:@{ kTitleKey:@"Notas",
+	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.notes"],
                  kExplainKey:@"Visit summary and notes",
           kViewControllerKey:tcSummaryViewController } ];
 

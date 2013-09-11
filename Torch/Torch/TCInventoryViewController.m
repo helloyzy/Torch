@@ -222,11 +222,17 @@
     self.inventoryLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:17];
     self.summaryText.text = [self localString:@"inventory.summaryText"];
     self.summaryAmount.text= [self localString:@"inventory.summaryAmount"];
+    [self.summaryText setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:16]];
+    self.summaryText.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
+    [self.summaryAmount setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:16]];
+    self.summaryAmount.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
+    
     
     UIView *sepertor = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 320, 2)];
+    
     sepertor.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
     
-    seperator1 = [[UIView alloc] initWithFrame:CGRectMake(10, 126, 300, 2)];
+    seperator1 = [[UIView alloc] initWithFrame:CGRectMake(10, 128, 300, 2)];
     seperator1.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
     [self.view addSubview:sepertor];
     [self.view addSubview:seperator1];

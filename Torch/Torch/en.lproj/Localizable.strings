@@ -65,3 +65,13 @@
 
 
 /*daxian*/
+
+
+/*David Xu*/
+
+"storehome.menu.priority" = "Priorities";
+"storehome.menu.takeInventory"= "Take Inventory";
+"storehome.menu.createOrder" = "Create Order";
+"storehome.menu.survey"= "Surveys";
+"storehome.menu.orderHistory"="Order History";
+"storehome.menu.notes"="Notes";
