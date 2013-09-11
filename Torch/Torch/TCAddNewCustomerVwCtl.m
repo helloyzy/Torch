@@ -172,22 +172,22 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     TCEditingCell * editCell;
     if (indexPath.section == 0) {
         editCell = [self singleTextCell];
-        customizeField(editCell.centerField, indexPath, 0, self.customer, @"storeName", [self localString:@"storeName"], UIKeyboardTypeDefault, self);
+        customizeField(editCell.centerField, indexPath, 0, self.customer, @"storeName", [self localString:@"addnewcustomer.storeName"], UIKeyboardTypeDefault, self);
     } else if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetName", [self localString:@"streetName"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetName", [self localString:@"addnewcustomer.streetName"], UIKeyboardTypeDefault, self);
                 break;
             case 1:
                 editCell = [self doubleTextCell];
-                customizeField(editCell.leftField, indexPath, 0, self.customer, @"city", [self localString:@"city"], UIKeyboardTypeDefault, self);
-                customizeField(editCell.rightField, indexPath, 1, self.customer, @"state", [self localString:@"state"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.leftField, indexPath, 0, self.customer, @"city", [self localString:@"addnewcustomer.city"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.rightField, indexPath, 1, self.customer, @"state", [self localString:@"addnewcustomer.state"], UIKeyboardTypeDefault, self);
                 break;
             case 2:
                 editCell = [self doubleTextCell];
-                customizeField(editCell.leftField, indexPath, 0, self.customer, @"zip", [self localString:@"zip"], UIKeyboardTypeDefault, self);
-                customizeField(editCell.rightField, indexPath, 1, self.customer, @"mexico", [self localString:@"mexico"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.leftField, indexPath, 0, self.customer, @"zip", [self localString:@"addnewcustomer.zip"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.rightField, indexPath, 1, self.customer, @"mexico", [self localString:@"addnewcustomer.mexico"], UIKeyboardTypeDefault, self);
                 break;
             case 3:
                 editCell = [self singleTextCell];
@@ -203,7 +203,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
                 break;
             case 6:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, self.customer, @"storePhoneNum", [self localString:@"storePhoneNum"], UIKeyboardTypePhonePad, self);
+                customizeField(editCell.centerField, indexPath, 0, self.customer, @"storePhoneNum", [self localString:@"addnewcustomer.storePhoneNumber"], UIKeyboardTypePhonePad, self);
                 break;
             default:
                 break;
@@ -223,7 +223,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             UIButton * btn = [[UIButton alloc] initWithFrame:btnFrame]; // CGRectInset(cell.bounds, 5, 5)
             btn.titleLabel.font = TCFont_HNLTComBd(14);
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [btn setTitle:[self localString:@"ObtainGPSInfo"] forState:UIControlStateNormal];
+            [btn setTitle:[self localString:@"addnewcustomer.obtainGPSInfo"] forState:UIControlStateNormal];
             [btn setBackgroundImage:[UIImage imageNamed:@"bluebutton.png"] forState:UIControlStateNormal];
             [cell.contentView addSubview:btn];
         }

@@ -34,7 +34,23 @@
 "printer.btn.print" = "Print";
 
 "addnewcustomer.title" = "ADD NEW CUSTOMER";
+"addnewcustomer.storeName" = "Store Name";
+"addnewcustomer.streetName" = "Street";
+"addnewcustomer.city" = "City";
+"addnewcustomer.state" = "State";
+"addnewcustomer.zip" = "Zip";
+"addnewcustomer.mexico" = "Mexico";
+"addnewcustomer.storePhoneNumber" = "Store Phone Number";
 
+"addnewcustomer.obtainGPSInfo" = "Obtain GPS Coordinates";
+
+"addnewcustomer.firstName" = "First Name";
+"addnewcustomer.lastName" = "Last Name";
+"addnewcustomer.position" = "Position";
+"addnewcustomer.phone" = "Phone";
+
+"addnewcustomer.addContact" = "Add Contact";
+"addnewcustomer.addNote" = "Add Note";
 
 /*Bo*/
 "priority.title" = "Prioridades";
