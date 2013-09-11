@@ -8,6 +8,42 @@
 
 #import "TCComboVw.h"
 
+@interface SimplePickerDelegate : NSObject<UIPickerViewDataSource, UIPickerViewDelegate>
+
+- (NSString *) valueFromIndex:(NSInteger)index;
+
+@property(nonatomic, copy) NSArray * ds;
+
+@end
+
+@implementation SimplePickerDelegate
+
+- (id) initWithArrayAsDs:(NSArray *)ds {
+    self = [super init];
+    if (self) {
+        self.ds = ds;
+    }
+    return self;
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.ds.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.ds[row];
+}
+
+- (NSString *)valueFromIndex:(NSInteger)index {
+    return self.ds[index];
+}
+
+@end
+
 @interface TCComboVw() {
     UIPickerView * picker;
     UISegmentedControl * cancelButton;
@@ -16,6 +52,7 @@
 
 @property(nonatomic, readonly)UIPickerView * picker;
 @property(nonatomic, copy) TCComboVwCallback callback;
+@property(nonatomic, strong) SimplePickerDelegate * pickerDelegate;
 
 @end
 
@@ -88,6 +125,10 @@
 
 #pragma mark - public methods
 
++ (TCComboVw *)instance {
+    return [[TCComboVw alloc] initWithTitle:nil delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+}
+
 + (TCComboVw *) instance:(id)delegate callback:(TCComboVwCallback)callback {
     TCComboVw * result = [self instance:delegate];
     result.callback = callback;
@@ -95,14 +136,43 @@
 }
 
 + (TCComboVw *) instance:(id)delegate {
-    TCComboVw * result = [[TCComboVw alloc] initWithTitle:nil delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    TCComboVw * result = [TCComboVw instance];
     result.picker.dataSource = delegate;
     result.picker.delegate = delegate;
     return result;
 }
 
++ (TCComboVw *) instanceWithDataSource:(NSArray *)ds {
+    TCComboVw * result = [self instance];
+    [result setDataSource:ds];
+    return result;
+}
+
+- (void)show {
+    [self showInView:[UIApplication sharedApplication].keyWindow];
+}
+
 - (NSUInteger) selectedRow {
     return [picker selectedRowInComponent:0];
+}
+
+- (void)setDataSource:(NSArray *)ds {
+    if (ds && ds.count > 0) {
+        self.pickerDelegate = [[SimplePickerDelegate alloc]initWithArrayAsDs:ds];
+        self.picker.dataSource = self.pickerDelegate;
+        self.picker.delegate = self.pickerDelegate;
+    }
+}
+
+- (NSString *) selectedItem {
+    if (self.pickerDelegate) {
+        return [self.pickerDelegate valueFromIndex:[picker selectedRowInComponent:0]];
+    }
+    return nil;
+}
+
+- (void) setCompletionCallback:(TCComboVwCallback)callback {
+    self.callback = callback;
 }
 
 @end

@@ -15,7 +15,16 @@ typedef void(^TCComboVwCallback)(TCComboVw * picker);
 
 - (NSUInteger) selectedRow;
 
+- (NSString *) selectedItem;
+- (void) setDataSource:(NSArray *)ds;
+
+- (void) setCompletionCallback:(TCComboVwCallback)callback;
+
+- (void)show;
+
++ (TCComboVw *) instance;
 + (TCComboVw *) instance:(id)delegate callback:(TCComboVwCallback)callback;
 + (TCComboVw *) instance:(id)delegate;
++ (TCComboVw *) instanceWithDataSource:(NSArray *)ds;
 
 @end

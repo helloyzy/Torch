@@ -12,6 +12,7 @@
 #import "TCCustomer.h"
 #import "DRTextField.h"
 #import "TCEditingCell.h"
+#import "TCComboVw.h"
 
 #define _TV_ROW_HEIGHT 36
 #define _TV_FIELD_FONTSIZE 14
@@ -231,12 +232,12 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         editCell = [self singleTextCell];
         customizeField(editCell.centerField, indexPath, 0, nil, nil, [self localString:@"RFC"], UIKeyboardTypeDefault, self);
     } else if (indexPath.section == 4) {
-        editCell = [self comboCell];
+        editCell = [self comboCell:@[@"Text1", @"Text2"]];
         editCell.backgroundColor = [UIColor darkGrayColor];
         customizeField(editCell.leftField, indexPath, 0, nil, nil, [self localString:@"Tipo de Cliente"], UIKeyboardTypeDefault, self);
         // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     } else if (indexPath.section == 5) {
-        editCell = [self comboCell];
+        editCell = [self comboCell:@[@"Text8", @"Text9"]];
         editCell.backgroundColor = [UIColor darkGrayColor];
         customizeField(editCell.leftField, indexPath, 0, nil, nil, [self localString:@"Visita Dia"], UIKeyboardTypeDefault, self);
         // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
@@ -279,9 +280,12 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     return [self editingCell:TCEditingCellStyleLeftRight reuseIdentifier:doubleTextReuseIdentifier];
 }
 
-- (TCEditingCell *)comboCell {
+- (TCEditingCell *)comboCell:(NSArray *)ds {
     static NSString * comboCellIdentifier = @"ComboCell";
-    return [self editingCell:TCEditingCellStyleLeftFieldRightBtn reuseIdentifier:comboCellIdentifier];
+    TCEditingCell * cell = [self editingCell:TCEditingCellStyleCombo reuseIdentifier:comboCellIdentifier];
+    [cell.comboVw setDataSource:ds];
+    return cell;
+    // return [self editingCell:TCEditingCellStyleLeftFieldRightBtn reuseIdentifier:comboCellIdentifier];
 }
 
 #pragma mark - decorate text field for cell
