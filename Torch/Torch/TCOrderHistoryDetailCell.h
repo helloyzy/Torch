@@ -10,4 +10,10 @@
 
 @interface TCOrderHistoryDetailCell : UITableViewCell
 
+@property (nonatomic,weak) IBOutlet UILabel *productName;
+@property (nonatomic,weak) IBOutlet UILabel *productSN;
+@property (nonatomic,weak) IBOutlet UILabel *productUnitPrice;
+@property (nonatomic,weak) IBOutlet UILabel *productDescription;
+@property (nonatomic,weak) IBOutlet UILabel *productTotalAmount;
+
 @end

@@ -7,12 +7,25 @@
 //
 
 #import "TCOrderDetailView.h"
-#import "TCOrderStatusCell.h"
+#import "TCOrderHistoryDetailCell.h"
+#import "ProductItemObject.h"
+#import "TCPrinterCtl.h"
 @interface TCOrderDetailView ()
-@property (nonatomic, strong) UIButton *btnPrintReceipt;
+
+@property (nonatomic,weak) IBOutlet UILabel *orderTitle;
+@property (nonatomic,weak) IBOutlet UILabel *orderdetailDate;
+@property (nonatomic,weak) IBOutlet UITableView *tableView;
+
 @end
 
 @implementation TCOrderDetailView
+{
+    NSMutableArray *displayData;
+}
+
+-(void)setOrderObjectList:(NSArray *)orderDetailsItemList {
+    displayData = [orderDetailsItemList copy];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -20,6 +33,8 @@
     if (self) {
         // Custom initialization
     }
+    
+    
     return self;
 }
 
@@ -27,6 +42,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.orderTitle.text = [NSString stringWithFormat:@"%@ %@",[self localString:@"orderHistory.detailTitle"],self.orderSN];
+    
+    self.orderdetailDate.text =[NSString stringWithFormat:@"%@ %@",[self localString:@"orderHistory.orderDateTitle"], self.orderDate];
+    
+    
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
 	// Number of sections is the number of regions
@@ -35,104 +56,113 @@
 
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
-	return 5;
+	return [displayData count];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 100;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 40;
+    return 120;
+}
+
+-(UITableViewCell *)populateCell:(TCOrderHistoryDetailCell *)cell withIndex:(NSInteger)row {
+    ProductItemObject *item = [displayData objectAtIndex:row];
+    if (item) {
+        cell.productName.text = item.productName;
+        cell.productSN.text = item.productSN;
+        cell.productUnitPrice.text = item.productPrice;
+        cell.productDescription.text = item.productDescription;
+        cell.productTotalAmount.text = item.productTotalPrice;
+    }
+    return cell;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-	static NSString *CellIdentifier = @"TCOrderStatusCell";
+	static NSString *CellIdentifier = @"TCOrderHistoryDetailCell";
     
-	TCOrderStatusCell *cell = (TCOrderStatusCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	TCOrderHistoryDetailCell *cell = (TCOrderHistoryDetailCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
 	if (cell == nil) {
 		NSArray *xib = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:nil options:nil];
         cell = [xib objectAtIndex:0];
     }
     cell.selectionStyle =UITableViewCellSelectionStyleNone;
+    [self populateCell:cell withIndex:indexPath.row];
+    UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
+    UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(0, 100, 295, 1)];
+    seperate2.backgroundColor = [UIColor grayColor];
+    [cellSeperatorLine addSubview:seperate2];
+    cell.backgroundView = cellSeperatorLine;
 	return cell;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 35)];
-		UIImage *buttonBackground = [UIImage imageNamed:@"bluebutton.png"];
-		UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"bluebtn_pressed.png"];
-		
-		CGRect frame = CGRectMake(10, 5, 300, 30);
-		
-		_btnPrintReceipt = [TCOrderDetailView newButtonWithTitle:@"Print Receipt"
-                                                   target:self
-                                                 selector:@selector(printReciept:)
-                                                    frame:frame
-                                                    image:buttonBackground
-                                             imagePressed:buttonBackgroundPressed];
-        [footerView  addSubview:_btnPrintReceipt];
-
-    return footerView;
-}
-+ (UIButton *)newButtonWithTitle:(NSString *)title
-                          target:(id)target
-                        selector:(SEL)selector
-                           frame:(CGRect)frame
-                           image:(UIImage *)image
-                    imagePressed:(UIImage *)imagePressed
-{
-	UIButton *button = [[UIButton alloc] initWithFrame:frame];
-	// or you can do this:
-	//		UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-	
-	button.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-	button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-	
-	[button setTitle:title  forState:UIControlStateNormal];
-    
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:15];
-    button.titleLabel.textAlignment = NSTextAlignmentLeft;
-    [button setTitleEdgeInsets:UIEdgeInsetsMake(6.0, 0, 0, 0)];
-    
-	
-	//UIImage *newImage = [image stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
-	[button setBackgroundImage:image forState:UIControlStateNormal];
-	
-	//UIImage *newPressedImage = [imagePressed stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
-	//[button setBackgroundImage:imagePressed forState:UIControlStateHighlighted];
-	
-	[button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
-	
-    // in case the parent view draws with a custom color or gradient, use a transparent color
-	button.backgroundColor = [UIColor clearColor];
-    
-	return button;
-}
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	/*
-	 To conform to the Human Interface Guidelines, selections should not be persistent --
-	 deselect the row after it has been selected.
-	 */
-    UIViewController *targetViewController = [[TCOrderDetailView alloc]init];
-    [[self navigationController] pushViewController:targetViewController animated:YES];
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-- (void) printReceipt:(id)sender
-{
-    NSLog(@"UIButton was clicked");
-
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (UIView *)drawOrderItemSummary:(NSString *)orderAmount {
+    
+    UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(5, 0, 300, 50)];
+    
+    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake(10, 40, 300, 1)];
+    seperator1.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
+    
+    UILabel *orderSummarylabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 200, 35)];
+    orderSummarylabel.text = [self localString:@"orderHistory.orderItems"];
+    [orderSummarylabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:16]];
+    orderSummarylabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
+    
+    UILabel *orderAmountLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 10, 50, 35)];
+    orderAmountLabel.text = orderAmount;
+    [orderAmountLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:16]];
+    orderAmountLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
+    
+    
+    [customView addSubview:orderSummarylabel];
+    [customView addSubview:orderAmountLabel];
+    [customView addSubview:seperator1];
+    return customView;
+    
+    
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [self drawOrderItemSummary:@"$100"];
+}
+
+-(void)printReceipt{
+    TCPrinterCtl *printScreen = [[TCPrinterCtl alloc] init];
+    [self.navigationController pushViewController:printScreen animated:YES];
+}
+
+- (UIView *)drawFooterButtons {
+    
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 300, 120)];
+    
+    if ([displayData count] >0) {
+        UIButton *printReceiptButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, 290, 29)];
+        [printReceiptButton setBackgroundImage:[UIImage imageNamed:@"bluebutton"] forState:UIControlStateNormal];
+        
+        [printReceiptButton setTitle:[self localString:@"orderHistory.printReceiptButton"] forState:UIControlStateNormal];
+        [printReceiptButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14]];
+        [printReceiptButton addTarget:self action:@selector(printReceipt) forControlEvents:UIControlEventTouchDown];
+        //completionButton.contentHorizontalAlignment = UIControlContentVerticalAlignmentCenter;
+        [printReceiptButton setTitleEdgeInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
+        [footerView addSubview:printReceiptButton];
+    }
+    
+    
+    return footerView;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [self drawFooterButtons];
+}
 @end

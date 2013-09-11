@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "TCNavVwCtl.h"
+#import "ProductItemObject.h"
 
 @interface TCOrderDetailView : TCNavVwCtl
+
+@property (nonatomic,strong) NSString *orderSN;
+@property (nonatomic,strong) NSString *orderDate;
+@property (nonatomic,strong) NSString *orderTotalAmount;
+
+-(void)setOrderObjectList:(NSArray *)orderDetailsItemList;
 
 @end

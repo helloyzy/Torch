@@ -24,6 +24,7 @@
 #import "TCPrinterCtl.h"
 #import "TCSurveyController.h"
 #import "TCAddNewCustomerVwCtl.h"
+#import "TCOrderHistory.h"
 
 @implementation TCAppDelegate
 
@@ -45,7 +46,7 @@
     // UIViewController * viewController = [[TCViewController alloc] init];
    // UIViewController *viewController = [[TCPromotionVwCtl alloc] init];
     // UIViewController * viewController = [[TCStoreHomeView alloc] init];
-    UIViewController *viewController = [[TCOrderViewController alloc] init];
+    UIViewController *viewController = [[TCOrderHistory alloc] init];
     UINavigationController * navCtr = [UIViewController customNavCtr:viewController];
     return navCtr;
 }
@@ -63,9 +64,9 @@
     // self.viewController = [[TCDisclaimerVwCtl alloc] init];
     // self.viewController = [[TCStoreHomeView alloc] init];
     // self.viewController = [self rootDeckCtrl];
-    // self.viewController = [self controllerWithinNavCtr];
+     self.viewController = [self controllerWithinNavCtr];
     // self.viewController = [[TCPrinterCtl alloc] init];
-    self.viewController = [self loginController];
+    //self.viewController = [self loginController];
     self.window.rootViewController = self.viewController;
     
     [self.window makeKeyAndVisible];

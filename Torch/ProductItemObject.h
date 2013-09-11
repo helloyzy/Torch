@@ -16,4 +16,5 @@
 @property (nonatomic,copy) NSString *productDescription;
 @property (nonatomic,copy) NSString *productUnitNum;
 @property (nonatomic,copy) NSString *productUnit;
+@property (nonatomic,copy) NSString *productTotalPrice;
 @end

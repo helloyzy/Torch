@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TCOrderDetailView.h"
 #import "TCOrderObject.h"
+#import "TCOrderDetailView.h"
 
 @interface TCOrderHistory ()
 
@@ -50,6 +51,30 @@
     order1.orderDate = [self convertStringToDate:@"20120730"];
     order1.storeName = @"Bohu's Store";
     order1.orderStatus = @"Pending";
+    
+    ProductItemObject *productItem = [ProductItemObject alloc];
+    productItem.productName = @"HerShey Chocolate1";
+    productItem.productSN = @"#123456";
+    productItem.productUnit = @"Boxes";
+    productItem.productPrice = @"$4.32 per box";
+    productItem.productUnitNum = @"0";
+    productItem.productDescription = @"whatever";
+    productItem.productTotalPrice = @"$222.56";
+    
+    ProductItemObject *productItem1 = [ProductItemObject alloc];
+    productItem1.productName = @"Helloworld";
+    productItem1.productSN = @"#887612";
+    productItem1.productUnit = @"unit";
+    productItem1.productPrice = @"$3.2";
+    productItem1.productUnitNum = @"0";
+    productItem1.productDescription = @"welcome to the iOS world";
+    productItem1.productTotalPrice = @"$12.5";
+
+    NSMutableArray *orderDetails = [[NSMutableArray alloc]init];
+    [orderDetails addObject:productItem];
+    [orderDetails addObject:productItem1];
+    
+    order1.orderItems = [orderDetails copy];
     [orderList setObject:order1 forKey:order1.orderID];
     
     TCOrderObject *order2 = [[TCOrderObject alloc] init];
@@ -58,9 +83,9 @@
     order2.orderDate = [self convertStringToDate:@"20130815"];
     order2.storeName = @"Daivd Store";
     order2.orderStatus = @"Delivered";
+    order2.orderItems = [orderDetails copy];
     [orderList setObject:order2 forKey:order2.orderID];
-    
-    
+  
 }
 
 -(void)generateDisplayData {
@@ -153,7 +178,15 @@
 	 To conform to the Human Interface Guidelines, selections should not be persistent --
 	 deselect the row after it has been selected.
 	 */
-    UIViewController *targetViewController = [[TCOrderDetailView alloc]init];
+    TCOrderDetailView *targetViewController = [[TCOrderDetailView alloc]init];
+    NSString *itemkey = [displayData objectAtIndex:indexPath.row];
+    TCOrderObject *orderItem = [orderList objectForKey:itemkey];
+    
+    targetViewController.orderSN = orderItem.orderID;
+    targetViewController.orderDate = [self convertDateToString:orderItem.orderDate];
+    targetViewController.orderTotalAmount = orderItem.orderAmount;
+    
+    [targetViewController setOrderObjectList:orderItem.orderItems];
     [[self navigationController] pushViewController:targetViewController animated:YES];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

@@ -16,6 +16,7 @@
 @synthesize productDescription;
 @synthesize productUnitNum;
 @synthesize productUnit;
+@synthesize productTotalPrice;
 
 
 @end

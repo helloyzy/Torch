@@ -58,6 +58,10 @@
 
 "orderHistory.title" = "Order History";
 "orderhistory.statusLabel"= "Estado";
+"orderHistory.detailTitle"="Number of Order ";
+"orderHistory.orderDateTitle"="Date Ordered: ";
+"orderHistory.orderItems"= "Order Items";
+"orderHistory.printReceiptButton"="Print Receipt";
 
 
 /*daxian*/
