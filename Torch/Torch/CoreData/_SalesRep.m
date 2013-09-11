@@ -11,6 +11,7 @@ const struct SalesRepAttributes SalesRepAttributes = {
 	.managerNetworkId = @"managerNetworkId",
 	.networkId = @"networkId",
 	.remoteKey = @"remoteKey",
+	.startDate = @"startDate",
 	.status = @"status",
 };
 
@@ -54,6 +55,11 @@ const struct SalesRepFetchedProperties SalesRepFetchedProperties = {
 	}
 	if ([key isEqualToString:@"lastUpdatedValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"lastUpdated"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"startDateValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"startDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -146,6 +152,32 @@ const struct SalesRepFetchedProperties SalesRepFetchedProperties = {
 
 @dynamic remoteKey;
 
+
+
+
+
+
+@dynamic startDate;
+
+
+
+- (double)startDateValue {
+	NSNumber *result = [self startDate];
+	return [result doubleValue];
+}
+
+- (void)setStartDateValue:(double)value_ {
+	[self setStartDate:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveStartDateValue {
+	NSNumber *result = [self primitiveStartDate];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveStartDateValue:(double)value_ {
+	[self setPrimitiveStartDate:[NSNumber numberWithDouble:value_]];
+}
 
 
 

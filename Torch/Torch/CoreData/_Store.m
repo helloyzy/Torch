@@ -5,16 +5,19 @@
 
 const struct StoreAttributes StoreAttributes = {
 	.address = @"address",
+	.analytics = @"analytics",
 	.city = @"city",
 	.country = @"country",
 	.creditAddress = @"creditAddress",
 	.creditType = @"creditType",
 	.distributor = @"distributor",
+	.faxNumber = @"faxNumber",
 	.lastModifiedDate = @"lastModifiedDate",
 	.modelTime = @"modelTime",
 	.name = @"name",
 	.number = @"number",
 	.postalCode = @"postalCode",
+	.products = @"products",
 	.remoteKey = @"remoteKey",
 	.schedule = @"schedule",
 	.state = @"state",
@@ -79,6 +82,13 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 
 
+@dynamic analytics;
+
+
+
+
+
+
 @dynamic city;
 
 
@@ -108,6 +118,13 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 
 @dynamic distributor;
+
+
+
+
+
+
+@dynamic faxNumber;
 
 
 
@@ -181,6 +198,13 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 
 @dynamic postalCode;
+
+
+
+
+
+
+@dynamic products;
 
 
 

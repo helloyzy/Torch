@@ -12,6 +12,7 @@ const struct ContactAttributes ContactAttributes = {
 	.firstName = @"firstName",
 	.isKdm = @"isKdm",
 	.lastName = @"lastName",
+	.mobilePhone = @"mobilePhone",
 	.phoneNumber = @"phoneNumber",
 	.picture = @"picture",
 	.preferredContactMethod = @"preferredContactMethod",
@@ -21,6 +22,7 @@ const struct ContactAttributes ContactAttributes = {
 };
 
 const struct ContactRelationships ContactRelationships = {
+	.notes = @"notes",
 	.orderCredit = @"orderCredit",
 	.store = @"store",
 };
@@ -189,6 +191,13 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 
 
 
+@dynamic mobilePhone;
+
+
+
+
+
+
 @dynamic phoneNumber;
 
 
@@ -230,6 +239,19 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 
 
 
+
+@dynamic notes;
+
+	
+- (NSMutableSet*)notesSet {
+	[self willAccessValueForKey:@"notes"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"notes"];
+  
+	[self didAccessValueForKey:@"notes"];
+	return result;
+}
+	
 
 @dynamic orderCredit;
 

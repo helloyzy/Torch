@@ -5,6 +5,8 @@
 
 
 extern const struct BannerAttributes {
+	__unsafe_unretained NSString *analytics;
+	__unsafe_unretained NSString *bannerId;
 	__unsafe_unretained NSString *bannerName;
 	__unsafe_unretained NSString *lastModifiedDate;
 	__unsafe_unretained NSString *remoteKey;
@@ -25,6 +27,8 @@ extern const struct BannerFetchedProperties {
 
 
 
+
+
 @interface BannerID : NSManagedObjectID {}
 @end
 
@@ -33,6 +37,26 @@ extern const struct BannerFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (BannerID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSString* analytics;
+
+
+
+//- (BOOL)validateAnalytics:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* bannerId;
+
+
+
+//- (BOOL)validateBannerId:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -99,6 +123,18 @@ extern const struct BannerFetchedProperties {
 @end
 
 @interface _Banner (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSString*)primitiveAnalytics;
+- (void)setPrimitiveAnalytics:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveBannerId;
+- (void)setPrimitiveBannerId:(NSString*)value;
+
+
 
 
 - (NSString*)primitiveBannerName;

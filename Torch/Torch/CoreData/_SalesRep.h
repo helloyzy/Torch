@@ -12,6 +12,7 @@ extern const struct SalesRepAttributes {
 	__unsafe_unretained NSString *managerNetworkId;
 	__unsafe_unretained NSString *networkId;
 	__unsafe_unretained NSString *remoteKey;
+	__unsafe_unretained NSString *startDate;
 	__unsafe_unretained NSString *status;
 } SalesRepAttributes;
 
@@ -23,6 +24,7 @@ extern const struct SalesRepFetchedProperties {
 } SalesRepFetchedProperties;
 
 @class Banner;
+
 
 
 
@@ -124,6 +126,20 @@ extern const struct SalesRepFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* startDate;
+
+
+
+@property double startDateValue;
+- (double)startDateValue;
+- (void)setStartDateValue:(double)value_;
+
+//- (BOOL)validateStartDate:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* status;
 
 
@@ -200,6 +216,15 @@ extern const struct SalesRepFetchedProperties {
 
 - (NSString*)primitiveRemoteKey;
 - (void)setPrimitiveRemoteKey:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveStartDate;
+- (void)setPrimitiveStartDate:(NSNumber*)value;
+
+- (double)primitiveStartDateValue;
+- (void)setPrimitiveStartDateValue:(double)value_;
 
 
 

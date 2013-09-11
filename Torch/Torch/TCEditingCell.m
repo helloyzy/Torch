@@ -14,6 +14,7 @@
     DRTextField * centerField;
     DRTextField * leftField;
     DRTextField * rightField;
+    UIButton * rightBtn;
 }
 
 @end
@@ -50,6 +51,11 @@
             rightField = [[DRTextField alloc] init];
             [self.contentView addSubview:leftField];
             [self.contentView addSubview:rightField];
+        case TCEditingCellStyleLeftFieldRightBtn:
+            leftField = [[DRTextField alloc] init];
+            rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 5, 5)];
+            [self.contentView addSubview:leftField];
+            [self.contentView addSubview:rightBtn];
         default:
             break;
     }
@@ -59,7 +65,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGFloat p_x = 15;
-    CGFloat p_y = 11;
+    CGFloat p_y = 10;
     CGFloat s_w = 270;
     CGFloat s_w_half = s_w / 2;
     CGFloat s_h = self.bounds.size.height - 2 * 10;
@@ -68,10 +74,14 @@
             centerField.frame = CGRectMake(p_x, p_y, s_w, s_h);
             break;
         case TCEditingCellStyleLeftRight:
-            // CGFloat leftWidth;// , rightWidth;
-            // leftw
             leftField.frame = CGRectMake(p_x, p_y, s_w_half, s_h);
             rightField.frame = CGRectMake(p_x + s_w_half + 5, p_y, s_w_half, s_h);
+            break;
+        case TCEditingCellStyleLeftFieldRightBtn:
+            leftField.frame = CGRectMake(p_x, p_y, s_w - 20, s_h);
+            leftField.enabled = NO; 
+            rightBtn.frame = CGRectMake(s_w - 5, p_y - 3, 20, 20);
+            [rightBtn setImage:[UIImage imageNamed:@"profile_btn_arrow.png"] forState:UIControlStateNormal];
         default:
             break;
     }
@@ -87,6 +97,10 @@
 
 - (DRTextField *) rightField {
     return rightField;
+}
+
+- (UIButton *) rightBtn {
+    return rightBtn;
 }
 
 @end
