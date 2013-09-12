@@ -126,6 +126,7 @@
 		DC0383D817C45C5000BBD02A /* HersheysBG.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383D717C45C5000BBD02A /* HersheysBG.png */; };
 		DC0383DF17C4CE7F00BBD02A /* loginBtn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */; };
 		DC0383E017C4CE7F00BBD02A /* loginBtn_border.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */; };
+		DC11568817E18E8B000ABC64 /* HersheySSOUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DC11568717E18E8B000ABC64 /* HersheySSOUtils.m */; };
 		DC16559E17DEF57000DD57D6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC16559C17DEF57000DD57D6 /* Model.xcdatamodeld */; };
 		DC1655CC17DF092500DD57D6 /* _Account.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655A117DF092500DD57D6 /* _Account.m */; };
 		DC1655CD17DF092500DD57D6 /* _Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1655A317DF092500DD57D6 /* _Banner.m */; };
@@ -331,6 +332,8 @@
 		DC0383D717C45C5000BBD02A /* HersheysBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HersheysBG.png; sourceTree = "<group>"; };
 		DC0383DD17C4CE7F00BBD02A /* loginBtn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_bg.png; sourceTree = "<group>"; };
 		DC0383DE17C4CE7F00BBD02A /* loginBtn_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBtn_border.png; sourceTree = "<group>"; };
+		DC11568617E18E8B000ABC64 /* HersheySSOUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HersheySSOUtils.h; sourceTree = "<group>"; };
+		DC11568717E18E8B000ABC64 /* HersheySSOUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HersheySSOUtils.m; sourceTree = "<group>"; };
 		DC16559D17DEF57000DD57D6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DC1655A017DF092500DD57D6 /* _Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Account.h; sourceTree = "<group>"; };
 		DC1655A117DF092500DD57D6 /* _Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Account.m; sourceTree = "<group>"; };
@@ -714,6 +717,8 @@
 		DC0383C317C343D500BBD02A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DC11568617E18E8B000ABC64 /* HersheySSOUtils.h */,
+				DC11568717E18E8B000ABC64 /* HersheySSOUtils.m */,
 				DCB2382417D088EC000CC087 /* DateUtils.h */,
 				DCB2382517D088EC000CC087 /* DateUtils.m */,
 				DC0383C417C3455A00BBD02A /* UIViewController+Utils.h */,
@@ -1134,6 +1139,7 @@
 				DC1655DF17DF092500DD57D6 /* SalesRep.m in Sources */,
 				DC1655E017DF092500DD57D6 /* Store.m in Sources */,
 				DC1655E117DF092500DD57D6 /* StoreCall.m in Sources */,
+				DC11568817E18E8B000ABC64 /* HersheySSOUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
