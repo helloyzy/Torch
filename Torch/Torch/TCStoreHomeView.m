@@ -178,7 +178,7 @@ static NSString *kViewControllerKey = @"viewController";
 		
 		CGRect frame = CGRectMake(10, 5, 300, 30);
 		
-		_btnNovisit = [TCStoreHomeView newButtonWithTitle:@"No Pude Visitar Este Cliente"
+		_btnNovisit = [TCStoreHomeView newButtonWithTitle:[self localString:@"storehome.button.novisit"]
                                                      target:self
                                                    selector:@selector(notAbleVisit:)
                                                       frame:frame
@@ -222,7 +222,7 @@ static NSString *kViewControllerKey = @"viewController";
 		
 		CGRect frame = CGRectMake(180, 80, 125, 25);
 		
-		_btnDirection = [TCStoreHomeView newButtonWithTitle:@"Instrucciones"
+		_btnDirection = [TCStoreHomeView newButtonWithTitle:[self localString:@"storehome.button.instructions"]
                                                          target:self
                                                        selector:@selector(viewDirection:)
                                                           frame:frame
