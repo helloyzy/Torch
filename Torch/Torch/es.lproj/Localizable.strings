@@ -90,7 +90,7 @@
 
 "storehome.menu.priority" = "Prioridades";
 "storehome.menu.takeInventory"= "Tomar Inventario";
-"storehome.menu.createOrder" = "Crear Orden"";
+"storehome.menu.createOrder" = "Crear Orden";
 "storehome.menu.survey"= "Ensuestas";
 "storehome.menu.orderHistory"="Historial de la Orden";
 "storehome.menu.notes"="Notas";
