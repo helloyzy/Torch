@@ -1,5 +1,5 @@
 #import "Order.h"
-
+#import <RestKit.h>
 
 @interface Order ()
 
@@ -10,6 +10,18 @@
 
 @implementation Order
 
-// Custom logic goes here.
++ (RKObjectMapping *)objectMapping
+{
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[self class]];
+    [mapping addAttributeMappingsFromArray:@[
+     OrderAttributes.actualEndDate,
+     OrderAttributes.actualStartDate,
+     OrderAttributes.callTimeAdjustment,
+     OrderAttributes.plannedEndDate,
+     OrderAttributes.plannedStartDate,
+     OrderAttributes.remoteKey
+     ]];
+    return mapping;
+}
 
 @end

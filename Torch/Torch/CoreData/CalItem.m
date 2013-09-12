@@ -1,5 +1,5 @@
 #import "CalItem.h"
-
+#import <RestKit.h>
 
 @interface CalItem ()
 
@@ -10,6 +10,30 @@
 
 @implementation CalItem
 
-// Custom logic goes here.
++ (RKObjectMapping *)objectMapping
+{
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[self class]];
+    [mapping addAttributeMappingsFromArray:@[
+     CalItemAttributes.active,
+     CalItemAttributes.customerItemNumber,
+     CalItemAttributes.discontinued,
+     CalItemAttributes.distributorItem,
+     CalItemAttributes.effectiveEndDate,
+     CalItemAttributes.effectiveStartDate,
+     CalItemAttributes.maxMarkdown,
+     CalItemAttributes.name,
+     CalItemAttributes.packtypeDescription,
+     CalItemAttributes.price,
+     CalItemAttributes.productNumber,
+     CalItemAttributes.remoteKey,
+     CalItemAttributes.schedule,
+     CalItemAttributes.segment,
+     CalItemAttributes.tdNumber,
+     CalItemAttributes.uom,
+     CalItemAttributes.upc,
+     CalItemAttributes.weight
+     ]];
+    return mapping;
+}
 
 @end

@@ -1,5 +1,5 @@
 #import "Note.h"
-
+#import <RestKit.h>
 
 @interface Note ()
 
@@ -10,6 +10,19 @@
 
 @implementation Note
 
-// Custom logic goes here.
++ (RKObjectMapping *)objectMapping
+{
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[self class]];
+    [mapping addAttributeMappingsFromArray:@[
+     NoteAttributes.body,
+     NoteAttributes.createdDate,
+     NoteAttributes.externalDate,
+     NoteAttributes.lastModifiedDate,
+     NoteAttributes.remoteKey,
+     NoteAttributes.title,
+     NoteAttributes.type
+     ]];
+    return mapping;
+}
 
 @end
