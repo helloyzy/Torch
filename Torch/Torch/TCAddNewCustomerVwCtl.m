@@ -189,20 +189,20 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
                 break;
             case 2:
                 editCell = [self doubleTextCell];
-                customizeField(editCell.leftField, indexPath, 0, self.customer, @"zip", [self localString:@"addnewcustomer.zip"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.leftField, indexPath, 0, self.customer, @"postcode", [self localString:@"addnewcustomer.postcode"], UIKeyboardTypeDefault, self);
                 customizeField(editCell.rightField, indexPath, 1, self.customer, @"municipality", [self localString:@"addnewcustomer.municipality"], UIKeyboardTypeDefault, self);
                 break;
             case 3:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0,  nil, nil, [self localString:@"Pais"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0,  self.customer, @"country", [self localString:@"addnewcustomer.country"], UIKeyboardTypeDefault, self);
                 break;
             case 4:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, nil, nil, [self localString:@"Calle de 1"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetRef1", [self localString:@"addnewcustomer.referenceStreet1"], UIKeyboardTypeDefault, self);
                 break;
             case 5:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, nil, nil, [self localString:@"Calle de 2"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetRef2", [self localString:@"addnewcustomer.referenceStreet2"], UIKeyboardTypeDefault, self);
                 break;
             case 6:
                 editCell = [self singleTextCell];
@@ -232,18 +232,18 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         }
     } else if (indexPath.section == 3) {
         editCell = [self singleTextCell];
-        customizeField(editCell.centerField, indexPath, 0, nil, nil, [self localString:@"RFC"], UIKeyboardTypeDefault, self);
+        customizeField(editCell.centerField, indexPath, 0, self.customer, @"rfc", [self localString:@"addnewcustomer.rfc"], UIKeyboardTypeDefault, self);
     } else if (indexPath.section == 4) {
         editCell = [self comboCell:@[@"Text1", @"Text2"]];
         editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO1;
         editCell.backgroundColor = [UIColor darkGrayColor];
-        customizeField(editCell.leftField, indexPath, 0, nil, nil, [self localString:@"Tipo de Cliente"], UIKeyboardTypeDefault, self);
+        customizeField(editCell.leftField, indexPath, 0, self.customer, @"customerType", [self localString:@"addnewcustomer.typeOfClient"], UIKeyboardTypeDefault, self);
         // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     } else if (indexPath.section == 5) {
         editCell = [self comboCell:@[@"Text8", @"Text9"]];
         editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO2;
         editCell.backgroundColor = [UIColor darkGrayColor];
-        customizeField(editCell.leftField, indexPath, 0, nil, nil, [self localString:@"Visita Dia"], UIKeyboardTypeDefault, self);
+        customizeField(editCell.leftField, indexPath, 0, self.customer, @"visitDay", [self localString:@"addnewcustomer.visitingDay"], UIKeyboardTypeDefault, self);
         // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     } else if (indexPath.section == 6 || indexPath.section == 7) {
         static NSString * addCellIdentifier = @"addCell";
@@ -256,9 +256,9 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             cell.textLabel.textColor = TCColor_DarkBlue();
         }
         if (indexPath.section == 6) {
-            cell.textLabel.text = [self localString:@"Add new contact"];
+            cell.textLabel.text = [self localString:@"addnewcustomer.addContact"];
         } else {
-            cell.textLabel.text = [self localString:@"Add new note"];
+            cell.textLabel.text = [self localString:@"addnewcustomer.addNote"];
         }
     }
     if (cell) {

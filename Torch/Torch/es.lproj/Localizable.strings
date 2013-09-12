@@ -38,7 +38,7 @@
 "addnewcustomer.housenameAndStreet"="Número y Calle Casa";
 "addnewcustomer.city" = "Ciudad";
 "addnewcustomer.state" = "Estado";
-"addnewcustomer.zip" = "Código Postal";
+"addnewcustomer.postcode" = "Código Postal";
 "addnewcustomer.municipality" = "Municipio";
 "addnewcustomer.country" = "País";
 "addnewcustomer.referenceStreet1" = "Calle de Referencia 1";

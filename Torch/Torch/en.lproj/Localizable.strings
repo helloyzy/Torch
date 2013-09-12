@@ -38,7 +38,7 @@
 "addnewcustomer.housenameAndStreet"="House Name and Street";
 "addnewcustomer.city" = "City";
 "addnewcustomer.state" = "State";
-"addnewcustomer.zip" = "Postcode";
+"addnewcustomer.postcode" = "Postcode";
 "addnewcustomer.municipality" = "Municipality";
 "addnewcustomer.country" = "Country";
 "addnewcustomer.referenceStreet1" = "Street Reference 1";
@@ -50,7 +50,7 @@
 "addnewcustomer.visitingDay" = "Day of Visit";
 "addnewcustomer.name" = "Name";
 "addnewcustomer.surname" = "Surname";
-"addnewcustomer.position" = "position";
+"addnewcustomer.position" = "Position";
 "addnewcustomer.phone" = "Phone";
 "addnewcustomer.addContact" = "Add Contact";
 "addnewcustomer.addNote" = "Add Note";

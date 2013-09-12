@@ -14,8 +14,14 @@
 @property(nonatomic, copy) NSString * streetName;
 @property(nonatomic, copy) NSString * city;
 @property(nonatomic, copy) NSString * state;
-@property(nonatomic, copy) NSString * zip;
+@property(nonatomic, copy) NSString * postcode;
 @property(nonatomic, copy) NSString * municipality;
+@property(nonatomic, copy) NSString * country;
+@property(nonatomic, copy) NSString * streetRef1;
+@property(nonatomic, copy) NSString * streetRef2;
 @property(nonatomic, copy) NSString * storePhoneNum;
+@property(nonatomic, copy) NSString * rfc;
+@property(nonatomic, copy) NSString * customerType;
+@property(nonatomic, copy) NSString * visitDay;
 
 @end
