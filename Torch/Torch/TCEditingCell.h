@@ -12,7 +12,8 @@ typedef enum {
     TCEditingCellStyleCenter,
     TCEditingCellStyleLeftRight,
     TCEditingCellStyleLeftFieldRightBtn,
-    TCEditingCellStyleCombo
+    TCEditingCellStyleCombo,
+    TCEditingCellStyleDateCombo
 } TCEditingCellStyle;
 
 @class DRTextField;
@@ -21,7 +22,7 @@ typedef enum {
 @interface TCEditingCell : UITableViewCell
 
 - (id)initWithEditStyle:(TCEditingCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
-- (id)initWithComboStyle:(NSArray *)dataSource reuseIdentifier:(NSString *)reuseIdentifier;
+// - (id)initWithComboStyle:(NSArray *)dataSource reuseIdentifier:(NSString *)reuseIdentifier;
 
 @property(nonatomic, readonly) DRTextField * centerField;
 @property(nonatomic, readonly) DRTextField * leftField;

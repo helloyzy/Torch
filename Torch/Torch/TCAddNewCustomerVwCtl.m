@@ -240,7 +240,8 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         customizeField(editCell.leftField, indexPath, 0, self.customer, @"customerType", [self localString:@"addnewcustomer.typeOfClient"], UIKeyboardTypeDefault, self);
         // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     } else if (indexPath.section == 5) {
-        editCell = [self comboCell:@[@"Text8", @"Text9"]];
+        // editCell = [self comboCell:@[@"Text8", @"Text9"]];
+        editCell = [self dateComboCell];
         editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO2;
         editCell.backgroundColor = [UIColor darkGrayColor];
         customizeField(editCell.leftField, indexPath, 0, self.customer, @"visitDay", [self localString:@"addnewcustomer.visitingDay"], UIKeyboardTypeDefault, self);
@@ -250,7 +251,6 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         cell = [tblVw dequeueReusableCellWithIdentifier:addCellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:addCellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.imageView.image = [UIImage imageNamed:@"focus.png"];
             cell.textLabel.font = TCFont_HNLTComBd(_TV_FIELD_FONTSIZE);
             cell.textLabel.textColor = TCColor_DarkBlue();
@@ -269,20 +269,23 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     return nil;
 }
 
+- (void)showCombo:(UITableView *)tbVw tag:(NSInteger)tag indexPath:(NSIndexPath *)indexPath {
+    UIButton * btn = (UIButton *)[tbVw viewWithTag:tag];
+    [btn sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@_%@_%i", self.customer.storeName, self.customer.streetName, [self.customer isModified]);
     if (indexPath.section == 4) {
-        UIButton * btn = (UIButton *)[tableView viewWithTag:_TAG_BTN_SHOWCOMBO1];
-        [btn sendActionsForControlEvents:UIControlEventTouchUpInside];
+        [self showCombo:tableView tag:_TAG_BTN_SHOWCOMBO1 indexPath:indexPath];
     } else if (indexPath.section == 5) {
-        UIButton * btn = (UIButton *)[tableView viewWithTag:_TAG_BTN_SHOWCOMBO2];
-        [btn sendActionsForControlEvents:UIControlEventTouchUpInside];
-
+        [self showCombo:tableView tag:_TAG_BTN_SHOWCOMBO2 indexPath:indexPath];
     } else if (indexPath.section == 6) {
         NSLog(@"Add new contact!!");
     } else if (indexPath.section == 7) {
         NSLog(@"Add new note");
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - customized table view cell
@@ -312,6 +315,13 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     return cell;
     // return [self editingCell:TCEditingCellStyleLeftFieldRightBtn reuseIdentifier:comboCellIdentifier];
 }
+
+- (TCEditingCell *)dateComboCell {
+    static NSString * dateComboCellIdentifier = @"DateComboCell";
+    TCEditingCell * cell = [self editingCell:TCEditingCellStyleDateCombo reuseIdentifier:dateComboCellIdentifier];
+    return cell;
+}
+
 
 #pragma mark - decorate text field for cell
 
