@@ -13,6 +13,7 @@
 #import "DRTextField.h"
 #import "TCEditingCell.h"
 #import "TCComboVw.h"
+#import "TCContact.h"
 
 #define _TV_ROW_HEIGHT 36
 #define _TV_FIELD_FONTSIZE 14
@@ -20,6 +21,9 @@
 #define HEIGHT(x) x.size.height
 #define _TAG_BTN_SHOWCOMBO1 10098
 #define _TAG_BTN_SHOWCOMBO2 10099
+#define _CONTACT_SECTION_START 6
+#define _AddNewContact_Section [self sectionFromContact:0]
+#define _AddNewNote_Section [self sectionFromContact:1]
 
 int rowDeviation(NSIndexPath * indexPath) {
     int result = 0;
@@ -66,7 +70,8 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 @interface TCAddNewCustomerVwCtl () {
 }
 
-@property (nonatomic,strong) TCCustomer * customer;
+@property (nonatomic, strong) TCCustomer * customer;
+@property (nonatomic, strong) NSMutableArray * contacts;
 
 @end
 
@@ -89,6 +94,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 {
     [super viewDidLoad];
     self.customer = [[TCCustomer alloc] init];
+    self.contacts = [[NSMutableArray alloc] init];
     [self initInternal];
 }
 
@@ -142,14 +148,15 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         case 3:
         case 4:
         case 5:
-        case 6:
-        case 7:
             return 1;
             break;
         default:
             break;
     }
-    return 1;
+    if (section == _AddNewContact_Section || section == _AddNewNote_Section) {
+        return 1;
+    }
+    return 4; // contact section
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -246,7 +253,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         editCell.backgroundColor = [UIColor darkGrayColor];
         customizeField(editCell.leftField, indexPath, 0, self.customer, @"visitDay", [self localString:@"addnewcustomer.visitingDay"], UIKeyboardTypeDefault, self);
         // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-    } else if (indexPath.section == 6 || indexPath.section == 7) {
+    } else if (indexPath.section == _AddNewContact_Section || indexPath.section == _AddNewNote_Section) {
         static NSString * addCellIdentifier = @"addCell";
         cell = [tblVw dequeueReusableCellWithIdentifier:addCellIdentifier];
         if (!cell) {
@@ -260,7 +267,33 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         } else {
             cell.textLabel.text = [self localString:@"addnewcustomer.addNote"];
         }
+    } else { // if we have contacts section if (self.contacts.count > 0) 
+        TCContact * contact = self.contacts[indexPath.section - _CONTACT_SECTION_START];
+        switch (indexPath.row) {
+            case 0:
+                editCell = [self singleTextCell];
+                customizeField(editCell.centerField, indexPath, 0, contact, @"name", [self localString:@"addnewcustomer.name"], UIKeyboardTypeDefault, self);
+                break;
+            case 1:
+                editCell = [self singleTextCell];
+                customizeField(editCell.centerField, indexPath, 0, contact, @"surname", [self localString:@"addnewcustomer.surname"], UIKeyboardTypeDefault, self);
+                break;
+            case 2:
+                editCell = [self singleTextCell];
+                customizeField(editCell.centerField, indexPath, 0, contact, @"position", [self localString:@"addnewcustomer.position"], UIKeyboardTypeDefault, self);
+                break;
+            case 3:
+                editCell = [self singleTextCell];
+                customizeField(editCell.centerField, indexPath, 0, contact, @"phone", [self localString:@"addnewcustomer.phone"], UIKeyboardTypePhonePad, self);
+                break;
+            default:
+                break;
+        }
+        // adjust the tag
+        editCell.centerField.tag = editCell.centerField.tag + (indexPath.section - _CONTACT_SECTION_START) * 4;
     }
+    
+    
     if (cell) {
         return cell;
     } else if (editCell) {
@@ -280,12 +313,25 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         [self showCombo:tableView tag:_TAG_BTN_SHOWCOMBO1 indexPath:indexPath];
     } else if (indexPath.section == 5) {
         [self showCombo:tableView tag:_TAG_BTN_SHOWCOMBO2 indexPath:indexPath];
-    } else if (indexPath.section == 6) {
-        NSLog(@"Add new contact!!");
-    } else if (indexPath.section == 7) {
+    } else if (indexPath.section == _AddNewContact_Section) { // just after contact section
+        // NSLog(@"Add new contact!!");
+        [self addNewContact];
+    } else if (indexPath.section == _AddNewNote_Section) {
         NSLog(@"Add new note");
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (NSInteger)sectionFromContact:(NSInteger)deviation {
+    return _CONTACT_SECTION_START + self.contacts.count + deviation;
+}
+
+- (void)addNewContact {
+    TCContact * contact = [[TCContact alloc] init];
+    [self.contacts addObject:contact];
+    NSRange sectionsRange = NSMakeRange(_CONTACT_SECTION_START, self.contacts.count);
+    NSIndexSet * sectionsToReload = [NSIndexSet indexSetWithIndexesInRange:sectionsRange];
+    [tblVw reloadSections:sectionsToReload withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - customized table view cell
@@ -321,36 +367,6 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     TCEditingCell * cell = [self editingCell:TCEditingCellStyleDateCombo reuseIdentifier:dateComboCellIdentifier];
     return cell;
 }
-
-
-#pragma mark - decorate text field for cell
-
-//- (NSInteger) availableViewTags:(UIView *)superVw initialTagVal:(NSInteger)tagVal {
-//    NSInteger result = tagVal;
-//    while ([superVw viewWithTag:result]) {
-//        result ++;
-//    }
-//    return result;
-//}
-//
-//- (NSInteger) calculateTag:(NSIndexPath *)indexPath column:(NSInteger)column {
-//    static int countPerSection[] = {1, 9, 6, 0};
-//    int result = 0;
-//    // previous sections
-//    for (int i = 0; i < indexPath.section; i++) {
-//        result += countPerSection[i];
-//    }
-//    result += indexPath.row;
-//    result += column;
-//    result += START_EDIT_VIEW_TAG;
-//    result = [self availableViewTags:tblVw initialTagVal:result];
-//    if (result >= END_EDIT_VIEW_TAG) {
-//        NSLog(@"Not enough tag values in 'Add New Customer' view");
-//        return -1; // NOT ENOUGH TAG VALUES!
-//    }
-//    NSLog(@"Tag is %i", result);
-//    return result;
-//}
 
 #pragma mark - text field delegate
 
