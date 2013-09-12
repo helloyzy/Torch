@@ -35,22 +35,25 @@
 
 "addnewcustomer.title" = "Añadir Nuevo Cliente";
 "addnewcustomer.storeName" = "Nombre de la Tienda";
-"addnewcustomer.streetName" = "Street";
-"addnewcustomer.city" = "City";
-"addnewcustomer.state" = "State";
-"addnewcustomer.zip" = "Zip";
-"addnewcustomer.mexico" = "Mexico";
-"addnewcustomer.storePhoneNumber" = "Store Phone Number";
-
-"addnewcustomer.obtainGPSInfo" = "Obtain GPS Coordinates";
-
-"addnewcustomer.firstName" = "First Name";
-"addnewcustomer.lastName" = "Last Name";
-"addnewcustomer.position" = "Position";
-"addnewcustomer.phone" = "Phone";
-
-"addnewcustomer.addContact" = "Add Contact";
-"addnewcustomer.addNote" = "Add Note";
+"addnewcustomer.housenameAndStreet"="Número y Calle Casa";
+"addnewcustomer.city" = "Ciudad";
+"addnewcustomer.state" = "Estado";
+"addnewcustomer.zip" = "Código Postal";
+"addnewcustomer.municipality" = "Municipio";
+"addnewcustomer.country" = "País";
+"addnewcustomer.referenceStreet1" = "Calle de Referencia 1";
+"addnewcustomer.referenceStreet2" = "Calle de Referencia 2";
+"addnewcustomer.storePhoneNumber" = "Número de Teléfono Tienda";
+"addnewcustomer.obtainGPSInfo" = "Obtener GPS Coordenadas";
+"addnewcustomer.rfc" = "RFC";
+"addnewcustomer.typeOfClient" = "Tipo de Cliente";
+"addnewcustomer.visitingDay" = "Día de Visita";
+"addnewcustomer.name" = "Nombre";
+"addnewcustomer.surname" = "Apellido";
+"addnewcustomer.position" = "Puesto";
+"addnewcustomer.phone" = "Teléfono";
+"addnewcustomer.addContact" = "Añadir Contacto";
+"addnewcustomer.addNote" = "Añadir Nota";
 
 /*Bo*/
 "priority.title" = "Prioridades";

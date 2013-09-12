@@ -33,22 +33,25 @@
 "printer.lbl.copy" = "copy";
 "printer.btn.print" = "Print";
 
-"addnewcustomer.title" = "ADD NEW CUSTOMER";
+"addnewcustomer.title" = "Add New Client";
 "addnewcustomer.storeName" = "Store Name";
-"addnewcustomer.streetName" = "Street";
+"addnewcustomer.housenameAndStreet"="House Name and Street";
 "addnewcustomer.city" = "City";
 "addnewcustomer.state" = "State";
-"addnewcustomer.zip" = "Zip";
-"addnewcustomer.mexico" = "Mexico";
+"addnewcustomer.zip" = "Postcode";
+"addnewcustomer.municipality" = "Municipality";
+"addnewcustomer.country" = "Country";
+"addnewcustomer.referenceStreet1" = "Street Reference 1";
+"addnewcustomer.referenceStreet2" = "Street Reference 2";
 "addnewcustomer.storePhoneNumber" = "Store Phone Number";
-
-"addnewcustomer.obtainGPSInfo" = "Obtain GPS Coordinates";
-
-"addnewcustomer.firstName" = "First Name";
-"addnewcustomer.lastName" = "Last Name";
-"addnewcustomer.position" = "Position";
+"addnewcustomer.obtainGPSInfo" = "Get GPS Coordinates;
+"addnewcustomer.rfc" = "RFC";
+"addnewcustomer.typeOfClient" = "Customer Type";
+"addnewcustomer.visitingDay" = "Day of Visit";
+"addnewcustomer.name" = "Name";
+"addnewcustomer.surname" = "Surname";
+"addnewcustomer.position" = "position";
 "addnewcustomer.phone" = "Phone";
-
 "addnewcustomer.addContact" = "Add Contact";
 "addnewcustomer.addNote" = "Add Note";
 
