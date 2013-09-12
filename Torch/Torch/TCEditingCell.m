@@ -73,25 +73,24 @@
             [self.contentView addSubview:leftField];
             [self.contentView addSubview:rightBtn];
             break;
-        case TCEditingCellStyleCombo:
+        case TCEditingCellStyleCombo: {
             leftField = [[DRTextField alloc] init];
             rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 5, 5)];
             [self.contentView addSubview:leftField];
             [self.contentView addSubview:rightBtn];
             comboVw = [TCComboVw instance];
+            if (comboVw) {
+                __weak TCEditingCell * temp = self;
+                [comboVw setCompletionCallback:^(TCComboVw * picker) {
+                    [temp comboSetSelectedText];
+                }];
+            }
             [rightBtn addTarget:self action:@selector(showComboVw) forControlEvents:UIControlEventTouchUpInside];
             break;
+        }
         default:
             break;
     }
-    
-    if (comboVw) {
-        __weak TCEditingCell * temp = self;
-        [comboVw setCompletionCallback:^(TCComboVw * picker) {
-            [temp comboSetSelectedText];
-        }];
-    }
-    
 }
 
 - (void)layoutSubviews {

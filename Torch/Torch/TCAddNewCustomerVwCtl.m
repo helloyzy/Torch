@@ -18,6 +18,8 @@
 #define _TV_FIELD_FONTSIZE 14
 #define WIDTH(x) x.size.width
 #define HEIGHT(x) x.size.height
+#define _TAG_BTN_SHOWCOMBO1 10098
+#define _TAG_BTN_SHOWCOMBO2 10099
 
 int rowDeviation(NSIndexPath * indexPath) {
     int result = 0;
@@ -233,11 +235,13 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         customizeField(editCell.centerField, indexPath, 0, nil, nil, [self localString:@"RFC"], UIKeyboardTypeDefault, self);
     } else if (indexPath.section == 4) {
         editCell = [self comboCell:@[@"Text1", @"Text2"]];
+        editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO1;
         editCell.backgroundColor = [UIColor darkGrayColor];
         customizeField(editCell.leftField, indexPath, 0, nil, nil, [self localString:@"Tipo de Cliente"], UIKeyboardTypeDefault, self);
         // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     } else if (indexPath.section == 5) {
         editCell = [self comboCell:@[@"Text8", @"Text9"]];
+        editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO2;
         editCell.backgroundColor = [UIColor darkGrayColor];
         customizeField(editCell.leftField, indexPath, 0, nil, nil, [self localString:@"Visita Dia"], UIKeyboardTypeDefault, self);
         // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
@@ -246,6 +250,15 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         cell = [tblVw dequeueReusableCellWithIdentifier:addCellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:addCellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.imageView.image = [UIImage imageNamed:@"focus.png"];
+            cell.textLabel.font = TCFont_HNLTComBd(_TV_FIELD_FONTSIZE);
+            cell.textLabel.textColor = TCColor_DarkBlue();
+        }
+        if (indexPath.section == 6) {
+            cell.textLabel.text = [self localString:@"Add new contact"];
+        } else {
+            cell.textLabel.text = [self localString:@"Add new note"];
         }
     }
     if (cell) {
@@ -258,6 +271,18 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@_%@_%i", self.customer.storeName, self.customer.streetName, [self.customer isModified]);
+    if (indexPath.section == 4) {
+        UIButton * btn = (UIButton *)[tableView viewWithTag:_TAG_BTN_SHOWCOMBO1];
+        [btn sendActionsForControlEvents:UIControlEventTouchUpInside];
+    } else if (indexPath.section == 5) {
+        UIButton * btn = (UIButton *)[tableView viewWithTag:_TAG_BTN_SHOWCOMBO2];
+        [btn sendActionsForControlEvents:UIControlEventTouchUpInside];
+
+    } else if (indexPath.section == 6) {
+        NSLog(@"Add new contact!!");
+    } else if (indexPath.section == 7) {
+        NSLog(@"Add new note");
+    }
 }
 
 #pragma mark - customized table view cell
