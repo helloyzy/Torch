@@ -1,5 +1,5 @@
 #import "Banner.h"
-
+#import <RestKit.h>
 
 @interface Banner ()
 
@@ -10,6 +10,17 @@
 
 @implementation Banner
 
-// Custom logic goes here.
++ (RKObjectMapping *)objectMapping
+{
+    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[self class]];
+    [mapping addAttributeMappingsFromArray:@[
+     BannerAttributes.analytics,
+     BannerAttributes.bannerId,
+     BannerAttributes.bannerName,
+     BannerAttributes.lastModifiedDate,
+     BannerAttributes.remoteKey
+     ]];
+    return mapping;
+}
 
 @end
