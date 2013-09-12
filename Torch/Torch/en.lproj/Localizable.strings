@@ -44,7 +44,7 @@
 "addnewcustomer.referenceStreet1" = "Street Reference 1";
 "addnewcustomer.referenceStreet2" = "Street Reference 2";
 "addnewcustomer.storePhoneNumber" = "Store Phone Number";
-"addnewcustomer.obtainGPSInfo" = "Get GPS Coordinates;
+"addnewcustomer.obtainGPSInfo" = "Get GPS Coordinates";
 "addnewcustomer.rfc" = "RFC";
 "addnewcustomer.typeOfClient" = "Customer Type";
 "addnewcustomer.visitingDay" = "Day of Visit";
