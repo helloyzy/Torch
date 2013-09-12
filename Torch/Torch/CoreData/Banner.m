@@ -10,9 +10,10 @@
 
 @implementation Banner
 
-+ (RKObjectMapping *)objectMapping
++ (RKEntityMapping *)objectMapping
 {
-    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
+    mapping.identificationAttributes = @[BannerAttributes.bannerId];
     [mapping addAttributeMappingsFromArray:@[
      BannerAttributes.analytics,
      BannerAttributes.bannerId,

@@ -10,9 +10,9 @@
 
 @implementation SalesRep
 
-+ (RKObjectMapping *)objectMapping
++ (RKEntityMapping *)objectMapping
 {
-    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
     [mapping addAttributeMappingsFromArray:@[
      SalesRepAttributes.firstName,
      SalesRepAttributes.lastModifiedDate,

@@ -10,9 +10,9 @@
 
 @implementation Store
 
-+ (RKObjectMapping *)objectMapping
++ (RKEntityMapping *)objectMapping
 {
-    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
     [mapping addAttributeMappingsFromArray:@[
      StoreAttributes.address,
      StoreAttributes.analytics,

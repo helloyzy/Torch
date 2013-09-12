@@ -10,9 +10,9 @@
 
 @implementation Contact
 
-+ (RKObjectMapping *)objectMapping
++ (RKEntityMapping *)objectMapping
 {
-    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
     [mapping addAttributeMappingsFromArray:@[
      ContactAttributes.bestDays,
      ContactAttributes.bestTimes,

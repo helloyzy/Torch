@@ -10,9 +10,10 @@
 
 @implementation OrderCredit
 
-+ (RKObjectMapping *)objectMapping
++ (RKEntityMapping *)objectMapping
 {
-    RKObjectMapping *mapping = [RKObjectMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
+    mapping.identificationAttributes = @[OrderCreditAttributes.orderCreditId];
     [mapping addAttributeMappingsFromArray:@[
      OrderCreditAttributes.approvalRequiredReason,
      OrderCreditAttributes.checkNumber,
