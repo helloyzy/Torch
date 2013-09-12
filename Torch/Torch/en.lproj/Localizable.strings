@@ -8,7 +8,7 @@
 
 /*wm*/
 "Done" = "Done";
-"Back" = "Back";
+"Back" = "Return";
 "Cancel" = "Cancel";
 "Save" = "Save";
 
@@ -28,7 +28,7 @@
 "promotion.detail.section.title" = "Promotion detail";
 "promotion.detail.btn.addpromotion" = "Add this promotion";
 
-"printer.title" = "Printers";
+"printer.title" = "Ticket Printing";
 "printer.lbl.titleName" = "Printer";
 "printer.lbl.copy" = "copy";
 "printer.btn.print" = "Print";
@@ -53,27 +53,27 @@
 "addnewcustomer.addNote" = "Add Note";
 
 /*Bo*/
-"priority.title" = "Prioridades";
+"priority.title" = "Priorities";
 
-"inventory.title" = "INVENTARIO";
+"inventory.title" = "INVENTORY";
 "inventory.summaryAmount" = "$0.00";
-"inventory.summaryText" = "0 Elementos en Inventario";
-"priority.buttonName" = "Cerrar";
-"inventory.completionButtonText" = "Inventory Completo";
-"order.orderSummary" = " Elementos en Orden";
+"inventory.summaryText" = "0 Element In Inventory";
+"priority.buttonName" = "Close";
+"inventory.completionButtonText" = "Inventory Completion";
+"order.orderSummary" = " Elements In Order";
 "order.summaryAmount" = "$0.00";
 "order.viewPromotion" = "View Promotion";
 "order.completionButton" = "Order Completion";
-"order.title"= "Crear Orden";
-"order.confirmAlertTitle"= "Confirmacion del Pedido";
-"order.confirmMessage"= "Do you really want to submit this order?";
+"order.title"= "Create Order";
+"order.confirmAlertTitle"= "Confirm The Order";
+"order.confirmMessage"= "Is ready to transmit this order?";
 "order.confirmNoButton"= "No";
-"order.confirmYesButton" = "Si";
-"order.printAlertTitle" = "Order Print";
-"order.printAlertMessage" = "Do you want to print this order?";
+"order.confirmYesButton" = "Yes";
+"order.printAlertTitle" = "Order Sent";
+"order.printAlertMessage" = "Do you want to print the ticket?";
 
 "orderHistory.title" = "Order History";
-"orderhistory.statusLabel"= "Estado";
+"orderhistory.statusLabel"= "Status";
 "orderHistory.detailTitle"="Number of Order ";
 "orderHistory.orderDateTitle"="Date Ordered: ";
 "orderHistory.orderItems"= "Order Items";
@@ -91,3 +91,5 @@
 "storehome.menu.survey"= "Surveys";
 "storehome.menu.orderHistory"="Order History";
 "storehome.menu.notes"="Notes";
+"storehome.button.novisit"= "Could not visit this Customer";
+"storehome.button.instructions"= "Instruction";

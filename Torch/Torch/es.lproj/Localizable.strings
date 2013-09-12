@@ -1,0 +1,95 @@
+/* 
+  Localizable.strings
+  Torch
+
+  Created by Whitman Yang on 8/20/13.
+  Copyright (c) 2013 Hershey. All rights reserved.
+*/
+
+/*wm*/
+"Done" = "Hecho";
+"Back" = "Regresar";
+"Cancel" = "Cancelar";
+"Save" = "Guardar";
+
+"login.username" = "Nombre de usuario";
+"login.username.placeholder" = "HFXXXXXX";
+"login.password" = "Contraseña";
+"login.signIn" = "Registrarse";
+"login.readMore" = "Read More..";
+
+"sliderview.startText" = "Deslice Para Iniciar Visita";
+"sliderview.endText" = "Deslice Para Finalizar La Visita";
+
+"promotion.title" = "Store Name";
+"promotion.section.title" = "Promociones";
+
+"promotion.detail.title" = "Promotion detail_tobechanged";
+"promotion.detail.section.title" = "Promotion detail_tobechanged";
+"promotion.detail.btn.addpromotion" = "Añadir esta promoción al orden";
+
+"printer.title" = "Impresión de Tickets";
+"printer.lbl.titleName" = "Impresora";
+"printer.lbl.copy" = "copia";
+"printer.btn.print" = "Imprimir";
+
+"addnewcustomer.title" = "Añadir Nuevo Cliente";
+"addnewcustomer.storeName" = "Nombre de la Tienda";
+"addnewcustomer.streetName" = "Street";
+"addnewcustomer.city" = "City";
+"addnewcustomer.state" = "State";
+"addnewcustomer.zip" = "Zip";
+"addnewcustomer.mexico" = "Mexico";
+"addnewcustomer.storePhoneNumber" = "Store Phone Number";
+
+"addnewcustomer.obtainGPSInfo" = "Obtain GPS Coordinates";
+
+"addnewcustomer.firstName" = "First Name";
+"addnewcustomer.lastName" = "Last Name";
+"addnewcustomer.position" = "Position";
+"addnewcustomer.phone" = "Phone";
+
+"addnewcustomer.addContact" = "Add Contact";
+"addnewcustomer.addNote" = "Add Note";
+
+/*Bo*/
+"priority.title" = "Prioridades";
+
+"inventory.title" = "INVENTARIO";
+"inventory.summaryAmount" = "$0.00";
+"inventory.summaryText" = "0 Elementos en Inventario";
+"priority.buttonName" = "Cerrar";
+"inventory.completionButtonText" = "Inventory Completo";
+"order.orderSummary" = " Elementos en Orden";
+"order.summaryAmount" = "$0.00";
+"order.viewPromotion" = "Ver las Promociones";
+"order.completionButton" = "Orden Completa";
+"order.title"= "Crear Orden";
+"order.confirmAlertTitle"= "Confirmación del Pedido";
+"order.confirmMessage"= "¿Está listo para transmitir esta orden";
+"order.confirmNoButton"= "No";
+"order.confirmYesButton" = "Si";
+"order.printAlertTitle" = "Orden Eviada";
+"order.printAlertMessage" = "¿Quieres imprimir ticket?";
+
+"orderHistory.title" = "Historial de órdenes";
+"orderhistory.statusLabel"= "Estado";
+"orderHistory.detailTitle"="Número de Orden ";
+"orderHistory.orderDateTitle"="Fecha Ordenó: ";
+"orderHistory.orderItems"= "Artículos Pedido";
+"orderHistory.printReceiptButton"="Imprimir Ticket";
+
+
+/*daxian*/
+
+
+/*David Xu*/
+
+"storehome.menu.priority" = "Prioridades";
+"storehome.menu.takeInventory"= "Tomar Inventario";
+"storehome.menu.createOrder" = "Crear Orden"";
+"storehome.menu.survey"= "Ensuestas";
+"storehome.menu.orderHistory"="Historial de la Orden";
+"storehome.menu.notes"="Notas";
+"storehome.button.novisit"= "No Pude Visitar Este Cliente";
+"storehome.button.instructions"= "Instrucciones";

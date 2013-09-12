@@ -296,6 +296,7 @@
 		D6831BCC17D8730700718881 /* TCOrderHistoryDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOrderHistoryDetailCell.m; sourceTree = "<group>"; };
 		D6C5A31217C7014400C0C657 /* ProductItemObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductItemObject.h; path = ../ProductItemObject.h; sourceTree = "<group>"; };
 		D6C5A31317C7014400C0C657 /* ProductItemObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductItemObject.m; path = ../ProductItemObject.m; sourceTree = "<group>"; };
+		D6C6D21617E1523D00F5C535 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D6CB681E17C4A04500D290D7 /* TCInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCInventoryViewController.h; sourceTree = "<group>"; };
 		D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCInventoryViewController.m; sourceTree = "<group>"; };
 		D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCInventoryViewController.xib; sourceTree = "<group>"; };
@@ -886,6 +887,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 			);
 			mainGroup = 1C713BE317C2058000A903A6;
 			productRefGroup = 1C713BED17C2058000A903A6 /* Products */;
@@ -1182,6 +1184,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				DC0383CD17C3469700BBD02A /* en */,
+				D6C6D21617E1523D00F5C535 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1354,6 +1357,7 @@
 				DC16559A17DEE86200DD57D6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
