@@ -180,7 +180,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         switch (indexPath.row) {
             case 0:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetName", [self localString:@"addnewcustomer.streetName"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetName", [self localString:@"addnewcustomer.housenameAndStreet"], UIKeyboardTypeDefault, self);
                 break;
             case 1:
                 editCell = [self doubleTextCell];
@@ -190,7 +190,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             case 2:
                 editCell = [self doubleTextCell];
                 customizeField(editCell.leftField, indexPath, 0, self.customer, @"zip", [self localString:@"addnewcustomer.zip"], UIKeyboardTypeDefault, self);
-                customizeField(editCell.rightField, indexPath, 1, self.customer, @"mexico", [self localString:@"addnewcustomer.mexico"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.rightField, indexPath, 1, self.customer, @"municipality", [self localString:@"addnewcustomer.municipality"], UIKeyboardTypeDefault, self);
                 break;
             case 3:
                 editCell = [self singleTextCell];
