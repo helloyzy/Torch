@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "YIInnerShadowView.h"
 #import "UIViewController+Torch.h"
+#import "HersheySSOUtils.h"
 
 @interface TCLoginViewController ()
 
@@ -67,7 +68,12 @@
 }
 
 - (IBAction)signIn:(id)sender {
-    [self jumpToMyDay];
+    if (txtUsername.text.length>0) {
+        if ([HersheySSOUtils setKeychainWithUsername:txtUsername.text andPassword:txtPwd.text]) {
+            [self jumpToMyDay];
+        }
+    }
+ 
 }
 
 #pragma mark - navigation between controllers

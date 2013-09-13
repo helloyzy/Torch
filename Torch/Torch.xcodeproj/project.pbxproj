@@ -111,6 +111,7 @@
 		D6CD428917CC99FD00A499A4 /* bluebutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6CD428717CC99FC00A499A4 /* bluebutton@2x.png */; };
 		D6D2EC7617C4897400D12795 /* TCPriorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */; };
 		D6D2EC7717C4897400D12795 /* TCPriorityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */; };
+		D6D4FDF117E1904C00A0F4BF /* HersheySSOUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D4FDF017E1904C00A0F4BF /* HersheySSOUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D6D68DE417CDDEB400477060 /* TCOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D68DE217CDDEB400477060 /* TCOrderViewController.m */; };
 		D6D68DE517CDDEB400477060 /* TCOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */; };
 		D6D68DF217D4785E00477060 /* TCPromotionTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D68DF117D4785E00477060 /* TCPromotionTableCell.xib */; };
@@ -310,6 +311,9 @@
 		D6D2EC7317C4897400D12795 /* TCPriorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPriorityViewController.h; sourceTree = "<group>"; };
 		D6D2EC7417C4897400D12795 /* TCPriorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPriorityViewController.m; sourceTree = "<group>"; };
 		D6D2EC7517C4897400D12795 /* TCPriorityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPriorityViewController.xib; sourceTree = "<group>"; };
+		D6D4FDEF17E1904C00A0F4BF /* HersheySSOUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HersheySSOUtils.h; sourceTree = "<group>"; };
+		D6D4FDF017E1904C00A0F4BF /* HersheySSOUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HersheySSOUtils.m; sourceTree = "<group>"; };
+		D6D4FDF217E2ECC600A0F4BF /* Torch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Torch.entitlements; sourceTree = "<group>"; };
 		D6D68DE117CDDEB400477060 /* TCOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOrderViewController.h; sourceTree = "<group>"; };
 		D6D68DE217CDDEB400477060 /* TCOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOrderViewController.m; sourceTree = "<group>"; };
 		D6D68DE317CDDEB400477060 /* TCOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCOrderViewController.xib; sourceTree = "<group>"; };
@@ -499,6 +503,7 @@
 		1C713BF517C2058100A903A6 /* Torch */ = {
 			isa = PBXGroup;
 			children = (
+				D6D4FDF217E2ECC600A0F4BF /* Torch.entitlements */,
 				DC16559F17DF092500DD57D6 /* CoreData */,
 				DC9D57DD17C737C400EAFD2F /* 3rdparty */,
 				1C8187A917C490B700AF7AF0 /* Fonts */,
@@ -714,6 +719,8 @@
 		DC0383C317C343D500BBD02A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D6D4FDEF17E1904C00A0F4BF /* HersheySSOUtils.h */,
+				D6D4FDF017E1904C00A0F4BF /* HersheySSOUtils.m */,
 				DCB2382417D088EC000CC087 /* DateUtils.h */,
 				DCB2382517D088EC000CC087 /* DateUtils.m */,
 				DC0383C417C3455A00BBD02A /* UIViewController+Utils.h */,
@@ -1134,6 +1141,7 @@
 				DC1655DF17DF092500DD57D6 /* SalesRep.m in Sources */,
 				DC1655E017DF092500DD57D6 /* Store.m in Sources */,
 				DC1655E117DF092500DD57D6 /* StoreCall.m in Sources */,
+				D6D4FDF117E1904C00A0F4BF /* HersheySSOUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1204,7 +1212,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bo Hu (4774CK434B)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1219,6 +1227,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D5306F50-26B7-464E-9721-DC8CE83AB805";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1252,6 +1261,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Torch/Torch.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Torch/Torch-Prefix.pch";
 				INFOPLIST_FILE = "Torch/Torch-Info.plist";
@@ -1264,6 +1274,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Torch/Torch.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Torch/Torch-Prefix.pch";
 				INFOPLIST_FILE = "Torch/Torch-Info.plist";

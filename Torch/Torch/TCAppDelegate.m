@@ -25,6 +25,7 @@
 #import "TCSurveyController.h"
 #import "TCAddNewCustomerVwCtl.h"
 #import "TCOrderHistory.h"
+#import "HersheySSOUtils.h"
 
 @implementation TCAppDelegate
 
@@ -55,6 +56,11 @@
     return [[TCLoginViewController alloc] init];
 }
 
+- (BOOL)isLoginRequired {
+
+    return [HersheySSOUtils needsCredentials];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -66,9 +72,17 @@
     // self.viewController = [self rootDeckCtrl];
      //self.viewController = [self controllerWithinNavCtr];
     // self.viewController = [[TCPrinterCtl alloc] init];
-    self.viewController = [self loginController];
-    self.window.rootViewController = self.viewController;
     
+    if ([self isLoginRequired]) {
+        self.viewController = [self loginController];
+
+    } else {
+        self.viewController = [UIViewController myDayDeckAsRoot];
+
+    }
+
+
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -87,7 +101,11 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    if ([self isLoginRequired]) {
+        self.viewController = [self loginController];
+        self.window.rootViewController = self.viewController;
+        [self.window makeKeyAndVisible];
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
