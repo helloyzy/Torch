@@ -2,6 +2,7 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Account" representedClassName="Account" syncable="YES">
         <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="accountRecordType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
@@ -10,10 +11,12 @@
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postalcode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recordType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetref1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="streetref2" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="orderCredit" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OrderCredit" inverseName="account" inverseEntity="OrderCredit" syncable="YES"/>
+        <relationship name="order" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="account" inverseEntity="Order" syncable="YES"/>
     </entity>
     <entity name="Banner" representedClassName="Banner" syncable="YES">
         <attribute name="analytics" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,15 +29,15 @@
     </entity>
     <entity name="CalItem" representedClassName="CalItem" syncable="YES">
         <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="customerItemNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customerItemNumber" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="discontinued" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="distributorItem" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="effectiveEndDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="effectiveStartDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="maxMarkdown" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxMarkdown" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="packtypeDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="schedule" optional="YES" attributeType="String" syncable="YES"/>
@@ -42,12 +45,11 @@
         <attribute name="tdNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uom" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="upc" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="weight" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="orderCreditItem" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OrderCreditItem" inverseName="calItem" inverseEntity="OrderCreditItem" syncable="YES"/>
     </entity>
     <entity name="Contact" representedClassName="Contact" syncable="YES">
-        <attribute name="bestDays" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="bestTimes" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="bestDays" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bestTimes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="faxNumber" optional="YES" attributeType="String" syncable="YES"/>
@@ -62,7 +64,7 @@
         <attribute name="textNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="contact" inverseEntity="Note" syncable="YES"/>
-        <relationship name="orderCredit" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OrderCredit" inverseName="contact" inverseEntity="OrderCredit" syncable="YES"/>
+        <relationship name="order" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="contact" inverseEntity="Order" syncable="YES"/>
         <relationship name="store" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="contacts" inverseEntity="Store" syncable="YES"/>
     </entity>
     <entity name="Note" representedClassName="Note" syncable="YES">
@@ -77,15 +79,6 @@
         <relationship name="storeCall" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="StoreCall" inverseName="notes" inverseEntity="StoreCall" syncable="YES"/>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES">
-        <attribute name="actualEndDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="actualStartDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="callTimeAdjustment" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="plannedEndDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="plannedStartDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="orderCredits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderCredit" inverseName="order" inverseEntity="OrderCredit" syncable="YES"/>
-    </entity>
-    <entity name="OrderCredit" representedClassName="OrderCredit" syncable="YES">
         <attribute name="approvalRequiredReason" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="checkNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="confirmationType" optional="YES" attributeType="String" syncable="YES"/>
@@ -94,7 +87,7 @@
         <attribute name="hersheyReferenceNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="orderCreditId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="orderType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="paymentAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="paymentAmount" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="paymentMethod" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="paymentType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reasonCode" optional="YES" attributeType="String" syncable="YES"/>
@@ -102,23 +95,31 @@
         <attribute name="rejectionReason" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="signature" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="account" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="orderCredit" inverseEntity="Account" syncable="YES"/>
-        <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="orderCredit" inverseEntity="Contact" syncable="YES"/>
-        <relationship name="order" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="orderCredits" inverseEntity="Order" syncable="YES"/>
-        <relationship name="orderCreditItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderCreditItem" inverseName="orderCredit" inverseEntity="OrderCreditItem" syncable="YES"/>
+        <relationship name="account" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="order" inverseEntity="Account" syncable="YES"/>
+        <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="order" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="orderCreditItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderCreditItem" inverseName="order" inverseEntity="OrderCreditItem" syncable="YES"/>
     </entity>
     <entity name="OrderCreditItem" representedClassName="OrderCreditItem" syncable="YES">
-        <attribute name="discountPercentage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="discountPercentage" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="distributedItemNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="markdownPercentage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="maxMarkdownPercentage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="nettAmount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="overridePrice" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="markdownPercentage" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxMarkdownPercentage" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="nettAmount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="overridePrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="shortItemNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="total" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="calItem" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CalItem" inverseName="orderCreditItem" inverseEntity="CalItem" syncable="YES"/>
-        <relationship name="orderCredit" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OrderCredit" inverseName="orderCreditItems" inverseEntity="OrderCredit" syncable="YES"/>
+        <relationship name="order" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="orderCreditItems" inverseEntity="Order" syncable="YES"/>
+    </entity>
+    <entity name="OrderOld" representedClassName="OrderOld" syncable="YES">
+        <attribute name="actualEndDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="actualStartDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="callTimeAdjustment" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="paymentAmount" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="plannedEndDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="plannedStartDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="SalesRep" representedClassName="SalesRep" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -166,14 +167,14 @@
         <relationship name="store" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="storeCalls" inverseEntity="Store" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="763" positionY="860" width="128" height="238"/>
+        <element name="Account" positionX="763" positionY="860" width="128" height="283"/>
         <element name="Banner" positionX="792" positionY="81" width="135" height="148"/>
-        <element name="CalItem" positionX="1188" positionY="617" width="128" height="328"/>
+        <element name="CalItem" positionX="1188" positionY="617" width="128" height="315"/>
         <element name="Contact" positionX="999" positionY="389" width="135" height="313"/>
         <element name="Note" positionX="1179" positionY="369" width="135" height="178"/>
-        <element name="Order" positionX="621" positionY="608" width="128" height="148"/>
-        <element name="OrderCredit" positionX="799" positionY="378" width="128" height="343"/>
-        <element name="OrderCreditItem" positionX="1015" positionY="881" width="128" height="208"/>
+        <element name="OrderOld" positionX="621" positionY="608" width="128" height="148"/>
+        <element name="Order" positionX="799" positionY="378" width="128" height="328"/>
+        <element name="OrderCreditItem" positionX="1015" positionY="881" width="128" height="210"/>
         <element name="SalesRep" positionX="585" positionY="27" width="135" height="193"/>
         <element name="Store" positionX="1000" positionY="0" width="135" height="343"/>
         <element name="StoreCall" positionX="1206" positionY="72" width="135" height="178"/>

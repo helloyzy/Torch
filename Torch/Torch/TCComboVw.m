@@ -45,12 +45,15 @@
 @end
 
 @interface TCComboVw() {
-    UIPickerView * picker;
+    UIPickerView * _picker;
+    UIDatePicker * _datePicker;
     UISegmentedControl * cancelButton;
     UISegmentedControl * closeButton;
+    TCComboVwStyle _style;
 }
 
 @property(nonatomic, readonly)UIPickerView * picker;
+@property(nonatomic, readonly)UIDatePicker * datePicker;
 @property(nonatomic, copy) TCComboVwCallback callback;
 @property(nonatomic, strong) SimplePickerDelegate * pickerDelegate;
 
@@ -60,18 +63,29 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
+    return [self initWithFrame:frame comboStyle:TCComboVwStyleDefault];
+}
+
+- (id)initWithFrame:(CGRect)frame comboStyle:(TCComboVwStyle)comboStyle {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        _style = comboStyle;
         [self initInternal];
     }
     return self;
 }
 
-- (void)initInternal {    
-	picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 40, 0, 0)];
-	picker.showsSelectionIndicator= YES;
-	[self addSubview:picker];
+- (void)initInternal {
+    CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
+    if (_style == TCComboVwStyleShortDate) {
+        _datePicker = [[UIDatePicker alloc]initWithFrame:pickerFrame];
+        _datePicker.datePickerMode = UIDatePickerModeDate;
+        [self addSubview:_datePicker];
+    } else {
+        _picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
+        _picker.showsSelectionIndicator= YES;
+        [self addSubview:_picker];
+    }
     
     NSString * doneText = NSLocalizedString(@"Done", nil);
     closeButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:doneText]];
@@ -104,7 +118,9 @@
     self.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
 }
 
-- (void)cancel {
+#pragma mark - done, cancel button actions
+
+- (void) cancel {
     [self dismissWithClickedButtonIndex:0 animated:YES];
 }
 
@@ -116,17 +132,54 @@
     }
 }
 
-#pragma mark - properties
-
-- (UIPickerView *) picker {
-    return picker;
-}
-
-
 #pragma mark - public methods
 
+- (void)show {
+    [self showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+- (void) setCompletionCallback:(TCComboVwCallback)callback {
+    self.callback = callback;
+}
+
++ (TCComboVw *)instanceWithType:(TCComboVwStyle)comboStyle {
+    return [[TCComboVw alloc] initWithFrame:CGRectZero comboStyle:comboStyle];
+}
+
+#pragma mark - public methods for combo style
+
++ (TCComboVw *)shortDateInstance {
+    return [self instanceWithType:TCComboVwStyleShortDate];
+}
+
+- (NSDate *)selectedDate {
+    return _datePicker.date;
+}
+
+#pragma mark - public methods for default style
+
+- (NSUInteger) selectedRow {
+    return [_picker selectedRowInComponent:0];
+}
+
+- (NSString *) selectedItem {
+    if (self.pickerDelegate) {
+        return [self.pickerDelegate valueFromIndex:[self selectedRow]];
+    }
+    return nil;
+}
+
+- (void)setDataSource:(NSArray *)ds {
+    if (_picker && ds && ds.count > 0) {
+        self.pickerDelegate = [[SimplePickerDelegate alloc]initWithArrayAsDs:ds];
+        _picker.dataSource = self.pickerDelegate;
+        _picker.delegate = self.pickerDelegate;
+    }
+}
+
 + (TCComboVw *)instance {
-    return [[TCComboVw alloc] initWithTitle:nil delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    return [self instanceWithType:TCComboVwStyleDefault];
+    // return [[TCComboVw alloc] initWithTitle:nil delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
 }
 
 + (TCComboVw *) instance:(id)delegate callback:(TCComboVwCallback)callback {
@@ -136,7 +189,7 @@
 }
 
 + (TCComboVw *) instance:(id)delegate {
-    TCComboVw * result = [TCComboVw instance];
+    TCComboVw * result = [self instance];
     result.picker.dataSource = delegate;
     result.picker.delegate = delegate;
     return result;
@@ -146,33 +199,6 @@
     TCComboVw * result = [self instance];
     [result setDataSource:ds];
     return result;
-}
-
-- (void)show {
-    [self showInView:[UIApplication sharedApplication].keyWindow];
-}
-
-- (NSUInteger) selectedRow {
-    return [picker selectedRowInComponent:0];
-}
-
-- (void)setDataSource:(NSArray *)ds {
-    if (ds && ds.count > 0) {
-        self.pickerDelegate = [[SimplePickerDelegate alloc]initWithArrayAsDs:ds];
-        self.picker.dataSource = self.pickerDelegate;
-        self.picker.delegate = self.pickerDelegate;
-    }
-}
-
-- (NSString *) selectedItem {
-    if (self.pickerDelegate) {
-        return [self.pickerDelegate valueFromIndex:[picker selectedRowInComponent:0]];
-    }
-    return nil;
-}
-
-- (void) setCompletionCallback:(TCComboVwCallback)callback {
-    self.callback = callback;
 }
 
 @end

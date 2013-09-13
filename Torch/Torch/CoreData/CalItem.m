@@ -30,8 +30,7 @@
      CalItemAttributes.segment,
      CalItemAttributes.tdNumber,
      CalItemAttributes.uom,
-     CalItemAttributes.upc,
-     CalItemAttributes.weight
+     CalItemAttributes.upc
      ]];
     return mapping;
 }

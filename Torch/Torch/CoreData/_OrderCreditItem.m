@@ -17,7 +17,7 @@ const struct OrderCreditItemAttributes OrderCreditItemAttributes = {
 
 const struct OrderCreditItemRelationships OrderCreditItemRelationships = {
 	.calItem = @"calItem",
-	.orderCredit = @"orderCredit",
+	.order = @"order",
 };
 
 const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties = {
@@ -64,23 +64,8 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"nettAmountValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"nettAmount"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"overridePriceValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"overridePrice"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 	if ([key isEqualToString:@"quantityValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"quantity"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"totalValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"total"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -95,22 +80,22 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 
 
 
-- (int32_t)discountPercentageValue {
+- (double)discountPercentageValue {
 	NSNumber *result = [self discountPercentage];
-	return [result intValue];
+	return [result doubleValue];
 }
 
-- (void)setDiscountPercentageValue:(int32_t)value_ {
-	[self setDiscountPercentage:[NSNumber numberWithInt:value_]];
+- (void)setDiscountPercentageValue:(double)value_ {
+	[self setDiscountPercentage:[NSNumber numberWithDouble:value_]];
 }
 
-- (int32_t)primitiveDiscountPercentageValue {
+- (double)primitiveDiscountPercentageValue {
 	NSNumber *result = [self primitiveDiscountPercentage];
-	return [result intValue];
+	return [result doubleValue];
 }
 
-- (void)setPrimitiveDiscountPercentageValue:(int32_t)value_ {
-	[self setPrimitiveDiscountPercentage:[NSNumber numberWithInt:value_]];
+- (void)setPrimitiveDiscountPercentageValue:(double)value_ {
+	[self setPrimitiveDiscountPercentage:[NSNumber numberWithDouble:value_]];
 }
 
 
@@ -128,22 +113,22 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 
 
 
-- (int32_t)markdownPercentageValue {
+- (double)markdownPercentageValue {
 	NSNumber *result = [self markdownPercentage];
-	return [result intValue];
+	return [result doubleValue];
 }
 
-- (void)setMarkdownPercentageValue:(int32_t)value_ {
-	[self setMarkdownPercentage:[NSNumber numberWithInt:value_]];
+- (void)setMarkdownPercentageValue:(double)value_ {
+	[self setMarkdownPercentage:[NSNumber numberWithDouble:value_]];
 }
 
-- (int32_t)primitiveMarkdownPercentageValue {
+- (double)primitiveMarkdownPercentageValue {
 	NSNumber *result = [self primitiveMarkdownPercentage];
-	return [result intValue];
+	return [result doubleValue];
 }
 
-- (void)setPrimitiveMarkdownPercentageValue:(int32_t)value_ {
-	[self setPrimitiveMarkdownPercentage:[NSNumber numberWithInt:value_]];
+- (void)setPrimitiveMarkdownPercentageValue:(double)value_ {
+	[self setPrimitiveMarkdownPercentage:[NSNumber numberWithDouble:value_]];
 }
 
 
@@ -154,22 +139,22 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 
 
 
-- (int32_t)maxMarkdownPercentageValue {
+- (double)maxMarkdownPercentageValue {
 	NSNumber *result = [self maxMarkdownPercentage];
-	return [result intValue];
+	return [result doubleValue];
 }
 
-- (void)setMaxMarkdownPercentageValue:(int32_t)value_ {
-	[self setMaxMarkdownPercentage:[NSNumber numberWithInt:value_]];
+- (void)setMaxMarkdownPercentageValue:(double)value_ {
+	[self setMaxMarkdownPercentage:[NSNumber numberWithDouble:value_]];
 }
 
-- (int32_t)primitiveMaxMarkdownPercentageValue {
+- (double)primitiveMaxMarkdownPercentageValue {
 	NSNumber *result = [self primitiveMaxMarkdownPercentage];
-	return [result intValue];
+	return [result doubleValue];
 }
 
-- (void)setPrimitiveMaxMarkdownPercentageValue:(int32_t)value_ {
-	[self setPrimitiveMaxMarkdownPercentage:[NSNumber numberWithInt:value_]];
+- (void)setPrimitiveMaxMarkdownPercentageValue:(double)value_ {
+	[self setPrimitiveMaxMarkdownPercentage:[NSNumber numberWithDouble:value_]];
 }
 
 
@@ -180,49 +165,11 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 
 
 
-- (int32_t)nettAmountValue {
-	NSNumber *result = [self nettAmount];
-	return [result intValue];
-}
-
-- (void)setNettAmountValue:(int32_t)value_ {
-	[self setNettAmount:[NSNumber numberWithInt:value_]];
-}
-
-- (int32_t)primitiveNettAmountValue {
-	NSNumber *result = [self primitiveNettAmount];
-	return [result intValue];
-}
-
-- (void)setPrimitiveNettAmountValue:(int32_t)value_ {
-	[self setPrimitiveNettAmount:[NSNumber numberWithInt:value_]];
-}
-
-
 
 
 
 @dynamic overridePrice;
 
-
-
-- (int32_t)overridePriceValue {
-	NSNumber *result = [self overridePrice];
-	return [result intValue];
-}
-
-- (void)setOverridePriceValue:(int32_t)value_ {
-	[self setOverridePrice:[NSNumber numberWithInt:value_]];
-}
-
-- (int32_t)primitiveOverridePriceValue {
-	NSNumber *result = [self primitiveOverridePrice];
-	return [result intValue];
-}
-
-- (void)setPrimitiveOverridePriceValue:(int32_t)value_ {
-	[self setPrimitiveOverridePrice:[NSNumber numberWithInt:value_]];
-}
 
 
 
@@ -232,22 +179,22 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 
 
 
-- (int32_t)quantityValue {
+- (double)quantityValue {
 	NSNumber *result = [self quantity];
-	return [result intValue];
+	return [result doubleValue];
 }
 
-- (void)setQuantityValue:(int32_t)value_ {
-	[self setQuantity:[NSNumber numberWithInt:value_]];
+- (void)setQuantityValue:(double)value_ {
+	[self setQuantity:[NSNumber numberWithDouble:value_]];
 }
 
-- (int32_t)primitiveQuantityValue {
+- (double)primitiveQuantityValue {
 	NSNumber *result = [self primitiveQuantity];
-	return [result intValue];
+	return [result doubleValue];
 }
 
-- (void)setPrimitiveQuantityValue:(int32_t)value_ {
-	[self setPrimitiveQuantity:[NSNumber numberWithInt:value_]];
+- (void)setPrimitiveQuantityValue:(double)value_ {
+	[self setPrimitiveQuantity:[NSNumber numberWithDouble:value_]];
 }
 
 
@@ -265,25 +212,6 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 
 
 
-- (int32_t)totalValue {
-	NSNumber *result = [self total];
-	return [result intValue];
-}
-
-- (void)setTotalValue:(int32_t)value_ {
-	[self setTotal:[NSNumber numberWithInt:value_]];
-}
-
-- (int32_t)primitiveTotalValue {
-	NSNumber *result = [self primitiveTotal];
-	return [result intValue];
-}
-
-- (void)setPrimitiveTotalValue:(int32_t)value_ {
-	[self setPrimitiveTotal:[NSNumber numberWithInt:value_]];
-}
-
-
 
 
 
@@ -291,7 +219,7 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 
 	
 
-@dynamic orderCredit;
+@dynamic order;
 
 	
 

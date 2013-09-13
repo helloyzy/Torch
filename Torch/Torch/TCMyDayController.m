@@ -11,12 +11,15 @@
 #import "GraphicsUtils.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TCStoreHomeView.h"
+#import "Store.h"
 
 @interface TCMyDayController ()
 
 @end
 
-@implementation TCMyDayController
+@implementation TCMyDayController {
+    NSArray *_stores;
+}
 @synthesize tableView = _tableView;
 @synthesize header = _header;
 @synthesize shadow = _shadow;
@@ -35,6 +38,11 @@ static NSString *CellIdentifier = @"MyDayCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    Store* store = nil;//[Store insertInManagedObjectContext:[[NSManagedObjectContext alloc] init]];
+    //store.name = @"Walmart";
+    //store.address = @"line\nline\nline";
+    _stores = @[store];
 
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -81,7 +89,7 @@ static NSString *CellIdentifier = @"MyDayCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return _stores.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -91,7 +99,8 @@ static NSString *CellIdentifier = @"MyDayCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    TCMyDayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    //[cell cellWithData:[_stores objectAtIndex:indexPath.row]];
     return cell;
 }
 

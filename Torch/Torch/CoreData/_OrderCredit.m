@@ -25,7 +25,6 @@ const struct OrderCreditAttributes OrderCreditAttributes = {
 const struct OrderCreditRelationships OrderCreditRelationships = {
 	.account = @"account",
 	.contact = @"contact",
-	.order = @"order",
 	.orderCreditItems = @"orderCreditItems",
 };
 
@@ -39,16 +38,16 @@ const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"OrderCredit" inManagedObjectContext:moc_];
+	return [NSEntityDescription insertNewObjectForEntityForName:@"Order" inManagedObjectContext:moc_];
 }
 
 + (NSString*)entityName {
-	return @"OrderCredit";
+	return @"Order";
 }
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"OrderCredit" inManagedObjectContext:moc_];
+	return [NSEntityDescription entityForName:@"Order" inManagedObjectContext:moc_];
 }
 
 - (OrderCreditID*)objectID {
@@ -130,22 +129,22 @@ const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
 
 
 
-- (int32_t)paymentAmountValue {
+- (double)paymentAmountValue {
 	NSNumber *result = [self paymentAmount];
-	return [result intValue];
+	return [result doubleValue];
 }
 
-- (void)setPaymentAmountValue:(int32_t)value_ {
-	[self setPaymentAmount:[NSNumber numberWithInt:value_]];
+- (void)setPaymentAmountValue:(double)value_ {
+	[self setPaymentAmount:[NSNumber numberWithDouble:value_]];
 }
 
-- (int32_t)primitivePaymentAmountValue {
+- (double)primitivePaymentAmountValue {
 	NSNumber *result = [self primitivePaymentAmount];
-	return [result intValue];
+	return [result doubleValue];
 }
 
-- (void)setPrimitivePaymentAmountValue:(int32_t)value_ {
-	[self setPrimitivePaymentAmount:[NSNumber numberWithInt:value_]];
+- (void)setPrimitivePaymentAmountValue:(double)value_ {
+	[self setPrimitivePaymentAmount:[NSNumber numberWithDouble:value_]];
 }
 
 
@@ -206,10 +205,6 @@ const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
 	
 
 @dynamic contact;
-
-	
-
-@dynamic order;
 
 	
 

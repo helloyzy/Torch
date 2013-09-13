@@ -9,6 +9,7 @@
 #import "TCEditingCell.h"
 #import "DRTextField.h"
 #import "TCComboVw.h"
+#import "DateUtils.h"
 
 @interface TCEditingCell() {
     TCEditingCellStyle _editingStyle;
@@ -68,29 +69,38 @@
             [self.contentView addSubview:rightField];
             break;
         case TCEditingCellStyleLeftFieldRightBtn:
-            leftField = [[DRTextField alloc] init];
-            rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 5, 5)];
-            [self.contentView addSubview:leftField];
-            [self.contentView addSubview:rightBtn];
+            [self initLeftFieldAndRightBtn];
             break;
         case TCEditingCellStyleCombo: {
-            leftField = [[DRTextField alloc] init];
-            rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 5, 5)];
-            [self.contentView addSubview:leftField];
-            [self.contentView addSubview:rightBtn];
+            [self initLeftFieldAndRightBtn];
             comboVw = [TCComboVw instance];
-            if (comboVw) {
-                __weak TCEditingCell * temp = self;
-                [comboVw setCompletionCallback:^(TCComboVw * picker) {
-                    [temp comboSetSelectedText];
-                }];
-            }
+            __weak TCEditingCell * temp = self;
+            [comboVw setCompletionCallback:^(TCComboVw * picker) {
+                [temp comboSetSelectedText];
+            }];
+            [rightBtn addTarget:self action:@selector(showComboVw) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+        case TCEditingCellStyleDateCombo: {
+            [self initLeftFieldAndRightBtn];
+            comboVw = [TCComboVw shortDateInstance];
+            __weak TCEditingCell * temp = self;
+            [comboVw setCompletionCallback:^(TCComboVw * picker) {
+                [temp comboSetSelectedDate];
+            }];
             [rightBtn addTarget:self action:@selector(showComboVw) forControlEvents:UIControlEventTouchUpInside];
             break;
         }
         default:
             break;
     }
+}
+
+- (void)initLeftFieldAndRightBtn {
+    leftField = [[DRTextField alloc] init];
+    rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 5, 5)];
+    [self.contentView addSubview:leftField];
+    [self.contentView addSubview:rightBtn];
 }
 
 - (void)layoutSubviews {
@@ -109,14 +119,10 @@
             rightField.frame = CGRectMake(p_x + s_w_half + 5, p_y, s_w_half, s_h);
             break;
         case TCEditingCellStyleLeftFieldRightBtn:
+        case TCEditingCellStyleCombo:
+        case TCEditingCellStyleDateCombo:
             leftField.frame = CGRectMake(p_x, p_y, s_w - 20, s_h);
             leftField.enabled = NO; 
-            rightBtn.frame = CGRectMake(s_w - 5, p_y - 3, 20, 20);
-            [rightBtn setImage:[UIImage imageNamed:@"profile_btn_arrow.png"] forState:UIControlStateNormal];
-            break;
-        case TCEditingCellStyleCombo:
-            leftField.frame = CGRectMake(p_x, p_y, s_w - 20, s_h);
-            leftField.enabled = NO;
             rightBtn.frame = CGRectMake(s_w - 5, p_y - 3, 20, 20);
             [rightBtn setImage:[UIImage imageNamed:@"profile_btn_arrow.png"] forState:UIControlStateNormal];
             break;
@@ -131,6 +137,10 @@
 
 - (void)comboSetSelectedText {
     [leftField setText:[comboVw selectedItem]];
+}
+
+- (void)comboSetSelectedDate {
+    [leftField setText:[DateUtils stringFromDate:[comboVw selectedDate] withFormat:kDateFormatShort]];
 }
 
 #pragma mark - accessors
