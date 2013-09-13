@@ -133,7 +133,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 #pragma mark - table view delegate 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 8;
+    return 8 + self.contacts.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -290,7 +290,9 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
                 break;
         }
         // adjust the tag
-        editCell.centerField.tag = editCell.centerField.tag + (indexPath.section - _CONTACT_SECTION_START) * 4;
+        NSInteger newTagVal = editCell.centerField.tag + (indexPath.section - _CONTACT_SECTION_START) * 4;
+        NSLog(@"new Tag val is %i", newTagVal);
+        editCell.centerField.tag = newTagVal;
     }
     
     
@@ -329,9 +331,14 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 - (void)addNewContact {
     TCContact * contact = [[TCContact alloc] init];
     [self.contacts addObject:contact];
-    NSRange sectionsRange = NSMakeRange(_CONTACT_SECTION_START, self.contacts.count);
-    NSIndexSet * sectionsToReload = [NSIndexSet indexSetWithIndexesInRange:sectionsRange];
-    [tblVw reloadSections:sectionsToReload withRowAnimation:UITableViewRowAnimationFade];
+    NSRange sectionsRange = NSMakeRange(_CONTACT_SECTION_START + self.contacts.count - 1, 1);
+    NSIndexSet * sectionToAdd = [NSIndexSet indexSetWithIndexesInRange:sectionsRange];
+    [tblVw insertSections:sectionToAdd withRowAnimation:UITableViewRowAnimationFade];
+    
+//    // also need to refresh ADD CONTACT and ADD NOTES sections
+//    NSRange sectionsRange = NSMakeRange(_CONTACT_SECTION_START, self.contacts.count + 2);
+//    NSIndexSet * sectionsToReload = [NSIndexSet indexSetWithIndexesInRange:sectionsRange];
+//    [tblVw reloadSections:sectionsToReload withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - customized table view cell
