@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Store;
+
 @interface TCMyDayCell : UITableViewCell
+
+- (void) cellWithData: (Store*) store;
 
 @end

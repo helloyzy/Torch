@@ -7,16 +7,21 @@
 //
 
 #import "TCMyDayCell.h"
+#import "Store.h"
 #import <QuartzCore/QuartzCore.h>
 
-@implementation TCMyDayCell
+@implementation TCMyDayCell {
+    UILabel *storeLabel;
+    UILabel *addressLabel;
+    UILabel *numberLabel;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        UILabel *storeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 10.0, 280.0, 21.0)];
+        storeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 10.0, 280.0, 21.0)];
         storeLabel.adjustsFontSizeToFitWidth = NO;
         storeLabel.alpha = 1.000;
         storeLabel.autoresizesSubviews = YES;
@@ -32,7 +37,7 @@
         storeLabel.text = @"Store Name Here";
         storeLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:16];
         
-        UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 30.0, 209.0, 63.0)];
+        addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 30.0, 209.0, 63.0)];
         addressLabel.backgroundColor = [UIColor clearColor];
         addressLabel.adjustsFontSizeToFitWidth = NO;
         addressLabel.autoresizesSubviews = YES;
@@ -48,7 +53,7 @@
         addressLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:16];
         addressLabel.textColor = [UIColor colorWithWhite:0.667 alpha:1.000];
         
-        UILabel *numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(237.0, 30.0, 40.0, 33.0)];
+        numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(237.0, 30.0, 40.0, 33.0)];
         numberLabel.adjustsFontSizeToFitWidth = NO;
         numberLabel.backgroundColor = [UIColor colorWithRed:0.231 green:0.431 blue:0.627 alpha:1.000];
         numberLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
@@ -68,6 +73,11 @@
         [self addSubview:numberLabel];
     }
     return self;
+}
+
+- (void) cellWithData: (Store*) store {
+    storeLabel.text = store.name;
+    addressLabel.text = store.address;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
