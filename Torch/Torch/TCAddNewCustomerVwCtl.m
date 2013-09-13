@@ -25,6 +25,7 @@
 #define _AddNewContact_Section [self sectionFromContact:0]
 #define _AddNewNote_Section [self sectionFromContact:1]
 
+// only for sections which has rows containing two columns (like city and state)
 int rowDeviation(NSIndexPath * indexPath) {
     int result = 0;
     if (indexPath.section == 1) {  // || indexPath.section == 2
@@ -40,18 +41,22 @@ int rowDeviation(NSIndexPath * indexPath) {
 int calculateTag(NSIndexPath * indexPath, int column) {
     static int countPerSection[] = {1, 9, 0, 1, 0, 0};
     int result = 0;
-    // previous sections
-    for (int i = 0; i < indexPath.section; i++) {
+    // previous sections - sections above CONTACTS
+    for (int i = 0; i < indexPath.section && i < _CONTACT_SECTION_START; i++) {
         result += countPerSection[i];
     }
+    // CONTACTS sections
+    if (indexPath.section >= _CONTACT_SECTION_START) {
+        result += 4 * (indexPath.section - _CONTACT_SECTION_START);
+    }
     result += indexPath.row + rowDeviation(indexPath);
-    result += column;
+    result += column; // for rows which have more than 1 column
     result += START_EDIT_VIEW_TAG;
+    NSLog(@"Section: %i, Row: %i, Tag is %i", indexPath.section, indexPath.row, result);
     if (result >= END_EDIT_VIEW_TAG) {
         NSLog(@"Not enough tag values in 'Add New Customer' view");
         return -1; // NOT ENOUGH TAG VALUES!
     }
-    // NSLog(@"Section: %i, Row: %i, Tag is %i", indexPath.section, indexPath.row, result);
     return result;
 }
 
@@ -262,7 +267,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             cell.textLabel.font = TCFont_HNLTComBd(_TV_FIELD_FONTSIZE);
             cell.textLabel.textColor = TCColor_DarkBlue();
         }
-        if (indexPath.section == 6) {
+        if (indexPath.section == _AddNewContact_Section) {
             cell.textLabel.text = [self localString:@"addnewcustomer.addContact"];
         } else {
             cell.textLabel.text = [self localString:@"addnewcustomer.addNote"];
@@ -289,10 +294,10 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             default:
                 break;
         }
-        // adjust the tag
-        NSInteger newTagVal = editCell.centerField.tag + (indexPath.section - _CONTACT_SECTION_START) * 4;
-        NSLog(@"new Tag val is %i", newTagVal);
-        editCell.centerField.tag = newTagVal;
+//        // adjust the tag
+//        NSInteger newTagVal = editCell.centerField.tag + (indexPath.section - _CONTACT_SECTION_START) * 4;
+//        NSLog(@"new Tag val is %i", newTagVal);
+//        editCell.centerField.tag = newTagVal;
     }
     
     
@@ -331,9 +336,12 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 - (void)addNewContact {
     TCContact * contact = [[TCContact alloc] init];
     [self.contacts addObject:contact];
-    NSRange sectionsRange = NSMakeRange(_CONTACT_SECTION_START + self.contacts.count - 1, 1);
-    NSIndexSet * sectionToAdd = [NSIndexSet indexSetWithIndexesInRange:sectionsRange];
-    [tblVw insertSections:sectionToAdd withRowAnimation:UITableViewRowAnimationFade];
+    [tblVw reloadData];
+    
+    // NSRange sectionsRange = NSMakeRange(_CONTACT_SECTION_START + self.contacts.count - 1, 1);
+    // NSIndexSet * sectionToAdd = [NSIndexSet indexSetWithIndexesInRange:sectionsRange];
+    // NSIndexSet * indexSetToAdd = [NSIndexSet indexSetWithIndex:_CONTACT_SECTION_START + self.contacts.count - 1];
+    // [tblVw insertSections:indexSetToAdd withRowAnimation:UITableViewRowAnimationFade];
     
 //    // also need to refresh ADD CONTACT and ADD NOTES sections
 //    NSRange sectionsRange = NSMakeRange(_CONTACT_SECTION_START, self.contacts.count + 2);
