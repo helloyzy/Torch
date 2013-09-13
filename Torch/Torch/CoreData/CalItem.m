@@ -31,7 +31,6 @@
      CalItemAttributes.tdNumber,
      CalItemAttributes.uom,
      CalItemAttributes.upc,
-     CalItemAttributes.weight
      ]];
     return mapping;
 }

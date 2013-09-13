@@ -13,14 +13,14 @@
 + (RKEntityMapping *)objectMapping
 {
     RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
-    [mapping addAttributeMappingsFromArray:@[
-     OrderAttributes.actualEndDate,
-     OrderAttributes.actualStartDate,
-     OrderAttributes.callTimeAdjustment,
-     OrderAttributes.plannedEndDate,
-     OrderAttributes.plannedStartDate,
-     OrderAttributes.remoteKey
-     ]];
+//    [mapping addAttributeMappingsFromArray:@[
+//     OrderAttributes.actualEndDate,
+//     OrderAttributes.actualStartDate,
+//     OrderAttributes.callTimeAdjustment,
+//     OrderAttributes.plannedEndDate,
+//     OrderAttributes.plannedStartDate,
+//     OrderAttributes.remoteKey
+//     ]];
     return mapping;
 }
 
