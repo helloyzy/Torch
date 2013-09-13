@@ -25,7 +25,7 @@
      SalesRepAttributes.startDate,
      SalesRepAttributes.status
      ]];
-    
+    mapping.identificationAttributes = @[SalesRepAttributes.remoteKey];
     // [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"banners" toKeyPath:@"banners" withMapping:[Banner objectMapping]]];
     return mapping;
 }
