@@ -42,7 +42,7 @@ static NSString *CellIdentifier = @"MyDayCell";
     Store* store = nil;//[Store insertInManagedObjectContext:[[NSManagedObjectContext alloc] init]];
     //store.name = @"Walmart";
     //store.address = @"line\nline\nline";
-    _stores = @[store];
+    _stores = @[];
 
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -89,7 +89,7 @@ static NSString *CellIdentifier = @"MyDayCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _stores.count;
+    return 10;//_stores.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
