@@ -29,7 +29,7 @@ extern const struct AccountRelationships {
 extern const struct AccountFetchedProperties {
 } AccountFetchedProperties;
 
-@class OrderCredit;
+@class Order;
 
 
 
@@ -210,7 +210,7 @@ extern const struct AccountFetchedProperties {
 
 
 
-@property (nonatomic, strong) OrderCredit *order;
+@property (nonatomic, strong) Order *order;
 
 //- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
 
@@ -318,8 +318,8 @@ extern const struct AccountFetchedProperties {
 
 
 
-- (OrderCredit*)primitiveOrder;
-- (void)setPrimitiveOrder:(OrderCredit*)value;
+- (Order*)primitiveOrder;
+- (void)setPrimitiveOrder:(Order*)value;
 
 
 @end

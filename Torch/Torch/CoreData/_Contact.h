@@ -32,7 +32,7 @@ extern const struct ContactFetchedProperties {
 } ContactFetchedProperties;
 
 @class Note;
-@class OrderCredit;
+@class Order;
 @class Store;
 
 
@@ -225,7 +225,7 @@ extern const struct ContactFetchedProperties {
 
 
 
-@property (nonatomic, strong) OrderCredit *order;
+@property (nonatomic, strong) Order *order;
 
 //- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
 
@@ -353,8 +353,8 @@ extern const struct ContactFetchedProperties {
 
 
 
-- (OrderCredit*)primitiveOrder;
-- (void)setPrimitiveOrder:(OrderCredit*)value;
+- (Order*)primitiveOrder;
+- (void)setPrimitiveOrder:(Order*)value;
 
 
 
