@@ -59,6 +59,7 @@
 - (BOOL)isLoginRequired {
 
     return [HersheySSOUtils needsCredentials];
+    
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

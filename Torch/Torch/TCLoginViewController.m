@@ -68,6 +68,7 @@
 }
 
 - (IBAction)signIn:(id)sender {
+
     if (txtUsername.text.length>0) {
         if ([HersheySSOUtils setKeychainWithUsername:txtUsername.text andPassword:txtPwd.text]) {
             [self jumpToMyDay];
