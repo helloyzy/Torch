@@ -1,5 +1,6 @@
 #import "SalesRep.h"
 #import <RestKit.h>
+#import "Banner.h"
 
 @interface SalesRep ()
 
@@ -12,7 +13,7 @@
 
 + (RKEntityMapping *)objectMapping
 {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"SalesRep" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [mapping addAttributeMappingsFromArray:@[
      SalesRepAttributes.firstName,
      SalesRepAttributes.lastModifiedDate,
@@ -24,6 +25,8 @@
      SalesRepAttributes.startDate,
      SalesRepAttributes.status
      ]];
+    
+    // [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"banners" toKeyPath:@"banners" withMapping:[Banner objectMapping]]];
     return mapping;
 }
 
