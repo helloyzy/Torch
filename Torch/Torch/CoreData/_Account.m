@@ -5,6 +5,7 @@
 
 const struct AccountAttributes AccountAttributes = {
 	.accountID = @"accountID",
+	.accountRecordType = @"accountRecordType",
 	.address = @"address",
 	.city = @"city",
 	.currency = @"currency",
@@ -13,13 +14,15 @@ const struct AccountAttributes AccountAttributes = {
 	.phone = @"phone",
 	.postalcode = @"postalcode",
 	.recordType = @"recordType",
+	.remoteKey = @"remoteKey",
 	.state = @"state",
+	.street = @"street",
 	.streetref1 = @"streetref1",
 	.streetref2 = @"streetref2",
 };
 
 const struct AccountRelationships AccountRelationships = {
-	.orderCredit = @"orderCredit",
+	.order = @"order",
 };
 
 const struct AccountFetchedProperties AccountFetchedProperties = {
@@ -59,6 +62,13 @@ const struct AccountFetchedProperties AccountFetchedProperties = {
 
 
 @dynamic accountID;
+
+
+
+
+
+
+@dynamic accountRecordType;
 
 
 
@@ -121,7 +131,21 @@ const struct AccountFetchedProperties AccountFetchedProperties = {
 
 
 
+@dynamic remoteKey;
+
+
+
+
+
+
 @dynamic state;
+
+
+
+
+
+
+@dynamic street;
 
 
 
@@ -142,7 +166,7 @@ const struct AccountFetchedProperties AccountFetchedProperties = {
 
 
 
-@dynamic orderCredit;
+@dynamic order;
 
 	
 

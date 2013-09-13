@@ -26,7 +26,6 @@ extern const struct OrderCreditAttributes {
 extern const struct OrderCreditRelationships {
 	__unsafe_unretained NSString *account;
 	__unsafe_unretained NSString *contact;
-	__unsafe_unretained NSString *order;
 	__unsafe_unretained NSString *orderCreditItems;
 } OrderCreditRelationships;
 
@@ -35,7 +34,6 @@ extern const struct OrderCreditFetchedProperties {
 
 @class Account;
 @class Contact;
-@class Order;
 @class OrderCreditItem;
 
 
@@ -152,9 +150,9 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-@property int32_t paymentAmountValue;
-- (int32_t)paymentAmountValue;
-- (void)setPaymentAmountValue:(int32_t)value_;
+@property double paymentAmountValue;
+- (double)paymentAmountValue;
+- (void)setPaymentAmountValue:(double)value_;
 
 //- (BOOL)validatePaymentAmount:(id*)value_ error:(NSError**)error_;
 
@@ -246,13 +244,6 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-@property (nonatomic, strong) Order *order;
-
-//- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
-
-
-
-
 @property (nonatomic, strong) NSSet *orderCreditItems;
 
 - (NSMutableSet*)orderCreditItemsSet;
@@ -326,8 +317,8 @@ extern const struct OrderCreditFetchedProperties {
 - (NSNumber*)primitivePaymentAmount;
 - (void)setPrimitivePaymentAmount:(NSNumber*)value;
 
-- (int32_t)primitivePaymentAmountValue;
-- (void)setPrimitivePaymentAmountValue:(int32_t)value_;
+- (double)primitivePaymentAmountValue;
+- (void)setPrimitivePaymentAmountValue:(double)value_;
 
 
 
@@ -382,11 +373,6 @@ extern const struct OrderCreditFetchedProperties {
 
 - (Contact*)primitiveContact;
 - (void)setPrimitiveContact:(Contact*)value;
-
-
-
-- (Order*)primitiveOrder;
-- (void)setPrimitiveOrder:(Order*)value;
 
 
 

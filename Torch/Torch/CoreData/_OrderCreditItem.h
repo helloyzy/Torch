@@ -18,7 +18,7 @@ extern const struct OrderCreditItemAttributes {
 
 extern const struct OrderCreditItemRelationships {
 	__unsafe_unretained NSString *calItem;
-	__unsafe_unretained NSString *orderCredit;
+	__unsafe_unretained NSString *order;
 } OrderCreditItemRelationships;
 
 extern const struct OrderCreditItemFetchedProperties {
@@ -54,9 +54,9 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property int32_t discountPercentageValue;
-- (int32_t)discountPercentageValue;
-- (void)setDiscountPercentageValue:(int32_t)value_;
+@property double discountPercentageValue;
+- (double)discountPercentageValue;
+- (void)setDiscountPercentageValue:(double)value_;
 
 //- (BOOL)validateDiscountPercentage:(id*)value_ error:(NSError**)error_;
 
@@ -78,9 +78,9 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property int32_t markdownPercentageValue;
-- (int32_t)markdownPercentageValue;
-- (void)setMarkdownPercentageValue:(int32_t)value_;
+@property double markdownPercentageValue;
+- (double)markdownPercentageValue;
+- (void)setMarkdownPercentageValue:(double)value_;
 
 //- (BOOL)validateMarkdownPercentage:(id*)value_ error:(NSError**)error_;
 
@@ -92,9 +92,9 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property int32_t maxMarkdownPercentageValue;
-- (int32_t)maxMarkdownPercentageValue;
-- (void)setMaxMarkdownPercentageValue:(int32_t)value_;
+@property double maxMarkdownPercentageValue;
+- (double)maxMarkdownPercentageValue;
+- (void)setMaxMarkdownPercentageValue:(double)value_;
 
 //- (BOOL)validateMaxMarkdownPercentage:(id*)value_ error:(NSError**)error_;
 
@@ -102,13 +102,9 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* nettAmount;
+@property (nonatomic, strong) NSString* nettAmount;
 
 
-
-@property int32_t nettAmountValue;
-- (int32_t)nettAmountValue;
-- (void)setNettAmountValue:(int32_t)value_;
 
 //- (BOOL)validateNettAmount:(id*)value_ error:(NSError**)error_;
 
@@ -116,13 +112,9 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* overridePrice;
+@property (nonatomic, strong) NSString* overridePrice;
 
 
-
-@property int32_t overridePriceValue;
-- (int32_t)overridePriceValue;
-- (void)setOverridePriceValue:(int32_t)value_;
 
 //- (BOOL)validateOverridePrice:(id*)value_ error:(NSError**)error_;
 
@@ -134,9 +126,9 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property int32_t quantityValue;
-- (int32_t)quantityValue;
-- (void)setQuantityValue:(int32_t)value_;
+@property double quantityValue;
+- (double)quantityValue;
+- (void)setQuantityValue:(double)value_;
 
 //- (BOOL)validateQuantity:(id*)value_ error:(NSError**)error_;
 
@@ -154,13 +146,9 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* total;
+@property (nonatomic, strong) NSString* total;
 
 
-
-@property int32_t totalValue;
-- (int32_t)totalValue;
-- (void)setTotalValue:(int32_t)value_;
 
 //- (BOOL)validateTotal:(id*)value_ error:(NSError**)error_;
 
@@ -175,9 +163,9 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) OrderCredit *orderCredit;
+@property (nonatomic, strong) OrderCredit *order;
 
-//- (BOOL)validateOrderCredit:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -195,8 +183,8 @@ extern const struct OrderCreditItemFetchedProperties {
 - (NSNumber*)primitiveDiscountPercentage;
 - (void)setPrimitiveDiscountPercentage:(NSNumber*)value;
 
-- (int32_t)primitiveDiscountPercentageValue;
-- (void)setPrimitiveDiscountPercentageValue:(int32_t)value_;
+- (double)primitiveDiscountPercentageValue;
+- (void)setPrimitiveDiscountPercentageValue:(double)value_;
 
 
 
@@ -210,8 +198,8 @@ extern const struct OrderCreditItemFetchedProperties {
 - (NSNumber*)primitiveMarkdownPercentage;
 - (void)setPrimitiveMarkdownPercentage:(NSNumber*)value;
 
-- (int32_t)primitiveMarkdownPercentageValue;
-- (void)setPrimitiveMarkdownPercentageValue:(int32_t)value_;
+- (double)primitiveMarkdownPercentageValue;
+- (void)setPrimitiveMarkdownPercentageValue:(double)value_;
 
 
 
@@ -219,26 +207,20 @@ extern const struct OrderCreditItemFetchedProperties {
 - (NSNumber*)primitiveMaxMarkdownPercentage;
 - (void)setPrimitiveMaxMarkdownPercentage:(NSNumber*)value;
 
-- (int32_t)primitiveMaxMarkdownPercentageValue;
-- (void)setPrimitiveMaxMarkdownPercentageValue:(int32_t)value_;
+- (double)primitiveMaxMarkdownPercentageValue;
+- (void)setPrimitiveMaxMarkdownPercentageValue:(double)value_;
 
 
 
 
-- (NSNumber*)primitiveNettAmount;
-- (void)setPrimitiveNettAmount:(NSNumber*)value;
-
-- (int32_t)primitiveNettAmountValue;
-- (void)setPrimitiveNettAmountValue:(int32_t)value_;
+- (NSString*)primitiveNettAmount;
+- (void)setPrimitiveNettAmount:(NSString*)value;
 
 
 
 
-- (NSNumber*)primitiveOverridePrice;
-- (void)setPrimitiveOverridePrice:(NSNumber*)value;
-
-- (int32_t)primitiveOverridePriceValue;
-- (void)setPrimitiveOverridePriceValue:(int32_t)value_;
+- (NSString*)primitiveOverridePrice;
+- (void)setPrimitiveOverridePrice:(NSString*)value;
 
 
 
@@ -246,8 +228,8 @@ extern const struct OrderCreditItemFetchedProperties {
 - (NSNumber*)primitiveQuantity;
 - (void)setPrimitiveQuantity:(NSNumber*)value;
 
-- (int32_t)primitiveQuantityValue;
-- (void)setPrimitiveQuantityValue:(int32_t)value_;
+- (double)primitiveQuantityValue;
+- (void)setPrimitiveQuantityValue:(double)value_;
 
 
 
@@ -258,11 +240,8 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-- (NSNumber*)primitiveTotal;
-- (void)setPrimitiveTotal:(NSNumber*)value;
-
-- (int32_t)primitiveTotalValue;
-- (void)setPrimitiveTotalValue:(int32_t)value_;
+- (NSString*)primitiveTotal;
+- (void)setPrimitiveTotal:(NSString*)value;
 
 
 
@@ -273,8 +252,8 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-- (OrderCredit*)primitiveOrderCredit;
-- (void)setPrimitiveOrderCredit:(OrderCredit*)value;
+- (OrderCredit*)primitiveOrder;
+- (void)setPrimitiveOrder:(OrderCredit*)value;
 
 
 @end

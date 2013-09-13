@@ -23,7 +23,7 @@ const struct ContactAttributes ContactAttributes = {
 
 const struct ContactRelationships ContactRelationships = {
 	.notes = @"notes",
-	.orderCredit = @"orderCredit",
+	.order = @"order",
 	.store = @"store",
 };
 
@@ -56,16 +56,6 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
-	if ([key isEqualToString:@"bestDaysValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"bestDays"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"bestTimesValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"bestTimes"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 	if ([key isEqualToString:@"isKdmValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"isKdm"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -82,49 +72,11 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 
 
 
-- (int32_t)bestDaysValue {
-	NSNumber *result = [self bestDays];
-	return [result intValue];
-}
-
-- (void)setBestDaysValue:(int32_t)value_ {
-	[self setBestDays:[NSNumber numberWithInt:value_]];
-}
-
-- (int32_t)primitiveBestDaysValue {
-	NSNumber *result = [self primitiveBestDays];
-	return [result intValue];
-}
-
-- (void)setPrimitiveBestDaysValue:(int32_t)value_ {
-	[self setPrimitiveBestDays:[NSNumber numberWithInt:value_]];
-}
-
-
 
 
 
 @dynamic bestTimes;
 
-
-
-- (double)bestTimesValue {
-	NSNumber *result = [self bestTimes];
-	return [result doubleValue];
-}
-
-- (void)setBestTimesValue:(double)value_ {
-	[self setBestTimes:[NSNumber numberWithDouble:value_]];
-}
-
-- (double)primitiveBestTimesValue {
-	NSNumber *result = [self primitiveBestTimes];
-	return [result doubleValue];
-}
-
-- (void)setPrimitiveBestTimesValue:(double)value_ {
-	[self setPrimitiveBestTimes:[NSNumber numberWithDouble:value_]];
-}
 
 
 
@@ -253,7 +205,7 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 }
 	
 
-@dynamic orderCredit;
+@dynamic order;
 
 	
 

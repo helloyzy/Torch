@@ -8,19 +8,19 @@ extern const struct OrderAttributes {
 	__unsafe_unretained NSString *actualEndDate;
 	__unsafe_unretained NSString *actualStartDate;
 	__unsafe_unretained NSString *callTimeAdjustment;
+	__unsafe_unretained NSString *paymentAmount;
 	__unsafe_unretained NSString *plannedEndDate;
 	__unsafe_unretained NSString *plannedStartDate;
 	__unsafe_unretained NSString *remoteKey;
 } OrderAttributes;
 
 extern const struct OrderRelationships {
-	__unsafe_unretained NSString *orderCredits;
 } OrderRelationships;
 
 extern const struct OrderFetchedProperties {
 } OrderFetchedProperties;
 
-@class OrderCredit;
+
 
 
 
@@ -84,6 +84,20 @@ extern const struct OrderFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* paymentAmount;
+
+
+
+@property double paymentAmountValue;
+- (double)paymentAmountValue;
+- (void)setPaymentAmountValue:(double)value_;
+
+//- (BOOL)validatePaymentAmount:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* plannedEndDate;
 
 
@@ -122,22 +136,10 @@ extern const struct OrderFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *orderCredits;
-
-- (NSMutableSet*)orderCreditsSet;
-
-
-
-
 
 @end
 
 @interface _Order (CoreDataGeneratedAccessors)
-
-- (void)addOrderCredits:(NSSet*)value_;
-- (void)removeOrderCredits:(NSSet*)value_;
-- (void)addOrderCreditsObject:(OrderCredit*)value_;
-- (void)removeOrderCreditsObject:(OrderCredit*)value_;
 
 @end
 
@@ -171,6 +173,15 @@ extern const struct OrderFetchedProperties {
 
 
 
+- (NSNumber*)primitivePaymentAmount;
+- (void)setPrimitivePaymentAmount:(NSNumber*)value;
+
+- (double)primitivePaymentAmountValue;
+- (void)setPrimitivePaymentAmountValue:(double)value_;
+
+
+
+
 - (NSNumber*)primitivePlannedEndDate;
 - (void)setPrimitivePlannedEndDate:(NSNumber*)value;
 
@@ -193,11 +204,6 @@ extern const struct OrderFetchedProperties {
 - (void)setPrimitiveRemoteKey:(NSString*)value;
 
 
-
-
-
-- (NSMutableSet*)primitiveOrderCredits;
-- (void)setPrimitiveOrderCredits:(NSMutableSet*)value;
 
 
 @end

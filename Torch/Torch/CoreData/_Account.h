@@ -6,6 +6,7 @@
 
 extern const struct AccountAttributes {
 	__unsafe_unretained NSString *accountID;
+	__unsafe_unretained NSString *accountRecordType;
 	__unsafe_unretained NSString *address;
 	__unsafe_unretained NSString *city;
 	__unsafe_unretained NSString *currency;
@@ -14,19 +15,24 @@ extern const struct AccountAttributes {
 	__unsafe_unretained NSString *phone;
 	__unsafe_unretained NSString *postalcode;
 	__unsafe_unretained NSString *recordType;
+	__unsafe_unretained NSString *remoteKey;
 	__unsafe_unretained NSString *state;
+	__unsafe_unretained NSString *street;
 	__unsafe_unretained NSString *streetref1;
 	__unsafe_unretained NSString *streetref2;
 } AccountAttributes;
 
 extern const struct AccountRelationships {
-	__unsafe_unretained NSString *orderCredit;
+	__unsafe_unretained NSString *order;
 } AccountRelationships;
 
 extern const struct AccountFetchedProperties {
 } AccountFetchedProperties;
 
 @class OrderCredit;
+
+
+
 
 
 
@@ -59,6 +65,16 @@ extern const struct AccountFetchedProperties {
 
 
 //- (BOOL)validateAccountID:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* accountRecordType;
+
+
+
+//- (BOOL)validateAccountRecordType:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -144,11 +160,31 @@ extern const struct AccountFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* remoteKey;
+
+
+
+//- (BOOL)validateRemoteKey:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* state;
 
 
 
 //- (BOOL)validateState:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* street;
+
+
+
+//- (BOOL)validateStreet:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -174,9 +210,9 @@ extern const struct AccountFetchedProperties {
 
 
 
-@property (nonatomic, strong) OrderCredit *orderCredit;
+@property (nonatomic, strong) OrderCredit *order;
 
-//- (BOOL)validateOrderCredit:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -193,6 +229,12 @@ extern const struct AccountFetchedProperties {
 
 - (NSString*)primitiveAccountID;
 - (void)setPrimitiveAccountID:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveAccountRecordType;
+- (void)setPrimitiveAccountRecordType:(NSString*)value;
 
 
 
@@ -245,8 +287,20 @@ extern const struct AccountFetchedProperties {
 
 
 
+- (NSString*)primitiveRemoteKey;
+- (void)setPrimitiveRemoteKey:(NSString*)value;
+
+
+
+
 - (NSString*)primitiveState;
 - (void)setPrimitiveState:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveStreet;
+- (void)setPrimitiveStreet:(NSString*)value;
 
 
 
@@ -264,8 +318,8 @@ extern const struct AccountFetchedProperties {
 
 
 
-- (OrderCredit*)primitiveOrderCredit;
-- (void)setPrimitiveOrderCredit:(OrderCredit*)value;
+- (OrderCredit*)primitiveOrder;
+- (void)setPrimitiveOrder:(OrderCredit*)value;
 
 
 @end

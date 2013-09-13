@@ -7,13 +7,13 @@ const struct OrderAttributes OrderAttributes = {
 	.actualEndDate = @"actualEndDate",
 	.actualStartDate = @"actualStartDate",
 	.callTimeAdjustment = @"callTimeAdjustment",
+	.paymentAmount = @"paymentAmount",
 	.plannedEndDate = @"plannedEndDate",
 	.plannedStartDate = @"plannedStartDate",
 	.remoteKey = @"remoteKey",
 };
 
 const struct OrderRelationships OrderRelationships = {
-	.orderCredits = @"orderCredits",
 };
 
 const struct OrderFetchedProperties OrderFetchedProperties = {
@@ -26,16 +26,16 @@ const struct OrderFetchedProperties OrderFetchedProperties = {
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"Order" inManagedObjectContext:moc_];
+	return [NSEntityDescription insertNewObjectForEntityForName:@"OrderOld" inManagedObjectContext:moc_];
 }
 
 + (NSString*)entityName {
-	return @"Order";
+	return @"OrderOld";
 }
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"Order" inManagedObjectContext:moc_];
+	return [NSEntityDescription entityForName:@"OrderOld" inManagedObjectContext:moc_];
 }
 
 - (OrderID*)objectID {
@@ -57,6 +57,11 @@ const struct OrderFetchedProperties OrderFetchedProperties = {
 	}
 	if ([key isEqualToString:@"callTimeAdjustmentValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"callTimeAdjustment"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"paymentAmountValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"paymentAmount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -155,6 +160,32 @@ const struct OrderFetchedProperties OrderFetchedProperties = {
 
 
 
+@dynamic paymentAmount;
+
+
+
+- (double)paymentAmountValue {
+	NSNumber *result = [self paymentAmount];
+	return [result doubleValue];
+}
+
+- (void)setPaymentAmountValue:(double)value_ {
+	[self setPaymentAmount:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitivePaymentAmountValue {
+	NSNumber *result = [self primitivePaymentAmount];
+	return [result doubleValue];
+}
+
+- (void)setPrimitivePaymentAmountValue:(double)value_ {
+	[self setPrimitivePaymentAmount:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
 @dynamic plannedEndDate;
 
 
@@ -213,19 +244,6 @@ const struct OrderFetchedProperties OrderFetchedProperties = {
 
 
 
-
-@dynamic orderCredits;
-
-	
-- (NSMutableSet*)orderCreditsSet {
-	[self willAccessValueForKey:@"orderCredits"];
-  
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"orderCredits"];
-  
-	[self didAccessValueForKey:@"orderCredits"];
-	return result;
-}
-	
 
 
 
