@@ -52,9 +52,9 @@ int calculateTag(NSIndexPath * indexPath, int column) {
     result += indexPath.row + rowDeviation(indexPath);
     result += column; // for rows which have more than 1 column
     result += START_EDIT_VIEW_TAG;
-    NSLog(@"Section: %i, Row: %i, Tag is %i", indexPath.section, indexPath.row, result);
+    // NSLog(@"Section: %i, Row: %i, Tag is %i", indexPath.section, indexPath.row, result);
     if (result >= END_EDIT_VIEW_TAG) {
-        NSLog(@"Not enough tag values in 'Add New Customer' view");
+        NSLog(@"Not enough tag values in 'Add New Customer' view, current tag value is %i", result);
         return -1; // NOT ENOUGH TAG VALUES!
     }
     return result;
@@ -315,7 +315,8 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@_%@_%i", self.customer.storeName, self.customer.streetName, [self.customer isModified]);
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // NSLog(@"%@_%@_%i", self.customer.storeName, self.customer.streetName, [self.customer isModified]);
     if (indexPath.section == 4) {
         [self showCombo:tableView tag:_TAG_BTN_SHOWCOMBO1 indexPath:indexPath];
     } else if (indexPath.section == 5) {
@@ -326,7 +327,6 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     } else if (indexPath.section == _AddNewNote_Section) {
         NSLog(@"Add new note");
     }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (NSInteger)sectionFromContact:(NSInteger)deviation {
@@ -336,12 +336,10 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 - (void)addNewContact {
     TCContact * contact = [[TCContact alloc] init];
     [self.contacts addObject:contact];
-    [tblVw reloadData];
+    // [tblVw reloadData];
     
-    // NSRange sectionsRange = NSMakeRange(_CONTACT_SECTION_START + self.contacts.count - 1, 1);
-    // NSIndexSet * sectionToAdd = [NSIndexSet indexSetWithIndexesInRange:sectionsRange];
-    // NSIndexSet * indexSetToAdd = [NSIndexSet indexSetWithIndex:_CONTACT_SECTION_START + self.contacts.count - 1];
-    // [tblVw insertSections:indexSetToAdd withRowAnimation:UITableViewRowAnimationFade];
+    NSIndexSet * indexSetToAdd = [NSIndexSet indexSetWithIndex:_CONTACT_SECTION_START + self.contacts.count - 1];
+    [tblVw insertSections:indexSetToAdd withRowAnimation:UITableViewRowAnimationFade];
     
 //    // also need to refresh ADD CONTACT and ADD NOTES sections
 //    NSRange sectionsRange = NSMakeRange(_CONTACT_SECTION_START, self.contacts.count + 2);
@@ -386,7 +384,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 #pragma mark - text field delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    NSLog(@"did begin");
+    // NSLog(@"did begin");
     // [tblVw scrollRectToVisible:textField.frame animated:YES];
     // [tblVw scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
 }

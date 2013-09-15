@@ -185,6 +185,8 @@
 		DCC8389917CB42970046E999 /* profile_person_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389317CB42970046E999 /* profile_person_bg.png */; };
 		DCC8389A17CB42970046E999 /* profile_person.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389417CB42970046E999 /* profile_person.png */; };
 		DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D9EC17D468EF00823475 /* PromotionItem.m */; };
+		E23D421F17E5B31C00D3F5A0 /* TCDBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E23D421E17E5B31C00D3F5A0 /* TCDBUtils.m */; };
+		E23D422217E67CB600D3F5A0 /* TCSvcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E23D422117E67CB600D3F5A0 /* TCSvcUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -438,6 +440,10 @@
 		DCC8389417CB42970046E999 /* profile_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_person.png; sourceTree = "<group>"; };
 		DCE1D9EB17D468EF00823475 /* PromotionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionItem.h; sourceTree = "<group>"; };
 		DCE1D9EC17D468EF00823475 /* PromotionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionItem.m; sourceTree = "<group>"; };
+		E23D421D17E5B31C00D3F5A0 /* TCDBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDBUtils.h; sourceTree = "<group>"; };
+		E23D421E17E5B31C00D3F5A0 /* TCDBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDBUtils.m; sourceTree = "<group>"; };
+		E23D422017E67CB600D3F5A0 /* TCSvcUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSvcUtils.h; sourceTree = "<group>"; };
+		E23D422117E67CB600D3F5A0 /* TCSvcUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSvcUtils.m; sourceTree = "<group>"; };
 		FE8E8F30F3C5471C8179E1E7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -736,6 +742,10 @@
 				DC96805217CF2E320079D230 /* TCSysRes.m */,
 				DC76817417DD718A0039DE1B /* NSObject+Association.h */,
 				DC76817517DD718A0039DE1B /* NSObject+Association.m */,
+				E23D421D17E5B31C00D3F5A0 /* TCDBUtils.h */,
+				E23D421E17E5B31C00D3F5A0 /* TCDBUtils.m */,
+				E23D422017E67CB600D3F5A0 /* TCSvcUtils.h */,
+				E23D422117E67CB600D3F5A0 /* TCSvcUtils.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1148,6 +1158,8 @@
 				DC1655E117DF092500DD57D6 /* StoreCall.m in Sources */,
 				DC11568B17E1C597000ABC64 /* TCContact.m in Sources */,
 				D6D4FDF117E1904C00A0F4BF /* HersheySSOUtils.m in Sources */,
+				E23D421F17E5B31C00D3F5A0 /* TCDBUtils.m in Sources */,
+				E23D422217E67CB600D3F5A0 /* TCSvcUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
