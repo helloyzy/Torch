@@ -12,6 +12,6 @@
 
 @interface TCMyDayCell : UITableViewCell
 
-- (void) cellWithData: (Store*) store;
+- (TCMyDayCell*) cellWithData: (Store*) store cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

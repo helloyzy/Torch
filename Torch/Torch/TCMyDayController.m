@@ -102,7 +102,7 @@ static NSString *CellIdentifier = @"MyDayCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TCMyDayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    [cell cellWithData:[_stores objectAtIndex:indexPath.row]];
+    [cell cellWithData:[_stores objectAtIndex:indexPath.row] cellForRowAtIndexPath:indexPath];
     return cell;
 }
 

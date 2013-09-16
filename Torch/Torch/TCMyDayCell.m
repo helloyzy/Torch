@@ -75,9 +75,11 @@
     return self;
 }
 
-- (void) cellWithData: (Store*) store {
+- (TCMyDayCell*) cellWithData: (Store*) store cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     storeLabel.text = store.name;
     addressLabel.text = store.address;
+    numberLabel.text = [NSString stringWithFormat:@"#%@", [NSNumber numberWithInteger:indexPath.row+1]];
+    return self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
