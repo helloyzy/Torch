@@ -87,7 +87,7 @@
 
 
 /*David Xu*/
-
+"storehome.contactors"= "Contactors";
 "storehome.menu.priority" = "Prioridades";
 "storehome.menu.takeInventory"= "Tomar Inventario";
 "storehome.menu.createOrder" = "Crear Orden";

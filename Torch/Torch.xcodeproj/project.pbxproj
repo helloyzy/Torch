@@ -102,6 +102,8 @@
 		D6831BCA17D872D600718881 /* TCOrderHistoryDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6831BC917D872D600718881 /* TCOrderHistoryDetailCell.xib */; };
 		D6831BCD17D8730700718881 /* TCOrderHistoryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6831BCC17D8730700718881 /* TCOrderHistoryDetailCell.m */; };
 		D6C5A31417C7014400C0C657 /* ProductItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C5A31317C7014400C0C657 /* ProductItemObject.m */; };
+		D6C8602A17E6D481002F797D /* TCStoreNoVisit.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C8602817E6D481002F797D /* TCStoreNoVisit.m */; };
+		D6C8602B17E6D481002F797D /* TCStoreNoVisit.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6C8602917E6D481002F797D /* TCStoreNoVisit.xib */; };
 		D6CB682117C4A04500D290D7 /* TCInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */; };
 		D6CB682217C4A04500D290D7 /* TCInventoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */; };
 		D6CB682417C5A65600D290D7 /* InventoryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6CB682317C5A65600D290D7 /* InventoryTableCell.xib */; };
@@ -303,6 +305,9 @@
 		D6C5A31217C7014400C0C657 /* ProductItemObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductItemObject.h; path = ../ProductItemObject.h; sourceTree = "<group>"; };
 		D6C5A31317C7014400C0C657 /* ProductItemObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductItemObject.m; path = ../ProductItemObject.m; sourceTree = "<group>"; };
 		D6C6D21617E1523D00F5C535 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D6C8602717E6D481002F797D /* TCStoreNoVisit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCStoreNoVisit.h; sourceTree = "<group>"; };
+		D6C8602817E6D481002F797D /* TCStoreNoVisit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStoreNoVisit.m; sourceTree = "<group>"; };
+		D6C8602917E6D481002F797D /* TCStoreNoVisit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCStoreNoVisit.xib; sourceTree = "<group>"; };
 		D6CB681E17C4A04500D290D7 /* TCInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCInventoryViewController.h; sourceTree = "<group>"; };
 		D6CB681F17C4A04500D290D7 /* TCInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCInventoryViewController.m; sourceTree = "<group>"; };
 		D6CB682017C4A04500D290D7 /* TCInventoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCInventoryViewController.xib; sourceTree = "<group>"; };
@@ -638,6 +643,8 @@
 		DC0383A617C3058500BBD02A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D6C8602717E6D481002F797D /* TCStoreNoVisit.h */,
+				D6C8602817E6D481002F797D /* TCStoreNoVisit.m */,
 				D6831BCB17D8730700718881 /* TCOrderHistoryDetailCell.h */,
 				D6831BCC17D8730700718881 /* TCOrderHistoryDetailCell.m */,
 				C53C8D2317CF17B6000E978D /* TCOrderDetailView.h */,
@@ -693,6 +700,7 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D6C8602917E6D481002F797D /* TCStoreNoVisit.xib */,
 				D6831BC917D872D600718881 /* TCOrderHistoryDetailCell.xib */,
 				DC20E24A17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib */,
 				DC6CB0BC17D5B2490091EFAB /* TCPrinterCtl.xib */,
@@ -1017,6 +1025,7 @@
 				D6831BCA17D872D600718881 /* TCOrderHistoryDetailCell.xib in Resources */,
 				DCDBBE5117E6A0130078F71B /* login.json in Resources */,
 				DCDBBE5317E6CE700078F71B /* CoreDataStore.sqlite in Resources */,
+				D6C8602B17E6D481002F797D /* TCStoreNoVisit.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1168,6 +1177,7 @@
 				D6D4FDF117E1904C00A0F4BF /* HersheySSOUtils.m in Sources */,
 				E23D421F17E5B31C00D3F5A0 /* TCDBUtils.m in Sources */,
 				E23D422217E67CB600D3F5A0 /* TCSvcUtils.m in Sources */,
+				D6C8602A17E6D481002F797D /* TCStoreNoVisit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
