@@ -30,6 +30,7 @@
 #import "TCDBUtils.h"
 #import "TCSvcUtils.h"
 #import "IBFunctions.h"
+#import "DateUtils.h"
 
 @implementation TCAppDelegate
 
@@ -72,9 +73,14 @@
     // [TCDBUtils seed];
 }
 
+- (void) login {
+    [TCSvcUtils loginService];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self initDB];
+    // [self login];
     // NSLog(@"Documents dir %@", IB_DOCUMENTS_DIR());
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -83,7 +89,7 @@
     // self.viewController = [[TCDisclaimerVwCtl alloc] init];
     // self.viewController = [[TCStoreHomeView alloc] init];
     // self.viewController = [self rootDeckCtrl];
-    //self.viewController = [self controllerWithinNavCtr];
+    // self.viewController = [self controllerWithinNavCtr];
     // self.viewController = [[TCPrinterCtl alloc] init];
     self.viewController = [self loginController];
     

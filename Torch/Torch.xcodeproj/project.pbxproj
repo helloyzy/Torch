@@ -188,6 +188,7 @@
 		DCC8389A17CB42970046E999 /* profile_person.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389417CB42970046E999 /* profile_person.png */; };
 		DCDBBE5117E6A0130078F71B /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = DCDBBE5017E6A0130078F71B /* login.json */; };
 		DCDBBE5317E6CE700078F71B /* CoreDataStore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DCDBBE5217E6CE700078F71B /* CoreDataStore.sqlite */; };
+		DCDBBE5717E700730078F71B /* TCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBBE5617E700720078F71B /* TCUtils.m */; };
 		DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D9EC17D468EF00823475 /* PromotionItem.m */; };
 		E23D421F17E5B31C00D3F5A0 /* TCDBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E23D421E17E5B31C00D3F5A0 /* TCDBUtils.m */; };
 		E23D422217E67CB600D3F5A0 /* TCSvcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E23D422117E67CB600D3F5A0 /* TCSvcUtils.m */; };
@@ -447,6 +448,8 @@
 		DCC8389417CB42970046E999 /* profile_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_person.png; sourceTree = "<group>"; };
 		DCDBBE5017E6A0130078F71B /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
 		DCDBBE5217E6CE700078F71B /* CoreDataStore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoreDataStore.sqlite; sourceTree = "<group>"; };
+		DCDBBE5517E700720078F71B /* TCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtils.h; sourceTree = "<group>"; };
+		DCDBBE5617E700720078F71B /* TCUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtils.m; sourceTree = "<group>"; };
 		DCE1D9EB17D468EF00823475 /* PromotionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionItem.h; sourceTree = "<group>"; };
 		DCE1D9EC17D468EF00823475 /* PromotionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionItem.m; sourceTree = "<group>"; };
 		E23D421D17E5B31C00D3F5A0 /* TCDBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDBUtils.h; sourceTree = "<group>"; };
@@ -760,6 +763,8 @@
 				E23D421E17E5B31C00D3F5A0 /* TCDBUtils.m */,
 				E23D422017E67CB600D3F5A0 /* TCSvcUtils.h */,
 				E23D422117E67CB600D3F5A0 /* TCSvcUtils.m */,
+				DCDBBE5517E700720078F71B /* TCUtils.h */,
+				DCDBBE5617E700720078F71B /* TCUtils.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1178,6 +1183,7 @@
 				E23D421F17E5B31C00D3F5A0 /* TCDBUtils.m in Sources */,
 				E23D422217E67CB600D3F5A0 /* TCSvcUtils.m in Sources */,
 				D6C8602A17E6D481002F797D /* TCStoreNoVisit.m in Sources */,
+				DCDBBE5717E700730078F71B /* TCUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
