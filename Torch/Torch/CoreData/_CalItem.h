@@ -22,6 +22,7 @@ extern const struct CalItemAttributes {
 	__unsafe_unretained NSString *tdNumber;
 	__unsafe_unretained NSString *uom;
 	__unsafe_unretained NSString *upc;
+	__unsafe_unretained NSString *weight;
 } CalItemAttributes;
 
 extern const struct CalItemRelationships {
@@ -32,6 +33,7 @@ extern const struct CalItemFetchedProperties {
 } CalItemFetchedProperties;
 
 @class OrderCreditItem;
+
 
 
 
@@ -78,13 +80,9 @@ extern const struct CalItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* customerItemNumber;
+@property (nonatomic, strong) NSString* customerItemNumber;
 
 
-
-@property double customerItemNumberValue;
-- (double)customerItemNumberValue;
-- (void)setCustomerItemNumberValue:(double)value_;
 
 //- (BOOL)validateCustomerItemNumber:(id*)value_ error:(NSError**)error_;
 
@@ -148,9 +146,13 @@ extern const struct CalItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* maxMarkdown;
+@property (nonatomic, strong) NSNumber* maxMarkdown;
 
 
+
+@property double maxMarkdownValue;
+- (double)maxMarkdownValue;
+- (void)setMaxMarkdownValue:(double)value_;
 
 //- (BOOL)validateMaxMarkdown:(id*)value_ error:(NSError**)error_;
 
@@ -178,9 +180,13 @@ extern const struct CalItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* price;
+@property (nonatomic, strong) NSNumber* price;
 
 
+
+@property double priceValue;
+- (double)priceValue;
+- (void)setPriceValue:(double)value_;
 
 //- (BOOL)validatePrice:(id*)value_ error:(NSError**)error_;
 
@@ -258,6 +264,20 @@ extern const struct CalItemFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* weight;
+
+
+
+@property double weightValue;
+- (double)weightValue;
+- (void)setWeightValue:(double)value_;
+
+//- (BOOL)validateWeight:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) OrderCreditItem *orderCreditItem;
 
 //- (BOOL)validateOrderCreditItem:(id*)value_ error:(NSError**)error_;
@@ -284,11 +304,8 @@ extern const struct CalItemFetchedProperties {
 
 
 
-- (NSNumber*)primitiveCustomerItemNumber;
-- (void)setPrimitiveCustomerItemNumber:(NSNumber*)value;
-
-- (double)primitiveCustomerItemNumberValue;
-- (void)setPrimitiveCustomerItemNumberValue:(double)value_;
+- (NSString*)primitiveCustomerItemNumber;
+- (void)setPrimitiveCustomerItemNumber:(NSString*)value;
 
 
 
@@ -329,8 +346,11 @@ extern const struct CalItemFetchedProperties {
 
 
 
-- (NSString*)primitiveMaxMarkdown;
-- (void)setPrimitiveMaxMarkdown:(NSString*)value;
+- (NSNumber*)primitiveMaxMarkdown;
+- (void)setPrimitiveMaxMarkdown:(NSNumber*)value;
+
+- (double)primitiveMaxMarkdownValue;
+- (void)setPrimitiveMaxMarkdownValue:(double)value_;
 
 
 
@@ -347,8 +367,11 @@ extern const struct CalItemFetchedProperties {
 
 
 
-- (NSString*)primitivePrice;
-- (void)setPrimitivePrice:(NSString*)value;
+- (NSNumber*)primitivePrice;
+- (void)setPrimitivePrice:(NSNumber*)value;
+
+- (double)primitivePriceValue;
+- (void)setPrimitivePriceValue:(double)value_;
 
 
 
@@ -391,6 +414,15 @@ extern const struct CalItemFetchedProperties {
 
 - (NSString*)primitiveUpc;
 - (void)setPrimitiveUpc:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveWeight;
+- (void)setPrimitiveWeight:(NSNumber*)value;
+
+- (double)primitiveWeightValue;
+- (void)setPrimitiveWeightValue:(double)value_;
 
 
 

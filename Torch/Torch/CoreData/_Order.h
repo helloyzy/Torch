@@ -5,45 +5,23 @@
 
 
 extern const struct OrderAttributes {
-	__unsafe_unretained NSString *approvalRequiredReason;
-	__unsafe_unretained NSString *checkNumber;
-	__unsafe_unretained NSString *confirmationType;
-	__unsafe_unretained NSString *creditType;
-	__unsafe_unretained NSString *customerReferenceNumber;
-	__unsafe_unretained NSString *hersheyReferenceNumber;
-	__unsafe_unretained NSString *orderCreditId;
-	__unsafe_unretained NSString *orderType;
+	__unsafe_unretained NSString *actualEndDate;
+	__unsafe_unretained NSString *actualStartDate;
+	__unsafe_unretained NSString *callTimeAdjustment;
 	__unsafe_unretained NSString *paymentAmount;
-	__unsafe_unretained NSString *paymentMethod;
-	__unsafe_unretained NSString *paymentType;
-	__unsafe_unretained NSString *reasonCode;
-	__unsafe_unretained NSString *recordType;
-	__unsafe_unretained NSString *rejectionReason;
-	__unsafe_unretained NSString *signature;
-	__unsafe_unretained NSString *status;
+	__unsafe_unretained NSString *plannedEndDate;
+	__unsafe_unretained NSString *plannedStartDate;
+	__unsafe_unretained NSString *remoteKey;
 } OrderAttributes;
 
 extern const struct OrderRelationships {
-	__unsafe_unretained NSString *account;
-	__unsafe_unretained NSString *contact;
-	__unsafe_unretained NSString *orderCreditItems;
+	__unsafe_unretained NSString *orderCredits;
 } OrderRelationships;
 
 extern const struct OrderFetchedProperties {
 } OrderFetchedProperties;
 
-@class Account;
-@class Contact;
-@class OrderCreditItem;
-
-
-
-
-
-
-
-
-
+@class OrderCredit;
 
 
 
@@ -66,81 +44,43 @@ extern const struct OrderFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* approvalRequiredReason;
+@property (nonatomic, strong) NSNumber* actualEndDate;
 
 
 
-//- (BOOL)validateApprovalRequiredReason:(id*)value_ error:(NSError**)error_;
+@property double actualEndDateValue;
+- (double)actualEndDateValue;
+- (void)setActualEndDateValue:(double)value_;
 
-
-
-
-
-@property (nonatomic, strong) NSString* checkNumber;
-
-
-
-//- (BOOL)validateCheckNumber:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateActualEndDate:(id*)value_ error:(NSError**)error_;
 
 
 
 
 
-@property (nonatomic, strong) NSString* confirmationType;
+@property (nonatomic, strong) NSNumber* actualStartDate;
 
 
 
-//- (BOOL)validateConfirmationType:(id*)value_ error:(NSError**)error_;
+@property double actualStartDateValue;
+- (double)actualStartDateValue;
+- (void)setActualStartDateValue:(double)value_;
 
-
-
-
-
-@property (nonatomic, strong) NSString* creditType;
-
-
-
-//- (BOOL)validateCreditType:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateActualStartDate:(id*)value_ error:(NSError**)error_;
 
 
 
 
 
-@property (nonatomic, strong) NSString* customerReferenceNumber;
+@property (nonatomic, strong) NSNumber* callTimeAdjustment;
 
 
 
-//- (BOOL)validateCustomerReferenceNumber:(id*)value_ error:(NSError**)error_;
+@property double callTimeAdjustmentValue;
+- (double)callTimeAdjustmentValue;
+- (void)setCallTimeAdjustmentValue:(double)value_;
 
-
-
-
-
-@property (nonatomic, strong) NSString* hersheyReferenceNumber;
-
-
-
-//- (BOOL)validateHersheyReferenceNumber:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSString* orderCreditId;
-
-
-
-//- (BOOL)validateOrderCreditId:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSString* orderType;
-
-
-
-//- (BOOL)validateOrderType:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateCallTimeAdjustment:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -160,93 +100,47 @@ extern const struct OrderFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* paymentMethod;
+@property (nonatomic, strong) NSNumber* plannedEndDate;
 
 
 
-//- (BOOL)validatePaymentMethod:(id*)value_ error:(NSError**)error_;
+@property double plannedEndDateValue;
+- (double)plannedEndDateValue;
+- (void)setPlannedEndDateValue:(double)value_;
 
+//- (BOOL)validatePlannedEndDate:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) NSString* paymentType;
 
+@property (nonatomic, strong) NSNumber* plannedStartDate;
 
 
-//- (BOOL)validatePaymentType:(id*)value_ error:(NSError**)error_;
 
+@property double plannedStartDateValue;
+- (double)plannedStartDateValue;
+- (void)setPlannedStartDateValue:(double)value_;
 
+//- (BOOL)validatePlannedStartDate:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, strong) NSString* reasonCode;
 
 
+@property (nonatomic, strong) NSString* remoteKey;
 
-//- (BOOL)validateReasonCode:(id*)value_ error:(NSError**)error_;
 
 
+//- (BOOL)validateRemoteKey:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, strong) NSString* recordType;
 
 
+@property (nonatomic, strong) NSSet *orderCredits;
 
-//- (BOOL)validateRecordType:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSString* rejectionReason;
-
-
-
-//- (BOOL)validateRejectionReason:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSString* signature;
-
-
-
-//- (BOOL)validateSignature:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSString* status;
-
-
-
-//- (BOOL)validateStatus:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) Account *account;
-
-//- (BOOL)validateAccount:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) Contact *contact;
-
-//- (BOOL)validateContact:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) NSSet *orderCreditItems;
-
-- (NSMutableSet*)orderCreditItemsSet;
+- (NSMutableSet*)orderCreditsSet;
 
 
 
@@ -256,60 +150,39 @@ extern const struct OrderFetchedProperties {
 
 @interface _Order (CoreDataGeneratedAccessors)
 
-- (void)addOrderCreditItems:(NSSet*)value_;
-- (void)removeOrderCreditItems:(NSSet*)value_;
-- (void)addOrderCreditItemsObject:(OrderCreditItem*)value_;
-- (void)removeOrderCreditItemsObject:(OrderCreditItem*)value_;
+- (void)addOrderCredits:(NSSet*)value_;
+- (void)removeOrderCredits:(NSSet*)value_;
+- (void)addOrderCreditsObject:(OrderCredit*)value_;
+- (void)removeOrderCreditsObject:(OrderCredit*)value_;
 
 @end
 
 @interface _Order (CoreDataGeneratedPrimitiveAccessors)
 
 
-- (NSString*)primitiveApprovalRequiredReason;
-- (void)setPrimitiveApprovalRequiredReason:(NSString*)value;
+- (NSNumber*)primitiveActualEndDate;
+- (void)setPrimitiveActualEndDate:(NSNumber*)value;
+
+- (double)primitiveActualEndDateValue;
+- (void)setPrimitiveActualEndDateValue:(double)value_;
 
 
 
 
-- (NSString*)primitiveCheckNumber;
-- (void)setPrimitiveCheckNumber:(NSString*)value;
+- (NSNumber*)primitiveActualStartDate;
+- (void)setPrimitiveActualStartDate:(NSNumber*)value;
+
+- (double)primitiveActualStartDateValue;
+- (void)setPrimitiveActualStartDateValue:(double)value_;
 
 
 
 
-- (NSString*)primitiveConfirmationType;
-- (void)setPrimitiveConfirmationType:(NSString*)value;
+- (NSNumber*)primitiveCallTimeAdjustment;
+- (void)setPrimitiveCallTimeAdjustment:(NSNumber*)value;
 
-
-
-
-- (NSString*)primitiveCreditType;
-- (void)setPrimitiveCreditType:(NSString*)value;
-
-
-
-
-- (NSString*)primitiveCustomerReferenceNumber;
-- (void)setPrimitiveCustomerReferenceNumber:(NSString*)value;
-
-
-
-
-- (NSString*)primitiveHersheyReferenceNumber;
-- (void)setPrimitiveHersheyReferenceNumber:(NSString*)value;
-
-
-
-
-- (NSString*)primitiveOrderCreditId;
-- (void)setPrimitiveOrderCreditId:(NSString*)value;
-
-
-
-
-- (NSString*)primitiveOrderType;
-- (void)setPrimitiveOrderType:(NSString*)value;
+- (double)primitiveCallTimeAdjustmentValue;
+- (void)setPrimitiveCallTimeAdjustmentValue:(double)value_;
 
 
 
@@ -323,61 +196,33 @@ extern const struct OrderFetchedProperties {
 
 
 
-- (NSString*)primitivePaymentMethod;
-- (void)setPrimitivePaymentMethod:(NSString*)value;
+- (NSNumber*)primitivePlannedEndDate;
+- (void)setPrimitivePlannedEndDate:(NSNumber*)value;
+
+- (double)primitivePlannedEndDateValue;
+- (void)setPrimitivePlannedEndDateValue:(double)value_;
 
 
 
 
-- (NSString*)primitivePaymentType;
-- (void)setPrimitivePaymentType:(NSString*)value;
+- (NSNumber*)primitivePlannedStartDate;
+- (void)setPrimitivePlannedStartDate:(NSNumber*)value;
+
+- (double)primitivePlannedStartDateValue;
+- (void)setPrimitivePlannedStartDateValue:(double)value_;
 
 
 
 
-- (NSString*)primitiveReasonCode;
-- (void)setPrimitiveReasonCode:(NSString*)value;
-
-
-
-
-- (NSString*)primitiveRecordType;
-- (void)setPrimitiveRecordType:(NSString*)value;
-
-
-
-
-- (NSString*)primitiveRejectionReason;
-- (void)setPrimitiveRejectionReason:(NSString*)value;
-
-
-
-
-- (NSString*)primitiveSignature;
-- (void)setPrimitiveSignature:(NSString*)value;
-
-
-
-
-- (NSString*)primitiveStatus;
-- (void)setPrimitiveStatus:(NSString*)value;
+- (NSString*)primitiveRemoteKey;
+- (void)setPrimitiveRemoteKey:(NSString*)value;
 
 
 
 
 
-- (Account*)primitiveAccount;
-- (void)setPrimitiveAccount:(Account*)value;
-
-
-
-- (Contact*)primitiveContact;
-- (void)setPrimitiveContact:(Contact*)value;
-
-
-
-- (NSMutableSet*)primitiveOrderCreditItems;
-- (void)setPrimitiveOrderCreditItems:(NSMutableSet*)value;
+- (NSMutableSet*)primitiveOrderCredits;
+- (void)setPrimitiveOrderCredits:(NSMutableSet*)value;
 
 
 @end

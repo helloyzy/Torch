@@ -18,14 +18,14 @@ extern const struct OrderCreditItemAttributes {
 
 extern const struct OrderCreditItemRelationships {
 	__unsafe_unretained NSString *calItem;
-	__unsafe_unretained NSString *order;
+	__unsafe_unretained NSString *orderCredit;
 } OrderCreditItemRelationships;
 
 extern const struct OrderCreditItemFetchedProperties {
 } OrderCreditItemFetchedProperties;
 
 @class CalItem;
-@class Order;
+@class OrderCredit;
 
 
 
@@ -102,9 +102,13 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* nettAmount;
+@property (nonatomic, strong) NSNumber* nettAmount;
 
 
+
+@property double nettAmountValue;
+- (double)nettAmountValue;
+- (void)setNettAmountValue:(double)value_;
 
 //- (BOOL)validateNettAmount:(id*)value_ error:(NSError**)error_;
 
@@ -112,9 +116,13 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* overridePrice;
+@property (nonatomic, strong) NSNumber* overridePrice;
 
 
+
+@property double overridePriceValue;
+- (double)overridePriceValue;
+- (void)setOverridePriceValue:(double)value_;
 
 //- (BOOL)validateOverridePrice:(id*)value_ error:(NSError**)error_;
 
@@ -146,9 +154,13 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* total;
+@property (nonatomic, strong) NSNumber* total;
 
 
+
+@property double totalValue;
+- (double)totalValue;
+- (void)setTotalValue:(double)value_;
 
 //- (BOOL)validateTotal:(id*)value_ error:(NSError**)error_;
 
@@ -163,9 +175,9 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) Order *order;
+@property (nonatomic, strong) OrderCredit *orderCredit;
 
-//- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateOrderCredit:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -213,14 +225,20 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-- (NSString*)primitiveNettAmount;
-- (void)setPrimitiveNettAmount:(NSString*)value;
+- (NSNumber*)primitiveNettAmount;
+- (void)setPrimitiveNettAmount:(NSNumber*)value;
+
+- (double)primitiveNettAmountValue;
+- (void)setPrimitiveNettAmountValue:(double)value_;
 
 
 
 
-- (NSString*)primitiveOverridePrice;
-- (void)setPrimitiveOverridePrice:(NSString*)value;
+- (NSNumber*)primitiveOverridePrice;
+- (void)setPrimitiveOverridePrice:(NSNumber*)value;
+
+- (double)primitiveOverridePriceValue;
+- (void)setPrimitiveOverridePriceValue:(double)value_;
 
 
 
@@ -240,8 +258,11 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-- (NSString*)primitiveTotal;
-- (void)setPrimitiveTotal:(NSString*)value;
+- (NSNumber*)primitiveTotal;
+- (void)setPrimitiveTotal:(NSNumber*)value;
+
+- (double)primitiveTotalValue;
+- (void)setPrimitiveTotalValue:(double)value_;
 
 
 
@@ -252,8 +273,8 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-- (Order*)primitiveOrder;
-- (void)setPrimitiveOrder:(Order*)value;
+- (OrderCredit*)primitiveOrderCredit;
+- (void)setPrimitiveOrderCredit:(OrderCredit*)value;
 
 
 @end

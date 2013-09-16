@@ -4,28 +4,17 @@
 #import "_Order.h"
 
 const struct OrderAttributes OrderAttributes = {
-	.approvalRequiredReason = @"approvalRequiredReason",
-	.checkNumber = @"checkNumber",
-	.confirmationType = @"confirmationType",
-	.creditType = @"creditType",
-	.customerReferenceNumber = @"customerReferenceNumber",
-	.hersheyReferenceNumber = @"hersheyReferenceNumber",
-	.orderCreditId = @"orderCreditId",
-	.orderType = @"orderType",
+	.actualEndDate = @"actualEndDate",
+	.actualStartDate = @"actualStartDate",
+	.callTimeAdjustment = @"callTimeAdjustment",
 	.paymentAmount = @"paymentAmount",
-	.paymentMethod = @"paymentMethod",
-	.paymentType = @"paymentType",
-	.reasonCode = @"reasonCode",
-	.recordType = @"recordType",
-	.rejectionReason = @"rejectionReason",
-	.signature = @"signature",
-	.status = @"status",
+	.plannedEndDate = @"plannedEndDate",
+	.plannedStartDate = @"plannedStartDate",
+	.remoteKey = @"remoteKey",
 };
 
 const struct OrderRelationships OrderRelationships = {
-	.account = @"account",
-	.contact = @"contact",
-	.orderCreditItems = @"orderCreditItems",
+	.orderCredits = @"orderCredits",
 };
 
 const struct OrderFetchedProperties OrderFetchedProperties = {
@@ -57,8 +46,33 @@ const struct OrderFetchedProperties OrderFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"actualEndDateValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"actualEndDate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"actualStartDateValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"actualStartDate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"callTimeAdjustmentValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"callTimeAdjustment"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"paymentAmountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"paymentAmount"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"plannedEndDateValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"plannedEndDate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"plannedStartDateValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"plannedStartDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -69,57 +83,79 @@ const struct OrderFetchedProperties OrderFetchedProperties = {
 
 
 
-@dynamic approvalRequiredReason;
+@dynamic actualEndDate;
+
+
+
+- (double)actualEndDateValue {
+	NSNumber *result = [self actualEndDate];
+	return [result doubleValue];
+}
+
+- (void)setActualEndDateValue:(double)value_ {
+	[self setActualEndDate:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveActualEndDateValue {
+	NSNumber *result = [self primitiveActualEndDate];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveActualEndDateValue:(double)value_ {
+	[self setPrimitiveActualEndDate:[NSNumber numberWithDouble:value_]];
+}
 
 
 
 
 
-
-@dynamic checkNumber;
-
+@dynamic actualStartDate;
 
 
 
+- (double)actualStartDateValue {
+	NSNumber *result = [self actualStartDate];
+	return [result doubleValue];
+}
 
+- (void)setActualStartDateValue:(double)value_ {
+	[self setActualStartDate:[NSNumber numberWithDouble:value_]];
+}
 
-@dynamic confirmationType;
+- (double)primitiveActualStartDateValue {
+	NSNumber *result = [self primitiveActualStartDate];
+	return [result doubleValue];
+}
 
-
-
-
-
-
-@dynamic creditType;
-
-
-
-
-
-
-@dynamic customerReferenceNumber;
+- (void)setPrimitiveActualStartDateValue:(double)value_ {
+	[self setPrimitiveActualStartDate:[NSNumber numberWithDouble:value_]];
+}
 
 
 
 
 
-
-@dynamic hersheyReferenceNumber;
-
+@dynamic callTimeAdjustment;
 
 
 
+- (double)callTimeAdjustmentValue {
+	NSNumber *result = [self callTimeAdjustment];
+	return [result doubleValue];
+}
 
+- (void)setCallTimeAdjustmentValue:(double)value_ {
+	[self setCallTimeAdjustment:[NSNumber numberWithDouble:value_]];
+}
 
-@dynamic orderCreditId;
+- (double)primitiveCallTimeAdjustmentValue {
+	NSNumber *result = [self primitiveCallTimeAdjustment];
+	return [result doubleValue];
+}
 
-
-
-
-
-
-@dynamic orderType;
-
+- (void)setPrimitiveCallTimeAdjustmentValue:(double)value_ {
+	[self setPrimitiveCallTimeAdjustment:[NSNumber numberWithDouble:value_]];
+}
 
 
 
@@ -151,72 +187,74 @@ const struct OrderFetchedProperties OrderFetchedProperties = {
 
 
 
-@dynamic paymentMethod;
+@dynamic plannedEndDate;
+
+
+
+- (double)plannedEndDateValue {
+	NSNumber *result = [self plannedEndDate];
+	return [result doubleValue];
+}
+
+- (void)setPlannedEndDateValue:(double)value_ {
+	[self setPlannedEndDate:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitivePlannedEndDateValue {
+	NSNumber *result = [self primitivePlannedEndDate];
+	return [result doubleValue];
+}
+
+- (void)setPrimitivePlannedEndDateValue:(double)value_ {
+	[self setPrimitivePlannedEndDate:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic plannedStartDate;
+
+
+
+- (double)plannedStartDateValue {
+	NSNumber *result = [self plannedStartDate];
+	return [result doubleValue];
+}
+
+- (void)setPlannedStartDateValue:(double)value_ {
+	[self setPlannedStartDate:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitivePlannedStartDateValue {
+	NSNumber *result = [self primitivePlannedStartDate];
+	return [result doubleValue];
+}
+
+- (void)setPrimitivePlannedStartDateValue:(double)value_ {
+	[self setPrimitivePlannedStartDate:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic remoteKey;
 
 
 
 
 
 
-@dynamic paymentType;
-
-
-
-
-
-
-@dynamic reasonCode;
-
-
-
-
-
-
-@dynamic recordType;
-
-
-
-
-
-
-@dynamic rejectionReason;
-
-
-
-
-
-
-@dynamic signature;
-
-
-
-
-
-
-@dynamic status;
-
-
-
-
-
-
-@dynamic account;
+@dynamic orderCredits;
 
 	
-
-@dynamic contact;
-
-	
-
-@dynamic orderCreditItems;
-
-	
-- (NSMutableSet*)orderCreditItemsSet {
-	[self willAccessValueForKey:@"orderCreditItems"];
+- (NSMutableSet*)orderCreditsSet {
+	[self willAccessValueForKey:@"orderCredits"];
   
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"orderCreditItems"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"orderCredits"];
   
-	[self didAccessValueForKey:@"orderCreditItems"];
+	[self didAccessValueForKey:@"orderCredits"];
 	return result;
 }
 	

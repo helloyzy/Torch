@@ -23,13 +23,13 @@ extern const struct AccountAttributes {
 } AccountAttributes;
 
 extern const struct AccountRelationships {
-	__unsafe_unretained NSString *order;
+	__unsafe_unretained NSString *orderCredit;
 } AccountRelationships;
 
 extern const struct AccountFetchedProperties {
 } AccountFetchedProperties;
 
-@class Order;
+@class OrderCredit;
 
 
 
@@ -210,9 +210,9 @@ extern const struct AccountFetchedProperties {
 
 
 
-@property (nonatomic, strong) Order *order;
+@property (nonatomic, strong) OrderCredit *orderCredit;
 
-//- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateOrderCredit:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -318,8 +318,8 @@ extern const struct AccountFetchedProperties {
 
 
 
-- (Order*)primitiveOrder;
-- (void)setPrimitiveOrder:(Order*)value;
+- (OrderCredit*)primitiveOrderCredit;
+- (void)setPrimitiveOrderCredit:(OrderCredit*)value;
 
 
 @end

@@ -17,7 +17,7 @@ const struct OrderCreditItemAttributes OrderCreditItemAttributes = {
 
 const struct OrderCreditItemRelationships OrderCreditItemRelationships = {
 	.calItem = @"calItem",
-	.order = @"order",
+	.orderCredit = @"orderCredit",
 };
 
 const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties = {
@@ -64,8 +64,23 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"nettAmountValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"nettAmount"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"overridePriceValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"overridePrice"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"quantityValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"quantity"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"totalValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"total"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -165,11 +180,49 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 
 
 
+- (double)nettAmountValue {
+	NSNumber *result = [self nettAmount];
+	return [result doubleValue];
+}
+
+- (void)setNettAmountValue:(double)value_ {
+	[self setNettAmount:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveNettAmountValue {
+	NSNumber *result = [self primitiveNettAmount];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveNettAmountValue:(double)value_ {
+	[self setPrimitiveNettAmount:[NSNumber numberWithDouble:value_]];
+}
+
+
 
 
 
 @dynamic overridePrice;
 
+
+
+- (double)overridePriceValue {
+	NSNumber *result = [self overridePrice];
+	return [result doubleValue];
+}
+
+- (void)setOverridePriceValue:(double)value_ {
+	[self setOverridePrice:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveOverridePriceValue {
+	NSNumber *result = [self primitiveOverridePrice];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveOverridePriceValue:(double)value_ {
+	[self setPrimitiveOverridePrice:[NSNumber numberWithDouble:value_]];
+}
 
 
 
@@ -212,6 +265,25 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 
 
 
+- (double)totalValue {
+	NSNumber *result = [self total];
+	return [result doubleValue];
+}
+
+- (void)setTotalValue:(double)value_ {
+	[self setTotal:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveTotalValue {
+	NSNumber *result = [self primitiveTotal];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveTotalValue:(double)value_ {
+	[self setPrimitiveTotal:[NSNumber numberWithDouble:value_]];
+}
+
+
 
 
 
@@ -219,7 +291,7 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 
 	
 
-@dynamic order;
+@dynamic orderCredit;
 
 	
 

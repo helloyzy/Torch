@@ -21,6 +21,7 @@ const struct CalItemAttributes CalItemAttributes = {
 	.tdNumber = @"tdNumber",
 	.uom = @"uom",
 	.upc = @"upc",
+	.weight = @"weight",
 };
 
 const struct CalItemRelationships CalItemRelationships = {
@@ -61,11 +62,6 @@ const struct CalItemFetchedProperties CalItemFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"customerItemNumberValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"customerItemNumber"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 	if ([key isEqualToString:@"discontinuedValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"discontinued"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -83,6 +79,21 @@ const struct CalItemFetchedProperties CalItemFetchedProperties = {
 	}
 	if ([key isEqualToString:@"effectiveStartDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"effectiveStartDate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"maxMarkdownValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"maxMarkdown"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"priceValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"price"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"weightValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"weight"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -121,25 +132,6 @@ const struct CalItemFetchedProperties CalItemFetchedProperties = {
 
 @dynamic customerItemNumber;
 
-
-
-- (double)customerItemNumberValue {
-	NSNumber *result = [self customerItemNumber];
-	return [result doubleValue];
-}
-
-- (void)setCustomerItemNumberValue:(double)value_ {
-	[self setCustomerItemNumber:[NSNumber numberWithDouble:value_]];
-}
-
-- (double)primitiveCustomerItemNumberValue {
-	NSNumber *result = [self primitiveCustomerItemNumber];
-	return [result doubleValue];
-}
-
-- (void)setPrimitiveCustomerItemNumberValue:(double)value_ {
-	[self setPrimitiveCustomerItemNumber:[NSNumber numberWithDouble:value_]];
-}
 
 
 
@@ -253,6 +245,25 @@ const struct CalItemFetchedProperties CalItemFetchedProperties = {
 
 
 
+- (double)maxMarkdownValue {
+	NSNumber *result = [self maxMarkdown];
+	return [result doubleValue];
+}
+
+- (void)setMaxMarkdownValue:(double)value_ {
+	[self setMaxMarkdown:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveMaxMarkdownValue {
+	NSNumber *result = [self primitiveMaxMarkdown];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveMaxMarkdownValue:(double)value_ {
+	[self setPrimitiveMaxMarkdown:[NSNumber numberWithDouble:value_]];
+}
+
+
 
 
 
@@ -272,6 +283,25 @@ const struct CalItemFetchedProperties CalItemFetchedProperties = {
 
 @dynamic price;
 
+
+
+- (double)priceValue {
+	NSNumber *result = [self price];
+	return [result doubleValue];
+}
+
+- (void)setPriceValue:(double)value_ {
+	[self setPrice:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitivePriceValue {
+	NSNumber *result = [self primitivePrice];
+	return [result doubleValue];
+}
+
+- (void)setPrimitivePriceValue:(double)value_ {
+	[self setPrimitivePrice:[NSNumber numberWithDouble:value_]];
+}
 
 
 
@@ -321,6 +351,32 @@ const struct CalItemFetchedProperties CalItemFetchedProperties = {
 
 @dynamic upc;
 
+
+
+
+
+
+@dynamic weight;
+
+
+
+- (double)weightValue {
+	NSNumber *result = [self weight];
+	return [result doubleValue];
+}
+
+- (void)setWeightValue:(double)value_ {
+	[self setWeight:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveWeightValue {
+	NSNumber *result = [self primitiveWeight];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveWeightValue:(double)value_ {
+	[self setPrimitiveWeight:[NSNumber numberWithDouble:value_]];
+}
 
 
 

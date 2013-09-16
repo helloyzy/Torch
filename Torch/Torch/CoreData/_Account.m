@@ -22,7 +22,7 @@ const struct AccountAttributes AccountAttributes = {
 };
 
 const struct AccountRelationships AccountRelationships = {
-	.order = @"order",
+	.orderCredit = @"orderCredit",
 };
 
 const struct AccountFetchedProperties AccountFetchedProperties = {
@@ -166,7 +166,7 @@ const struct AccountFetchedProperties AccountFetchedProperties = {
 
 
 
-@dynamic order;
+@dynamic orderCredit;
 
 	
 

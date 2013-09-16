@@ -5,7 +5,9 @@
 
 
 extern const struct OrderCreditAttributes {
+	__unsafe_unretained NSString *actualEndDate;
 	__unsafe_unretained NSString *approvalRequiredReason;
+	__unsafe_unretained NSString *callTimeAdjustment;
 	__unsafe_unretained NSString *checkNumber;
 	__unsafe_unretained NSString *confirmationType;
 	__unsafe_unretained NSString *creditType;
@@ -16,6 +18,8 @@ extern const struct OrderCreditAttributes {
 	__unsafe_unretained NSString *paymentAmount;
 	__unsafe_unretained NSString *paymentMethod;
 	__unsafe_unretained NSString *paymentType;
+	__unsafe_unretained NSString *plannedEndDate;
+	__unsafe_unretained NSString *plannedStartDate;
 	__unsafe_unretained NSString *reasonCode;
 	__unsafe_unretained NSString *recordType;
 	__unsafe_unretained NSString *rejectionReason;
@@ -26,6 +30,7 @@ extern const struct OrderCreditAttributes {
 extern const struct OrderCreditRelationships {
 	__unsafe_unretained NSString *account;
 	__unsafe_unretained NSString *contact;
+	__unsafe_unretained NSString *order;
 	__unsafe_unretained NSString *orderCreditItems;
 } OrderCreditRelationships;
 
@@ -34,7 +39,12 @@ extern const struct OrderCreditFetchedProperties {
 
 @class Account;
 @class Contact;
+@class Order;
 @class OrderCreditItem;
+
+
+
+
 
 
 
@@ -66,11 +76,39 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* actualEndDate;
+
+
+
+@property double actualEndDateValue;
+- (double)actualEndDateValue;
+- (void)setActualEndDateValue:(double)value_;
+
+//- (BOOL)validateActualEndDate:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* approvalRequiredReason;
 
 
 
 //- (BOOL)validateApprovalRequiredReason:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* callTimeAdjustment;
+
+
+
+@property double callTimeAdjustmentValue;
+- (double)callTimeAdjustmentValue;
+- (void)setCallTimeAdjustmentValue:(double)value_;
+
+//- (BOOL)validateCallTimeAdjustment:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -180,6 +218,34 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* plannedEndDate;
+
+
+
+@property double plannedEndDateValue;
+- (double)plannedEndDateValue;
+- (void)setPlannedEndDateValue:(double)value_;
+
+//- (BOOL)validatePlannedEndDate:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* plannedStartDate;
+
+
+
+@property double plannedStartDateValue;
+- (double)plannedStartDateValue;
+- (void)setPlannedStartDateValue:(double)value_;
+
+//- (BOOL)validatePlannedStartDate:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* reasonCode;
 
 
@@ -244,6 +310,13 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
+@property (nonatomic, strong) Order *order;
+
+//- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
+
+
+
+
 @property (nonatomic, strong) NSSet *orderCreditItems;
 
 - (NSMutableSet*)orderCreditItemsSet;
@@ -266,8 +339,26 @@ extern const struct OrderCreditFetchedProperties {
 @interface _OrderCredit (CoreDataGeneratedPrimitiveAccessors)
 
 
+- (NSNumber*)primitiveActualEndDate;
+- (void)setPrimitiveActualEndDate:(NSNumber*)value;
+
+- (double)primitiveActualEndDateValue;
+- (void)setPrimitiveActualEndDateValue:(double)value_;
+
+
+
+
 - (NSString*)primitiveApprovalRequiredReason;
 - (void)setPrimitiveApprovalRequiredReason:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveCallTimeAdjustment;
+- (void)setPrimitiveCallTimeAdjustment:(NSNumber*)value;
+
+- (double)primitiveCallTimeAdjustmentValue;
+- (void)setPrimitiveCallTimeAdjustmentValue:(double)value_;
 
 
 
@@ -335,6 +426,24 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
+- (NSNumber*)primitivePlannedEndDate;
+- (void)setPrimitivePlannedEndDate:(NSNumber*)value;
+
+- (double)primitivePlannedEndDateValue;
+- (void)setPrimitivePlannedEndDateValue:(double)value_;
+
+
+
+
+- (NSNumber*)primitivePlannedStartDate;
+- (void)setPrimitivePlannedStartDate:(NSNumber*)value;
+
+- (double)primitivePlannedStartDateValue;
+- (void)setPrimitivePlannedStartDateValue:(double)value_;
+
+
+
+
 - (NSString*)primitiveReasonCode;
 - (void)setPrimitiveReasonCode:(NSString*)value;
 
@@ -373,6 +482,11 @@ extern const struct OrderCreditFetchedProperties {
 
 - (Contact*)primitiveContact;
 - (void)setPrimitiveContact:(Contact*)value;
+
+
+
+- (Order*)primitiveOrder;
+- (void)setPrimitiveOrder:(Order*)value;
 
 
 

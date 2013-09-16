@@ -24,7 +24,7 @@ extern const struct ContactAttributes {
 
 extern const struct ContactRelationships {
 	__unsafe_unretained NSString *notes;
-	__unsafe_unretained NSString *order;
+	__unsafe_unretained NSString *orderCredit;
 	__unsafe_unretained NSString *store;
 } ContactRelationships;
 
@@ -32,7 +32,7 @@ extern const struct ContactFetchedProperties {
 } ContactFetchedProperties;
 
 @class Note;
-@class Order;
+@class OrderCredit;
 @class Store;
 
 
@@ -64,9 +64,13 @@ extern const struct ContactFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* bestDays;
+@property (nonatomic, strong) NSNumber* bestDays;
 
 
+
+@property double bestDaysValue;
+- (double)bestDaysValue;
+- (void)setBestDaysValue:(double)value_;
 
 //- (BOOL)validateBestDays:(id*)value_ error:(NSError**)error_;
 
@@ -74,9 +78,13 @@ extern const struct ContactFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* bestTimes;
+@property (nonatomic, strong) NSNumber* bestTimes;
 
 
+
+@property double bestTimesValue;
+- (double)bestTimesValue;
+- (void)setBestTimesValue:(double)value_;
 
 //- (BOOL)validateBestTimes:(id*)value_ error:(NSError**)error_;
 
@@ -225,9 +233,9 @@ extern const struct ContactFetchedProperties {
 
 
 
-@property (nonatomic, strong) Order *order;
+@property (nonatomic, strong) OrderCredit *orderCredit;
 
-//- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateOrderCredit:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -254,14 +262,20 @@ extern const struct ContactFetchedProperties {
 @interface _Contact (CoreDataGeneratedPrimitiveAccessors)
 
 
-- (NSString*)primitiveBestDays;
-- (void)setPrimitiveBestDays:(NSString*)value;
+- (NSNumber*)primitiveBestDays;
+- (void)setPrimitiveBestDays:(NSNumber*)value;
+
+- (double)primitiveBestDaysValue;
+- (void)setPrimitiveBestDaysValue:(double)value_;
 
 
 
 
-- (NSString*)primitiveBestTimes;
-- (void)setPrimitiveBestTimes:(NSString*)value;
+- (NSNumber*)primitiveBestTimes;
+- (void)setPrimitiveBestTimes:(NSNumber*)value;
+
+- (double)primitiveBestTimesValue;
+- (void)setPrimitiveBestTimesValue:(double)value_;
 
 
 
@@ -353,8 +367,8 @@ extern const struct ContactFetchedProperties {
 
 
 
-- (Order*)primitiveOrder;
-- (void)setPrimitiveOrder:(Order*)value;
+- (OrderCredit*)primitiveOrderCredit;
+- (void)setPrimitiveOrderCredit:(OrderCredit*)value;
 
 
 
