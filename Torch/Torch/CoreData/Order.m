@@ -13,9 +13,9 @@
 + (RKEntityMapping *)objectMapping
 {
     RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
-    [mapping addAttributeMappingsFromArray:@[
-     OrderAttributes.approvalRequiredReason
-     ]];
+//    [mapping addAttributeMappingsFromArray:@[
+//     OrderAttributes.approvalRequiredReason
+//     ]];
     return mapping;
 }
 
