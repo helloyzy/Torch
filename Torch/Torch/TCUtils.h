@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-//#define TC_DEBUG 1
+#define TC_DEBUG 1
+
+#define TC_WINDOW [[UIApplication sharedApplication] keyWindow]
 
 NSString * millisecondToDateStr(double milliseconds);
 // double dateToMilliseconds(NSDate * date);
 
 void showAlert(NSString * title, NSString * message);
+
+void showProgressIndicator(NSString * title);
+void hideProgressIndicator();
