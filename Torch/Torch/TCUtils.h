@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#define TC_DEBUG 1
+//#define TC_DEBUG 1
 
 NSString * millisecondToDateStr(double milliseconds);
 // double dateToMilliseconds(NSDate * date);
+
+void showAlert(NSString * title, NSString * message);

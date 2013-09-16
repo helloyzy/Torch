@@ -15,3 +15,8 @@ NSString * millisecondToDateStr(double milliseconds) {
     return [DateUtils stringFromDate:date withFormat:kDateFormatShort];
 }
 
+void showAlert(NSString * title, NSString * message) {
+    NSString * OKCaption = NSLocalizedString(@"OK", nil);
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:OKCaption otherButtonTitles:nil,nil];
+	[alert show];
+}

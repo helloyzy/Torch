@@ -11,6 +11,7 @@
 "Back" = "Regresar";
 "Cancel" = "Cancelar";
 "Save" = "Guardar";
+"OK" = "Bueno";
 
 "login.username" = "Nombre de usuario";
 "login.username.placeholder" = "HFXXXXXX";

@@ -31,6 +31,7 @@
 #import "TCSvcUtils.h"
 #import "IBFunctions.h"
 #import "DateUtils.h"
+#import "TCUtils.h"
 
 @implementation TCAppDelegate
 
@@ -91,9 +92,11 @@
     // self.viewController = [self rootDeckCtrl];
     // self.viewController = [self controllerWithinNavCtr];
     // self.viewController = [[TCPrinterCtl alloc] init];
+#ifdef TC_DEBUG
     self.viewController = [self loginController];
-    
-    // self.viewController = [self isLoginRequired] ? [self loginController] : [UIViewController myDayDeckAsRoot];
+#else
+    self.viewController = [self isLoginRequired] ? [self loginController] : [UIViewController myDayDeckAsRoot];
+#endif
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

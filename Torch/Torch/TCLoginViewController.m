@@ -12,6 +12,7 @@
 #import "YIInnerShadowView.h"
 #import "UIViewController+Torch.h"
 #import "HersheySSOUtils.h"
+#import "TCUtils.h"
 
 @interface TCLoginViewController ()
 
@@ -68,13 +69,15 @@
 }
 
 - (IBAction)signIn:(id)sender {
-
+#ifdef TC_DEBUG
     if (txtUsername.text.length>0) {
         if ([HersheySSOUtils setKeychainWithUsername:txtUsername.text andPassword:txtPwd.text]) {
             [self jumpToMyDay];
         }
     }
- 
+#else
+    [self jumpToMyDay];
+#endif
 }
 
 #pragma mark - navigation between controllers
@@ -89,6 +92,14 @@
 
 - (UIView *) viewForTapToDismissKeyboard {
     return self.view;
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+    [super textFieldShouldReturn:textField];
+    if (textField.returnKeyType == UIReturnKeyDone) {
+        [self signIn:nil];
+    }
+    return YES;
 }
 
 @end
