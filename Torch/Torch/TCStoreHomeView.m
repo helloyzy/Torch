@@ -197,9 +197,9 @@ static NSString *kViewControllerKey = @"viewController";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	static NSString *MyIdentifier = @"MyIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    UITableViewCell *cell;
     if (indexPath.section ==0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"storeHomeSection1"];
         if (cell == nil) {
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,  0, 320, ROW_HEIGHT_MAX)];
         UITextView *txtStoreDetail = [[UITextView alloc] initWithFrame:CGRectMake(-5,0,190,ROW_HEIGHT_MAX-10)];
@@ -208,7 +208,7 @@ static NSString *kViewControllerKey = @"viewController";
         txtStoreDetail.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1];
         txtStoreDetail.editable = NO;
 
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"storeHomeSection1"];
         UIImageView *mapImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapwithhint.png"]];
         mapImage.frame = CGRectMake(225, 2, 50, 70);
 
@@ -241,8 +241,9 @@ static NSString *kViewControllerKey = @"viewController";
         
        
     }else if (indexPath.section ==1){
+         cell = [tableView dequeueReusableCellWithIdentifier:@"storeHomeSection2"];
 	if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"storeHomeSection2"];
         UITextField *_txtName=[[UITextField alloc]initWithFrame:CGRectMake(8.0, 0.0, 150.0, ROW_HEIGHT/2)];
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,  0, 320, ROW_HEIGHT)];
         [_txtName setPlaceholder:@"Join Type Data Here........"];
@@ -268,8 +269,9 @@ static NSString *kViewControllerKey = @"viewController";
 	
     }else {
         // If no cell is available, create a new one using the given identifier.
+               cell = [tableView dequeueReusableCellWithIdentifier:@"storeHomeSection3"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"storeHomeSection3"];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kTitleKey];
             cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
