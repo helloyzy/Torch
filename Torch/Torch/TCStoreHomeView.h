@@ -16,6 +16,6 @@
     //__weak IBOutlet TCSliderView *sliderVw;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic,copy) Store *currentStore;
+@property (nonatomic,strong) Store *currentStore;
 
 @end

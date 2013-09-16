@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCNavVwCtl.h"
 
-@interface TCStoreNoVisit : UIViewController
+@interface TCStoreNoVisit : TCNavVwCtl <UIPickerViewDataSource,UIPickerViewDelegate >
 
 @end

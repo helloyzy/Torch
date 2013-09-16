@@ -82,6 +82,10 @@
 "orderHistory.orderItems"= "Artículos Pedido";
 "orderHistory.printReceiptButton"="Imprimir Ticket";
 
+"store.novisit.title" = "Motivo de la no visita";
+"store.novisit.hint" = "Por favor seleccione el motivo de no visita.";
+"store.novisit.cancel" = "Cancelar";
+"store.novisit.confirm" = "Confirmar";
 
 /*daxian*/
 

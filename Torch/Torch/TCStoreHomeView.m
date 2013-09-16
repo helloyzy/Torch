@@ -13,6 +13,7 @@
 #import "TCOrderViewController.h"
 #import "TCSummaryViewController.h"
 #import "TCOrderHistory.h"
+#import "TCStoreNoVisit.h"
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -170,13 +171,13 @@ static NSString *kViewControllerKey = @"viewController";
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 35)];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 55)];
 
     if (section == 2) {
 		UIImage *buttonBackground = [UIImage imageNamed:@"bluebutton.png"];
 		UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"bluebtn_pressed.png"];
 		
-		CGRect frame = CGRectMake(10, 5, 300, 30);
+		CGRect frame = CGRectMake(10, 5, 300, 35);
 		
 		_btnNovisit = [TCStoreHomeView newButtonWithTitle:[self localString:@"storehome.button.novisit"]
                                                      target:self
@@ -209,7 +210,7 @@ static NSString *kViewControllerKey = @"viewController";
 
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
         UIImageView *mapImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapwithhint.png"]];
-        mapImage.frame = CGRectMake(240, 2, 50, 70);
+        mapImage.frame = CGRectMake(225, 2, 50, 70);
 
         UILabel *lblNumber = [[UILabel alloc] initWithFrame:CGRectMake(15,5,20,25)];
         lblNumber.text = @"#3";
@@ -220,7 +221,7 @@ static NSString *kViewControllerKey = @"viewController";
 		UIImage *buttonBackground = [UIImage imageNamed:@"directionbtn.png"];
 		UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"directionbtn_pressed.png"];
 		
-		CGRect frame = CGRectMake(180, 80, 125, 25);
+		CGRect frame = CGRectMake(205, 80, 90, 25);
 		
 		_btnDirection = [TCStoreHomeView newButtonWithTitle:[self localString:@"storehome.button.instructions"]
                                                          target:self
@@ -228,6 +229,7 @@ static NSString *kViewControllerKey = @"viewController";
                                                           frame:frame
                                                           image:buttonBackground
                                                    imagePressed:buttonBackgroundPressed];
+
 
         [cell.contentView addSubview:mapImage];
         [cell.contentView addSubview:txtStoreDetail];
@@ -313,7 +315,7 @@ static NSString *kViewControllerKey = @"viewController";
 	[button setTitle:title  forState:UIControlStateNormal];
 
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-     button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:15];
+     button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14];
      button.titleLabel.textAlignment = NSTextAlignmentLeft;
     [button setTitleEdgeInsets:UIEdgeInsetsMake(6.0, 0, 0, 0)];
 
@@ -340,9 +342,7 @@ static NSString *kViewControllerKey = @"viewController";
 }
 - (void) notAbleVisit:(id)sender
 {
-    NSLog(@"UIButton was clicked");
-    
-    UIViewController *targetViewController = [[TCStoreHomeView alloc]init];
+    UIViewController *targetViewController = [[TCStoreNoVisit alloc]init];
 	[[self navigationController] pushViewController:targetViewController animated:YES];
 }
 
