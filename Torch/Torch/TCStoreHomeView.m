@@ -16,7 +16,7 @@
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
-#define ROW_HEIGHT_MIN 35
+#define ROW_HEIGHT_MIN 50
 #define SECTION_TITLE_HEIGHT 25
 #define FONT_SIZE 12.0f
 
@@ -140,7 +140,7 @@ static NSString *kViewControllerKey = @"viewController";
 {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width-5, tableView.sectionHeaderHeight)];
     UIImageView *headerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divide.png"]];
-    UILabel *headerLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.bounds.size.width-100, 20)];
+    UILabel *headerLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.bounds.size.width-100, 25)];
     if (section == 0) {
 
         headerLbl.backgroundColor = [UIColor clearColor];
@@ -154,7 +154,7 @@ static NSString *kViewControllerKey = @"viewController";
     
     }else if (section==1){
         headerLbl.backgroundColor = [UIColor clearColor];
-        headerLbl.text = @"Contractors";
+        headerLbl.text = [self localString:@"storehome.contactors"];
         headerImage.frame = CGRectMake(8, 20, tableView.bounds.size.width-14, 2);
         headerLbl.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
         headerLbl.textColor =[UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
@@ -201,10 +201,10 @@ static NSString *kViewControllerKey = @"viewController";
     if (indexPath.section ==0) {
         if (cell == nil) {
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,  0, 320, ROW_HEIGHT_MAX)];
-        UITextView *txtStoreDetail = [[UITextView alloc] initWithFrame:CGRectMake(-10,0,190,ROW_HEIGHT_MAX-10)];
-        txtStoreDetail.text = @"You can add some more details..ut store details here..ddddddddddddddddd..sfasadfsd what a funny dayasdfsfsfsfsdfsfsfsfsdf come on test";
+        UITextView *txtStoreDetail = [[UITextView alloc] initWithFrame:CGRectMake(-5,0,190,ROW_HEIGHT_MAX-10)];
+        txtStoreDetail.text = @"#11 Urb Provincia Calle Roja 983 Ternecul, Mexico 4444";
         [txtStoreDetail setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:14]];
-        txtStoreDetail.textColor = [UIColor darkTextColor];
+        txtStoreDetail.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1];
         txtStoreDetail.editable = NO;
 
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
@@ -214,7 +214,7 @@ static NSString *kViewControllerKey = @"viewController";
         UILabel *lblNumber = [[UILabel alloc] initWithFrame:CGRectMake(15,5,20,25)];
         lblNumber.text = @"#3";
         lblNumber.textColor = [UIColor whiteColor];
-        lblNumber.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14];
+        lblNumber.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:14];
         lblNumber.backgroundColor =[UIColor clearColor];
         [mapImage addSubview:lblNumber];
 		UIImage *buttonBackground = [UIImage imageNamed:@"directionbtn.png"];
@@ -262,10 +262,6 @@ static NSString *kViewControllerKey = @"viewController";
         [cell addSubview:_txtTitle];
         [cell addSubview:_txtPhone];
         cell.selectionStyle = UITableViewCellEditingStyleNone;
-        //cell.contentView.layer.borderColor = [[UIColor redColor] CGColor];
-        //cell.contentView.layer.borderWidth = 2;
-
-
 	}
 	
     }else {
@@ -275,7 +271,7 @@ static NSString *kViewControllerKey = @"viewController";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kTitleKey];
             cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
-            cell.textLabel.textColor = [UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
+            cell.textLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
             cell.detailTextLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kExplainKey];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
