@@ -12,6 +12,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TCStoreHomeView.h"
 #import "Store.h"
+#import "Banner.h"
+#import "SalesRep.h"
+#import <NSManagedObject+InnerBand.h>
+#import "TCDBUtils.h"
+#import <OCTotallyLazy.h>
 
 @interface TCMyDayController ()
 
@@ -38,11 +43,8 @@ static NSString *CellIdentifier = @"MyDayCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    Store* store = nil;//[Store insertInManagedObjectContext:[[NSManagedObjectContext alloc] init]];
-    //store.name = @"Walmart";
-    //store.address = @"line\nline\nline";
-    _stores = @[];
+    SalesRep * rep = [SalesRep allInStore:[TCDBUtils ibDataStore]][0];
+    _stores = [[[[rep.banners map:^(Banner* banner) { return banner.stores; }] asSequence] flatten] asArray];
 
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -89,18 +91,18 @@ static NSString *CellIdentifier = @"MyDayCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 10;//_stores.count;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _stores.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TCMyDayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    //[cell cellWithData:[_stores objectAtIndex:indexPath.row]];
+    [cell cellWithData:[_stores objectAtIndex:indexPath.row]];
     return cell;
 }
 
@@ -153,6 +155,7 @@ static NSString *CellIdentifier = @"MyDayCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
+    controller.currentStore = [_stores objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
