@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class IBCoreDataStore;
+
 @interface TCDBUtils : NSObject
 
 +(void) initDB;
 +(void) seed;
++(void) copySeed;
+
++(IBCoreDataStore *) ibDataStore;
 
 @end

@@ -1,5 +1,7 @@
 #import "Store.h"
 #import <RestKit.h>
+#import "StoreCall.h"
+#import "Contact.h"
 
 @interface Store ()
 
@@ -12,7 +14,7 @@
 
 + (RKEntityMapping *)objectMapping
 {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"Store" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [mapping addAttributeMappingsFromArray:@[
      StoreAttributes.address,
      StoreAttributes.analytics,
@@ -32,6 +34,8 @@
      StoreAttributes.schedule,
      StoreAttributes.state
      ]];
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"storeCalls" toKeyPath:@"storeCalls" withMapping:[StoreCall objectMapping]]];
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"contacts" toKeyPath:@"contacts" withMapping:[Contact objectMapping]]];
     return mapping;
 }
 

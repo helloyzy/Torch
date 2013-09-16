@@ -7,12 +7,17 @@
 //
 
 #import "TCDBUtils.h"
-#import <RestKit/RestKit.h>
+#import "IBCoreDataStore.h"
 
 #import "SalesRep.h"
+#import <RestKit/RestKit.h>
 
 #define TC_DB_NAME @"CoreDataStore.sqlite"
 #define TC_DB_PATH [RKApplicationDataDirectory() stringByAppendingPathComponent:TC_DB_NAME]
+
+#define TC_DB_IBSTORE [TCDBUtils ibDataStore]
+
+static IBCoreDataStore * ibDataStore;
 
 @implementation TCDBUtils
 
@@ -22,7 +27,6 @@
         NSLog(@"Documents dir %@ has DB %@", RKApplicationDataDirectory(), TC_DB_NAME);
     } else {
         NSLog(@"Documents dir %@ missing DB %@!!", RKApplicationDataDirectory(), TC_DB_NAME);
-        return;
     }
     
     // NSArray * salesReps = [SalesRep all];
@@ -39,7 +43,12 @@
     }
     [managedObjectStore createManagedObjectContexts];
 
-    // TODO init innerband coredata
+    // init innerband coredata
+    ibDataStore = [IBCoreDataStore createStoreWithContext:managedObjectStore.mainQueueManagedObjectContext];
+}
+
++(IBCoreDataStore *) ibDataStore {
+    return ibDataStore;
 }
 
 +(void) seed {
@@ -62,6 +71,14 @@
     }
 }
 
-
++(void) copySeed {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:TC_DB_PATH]) {
+        NSLog(@"Removing database ...");
+        [[NSFileManager defaultManager] removeItemAtPath:TC_DB_PATH error:nil];
+    }
+    NSString * fromPath = [[NSBundle mainBundle] pathForResource:@"CoreDataStore" ofType:@"sqlite"];
+    // NSLog(@"Copy from %@", fromPath);
+    [[NSFileManager defaultManager] copyItemAtPath:fromPath toPath:TC_DB_PATH error:nil];
+}
 
 @end

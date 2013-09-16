@@ -12,7 +12,7 @@
 
 + (RKEntityMapping *)objectMapping
 {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"Note" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [mapping addAttributeMappingsFromArray:@[
      NoteAttributes.body,
      NoteAttributes.createdDate,

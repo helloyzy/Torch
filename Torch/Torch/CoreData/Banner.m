@@ -1,5 +1,6 @@
 #import "Banner.h"
-#import <RestKit.h>
+#import <RestKit/RestKit.h>
+#import "Store.h"
 
 @interface Banner ()
 
@@ -12,8 +13,8 @@
 
 + (RKEntityMapping *)objectMapping
 {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
-    mapping.identificationAttributes = @[BannerAttributes.bannerId];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"Banner" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
+    // mapping.identificationAttributes = @[BannerAttributes.bannerId];
     [mapping addAttributeMappingsFromArray:@[
      BannerAttributes.analytics,
      BannerAttributes.bannerId,
@@ -21,6 +22,7 @@
      BannerAttributes.lastModifiedDate,
      BannerAttributes.remoteKey
      ]];
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"stores" toKeyPath:@"stores" withMapping:[Store objectMapping]]];
     return mapping;
 }
 

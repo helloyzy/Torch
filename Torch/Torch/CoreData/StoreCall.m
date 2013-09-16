@@ -1,5 +1,6 @@
 #import "StoreCall.h"
 #import <RestKit.h>
+#import "Note.h"
 
 @interface StoreCall ()
 
@@ -11,7 +12,7 @@
 
 + (RKEntityMapping *)objectMapping
 {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"StoreCall" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [mapping addAttributeMappingsFromArray:@[
      StoreCallAttributes.actualEndDate,
      StoreCallAttributes.actualStartDate,
@@ -21,6 +22,7 @@
      StoreCallAttributes.plannedStartDate,
      StoreCallAttributes.remoteKey
      ]];
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"notes" toKeyPath:@"notes" withMapping:[Note objectMapping]]];
     return mapping;
 }
 

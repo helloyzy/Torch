@@ -27,10 +27,9 @@
 #import "TCOrderHistory.h"
 #import "HersheySSOUtils.h"
 
+#import "TCDBUtils.h"
+#import "TCSvcUtils.h"
 #import "IBFunctions.h"
-#import "NSManagedObject+InnerBand.h"
-#import "SalesRep.h"
-#import <RestKit/RestKit.h>
 
 @implementation TCAppDelegate
 
@@ -67,9 +66,16 @@
     
 }
 
+- (void) initDB {
+    [TCDBUtils copySeed];
+    [TCDBUtils initDB];
+    // [TCDBUtils seed];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // [self initDB];
+    [self initDB];
+    // NSLog(@"Documents dir %@", IB_DOCUMENTS_DIR());
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     // self.viewController = [[TCViewController alloc] initWithNibName:@"TCViewController" bundle:nil];
@@ -118,7 +124,8 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)initDB {
+//- (void)initDB {
+    /**
     BOOL hasDB = [[NSFileManager defaultManager] fileExistsAtPath: [IB_DOCUMENTS_DIR() stringByAppendingPathComponent:@"CoreDataStore.sqlite"]];
     NSLog(@"Documents dir %@ has DB %i", IB_DOCUMENTS_DIR(), hasDB);
     
@@ -179,7 +186,8 @@
 //    [RKObjectManager setSharedManager:objectManager];
 //    [objectManager addResponseDescriptor:responseDescriptor];
 //    [objectManager getObjectsAtPath:@"/torch/v1/fetchData" parameters:nil success:nil failure:nil];
+     */
     
-}
+//}
 
 @end

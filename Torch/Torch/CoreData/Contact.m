@@ -1,5 +1,6 @@
 #import "Contact.h"
 #import <RestKit.h>
+#import "Note.h"
 
 @interface Contact ()
 
@@ -12,7 +13,7 @@
 
 + (RKEntityMapping *)objectMapping
 {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"Contact" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [mapping addAttributeMappingsFromArray:@[
      ContactAttributes.bestDays,
      ContactAttributes.bestTimes,
@@ -30,6 +31,7 @@
      ContactAttributes.textNumber,
      ContactAttributes.title
      ]];
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"notes" toKeyPath:@"notes" withMapping:[Note objectMapping]]];
     return mapping;
 }
 
