@@ -89,6 +89,9 @@
 "store.novisit.confirm" = "Confirmar";
 "store.novisit.reason1" = "Cliente Cerrado";
 "store.novisit.reason2" = "Cambio de Domicilio";
+
+"store.startcall.title" = "Revisión de Prioridades";
+"store.startcall.text" = "Por favor revise la prioridades para este cliente antes de realizar cualquier otra tarea";
 /*daxian*/
 
 

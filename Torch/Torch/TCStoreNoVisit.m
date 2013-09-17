@@ -45,7 +45,7 @@
     [self.view addSubview:sepertor];
     
     noVisitReasonArray = [[NSArray alloc] initWithObjects:[self localString:@"store.novisit.reason1"],[self localString:@"store.novisit.reason2"], nil];
-    
+
 }
 
 - (void)didReceiveMemoryWarning

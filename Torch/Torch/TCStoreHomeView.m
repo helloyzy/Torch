@@ -389,11 +389,11 @@ static NSString *kViewControllerKey = @"viewController";
 
 - (void) sliderDidSlideToEnd:(TCSliderView *)slideView {
     // open a alert with an OK and cancel button
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Review Priorities"
-                                                    message:@"Please reivew....SFSFSFSFSFSFSFSFSFSDFSFSF.otra tarea"
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[self localString:@"store.startcall.title"]
+                                                    message:[self localString:@"store.startcall.text"]
                                                    delegate:self
-                                          cancelButtonTitle:@"Cancelarar"
-                                          otherButtonTitles:@"Revisar las \n Prioridades",nil];
+                                          cancelButtonTitle:[self localString:@"Cancel"]
+                                          otherButtonTitles:[self localString:@"OK"],nil];
 	[alert show];
 }
 - (void) sliderDidSlideToStart:(TCSliderView *)slideView {
