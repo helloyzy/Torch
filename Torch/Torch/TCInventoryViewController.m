@@ -239,6 +239,7 @@
     
     [self popupProductItems];
     [self showInitialORProductTableListView];
+    [self.searchDisplayController.searchBar setPlaceholder:[self localString:@"order.searchplaceholder"]];
 }
 
 
