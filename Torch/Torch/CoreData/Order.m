@@ -1,5 +1,6 @@
 #import "Order.h"
 #import <RestKit.h>
+#import "OrderCredit.h"
 
 @interface Order ()
 
@@ -12,10 +13,14 @@
 
 + (RKEntityMapping *)objectMapping
 {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
-//    [mapping addAttributeMappingsFromArray:@[
-//     OrderAttributes.approvalRequiredReason
-//     ]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"Order" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
+    
+    [mapping addAttributeMappingsFromArray:@[
+     OrderAttributes.remoteKey,
+     OrderAttributes.actualStartDate
+    ]];
+    
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"orderCredits" toKeyPath:@"orderCredits" withMapping:[OrderCredit objectMapping]]];
     return mapping;
 }
 

@@ -12,26 +12,30 @@
 
 + (RKEntityMapping *)objectMapping
 {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
-    mapping.identificationAttributes = @[OrderCreditAttributes.orderCreditId];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"OrderCredit" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [mapping addAttributeMappingsFromArray:@[
      OrderCreditAttributes.approvalRequiredReason,
-     OrderCreditAttributes.checkNumber,
-     OrderCreditAttributes.confirmationType,
-     OrderCreditAttributes.creditType,
-     OrderCreditAttributes.customerReferenceNumber,
-     OrderCreditAttributes.hersheyReferenceNumber,
-     OrderCreditAttributes.orderCreditId,
-     OrderCreditAttributes.orderType,
-     OrderCreditAttributes.paymentAmount,
+//     OrderCreditAttributes.checkNumber,
+//     OrderCreditAttributes.confirmationType,
+//     OrderCreditAttributes.creditType,
+//     OrderCreditAttributes.customerReferenceNumber,
+//     OrderCreditAttributes.hersheyReferenceNumber,
+//     OrderCreditAttributes.orderCreditId,
+//     OrderCreditAttributes.orderType,
+//     OrderCreditAttributes.paymentAmount,
      OrderCreditAttributes.paymentMethod,
-     OrderCreditAttributes.paymentType,
-     OrderCreditAttributes.reasonCode,
-     OrderCreditAttributes.recordType,
-     OrderCreditAttributes.rejectionReason,
-     OrderCreditAttributes.signature,
-     OrderCreditAttributes.status
+     OrderCreditAttributes.callTimeAdjustment,
+     OrderCreditAttributes.plannedEndDate,
+     OrderCreditAttributes.actualEndDate,
+     OrderCreditAttributes.plannedStartDate
+//     OrderCreditAttributes.paymentType,
+//     OrderCreditAttributes.reasonCode,
+//     OrderCreditAttributes.recordType,
+//     OrderCreditAttributes.rejectionReason,
+//     OrderCreditAttributes.signature,
+//     OrderCreditAttributes.status
      ]];
+//    mapping.identificationAttributes = @[OrderCreditAttributes.orderCreditId];
     return mapping;
 }
 

@@ -10,6 +10,7 @@
 #import "IBCoreDataStore.h"
 
 #import "SalesRep.h"
+#import "Order.h"
 #import <RestKit/RestKit.h>
 
 #define TC_DB_NAME @"CoreDataStore.sqlite"
@@ -52,16 +53,20 @@ static IBCoreDataStore * ibDataStore;
 }
 
 +(void) seed {
-    RKEntityMapping *objectMapping = [SalesRep objectMapping];
     RKManagedObjectStore * managedObjectStore = [RKManagedObjectStore defaultStore];
     RKManagedObjectImporter *importer = [[RKManagedObjectImporter alloc] initWithManagedObjectModel:managedObjectStore.managedObjectModel storePath:TC_DB_PATH];
     
-    // Import the files "articles.json" from the Main Bundle using our RKEntityMapping
-    // JSON looks like {"articles": [ {"title": "Article 1", "body": "Text", "author": "Blake" ]}
     NSError *error;
     NSBundle *mainBundle = [NSBundle mainBundle];
-    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"login" ofType:@"json"]
-                              withMapping:objectMapping
+    
+    //    RKEntityMapping *dataMapping = [SalesRep objectMapping];
+    //    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"login" ofType:@"json"]
+    //                              withMapping:dataMapping
+    //                                  keyPath:nil
+    //                                    error:&error];
+    RKEntityMapping *orderMapping = [Order objectMapping];
+    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"order" ofType:@"json"]
+                              withMapping:orderMapping
                                   keyPath:nil
                                     error:&error];
     

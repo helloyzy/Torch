@@ -1,0 +1,74 @@
+{
+    "remoteKey": null,
+    "actualStartDate": 1377025865060,
+    "orderCredits": [
+        {
+            "approvalRequiredReason": null,
+            "paymentMethod": null,
+            "orderCreditItems": [
+                {
+                    "overridePrice": 0,
+                    "distributedItemNumber": null,
+                    "calItem": {
+                        "active": true,
+                        "distributorItem": false,
+                        "productNumber": "3400005201",
+                        "uom": null,
+                        "segment": "Grocery",
+                        "customerItemNumber": "9269743",
+                        "effectiveStartDate": null,
+                        "maxMarkdown": 0,
+                        "remoteKey": "0437019_3400005201",
+                        "tdNumber": "TD0437019",
+                        "weight": null,
+                        "price": null,
+                        "upc": "0003400005200",
+                        "name": "COCOA UNSWT CAN 8OZ 12",
+                        "packtypeDescription": "GR Baking Cocoa 8 oz",
+                        "effectiveEndDate": null,
+                        "schedule": null,
+                        "discontinued": false
+                    },
+                    "discountPercentage": 0,
+                    "markdownPercentage": 0,
+                    "quantity": 1,
+                    "total": 0,
+                    "nettAmount": 0,
+                    "maxMarkdownPercentage": 0,
+                    "shortItemNumber": null
+                }
+            ],
+            "account": {
+                "remoteKey": null,
+                "name": "test Account",
+                "phone": 2738482934,
+                "accountRecordType": "012M00000008ss8",
+                "address": null,
+                "city": null,
+                "state": null,
+                "postalcode": null,
+                "currency": null
+            },
+            "contact": {
+                "bestDays": 19,
+                "lastName": "B",
+                "contactType": null,
+                "firstName": "A",
+                "title": "C",
+                "phoneNumber": null,
+                "isKdm": true,
+                "email": null,
+                "remoteKey": "003L000000ByVBaIAN",
+                "textNumber": null,
+                "faxNumber": null,
+                "bestTimes": 0,
+                "picture": null,
+                "preferredContactMethod": "Email"
+            },
+            "callTimeAdjustment": 0,
+            "plannedEndDate": 1377033065060,
+            "actualEndDate": 1377025900513,
+            "plannedStartDate": 1377025865060
+        }
+    ]
+}
