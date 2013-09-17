@@ -1,5 +1,5 @@
 #import "StoreCall.h"
-#import <RestKit.h>
+#import <RestKit/RestKit.h>
 #import "Note.h"
 
 @interface StoreCall ()

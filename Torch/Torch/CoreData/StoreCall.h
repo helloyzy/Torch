@@ -1,10 +1,7 @@
 #import "_StoreCall.h"
-
-@class RKEntityMapping;
+#import "NSManagedObject+TCRestkit.h"
 
 @interface StoreCall : _StoreCall {}
 // Custom logic goes here.
-
-+ (RKEntityMapping *)objectMapping;
 
 @end

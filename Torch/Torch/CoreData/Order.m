@@ -1,5 +1,5 @@
 #import "Order.h"
-#import <RestKit.h>
+#import <RestKit/RestKit.h>
 #import "OrderCredit.h"
 
 @interface Order ()

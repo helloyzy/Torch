@@ -1,10 +1,8 @@
 #import "_Banner.h"
+#import "NSManagedObject+TCRestkit.h"
 
-@class RKEntityMapping;
 
 @interface Banner : _Banner {}
 // Custom logic goes here.
-
-+ (RKEntityMapping *)objectMapping;
 
 @end

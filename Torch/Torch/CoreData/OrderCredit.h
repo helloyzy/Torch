@@ -1,10 +1,7 @@
 #import "_OrderCredit.h"
-
-@class RKEntityMapping;
+#import "NSManagedObject+TCRestkit.h"
 
 @interface OrderCredit : _OrderCredit {}
 // Custom logic goes here.
-
-+ (RKEntityMapping *)objectMapping;
 
 @end

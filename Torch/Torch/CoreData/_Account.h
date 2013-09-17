@@ -5,7 +5,6 @@
 
 
 extern const struct AccountAttributes {
-	__unsafe_unretained NSString *accountID;
 	__unsafe_unretained NSString *accountRecordType;
 	__unsafe_unretained NSString *address;
 	__unsafe_unretained NSString *city;
@@ -46,7 +45,6 @@ extern const struct AccountFetchedProperties {
 
 
 
-
 @interface AccountID : NSManagedObjectID {}
 @end
 
@@ -55,16 +53,6 @@ extern const struct AccountFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (AccountID*)objectID;
-
-
-
-
-
-@property (nonatomic, strong) NSString* accountID;
-
-
-
-//- (BOOL)validateAccountID:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -225,12 +213,6 @@ extern const struct AccountFetchedProperties {
 @end
 
 @interface _Account (CoreDataGeneratedPrimitiveAccessors)
-
-
-- (NSString*)primitiveAccountID;
-- (void)setPrimitiveAccountID:(NSString*)value;
-
-
 
 
 - (NSString*)primitiveAccountRecordType;

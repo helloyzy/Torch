@@ -4,7 +4,6 @@
 #import "_Account.h"
 
 const struct AccountAttributes AccountAttributes = {
-	.accountID = @"accountID",
 	.accountRecordType = @"accountRecordType",
 	.address = @"address",
 	.city = @"city",
@@ -57,13 +56,6 @@ const struct AccountFetchedProperties AccountFetchedProperties = {
 
 	return keyPaths;
 }
-
-
-
-
-@dynamic accountID;
-
-
 
 
 

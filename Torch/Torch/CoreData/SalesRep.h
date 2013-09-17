@@ -1,10 +1,7 @@
 #import "_SalesRep.h"
-
-@class RKEntityMapping;
+#import "NSManagedObject+TCRestkit.h"
 
 @interface SalesRep : _SalesRep {}
 // Custom logic goes here.
-
-+ (RKEntityMapping *)objectMapping;
 
 @end

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Account" representedClassName="Account" syncable="YES">
-        <attribute name="accountID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="accountRecordType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
@@ -174,14 +173,14 @@
         <relationship name="store" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="storeCalls" inverseEntity="Store" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="763" positionY="860" width="128" height="283"/>
+        <element name="Account" positionX="763" positionY="860" width="128" height="268"/>
         <element name="Banner" positionX="792" positionY="81" width="135" height="148"/>
         <element name="CalItem" positionX="1188" positionY="617" width="128" height="328"/>
         <element name="Contact" positionX="999" positionY="389" width="135" height="313"/>
         <element name="Note" positionX="1179" positionY="369" width="135" height="178"/>
+        <element name="Order" positionX="621" positionY="608" width="128" height="163"/>
         <element name="OrderCredit" positionX="799" positionY="378" width="128" height="403"/>
         <element name="OrderCreditItem" positionX="1015" positionY="881" width="128" height="208"/>
-        <element name="Order" positionX="621" positionY="608" width="128" height="163"/>
         <element name="SalesRep" positionX="585" positionY="27" width="135" height="193"/>
         <element name="Store" positionX="1000" positionY="0" width="135" height="343"/>
         <element name="StoreCall" positionX="1206" positionY="72" width="135" height="178"/>

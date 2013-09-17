@@ -12,21 +12,18 @@
 
 + (RKEntityMapping *)objectMapping
 {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
-    mapping.identificationAttributes = @[AccountAttributes.accountID];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"Account" inManagedObjectStore:[RKManagedObjectStore defaultStore]];;
+   
     [mapping addAttributeMappingsFromArray:@[
-     AccountAttributes.accountID,
      AccountAttributes.address,
      AccountAttributes.city,
      AccountAttributes.currency,
-     AccountAttributes.fax,
      AccountAttributes.name,
      AccountAttributes.phone,
      AccountAttributes.postalcode,
-     AccountAttributes.recordType,
      AccountAttributes.state,
-     AccountAttributes.streetref1,
-     AccountAttributes.streetref2
+     AccountAttributes.remoteKey,
+     AccountAttributes.accountRecordType
      ]];
     return mapping;
 }

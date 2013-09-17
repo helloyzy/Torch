@@ -1,10 +1,9 @@
 #import "_Contact.h"
-
-@class RKEntityMapping;
+#import "NSManagedObject+TCRestkit.h"
 
 @interface Contact : _Contact {}
 // Custom logic goes here.
 
-+ (RKEntityMapping *)objectMapping;
++ (RKEntityMapping *)objectMappingForOrder;
 
 @end

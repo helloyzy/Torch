@@ -1,10 +1,8 @@
 #import "_Note.h"
-
-@class RKEntityMapping;
+#import "NSManagedObject+TCRestkit.h"
 
 @interface Note : _Note {}
 // Custom logic goes here.
 
-+ (RKEntityMapping *)objectMapping;
 
 @end

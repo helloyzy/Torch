@@ -1,5 +1,5 @@
 #import "Note.h"
-#import <RestKit.h>
+#import <RestKit/RestKit.h>
 
 @interface Note ()
 

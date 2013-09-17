@@ -74,14 +74,15 @@
     // [TCDBUtils seed];
 }
 
-- (void) login {
-    [TCSvcUtils loginService];
+- (void) serviceTest {
+    // [TCSvcUtils loginService];
+    [TCSvcUtils orderRequestService];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self initDB];
-    // [self login];
+    // [self serviceTest];
     // NSLog(@"Documents dir %@", IB_DOCUMENTS_DIR());
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

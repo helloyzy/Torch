@@ -1,5 +1,5 @@
 #import "SalesRep.h"
-#import <RestKit.h>
+#import <RestKit/RestKit.h>
 #import "Banner.h"
 
 @interface SalesRep ()

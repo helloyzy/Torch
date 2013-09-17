@@ -12,25 +12,26 @@
 
 + (RKEntityMapping *)objectMapping
 {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"CalItem" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [mapping addAttributeMappingsFromArray:@[
      CalItemAttributes.active,
-     CalItemAttributes.customerItemNumber,
-     CalItemAttributes.discontinued,
      CalItemAttributes.distributorItem,
-     CalItemAttributes.effectiveEndDate,
+     CalItemAttributes.productNumber,
+     CalItemAttributes.uom,
+     CalItemAttributes.segment,
+     CalItemAttributes.customerItemNumber,
      CalItemAttributes.effectiveStartDate,
      CalItemAttributes.maxMarkdown,
+     CalItemAttributes.remoteKey,
+     CalItemAttributes.tdNumber,
+     CalItemAttributes.weight,
+     CalItemAttributes.price,
+     CalItemAttributes.upc,
      CalItemAttributes.name,
      CalItemAttributes.packtypeDescription,
-     CalItemAttributes.price,
-     CalItemAttributes.productNumber,
-     CalItemAttributes.remoteKey,
+     CalItemAttributes.effectiveEndDate,
      CalItemAttributes.schedule,
-     CalItemAttributes.segment,
-     CalItemAttributes.tdNumber,
-     CalItemAttributes.uom,
-     CalItemAttributes.upc
+     CalItemAttributes.discontinued
      ]];
     return mapping;
 }

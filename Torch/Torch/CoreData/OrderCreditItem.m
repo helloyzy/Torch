@@ -1,5 +1,7 @@
 #import "OrderCreditItem.h"
-#import <RestKit.h>
+#import <RestKit/RestKit.h>
+
+#import "CalItem.h"
 
 @interface OrderCreditItem ()
 
@@ -12,7 +14,7 @@
 
 + (RKEntityMapping *)objectMapping
 {
-    RKEntityMapping *mapping = [RKEntityMapping mappingForClass:[self class]];
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"OrderCreditItem" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [mapping addAttributeMappingsFromArray:@[
      OrderCreditItemAttributes.discountPercentage,
      OrderCreditItemAttributes.distributedItemNumber,
@@ -24,6 +26,7 @@
      OrderCreditItemAttributes.shortItemNumber,
      OrderCreditItemAttributes.total
      ]];
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"calItem" toKeyPath:@"calItem" withMapping:[CalItem objectMapping]]];
     return mapping;
 }
 

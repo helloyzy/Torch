@@ -11,5 +11,6 @@
 @interface TCSvcUtils : NSObject
 
 +(void) loginService;
++(void) orderRequestService;
 
 @end

@@ -1,5 +1,5 @@
 #import "Store.h"
-#import <RestKit.h>
+#import <RestKit/RestKit.h>
 #import "StoreCall.h"
 #import "Contact.h"
 

@@ -48,9 +48,13 @@ static IBCoreDataStore * ibDataStore;
     ibDataStore = [IBCoreDataStore createStoreWithContext:managedObjectStore.mainQueueManagedObjectContext];
 }
 
+#pragma mark - integration with InnerBand
+
 +(IBCoreDataStore *) ibDataStore {
     return ibDataStore;
 }
+
+#pragma mark - seed
 
 +(void) seed {
     RKManagedObjectStore * managedObjectStore = [RKManagedObjectStore defaultStore];
@@ -59,11 +63,11 @@ static IBCoreDataStore * ibDataStore;
     NSError *error;
     NSBundle *mainBundle = [NSBundle mainBundle];
     
-    //    RKEntityMapping *dataMapping = [SalesRep objectMapping];
-    //    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"login" ofType:@"json"]
-    //                              withMapping:dataMapping
-    //                                  keyPath:nil
-    //                                    error:&error];
+    RKEntityMapping *dataMapping = [SalesRep objectMapping];
+    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"login" ofType:@"json"]
+                              withMapping:dataMapping
+                                  keyPath:nil
+                                    error:&error];
     RKEntityMapping *orderMapping = [Order objectMapping];
     [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"order" ofType:@"json"]
                               withMapping:orderMapping
@@ -85,5 +89,6 @@ static IBCoreDataStore * ibDataStore;
     // NSLog(@"Copy from %@", fromPath);
     [[NSFileManager defaultManager] copyItemAtPath:fromPath toPath:TC_DB_PATH error:nil];
 }
+
 
 @end
