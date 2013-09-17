@@ -171,6 +171,8 @@
 		DC997A0217C60A010044C917 /* TCNavVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC997A0117C60A010044C917 /* TCNavVwCtl.m */; };
 		DC9D57E317C7382A00EAFD2F /* YIInnerShadowLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D57E017C7382A00EAFD2F /* YIInnerShadowLayer.m */; };
 		DC9D57E417C7382A00EAFD2F /* YIInnerShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D57E217C7382A00EAFD2F /* YIInnerShadowView.m */; };
+		DCA4663317E8059A008D634D /* NSManagedObject+TCRestkit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA4663217E8059A008D634D /* NSManagedObject+TCRestkit.m */; };
+		DCA4663517E82040008D634D /* order.json in Resources */ = {isa = PBXBuildFile; fileRef = DCA4663417E82040008D634D /* order.json */; };
 		DCAFC89417CC7181006DEBB2 /* GraphicsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAFC89317CC7181006DEBB2 /* GraphicsUtils.m */; };
 		DCAFC89A17CCA09A006DEBB2 /* TCNavTblVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAFC89917CCA09A006DEBB2 /* TCNavTblVwCtl.m */; };
 		DCB2381D17D0454C000CC087 /* TCPromotionVwCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB2381B17D0454C000CC087 /* TCPromotionVwCtl.m */; };
@@ -425,6 +427,9 @@
 		DC9D57E017C7382A00EAFD2F /* YIInnerShadowLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowLayer.m; sourceTree = "<group>"; };
 		DC9D57E117C7382A00EAFD2F /* YIInnerShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YIInnerShadowView.h; sourceTree = "<group>"; };
 		DC9D57E217C7382A00EAFD2F /* YIInnerShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YIInnerShadowView.m; sourceTree = "<group>"; };
+		DCA4663117E8059A008D634D /* NSManagedObject+TCRestkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+TCRestkit.h"; sourceTree = "<group>"; };
+		DCA4663217E8059A008D634D /* NSManagedObject+TCRestkit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+TCRestkit.m"; sourceTree = "<group>"; };
+		DCA4663417E82040008D634D /* order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = order.json; sourceTree = "<group>"; };
 		DCAFC89217CC7181006DEBB2 /* GraphicsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsUtils.h; sourceTree = "<group>"; };
 		DCAFC89317CC7181006DEBB2 /* GraphicsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphicsUtils.m; sourceTree = "<group>"; };
 		DCAFC89817CCA09A006DEBB2 /* TCNavTblVwCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNavTblVwCtl.h; sourceTree = "<group>"; };
@@ -543,6 +548,7 @@
 		1C713BF617C2058100A903A6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DCA4663417E82040008D634D /* order.json */,
 				DCDBBE5217E6CE700078F71B /* CoreDataStore.sqlite */,
 				DCDBBE5017E6A0130078F71B /* login.json */,
 				1C713BF717C2058100A903A6 /* Torch-Info.plist */,
@@ -765,6 +771,8 @@
 				E23D422117E67CB600D3F5A0 /* TCSvcUtils.m */,
 				DCDBBE5517E700720078F71B /* TCUtils.h */,
 				DCDBBE5617E700720078F71B /* TCUtils.m */,
+				DCA4663117E8059A008D634D /* NSManagedObject+TCRestkit.h */,
+				DCA4663217E8059A008D634D /* NSManagedObject+TCRestkit.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1031,6 +1039,7 @@
 				DCDBBE5117E6A0130078F71B /* login.json in Resources */,
 				DCDBBE5317E6CE700078F71B /* CoreDataStore.sqlite in Resources */,
 				D6C8602B17E6D481002F797D /* TCStoreNoVisit.xib in Resources */,
+				DCA4663517E82040008D634D /* order.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1184,6 +1193,7 @@
 				E23D422217E67CB600D3F5A0 /* TCSvcUtils.m in Sources */,
 				D6C8602A17E6D481002F797D /* TCStoreNoVisit.m in Sources */,
 				DCDBBE5717E700730078F71B /* TCUtils.m in Sources */,
+				DCA4663317E8059A008D634D /* NSManagedObject+TCRestkit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

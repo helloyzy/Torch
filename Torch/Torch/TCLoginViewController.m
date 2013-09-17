@@ -69,15 +69,22 @@
 }
 
 - (IBAction)signIn:(id)sender {
-#ifdef TC_DEBUG
+#ifndef TC_DEBUG
     if (txtUsername.text.length>0) {
         if ([HersheySSOUtils setKeychainWithUsername:txtUsername.text andPassword:txtPwd.text]) {
             [self jumpToMyDay];
         }
     }
 #else
+    // showProgressIndicator(@"Loading...");
     [self jumpToMyDay];
+    // [self performSelector:@selector(hideDelayed) withObject:nil afterDelay:5];
 #endif
+}
+
+- (void)hideDelayed {
+    hideProgressIndicator();
+    [self jumpToMyDay];
 }
 
 #pragma mark - navigation between controllers

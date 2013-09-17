@@ -9,6 +9,8 @@
 #import "TCUtils.h"
 #import "DateUtils.h"
 
+#import "MBProgressHUD.h"
+
 NSString * millisecondToDateStr(double milliseconds) {
     double seconds = milliseconds / 1000.0;
     NSDate * date = [NSDate dateWithTimeIntervalSince1970:seconds];
@@ -19,4 +21,24 @@ void showAlert(NSString * title, NSString * message) {
     NSString * OKCaption = NSLocalizedString(@"OK", nil);
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:OKCaption otherButtonTitles:nil,nil];
 	[alert show];
+}
+
+static MBProgressHUD * gProgressHUD;
+
+void showProgressIndicator(NSString * title) {
+    if (!gProgressHUD) {
+        gProgressHUD = [[MBProgressHUD alloc]initWithWindow:TC_WINDOW];
+        gProgressHUD.removeFromSuperViewOnHide = YES;
+        gProgressHUD.dimBackground = YES;
+    }
+    gProgressHUD.labelText = title;
+    [TC_WINDOW addSubview:gProgressHUD];
+    [gProgressHUD show:YES];
+    
+}
+
+void hideProgressIndicator() {
+    if (gProgressHUD && ![gProgressHUD isHidden]) {
+        [gProgressHUD hide:YES];
+    }
 }
