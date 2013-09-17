@@ -14,6 +14,7 @@
 #import "TCSummaryViewController.h"
 #import "TCOrderHistory.h"
 #import "TCStoreNoVisit.h"
+#import "Contact.h"
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -33,7 +34,9 @@ static NSString *kViewControllerKey = @"viewController";
 @property (nonatomic, strong) TCSliderView *tcSliderView;
 @end
 
-@implementation TCStoreHomeView
+@implementation TCStoreHomeView {
+    NSArray *contacts;
+}
 
 
 
@@ -87,6 +90,9 @@ static NSString *kViewControllerKey = @"viewController";
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.notes"],
                  kExplainKey:@"Visit summary and notes",
           kViewControllerKey:tcSummaryViewController } ];
+    
+    contacts = [self.currentStore.contacts allObjects];
+    
 
 }
 
@@ -109,7 +115,7 @@ static NSString *kViewControllerKey = @"viewController";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section==2) {
-        return 40 ;
+        return 80 ;
     }else return 0;
 }
 
@@ -132,7 +138,7 @@ static NSString *kViewControllerKey = @"viewController";
         return 1;
 
     } else if  (section == 1)    {
-        return 2;
+        return [contacts count];
     }else {
         return [self.menuList count];
     }
@@ -145,7 +151,7 @@ static NSString *kViewControllerKey = @"viewController";
     if (section == 0) {
 
         headerLbl.backgroundColor = [UIColor clearColor];
-        headerLbl.text = @"Store Name";
+        headerLbl.text = self.currentStore.name;
         headerImage.frame = CGRectMake(8, 20, tableView.bounds.size.width-14, 2);
         headerLbl.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
         headerLbl.textColor =[UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
@@ -177,7 +183,7 @@ static NSString *kViewControllerKey = @"viewController";
 		UIImage *buttonBackground = [UIImage imageNamed:@"bluebutton.png"];
 		UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"bluebtn_pressed.png"];
 		
-		CGRect frame = CGRectMake(10, 5, 300, 35);
+		CGRect frame = CGRectMake(10, 20, 300, 35);
 		
 		_btnNovisit = [TCStoreHomeView newButtonWithTitle:[self localString:@"storehome.button.novisit"]
                                                      target:self
@@ -195,6 +201,24 @@ static NSString *kViewControllerKey = @"viewController";
     return footerView;
 }
 
+- (NSString *)getContactorName:(NSInteger)index {
+    Contact *contactor = [contacts objectAtIndex:index];
+    
+    return [NSString stringWithFormat:@"%@ %@", contactor.firstName, contactor.lastName];
+}
+
+- (NSString *)getContactorTitle:(NSInteger)index {
+    Contact *contactor = [contacts objectAtIndex:index];
+    
+    return [NSString stringWithFormat:@"%@", contactor.title];
+}
+
+- (NSString *)getContactorPhone:(NSInteger)index {
+    Contact *contactor = [contacts objectAtIndex:index];
+    
+    return [NSString stringWithFormat:@"%@", contactor.phoneNumber];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     UITableViewCell *cell;
@@ -203,7 +227,7 @@ static NSString *kViewControllerKey = @"viewController";
         if (cell == nil) {
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,  0, 320, ROW_HEIGHT_MAX)];
         UITextView *txtStoreDetail = [[UITextView alloc] initWithFrame:CGRectMake(-5,0,190,ROW_HEIGHT_MAX-10)];
-        txtStoreDetail.text = @"#11 Urb Provincia Calle Roja 983 Ternecul, Mexico 4444";
+        txtStoreDetail.text = [NSString stringWithFormat:@"%@\n%@ , %@ %@", self.currentStore.address, self.currentStore.city, self.currentStore.country, self.currentStore.postalCode];
         [txtStoreDetail setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:14]];
         txtStoreDetail.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1];
         txtStoreDetail.editable = NO;
@@ -244,19 +268,19 @@ static NSString *kViewControllerKey = @"viewController";
          cell = [tableView dequeueReusableCellWithIdentifier:@"storeHomeSection2"];
 	if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"storeHomeSection2"];
-        UITextField *_txtName=[[UITextField alloc]initWithFrame:CGRectMake(8.0, 0.0, 150.0, ROW_HEIGHT/2)];
+        UITextField *_txtName=[[UITextField alloc]initWithFrame:CGRectMake(14.0, 4.0, 150.0, ROW_HEIGHT/2)];
         UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,  0, 320, ROW_HEIGHT)];
-        [_txtName setPlaceholder:@"Join Type Data Here........"];
+        [_txtName setPlaceholder:[self getContactorName:indexPath.row]];
         _txtName.enabled = NO;
         _txtName.textAlignment = NSTextAlignmentLeft;
-        _txtName.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:14];
-        UITextField *_txtTitle=[[UITextField alloc]initWithFrame:CGRectMake(8.0, (ROW_HEIGHT/2)+2, 150.0, ROW_HEIGHT/2)];
-        [_txtTitle setPlaceholder:@"join Type Data Here........"];
+        _txtName.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:15];
+        UITextField *_txtTitle=[[UITextField alloc]initWithFrame:CGRectMake(14.0, (ROW_HEIGHT/2)+2, 150.0, ROW_HEIGHT/2)];
+        [_txtTitle setPlaceholder:[self getContactorTitle:indexPath.row]];
         _txtTitle.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:12];
         _txtTitle.enabled = NO;
         _txtTitle.textAlignment = NSTextAlignmentLeft;
-        UITextField *_txtPhone=[[UITextField alloc]initWithFrame:CGRectMake(160.0, 2.0, 150.0, ROW_HEIGHT/2)];
-        [_txtPhone setPlaceholder:@"820-734-8976"];
+        UITextField *_txtPhone=[[UITextField alloc]initWithFrame:CGRectMake(160.0, 2.0, 130.0, ROW_HEIGHT/2)];
+        [_txtPhone setPlaceholder:[self getContactorPhone:indexPath.row]];
         _txtPhone.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:14];
         _txtPhone.textAlignment = NSTextAlignmentRight;
         _txtPhone.enabled=NO;
@@ -365,11 +389,11 @@ static NSString *kViewControllerKey = @"viewController";
 
 - (void) sliderDidSlideToEnd:(TCSliderView *)slideView {
     // open a alert with an OK and cancel button
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Review Priorities"
-                                                    message:@"Please reivew....SFSFSFSFSFSFSFSFSFSDFSFSF.otra tarea"
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[self localString:@"store.startcall.title"]
+                                                    message:[self localString:@"store.startcall.text"]
                                                    delegate:self
-                                          cancelButtonTitle:@"Cancelarar"
-                                          otherButtonTitles:@"Revisar las \n Prioridades",nil];
+                                          cancelButtonTitle:[self localString:@"Cancel"]
+                                          otherButtonTitles:[self localString:@"OK"],nil];
 	[alert show];
 }
 - (void) sliderDidSlideToStart:(TCSliderView *)slideView {

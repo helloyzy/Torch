@@ -265,6 +265,7 @@ return flag;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.separatorColor = [UIColor blueColor];
     self.createOrderLabel.text = [self localString:@"order.title"];
+    [self.searchBar setPlaceholder:[self localString:@"order.searchplaceholder"]];
 }
 
 - (void)didReceiveMemoryWarning

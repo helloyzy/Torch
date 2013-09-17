@@ -14,11 +14,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *novisitTitle;
 @property (nonatomic,weak) IBOutlet UILabel *novisitHint;
 @property (nonatomic,weak) IBOutlet UIPickerView *reasonPickup;
-@property (nonatomic,weak) IBOutlet UIButton *cancelButton;
 @property (nonatomic,weak) IBOutlet UIButton *confirmButton;
 
 -(IBAction)confirmButtonPressed;
--(IBAction)cancelButtonPressed;
 @end
 
 @implementation TCStoreNoVisit {
@@ -41,15 +39,13 @@
     
     self.novisitTitle.text = [self localString:@"store.novisit.title"];
     self.novisitHint.text = [self localString:@"store.novisit.hint"];
-    //self.cancelButton.titleLabel.text = [self localString:@"store.novisit.cancel"];
-    [self.cancelButton setTitle:[self localString:@"store.novisit.cancel"] forState:UIControlStateNormal];
     [self.confirmButton setTitle:[self localString:@"store.novisit.confirm"] forState:UIControlStateNormal];
     UIView *sepertor = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 2)];
     sepertor.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
     [self.view addSubview:sepertor];
     
-    noVisitReasonArray = [[NSArray alloc] initWithObjects:@"Cliente Cerrado",@"Client dont have money", @"Bad sell of product", @"Wife say no", nil];
-    
+    noVisitReasonArray = [[NSArray alloc] initWithObjects:[self localString:@"store.novisit.reason1"],[self localString:@"store.novisit.reason2"], nil];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,9 +72,6 @@
    // [temp popViewControllerAnimated:YES];
     NSInteger count = [[self.navigationController viewControllers] count];
     [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:count-3] animated:YES];
-}
--(IBAction)cancelButtonPressed {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -75,7 +75,7 @@
 "order.confirmYesButton" = "Yes";
 "order.printAlertTitle" = "Order Sent";
 "order.printAlertMessage" = "Do you want to print the ticket?";
-
+"order.searchplaceholder" = "Product Search";
 "orderHistory.title" = "Order History";
 "orderhistory.statusLabel"= "Status";
 "orderHistory.detailTitle"="Number of Order ";
@@ -87,6 +87,10 @@
 "store.novisit.hint" = "Please Select The Reason For Not Visiting.";
 "store.novisit.cancel" = "Cancel";
 "store.novisit.confirm" = "Confirm";
+"store.novisit.reason1" = "Customer Closed";
+"store.novisit.reason2" = "Change of Address";
+"store.startcall.title" = "Revision of Priorities";
+"store.startcall.text" = "please review the priorities for this client before performing any other task";
 
 /*daxian*/
 

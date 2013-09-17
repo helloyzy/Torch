@@ -65,7 +65,7 @@ NSString * localString(NSString * key) {
     lbl.textColor = TCColorLineBlue; // [UIColor colorWithRed:61/255.0f green:111/255.0f blue:153/255.0f alpha:1.0];
     lbl.textAlignment = NSTextAlignmentCenter;
     lbl.backgroundColor = [UIColor clearColor];
-    lbl.font = [UIFont systemFontOfSize:24];
+    lbl.font = [UIFont systemFontOfSize:20];
     [self addSubview:lbl];
 
     slider = [[UISlider alloc] initWithFrame:CGRectZero];

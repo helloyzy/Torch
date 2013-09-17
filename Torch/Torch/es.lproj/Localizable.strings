@@ -75,7 +75,7 @@
 "order.confirmYesButton" = "Si";
 "order.printAlertTitle" = "Orden Eviada";
 "order.printAlertMessage" = "¿Quieres imprimir ticket?";
-
+"order.searchplaceholder" = "Busqueda de Productos";
 "orderHistory.title" = "Historial de órdenes";
 "orderhistory.statusLabel"= "Estado";
 "orderHistory.detailTitle"="Número de Orden ";
@@ -87,7 +87,11 @@
 "store.novisit.hint" = "Por favor seleccione el motivo de no visita.";
 "store.novisit.cancel" = "Cancelar";
 "store.novisit.confirm" = "Confirmar";
+"store.novisit.reason1" = "Cliente Cerrado";
+"store.novisit.reason2" = "Cambio de Domicilio";
 
+"store.startcall.title" = "Revisión de Prioridades";
+"store.startcall.text" = "Por favor revise la prioridades para este cliente antes de realizar cualquier otra tarea";
 /*daxian*/
 
 
