@@ -34,6 +34,17 @@
     vwLeftShadow.shadowMask = YIInnerShadowMaskLeft;
     vwLeftShadow.shadowColor = [UIColor darkGrayColor];
     vwLeftShadow.shadowRadius = 10;
+    
+    UITapGestureRecognizer * clickRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toMyDay)];
+    [clickRecognizer setNumberOfTapsRequired:1];
+    [clickRecognizer setNumberOfTouchesRequired:1];
+    clickRecognizer.cancelsTouchesInView = NO;
+    [imgVwMyDay setUserInteractionEnabled:YES];
+    [imgVwMyDay addGestureRecognizer:clickRecognizer];
+}
+
+- (void)toMyDay {
+    // [self]
 }
 
 - (void)didReceiveMemoryWarning

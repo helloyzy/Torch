@@ -89,12 +89,12 @@
     // self.viewController = [[TCDisclaimerVwCtl alloc] init];
     // self.viewController = [[TCStoreHomeView alloc] init];
     // self.viewController = [self rootDeckCtrl];
-    // self.viewController = [self controllerWithinNavCtr];
     // self.viewController = [[TCPrinterCtl alloc] init];
 #ifdef TC_DEBUG
     [self initDB];
     // [self serviceTest];
     self.viewController = [self loginController];
+    // self.viewController = [self controllerWithinNavCtr];
 #else
     self.viewController = [self isLoginRequired] ? [self loginController] : [UIViewController myDayDeckAsRoot];
 #endif

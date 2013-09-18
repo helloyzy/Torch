@@ -671,13 +671,10 @@
 				C53C8D1F17CEE9DD000E978D /* TCOrderStatusCell.m */,
 				C53C8D1117CEE2CA000E978D /* TCOrderHistory.h */,
 				C53C8D1217CEE2CA000E978D /* TCOrderHistory.m */,
-				D6CD428317CC706100A499A4 /* TCPriorityObject.h */,
 				D6D68DE117CDDEB400477060 /* TCOrderViewController.h */,
 				D6D68DE217CDDEB400477060 /* TCOrderViewController.m */,
-				DCC8387317CB0FC70046E999 /* TCProfileController.m */,
-				D6CD428417CC706100A499A4 /* TCPriorityObject.m */,
 				DCC8387217CB0FC70046E999 /* TCProfileController.h */,
-				1CFE598017D6C7950041FF95 /* TCSurveyController.xib */,
+				DCC8387317CB0FC70046E999 /* TCProfileController.m */,
 				DC9D57E517C74B1900EAFD2F /* Base */,
 				D6CB682517C5A98A00D290D7 /* InventoryTableCell.h */,
 				D6CB682617C5A98A00D290D7 /* InventoryTableCell.m */,
@@ -718,6 +715,7 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1CFE598017D6C7950041FF95 /* TCSurveyController.xib */,
 				D6C8602917E6D481002F797D /* TCStoreNoVisit.xib */,
 				D6831BC917D872D600718881 /* TCOrderHistoryDetailCell.xib */,
 				DC20E24A17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib */,
@@ -876,6 +874,8 @@
 		DCE1D9EA17D468AA00823475 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D6CD428317CC706100A499A4 /* TCPriorityObject.h */,
+				D6CD428417CC706100A499A4 /* TCPriorityObject.m */,
 				D6831BC617D84E7100718881 /* TCOrderObject.h */,
 				D6831BC717D84E7100718881 /* TCOrderObject.m */,
 				DCE1D9EB17D468EF00823475 /* PromotionItem.h */,
