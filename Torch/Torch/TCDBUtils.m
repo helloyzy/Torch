@@ -13,6 +13,8 @@
 #import "Order.h"
 #import <RestKit/RestKit.h>
 
+#import "NSManagedObject+InnerBand.h"
+
 #define TC_DB_NAME @"CoreDataStore.sqlite"
 #define TC_DB_PATH [RKApplicationDataDirectory() stringByAppendingPathComponent:TC_DB_NAME]
 
@@ -23,16 +25,14 @@ static IBCoreDataStore * ibDataStore;
 @implementation TCDBUtils
 
 +(void) initDB {
-    BOOL hasDB = [[NSFileManager defaultManager] fileExistsAtPath: TC_DB_PATH];
-    if (hasDB) {
-        NSLog(@"Documents dir %@ has DB %@", RKApplicationDataDirectory(), TC_DB_NAME);
-    } else {
-        NSLog(@"Documents dir %@ missing DB %@!!", RKApplicationDataDirectory(), TC_DB_NAME);
-    }
+//    BOOL hasDB = [[NSFileManager defaultManager] fileExistsAtPath: TC_DB_PATH];
+//    if (hasDB) {
+//        NSLog(@"Documents dir %@ has DB %@", RKApplicationDataDirectory(), TC_DB_NAME);
+//    } else {
+//        NSLog(@"Documents dir %@ missing DB %@!!", RKApplicationDataDirectory(), TC_DB_NAME);
+//    }
     
-    // NSArray * salesReps = [SalesRep all];
-    // NSLog(@"Count of salesRep is %i", [salesReps count]);
-    
+    // if no DB at the given path, a new one will be generated automatically
     NSManagedObjectModel * managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     RKManagedObjectStore * managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
     [RKManagedObjectStore setDefaultStore:managedObjectStore];
@@ -46,6 +46,19 @@ static IBCoreDataStore * ibDataStore;
 
     // init innerband coredata
     ibDataStore = [IBCoreDataStore createStoreWithContext:managedObjectStore.mainQueueManagedObjectContext];
+}
+
++(void) removeDB {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:TC_DB_PATH]) {
+        NSLog(@"Remove database at %@", TC_DB_PATH);
+        [[NSFileManager defaultManager] removeItemAtPath:TC_DB_PATH error:nil];
+    }
+}
+
+// remove and init
++(void) resetDB {
+    [self removeDB];
+    [self initDB];
 }
 
 #pragma mark - integration with InnerBand
@@ -81,12 +94,9 @@ static IBCoreDataStore * ibDataStore;
 }
 
 +(void) copySeed {
-    if ([[NSFileManager defaultManager] fileExistsAtPath:TC_DB_PATH]) {
-        NSLog(@"Removing database ...");
-        [[NSFileManager defaultManager] removeItemAtPath:TC_DB_PATH error:nil];
-    }
+    [self removeDB];
     NSString * fromPath = [[NSBundle mainBundle] pathForResource:@"CoreDataStore" ofType:@"sqlite"];
-    // NSLog(@"Copy from %@", fromPath);
+    NSLog(@"Copy database from %@ to %@", fromPath, TC_DB_PATH);
     [[NSFileManager defaultManager] copyItemAtPath:fromPath toPath:TC_DB_PATH error:nil];
 }
 

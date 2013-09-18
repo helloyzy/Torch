@@ -194,6 +194,7 @@
 		DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D9EC17D468EF00823475 /* PromotionItem.m */; };
 		DCFB9D3017E939FE00326521 /* TCRKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB9D2F17E939FE00326521 /* TCRKObjectMapping.m */; };
 		DCFB9D3217E94FC900326521 /* disclaimation_es.txt in Resources */ = {isa = PBXBuildFile; fileRef = DCFB9D3117E94FC900326521 /* disclaimation_es.txt */; };
+		DCFB9D3517E97A9C00326521 /* TCLoginCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB9D3417E97A9C00326521 /* TCLoginCredential.m */; };
 		E23D421F17E5B31C00D3F5A0 /* TCDBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E23D421E17E5B31C00D3F5A0 /* TCDBUtils.m */; };
 		E23D422217E67CB600D3F5A0 /* TCSvcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E23D422117E67CB600D3F5A0 /* TCSvcUtils.m */; };
 /* End PBXBuildFile section */
@@ -462,6 +463,8 @@
 		DCFB9D2E17E939FE00326521 /* TCRKObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRKObjectMapping.h; sourceTree = "<group>"; };
 		DCFB9D2F17E939FE00326521 /* TCRKObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRKObjectMapping.m; sourceTree = "<group>"; };
 		DCFB9D3117E94FC900326521 /* disclaimation_es.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = disclaimation_es.txt; sourceTree = "<group>"; };
+		DCFB9D3317E97A9C00326521 /* TCLoginCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLoginCredential.h; sourceTree = "<group>"; };
+		DCFB9D3417E97A9C00326521 /* TCLoginCredential.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLoginCredential.m; sourceTree = "<group>"; };
 		E23D421D17E5B31C00D3F5A0 /* TCDBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDBUtils.h; sourceTree = "<group>"; };
 		E23D421E17E5B31C00D3F5A0 /* TCDBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDBUtils.m; sourceTree = "<group>"; };
 		E23D422017E67CB600D3F5A0 /* TCSvcUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSvcUtils.h; sourceTree = "<group>"; };
@@ -883,6 +886,8 @@
 				DC76817817DD75C50039DE1B /* TCCustomer.m */,
 				DC11568917E1C597000ABC64 /* TCContact.h */,
 				DC11568A17E1C597000ABC64 /* TCContact.m */,
+				DCFB9D3317E97A9C00326521 /* TCLoginCredential.h */,
+				DCFB9D3417E97A9C00326521 /* TCLoginCredential.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1204,6 +1209,7 @@
 				DCDBBE5717E700730078F71B /* TCUtils.m in Sources */,
 				DCA4663317E8059A008D634D /* NSManagedObject+TCRestkit.m in Sources */,
 				DCFB9D3017E939FE00326521 /* TCRKObjectMapping.m in Sources */,
+				DCFB9D3517E97A9C00326521 /* TCLoginCredential.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,7 @@
 NSString * millisecondToDateStr(double milliseconds);
 // double dateToMilliseconds(NSDate * date);
 
-void showAlert(NSString * title, NSString * message);
+void showAlert(NSString * title, NSString * message, id<UIAlertViewDelegate> delegate);
 
-void showProgressIndicator(NSString * title);
+void showProgressIndicator(NSString * title, NSString * message);
 void hideProgressIndicator();

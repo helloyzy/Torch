@@ -13,8 +13,13 @@
 #import "UIViewController+Torch.h"
 #import "HersheySSOUtils.h"
 #import "TCUtils.h"
+#import "TCLoginCredential.h"
+#import "TCDBUtils.h"
+#import "TCSvcUtils.h"
 
-@interface TCLoginViewController ()
+@interface TCLoginViewController () {
+    BOOL syncDataFlag;
+}
 
 @end
 
@@ -70,22 +75,88 @@
 }
 
 - (IBAction)signIn:(id)sender {
-#ifndef TC_DEBUG
+#ifdef TC_DEBUG
+    [self jumpToMyDay];
+    // [self _signIn];
+#else
     if (txtUsername.text.length>0) {
         if ([HersheySSOUtils setKeychainWithUsername:txtUsername.text andPassword:txtPwd.text]) {
-            [self jumpToMyDay];
+            [self _signIn];
         }
     }
-#else
-    // showProgressIndicator(@"Loading...");
-    [self jumpToMyDay];
-    // [self performSelector:@selector(hideDelayed) withObject:nil afterDelay:5];
 #endif
 }
 
-- (void)hideDelayed {
-    hideProgressIndicator();
-    [self jumpToMyDay];
+//- (void)hideDelayed {
+//    hideProgressIndicator();
+//}
+
+// invoked after credential info has been stored in local keychain
+- (void)_signIn {
+    [self setSharedLoginCredential];
+    [TCDBUtils resetDB];
+    [self syncData];
+}
+
+- (void)syncData {
+    syncDataFlag = NO;
+    [self.view setUserInteractionEnabled:NO];
+    showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncData"]);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        TC_SVC_BLOCK_SUCCESS success = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+            [self syncDataSuccess];
+        };
+        TC_SVC_BLOCK_FAILURE failure = ^(RKObjectRequestOperation * operation, NSError * error) {
+            [self syncDataFailure];
+        };
+        [TCSvcUtils syncDataService:success failure:failure];
+        
+//        [NSThread sleepForTimeInterval:2];
+//        [self syncDataFailure];
+    });
+}
+
+- (void)syncDataSuccess {
+    syncDataFlag = YES;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        hideProgressIndicator();
+        showAlert([self localString:@"login.syncData.title"], [self localString:@"login.syncDataSuccess"], self);
+    });
+}
+
+- (void)syncDataFailure {
+    syncDataFlag = NO;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        hideProgressIndicator();
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:[self localString:@"login.syncData.title"]
+                                                         message:[self localString:@"login.syncDataFailure"]
+                                                        delegate:self
+                                               cancelButtonTitle:[self localString:@"Cancel"]
+                                               otherButtonTitles:[self localString:@"Retry"], nil];
+        [alert show];
+    });
+}
+
+- (void)setSharedLoginCredential {
+    TCLoginCredential *credential = [TCLoginCredential sharedInstance];
+//    credential.username = txtUsername.text;
+//    credential.password = txtPwd.text;
+    credential.username = @"HCTMM300";
+    credential.password = @"Welcome1";
+}
+
+#pragma mark - alert view delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (syncDataFlag) {
+        [self jumpToMyDay];
+    } else {
+        if (buttonIndex == 1) { // click retry
+            [self performSelector:@selector(syncData) withObject:nil afterDelay:.5];
+        } else { // click cancel
+            [self.view setUserInteractionEnabled:YES];
+        }
+    }
 }
 
 #pragma mark - navigation between controllers

@@ -12,6 +12,7 @@
 "Cancel" = "Cancel";
 "Save" = "Save";
 "OK" = "OK";
+"Retry" = "Retry";
 
 "login.username" = "User Name";
 "login.username.placeholder" = "HFXXXXXX";
@@ -19,6 +20,10 @@
 "login.signIn" = "Sign In";
 "login.readMore" = "Read More..";
 "login.disclaimation" = "This Application and the material it contains is owned by The Hershey Company. Use of this Application is subject to the following terms and conditions. Your use of the Application constitutes...";
+"login.syncData.title" = "Synchronizing data";
+"login.syncData" = "Updating...";
+"login.syncDataSuccess" = "Updating completed";
+"login.syncDataFailure" = "An error has occured";
 
 "disclaimation.fileName" = "disclaimation_es";
 
