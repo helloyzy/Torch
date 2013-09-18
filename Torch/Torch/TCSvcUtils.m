@@ -13,8 +13,10 @@
 
 #import "SalesRep.h"
 #import "Order.h"
+#import "TCRKObjectMapping.h"
 
 #define TC_SVC_BASE @"https://hmuled01.hersheys.com:10040/torch/v1"
+#define TC_SVC_BASE_URL [NSURL URLWithString:TC_SVC_BASE]
 #define TC_SVC_LOGIN [TC_SVC_BASE stringByAppendingPathComponent:@"fetchData"]
 #define TC_SVC_SUCCESS_CODE RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
 
@@ -59,18 +61,15 @@
 }
 
 + (void) orderRequestService {
-    RKObjectMapping * mapping = [[Order objectMapping] inverseMapping];
-    mapping.setNilForMissingRelationships = YES;
-    mapping.setDefaultValueForMissingAttributes = YES;
-    
+    RKObjectMapping * mapping = [TCRKObjectMapping tcInverseMapping:[Order objectMapping]];    
     RKRequestDescriptor * requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:mapping objectClass:[Order class] rootKeyPath:nil method:RKRequestMethodAny];
     
     Order * order = [[Order all] objectAtIndex:0];
-    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:IB_URL(TC_SVC_BASE)];
+    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:TC_SVC_BASE_URL];
     [manager addRequestDescriptor:requestDescriptor];
     manager.requestSerializationMIMEType = RKMIMETypeJSON;
     
-    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    // RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     [[RKObjectManager sharedManager] postObject:order path:@"order" parameters:nil success:^(RKObjectRequestOperation * operation, RKMappingResult * result) {
         NSLog(@"Order request succeed!");
     } failure:^(RKObjectRequestOperation * operation, NSError * error) {
