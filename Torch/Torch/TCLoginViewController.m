@@ -38,6 +38,7 @@
     txtPwd.placeholder = [self localString:@"login.password"];
     [btnSignIn setTitle:[self localString:@"login.signIn"] forState:UIControlStateNormal];
     [btnReadMore setTitle:[self localString:@"login.readMore"] forState:UIControlStateNormal];
+    lblDisclaim.text = [self localString:@"login.disclaimation"];
     
     [self initTextFields];
 }

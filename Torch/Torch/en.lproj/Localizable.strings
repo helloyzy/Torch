@@ -18,6 +18,9 @@
 "login.password" = "Password";
 "login.signIn" = "Sign In";
 "login.readMore" = "Read More..";
+"login.disclaimation" = "This Application and the material it contains is owned by The Hershey Company. Use of this Application is subject to the following terms and conditions. Your use of the Application constitutes...";
+
+"disclaimation.fileName" = "disclaimation_es";
 
 "sliderview.startText" = "Slide to Start Call";
 "sliderview.endText" = "Slide to End Call";

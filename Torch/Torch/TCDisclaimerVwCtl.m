@@ -30,6 +30,10 @@
     [super viewDidLoad];
     btnDone.title = [self localString:@"Done"];
     [self decorateNavBar:navBar];
+    NSString * fileName = [self localString:@"disclaimation.fileName"];
+    NSString * filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"txt"];
+    NSString * content = [[NSString alloc]initWithContentsOfFile:filePath  encoding:NSUTF8StringEncoding error:nil];
+    txtVw.text = content; // [self localString:@"disclaimation.content"];
 }
 
 - (void)didReceiveMemoryWarning
