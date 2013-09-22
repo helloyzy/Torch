@@ -156,6 +156,7 @@ static NSString *CellIdentifier = @"MyDayCell";
 {
     TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
     controller.currentStore = [_stores objectAtIndex:indexPath.row];
+    controller.currentIndex =  [NSString stringWithFormat:@"#%@", [NSNumber numberWithInteger:indexPath.row+1]];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
