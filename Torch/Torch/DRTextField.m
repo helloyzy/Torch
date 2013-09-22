@@ -21,9 +21,27 @@
     self = [super initWithFrame:frame];
     if (self) {
         // observe self's text property
-        [self addObserver:self forKeyPath:DRTextField_PropObserved options:NSKeyValueObservingOptionNew context:NULL];
     }
     return self;
+}
+
+-(void) setDataObject:(NSObject *)dataObject {
+    _dataObject = dataObject;
+}
+
+-(void) setDataProperty:(NSString *)dataProperty {
+    _dataProperty = [dataProperty copy];
+}
+
+-(void) bindIfNecessary {
+    if (_dataObject && _dataProperty) {
+        NSObject *value = [_dataObject valueForKey:_dataProperty];
+        if (value) {
+            NSString *strVal = [NSString stringWithFormat:@"%@", value];
+            self.text = strVal;
+        }
+        [self addObserver:self forKeyPath:DRTextField_PropObserved options:NSKeyValueObservingOptionNew context:NULL];
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

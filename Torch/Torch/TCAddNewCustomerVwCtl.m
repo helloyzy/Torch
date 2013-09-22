@@ -14,6 +14,9 @@
 #import "TCEditingCell.h"
 #import "TCComboVw.h"
 #import "TCContact.h"
+#import "TCUtils.h"
+#import "Store.h"
+#import "Contact.h"
 
 #define _TV_ROW_HEIGHT 36
 #define _TV_FIELD_FONTSIZE 14
@@ -100,6 +103,28 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     [super viewDidLoad];
     self.customer = [[TCCustomer alloc] init];
     self.contacts = [[NSMutableArray alloc] init];
+    if (self.store) {
+        self.customer.storeName = self.store.name;
+        self.customer.streetName = self.store.address;
+        self.customer.city = self.store.city;
+        self.customer.state = self.store.state;
+        self.customer.postcode = self.store.postalCode;
+        // ? Municipality
+        self.customer.country = self.store.country;
+        // ? Street Ref 1
+        // ? Street Ref 2
+        // ? Phone
+        // ? RFC
+        // ? CustomerType
+        if (self.store.lastModifiedDate) {
+            self.customer.visitDay = millisecondToDateStr(self.store.lastModifiedDateValue);
+        }
+        if (self.store.contacts) {
+            for (Contact * contact in self.store.contacts) {
+                [self.contacts addObject:contact];
+            }
+        }
+    }
     [self initInternal];
 }
 
@@ -271,23 +296,23 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             cell.textLabel.text = [self localString:@"addnewcustomer.addNote"];
         }
     } else { // if we have contacts section if (self.contacts.count > 0) 
-        TCContact * contact = self.contacts[indexPath.section - _CONTACT_SECTION_START];
+        Contact * contact = self.contacts[indexPath.section - _CONTACT_SECTION_START];
         switch (indexPath.row) {
             case 0:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"name", [self localString:@"addnewcustomer.name"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, contact, @"firstName", [self localString:@"addnewcustomer.name"], UIKeyboardTypeDefault, self);
                 break;
             case 1:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"surname", [self localString:@"addnewcustomer.surname"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, contact, @"lastName", [self localString:@"addnewcustomer.surname"], UIKeyboardTypeDefault, self);
                 break;
             case 2:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"position", [self localString:@"addnewcustomer.position"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, contact, @"title", [self localString:@"addnewcustomer.position"], UIKeyboardTypeDefault, self);
                 break;
             case 3:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"phone", [self localString:@"addnewcustomer.phone"], UIKeyboardTypePhonePad, self);
+                customizeField(editCell.centerField, indexPath, 0, contact, @"phoneNumber", [self localString:@"addnewcustomer.phone"], UIKeyboardTypePhonePad, self);
                 break;
             default:
                 break;

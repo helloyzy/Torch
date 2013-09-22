@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DRTextField : UITextField
+@interface DRTextField : UITextField {
+    __weak NSObject * _dataObject;
+    NSString * _dataProperty;
+}
 
 +(DRTextField *) instance:(CGRect)frame data:(NSObject *)object prop:(NSString *)prop;
 
