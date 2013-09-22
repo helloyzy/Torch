@@ -64,6 +64,8 @@
 "addnewcustomer.addContact" = "Add Contact";
 "addnewcustomer.addNote" = "Add Note";
 
+"editcustomer.title" = "Edit Existing Client";
+
 /*Bo*/
 "priority.title" = "Priorities";
 

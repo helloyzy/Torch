@@ -66,6 +66,7 @@ int calculateTag(NSIndexPath * indexPath, int column) {
 void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column, NSObject * modelObject, NSString * modelProp, NSString * textPlaceHolder, UIKeyboardType keyboardType, id delegate) {
     textField.font = TCFont_HNLTComLt(_TV_FIELD_FONTSIZE);
     textField.placeholder = textPlaceHolder;
+    [textField reset];
     textField.dataObject = modelObject;
     textField.dataProperty = modelProp;
     textField.keyboardType = keyboardType;
@@ -76,6 +77,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 }
 
 @interface TCAddNewCustomerVwCtl () {
+    BOOL _isAddNew;
 }
 
 @property (nonatomic, strong) TCCustomer * customer;
@@ -103,7 +105,9 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     [super viewDidLoad];
     self.customer = [[TCCustomer alloc] init];
     self.contacts = [[NSMutableArray alloc] init];
+    _isAddNew = YES;
     if (self.store) {
+        _isAddNew = NO;
         self.customer.storeName = self.store.name;
         self.customer.streetName = self.store.address;
         self.customer.city = self.store.city;
@@ -128,7 +132,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     [self initInternal];
 }
 
-- (UIBarButtonItem *)navItemWithImage:(NSString *)imageName title:(NSString *)title {
+- (UIBarButtonItem *)navItemWithImage:(NSString *)imageName title:(NSString *)title action:(SEL)action {
     UIImage * image = [UIImage imageNamed:imageName];
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 71, 30);
@@ -136,28 +140,42 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btn.titleLabel.font = TCFont_HNLTComBd(15);
     [btn setBackgroundImage:image forState:UIControlStateNormal];
-//    if ([self respondsToSelector:@selector(toggleProfileView:)]) {
-//        [btn addTarget:self action:@selector(toggleProfileView:) forControlEvents:UIControlEventTouchUpInside];
-//    }
+    [btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
     return [[UIBarButtonItem alloc] initWithCustomView:btn];
 }
 
 
 - (void)initInternal {
     TCLbl_Title_Ext(lblTitle);
-    lblTitle.text = [self localString:@"addnewcustomer.title"];
+    if (_isAddNew) {
+        lblTitle.text = [self localString:@"addnewcustomer.title"];
+    } else {
+        lblTitle.text = [self localString:@"editcustomer.title"];
+    }
     
     if (self.navigationController) {
         NSString * cancelText = [self localString:@"Cancel"];
         NSString * saveText = [self localString:@"Save"];
-        self.navigationItem.leftBarButtonItem = [self navItemWithImage:@"cancel.png" title:cancelText];
-        self.navigationItem.rightBarButtonItem = [self navItemWithImage:@"save.png" title:saveText];
+        self.navigationItem.leftBarButtonItem = [self navItemWithImage:@"cancel.png" title:cancelText action:@selector(cancelAction)];
+        [self.navigationItem.leftBarButtonItem setAction:@selector(cancelAction)];
+        [self.navigationItem.leftBarButtonItem setTarget:self];
+        self.navigationItem.rightBarButtonItem = [self navItemWithImage:@"save.png" title:saveText action:@selector(saveAction)];
     }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - nav items actions
+
+-(void) cancelAction {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void) saveAction {
+    
 }
 
 #pragma mark - table view delegate 

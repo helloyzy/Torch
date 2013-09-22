@@ -14,6 +14,7 @@
 }
 
 +(DRTextField *) instance:(CGRect)frame data:(NSObject *)object prop:(NSString *)prop;
+-(void) reset;
 
 @property (nonatomic, weak) NSObject * dataObject;
 @property (nonatomic, copy) NSString * dataProperty;
