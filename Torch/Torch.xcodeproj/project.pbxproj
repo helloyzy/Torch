@@ -25,6 +25,7 @@
 		1C21A52417CB22E700627852 /* TCCallHighlightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C21A52317CB22E700627852 /* TCCallHighlightCell.m */; };
 		1C28602F17CDC967002E4CD0 /* TCSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C28602D17CDC967002E4CD0 /* TCSummaryViewController.m */; };
 		1C28603017CDC967002E4CD0 /* TCSummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C28602E17CDC967002E4CD0 /* TCSummaryViewController.xib */; };
+		1C34527B17EEE7BC00D6600A /* HelveticaNeueLTCom-Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C34527A17EEE7BC00D6600A /* HelveticaNeueLTCom-Roman.ttf */; };
 		1C40315617C5FB1F007D58CC /* client-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C40315517C5FB1F007D58CC /* client-pin.png */; };
 		1C65E2E417C33CE100FA94B2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C65E2E317C33CE100FA94B2 /* MapKit.framework */; };
 		1C65E2E617C33D6700FA94B2 /* TCRouteMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */; };
@@ -218,6 +219,7 @@
 		1C28602C17CDC967002E4CD0 /* TCSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSummaryViewController.h; sourceTree = "<group>"; };
 		1C28602D17CDC967002E4CD0 /* TCSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSummaryViewController.m; sourceTree = "<group>"; };
 		1C28602E17CDC967002E4CD0 /* TCSummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCSummaryViewController.xib; sourceTree = "<group>"; };
+		1C34527A17EEE7BC00D6600A /* HelveticaNeueLTCom-Roman.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HelveticaNeueLTCom-Roman.ttf"; path = "fonts/HelveticaNeueLTCom-Roman.ttf"; sourceTree = "<group>"; };
 		1C40315517C5FB1F007D58CC /* client-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "client-pin.png"; sourceTree = "<group>"; };
 		1C65E2E317C33CE100FA94B2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRouteMapView.xib; sourceTree = "<group>"; };
@@ -594,6 +596,7 @@
 		1C8187A917C490B700AF7AF0 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				1C34527A17EEE7BC00D6600A /* HelveticaNeueLTCom-Roman.ttf */,
 				1C8187AE17C4969D00AF7AF0 /* HelveticaNeueLTCom-Md.ttf */,
 				1C8187AC17C4930400AF7AF0 /* HelveticaNeueLTCom-Bd.ttf */,
 				1C8187AA17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf */,
@@ -1054,6 +1057,7 @@
 				D6C8602B17E6D481002F797D /* TCStoreNoVisit.xib in Resources */,
 				DCA4663517E82040008D634D /* order.json in Resources */,
 				DCFB9D3217E94FC900326521 /* disclaimation_es.txt in Resources */,
+				1C34527B17EEE7BC00D6600A /* HelveticaNeueLTCom-Roman.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

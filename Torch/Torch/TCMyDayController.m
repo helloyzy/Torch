@@ -7,6 +7,7 @@
 //
 
 #import "TCMyDayController.h"
+#import "TCAddNewCustomerVwCtl.h"
 #import "TCMyDayCell.h"
 #import "GraphicsUtils.h"
 #import <QuartzCore/QuartzCore.h>
@@ -29,7 +30,8 @@
 @synthesize header = _header;
 @synthesize shadow = _shadow;
 
-static NSString *CellIdentifier = @"MyDayCell";    
+static NSString *CellIdentifier = @"MyDayCell";
+static NSString *NewCustomerCell = @"NewCustomerCell";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,6 +67,7 @@ static NSString *CellIdentifier = @"MyDayCell";
     [topShadowView.layer insertSublayer:shadow atIndex:0];
 
     [_tableView registerClass:[TCMyDayCell class] forCellReuseIdentifier:CellIdentifier];
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NewCustomerCell];
     [_tableView.superview addSubview:topShadowView];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -104,6 +107,14 @@ static NSString *CellIdentifier = @"MyDayCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NewCustomerCell];
+        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Roman" size:16];
+        cell.textLabel.textColor = TCColorLineBlue;
+        cell.textLabel.text = @"add new customer";
+        //[tableView dequeueReusableCellWithIdentifier:NewCustomerCell forIndexPath:indexPath];
+        return cell;
+    }
     TCMyDayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     [cell cellWithData:[_stores objectAtIndex:indexPath.row] cellForRowAtIndexPath:indexPath];
     return cell;
@@ -152,14 +163,20 @@ static NSString *CellIdentifier = @"MyDayCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 93;
+	return indexPath.row == 0 ? 45 : 93;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        TCAddNewCustomerVwCtl *controller = [[TCAddNewCustomerVwCtl alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+        return;
+    }
+    
     TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
-    controller.currentStore = [_stores objectAtIndex:indexPath.row];
-    controller.currentIndex =  [NSString stringWithFormat:@"#%@", [NSNumber numberWithInteger:indexPath.row+1]];
+    controller.currentStore = [_stores objectAtIndex:indexPath.row-1];
+    controller.currentIndex =  [NSString stringWithFormat:@"#%@", [NSNumber numberWithInteger:indexPath.row]];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

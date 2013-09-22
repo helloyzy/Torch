@@ -78,7 +78,7 @@
 - (TCMyDayCell*) cellWithData: (Store*) store cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     storeLabel.text = store.name;
     addressLabel.text = [NSString stringWithFormat:@"%@\n%@ , %@ %@", store.address, store.city, store.country, store.postalCode];
-    numberLabel.text = [NSString stringWithFormat:@"#%@", [NSNumber numberWithInteger:indexPath.row+1]];
+    numberLabel.text = [NSString stringWithFormat:@"#%@", [NSNumber numberWithInteger:indexPath.row]];
     return self;
 }
 
