@@ -9,6 +9,7 @@
 #import "TCProfileController.h"
 #import "YIInnerShadowView.h"
 #import "GraphicsUtils.h"
+#import "IIViewDeckController.h"
 
 @interface TCProfileController ()
 
@@ -44,7 +45,14 @@
 }
 
 - (void)toMyDay {
-    // [self]
+    IIViewDeckController * deckCtl = self.viewDeckController;
+    if (deckCtl) {
+        [deckCtl toggleRightViewAnimated:YES];
+        UINavigationController *navController = (UINavigationController *)deckCtl.centerController;
+        if (navController) {
+            [navController popToRootViewControllerAnimated:YES];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
