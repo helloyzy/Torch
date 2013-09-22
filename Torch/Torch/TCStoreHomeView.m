@@ -15,6 +15,7 @@
 #import "TCOrderHistory.h"
 #import "TCStoreNoVisit.h"
 #import "Contact.h"
+#import "TCAddNewCustomerVwCtl.h"
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -96,6 +97,12 @@ static NSString *kViewControllerKey = @"viewController";
 
 }
 
+-(void)goEditCustomer {
+    TCAddNewCustomerVwCtl *targetViewController = [[TCAddNewCustomerVwCtl  alloc] init];
+    targetViewController.store = self.currentStore;
+      [[self navigationController] pushViewController:targetViewController animated:YES];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -149,6 +156,11 @@ static NSString *kViewControllerKey = @"viewController";
     UIImageView *headerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divide.png"]];
     UILabel *headerLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.bounds.size.width-100, 25)];
     if (section == 0) {
+        
+        UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(280, 0, 17, 17)];
+        [editButton setBackgroundImage:[UIImage imageNamed:@"focus"] forState:UIControlStateNormal];
+        
+        [editButton addTarget:self action:@selector(goEditCustomer) forControlEvents:UIControlEventTouchDown];
 
         headerLbl.backgroundColor = [UIColor clearColor];
         headerLbl.text = self.currentStore.name;
@@ -157,6 +169,7 @@ static NSString *kViewControllerKey = @"viewController";
         headerLbl.textColor =[UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
         [headerView addSubview:headerLbl];
         [headerView addSubview:headerImage];
+        [headerView addSubview:editButton];
 
     
     }else if (section==1){
