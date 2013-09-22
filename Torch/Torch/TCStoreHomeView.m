@@ -249,16 +249,17 @@ static NSString *kViewControllerKey = @"viewController";
         UIImageView *mapImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapwithhint.png"]];
         mapImage.frame = CGRectMake(225, 2, 50, 70);
 
-        UILabel *lblNumber = [[UILabel alloc] initWithFrame:CGRectMake(15,5,20,25)];
-        lblNumber.text = @"#3";
+        UILabel *lblNumber = [[UILabel alloc] initWithFrame:CGRectMake(15,5,30,25)];
+        lblNumber.text = self.currentIndex;
         lblNumber.textColor = [UIColor whiteColor];
         lblNumber.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:14];
         lblNumber.backgroundColor =[UIColor clearColor];
+        [lblNumber setTextAlignment:NSTextAlignmentLeft];
         [mapImage addSubview:lblNumber];
 		UIImage *buttonBackground = [UIImage imageNamed:@"directionbtn.png"];
 		UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"directionbtn_pressed.png"];
 		
-		CGRect frame = CGRectMake(205, 80, 90, 25);
+		CGRect frame = CGRectMake(205, 80, 100, 25);
 		
 		_btnDirection = [TCStoreHomeView newButtonWithTitle:[self localString:@"storehome.button.instructions"]
                                                          target:self
