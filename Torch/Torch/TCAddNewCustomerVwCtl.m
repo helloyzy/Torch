@@ -248,16 +248,14 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     } else if (indexPath.section == 4) {
         editCell = [self comboCell:@[@"Text1", @"Text2"]];
         editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO1;
-        editCell.backgroundColor = [UIColor darkGrayColor];
+        // editCell.backgroundColor = [UIColor darkGrayColor];
         customizeField(editCell.leftField, indexPath, 0, self.customer, @"customerType", [self localString:@"addnewcustomer.typeOfClient"], UIKeyboardTypeDefault, self);
-        // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     } else if (indexPath.section == 5) {
         // editCell = [self comboCell:@[@"Text8", @"Text9"]];
         editCell = [self dateComboCell];
         editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO2;
-        editCell.backgroundColor = [UIColor darkGrayColor];
+        // editCell.backgroundColor = [UIColor darkGrayColor];
         customizeField(editCell.leftField, indexPath, 0, self.customer, @"visitDay", [self localString:@"addnewcustomer.visitingDay"], UIKeyboardTypeDefault, self);
-        // [editCell.rightBtn removeTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     } else if (indexPath.section == _AddNewContact_Section || indexPath.section == _AddNewNote_Section) {
         static NSString * addCellIdentifier = @"addCell";
         cell = [tblVw dequeueReusableCellWithIdentifier:addCellIdentifier];

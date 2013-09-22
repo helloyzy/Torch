@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "TCBaseVwCtl.h"
 
+@class Store;
+
 @interface TCAddNewCustomerVwCtl : TCBaseVwCtl <UITableViewDataSource, UITableViewDelegate> {
     __weak IBOutlet UILabel *lblTitle;
     __weak IBOutlet UITableView *tblVw;
     
 }
+
+@property(nonatomic, strong)Store *store;
 
 @end
