@@ -56,6 +56,7 @@ static NSString *CellIdentifier = @"MyDayCell";
     band.frame = CGRectMake(0, _header.layer.frame.size.height-2, _header.layer.frame.size.width, 2);
     band.borderColor = TCColorLineBlue.CGColor;
     [_header.layer addSublayer:band];
+    _header.adjustsFontSizeToFitWidth = YES;
 
     UIView *topShadowView = [[UIView alloc] initWithFrame:CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.bounds.size.width, 10)];
     CAGradientLayer *shadow = [CAGradientLayer layer];
@@ -74,11 +75,13 @@ static NSString *CellIdentifier = @"MyDayCell";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSDateFormatter *gmtFormatter=[[NSDateFormatter alloc] init];
-    [gmtFormatter setDateFormat:@"EEEE, MMM dd, YYYY"];
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    //[df setDateStyle:NSDateFormatterFullStyle];
+    df.locale = [[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]];
+    [df setDateFormat:@"EEEE, MMMM dd, YYYY "];
 
-    NSString* str=[[gmtFormatter stringFromDate: [[NSDate alloc] init]] uppercaseString];
-    _header.text = str;
+    NSString* str= [[df stringFromDate: [[NSDate alloc] init]] uppercaseString];
+    _header.text = [@"  Mi día - " stringByAppendingString:str];
 }
 
 - (void)didReceiveMemoryWarning
