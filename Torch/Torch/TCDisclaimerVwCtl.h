@@ -11,6 +11,7 @@
 @interface TCDisclaimerVwCtl : UIViewController {
     __weak IBOutlet UIBarButtonItem *btnDone;
     __weak IBOutlet UINavigationBar *navBar;
+    __weak IBOutlet UITextView *txtVw;
 }
 
 - (IBAction)dismissView:(id)sender;

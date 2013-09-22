@@ -75,14 +75,12 @@
 }
 
 - (void) serviceTest {
-    // [TCSvcUtils loginService];
-    [TCSvcUtils orderRequestService];
+    // [TCSvcUtils syncDataService];
+    // [TCSvcUtils orderRequestService];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self initDB];
-    // [self serviceTest];
     // NSLog(@"Documents dir %@", IB_DOCUMENTS_DIR());
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -91,10 +89,12 @@
     // self.viewController = [[TCDisclaimerVwCtl alloc] init];
     // self.viewController = [[TCStoreHomeView alloc] init];
     // self.viewController = [self rootDeckCtrl];
-    // self.viewController = [self controllerWithinNavCtr];
     // self.viewController = [[TCPrinterCtl alloc] init];
 #ifdef TC_DEBUG
+    [self initDB];
+    // [self serviceTest];
     self.viewController = [self loginController];
+    // self.viewController = [self controllerWithinNavCtr];
 #else
     self.viewController = [self isLoginRequired] ? [self loginController] : [UIViewController myDayDeckAsRoot];
 #endif
@@ -133,71 +133,5 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
-//- (void)initDB {
-    /**
-    BOOL hasDB = [[NSFileManager defaultManager] fileExistsAtPath: [IB_DOCUMENTS_DIR() stringByAppendingPathComponent:@"CoreDataStore.sqlite"]];
-    NSLog(@"Documents dir %@ has DB %i", IB_DOCUMENTS_DIR(), hasDB);
-    
-    // NSArray * salesReps = [SalesRep all];
-    // NSLog(@"Count of salesRep is %i", [salesReps count]);
-    
-    //    RKObjectManager * objectManager = [RKObjectManager managerWithBaseURL:IB_URL(@"https://hmuled01.hersheys.com:10040/torch/v1/fetchData")];
-    //    objectManager.managedObjectStore = [RKManagedObjectStore o:@"CoreDataStore.sqlite"];
-    
-    NSManagedObjectModel * managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    RKManagedObjectStore * managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
-    [RKManagedObjectStore setDefaultStore:managedObjectStore];
-    NSError * error = nil;
-    BOOL success = RKEnsureDirectoryExistsAtPath(RKApplicationDataDirectory(), &error);
-    if (!success) {
-        RKLogError(@"Failed to create Application Data Directory at path '%@' : %@", RKApplicationDataDirectory(), error);
-    }
-    
-    NSString * path = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"CoreDataStore.sqlite"];
-    NSPersistentStore * persistentStore = [managedObjectStore addSQLitePersistentStoreAtPath:path fromSeedDatabaseAtPath:nil withConfiguration:nil options:nil error:&error];
-    if (!persistentStore) {
-        RKLogError(@"Failed adding persistent store at path '%@' : %@", path, error);
-    }
-    [managedObjectStore createManagedObjectContexts];
-    
-    RKEntityMapping * salesRepMapping = [SalesRep objectMapping]; // [RKEntityMapping mappingForEntityForName:@"SalesRep" inManagedObjectStore:managedObjectStore];
-    
-    NSIndexSet * statusCodes = RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful);
-    RKResponseDescriptor * responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:salesRepMapping method:RKRequestMethodAny pathPattern:nil keyPath:nil statusCodes:statusCodes];
-    
-    NSURLRequest * request = [NSURLRequest requestWithURL:IB_URL(@"https://hmuled01.hersheys.com:10040/torch/v1/fetchData")];
-    // NSMutableURLRequest * request = [NSURLRequest requestWithURL:IB_URL(@"https://hmuled01.hersheys.com:10040/torch/v1/fetchData")];
-    RKManagedObjectRequestOperation * operation = [[RKManagedObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
-    [operation.HTTPRequestOperation setWillSendRequestForAuthenticationChallengeBlock:^(NSURLConnection * conn, NSURLAuthenticationChallenge * challenge) {
-        NSLog(@"Receive challenge");
-        if ([challenge previousFailureCount] == 0) {
-            NSURLCredential * newCred = [NSURLCredential credentialWithUser:@"HCTMM300" password:@"Welcome1" persistence:NSURLCredentialPersistenceForSession];
-            [[challenge sender] useCredential:newCred forAuthenticationChallenge:challenge];
-        } else {
-            [[challenge sender] cancelAuthenticationChallenge:challenge];
-        }
-    }];
-    
-    operation.managedObjectContext = managedObjectStore.mainQueueManagedObjectContext;
-    operation.managedObjectCache = managedObjectStore.managedObjectCache;
-    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation * operation, RKMappingResult * result) {
-        SalesRep * salesRep = [result firstObject];
-        NSLog(@"SalesRep networkId %@", salesRep.networkId);
-    } failure:^(RKObjectRequestOperation * operation, NSError * error) {
-        NSLog(@"Failed with error: %@", [error localizedDescription]);
-    }];
-    NSOperationQueue * operationQueue = [NSOperationQueue new];
-    [operationQueue addOperation:operation];
-    
-//    RKObjectManager * objectManager = [RKObjectManager managerWithBaseURL:IB_URL(@"https://hmuled01.hersheys.com:10040")];
-//    objectManager.managedObjectStore = managedObjectStore;
-//    [objectManager.HTTPClient setAuthorizationHeaderWithUsername:@"HCTMM300" password:@"Welcome1"];
-//    [RKObjectManager setSharedManager:objectManager];
-//    [objectManager addResponseDescriptor:responseDescriptor];
-//    [objectManager getObjectsAtPath:@"/torch/v1/fetchData" parameters:nil success:nil failure:nil];
-     */
-    
-//}
 
 @end

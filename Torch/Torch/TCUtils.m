@@ -17,24 +17,25 @@ NSString * millisecondToDateStr(double milliseconds) {
     return [DateUtils stringFromDate:date withFormat:kDateFormatShort];
 }
 
-void showAlert(NSString * title, NSString * message) {
+void showAlert(NSString * title, NSString * message, id<UIAlertViewDelegate> delegate) {
     NSString * OKCaption = NSLocalizedString(@"OK", nil);
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:OKCaption otherButtonTitles:nil,nil];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:delegate cancelButtonTitle:OKCaption otherButtonTitles:nil,nil];
 	[alert show];
 }
 
+
 static MBProgressHUD * gProgressHUD;
 
-void showProgressIndicator(NSString * title) {
+void showProgressIndicator(NSString * title, NSString * message) {
     if (!gProgressHUD) {
         gProgressHUD = [[MBProgressHUD alloc]initWithWindow:TC_WINDOW];
         gProgressHUD.removeFromSuperViewOnHide = YES;
         gProgressHUD.dimBackground = YES;
     }
     gProgressHUD.labelText = title;
+    gProgressHUD.detailsLabelText = message;
     [TC_WINDOW addSubview:gProgressHUD];
     [gProgressHUD show:YES];
-    
 }
 
 void hideProgressIndicator() {

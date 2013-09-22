@@ -10,9 +10,10 @@
 
 @class YIInnerShadowView;
 
-@interface TCProfileController : UIViewController {
+@interface TCProfileController : UIViewController <UIGestureRecognizerDelegate> {
     
     __weak IBOutlet YIInnerShadowView *vwLeftShadow;
+    __weak IBOutlet UIImageView *imgVwMyDay;
 }
 
 @end

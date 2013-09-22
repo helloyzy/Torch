@@ -10,13 +10,14 @@
 #import "TCBaseVwCtl.h"
 
 @class YIInnerShadowView;
-@interface TCLoginViewController : TCBaseVwCtl {
+@interface TCLoginViewController : TCBaseVwCtl <UIAlertViewDelegate> {
     
     __weak IBOutlet UILabel *lblUsername;
     __weak IBOutlet UITextField *txtUsername;
     __weak IBOutlet UITextField *txtPwd;
    //  __weak IBOutlet UIButton *btnSignin;
     __weak IBOutlet UILabel *lblPwd;
+    __weak IBOutlet UILabel *lblDisclaim;
     __weak IBOutlet UIImageView *bgImgView;
     __weak IBOutlet UIButton *btnReadMore;
     __weak IBOutlet UIButton *btnSignIn;

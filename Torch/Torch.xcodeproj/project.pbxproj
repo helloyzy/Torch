@@ -192,6 +192,9 @@
 		DCDBBE5317E6CE700078F71B /* CoreDataStore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DCDBBE5217E6CE700078F71B /* CoreDataStore.sqlite */; };
 		DCDBBE5717E700730078F71B /* TCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBBE5617E700720078F71B /* TCUtils.m */; };
 		DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D9EC17D468EF00823475 /* PromotionItem.m */; };
+		DCFB9D3017E939FE00326521 /* TCRKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB9D2F17E939FE00326521 /* TCRKObjectMapping.m */; };
+		DCFB9D3217E94FC900326521 /* disclaimation_es.txt in Resources */ = {isa = PBXBuildFile; fileRef = DCFB9D3117E94FC900326521 /* disclaimation_es.txt */; };
+		DCFB9D3517E97A9C00326521 /* TCLoginCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB9D3417E97A9C00326521 /* TCLoginCredential.m */; };
 		E23D421F17E5B31C00D3F5A0 /* TCDBUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E23D421E17E5B31C00D3F5A0 /* TCDBUtils.m */; };
 		E23D422217E67CB600D3F5A0 /* TCSvcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E23D422117E67CB600D3F5A0 /* TCSvcUtils.m */; };
 /* End PBXBuildFile section */
@@ -457,6 +460,11 @@
 		DCDBBE5617E700720078F71B /* TCUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtils.m; sourceTree = "<group>"; };
 		DCE1D9EB17D468EF00823475 /* PromotionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionItem.h; sourceTree = "<group>"; };
 		DCE1D9EC17D468EF00823475 /* PromotionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionItem.m; sourceTree = "<group>"; };
+		DCFB9D2E17E939FE00326521 /* TCRKObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRKObjectMapping.h; sourceTree = "<group>"; };
+		DCFB9D2F17E939FE00326521 /* TCRKObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRKObjectMapping.m; sourceTree = "<group>"; };
+		DCFB9D3117E94FC900326521 /* disclaimation_es.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = disclaimation_es.txt; sourceTree = "<group>"; };
+		DCFB9D3317E97A9C00326521 /* TCLoginCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLoginCredential.h; sourceTree = "<group>"; };
+		DCFB9D3417E97A9C00326521 /* TCLoginCredential.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLoginCredential.m; sourceTree = "<group>"; };
 		E23D421D17E5B31C00D3F5A0 /* TCDBUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDBUtils.h; sourceTree = "<group>"; };
 		E23D421E17E5B31C00D3F5A0 /* TCDBUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDBUtils.m; sourceTree = "<group>"; };
 		E23D422017E67CB600D3F5A0 /* TCSvcUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSvcUtils.h; sourceTree = "<group>"; };
@@ -559,6 +567,7 @@
 				1C713C0317C2058100A903A6 /* Default@2x.png */,
 				1C713C0517C2058100A903A6 /* Default-568h@2x.png */,
 				DC0383CE17C3469700BBD02A /* Localizable.strings */,
+				DCFB9D3117E94FC900326521 /* disclaimation_es.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -662,13 +671,10 @@
 				C53C8D1F17CEE9DD000E978D /* TCOrderStatusCell.m */,
 				C53C8D1117CEE2CA000E978D /* TCOrderHistory.h */,
 				C53C8D1217CEE2CA000E978D /* TCOrderHistory.m */,
-				D6CD428317CC706100A499A4 /* TCPriorityObject.h */,
 				D6D68DE117CDDEB400477060 /* TCOrderViewController.h */,
 				D6D68DE217CDDEB400477060 /* TCOrderViewController.m */,
-				DCC8387317CB0FC70046E999 /* TCProfileController.m */,
-				D6CD428417CC706100A499A4 /* TCPriorityObject.m */,
 				DCC8387217CB0FC70046E999 /* TCProfileController.h */,
-				1CFE598017D6C7950041FF95 /* TCSurveyController.xib */,
+				DCC8387317CB0FC70046E999 /* TCProfileController.m */,
 				DC9D57E517C74B1900EAFD2F /* Base */,
 				D6CB682517C5A98A00D290D7 /* InventoryTableCell.h */,
 				D6CB682617C5A98A00D290D7 /* InventoryTableCell.m */,
@@ -709,6 +715,7 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1CFE598017D6C7950041FF95 /* TCSurveyController.xib */,
 				D6C8602917E6D481002F797D /* TCStoreNoVisit.xib */,
 				D6831BC917D872D600718881 /* TCOrderHistoryDetailCell.xib */,
 				DC20E24A17D85BE1009FFC84 /* TCAddNewCustomerVwCtl.xib */,
@@ -773,6 +780,8 @@
 				DCDBBE5617E700720078F71B /* TCUtils.m */,
 				DCA4663117E8059A008D634D /* NSManagedObject+TCRestkit.h */,
 				DCA4663217E8059A008D634D /* NSManagedObject+TCRestkit.m */,
+				DCFB9D2E17E939FE00326521 /* TCRKObjectMapping.h */,
+				DCFB9D2F17E939FE00326521 /* TCRKObjectMapping.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -865,6 +874,8 @@
 		DCE1D9EA17D468AA00823475 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D6CD428317CC706100A499A4 /* TCPriorityObject.h */,
+				D6CD428417CC706100A499A4 /* TCPriorityObject.m */,
 				D6831BC617D84E7100718881 /* TCOrderObject.h */,
 				D6831BC717D84E7100718881 /* TCOrderObject.m */,
 				DCE1D9EB17D468EF00823475 /* PromotionItem.h */,
@@ -875,6 +886,8 @@
 				DC76817817DD75C50039DE1B /* TCCustomer.m */,
 				DC11568917E1C597000ABC64 /* TCContact.h */,
 				DC11568A17E1C597000ABC64 /* TCContact.m */,
+				DCFB9D3317E97A9C00326521 /* TCLoginCredential.h */,
+				DCFB9D3417E97A9C00326521 /* TCLoginCredential.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1040,6 +1053,7 @@
 				DCDBBE5317E6CE700078F71B /* CoreDataStore.sqlite in Resources */,
 				D6C8602B17E6D481002F797D /* TCStoreNoVisit.xib in Resources */,
 				DCA4663517E82040008D634D /* order.json in Resources */,
+				DCFB9D3217E94FC900326521 /* disclaimation_es.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1194,6 +1208,8 @@
 				D6C8602A17E6D481002F797D /* TCStoreNoVisit.m in Sources */,
 				DCDBBE5717E700730078F71B /* TCUtils.m in Sources */,
 				DCA4663317E8059A008D634D /* NSManagedObject+TCRestkit.m in Sources */,
+				DCFB9D3017E939FE00326521 /* TCRKObjectMapping.m in Sources */,
+				DCFB9D3517E97A9C00326521 /* TCLoginCredential.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
