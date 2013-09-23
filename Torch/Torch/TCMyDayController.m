@@ -116,7 +116,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
         return cell;
     }
     TCMyDayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    [cell cellWithData:[_stores objectAtIndex:indexPath.row] cellForRowAtIndexPath:indexPath];
+    [cell cellWithData:[_stores objectAtIndex:indexPath.row-1] cellForRowAtIndexPath:indexPath];
     return cell;
 }
 
