@@ -11,7 +11,7 @@
 
 @class Store;
 
-@interface TCAddNewCustomerVwCtl : TCBaseVwCtl <UITableViewDataSource, UITableViewDelegate> {
+@interface TCAddNewCustomerVwCtl : TCBaseVwCtl <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
     __weak IBOutlet UILabel *lblTitle;
     __weak IBOutlet UITableView *tblVw;
     

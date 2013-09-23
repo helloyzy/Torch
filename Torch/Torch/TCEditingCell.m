@@ -109,7 +109,7 @@
     CGFloat p_y = 10;
     CGFloat s_w = 270;
     CGFloat s_w_half = s_w / 2;
-    CGFloat s_h = self.bounds.size.height - 2 * 10;
+    CGFloat s_h = self.bounds.size.height - 2 * 8;
     switch (_editingStyle) {
         case TCEditingCellStyleCenter:
             centerField.frame = CGRectMake(p_x, p_y, s_w, s_h);
