@@ -92,9 +92,14 @@ static NSString *kViewControllerKey = @"viewController";
                  kExplainKey:@"Visit summary and notes",
           kViewControllerKey:tcSummaryViewController } ];
     
-    contacts = [self.currentStore.contacts allObjects];
+//    contacts = [self.currentStore.contacts allObjects];
     
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    contacts = [self.currentStore.contacts allObjects];
+    [self.tableView reloadData];
 }
 
 -(void)goEditCustomer {

@@ -86,6 +86,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 
     NSString* str= [[df stringFromDate: [[NSDate alloc] init]] uppercaseString];
     _header.text = [@"  Mi día - " stringByAppendingString:str];
+    [_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,7 +104,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _stores.count;
+    return _stores.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
