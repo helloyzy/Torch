@@ -89,6 +89,12 @@
     MKAnnotationView *annView = [[MKAnnotationView alloc ] initWithAnnotation:annotation reuseIdentifier:@"ClientPin"];
     annView.image = [UIImage imageNamed:@"client-pin.png"];
     annView.canShowCallout = YES;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,0, annView.frame.size.width,annView.frame.size.height-10)];
+    label.backgroundColor = [UIColor clearColor];
+    label.text = @"#1";
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    [annView addSubview:label];
     annView.calloutOffset = (CGPoint) {0, 48};
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //    [rightButton addTarget:nil action:nil forControlEvents:UIControlEventTouchUpInside];
