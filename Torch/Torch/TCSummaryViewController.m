@@ -15,12 +15,17 @@
 #import <MGLineStyled.h>
 #import <MGLine.h>
 #import <OCTotallyLazy/OCTotallyLazy.h>
+#import "StoreCall.h"
+#import "Note.h"
+#import "TCUtils.h"
 
 @interface TCSummaryViewController ()
 
 @end
 
 @implementation TCSummaryViewController
+@synthesize store;
+
 
 static const CGSize rowSize = (CGSize){320, 35};
 static const CGSize cellSize = (CGSize){(320-32)/3, 50};
@@ -50,38 +55,7 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        MGBox *summary = [MGBox boxWithSize:(CGSize) {320, 100}];
-        summary.contentLayoutMode = MGLayoutGridStyle;
-        summary.leftPadding = summary.rightPadding = 16;
-        [summary.boxes addObjectsFromArray:[@[
-                [self cell:@"$354" numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
-                [self cell:@"3" numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
-                [self cell:@"21min" numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
-                [self cell:@"Retail Ordered Total" numberOfLines:2 textColor:TCColorSubtitleGray size:cellSize],
-                [self cell:@"Out of Stocks Filled" numberOfLines:2 textColor:TCColorSubtitleGray size:cellSize],
-                [self cell:@"Call Time" numberOfLines:1 textColor:TCColorSubtitleGray size:cellSize]
-         ] map: ^id(UIView *label) {
-             return mgline(label);
-         }]];        
 
-        MGScrollView *scroller = [MGScrollView scrollerWithSize:(CGSize){320, 400}];
-        [scroller.boxes addObjectsFromArray:@[
-                [self lineWithHeight:5 color:[UIColor clearColor]],
-                [self sectionHeader:@"Store Name Here" backgroundColor:[UIColor whiteColor] underlineColor:TCColorLineBlue fontName:@"HelveticaNeueLTCom-Md"],
-                [self lineWithHeight:5 color:TCColorTitleBlue],
-                [self sectionHeader:@"Call Summary" backgroundColor:TCColorTitleBlue underlineColor:TCColorSubtitleGray fontName:@"HelveticaNeueLTCom-Bd"],
-                summary,
-                [self lineWithHeight:8 color:TCColorTitleBlue],
-                [self sectionHeader:@"Call Highlights" backgroundColor:TCColorTitleBlue underlineColor:TCColorSubtitleGray fontName:@"HelveticaNeueLTCom-Bd"],
-                [self callItemWithTitle:@"Title1" subtitle:@"subTitle"],
-                [self callItemWithTitle:@"Title2" subtitle:@"subTitle"],
-                [self callItemWithTitle:@"Title3" subtitle:@"subTitle"],
-                [self callItemWithTitle:@"Title4" subtitle:@"subTitle"],
-                [self callItemWithTitle:@"Title5" subtitle:@"subTitle"],
-        ]];
-
-        [scroller layout];
-        [self.view addSubview:scroller];
     }
     return self;
 }
@@ -118,14 +92,48 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
 
 - (void)viewDidLoad
 {
+    assert(store != NULL);
+    StoreCall * storeCall = store.storeCalls.anyObject;
+
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    MGBox *summary = [MGBox boxWithSize:(CGSize) {320, 100}];
+    summary.contentLayoutMode = MGLayoutGridStyle;
+    summary.leftPadding = summary.rightPadding = 16;
+    [summary.boxes addObjectsFromArray:[@[
+                                        [self cell:@"$354" numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
+                                        [self cell:@"3" numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
+                                        [self cell:@"21min" numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
+                                        [self cell:@"Retail Ordered Total" numberOfLines:2 textColor:TCColorSubtitleGray size:cellSize],
+                                        [self cell:@"Out of Stocks Filled" numberOfLines:2 textColor:TCColorSubtitleGray size:cellSize],
+                                        [self cell:@"Call Time" numberOfLines:1 textColor:TCColorSubtitleGray size:cellSize]
+                                        ] map: ^id(UIView *label) {
+                                            return mgline(label);
+                                        }]];
+    
+    MGScrollView *scroller = [MGScrollView scrollerWithSize:(CGSize){320, 400}];
+    [scroller.boxes addObjectsFromArray:@[
+     [self lineWithHeight:5 color:[UIColor clearColor]],
+     [self sectionHeader:store.name backgroundColor:[UIColor whiteColor] underlineColor:TCColorLineBlue fontName:@"HelveticaNeueLTCom-Md"],
+     [self lineWithHeight:5 color:TCColorTitleBlue],
+     [self sectionHeader:@"Call Summary" backgroundColor:TCColorTitleBlue underlineColor:TCColorSubtitleGray fontName:@"HelveticaNeueLTCom-Bd"],
+     summary,
+     [self lineWithHeight:8 color:TCColorTitleBlue],
+     [self sectionHeader:@"Call Highlights" backgroundColor:TCColorTitleBlue underlineColor:TCColorSubtitleGray fontName:@"HelveticaNeueLTCom-Bd"]]];
+    
+    //millisecondToDateStr(note.createdDateValue)
+    [scroller.boxes addObjectsFromArray:[[storeCall.notes map:^(Note* note) {
+        return [self callItemWithTitle:note.type
+                              subtitle:note.title];
+    } ] asArray]];
+    
+    [scroller layout];
+    [self.view addSubview:scroller];        
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
 @end

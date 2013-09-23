@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Store.h"
 
-@interface TCSummaryViewController : UIViewController
+@interface TCSummaryViewController : UIViewController {
+    Store *store;
+}
+@property(nonatomic, strong) Store *store;
+
 
 @end
