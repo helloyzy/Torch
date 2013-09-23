@@ -239,8 +239,9 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             }
             self.store.contacts = tempContacts;
             [[TCDBUtils ibDataStore] save];
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
-            // donot save, do nothing
+            // do nothing
         }
     }
 }
