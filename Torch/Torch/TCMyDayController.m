@@ -45,8 +45,8 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    SalesRep * rep = [SalesRep allInStore:[TCDBUtils ibDataStore]][0];
-    _stores = [[[[rep.banners map:^(Banner* banner) { return banner.stores; }] asSequence] flatten] asArray];
+    //SalesRep * rep = [SalesRep allInStore:[TCDBUtils ibDataStore]][0];
+    // [[[[rep.banners map:^(Banner* banner) { return banner.stores; }] asSequence] flatten] asArray];
 
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -78,6 +78,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    _stores = [Store allInStore:[TCDBUtils ibDataStore]];    
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     //[df setDateStyle:NSDateFormatterFullStyle];
     df.locale = [[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]];
