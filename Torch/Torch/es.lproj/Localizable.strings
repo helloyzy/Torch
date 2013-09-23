@@ -13,6 +13,8 @@
 "Save" = "Guardar";
 "OK" = "Bueno";
 "Retry" = "Reintentar";
+"Yes" = "Sí";
+"No" = "No";
 
 "login.username" = "Nombre de usuario";
 "login.username.placeholder" = "HFXXXXXX";
@@ -64,6 +66,9 @@
 "addnewcustomer.phone" = "Teléfono";
 "addnewcustomer.addContact" = "Añadir Contacto";
 "addnewcustomer.addNote" = "Añadir Nota";
+
+"addnewcustomer.saveConfirmation" = "Are you sure to save?";
+"addnewcustomer.cancelConfirmation" = "Are you sure to cancel this operation?";
 
 "editcustomer.title" = "Edit Existing Client";
 

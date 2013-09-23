@@ -34,12 +34,19 @@
     return self;
 }
 
--(void) setDataObject:(NSObject *)dataObject {
-    _dataObject = dataObject;
-    [self bindIfNecessary];
-}
+//-(void) setDataObject:(NSObject *)dataObject {
+//    _dataObject = dataObject;
+//    [self bindIfNecessary];
+//}
+//
+//-(void) setDataProperty:(NSString *)dataProperty {
+//    _dataProperty = [dataProperty copy];
+//    [self bindIfNecessary];
+//}
 
--(void) setDataProperty:(NSString *)dataProperty {
+-(void) setDataObject:(NSObject *)dataObject dataProperty:(NSString *)dataProperty {
+    [self reset];
+    _dataObject = dataObject;
     _dataProperty = [dataProperty copy];
     [self bindIfNecessary];
 }
@@ -56,10 +63,6 @@
 
 -(void) bindIfNecessary {
     if (_dataObject && _dataProperty) {
-        if (_hasObserversForText) {
-            [self removeObserver:self forKeyPath:DRTextField_PropObserved];
-            _hasObserversForText = NO;
-        }
         NSObject *value = [_dataObject valueForKey:_dataProperty];
         if (value) {
             NSString *strVal = [NSString stringWithFormat:@"%@", value];
@@ -81,8 +84,7 @@
 
 + (DRTextField *) instance:(CGRect)frame data:(NSObject *)object prop:(NSString *)prop {
     DRTextField * result = [[DRTextField alloc] initWithFrame:frame];
-    result.dataObject = object;
-    result.dataProperty = prop;
+    [result setDataObject:object dataProperty:prop];
     return result;
 }
 @end

@@ -12,8 +12,8 @@
 
 #define TC_WINDOW [[UIApplication sharedApplication] keyWindow]
 
-NSString * millisecondToDateStr(double milliseconds);
-// double dateToMilliseconds(NSDate * date);
+NSString *millisecondToDateStr(double milliseconds);
+NSNumber *dateStrToMilliseconds(NSString * dateStr);
 
 void showAlert(NSString * title, NSString * message, id<UIAlertViewDelegate> delegate);
 

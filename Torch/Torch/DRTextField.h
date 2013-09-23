@@ -13,10 +13,10 @@
     NSString * _dataProperty;
 }
 
+-(void) setDataObject:(NSObject *)dataObject dataProperty:(NSString *)dataProperty;
 +(DRTextField *) instance:(CGRect)frame data:(NSObject *)object prop:(NSString *)prop;
--(void) reset;
 
-@property (nonatomic, weak) NSObject * dataObject;
-@property (nonatomic, copy) NSString * dataProperty;
+@property (nonatomic, readonly) NSObject * dataObject;
+@property (nonatomic, readonly) NSString * dataProperty;
 
 @end

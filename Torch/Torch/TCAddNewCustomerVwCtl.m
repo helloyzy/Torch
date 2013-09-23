@@ -15,8 +15,11 @@
 #import "TCComboVw.h"
 #import "TCContact.h"
 #import "TCUtils.h"
+#import "TCDBUtils.h"
 #import "Store.h"
 #import "Contact.h"
+
+#import "NSManagedObject+InnerBand.h"
 
 #define _TV_ROW_HEIGHT 36
 #define _TV_FIELD_FONTSIZE 14
@@ -27,6 +30,8 @@
 #define _CONTACT_SECTION_START 6
 #define _AddNewContact_Section [self sectionFromContact:0]
 #define _AddNewNote_Section [self sectionFromContact:1]
+#define _AlertViewTag_CancelConfirmation 100
+#define _AlertViewTag_SaveConfirmation 101
 
 // only for sections which has rows containing two columns (like city and state)
 int rowDeviation(NSIndexPath * indexPath) {
@@ -66,9 +71,7 @@ int calculateTag(NSIndexPath * indexPath, int column) {
 void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column, NSObject * modelObject, NSString * modelProp, NSString * textPlaceHolder, UIKeyboardType keyboardType, id delegate) {
     textField.font = TCFont_HNLTComLt(_TV_FIELD_FONTSIZE);
     textField.placeholder = textPlaceHolder;
-    [textField reset];
-    textField.dataObject = modelObject;
-    textField.dataProperty = modelProp;
+    [textField setDataObject:modelObject dataProperty:modelProp];
     textField.keyboardType = keyboardType;
     textField.tag = calculateTag(indexPath, column);
     textField.returnKeyType = UIReturnKeyNext;
@@ -171,11 +174,54 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 #pragma mark - nav items actions
 
 -(void) cancelAction {
-    [self.navigationController popViewControllerAnimated:YES];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil
+                                                     message:[self localString:@"addnewcustomer.cancelConfirmation"]
+                                                    delegate:self
+                                           cancelButtonTitle:[self localString:@"Yes"]
+                                           otherButtonTitles:[self localString:@"No"], nil];
+    alert.tag = _AlertViewTag_CancelConfirmation;
+    [alert show];
 }
 
 -(void) saveAction {
-    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil
+                                                     message:[self localString:@"addnewcustomer.saveConfirmation"]
+                                                    delegate:self
+                                           cancelButtonTitle:[self localString:@"Yes"]
+                                           otherButtonTitles:[self localString:@"No"], nil];
+    alert.tag = _AlertViewTag_SaveConfirmation;
+    [alert show];
+}
+
+#pragma mark - alert view delegate
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == _AlertViewTag_CancelConfirmation) { // cancel?
+        if (buttonIndex == 0) { // confirm on cancel
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {  
+            // donot cancel, do nothing
+        }
+    } else if (alertView.tag == _AlertViewTag_SaveConfirmation) { // save?
+        if (buttonIndex == 0) { // confirm on save
+            if (!self.store) {
+                self.store = [Store createInStore:[TCDBUtils ibDataStore]];
+            }
+            self.store.name = self.customer.storeName;
+            self.store.address = self.customer.streetName;
+            self.store.city = self.customer.city;
+            self.store.state = self.customer.state;
+            self.store.postalCode = self.customer.postcode;
+            self.store.country = self.customer.country;
+            if (self.customer.visitDay) {
+                self.store.lastModifiedDate = dateStrToMilliseconds(self.customer.visitDay);
+            }
+            self.store.contacts = [[NSSet alloc] initWithArray:self.contacts];
+            [[TCDBUtils ibDataStore] save];
+        } else {
+            // donot save, do nothing
+        }
+    }
 }
 
 #pragma mark - table view delegate 

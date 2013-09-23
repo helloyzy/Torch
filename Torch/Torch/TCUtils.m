@@ -11,10 +11,17 @@
 
 #import "MBProgressHUD.h"
 
-NSString * millisecondToDateStr(double milliseconds) {
+NSString *millisecondToDateStr(double milliseconds) {
     double seconds = milliseconds / 1000.0;
-    NSDate * date = [NSDate dateWithTimeIntervalSince1970:seconds];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:seconds];
     return [DateUtils stringFromDate:date withFormat:kDateFormatShort];
+}
+
+NSNumber *dateStrToMilliseconds(NSString * dateStr) {
+    NSDate *date = [DateUtils dateFromString:dateStr withFormat:kDateFormatShort];
+    double seconds = [date timeIntervalSince1970];
+    double milliseconds = seconds * 1000.0;
+    return [NSNumber numberWithDouble:milliseconds];
 }
 
 void showAlert(NSString * title, NSString * message, id<UIAlertViewDelegate> delegate) {

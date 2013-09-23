@@ -8,7 +8,9 @@
 
 #import "TCComboVw.h"
 
-@interface SimplePickerDelegate : NSObject<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface SimplePickerDelegate : NSObject<UIPickerViewDataSource, UIPickerViewDelegate> {
+    NSArray *_ds;
+}
 
 - (NSString *) valueFromIndex:(NSInteger)index;
 
@@ -21,7 +23,7 @@
 - (id) initWithArrayAsDs:(NSArray *)ds {
     self = [super init];
     if (self) {
-        self.ds = ds;
+        _ds = [ds copy];
     }
     return self;
 }
@@ -45,8 +47,8 @@
 @end
 
 @interface TCComboVw() {
-    UIPickerView * _picker;
-    UIDatePicker * _datePicker;
+    __weak UIPickerView * _picker;
+    __weak UIDatePicker * _datePicker;
     UISegmentedControl * cancelButton;
     UISegmentedControl * closeButton;
     TCComboVwStyle _style;
@@ -78,13 +80,15 @@
 - (void)initInternal {
     CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
     if (_style == TCComboVwStyleShortDate) {
-        _datePicker = [[UIDatePicker alloc]initWithFrame:pickerFrame];
-        _datePicker.datePickerMode = UIDatePickerModeDate;
-        [self addSubview:_datePicker];
+        UIDatePicker *datePicker = [[UIDatePicker alloc]initWithFrame:pickerFrame];
+        datePicker.datePickerMode = UIDatePickerModeDate;
+        _datePicker = datePicker;
+        [self addSubview:datePicker];
     } else {
-        _picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
-        _picker.showsSelectionIndicator= YES;
-        [self addSubview:_picker];
+        UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
+        pickerView.showsSelectionIndicator= YES;
+        _picker = pickerView;
+        [self addSubview:pickerView];
     }
     
     NSString * doneText = NSLocalizedString(@"Done", nil);
@@ -126,7 +130,6 @@
 
 - (void)done {
     [self cancel];
-    // self.selectedIndex = [self selectedRow];
     if (self.callback) {
         self.callback(self);
     }
@@ -146,20 +149,20 @@
     return [[TCComboVw alloc] initWithFrame:CGRectZero comboStyle:comboStyle];
 }
 
-#pragma mark - public methods for combo style
+#pragma mark - public methods for short date style
 
 + (TCComboVw *)shortDateInstance {
     return [self instanceWithType:TCComboVwStyleShortDate];
 }
 
 - (NSDate *)selectedDate {
-    return _datePicker.date;
+    return self.datePicker.date;
 }
 
 #pragma mark - public methods for default style
 
 - (NSUInteger) selectedRow {
-    return [_picker selectedRowInComponent:0];
+    return [self.picker selectedRowInComponent:0];
 }
 
 - (NSString *) selectedItem {
@@ -170,10 +173,10 @@
 }
 
 - (void)setDataSource:(NSArray *)ds {
-    if (_picker && ds && ds.count > 0) {
+    if (self.picker && ds && ds.count > 0) {
         self.pickerDelegate = [[SimplePickerDelegate alloc]initWithArrayAsDs:ds];
-        _picker.dataSource = self.pickerDelegate;
-        _picker.delegate = self.pickerDelegate;
+        self.picker.dataSource = self.pickerDelegate;
+        self.picker.delegate = self.pickerDelegate;
     }
 }
 
