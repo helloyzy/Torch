@@ -12,6 +12,7 @@
 #import "TCProfileController.h"
 #import "TCMyDayController.h"
 #import "TCRouteMapViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation UIViewController (Torch)
 
@@ -85,6 +86,14 @@
     bottomView.userInteractionEnabled = NO;
     bottomView.backgroundColor = [UIColor colorWithRed:36/255.0f green:36/255.0f blue:36/255.0f alpha:1];
     [navBar addSubview:bottomView];
+    UIButton* jump = [UIButton buttonWithType:UIButtonTypeCustom];
+    jump.layer.cornerRadius = 8.0;    
+    jump.frame = (CGRect) {50, -8, 220, 45};
+    jump.backgroundColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.5 alpha:0.5];
+    jump.titleLabel.font = [UIFont systemFontOfSize:13];
+    [jump setTitle:@"Tap to return to  call in progress" forState:UIControlStateNormal];
+    [navBar addSubview:jump];
+    [navBar bringSubviewToFront:jump];
 //    UIView * bottomSeparator = [[UIView alloc] initWithFrame:CGRectMake(0, navBar.bounds.size.height - 1, navBar.bounds.size.width, 1)];
 //    bottomSeparator.userInteractionEnabled = NO;
 //    bottomSeparator.backgroundColor = [UIColor colorWithRed:134/255.0f green:134/255.0f blue:134/255.0f alpha:1];
