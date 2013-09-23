@@ -12,6 +12,8 @@
 
 #define TC_WINDOW [[UIApplication sharedApplication] keyWindow]
 
+@protocol CLLocationManagerDelegate;
+
 NSString *millisecondToDateStr(double milliseconds);
 NSNumber *dateStrToMilliseconds(NSString * dateStr);
 
@@ -19,3 +21,5 @@ void showAlert(NSString * title, NSString * message, id<UIAlertViewDelegate> del
 
 void showProgressIndicator(NSString * title, NSString * message);
 void hideProgressIndicator();
+
+void registerLocationService(id<CLLocationManagerDelegate> delegate);

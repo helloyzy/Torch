@@ -8,8 +8,11 @@
 
 #import "TCUtils.h"
 #import "DateUtils.h"
+#import <CoreLocation/CoreLocation.h>
 
 #import "MBProgressHUD.h"
+
+#pragma mark - date to milliseconds conversion
 
 NSString *millisecondToDateStr(double milliseconds) {
     double seconds = milliseconds / 1000.0;
@@ -24,14 +27,17 @@ NSNumber *dateStrToMilliseconds(NSString * dateStr) {
     return [NSNumber numberWithDouble:milliseconds];
 }
 
+#pragma mark - alert view handy methods
+
 void showAlert(NSString * title, NSString * message, id<UIAlertViewDelegate> delegate) {
     NSString * OKCaption = NSLocalizedString(@"OK", nil);
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:delegate cancelButtonTitle:OKCaption otherButtonTitles:nil,nil];
 	[alert show];
 }
 
+#pragma mark - progress indicator
 
-static MBProgressHUD * gProgressHUD;
+static MBProgressHUD *gProgressHUD;
 
 void showProgressIndicator(NSString * title, NSString * message) {
     if (!gProgressHUD) {
@@ -49,4 +55,19 @@ void hideProgressIndicator() {
     if (gProgressHUD && ![gProgressHUD isHidden]) {
         [gProgressHUD hide:YES];
     }
+}
+
+#pragma mark - location
+
+static CLLocationManager *gLocationMgr;
+
+void registerLocationService(id<CLLocationManagerDelegate> delegate) {
+    if (!gLocationMgr) {
+        gLocationMgr = [[CLLocationManager alloc] init];
+    } else {
+        [gLocationMgr stopUpdatingLocation];
+    }
+    gLocationMgr.delegate = delegate;
+    gLocationMgr.desiredAccuracy = kCLLocationAccuracyBest;
+    [gLocationMgr startUpdatingLocation];
 }

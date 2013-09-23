@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "TCBaseVwCtl.h"
+#import <CoreLocation/CoreLocation.h>
 
 @class Store;
 
-@interface TCAddNewCustomerVwCtl : TCBaseVwCtl <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
+@interface TCAddNewCustomerVwCtl : TCBaseVwCtl <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate> {
     __weak IBOutlet UILabel *lblTitle;
     __weak IBOutlet UITableView *tblVw;
     

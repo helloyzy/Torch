@@ -64,7 +64,7 @@ static IBCoreDataStore * ibDataStore;
 #pragma mark - integration with InnerBand
 
 +(IBCoreDataStore *) ibDataStore {
-    return ibDataStore;
+    return [IBCoreDataStore mainStore];
 }
 
 #pragma mark - seed
