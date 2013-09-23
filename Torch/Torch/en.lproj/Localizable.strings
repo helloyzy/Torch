@@ -69,6 +69,10 @@
 "addnewcustomer.saveConfirmation" = "Are you sure to save?";
 "addnewcustomer.cancelConfirmation" = "Are you sure to cancel this operation?";
 
+"addnewcustomer.requestGPS.message" = "Request GPS coordinates..";
+"addnewcustomer.requestGPS.success" = "Succeeded in getting GPS coordinates!";
+"addnewcustomer.requestGPS.failure" = "Failed to get GPS coordinates!";
+
 "editcustomer.title" = "Edit Existing Client";
 
 /*Bo*/

@@ -20,6 +20,8 @@
 #import "Contact.h"
 
 #import "NSManagedObject+InnerBand.h"
+#import "IBCoreDataStore.h"
+
 
 #define _TV_ROW_HEIGHT 36
 #define _TV_FIELD_FONTSIZE 14
@@ -128,7 +130,12 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         }
         if (self.store.contacts) {
             for (Contact * contact in self.store.contacts) {
-                [self.contacts addObject:contact];
+                TCContact * temp = [[TCContact alloc] init];
+                temp.name = contact.firstName;
+                temp.surname = contact.lastName;
+                temp.position = contact.title;
+                temp.phone = contact.phoneNumber;
+                [self.contacts addObject:temp];
             }
         }
     }
@@ -216,10 +223,25 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             if (self.customer.visitDay) {
                 self.store.lastModifiedDate = dateStrToMilliseconds(self.customer.visitDay);
             }
-            self.store.contacts = [[NSSet alloc] initWithArray:self.contacts];
+            
+            NSMutableSet * tempContacts = [[NSMutableSet alloc] init];
+            for (TCContact *tempTCContact in self.contacts) {
+                Contact *tempContact = [Contact create];
+                tempContact.firstName = tempTCContact.name;
+                tempContact.lastName = tempTCContact.surname;
+                tempContact.phoneNumber = tempTCContact.phone;
+                tempContact.title = tempTCContact.position;
+                [tempContacts addObject:tempContact];
+            }
+            NSSet *originalContacts = [self.store.contacts copy];
+            for (Contact *tempContact in originalContacts) {
+                [[TCDBUtils ibDataStore] removeEntity:tempContact];
+            }
+            self.store.contacts = tempContacts;
             [[TCDBUtils ibDataStore] save];
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
-            // donot save, do nothing
+            // do nothing
         }
     }
 }
@@ -329,6 +351,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [btn setTitle:[self localString:@"addnewcustomer.obtainGPSInfo"] forState:UIControlStateNormal];
             [btn setBackgroundImage:[UIImage imageNamed:@"bluebutton.png"] forState:UIControlStateNormal];
+            [btn addTarget:self action:@selector(requestLocation) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:btn];
         }
     } else if (indexPath.section == 3) {
@@ -360,31 +383,27 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             cell.textLabel.text = [self localString:@"addnewcustomer.addNote"];
         }
     } else { // if we have contacts section if (self.contacts.count > 0) 
-        Contact * contact = self.contacts[indexPath.section - _CONTACT_SECTION_START];
+        TCContact *contact = self.contacts[indexPath.section - _CONTACT_SECTION_START];
         switch (indexPath.row) {
             case 0:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"firstName", [self localString:@"addnewcustomer.name"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, contact, @"name", [self localString:@"addnewcustomer.name"], UIKeyboardTypeDefault, self);
                 break;
             case 1:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"lastName", [self localString:@"addnewcustomer.surname"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, contact, @"surname", [self localString:@"addnewcustomer.surname"], UIKeyboardTypeDefault, self);
                 break;
             case 2:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"title", [self localString:@"addnewcustomer.position"], UIKeyboardTypeDefault, self);
+                customizeField(editCell.centerField, indexPath, 0, contact, @"position", [self localString:@"addnewcustomer.position"], UIKeyboardTypeDefault, self);
                 break;
             case 3:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"phoneNumber", [self localString:@"addnewcustomer.phone"], UIKeyboardTypePhonePad, self);
+                customizeField(editCell.centerField, indexPath, 0, contact, @"phone", [self localString:@"addnewcustomer.phone"], UIKeyboardTypePhonePad, self);
                 break;
             default:
                 break;
         }
-//        // adjust the tag
-//        NSInteger newTagVal = editCell.centerField.tag + (indexPath.section - _CONTACT_SECTION_START) * 4;
-//        NSLog(@"new Tag val is %i", newTagVal);
-//        editCell.centerField.tag = newTagVal;
     }
     
     
@@ -474,6 +493,27 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     // NSLog(@"did begin");
     // [tblVw scrollRectToVisible:textField.frame animated:YES];
     // [tblVw scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+#pragma mark - location manager delegate
+
+- (void)requestLocation {
+    registerLocationService(self);
+    showProgressIndicator(nil, [self localString:@"addnewcustomer.requestGPS.message"]);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = [locations lastObject];
+    NSLog(@"%f,%f", location.coordinate.latitude, location.coordinate.longitude);
+    [manager stopUpdatingLocation];
+    hideProgressIndicator();
+    showAlert(nil, [self localString:@"addnewcustomer.requestGPS.success"], nil);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    [manager stopUpdatingLocation];
+    hideProgressIndicator();
+    showAlert(nil, [self localString:@"addnewcustomer.requestGPS.failure"], nil);
 }
 
 @end
