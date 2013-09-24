@@ -13,6 +13,9 @@
 #import "TCMyDayController.h"
 #import "TCRouteMapViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TCUtils.h"
+#import <IBFunctions.h>
+#import <objc/runtime.h>
 
 @implementation UIViewController (Torch)
 
@@ -36,6 +39,7 @@
         [viewForTapToDismissKeyboard addGestureRecognizer:clickRecognizer];
     }
 }
+
 
 #pragma mark - editing view finish editing
 
@@ -176,7 +180,99 @@
     return result;
 }
 
+#pragma mark - textfield and keyboard interactions
 
+static CGFloat _keyBoardHeight;
 
+- (BOOL)shouldObserveKeyboardInfo {
+    return NO;
+}
+
+- (void)registerNotificationForKeyboardInfo {
+    if (! [self shouldObserveKeyboardInfo]) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+- (void)removeNotificationForKeyboardInfo {
+    if (! [self shouldObserveKeyboardInfo]) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)onKeyboardWillShow:(NSNotification *)aNotification {
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    _keyBoardHeight = keyboardRect.size.height;
+}
+
+- (CGFloat)keyboardHeight {
+    if (_keyBoardHeight > 0) {
+        return _keyBoardHeight;
+    }
+    if (isDeviceOrientationLandscape()) {
+        return 140;
+    } else {
+        return 216;
+    }
+}
+
+- (UIView *)findRootSuperView:(UIView *)view {
+    UIView *preSuperVw = nil;
+    UIView *superVw = view.superview;
+    while (superVw) {
+        if ([superVw isKindOfClass:[UIWindow class]]) {
+            return preSuperVw;
+        }
+        preSuperVw = superVw;
+        superVw = superVw.superview;
+    }
+    return nil;
+}
+
+- (CGPoint)positionInGlobalWindow:(UIView *)view {
+    CGPoint result = view.frame.origin;
+    UIView *superView = view.superview;
+    UIView *s_superView = superView.superview;
+    while (s_superView) {
+        CGPoint temp = superView.frame.origin;
+        result.x = result.x + temp.x;
+        result.y = result.y + temp.y;
+        // NSLog(@"When in %@, the position %f, %f", [s_superView class], origin.x, origin.y);
+        superView = s_superView;
+        s_superView = superView.superview;
+    }
+    return result;
+}
+
+static const char * KEY_MOVE_SPACE;
+
+- (void)moveToVisibleIfNecessary:(UIView *)view {
+    CGPoint location = [self positionInGlobalWindow:view];
+    CGFloat kbHeight = [self keyboardHeight];
+    CGFloat maxVisibleY = [[UIApplication sharedApplication] keyWindow].bounds.size.height - kbHeight;
+    CGFloat moveY = 0.0;
+    if (location.y > maxVisibleY) {
+        moveY = location.y - maxVisibleY - view.bounds.size.height - 20;
+    }
+    if (moveY > 0) {
+        [UIView animateWithDuration:.3f animations:^{
+            UIView *viewToMove = [self findRootSuperView:view];
+            CGRect frame = viewToMove.frame;
+            frame.origin.y = frame.origin.y - moveY;
+            viewToMove.frame = frame;
+            
+        }];
+    }
+    objc_setAssociatedObject(self, KEY_MOVE_SPACE, [NSNumber numberWithDouble:moveY], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)backToOriginalPlace:(UIView *)view {
+//    NSNumber *moveY = objc_getAssociatedObject(self, KEY_MOVE_SPACE);
+//    objc_setAssociatedObject(self, KEY_MOVE_SPACE, nil, nil);
+}
 
 @end
