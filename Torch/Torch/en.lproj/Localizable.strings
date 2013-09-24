@@ -101,7 +101,7 @@
 "orderHistory.orderDateTitle"="Date Ordered: ";
 "orderHistory.orderItems"= "Order Items";
 "orderHistory.printReceiptButton"="Print Receipt";
-
+"product.itemunit" = "Units";
 "store.novisit.title" = "Reason For No Visit";
 "store.novisit.hint" = "Please Select The Reason For Not Visiting.";
 "store.novisit.cancel" = "Cancel";

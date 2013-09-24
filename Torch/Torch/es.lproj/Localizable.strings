@@ -102,7 +102,7 @@
 "orderHistory.orderDateTitle"="Fecha Ordenó: ";
 "orderHistory.orderItems"= "Artículos Pedido";
 "orderHistory.printReceiptButton"="Imprimir Ticket";
-
+"product.itemunit" = "Unidades";
 "store.novisit.title" = "Motivo de la no visita";
 "store.novisit.hint" = "Por favor seleccione el motivo de no visita.";
 "store.novisit.cancel" = "Cancelar";

@@ -42,7 +42,7 @@
     ProductItemObject *productItem = [ProductItemObject alloc];
     productItem.productName = @"HerShey Chocolate1";
     productItem.productSN = @"#123456";
-    productItem.productUnit = @"Boxes";
+    productItem.productUnit = [self localString:@"product.itemunit"];
     productItem.productPrice = @"$4.32 per box";
     productItem.productUnitNum = @"0";
     productItem.productDescription = @"whatever";
@@ -50,17 +50,18 @@
     [productCollection setObject:productItem forKey:productItem.productSN];
     
     productItem = [ProductItemObject alloc];
-    productItem.productName = @"HerShey Chocolate2";
-    productItem.productSN = @"#121121";
-    productItem.productUnit = @"Boxes";
-    productItem.productPrice = @"$2.1 per box";
+    productItem.productName = @"PREMIUM ACC TH BAR";
+    productItem.productSN = @"#1047412162";
+      productItem.productUnit = [self localString:@"product.itemunit"];
+    productItem.productPrice = @"Price Not provided";
     productItem.productUnitNum = @"0";
+    productItem.productDescription = @"ORG DGBC DK59% 2.83OZ 12/4";
     [productCollection setObject:productItem forKey:productItem.productSN];
     
     productItem = [ProductItemObject alloc];
     productItem.productName = @"HerShey Chocolate3";
     productItem.productSN = @"#121122";
-    productItem.productUnit = @"Boxes";
+      productItem.productUnit = [self localString:@"product.itemunit"];
     productItem.productPrice = @"$2.1 per box";
     productItem.productUnitNum = @"0";
     [productCollection setObject:productItem forKey:productItem.productSN];
@@ -76,7 +77,7 @@
     productItem = [ProductItemObject alloc];
     productItem.productName = @"HerShey Chocolate2";
     productItem.productSN = @"#121124";
-    productItem.productUnit = @"Boxes";
+      productItem.productUnit = [self localString:@"product.itemunit"];
     productItem.productPrice = @"$2.1 per box";
     productItem.productUnitNum = @"0";
     [productCollection setObject:productItem forKey:productItem.productSN];
