@@ -136,7 +136,8 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
     button.layer.cornerRadius = 10.0f;
     button.titleLabel.textAlignment = NSTextAlignmentLeft;
     [button setTitle:@"Add Call Note" forState:UIControlStateNormal];
-    button.titleLabel.textColor = TCColorLineBlue;
+    [button setTitleColor:TCColorLineBlue forState:UIControlStateNormal];
+    // button.titleLabel.textColor = TCColorLineBlue;
     
     MGLine *line = [MGLine lineWithLeft:button right:nil size:(CGSize) {315, 90}];
     line.leftPadding = 10;
