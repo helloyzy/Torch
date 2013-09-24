@@ -92,8 +92,8 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
 
 - (void)viewDidLoad
 {
-    assert(store != NULL);
-    StoreCall * storeCall = store.storeCalls.anyObject;
+//    assert(store != NULL);
+//    StoreCall * storeCall = store.storeCalls.anyObject;
 
     [super viewDidLoad];
     MGBox *summary = [MGBox boxWithSize:(CGSize) {320, 100}];
@@ -121,10 +121,10 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
      [self sectionHeader:@"Call Highlights" backgroundColor:TCColorTitleBlue underlineColor:TCColorSubtitleGray fontName:@"HelveticaNeueLTCom-Bd"]]];
     
     //millisecondToDateStr(note.createdDateValue)
-    [scroller.boxes addObjectsFromArray:[[storeCall.notes map:^(Note* note) {
-        return [self callItemWithTitle:note.type
-                              subtitle:note.title];
-    } ] asArray]];
+//    [scroller.boxes addObjectsFromArray:[[storeCall.notes map:^(Note* note) {
+//        return [self callItemWithTitle:note.type
+//                              subtitle:note.title];
+//    } ] asArray]];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = (CGRect) {0, 0, 300, 48};
