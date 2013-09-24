@@ -105,6 +105,10 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     return self.view;
 }
 
+- (BOOL)shouldObserveKeyboardInfo {
+    return YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -478,7 +482,6 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     TCEditingCell * cell = [self editingCell:TCEditingCellStyleCombo reuseIdentifier:comboCellIdentifier];
     [cell.comboVw setDataSource:ds];
     return cell;
-    // return [self editingCell:TCEditingCellStyleLeftFieldRightBtn reuseIdentifier:comboCellIdentifier];
 }
 
 - (TCEditingCell *)dateComboCell {
@@ -490,6 +493,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 #pragma mark - text field delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [super textFieldDidBeginEditing:textField];
     // NSLog(@"did begin");
     // [tblVw scrollRectToVisible:textField.frame animated:YES];
     // [tblVw scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];

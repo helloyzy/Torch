@@ -13,17 +13,33 @@
 {
     [super viewDidLoad];
     [self registerDismissKeyboardOnContainerView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self registerNotificationForKeyboardInfo];
 }
 
-- (void)viewDidUnload {
+- (void)viewWillDisappear:(BOOL)animated {
     [self removeNotificationForKeyboardInfo];
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidUnload {
     [super viewDidUnload];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self viewFinishEditing:textField];
     return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [self moveToVisibleIfNecessary:textField];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [self backToOriginalPlace:textField];
 }
 
 //- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {

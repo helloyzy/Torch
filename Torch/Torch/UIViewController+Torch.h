@@ -38,5 +38,7 @@
 - (BOOL)shouldObserveKeyboardInfo;
 - (void)registerNotificationForKeyboardInfo;
 - (void)removeNotificationForKeyboardInfo;
+- (void)moveToVisibleIfNecessary:(UIView *)view;
+- (void)backToOriginalPlace:(UIView *)view;
 
 @end

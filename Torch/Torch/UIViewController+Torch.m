@@ -199,7 +199,7 @@ static CGFloat _keyBoardHeight;
     if (! [self shouldObserveKeyboardInfo]) {
         return;
     }
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 
 - (void)onKeyboardWillShow:(NSNotification *)aNotification {
@@ -234,16 +234,34 @@ static CGFloat _keyBoardHeight;
 }
 
 - (CGPoint)positionInGlobalWindow:(UIView *)view {
+//    CGPoint result = view.frame.origin;
+//    UIView *superView = view.superview;
+//    UIView *s_superView = superView.superview;
+//    while (s_superView) {
+//        CGPoint temp = superView.frame.origin;
+//        result.x = result.x + temp.x;
+//        result.y = result.y + temp.y;
+//        // NSLog(@"When in %@, the position %f, %f", [s_superView class], origin.x, origin.y);
+//        superView = s_superView;
+//        s_superView = superView.superview;
+//    }
+//    return result;
     CGPoint result = view.frame.origin;
     UIView *superView = view.superview;
-    UIView *s_superView = superView.superview;
-    while (s_superView) {
+    while (superView) {
         CGPoint temp = superView.frame.origin;
         result.x = result.x + temp.x;
         result.y = result.y + temp.y;
-        // NSLog(@"When in %@, the position %f, %f", [s_superView class], origin.x, origin.y);
-        superView = s_superView;
-        s_superView = superView.superview;
+        if ([superView isKindOfClass:[UIScrollView class]]) {
+            UIScrollView *scrollVw = (UIScrollView *)superView;
+            // subtract the offset
+            result.x = result.x - scrollVw.contentOffset.x;
+            result.y = result.y - scrollVw.contentOffset.y;
+            NSLog(@"When in %@, the position %f, %f", [superView class], result.x, result.y);
+            NSLog(@"ContentOffSet x %f, y %f", scrollVw.contentOffset.x, scrollVw.contentOffset.y);
+        }
+        // NSLog(@"When in %@, the position %f, %f", [superView class], result.x, result.y);
+        superView = superView.superview;
     }
     return result;
 }
@@ -256,7 +274,7 @@ static const char * KEY_MOVE_SPACE;
     CGFloat maxVisibleY = [[UIApplication sharedApplication] keyWindow].bounds.size.height - kbHeight;
     CGFloat moveY = 0.0;
     if (location.y > maxVisibleY) {
-        moveY = location.y - maxVisibleY - view.bounds.size.height - 20;
+        moveY = location.y - maxVisibleY + view.bounds.size.height + 20;
     }
     if (moveY > 0) {
         [UIView animateWithDuration:.3f animations:^{
@@ -271,8 +289,19 @@ static const char * KEY_MOVE_SPACE;
 }
 
 - (void)backToOriginalPlace:(UIView *)view {
-//    NSNumber *moveY = objc_getAssociatedObject(self, KEY_MOVE_SPACE);
-//    objc_setAssociatedObject(self, KEY_MOVE_SPACE, nil, nil);
+    NSNumber *moveY = objc_getAssociatedObject(self, KEY_MOVE_SPACE);
+    objc_setAssociatedObject(self, KEY_MOVE_SPACE, nil, OBJC_ASSOCIATION_ASSIGN);
+    if (moveY) {
+        CGFloat moveYVal = [moveY doubleValue];
+        if (moveYVal > 0) {
+            [UIView animateWithDuration:.3f animations:^{
+                UIView *viewToMove = [self findRootSuperView:view];
+                CGRect frame = viewToMove.frame;
+                frame.origin.y = frame.origin.y + moveYVal;
+                viewToMove.frame = frame;
+            }];
+        }
+    }
 }
 
 @end
