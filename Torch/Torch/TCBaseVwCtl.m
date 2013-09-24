@@ -13,6 +13,12 @@
 {
     [super viewDidLoad];
     [self registerDismissKeyboardOnContainerView];
+    [self registerNotificationForKeyboardInfo];
+}
+
+- (void)viewDidUnload {
+    [self removeNotificationForKeyboardInfo];
+    [super viewDidUnload];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

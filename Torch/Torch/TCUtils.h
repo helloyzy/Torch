@@ -23,3 +23,6 @@ void showProgressIndicator(NSString * title, NSString * message);
 void hideProgressIndicator();
 
 void registerLocationService(id<CLLocationManagerDelegate> delegate);
+
+BOOL isDeviceOrientationLandscape();
+BOOL isDeviceOrientationPortait();

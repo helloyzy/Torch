@@ -71,3 +71,15 @@ void registerLocationService(id<CLLocationManagerDelegate> delegate) {
     gLocationMgr.desiredAccuracy = kCLLocationAccuracyBest;
     [gLocationMgr startUpdatingLocation];
 }
+
+#pragma mark - device orientation
+
+BOOL isDeviceOrientationLandscape() {
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    return UIDeviceOrientationIsLandscape(deviceOrientation);
+}
+BOOL isDeviceOrientationPortait() {
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    return UIDeviceOrientationIsPortrait(deviceOrientation);
+
+}

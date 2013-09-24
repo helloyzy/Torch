@@ -34,4 +34,9 @@
 + (UINavigationController *) customNavCtr:(UIViewController *)rootVwCtl;
 // section for customize navigation bar -- end
 
+// section for keyboard related
+- (BOOL)shouldObserveKeyboardInfo;
+- (void)registerNotificationForKeyboardInfo;
+- (void)removeNotificationForKeyboardInfo;
+
 @end
