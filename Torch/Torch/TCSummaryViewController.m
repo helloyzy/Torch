@@ -126,6 +126,23 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
                               subtitle:note.title];
     } ] asArray]];
     
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = (CGRect) {0, 0, 300, 48};
+    button.backgroundColor = [UIColor colorWithRed:247.0/255 green:247.0/255 blue:247.0/255 alpha:1];
+    button.titleEdgeInsets = UIEdgeInsetsMake(10, 0, 0, 0);
+    button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
+    button.layer.borderColor = [UIColor grayColor].CGColor;
+    button.layer.borderWidth = 0.5f;
+    button.layer.cornerRadius = 10.0f;
+    button.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [button setTitle:@"Add Call Note" forState:UIControlStateNormal];
+    [button setTitleColor:TCColorLineBlue forState:UIControlStateNormal];
+    // button.titleLabel.textColor = TCColorLineBlue;
+    
+    MGLine *line = [MGLine lineWithLeft:button right:nil size:(CGSize) {315, 90}];
+    line.leftPadding = 10;
+    line.topPadding = 40;
+    [scroller.boxes addObject:line];
     [scroller layout];
     [self.view addSubview:scroller];        
 }

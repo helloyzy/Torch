@@ -16,12 +16,18 @@
 #import "TCStoreNoVisit.h"
 #import "Contact.h"
 #import "TCAddNewCustomerVwCtl.h"
+#import "TCSysRes.h"
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
+#define ROW_HEIGHT_SECTION2 40
 #define ROW_HEIGHT_MIN 50
 #define SECTION_TITLE_HEIGHT 25
 #define FONT_SIZE 12.0f
+
+#define TAG_SECTION2_NAME 101
+#define TAG_SECTION2_TITLE 102
+#define TAG_SECTION2_PHONE 103
 
 static NSString *kTitleKey = @"title";
 static NSString *kExplainKey = @"explanation";
@@ -88,6 +94,7 @@ static NSString *kViewControllerKey = @"viewController";
 
     TCSummaryViewController *tcSummaryViewController =
     [[TCSummaryViewController alloc] initWithNibName:@"TCSummaryViewController" bundle:nil];
+    tcSummaryViewController.store = self.currentStore;
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.notes"],
                  kExplainKey:@"Visit summary and notes",
           kViewControllerKey:tcSummaryViewController } ];
@@ -138,7 +145,9 @@ static NSString *kViewControllerKey = @"viewController";
         
     } else if  (indexPath.section == 1)    {
         return ROW_HEIGHT;
-    }else {
+    } else if (indexPath.section == 2){
+        return ROW_HEIGHT_SECTION2;
+    } else {
         return ROW_HEIGHT_MIN;
     }
 }
@@ -241,90 +250,99 @@ static NSString *kViewControllerKey = @"viewController";
 	
     UITableViewCell *cell;
     if (indexPath.section ==0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"storeHomeSection1"];
+        static NSString *storeHomeSec1Identifier = @"storeHomeSection1";
+        cell = [tableView dequeueReusableCellWithIdentifier:storeHomeSec1Identifier];
         if (cell == nil) {
-        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,  0, 320, ROW_HEIGHT_MAX)];
-        UITextView *txtStoreDetail = [[UITextView alloc] initWithFrame:CGRectMake(-5,0,190,ROW_HEIGHT_MAX-10)];
-        txtStoreDetail.text = [NSString stringWithFormat:@"%@\n%@ , %@ %@", self.currentStore.address, self.currentStore.city, self.currentStore.country, self.currentStore.postalCode];
-        [txtStoreDetail setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:14]];
-        txtStoreDetail.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1];
-        txtStoreDetail.editable = NO;
+            UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,  0, 320, ROW_HEIGHT_MAX)];
+            UITextView *txtStoreDetail = [[UITextView alloc] initWithFrame:CGRectMake(-5,0,190,ROW_HEIGHT_MAX-10)];
+            txtStoreDetail.text = [NSString stringWithFormat:@"%@\n%@ , %@ %@", self.currentStore.address, self.currentStore.city, self.currentStore.country, self.currentStore.postalCode];
+            [txtStoreDetail setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:14]];
+            txtStoreDetail.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1];
+            txtStoreDetail.editable = NO;
 
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"storeHomeSection1"];
-        UIImageView *mapImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapwithhint.png"]];
-        mapImage.frame = CGRectMake(225, 2, 50, 70);
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:storeHomeSec1Identifier];
+            UIImageView *mapImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapwithhint.png"]];
+            mapImage.frame = CGRectMake(225, 2, 50, 70);
 
-        UILabel *lblNumber = [[UILabel alloc] initWithFrame:CGRectMake(15,5,30,25)];
-        lblNumber.text = self.currentIndex;
-        lblNumber.textColor = [UIColor whiteColor];
-        lblNumber.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:14];
-        lblNumber.backgroundColor =[UIColor clearColor];
-        [lblNumber setTextAlignment:NSTextAlignmentLeft];
-        [mapImage addSubview:lblNumber];
-		UIImage *buttonBackground = [UIImage imageNamed:@"directionbtn.png"];
-		UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"directionbtn_pressed.png"];
-		
-		CGRect frame = CGRectMake(205, 80, 100, 25);
-		
-		_btnDirection = [TCStoreHomeView newButtonWithTitle:[self localString:@"storehome.button.instructions"]
-                                                         target:self
-                                                       selector:@selector(viewDirection:)
-                                                          frame:frame
-                                                          image:buttonBackground
-                                                   imagePressed:buttonBackgroundPressed];
+            UILabel *lblNumber = [[UILabel alloc] initWithFrame:CGRectMake(15,5,30,25)];
+            lblNumber.text = self.currentIndex;
+            lblNumber.textColor = [UIColor whiteColor];
+            lblNumber.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:14];
+            lblNumber.backgroundColor =[UIColor clearColor];
+            [lblNumber setTextAlignment:NSTextAlignmentLeft];
+            [mapImage addSubview:lblNumber];
+            UIImage *buttonBackground = [UIImage imageNamed:@"directionbtn.png"];
+            UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"directionbtn_pressed.png"];
+            
+            CGRect frame = CGRectMake(205, 80, 100, 25);
+            
+            _btnDirection = [TCStoreHomeView newButtonWithTitle:[self localString:@"storehome.button.instructions"]
+                                                             target:self
+                                                           selector:@selector(viewDirection:)
+                                                              frame:frame
+                                                              image:buttonBackground
+                                                       imagePressed:buttonBackgroundPressed];
 
 
-        [cell.contentView addSubview:mapImage];
-        [cell.contentView addSubview:txtStoreDetail];
-        [cell.contentView addSubview:_btnDirection];
+            [cell.contentView addSubview:mapImage];
+            [cell.contentView addSubview:txtStoreDetail];
+            [cell.contentView addSubview:_btnDirection];
 
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundView = backgroundView;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundView = backgroundView;
         }
-        
-       
-    }else if (indexPath.section ==1){
-         cell = [tableView dequeueReusableCellWithIdentifier:@"storeHomeSection2"];
-	if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"storeHomeSection2"];
-        UITextField *_txtName=[[UITextField alloc]initWithFrame:CGRectMake(14.0, 4.0, 150.0, ROW_HEIGHT/2)];
-        UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,  0, 320, ROW_HEIGHT)];
-        [_txtName setPlaceholder:[self getContactorName:indexPath.row]];
-        _txtName.enabled = NO;
-        _txtName.textAlignment = NSTextAlignmentLeft;
-        _txtName.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:15];
-        UITextField *_txtTitle=[[UITextField alloc]initWithFrame:CGRectMake(14.0, (ROW_HEIGHT/2)+2, 150.0, ROW_HEIGHT/2)];
-        [_txtTitle setPlaceholder:[self getContactorTitle:indexPath.row]];
-        _txtTitle.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:12];
-        _txtTitle.enabled = NO;
-        _txtTitle.textAlignment = NSTextAlignmentLeft;
-        UITextField *_txtPhone=[[UITextField alloc]initWithFrame:CGRectMake(160.0, 2.0, 130.0, ROW_HEIGHT/2)];
-        [_txtPhone setPlaceholder:[self getContactorPhone:indexPath.row]];
-        _txtPhone.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:14];
-        _txtPhone.textAlignment = NSTextAlignmentRight;
-        _txtPhone.enabled=NO;
-        cell.backgroundView = backgroundView;
-        [cell addSubview:_txtName];
-        [cell addSubview:_txtTitle];
-        [cell addSubview:_txtPhone];
-        cell.selectionStyle = UITableViewCellEditingStyleNone;
-	}
-	
-    }else {
-        // If no cell is available, create a new one using the given identifier.
-               cell = [tableView dequeueReusableCellWithIdentifier:@"storeHomeSection3"];
+    } else if (indexPath.section ==1) {
+        static NSString *storeHomeSec2Identifier = @"storeHomeSection2";
+        cell = [tableView dequeueReusableCellWithIdentifier:storeHomeSec2Identifier];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"storeHomeSection3"];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:storeHomeSec2Identifier];
+            UITextField *_txtName=[[UITextField alloc]initWithFrame:CGRectMake(14.0, 4.0, 150.0, ROW_HEIGHT/2)];
+            UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0,  0, 320, ROW_HEIGHT)];
+            // [_txtName setPlaceholder:[self getContactorName:indexPath.row]];
+            _txtName.enabled = NO;
+            _txtName.textAlignment = NSTextAlignmentLeft;
+            _txtName.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:15];
+            _txtName.tag = TAG_SECTION2_NAME;
+            UITextField *_txtTitle=[[UITextField alloc]initWithFrame:CGRectMake(14.0, (ROW_HEIGHT/2)+2, 150.0, ROW_HEIGHT/2)];
+            // [_txtTitle setPlaceholder:[self getContactorTitle:indexPath.row]];
+            _txtTitle.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:12];
+            _txtTitle.enabled = NO;
+            _txtTitle.textAlignment = NSTextAlignmentLeft;
+            _txtTitle.tag = TAG_SECTION2_TITLE;
+            UITextField *_txtPhone=[[UITextField alloc]initWithFrame:CGRectMake(160.0, 2.0, 130.0, ROW_HEIGHT/2)];
+            // [_txtPhone setPlaceholder:[self getContactorPhone:indexPath.row]];
+            _txtPhone.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:14];
+            _txtPhone.textAlignment = NSTextAlignmentRight;
+            _txtPhone.enabled = NO;
+            _txtPhone.tag = TAG_SECTION2_PHONE;
+            cell.backgroundView = backgroundView;
+            [cell addSubview:_txtName];
+            [cell addSubview:_txtTitle];
+            [cell addSubview:_txtPhone];
+            cell.selectionStyle = UITableViewCellEditingStyleNone;
+        }
+        UITextField *nameField = (UITextField *)[cell viewWithTag:TAG_SECTION2_NAME];
+        nameField.placeholder = [self getContactorName:indexPath.row];
+        UITextField *titleField = (UITextField *)[cell viewWithTag:TAG_SECTION2_TITLE];
+        titleField.placeholder = [self getContactorTitle:indexPath.row];
+        UITextField *phoneField = (UITextField *)[cell viewWithTag:TAG_SECTION2_PHONE];
+        phoneField.placeholder = [self getContactorPhone:indexPath.row];
+        
+    } else {
+        // If no cell is available, create a new one using the given identifier.
+        static NSString *storeHomeSec3Identifier = @"storeHomeSection3";
+        cell = [tableView dequeueReusableCellWithIdentifier:storeHomeSec3Identifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:storeHomeSec3Identifier];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kTitleKey];
-            cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
+            // cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
+            cell.textLabel.font = TCFont_HNLTComBd(17.0);
             cell.textLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
-            cell.detailTextLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kExplainKey];
+            // cell.detailTextLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kExplainKey];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
-        
+        cell.textLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kTitleKey];
     }
-
 	return cell;
 }
 
