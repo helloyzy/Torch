@@ -7,20 +7,26 @@
 extern const struct StoreAttributes {
 	__unsafe_unretained NSString *address;
 	__unsafe_unretained NSString *analytics;
+	__unsafe_unretained NSString *callFrequency;
 	__unsafe_unretained NSString *city;
 	__unsafe_unretained NSString *country;
 	__unsafe_unretained NSString *creditAddress;
 	__unsafe_unretained NSString *creditType;
 	__unsafe_unretained NSString *distributor;
 	__unsafe_unretained NSString *faxNumber;
+	__unsafe_unretained NSString *gstTaxNumber;
 	__unsafe_unretained NSString *lastModifiedDate;
 	__unsafe_unretained NSString *modelTime;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *number;
 	__unsafe_unretained NSString *postalCode;
+	__unsafe_unretained NSString *priority;
 	__unsafe_unretained NSString *products;
+	__unsafe_unretained NSString *pstTaxNumber;
 	__unsafe_unretained NSString *remoteKey;
 	__unsafe_unretained NSString *schedule;
+	__unsafe_unretained NSString *soldToName;
+	__unsafe_unretained NSString *soldToNumber;
 	__unsafe_unretained NSString *state;
 } StoreAttributes;
 
@@ -36,6 +42,12 @@ extern const struct StoreFetchedProperties {
 @class Banner;
 @class Contact;
 @class StoreCall;
+
+
+
+
+
+
 
 
 
@@ -83,6 +95,20 @@ extern const struct StoreFetchedProperties {
 
 
 //- (BOOL)validateAnalytics:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* callFrequency;
+
+
+
+@property double callFrequencyValue;
+- (double)callFrequencyValue;
+- (void)setCallFrequencyValue:(double)value_;
+
+//- (BOOL)validateCallFrequency:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -148,6 +174,16 @@ extern const struct StoreFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* gstTaxNumber;
+
+
+
+//- (BOOL)validateGstTaxNumber:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* lastModifiedDate;
 
 
@@ -206,11 +242,35 @@ extern const struct StoreFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* priority;
+
+
+
+@property BOOL priorityValue;
+- (BOOL)priorityValue;
+- (void)setPriorityValue:(BOOL)value_;
+
+//- (BOOL)validatePriority:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* products;
 
 
 
 //- (BOOL)validateProducts:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* pstTaxNumber;
+
+
+
+//- (BOOL)validatePstTaxNumber:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -231,6 +291,26 @@ extern const struct StoreFetchedProperties {
 
 
 //- (BOOL)validateSchedule:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* soldToName;
+
+
+
+//- (BOOL)validateSoldToName:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* soldToNumber;
+
+
+
+//- (BOOL)validateSoldToNumber:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -299,6 +379,15 @@ extern const struct StoreFetchedProperties {
 
 
 
+- (NSNumber*)primitiveCallFrequency;
+- (void)setPrimitiveCallFrequency:(NSNumber*)value;
+
+- (double)primitiveCallFrequencyValue;
+- (void)setPrimitiveCallFrequencyValue:(double)value_;
+
+
+
+
 - (NSString*)primitiveCity;
 - (void)setPrimitiveCity:(NSString*)value;
 
@@ -331,6 +420,12 @@ extern const struct StoreFetchedProperties {
 
 - (NSString*)primitiveFaxNumber;
 - (void)setPrimitiveFaxNumber:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveGstTaxNumber;
+- (void)setPrimitiveGstTaxNumber:(NSString*)value;
 
 
 
@@ -371,8 +466,23 @@ extern const struct StoreFetchedProperties {
 
 
 
+- (NSNumber*)primitivePriority;
+- (void)setPrimitivePriority:(NSNumber*)value;
+
+- (BOOL)primitivePriorityValue;
+- (void)setPrimitivePriorityValue:(BOOL)value_;
+
+
+
+
 - (NSString*)primitiveProducts;
 - (void)setPrimitiveProducts:(NSString*)value;
+
+
+
+
+- (NSString*)primitivePstTaxNumber;
+- (void)setPrimitivePstTaxNumber:(NSString*)value;
 
 
 
@@ -385,6 +495,18 @@ extern const struct StoreFetchedProperties {
 
 - (NSString*)primitiveSchedule;
 - (void)setPrimitiveSchedule:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveSoldToName;
+- (void)setPrimitiveSoldToName:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveSoldToNumber;
+- (void)setPrimitiveSoldToNumber:(NSString*)value;
 
 
 

@@ -29,7 +29,8 @@
      ContactAttributes.preferredContactMethod,
      ContactAttributes.remoteKey,
      ContactAttributes.textNumber,
-     ContactAttributes.title
+     ContactAttributes.title,
+     ContactAttributes.externalId
      ]];
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"notes" toKeyPath:@"notes" withMapping:[Note objectMapping]]];
     return mapping;

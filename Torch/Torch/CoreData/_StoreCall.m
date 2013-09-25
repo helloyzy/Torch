@@ -7,10 +7,14 @@ const struct StoreCallAttributes StoreCallAttributes = {
 	.actualEndDate = @"actualEndDate",
 	.actualStartDate = @"actualStartDate",
 	.callTimeAdjustment = @"callTimeAdjustment",
+	.externalId = @"externalId",
 	.lastModifiedDate = @"lastModifiedDate",
 	.plannedEndDate = @"plannedEndDate",
 	.plannedStartDate = @"plannedStartDate",
 	.remoteKey = @"remoteKey",
+	.rider1 = @"rider1",
+	.rider2 = @"rider2",
+	.routed = @"routed",
 };
 
 const struct StoreCallRelationships StoreCallRelationships = {
@@ -74,6 +78,11 @@ const struct StoreCallFetchedProperties StoreCallFetchedProperties = {
 	}
 	if ([key isEqualToString:@"plannedStartDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"plannedStartDate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"routedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"routed"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -162,6 +171,13 @@ const struct StoreCallFetchedProperties StoreCallFetchedProperties = {
 
 
 
+@dynamic externalId;
+
+
+
+
+
+
 @dynamic lastModifiedDate;
 
 
@@ -242,6 +258,46 @@ const struct StoreCallFetchedProperties StoreCallFetchedProperties = {
 
 @dynamic remoteKey;
 
+
+
+
+
+
+@dynamic rider1;
+
+
+
+
+
+
+@dynamic rider2;
+
+
+
+
+
+
+@dynamic routed;
+
+
+
+- (BOOL)routedValue {
+	NSNumber *result = [self routed];
+	return [result boolValue];
+}
+
+- (void)setRoutedValue:(BOOL)value_ {
+	[self setRouted:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveRoutedValue {
+	NSNumber *result = [self primitiveRouted];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveRoutedValue:(BOOL)value_ {
+	[self setPrimitiveRouted:[NSNumber numberWithBool:value_]];
+}
 
 
 

@@ -8,10 +8,14 @@ extern const struct StoreCallAttributes {
 	__unsafe_unretained NSString *actualEndDate;
 	__unsafe_unretained NSString *actualStartDate;
 	__unsafe_unretained NSString *callTimeAdjustment;
+	__unsafe_unretained NSString *externalId;
 	__unsafe_unretained NSString *lastModifiedDate;
 	__unsafe_unretained NSString *plannedEndDate;
 	__unsafe_unretained NSString *plannedStartDate;
 	__unsafe_unretained NSString *remoteKey;
+	__unsafe_unretained NSString *rider1;
+	__unsafe_unretained NSString *rider2;
+	__unsafe_unretained NSString *routed;
 } StoreCallAttributes;
 
 extern const struct StoreCallRelationships {
@@ -24,6 +28,10 @@ extern const struct StoreCallFetchedProperties {
 
 @class Note;
 @class Store;
+
+
+
+
 
 
 
@@ -88,6 +96,16 @@ extern const struct StoreCallFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* externalId;
+
+
+
+//- (BOOL)validateExternalId:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* lastModifiedDate;
 
 
@@ -135,6 +153,40 @@ extern const struct StoreCallFetchedProperties {
 
 
 //- (BOOL)validateRemoteKey:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* rider1;
+
+
+
+//- (BOOL)validateRider1:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* rider2;
+
+
+
+//- (BOOL)validateRider2:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* routed;
+
+
+
+@property BOOL routedValue;
+- (BOOL)routedValue;
+- (void)setRoutedValue:(BOOL)value_;
+
+//- (BOOL)validateRouted:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -196,6 +248,12 @@ extern const struct StoreCallFetchedProperties {
 
 
 
+- (NSString*)primitiveExternalId;
+- (void)setPrimitiveExternalId:(NSString*)value;
+
+
+
+
 - (NSNumber*)primitiveLastModifiedDate;
 - (void)setPrimitiveLastModifiedDate:(NSNumber*)value;
 
@@ -225,6 +283,27 @@ extern const struct StoreCallFetchedProperties {
 
 - (NSString*)primitiveRemoteKey;
 - (void)setPrimitiveRemoteKey:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveRider1;
+- (void)setPrimitiveRider1:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveRider2;
+- (void)setPrimitiveRider2:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveRouted;
+- (void)setPrimitiveRouted:(NSNumber*)value;
+
+- (BOOL)primitiveRoutedValue;
+- (void)setPrimitiveRoutedValue:(BOOL)value_;
 
 
 

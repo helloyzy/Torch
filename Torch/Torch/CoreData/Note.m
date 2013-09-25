@@ -20,7 +20,8 @@
      NoteAttributes.lastModifiedDate,
      NoteAttributes.remoteKey,
      NoteAttributes.title,
-     NoteAttributes.type
+     NoteAttributes.type,
+     NoteAttributes.externalId
      ]];
     return mapping;
 }

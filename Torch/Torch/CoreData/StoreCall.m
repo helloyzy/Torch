@@ -20,7 +20,11 @@
      StoreCallAttributes.lastModifiedDate,
      StoreCallAttributes.plannedEndDate,
      StoreCallAttributes.plannedStartDate,
-     StoreCallAttributes.remoteKey
+     StoreCallAttributes.remoteKey,
+     StoreCallAttributes.externalId,
+     StoreCallAttributes.routed,
+     StoreCallAttributes.rider1,
+     StoreCallAttributes.rider2
      ]];
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"notes" toKeyPath:@"notes" withMapping:[Note objectMapping]]];
     return mapping;

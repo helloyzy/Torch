@@ -52,6 +52,7 @@
         <attribute name="bestTimes" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="contactType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="externalId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="faxNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isKdm" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -71,6 +72,7 @@
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="externalDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="externalId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -127,6 +129,41 @@
         <relationship name="calItem" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CalItem" inverseName="orderCreditItem" inverseEntity="CalItem" syncable="YES"/>
         <relationship name="orderCredit" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OrderCredit" inverseName="orderCreditItems" inverseEntity="OrderCredit" syncable="YES"/>
     </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES">
+        <attribute name="brand_Cd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="brand_Description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="combined_Packtype_Cd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="combined_Packtype_Description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dimension_unit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_height" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="item_Id" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="item_length" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="item_Status_code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_Status_Description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="item_Weight" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="item_Width" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="overbrand_Cd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="overbrand_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="packtype_Cd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="packtype_Description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="product_code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="product_division" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="product_division_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="product_Number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sales_org" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sAP_Material_Type_FERT" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="season_Cd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="season_Description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="short_material_number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subPacktype_Cd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subpacktype_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uPC_GROUP_PRODUCT_UOM_maybe" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uPC_maybe" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weight_unit_of_Measure" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="SalesRep" representedClassName="SalesRep" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -142,20 +179,26 @@
     <entity name="Store" representedClassName="Store" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="analytics" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="callFrequency" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="creditAddress" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="creditType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="distributor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="faxNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gstTaxNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="modelTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postalCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priority" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="products" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pstTaxNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="schedule" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="soldToName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="soldToNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="banner" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Banner" inverseName="stores" inverseEntity="Banner" syncable="YES"/>
         <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="store" inverseEntity="Contact" syncable="YES"/>
@@ -165,10 +208,14 @@
         <attribute name="actualEndDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="actualStartDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="callTimeAdjustment" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="externalId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="plannedEndDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="plannedStartDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rider1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rider2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="routed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="storeCall" inverseEntity="Note" syncable="YES"/>
         <relationship name="store" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="storeCalls" inverseEntity="Store" syncable="YES"/>
     </entity>
@@ -176,13 +223,14 @@
         <element name="Account" positionX="763" positionY="860" width="128" height="268"/>
         <element name="Banner" positionX="792" positionY="81" width="135" height="148"/>
         <element name="CalItem" positionX="1188" positionY="617" width="128" height="328"/>
-        <element name="Contact" positionX="999" positionY="389" width="135" height="313"/>
-        <element name="Note" positionX="1179" positionY="369" width="135" height="178"/>
+        <element name="Contact" positionX="999" positionY="389" width="135" height="328"/>
+        <element name="Note" positionX="1179" positionY="369" width="135" height="195"/>
         <element name="Order" positionX="621" positionY="608" width="128" height="163"/>
         <element name="OrderCredit" positionX="799" positionY="378" width="128" height="403"/>
         <element name="OrderCreditItem" positionX="1015" positionY="881" width="128" height="208"/>
         <element name="SalesRep" positionX="585" positionY="27" width="135" height="193"/>
-        <element name="Store" positionX="1000" positionY="0" width="135" height="343"/>
-        <element name="StoreCall" positionX="1206" positionY="72" width="135" height="178"/>
+        <element name="Store" positionX="1000" positionY="0" width="135" height="433"/>
+        <element name="StoreCall" positionX="1206" positionY="72" width="135" height="240"/>
+        <element name="Product" positionX="385" positionY="252" width="128" height="540"/>
     </elements>
 </model>

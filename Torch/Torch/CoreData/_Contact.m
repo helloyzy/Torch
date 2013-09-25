@@ -8,6 +8,7 @@ const struct ContactAttributes ContactAttributes = {
 	.bestTimes = @"bestTimes",
 	.contactType = @"contactType",
 	.email = @"email",
+	.externalId = @"externalId",
 	.faxNumber = @"faxNumber",
 	.firstName = @"firstName",
 	.isKdm = @"isKdm",
@@ -138,6 +139,13 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 
 
 @dynamic email;
+
+
+
+
+
+
+@dynamic externalId;
 
 
 

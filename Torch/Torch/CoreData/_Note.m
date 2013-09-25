@@ -7,6 +7,7 @@ const struct NoteAttributes NoteAttributes = {
 	.body = @"body",
 	.createdDate = @"createdDate",
 	.externalDate = @"externalDate",
+	.externalId = @"externalId",
 	.lastModifiedDate = @"lastModifiedDate",
 	.remoteKey = @"remoteKey",
 	.title = @"title",
@@ -123,6 +124,13 @@ const struct NoteFetchedProperties NoteFetchedProperties = {
 - (void)setPrimitiveExternalDateValue:(double)value_ {
 	[self setPrimitiveExternalDate:[NSNumber numberWithDouble:value_]];
 }
+
+
+
+
+
+@dynamic externalId;
+
 
 
 

@@ -8,6 +8,7 @@ extern const struct NoteAttributes {
 	__unsafe_unretained NSString *body;
 	__unsafe_unretained NSString *createdDate;
 	__unsafe_unretained NSString *externalDate;
+	__unsafe_unretained NSString *externalId;
 	__unsafe_unretained NSString *lastModifiedDate;
 	__unsafe_unretained NSString *remoteKey;
 	__unsafe_unretained NSString *title;
@@ -24,6 +25,7 @@ extern const struct NoteFetchedProperties {
 
 @class Contact;
 @class StoreCall;
+
 
 
 
@@ -79,6 +81,16 @@ extern const struct NoteFetchedProperties {
 - (void)setExternalDateValue:(double)value_;
 
 //- (BOOL)validateExternalDate:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* externalId;
+
+
+
+//- (BOOL)validateExternalId:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -172,6 +184,12 @@ extern const struct NoteFetchedProperties {
 
 - (double)primitiveExternalDateValue;
 - (void)setPrimitiveExternalDateValue:(double)value_;
+
+
+
+
+- (NSString*)primitiveExternalId;
+- (void)setPrimitiveExternalId:(NSString*)value;
 
 
 

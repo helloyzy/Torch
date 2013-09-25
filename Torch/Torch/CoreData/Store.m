@@ -32,7 +32,13 @@
      StoreAttributes.products,
      StoreAttributes.remoteKey,
      StoreAttributes.schedule,
-     StoreAttributes.state
+     StoreAttributes.state,
+     StoreAttributes.priority,
+     StoreAttributes.soldToName,
+     StoreAttributes.soldToNumber,
+     StoreAttributes.gstTaxNumber,
+     StoreAttributes.pstTaxNumber,
+     StoreAttributes.callFrequency
      ]];
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"storeCalls" toKeyPath:@"storeCalls" withMapping:[StoreCall objectMapping]]];
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"contacts" toKeyPath:@"contacts" withMapping:[Contact objectMapping]]];

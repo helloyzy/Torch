@@ -9,6 +9,7 @@ extern const struct ContactAttributes {
 	__unsafe_unretained NSString *bestTimes;
 	__unsafe_unretained NSString *contactType;
 	__unsafe_unretained NSString *email;
+	__unsafe_unretained NSString *externalId;
 	__unsafe_unretained NSString *faxNumber;
 	__unsafe_unretained NSString *firstName;
 	__unsafe_unretained NSString *isKdm;
@@ -34,6 +35,7 @@ extern const struct ContactFetchedProperties {
 @class Note;
 @class OrderCredit;
 @class Store;
+
 
 
 
@@ -107,6 +109,16 @@ extern const struct ContactFetchedProperties {
 
 
 //- (BOOL)validateEmail:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* externalId;
+
+
+
+//- (BOOL)validateExternalId:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -288,6 +300,12 @@ extern const struct ContactFetchedProperties {
 
 - (NSString*)primitiveEmail;
 - (void)setPrimitiveEmail:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveExternalId;
+- (void)setPrimitiveExternalId:(NSString*)value;
 
 
 

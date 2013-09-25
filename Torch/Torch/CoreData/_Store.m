@@ -6,20 +6,26 @@
 const struct StoreAttributes StoreAttributes = {
 	.address = @"address",
 	.analytics = @"analytics",
+	.callFrequency = @"callFrequency",
 	.city = @"city",
 	.country = @"country",
 	.creditAddress = @"creditAddress",
 	.creditType = @"creditType",
 	.distributor = @"distributor",
 	.faxNumber = @"faxNumber",
+	.gstTaxNumber = @"gstTaxNumber",
 	.lastModifiedDate = @"lastModifiedDate",
 	.modelTime = @"modelTime",
 	.name = @"name",
 	.number = @"number",
 	.postalCode = @"postalCode",
+	.priority = @"priority",
 	.products = @"products",
+	.pstTaxNumber = @"pstTaxNumber",
 	.remoteKey = @"remoteKey",
 	.schedule = @"schedule",
+	.soldToName = @"soldToName",
+	.soldToNumber = @"soldToNumber",
 	.state = @"state",
 };
 
@@ -58,6 +64,11 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"callFrequencyValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"callFrequency"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"lastModifiedDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"lastModifiedDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -65,6 +76,11 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 	}
 	if ([key isEqualToString:@"modelTimeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"modelTime"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"priorityValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"priority"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -84,6 +100,32 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 @dynamic analytics;
 
+
+
+
+
+
+@dynamic callFrequency;
+
+
+
+- (double)callFrequencyValue {
+	NSNumber *result = [self callFrequency];
+	return [result doubleValue];
+}
+
+- (void)setCallFrequencyValue:(double)value_ {
+	[self setCallFrequency:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveCallFrequencyValue {
+	NSNumber *result = [self primitiveCallFrequency];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveCallFrequencyValue:(double)value_ {
+	[self setPrimitiveCallFrequency:[NSNumber numberWithDouble:value_]];
+}
 
 
 
@@ -125,6 +167,13 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 
 @dynamic faxNumber;
+
+
+
+
+
+
+@dynamic gstTaxNumber;
 
 
 
@@ -204,7 +253,40 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 
 
+@dynamic priority;
+
+
+
+- (BOOL)priorityValue {
+	NSNumber *result = [self priority];
+	return [result boolValue];
+}
+
+- (void)setPriorityValue:(BOOL)value_ {
+	[self setPriority:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitivePriorityValue {
+	NSNumber *result = [self primitivePriority];
+	return [result boolValue];
+}
+
+- (void)setPrimitivePriorityValue:(BOOL)value_ {
+	[self setPrimitivePriority:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
 @dynamic products;
+
+
+
+
+
+
+@dynamic pstTaxNumber;
 
 
 
@@ -219,6 +301,20 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 
 @dynamic schedule;
+
+
+
+
+
+
+@dynamic soldToName;
+
+
+
+
+
+
+@dynamic soldToNumber;
 
 
 
