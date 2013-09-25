@@ -174,9 +174,10 @@
 
 - (void)setDataSource:(NSArray *)ds {
     if (self.picker && ds && ds.count > 0) {
-        self.pickerDelegate = [[SimplePickerDelegate alloc]initWithArrayAsDs:ds];
-        self.picker.dataSource = self.pickerDelegate;
-        self.picker.delegate = self.pickerDelegate;
+        SimplePickerDelegate * temp = [[SimplePickerDelegate alloc]initWithArrayAsDs:ds];
+        self.picker.dataSource = temp;
+        self.picker.delegate = temp;
+        self.pickerDelegate = temp;
     }
 }
 
