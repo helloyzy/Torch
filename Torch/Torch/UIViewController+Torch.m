@@ -19,6 +19,9 @@
 
 @implementation UIViewController (Torch)
 
+// static CGFloat TEXTFIELD_MOVESPACE = 0.0;
+static bool TEXTFIELD_MOVEBACK_FLAG = YES;
+
 #pragma mark - dismiss keyboard 
 
 - (UIView *) viewForTapToDismissKeyboard {
@@ -70,6 +73,10 @@
 
 - (void) switchToNextEditingView:(UIView *) curEditingView {
     UIView * nextView = [self findNextEditingView:curEditingView];
+    if (nextView && [self shouldRegisterNotificationForTextField]) {
+        // jump to next field, cur editing view do not have to be back to original place
+        TEXTFIELD_MOVEBACK_FLAG = NO;
+    }
     [curEditingView resignFirstResponder];
     if (nextView) {
         [nextView becomeFirstResponder];
@@ -182,70 +189,77 @@
 
 #pragma mark - textfield and keyboard interactions
 
+/**
 static CGFloat _keyBoardHeight;
-
 - (BOOL)shouldObserveKeyboardInfo {
     return NO;
 }
-
-- (void)registerNotificationForKeyboardInfo {
+- (void)registerNotificationForKeyboardInfoIfNecessary {
     if (! [self shouldObserveKeyboardInfo]) {
         return;
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 }
-
-- (void)removeNotificationForKeyboardInfo {
+- (void)removeNotificationForKeyboardInfoIfNecessary {
     if (! [self shouldObserveKeyboardInfo]) {
         return;
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
-
 - (void)onKeyboardWillShow:(NSNotification *)aNotification {
     NSDictionary *userInfo = [aNotification userInfo];
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardRect = [aValue CGRectValue];
     _keyBoardHeight = keyboardRect.size.height;
 }
+ */
+
+#define KEYBOARD_HEIGHT_LANDSCAPE 140.0
+#define KEYBOARD_HEIGHT_PORTRAIT 216.0
+
+- (BOOL)shouldRegisterNotificationForTextField {
+    return NO;
+}
+
+- (void)registerNotificationForTextFieldIfNecessary {
+    if (! [self shouldRegisterNotificationForTextField]) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onTextFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onTextFieldDidEndEditing:) name:UITextFieldTextDidEndEditingNotification object:nil];
+}
+
+- (void)removeNotificationForTextFieldIfNecessary {
+    if (! [self shouldRegisterNotificationForTextField]) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidBeginEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidEndEditingNotification object:nil];
+}
+
+- (void)onTextFieldDidBeginEditing:(NSNotification *)aNotification {
+    UITextField *textField = [aNotification object];
+    [self moveToVisibleIfNecessary:textField];
+}
+
+- (void)onTextFieldDidEndEditing:(NSNotification *)aNotification {
+    UITextField *textField = [aNotification object];
+    [self backToOriginalPlaceIfNecessary:textField];
+}
 
 - (CGFloat)keyboardHeight {
-    if (_keyBoardHeight > 0) {
-        return _keyBoardHeight;
-    }
     if (isDeviceOrientationLandscape()) {
-        return 140;
+        return KEYBOARD_HEIGHT_LANDSCAPE;
     } else {
-        return 216;
+        return KEYBOARD_HEIGHT_PORTRAIT;
     }
 }
 
 - (UIView *)findRootSuperView:(UIView *)view {
-    UIView *preSuperVw = nil;
-    UIView *superVw = view.superview;
-    while (superVw) {
-        if ([superVw isKindOfClass:[UIWindow class]]) {
-            return preSuperVw;
-        }
-        preSuperVw = superVw;
-        superVw = superVw.superview;
-    }
-    return nil;
+    return [[UIApplication sharedApplication] keyWindow];
 }
 
 - (CGPoint)positionInGlobalWindow:(UIView *)view {
-//    CGPoint result = view.frame.origin;
-//    UIView *superView = view.superview;
-//    UIView *s_superView = superView.superview;
-//    while (s_superView) {
-//        CGPoint temp = superView.frame.origin;
-//        result.x = result.x + temp.x;
-//        result.y = result.y + temp.y;
-//        // NSLog(@"When in %@, the position %f, %f", [s_superView class], origin.x, origin.y);
-//        superView = s_superView;
-//        s_superView = superView.superview;
-//    }
-//    return result;
     CGPoint result = view.frame.origin;
     UIView *superView = view.superview;
     while (superView) {
@@ -266,15 +280,13 @@ static CGFloat _keyBoardHeight;
     return result;
 }
 
-static const char * KEY_MOVE_SPACE;
-
 - (void)moveToVisibleIfNecessary:(UIView *)view {
     CGPoint location = [self positionInGlobalWindow:view];
     CGFloat kbHeight = [self keyboardHeight];
-    CGFloat maxVisibleY = [[UIApplication sharedApplication] keyWindow].bounds.size.height - kbHeight;
+    CGFloat maxVisibleY = [[UIApplication sharedApplication] keyWindow].bounds.size.height - kbHeight - view.bounds.size.height;
     CGFloat moveY = 0.0;
     if (location.y > maxVisibleY) {
-        moveY = location.y - maxVisibleY + view.bounds.size.height + 20;
+        moveY = location.y - maxVisibleY + 20;
     }
     if (moveY > 0) {
         [UIView animateWithDuration:.3f animations:^{
@@ -285,23 +297,21 @@ static const char * KEY_MOVE_SPACE;
             
         }];
     }
-    objc_setAssociatedObject(self, KEY_MOVE_SPACE, [NSNumber numberWithDouble:moveY], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    // TEXTFIELD_MOVESPACE = moveY;
+    TEXTFIELD_MOVEBACK_FLAG = YES;
 }
 
-- (void)backToOriginalPlace:(UIView *)view {
-    NSNumber *moveY = objc_getAssociatedObject(self, KEY_MOVE_SPACE);
-    objc_setAssociatedObject(self, KEY_MOVE_SPACE, nil, OBJC_ASSOCIATION_ASSIGN);
-    if (moveY) {
-        CGFloat moveYVal = [moveY doubleValue];
-        if (moveYVal > 0) {
-            [UIView animateWithDuration:.3f animations:^{
-                UIView *viewToMove = [self findRootSuperView:view];
-                CGRect frame = viewToMove.frame;
-                frame.origin.y = frame.origin.y + moveYVal;
-                viewToMove.frame = frame;
-            }];
-        }
+- (void)backToOriginalPlaceIfNecessary:(UIView *)view {
+    if (TEXTFIELD_MOVEBACK_FLAG) {
+        [UIView animateWithDuration:.3f animations:^{
+            UIView *viewToMove = [self findRootSuperView:view];
+            CGRect frame = viewToMove.frame;
+            frame.origin.y = 0;
+            viewToMove.frame = frame;
+        }];
     }
+    // reset
+    TEXTFIELD_MOVEBACK_FLAG = YES;
 }
 
 @end
