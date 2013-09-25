@@ -31,6 +31,8 @@
 		1C65E2E617C33D6700FA94B2 /* TCRouteMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */; };
 		1C65E2E817C3416B00FA94B2 /* TCRouteTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */; };
 		1C65E2EB17C346A600FA94B2 /* TCRouteMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C65E2EA17C346A600FA94B2 /* TCRouteMapViewController.m */; };
+		1C6FD3EB17F2741D0049FFFF /* TCAddNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C6FD3E917F2741D0049FFFF /* TCAddNoteController.m */; };
+		1C6FD3EC17F2741D0049FFFF /* TCAddNoteController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C6FD3EA17F2741D0049FFFF /* TCAddNoteController.xib */; };
 		1C713BF017C2058100A903A6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713BEF17C2058100A903A6 /* UIKit.framework */; };
 		1C713BF217C2058100A903A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713BF117C2058100A903A6 /* Foundation.framework */; };
 		1C713BF417C2058100A903A6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713BF317C2058100A903A6 /* CoreGraphics.framework */; };
@@ -227,6 +229,9 @@
 		1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRouteTableView.xib; sourceTree = "<group>"; };
 		1C65E2E917C346A600FA94B2 /* TCRouteMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRouteMapViewController.h; sourceTree = "<group>"; };
 		1C65E2EA17C346A600FA94B2 /* TCRouteMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRouteMapViewController.m; sourceTree = "<group>"; };
+		1C6FD3E817F2741D0049FFFF /* TCAddNoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAddNoteController.h; sourceTree = "<group>"; };
+		1C6FD3E917F2741D0049FFFF /* TCAddNoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAddNoteController.m; sourceTree = "<group>"; };
+		1C6FD3EA17F2741D0049FFFF /* TCAddNoteController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCAddNoteController.xib; sourceTree = "<group>"; };
 		1C713BEC17C2058000A903A6 /* Torch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Torch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C713BEF17C2058100A903A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C713BF117C2058100A903A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -714,6 +719,8 @@
 				1CFE597F17D6C7950041FF95 /* TCSurveyController.m */,
 				DC20E24817D85BE1009FFC84 /* TCAddNewCustomerVwCtl.h */,
 				DC20E24917D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m */,
+				1C6FD3E817F2741D0049FFFF /* TCAddNoteController.h */,
+				1C6FD3E917F2741D0049FFFF /* TCAddNoteController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -755,6 +762,7 @@
 				DC20E24E17D85C5A009FFC84 /* TCComboVw.m */,
 				DC76817A17DD76DF0039DE1B /* DRTextField.h */,
 				DC76817B17DD76DF0039DE1B /* DRTextField.m */,
+				1C6FD3EA17F2741D0049FFFF /* TCAddNoteController.xib */,
 				DC76817D17DD8F9F0039DE1B /* TCEditingCell.h */,
 				DC76817E17DD8F9F0039DE1B /* TCEditingCell.m */,
 			);
@@ -1061,6 +1069,7 @@
 				DCA4663517E82040008D634D /* order.json in Resources */,
 				DCFB9D3217E94FC900326521 /* disclaimation_es.txt in Resources */,
 				1C34527B17EEE7BC00D6600A /* HelveticaNeueLTCom-Roman.ttf in Resources */,
+				1C6FD3EC17F2741D0049FFFF /* TCAddNoteController.xib in Resources */,
 				DC56020717F27C6A009BA08C /* product.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1218,6 +1227,7 @@
 				DCA4663317E8059A008D634D /* NSManagedObject+TCRestkit.m in Sources */,
 				DCFB9D3017E939FE00326521 /* TCRKObjectMapping.m in Sources */,
 				DCFB9D3517E97A9C00326521 /* TCLoginCredential.m in Sources */,
+				1C6FD3EB17F2741D0049FFFF /* TCAddNoteController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
