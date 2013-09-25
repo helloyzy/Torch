@@ -18,6 +18,7 @@
 #import "StoreCall.h"
 #import "Note.h"
 #import "TCUtils.h"
+#import "TCAddNoteController.h"
 
 @interface TCSummaryViewController ()
 
@@ -137,6 +138,7 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
     button.titleLabel.textAlignment = NSTextAlignmentLeft;
     [button setTitle:@"Add Call Note" forState:UIControlStateNormal];
     [button setTitleColor:TCColorLineBlue forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(addNote) forControlEvents:UIControlEventTouchDown];
     // button.titleLabel.textColor = TCColorLineBlue;
     
     MGLine *line = [MGLine lineWithLeft:button right:nil size:(CGSize) {315, 90}];
@@ -145,6 +147,11 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
     [scroller.boxes addObject:line];
     [scroller layout];
     [self.view addSubview:scroller];        
+}
+
+- (void)addNote {
+    TCAddNoteController *controller = [[TCAddNoteController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
