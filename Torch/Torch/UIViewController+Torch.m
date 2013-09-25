@@ -73,14 +73,17 @@ static bool TEXTFIELD_MOVEBACK_FLAG = YES;
 
 - (void) switchToNextEditingView:(UIView *) curEditingView {
     UIView * nextView = [self findNextEditingView:curEditingView];
-    if (nextView && [self shouldRegisterNotificationForTextField]) {
-        // jump to next field, cur editing view do not have to be back to original place
-        TEXTFIELD_MOVEBACK_FLAG = NO;
+    if (nextView) {
+        if ([self isViewAllVisibleInGlobalWindow:nextView]) {
+            if ([self shouldRegisterNotificationForTextField]) {
+                TEXTFIELD_MOVEBACK_FLAG = NO;
+            }
+            [curEditingView resignFirstResponder];
+            [nextView becomeFirstResponder];
+            return;
+        }
     }
     [curEditingView resignFirstResponder];
-    if (nextView) {
-        [nextView becomeFirstResponder];
-    }
 }
 
 
@@ -259,10 +262,13 @@ static CGFloat _keyBoardHeight;
     return [[UIApplication sharedApplication] keyWindow];
 }
 
-- (CGPoint)positionInGlobalWindow:(UIView *)view {
+- (CGPoint)positionInGlobalWindow:(UIView *)view includeWindow:(BOOL)flag {
     CGPoint result = view.frame.origin;
     UIView *superView = view.superview;
     while (superView) {
+        if ((! flag) && [superView isKindOfClass:[UIWindow class]]) { // not calculate position in Window
+            break;
+        }
         CGPoint temp = superView.frame.origin;
         result.x = result.x + temp.x;
         result.y = result.y + temp.y;
@@ -271,13 +277,31 @@ static CGFloat _keyBoardHeight;
             // subtract the offset
             result.x = result.x - scrollVw.contentOffset.x;
             result.y = result.y - scrollVw.contentOffset.y;
-            NSLog(@"When in %@, the position %f, %f", [superView class], result.x, result.y);
-            NSLog(@"ContentOffSet x %f, y %f", scrollVw.contentOffset.x, scrollVw.contentOffset.y);
+            // NSLog(@"When in %@, the position %f, %f", [superView class], result.x, result.y);
+            // NSLog(@"ContentOffSet x %f, y %f", scrollVw.contentOffset.x, scrollVw.contentOffset.y);
         }
         // NSLog(@"When in %@, the position %f, %f", [superView class], result.x, result.y);
         superView = superView.superview;
     }
     return result;
+}
+
+- (CGPoint)positionInGlobalWindow:(UIView *)view {
+    CGPoint result = [self positionInGlobalWindow:view includeWindow:YES];
+    NSLog(@"When in global window, the position %f, %f", result.x, result.y);
+    return result;
+}
+
+- (CGPoint)positionInGlobalWindowAbsolute:(UIView *)view {
+    CGPoint result = [self positionInGlobalWindow:view includeWindow:NO];
+    NSLog(@"When in global window, the absolute position %f, %f", result.x, result.y);
+    return result;
+}
+
+- (BOOL)isViewAllVisibleInGlobalWindow:(UIView *)view {
+    CGPoint locationInGlobalWindow = [self positionInGlobalWindowAbsolute:view];
+    NSLog(@"View position is %f", locationInGlobalWindow.y + view.bounds.size.height);
+    return locationInGlobalWindow.y + view.bounds.size.height < [[UIApplication sharedApplication] keyWindow].bounds.size.height;
 }
 
 - (void)moveToVisibleIfNecessary:(UIView *)view {
