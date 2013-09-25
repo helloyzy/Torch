@@ -161,6 +161,8 @@
 		DC20E24F17D85C5A009FFC84 /* TCComboVw.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20E24E17D85C5A009FFC84 /* TCComboVw.m */; };
 		DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */ = {isa = PBXBuildFile; fileRef = DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */; };
 		DC56020717F27C6A009BA08C /* product.json in Resources */ = {isa = PBXBuildFile; fileRef = DC56020617F27C6A009BA08C /* product.json */; };
+		DC56020C17F28195009BA08C /* _Product.m in Sources */ = {isa = PBXBuildFile; fileRef = DC56020917F28195009BA08C /* _Product.m */; };
+		DC56020D17F28195009BA08C /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = DC56020B17F28195009BA08C /* Product.m */; };
 		DC6CB0BD17D5B2490091EFAB /* TCPrinterCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6CB0BB17D5B2490091EFAB /* TCPrinterCtl.m */; };
 		DC6CB0BE17D5B2490091EFAB /* TCPrinterCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC6CB0BC17D5B2490091EFAB /* TCPrinterCtl.xib */; };
 		DC74E34617CD8AEB00953259 /* TCDeckViewCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC74E34517CD8AEB00953259 /* TCDeckViewCtl.m */; };
@@ -414,6 +416,10 @@
 		DC51EA0917C5A2BE00E5DD3C /* UIViewController+Torch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Torch.h"; sourceTree = "<group>"; };
 		DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Torch.m"; sourceTree = "<group>"; };
 		DC56020617F27C6A009BA08C /* product.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = product.json; sourceTree = "<group>"; };
+		DC56020817F28195009BA08C /* _Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Product.h; sourceTree = "<group>"; };
+		DC56020917F28195009BA08C /* _Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Product.m; sourceTree = "<group>"; };
+		DC56020A17F28195009BA08C /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		DC56020B17F28195009BA08C /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		DC6CB0BA17D5B2490091EFAB /* TCPrinterCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPrinterCtl.h; sourceTree = "<group>"; };
 		DC6CB0BB17D5B2490091EFAB /* TCPrinterCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPrinterCtl.m; sourceTree = "<group>"; };
 		DC6CB0BC17D5B2490091EFAB /* TCPrinterCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCPrinterCtl.xib; sourceTree = "<group>"; };
@@ -819,6 +825,8 @@
 				DC1655AD17DF092500DD57D6 /* _OrderCredit.m */,
 				DC1655AE17DF092500DD57D6 /* _OrderCreditItem.h */,
 				DC1655AF17DF092500DD57D6 /* _OrderCreditItem.m */,
+				DC56020817F28195009BA08C /* _Product.h */,
+				DC56020917F28195009BA08C /* _Product.m */,
 				DC1655B017DF092500DD57D6 /* _SalesRep.h */,
 				DC1655B117DF092500DD57D6 /* _SalesRep.m */,
 				DC1655B217DF092500DD57D6 /* _Store.h */,
@@ -841,6 +849,8 @@
 				DC1655C317DF092500DD57D6 /* OrderCredit.m */,
 				DC1655C417DF092500DD57D6 /* OrderCreditItem.h */,
 				DC1655C517DF092500DD57D6 /* OrderCreditItem.m */,
+				DC56020A17F28195009BA08C /* Product.h */,
+				DC56020B17F28195009BA08C /* Product.m */,
 				DC1655C617DF092500DD57D6 /* SalesRep.h */,
 				DC1655C717DF092500DD57D6 /* SalesRep.m */,
 				DC1655C817DF092500DD57D6 /* Store.h */,
@@ -1228,6 +1238,8 @@
 				DCFB9D3017E939FE00326521 /* TCRKObjectMapping.m in Sources */,
 				DCFB9D3517E97A9C00326521 /* TCLoginCredential.m in Sources */,
 				1C6FD3EB17F2741D0049FFFF /* TCAddNoteController.m in Sources */,
+				DC56020C17F28195009BA08C /* _Product.m in Sources */,
+				DC56020D17F28195009BA08C /* Product.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
