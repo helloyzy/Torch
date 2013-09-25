@@ -11,6 +11,7 @@
 
 #import "SalesRep.h"
 #import "Order.h"
+#import "Product.h"
 #import <RestKit/RestKit.h>
 
 #import "NSManagedObject+InnerBand.h"
@@ -84,6 +85,11 @@ static IBCoreDataStore * ibDataStore;
     RKEntityMapping *orderMapping = [Order objectMapping];
     [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"order" ofType:@"json"]
                               withMapping:orderMapping
+                                  keyPath:nil
+                                    error:&error];
+    RKEntityMapping *productMapping = [Product objectMapping];
+    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"product" ofType:@"json"]
+                              withMapping:productMapping
                                   keyPath:nil
                                     error:&error];
     
