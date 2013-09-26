@@ -13,15 +13,16 @@ static TCLoginCredential *gSharedInstance;
 @implementation TCLoginCredential
 
 + (TCLoginCredential *)sharedInstance {
+    if (! gSharedInstance) {
+        gSharedInstance = [[TCLoginCredential alloc] init];
+    }
     return gSharedInstance;
 }
 
 + (void)setUsername:(NSString *)username password:(NSString *)password {
-    if (! gSharedInstance) {
-        gSharedInstance = [TCLoginCredential new];
-    }
-    gSharedInstance.username = username;
-    gSharedInstance.password = password;
+    TCLoginCredential * instance = [self sharedInstance];
+    instance.username = username;
+    instance.password = password;
 }
 
 @end

@@ -63,9 +63,7 @@
 }
 
 - (BOOL)isLoginRequired {
-
     return [HersheySSOUtils needsCredentials];
-    
 }
 
 - (void) initDB {
@@ -96,7 +94,13 @@
     self.viewController = [self loginController];
     // self.viewController = [self controllerWithinNavCtr];
 #else
-    self.viewController = [self isLoginRequired] ? [self loginController] : [UIViewController myDayDeckAsRoot];
+    if ([self isLoginRequired]) {
+        self.viewController = [self loginController];
+    } else {
+        [TCDBUtils initDB];
+        self.viewController = [UIViewController myDayDeckAsRoot];
+    }
+    // self.viewController = [self isLoginRequired] ? [self loginController] : [UIViewController myDayDeckAsRoot];
 #endif
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
