@@ -195,6 +195,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 }
 
 -(void) saveAction {
+    [self.view endEditing:YES];
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil
                                                      message:[self localString:@"addnewcustomer.saveConfirmation"]
                                                     delegate:self
