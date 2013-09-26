@@ -9,6 +9,8 @@
 
 @implementation TCBaseVwCtl
 
+#pragma mark - view related
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -17,11 +19,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self registerNotificationForKeyboardInfo];
+    [self registerNotificationForTextFieldIfNecessary];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self removeNotificationForKeyboardInfo];
+    [self removeNotificationForTextFieldIfNecessary];
     [super viewWillDisappear:animated];
 }
 
@@ -29,25 +31,23 @@
     [super viewDidUnload];
 }
 
+#pragma mark - text field delegate
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self viewFinishEditing:textField];
     return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [self moveToVisibleIfNecessary:textField];
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    [self backToOriginalPlace:textField];
-}
+//- (void)textFieldDidBeginEditing:(UITextField *)textField {
+//    [self moveToVisibleIfNecessary:textField];
+//}
+//
+//- (void)textFieldDidEndEditing:(UITextField *)textField {
+//    [self backToOriginalPlaceIfNecessary:textField];
+//}
 
 //- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
 //    return NO;
-//}
-
-//- (void)textFieldDidBeginEditing:(UITextField *)textField {
-//    NSLog(@"Did begin");
 //}
 
 @end

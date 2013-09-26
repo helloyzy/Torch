@@ -35,10 +35,10 @@
 // section for customize navigation bar -- end
 
 // section for keyboard related
-- (BOOL)shouldObserveKeyboardInfo;
-- (void)registerNotificationForKeyboardInfo;
-- (void)removeNotificationForKeyboardInfo;
+- (BOOL)shouldRegisterNotificationForTextField;
+- (void)registerNotificationForTextFieldIfNecessary;
+- (void)removeNotificationForTextFieldIfNecessary;
 - (void)moveToVisibleIfNecessary:(UIView *)view;
-- (void)backToOriginalPlace:(UIView *)view;
+- (void)backToOriginalPlaceIfNecessary:(UIView *)view;
 
 @end

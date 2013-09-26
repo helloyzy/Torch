@@ -105,7 +105,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     return self.view;
 }
 
-- (BOOL)shouldObserveKeyboardInfo {
+- (BOOL)shouldRegisterNotificationForTextField {
     return YES;
 }
 
@@ -450,11 +450,19 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     
     NSIndexSet * indexSetToAdd = [NSIndexSet indexSetWithIndex:_CONTACT_SECTION_START + self.contacts.count - 1];
     [tblVw insertSections:indexSetToAdd withRowAnimation:UITableViewRowAnimationFade];
+    [self performSelector:@selector(scrollToEnd) withObject:self afterDelay:.5];
+    
+    // [tblVw scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:([self numberOfSectionsInTableView:tblVw] - 2)] atScrollPosition:UITableViewScrollPositionNone animated:YES];
     
 //    // also need to refresh ADD CONTACT and ADD NOTES sections
 //    NSRange sectionsRange = NSMakeRange(_CONTACT_SECTION_START, self.contacts.count + 2);
 //    NSIndexSet * sectionsToReload = [NSIndexSet indexSetWithIndexesInRange:sectionsRange];
 //    [tblVw reloadSections:sectionsToReload withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)scrollToEnd {
+    CGPoint bottomOffset = CGPointMake(0, tblVw.contentSize.height - tblVw.bounds.size.height);
+    [tblVw setContentOffset:bottomOffset animated:YES];
 }
 
 #pragma mark - customized table view cell
@@ -493,7 +501,7 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 #pragma mark - text field delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [super textFieldDidBeginEditing:textField];
+    // [super textFieldDidBeginEditing:textField];
     // NSLog(@"did begin");
     // [tblVw scrollRectToVisible:textField.frame animated:YES];
     // [tblVw scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
