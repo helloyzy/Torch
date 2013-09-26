@@ -12,6 +12,9 @@
 #import "TCPromotionVwCtl.h"
 #import "TCPromotionTableCell.h"
 #import "TCPrinterCtl.h"
+#import "Product.h"
+#import <NSManagedObject+InnerBand.h>
+#import "TCDBUtils.h"
 
 @interface TCOrderViewController ()
 
@@ -29,6 +32,7 @@
     NSMutableDictionary *productCollection;
     NSMutableDictionary *promotionItems;
     NSMutableArray *displayPromotionItems;
+    NSArray *productItems;
 }
 
 
@@ -75,48 +79,23 @@ return flag;
 
 
 -(void)popupProductItems {
-    productCollection = [[NSMutableDictionary alloc] initWithCapacity:5];
-    ProductItemObject *productItem = [ProductItemObject alloc];
-    productItem.productName = @"HerShey Chocolate1";
-    productItem.productSN = @"#123456";
-    productItem.productUnit = @"Boxes";
-    productItem.productPrice = @"$4.32 per box";
-    productItem.productUnitNum = @"0";
-    productItem.productDescription = @"whatever";
     
-    [productCollection setObject:productItem forKey:productItem.productSN];
+    productItems = [Product allInStore:[TCDBUtils ibDataStore]];
     
-    productItem = [ProductItemObject alloc];
-    productItem.productName = @"HerShey Chocolate2";
-    productItem.productSN = @"#121121";
-    productItem.productUnit = @"Boxes";
-    productItem.productPrice = @"$2.1 per box";
-    productItem.productUnitNum = @"0";
-    [productCollection setObject:productItem forKey:productItem.productSN];
+    productCollection = [[NSMutableDictionary alloc] initWithCapacity:[productItems count]];
+    ProductItemObject *productItem;
+    for (Product *product in productItems) {
+        productItem = [ProductItemObject alloc];
+        productItem.productName = product.packtype_Description;
+        productItem.productSN = [NSString stringWithFormat:@"%@ %@", @"#", product.short_material_number];
+        productItem.productUnit = [self localString:@"product.itemunit"];
+        productItem.productPrice = @"$4.32 per box";
+        productItem.productUnitNum = @"0";
+        productItem.productDescription = product.desp;
+        
+        [productCollection setObject:productItem forKey:productItem.productSN];
+    }
     
-    productItem = [ProductItemObject alloc];
-    productItem.productName = @"HerShey Chocolate3";
-    productItem.productSN = @"#121122";
-    productItem.productUnit = @"Boxes";
-    productItem.productPrice = @"$2.1 per box";
-    productItem.productUnitNum = @"0";
-    [productCollection setObject:productItem forKey:productItem.productSN];
-    
-    productItem = [ProductItemObject alloc];
-    productItem.productName = @"HerShey Chocolate2";
-    productItem.productSN = @"#121123";
-    productItem.productUnit = @"Boxes";
-    productItem.productPrice = @"$2.1 per box";
-    productItem.productUnitNum = @"0";
-    [productCollection setObject:productItem forKey:productItem.productSN];
-    
-    productItem = [ProductItemObject alloc];
-    productItem.productName = @"HerShey Chocolate2";
-    productItem.productSN = @"#121124";
-    productItem.productUnit = @"Boxes";
-    productItem.productPrice = @"$2.1 per box";
-    productItem.productUnitNum = @"0";
-    [productCollection setObject:productItem forKey:productItem.productSN];
     
     //create an array to used in tablecell loop
     NSMutableArray *productArray = [[NSMutableArray alloc] initWithCapacity:1];
