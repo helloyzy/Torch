@@ -83,3 +83,56 @@ BOOL isDeviceOrientationPortait() {
     return UIDeviceOrientationIsPortrait(deviceOrientation);
 
 }
+
+#pragma mark - handy methods for accessing global object 
+
+UIScreen *SCREEN() {
+    return [UIScreen mainScreen];
+}
+
+CGFloat SCREEN_HEIGHT() {
+    return SCREEN().bounds.size.height;
+}
+
+CGFloat SCREEN_WIDTH() {
+    return SCREEN().bounds.size.width;
+}
+
+UIWindow *WINDOW() {
+    return [[UIApplication sharedApplication] keyWindow];
+}
+
+CGFloat WINDOW_HEIGHT() {
+    return VIEW_B_H(WINDOW());
+}
+
+CGFloat WINDOW_WIDTH() {
+    return VIEW_B_W(WINDOW());
+}
+
+#pragma mark - view rect handy methods
+
+CGFloat VIEW_B_X(UIView *view) {
+    return view.bounds.origin.x;
+}
+CGFloat VIEW_B_Y(UIView *view) {
+    return view.bounds.origin.y;
+}
+CGFloat VIEW_B_H(UIView *view) {
+    return view.bounds.size.height;
+}
+CGFloat VIEW_B_W(UIView *view) {
+    return view.bounds.size.width;
+}
+CGFloat VIEW_F_X(UIView *view) {
+    return view.frame.origin.x;
+}
+CGFloat VIEW_F_Y(UIView *view) {
+    return view.frame.origin.y;
+}
+CGFloat VIEW_F_H(UIView *view) {
+    return view.frame.size.height;
+}
+CGFloat VIEW_F_W(UIView *view) {
+    return view.frame.size.width;
+}

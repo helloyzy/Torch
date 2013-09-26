@@ -26,3 +26,19 @@ void registerLocationService(id<CLLocationManagerDelegate> delegate);
 
 BOOL isDeviceOrientationLandscape();
 BOOL isDeviceOrientationPortait();
+
+UIScreen *SCREEN();
+CGFloat SCREEN_HEIGHT();
+CGFloat SCREEN_WIDTH();
+UIWindow *WINDOW();
+CGFloat WINDOW_HEIGHT();
+CGFloat WINDOW_WIDTH();
+
+CGFloat VIEW_B_X(UIView *view);
+CGFloat VIEW_B_Y(UIView *view);
+CGFloat VIEW_B_H(UIView *view);
+CGFloat VIEW_B_W(UIView *view);
+CGFloat VIEW_F_X(UIView *view);
+CGFloat VIEW_F_Y(UIView *view);
+CGFloat VIEW_F_H(UIView *view);
+CGFloat VIEW_F_W(UIView *view);
