@@ -14,8 +14,11 @@
 #import "TCRouteMapViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TCUtils.h"
+#import "TCSysRes.h"
 #import <IBFunctions.h>
 #import <objc/runtime.h>
+#import "TCStoreHomeView.h"
+#import "Store.h"
 
 @implementation UIViewController (Torch)
 
@@ -99,6 +102,7 @@
     jump.backgroundColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.5 alpha:0.5];
     jump.titleLabel.font = [UIFont systemFontOfSize:13];
     [jump setTitle:@"Tap to return to  call in progress" forState:UIControlStateNormal];
+    [jump addTarget:self action:@selector(jumpToCallInProgress:) forControlEvents:UIControlEventTouchUpInside];
     [navBar addSubview:jump];
     [navBar bringSubviewToFront:jump];
 //    UIView * bottomSeparator = [[UIView alloc] initWithFrame:CGRectMake(0, navBar.bounds.size.height - 1, navBar.bounds.size.width, 1)];
@@ -106,6 +110,22 @@
 //    bottomSeparator.backgroundColor = [UIColor colorWithRed:134/255.0f green:134/255.0f blue:134/255.0f alpha:1];
 //    [navBar addSubview:bottomSeparator];
 
+}
+
++ (void)jumpToCallInProgress:(id)sender {
+    Store *store = storeInCall();
+    if (store) {
+        UIViewController *root = WINDOW().rootViewController;
+        if ([root isKindOfClass:[IIViewDeckController class]]) {
+            IIViewDeckController *rootDeck = (IIViewDeckController *)root;
+            UINavigationController *nav = (UINavigationController *)rootDeck.centerController;
+            [nav popToRootViewControllerAnimated:NO];
+            TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
+            controller.currentStore = store;
+            controller.currentIndex =  store.sequenceNum;
+            [nav pushViewController:controller animated:YES];
+        }
+    }
 }
 
 + (UINavigationController *) customNavCtr:(UIViewController *)rootVwCtl {
@@ -184,73 +204,6 @@
 }
 
 #pragma mark - textfield and keyboard interactions
-
-/**
-static CGFloat _keyBoardHeight;
-- (BOOL)shouldObserveKeyboardInfo {
-    return NO;
-}
-- (void)registerNotificationForKeyboardInfoIfNecessary {
-    if (! [self shouldObserveKeyboardInfo]) {
-        return;
-    }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-}
-- (void)removeNotificationForKeyboardInfoIfNecessary {
-    if (! [self shouldObserveKeyboardInfo]) {
-        return;
-    }
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-}
-- (void)onKeyboardWillShow:(NSNotification *)aNotification {
-    NSDictionary *userInfo = [aNotification userInfo];
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardRect = [aValue CGRectValue];
-    _keyBoardHeight = keyboardRect.size.height;
-}
- - (CGPoint)positionInGlobalWindow:(UIView *)view includeWindow:(BOOL)flag {
- CGPoint result = view.frame.origin;
- UIView *superView = view.superview;
- while (superView) {
- if ((! flag) && [superView isKindOfClass:[UIWindow class]]) { // not calculate position in Window
- break;
- }
- CGPoint temp = superView.frame.origin;
- result.x = result.x + temp.x;
- result.y = result.y + temp.y;
- if ([superView isKindOfClass:[UIScrollView class]]) {
- UIScrollView *scrollVw = (UIScrollView *)superView;
- // subtract the offset
- result.x = result.x - scrollVw.contentOffset.x;
- result.y = result.y - scrollVw.contentOffset.y;
- // NSLog(@"When in %@, the position %f, %f", [superView class], result.x, result.y);
- // NSLog(@"ContentOffSet x %f, y %f", scrollVw.contentOffset.x, scrollVw.contentOffset.y);
- }
- superView = superView.superview;
- }
- return result;
- }
- 
- - (CGPoint)positionInScreen:(UIView *)view {
- CGPoint result = [self positionInWindow:view];
- UIWindow *window = [[UIApplication sharedApplication] keyWindow];
- result.x = result.x + window.frame.origin.x;
- result.y = result.y + window.frame.origin.y;
- // NSLog(@"The position relative to screen is %f, %f", result.x, result.y);
- return result;
- }
- 
- - (CGPoint)positionInWindow:(UIView *)view {
- CGPoint result = [view convertPoint:view.bounds.origin toView:[[UIApplication sharedApplication] keyWindow]];
- // NSLog(@"The position relative to window is %f, %f", result.x, result.y);
- return result;
- }
- 
- - (CGFloat)screenHeight {
- return [UIScreen mainScreen].bounds.size.height;
- }
- 
- */
 
 #define KEYBOARD_HEIGHT_LANDSCAPE 140.0
 #define KEYBOARD_HEIGHT_PORTRAIT 216.0

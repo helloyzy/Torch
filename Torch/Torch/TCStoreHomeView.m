@@ -17,6 +17,10 @@
 #import "Contact.h"
 #import "TCAddNewCustomerVwCtl.h"
 #import "TCSysRes.h"
+#import "Store.h"
+#import "StoreCall.h"
+#import "TCUtils.h"
+#import <IBFunctions.h>
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -105,6 +109,10 @@ static NSString *kViewControllerKey = @"viewController";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    // check whether has storeCall in progress
+    if ([self.currentStore callInProgress]) {
+        _tcSliderView.direction = TCSliderViewDirectionBackward;
+    }
     contacts = [self.currentStore.contacts allObjects];
     [self.tableView reloadData];
 }
@@ -412,15 +420,20 @@ static NSString *kViewControllerKey = @"viewController";
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex==0){
-       
-        
-    }else {
-        
-        UIViewController *targetViewController = [[TCPriorityViewController alloc]init];
-        [[self navigationController] pushViewController:targetViewController animated:YES];
+    if (buttonIndex == 1) {
+        // [_tcSliderView changeDirection:YES];
+        if (storeInCall()) {
+            showAlert(nil, [self localString:@"storeInCall.alert"], nil);
+        } else {
+            [StoreCall newInstance:self.currentStore];
+            self.currentStore.sequenceNum = self.currentIndex;
+            setStoreInCall(self.currentStore);
+            UIViewController *targetViewController = [[TCPriorityViewController alloc]init];
+            [[self navigationController] pushViewController:targetViewController animated:YES];
+            return;
+        }
     }
-     [_tcSliderView changeDirection:buttonIndex == 0 ? NO : YES];
+    [_tcSliderView changeDirection:NO];
 }
 
 
@@ -434,6 +447,9 @@ static NSString *kViewControllerKey = @"viewController";
 	[alert show];
 }
 - (void) sliderDidSlideToStart:(TCSliderView *)slideView {
+    StoreCall *call = [self.currentStore callInProgress];
+    [call endCall];
+    setStoreInCall(nil);
     // Go to summary page
     UIViewController *targetViewController = [[TCSummaryViewController alloc]init];
     [[self navigationController] pushViewController:targetViewController animated:YES];

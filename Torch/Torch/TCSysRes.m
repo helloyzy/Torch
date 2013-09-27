@@ -7,6 +7,18 @@
 //
 
 #import "TCSysRes.h"
+#import "Store.h"
+
+static Store *gStoreInCall = nil;
+
+Store *storeInCall() {
+    return gStoreInCall;
+}
+
+void setStoreInCall(Store *store) {
+    gStoreInCall = store;
+}
+
 
 #pragma mark - font
 

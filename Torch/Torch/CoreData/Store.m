@@ -2,6 +2,7 @@
 #import <RestKit/RestKit.h>
 #import "StoreCall.h"
 #import "Contact.h"
+#import <NSManagedObject+InnerBand.h>
 
 @interface Store ()
 
@@ -11,6 +12,8 @@
 
 
 @implementation Store
+
+@synthesize sequenceNum;
 
 + (RKEntityMapping *)objectMapping
 {
@@ -43,6 +46,17 @@
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"storeCalls" toKeyPath:@"storeCalls" withMapping:[StoreCall objectMapping]]];
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"contacts" toKeyPath:@"contacts" withMapping:[Contact objectMapping]]];
     return mapping;
+}
+
+- (StoreCall *)callInProgress {
+    StoreCall *result = nil;
+    for (StoreCall *temp in self.storeCalls) {
+        if ((! temp.externalId)) {
+            result = temp;
+            break;
+        }
+    }
+    return result;
 }
 
 @end

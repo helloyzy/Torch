@@ -75,6 +75,8 @@
 
 "editcustomer.title" = "Edit Existing Client";
 
+"storeInCall.alert" = "Already has a call in progress!";
+
 /*Bo*/
 "priority.title" = "Priorities";
 

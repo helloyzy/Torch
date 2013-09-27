@@ -4,4 +4,7 @@
 @interface StoreCall : _StoreCall {}
 // Custom logic goes here.
 
++ (StoreCall *)newInstance:(Store *)store;
+- (void)endCall;
+
 @end

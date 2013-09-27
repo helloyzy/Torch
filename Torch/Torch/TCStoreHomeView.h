@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TCNavVwCtl.h"
 #import "TCSliderView.h"
-#import "Store.h"
+
+@class Store;
 
 @interface TCStoreHomeView : TCNavVwCtl<TCSliderViewDelegate> {
     
-    //__weak IBOutlet TCSliderView *sliderVw;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) Store *currentStore;

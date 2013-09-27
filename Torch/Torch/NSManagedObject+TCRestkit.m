@@ -8,11 +8,21 @@
 
 #import "NSManagedObject+TCRestkit.h"
 #import <RestKit/RestKit.h>
+#import <NSManagedObject+InnerBand.h>
+#import "TCDBUtils.h"
 
 @implementation NSManagedObject (TCRestkit)
 
 + (RKEntityMapping *)objectMapping {
     return nil;
+}
+
++ (id)newInstance {
+    return [self createInStore:[TCDBUtils ibDataStore]];
+}
+
++ (void)save {
+    [[TCDBUtils ibDataStore] save];
 }
 
 @end

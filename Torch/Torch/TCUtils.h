@@ -16,6 +16,8 @@
 
 NSString *millisecondToDateStr(double milliseconds);
 NSNumber *dateStrToMilliseconds(NSString * dateStr);
+NSNumber *curdateToMilliseconds();
+NSNumber *dateToMilliseconds(NSDate * date);
 
 void showAlert(NSString * title, NSString * message, id<UIAlertViewDelegate> delegate);
 

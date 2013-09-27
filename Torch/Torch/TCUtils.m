@@ -22,6 +22,14 @@ NSString *millisecondToDateStr(double milliseconds) {
 
 NSNumber *dateStrToMilliseconds(NSString * dateStr) {
     NSDate *date = [DateUtils dateFromString:dateStr withFormat:kDateFormatShort];
+    return dateToMilliseconds(date);
+}
+
+NSNumber *curdateToMilliseconds() {
+    return dateToMilliseconds([NSDate date]);
+}
+
+NSNumber *dateToMilliseconds(NSDate *date) {
     double seconds = [date timeIntervalSince1970];
     double milliseconds = seconds * 1000.0;
     return [NSNumber numberWithDouble:milliseconds];

@@ -194,6 +194,8 @@
 		DCC8389817CB42970046E999 /* profile_btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389217CB42970046E999 /* profile_btn_bg.png */; };
 		DCC8389917CB42970046E999 /* profile_person_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389317CB42970046E999 /* profile_person_bg.png */; };
 		DCC8389A17CB42970046E999 /* profile_person.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC8389417CB42970046E999 /* profile_person.png */; };
+		DCD9A01317F51E5B00AF790E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD9A01217F51E5A00AF790E /* SystemConfiguration.framework */; };
+		DCD9A01517F51E6D00AF790E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD9A01417F51E6D00AF790E /* MobileCoreServices.framework */; };
 		DCDBBE5117E6A0130078F71B /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = DCDBBE5017E6A0130078F71B /* login.json */; };
 		DCDBBE5317E6CE700078F71B /* CoreDataStore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DCDBBE5217E6CE700078F71B /* CoreDataStore.sqlite */; };
 		DCDBBE5717E700730078F71B /* TCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBBE5617E700720078F71B /* TCUtils.m */; };
@@ -469,6 +471,8 @@
 		DCC8389217CB42970046E999 /* profile_btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_btn_bg.png; sourceTree = "<group>"; };
 		DCC8389317CB42970046E999 /* profile_person_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_person_bg.png; sourceTree = "<group>"; };
 		DCC8389417CB42970046E999 /* profile_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_person.png; sourceTree = "<group>"; };
+		DCD9A01217F51E5A00AF790E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DCD9A01417F51E6D00AF790E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DCDBBE5017E6A0130078F71B /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
 		DCDBBE5217E6CE700078F71B /* CoreDataStore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoreDataStore.sqlite; sourceTree = "<group>"; };
 		DCDBBE5517E700720078F71B /* TCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtils.h; sourceTree = "<group>"; };
@@ -492,6 +496,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD9A01517F51E6D00AF790E /* MobileCoreServices.framework in Frameworks */,
+				DCD9A01317F51E5B00AF790E /* SystemConfiguration.framework in Frameworks */,
 				1C65E2E417C33CE100FA94B2 /* MapKit.framework in Frameworks */,
 				1C713BF017C2058100A903A6 /* UIKit.framework in Frameworks */,
 				1CA64AF817C6F54D004D58B9 /* CoreLocation.framework in Frameworks */,
@@ -538,6 +544,8 @@
 		1C713BEE17C2058000A903A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DCD9A01417F51E6D00AF790E /* MobileCoreServices.framework */,
+				DCD9A01217F51E5A00AF790E /* SystemConfiguration.framework */,
 				1CE7C73B17C5E5B6008B0F2C /* CoreLocation.framework */,
 				1C65E2E317C33CE100FA94B2 /* MapKit.framework */,
 				1C713BEF17C2058100A903A6 /* UIKit.framework */,
