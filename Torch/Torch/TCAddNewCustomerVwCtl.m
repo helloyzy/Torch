@@ -325,10 +325,9 @@
                 [btn setBackgroundImage:[UIImage imageNamed:@"bluebutton.png"] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(requestLocation) forControlEvents:UIControlEventTouchUpInside];
                 [cell.contentView addSubview:btn];
-            } else {
-                cell.hidden = YES;
             }
         }
+        cell.hidden = !_isAddNew;
     } else if (indexPath.section == 3) {
         editCell = [self singleTextCell];
         [self customizeField:editCell.centerField path:indexPath column:0 modelObj:self.customer modelProp:@"rfc" placeHolder:[self localString:@"addnewcustomer.rfc"] kbType:UIKeyboardTypeDefault];
