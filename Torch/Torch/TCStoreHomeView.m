@@ -183,7 +183,8 @@ static NSString *kViewControllerKey = @"viewController";
         [editButton setBackgroundImage:[UIImage imageNamed:@"focus"] forState:UIControlStateNormal];
         
         [editButton addTarget:self action:@selector(goEditCustomer) forControlEvents:UIControlEventTouchDown];
-
+        editButton.enabled = [self isCallInProgress];
+        
         headerLbl.backgroundColor = [UIColor clearColor];
         headerLbl.text = self.currentStore.name;
         headerImage.frame = CGRectMake(8, 20, tableView.bounds.size.width-14, 2);
@@ -212,9 +213,9 @@ static NSString *kViewControllerKey = @"viewController";
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 55)];
-
+    UIView * result = nil;
     if (section == 2) {
+        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 55)];
 		UIImage *buttonBackground = [UIImage imageNamed:@"bluebutton.png"];
 		UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"bluebtn_pressed.png"];
 		
@@ -226,14 +227,11 @@ static NSString *kViewControllerKey = @"viewController";
                                                       frame:frame
                                                       image:buttonBackground
                                                imagePressed:buttonBackgroundPressed];
+        _btnNovisit.enabled = [self isCallInProgress];
         [footerView  addSubview:_btnNovisit];
-
-        
-    }else{
-        footerView = nil;
+        result = footerView;
     }
-    
-    return footerView;
+    return result;
 }
 
 - (NSString *)getContactorName:(NSInteger)index {
@@ -257,6 +255,7 @@ static NSString *kViewControllerKey = @"viewController";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     UITableViewCell *cell;
+    BOOL isCallInProgress = [self isCallInProgress];
     if (indexPath.section ==0) {
         static NSString *storeHomeSec1Identifier = @"storeHomeSection1";
         cell = [tableView dequeueReusableCellWithIdentifier:storeHomeSec1Identifier];
@@ -321,7 +320,6 @@ static NSString *kViewControllerKey = @"viewController";
             _lblPhone.font =  TCFont_HNLTComLt(14);
             _lblPhone.textAlignment = NSTextAlignmentRight;
             _lblPhone.tag = TAG_SECTION2_PHONE;
-            _lblPhone.textColor = [UIColor lightGrayColor];
             [self setupClickRecognizerForView:_lblPhone action:@selector(tapContactPhone)];
             cell.backgroundView = backgroundView;
             [cell addSubview:_txtName];
@@ -335,13 +333,14 @@ static NSString *kViewControllerKey = @"viewController";
         titleField.placeholder = [self getContactorTitle:indexPath.row];
         UILabel *phoneField = (UILabel *)[cell viewWithTag:TAG_SECTION2_PHONE];
         NSString *phone = [self getContactorPhone:indexPath.row];
-        if ([self.currentStore callInProgress]) {
+        if (isCallInProgress) {
             phoneField.textColor = [UIColor lightGrayColor];
             phoneField.attributedText = [[NSAttributedString alloc]initWithString:phone attributes:nil];
         } else {
             phoneField.textColor = [UIColor blueColor];
             TCLbl_TextUnderline(phoneField, phone);
         }
+        phoneField.userInteractionEnabled = ! isCallInProgress;
     } else {
         // If no cell is available, create a new one using the given identifier.
         static NSString *storeHomeSec3Identifier = @"storeHomeSection3";
@@ -351,11 +350,16 @@ static NSString *kViewControllerKey = @"viewController";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             // cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
             cell.textLabel.font = TCFont_HNLTComBd(17.0);
-            cell.textLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
             // cell.detailTextLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kExplainKey];
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
         cell.textLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kTitleKey];
+        if (isCallInProgress) {
+            cell.textLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
+        } else {
+            cell.textLabel.textColor = [UIColor lightGrayColor];
+        }
+        cell.userInteractionEnabled = isCallInProgress;
     }
 	return cell;
 }
@@ -365,27 +369,27 @@ static NSString *kViewControllerKey = @"viewController";
     [clickRecognizer setNumberOfTapsRequired:1];
     [clickRecognizer setNumberOfTouchesRequired:1];
     clickRecognizer.cancelsTouchesInView = YES;
-    [view setUserInteractionEnabled:YES];
+    // [view setUserInteractionEnabled:YES];
     [view addGestureRecognizer:clickRecognizer];
 }
 
 - (void)tapContactPhone {
     // start call
-    if (! [self.currentStore callInProgress]) {
-        [self sliderDidSlideToEnd:nil];
-    }
+    [self sliderDidSlideToEnd:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"UIButton was selected");
+    // NSLog(@"UIButton was selected");
     switch (indexPath.section) {
         case 0:
             break;
         case 1:
             break;
         case 2: {
-            UIViewController *targetViewController = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kViewControllerKey];
-            [[self navigationController] pushViewController:targetViewController animated:YES];
+            if ([self isCallInProgress]) {
+                UIViewController *targetViewController = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kViewControllerKey];
+                [[self navigationController] pushViewController:targetViewController animated:YES];
+            }
             break;
         }
         default:
@@ -458,6 +462,10 @@ static NSString *kViewControllerKey = @"viewController";
         }
     }
     [_tcSliderView changeDirection:NO];
+}
+
+- (BOOL)isCallInProgress {
+    return [self.currentStore callInProgress] != nil;
 }
 
 
