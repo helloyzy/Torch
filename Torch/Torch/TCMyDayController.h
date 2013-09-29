@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define MYDAY_WILLAPPEAR_NOTIFICATION @"MYDAY_WILLAPPEAR_NOTIFICATION"
+#define MYDAY_WILLDISAPPEAR_NOTIFICATION @"MYDAY_WILLDISAPPEAR_NOTIFICATION"
+
 @interface TCMyDayController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) IBOutlet UITableView* tableView;

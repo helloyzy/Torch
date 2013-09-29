@@ -78,6 +78,8 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLAPPEAR_NOTIFICATION object:nil];
     _stores = [Store allInStore:[TCDBUtils ibDataStore]];    
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     //[df setDateStyle:NSDateFormatterFullStyle];
@@ -87,6 +89,11 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
     NSString* str= [[df stringFromDate: [[NSDate alloc] init]] uppercaseString];
     _header.text = [@"  Mi día - " stringByAppendingString:str];
     [_tableView reloadData];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLDISAPPEAR_NOTIFICATION object:nil];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
