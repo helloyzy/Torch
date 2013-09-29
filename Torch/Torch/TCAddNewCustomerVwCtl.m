@@ -29,16 +29,18 @@
 #define HEIGHT(x) x.size.height
 #define _TAG_BTN_SHOWCOMBO1 10098
 #define _TAG_BTN_SHOWCOMBO2 10099
+#define _CUSTOMER_DETAIL_SECTION 1
 #define _CONTACT_SECTION_START 6
 #define _AddNewContact_Section [self sectionFromContact:0]
 #define _AddNewNote_Section [self sectionFromContact:1]
 #define _AlertViewTag_CancelConfirmation 100
 #define _AlertViewTag_SaveConfirmation 101
 
+/**
 // only for sections which has rows containing two columns (like city and state)
 int rowDeviation(NSIndexPath * indexPath) {
     int result = 0;
-    if (indexPath.section == 1) {  // || indexPath.section == 2
+    if (indexPath.section == _CUSTOMER_DETAIL_SECTION) {
         if (indexPath.row == 2) {
             result = 1;
         } else if (indexPath.row > 2) {
@@ -70,16 +72,19 @@ int calculateTag(NSIndexPath * indexPath, int column) {
     return result;
 }
 
-void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column, NSObject * modelObject, NSString * modelProp, NSString * textPlaceHolder, UIKeyboardType keyboardType, id delegate) {
+void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column, NSObject * modelObject, NSString * modelProp, NSString * textPlaceHolder, UIKeyboardType keyboardType, id delegate, BOOL enabled, TCAddNewCustomerVwCtl * controller) {
     textField.font = TCFont_HNLTComLt(_TV_FIELD_FONTSIZE);
     textField.placeholder = textPlaceHolder;
     [textField setDataObject:modelObject dataProperty:modelProp];
     textField.keyboardType = keyboardType;
-    textField.tag = calculateTag(indexPath, column);
+    if (enabled) {
+        textField.tag = [controller calc;
+    } 
     textField.returnKeyType = UIReturnKeyNext;
     textField.delegate = delegate;
-    
+    textField.enabled = enabled;
 }
+ */
 
 @interface TCAddNewCustomerVwCtl () {
     BOOL _isAddNew;
@@ -303,38 +308,38 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     TCEditingCell * editCell;
     if (indexPath.section == 0) {
         editCell = [self singleTextCell];
-        customizeField(editCell.centerField, indexPath, 0, self.customer, @"storeName", [self localString:@"addnewcustomer.storeName"], UIKeyboardTypeDefault, self);
+        [self customizeField:editCell.centerField path:indexPath column:0 modelObj:self.customer modelProp:@"storeName" placeHolder:[self localString:@"addnewcustomer.storeName"] kbType:UIKeyboardTypeDefault enabled:YES];
     } else if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetName", [self localString:@"addnewcustomer.housenameAndStreet"], UIKeyboardTypeDefault, self);
+                [self customizeField:editCell.centerField path:indexPath column:0 modelObj:self.customer modelProp:@"streetName" placeHolder:[self localString:@"addnewcustomer.housenameAndStreet"] kbType:UIKeyboardTypeDefault];
                 break;
             case 1:
                 editCell = [self doubleTextCell];
-                customizeField(editCell.leftField, indexPath, 0, self.customer, @"city", [self localString:@"addnewcustomer.city"], UIKeyboardTypeDefault, self);
-                customizeField(editCell.rightField, indexPath, 1, self.customer, @"state", [self localString:@"addnewcustomer.state"], UIKeyboardTypeDefault, self);
+                [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"city" placeHolder:[self localString:@"addnewcustomer.city"] kbType:UIKeyboardTypeDefault];
+                [self customizeField:editCell.rightField path:indexPath column:1 modelObj:self.customer modelProp:@"state" placeHolder:[self localString:@"addnewcustomer.state"] kbType:UIKeyboardTypeDefault];
                 break;
             case 2:
                 editCell = [self doubleTextCell];
-                customizeField(editCell.leftField, indexPath, 0, self.customer, @"postcode", [self localString:@"addnewcustomer.postcode"], UIKeyboardTypeDefault, self);
-                customizeField(editCell.rightField, indexPath, 1, self.customer, @"municipality", [self localString:@"addnewcustomer.municipality"], UIKeyboardTypeDefault, self);
+                [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"postcode" placeHolder:[self localString:@"addnewcustomer.postcode"] kbType:UIKeyboardTypeDefault];
+                [self customizeField:editCell.rightField path:indexPath column:1 modelObj:self.customer modelProp:@"municipality" placeHolder:[self localString:@"addnewcustomer.municipality"] kbType:UIKeyboardTypeDefault];
                 break;
             case 3:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0,  self.customer, @"country", [self localString:@"addnewcustomer.country"], UIKeyboardTypeDefault, self);
+                [self customizeField:editCell.centerField path:indexPath column:0 modelObj:self.customer modelProp:@"country" placeHolder:[self localString:@"addnewcustomer.country"] kbType:UIKeyboardTypeDefault];
                 break;
             case 4:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetRef1", [self localString:@"addnewcustomer.referenceStreet1"], UIKeyboardTypeDefault, self);
+                [self customizeField:editCell.centerField path:indexPath column:0 modelObj:self.customer modelProp:@"streetRef1" placeHolder:[self localString:@"addnewcustomer.referenceStreet1"] kbType:UIKeyboardTypeDefault];
                 break;
             case 5:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, self.customer, @"streetRef2", [self localString:@"addnewcustomer.referenceStreet2"], UIKeyboardTypeDefault, self);
+                [self customizeField:editCell.centerField path:indexPath column:0 modelObj:self.customer modelProp:@"streetRef2" placeHolder:[self localString:@"addnewcustomer.referenceStreet2"] kbType:UIKeyboardTypeDefault];
                 break;
             case 6:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, self.customer, @"storePhoneNum", [self localString:@"addnewcustomer.storePhoneNumber"], UIKeyboardTypePhonePad, self);
+                [self customizeField:editCell.centerField path:indexPath column:0 modelObj:self.customer modelProp:@"storePhoneNum" placeHolder:[self localString:@"addnewcustomer.storePhoneNumber"] kbType:UIKeyboardTypePhonePad];
                 break;
             default:
                 break;
@@ -361,17 +366,17 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         }
     } else if (indexPath.section == 3) {
         editCell = [self singleTextCell];
-        customizeField(editCell.centerField, indexPath, 0, self.customer, @"rfc", [self localString:@"addnewcustomer.rfc"], UIKeyboardTypeDefault, self);
+        [self customizeField:editCell.centerField path:indexPath column:0 modelObj:self.customer modelProp:@"rfc" placeHolder:[self localString:@"addnewcustomer.rfc"] kbType:UIKeyboardTypeDefault];
     } else if (indexPath.section == 4) {
         editCell = [self comboCell:@[@"Text1", @"Text2"]];
         editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO1;
-        customizeField(editCell.leftField, indexPath, 0, self.customer, @"customerType", [self localString:@"addnewcustomer.typeOfClient"], UIKeyboardTypeDefault, self);
-        editCell.leftField.tag = 0;
+        [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"customerType" placeHolder:[self localString:@"addnewcustomer.typeOfClient"] kbType:UIKeyboardTypeDefault enabled:NO];
+        editCell.userInteractionEnabled = _isAddNew;
     } else if (indexPath.section == 5) {
         editCell = [self dateComboCell];
         editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO2;
-        customizeField(editCell.leftField, indexPath, 0, self.customer, @"visitDay", [self localString:@"addnewcustomer.visitingDay"], UIKeyboardTypeDefault, self);
-        editCell.leftField.tag = 0;
+        [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"visitDay" placeHolder:[self localString:@"addnewcustomer.visitingDay"] kbType:UIKeyboardTypeDefault enabled:NO];
+        editCell.userInteractionEnabled = _isAddNew;
     } else if (indexPath.section == _AddNewContact_Section || indexPath.section == _AddNewNote_Section) {
         static NSString * addCellIdentifier = @"addCell";
         cell = [tblVw dequeueReusableCellWithIdentifier:addCellIdentifier];
@@ -380,6 +385,10 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
             cell.imageView.image = [UIImage imageNamed:@"focus.png"];
             cell.textLabel.font = TCFont_HNLTComBd(_TV_FIELD_FONTSIZE);
             cell.textLabel.textColor = TCColor_DarkBlue();
+            if (! _isAddNew) {
+                cell.textLabel.textColor = [UIColor lightGrayColor];
+                cell.userInteractionEnabled = _isAddNew;
+            }
         }
         if (indexPath.section == _AddNewContact_Section) {
             cell.textLabel.text = [self localString:@"addnewcustomer.addContact"];
@@ -391,19 +400,19 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         switch (indexPath.row) {
             case 0:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"name", [self localString:@"addnewcustomer.name"], UIKeyboardTypeDefault, self);
+                [self customizeField:editCell.centerField path:indexPath column:0 modelObj:contact modelProp:@"name" placeHolder:[self localString:@"addnewcustomer.name"] kbType:UIKeyboardTypeDefault enabled:YES];
                 break;
             case 1:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"surname", [self localString:@"addnewcustomer.surname"], UIKeyboardTypeDefault, self);
+                [self customizeField:editCell.centerField path:indexPath column:0 modelObj:contact modelProp:@"surname" placeHolder:[self localString:@"addnewcustomer.surname"] kbType:UIKeyboardTypeDefault enabled:YES];
                 break;
             case 2:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"position", [self localString:@"addnewcustomer.position"], UIKeyboardTypeDefault, self);
+                [self customizeField:editCell.centerField path:indexPath column:0 modelObj:contact modelProp:@"position" placeHolder:[self localString:@"addnewcustomer.position"] kbType:UIKeyboardTypeDefault enabled:YES];
                 break;
             case 3:
                 editCell = [self singleTextCell];
-                customizeField(editCell.centerField, indexPath, 0, contact, @"phone", [self localString:@"addnewcustomer.phone"], UIKeyboardTypePhonePad, self);
+                [self customizeField:editCell.centerField path:indexPath column:0 modelObj:contact modelProp:@"phone" placeHolder:[self localString:@"addnewcustomer.phone"] kbType:UIKeyboardTypePhonePad enabled:YES];
                 break;
             default:
                 break;
@@ -465,7 +474,69 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     [tblVw setContentOffset:bottomOffset animated:YES];
 }
 
-#pragma mark - customized table view cell
+#pragma mark - calculate text field tag for navigations
+
+- (NSInteger) rowDeviation:(NSIndexPath *)indexPath {
+    NSInteger result = 0;
+    if (indexPath.section == _CUSTOMER_DETAIL_SECTION) {  // || indexPath.section == 2
+        if (indexPath.row == 2) {
+            result = 1;
+        } else if (indexPath.row > 2) {
+            result = 2;
+        }
+    }
+    return result;
+}
+
+- (NSInteger) calTag:(NSIndexPath *)indexPath column:(NSInteger)column {
+    NSArray *countPerSection = _isAddNew ? @[@1, @9, @0, @1, @0, @0]
+    : @[@1, @0, @0, @0, @0, @0];
+    
+    NSInteger result = 0;
+    // previous sections - sections above CONTACTS
+    for (NSInteger i = 0; i < indexPath.section && i < _CONTACT_SECTION_START; i++) {
+        result += [countPerSection[i] integerValue];
+    }
+    // CONTACTS sections
+    if (indexPath.section >= _CONTACT_SECTION_START) {
+        result += 4 * (indexPath.section - _CONTACT_SECTION_START);
+    }
+    result += indexPath.row + [self rowDeviation:indexPath];
+    result += column; // for rows which have more than 1 column
+    result += START_EDIT_VIEW_TAG;
+    // NSLog(@"Section: %i, Row: %i, Tag is %i", indexPath.section, indexPath.row, result);
+    if (result >= END_EDIT_VIEW_TAG) {
+        NSLog(@"Not enough tag values in 'Add New Customer' view, current tag value is %i", result);
+        return -1; // NOT ENOUGH TAG VALUES!
+    }
+    return result;
+}
+
+#pragma mark - customized table view cell contents
+
+- (void) customizeField:(DRTextField *)textField path:(NSIndexPath *)indexPath column:(NSInteger)columnInRow
+               modelObj:(NSObject *)modelObject modelProp:(NSString *)modelProp
+            placeHolder:(NSString *)placeHolder kbType:(UIKeyboardType)keyboardType
+                enabled:(BOOL)enabled{
+    textField.font = TCFont_HNLTComLt(_TV_FIELD_FONTSIZE);
+    textField.placeholder = placeHolder;
+    textField.keyboardType = keyboardType;
+    textField.returnKeyType = UIReturnKeyNext;
+    [textField setDataObject:modelObject dataProperty:modelProp];
+    textField.enabled = enabled;
+    if (enabled) {
+        textField.tag = [self calTag:indexPath column:columnInRow];
+    } else {
+        textField.textColor = [UIColor grayColor];
+    }
+    textField.delegate = self;
+}
+
+- (void) customizeField:(DRTextField *)textField path:(NSIndexPath *)indexPath column:(NSInteger)columnInRow
+               modelObj:(NSObject *)modelObject modelProp:(NSString *)modelProp
+            placeHolder:(NSString *)placeHolder kbType:(UIKeyboardType)keyboardType {
+    [self customizeField:textField path:indexPath column:columnInRow modelObj:modelObject modelProp:modelProp placeHolder:placeHolder kbType:keyboardType enabled:_isAddNew];
+}
 
 - (TCEditingCell *)editingCell:(TCEditingCellStyle)editingStyle reuseIdentifier:(NSString *)reuseIdentifier {
     TCEditingCell * cell = (TCEditingCell *)[tblVw dequeueReusableCellWithIdentifier:reuseIdentifier];

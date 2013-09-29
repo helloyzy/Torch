@@ -9,6 +9,8 @@
 #import "TCSysRes.h"
 #import "Store.h"
 
+#pragma mark - global resources
+
 static Store *gStoreInCall = nil;
 
 Store *storeInCall() {
