@@ -21,6 +21,11 @@
 @property (nonatomic,weak) IBOutlet UILabel *createOrderLabel;
 @property (nonatomic,weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic,weak) IBOutlet UITableView *tableView;
+@property (nonatomic) float fproductTotal;
+@property (nonatomic) float fdiscount;
+@property (nonatomic) float ftax;
+@property (nonatomic) float fsubtotal;
+@property (nonatomic) float fordertotal;
 
 @end
 
@@ -33,6 +38,7 @@
     NSMutableDictionary *promotionItems;
     NSMutableArray *displayPromotionItems;
     NSArray *productItems;
+
 }
 
 
@@ -187,11 +193,81 @@ return flag;
    
 }
 
+- (UIView *)drawFooterSummaryView {
+    
+    UIView *summaryView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 300, 120)];
+    
+    UILabel *productTotalLable = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
+    [productTotalLable setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    //productTotalLable.textColor = [UIColor blackColor];
+    [productTotalLable setText:[self localString:@"order.summary.productTotal"]];
+    
+    UILabel *discountLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 100, 20)];
+    [discountLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [discountLabel setText:[self localString:@"order.summary.discountLabel"]];
+    
+    
+    
+    UILabel *subtotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, 100, 20)];
+    [subtotalLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [subtotalLabel setText:[self localString:@"order.summary.subTotal"]];
+    
+    UILabel *taxLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, 100, 20)];
+    [taxLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [taxLabel setText:[self localString:@"order.summary.tax"]];
+    
+    UILabel *orderTotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 90, 100, 20)];
+    [orderTotalLabel setFont:[UIFont fontWithName:@"Helvetica Neue Bold" size:14]];
+    [orderTotalLabel setText:[self localString:@"order.summary.orderTotal"]];
+    
+    
+    [summaryView addSubview:productTotalLable];
+    [summaryView addSubview:discountLabel];
+    [summaryView addSubview:subtotalLabel];
+    [summaryView addSubview:taxLabel];
+    [summaryView addSubview:orderTotalLabel];
+    
+    
+    UILabel *productTotalPriceLable = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, 80, 20)];
+    [productTotalPriceLable setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [productTotalPriceLable setText: [NSString stringWithFormat:@"$%1.2f", self.fproductTotal]];
+    [productTotalPriceLable setTextAlignment:NSTextAlignmentRight];
+    
+    UILabel *discountPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 30, 80, 20)];
+    [discountPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [discountPriceLabel setText:[NSString stringWithFormat:@"-$%1.2f", self.fdiscount]];
+    [discountPriceLabel setTextAlignment:NSTextAlignmentRight];
+    
+    
+    UILabel *subtotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 50, 80, 20)];
+    [subtotalPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [subtotalPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.fsubtotal]];
+    [subtotalPriceLabel setTextAlignment:NSTextAlignmentRight];
+    
+    UILabel *taxPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 70, 80, 20)];
+    [taxPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [taxPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.ftax]];
+    [taxPriceLabel setTextAlignment:NSTextAlignmentRight];
+    
+    UILabel *orderTotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 90, 80, 20)];
+    [orderTotalPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue Bold" size:14]];
+    [orderTotalPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.fordertotal]];
+    [orderTotalPriceLabel setTextAlignment:NSTextAlignmentRight];
+    
+    [summaryView addSubview:productTotalPriceLable];
+    [summaryView addSubview:discountPriceLabel];
+    [summaryView addSubview:subtotalPriceLabel];
+    [summaryView addSubview:taxPriceLabel];
+    [summaryView addSubview:orderTotalPriceLabel];
+    return summaryView;
+}
+
 - (UIView *)drawFooterButtons {
-    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 300, 120)];
     
+    UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 300, 320)];
     
-    UIButton *promotionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 40, 290, 30)];
+    [footerView addSubview:[self drawFooterSummaryView]];
+    UIButton *promotionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 140, 290, 30)];
     [promotionButton setBackgroundImage:[UIImage imageNamed:@"bluebutton"] forState:UIControlStateNormal];
 
     [promotionButton setTitle:[self localString:@"order.viewPromotion"] forState:UIControlStateNormal];
@@ -203,7 +279,7 @@ return flag;
     
     
     if ([displayData count] >0) {
-        UIButton *orderCompletionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 80, 290, 29)];
+        UIButton *orderCompletionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 180, 290, 29)];
         [orderCompletionButton setBackgroundImage:[UIImage imageNamed:@"bluebutton"] forState:UIControlStateNormal];
         
         [orderCompletionButton setTitle:[self localString:@"order.completionButton"] forState:UIControlStateNormal];
@@ -213,9 +289,8 @@ return flag;
         [orderCompletionButton setTitleEdgeInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
         [footerView addSubview:orderCompletionButton];
     }
-    
+
     [footerView addSubview:promotionButton];
-    
     
     return footerView;
 }
@@ -615,7 +690,7 @@ return flag;
     if ([self isInSearchResultSection:section]) {
         return 0;
     }
-    return 140;
+    return 320;
 }
 
 @end

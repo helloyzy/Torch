@@ -113,6 +113,12 @@
 "store.startcall.title" = "Revision of Priorities";
 "store.startcall.text" = "please review the priorities for this client before performing any other task";
 
+"order.summary.productTotal" = "Products Total";
+"order.summary.discountLabel" = "Discount";
+"order.summary.subTotal" = "Subtotal";
+"order.summary.tax" = "Tax";
+"order.summary.orderTotal" = "Order Total";
+
 /*daxian*/
 
 

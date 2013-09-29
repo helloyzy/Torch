@@ -114,6 +114,12 @@
 
 "store.startcall.title" = "Revisión de Prioridades";
 "store.startcall.text" = "Por favor revise la prioridades para este cliente antes de realizar cualquier otra tarea";
+
+"order.summary.productTotal" = "Products Total";
+"order.summary.discountLabel" = "Discount";
+"order.summary.subTotal" = "Subtotal";
+"order.summary.tax" = "Tax";
+"order.summary.orderTotal" = "Order Total";
 /*daxian*/
 
 
