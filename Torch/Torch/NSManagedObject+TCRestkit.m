@@ -25,4 +25,9 @@
     [[TCDBUtils ibDataStore] save];
 }
 
+- (void)deleteObj {
+    [[TCDBUtils ibDataStore] removeEntity:self];
+    [NSManagedObject save];
+}
+
 @end

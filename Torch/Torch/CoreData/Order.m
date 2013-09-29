@@ -1,6 +1,7 @@
 #import "Order.h"
 #import <RestKit/RestKit.h>
 #import "OrderCredit.h"
+#import <NSManagedObject+InnerBand.h>
 
 @interface Order ()
 
@@ -22,6 +23,14 @@
     
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"orderCredits" toKeyPath:@"orderCredits" withMapping:[OrderCredit objectMapping]]];
     return mapping;
+}
+
++ (NSArray *)activeOrders {
+    return [self all];
+}
+
++ (NSInteger)activeOrderCount {
+    return [[self activeOrders] count];
 }
 
 @end
