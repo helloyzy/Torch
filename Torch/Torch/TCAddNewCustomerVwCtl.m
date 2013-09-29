@@ -30,61 +30,12 @@
 #define _TAG_BTN_SHOWCOMBO1 10098
 #define _TAG_BTN_SHOWCOMBO2 10099
 #define _CUSTOMER_DETAIL_SECTION 1
+#define _GPS_SECTION 2
 #define _CONTACT_SECTION_START 6
 #define _AddNewContact_Section [self sectionFromContact:0]
 #define _AddNewNote_Section [self sectionFromContact:1]
 #define _AlertViewTag_CancelConfirmation 100
 #define _AlertViewTag_SaveConfirmation 101
-
-/**
-// only for sections which has rows containing two columns (like city and state)
-int rowDeviation(NSIndexPath * indexPath) {
-    int result = 0;
-    if (indexPath.section == _CUSTOMER_DETAIL_SECTION) {
-        if (indexPath.row == 2) {
-            result = 1;
-        } else if (indexPath.row > 2) {
-            result = 2;
-        }
-    }
-    return result;
-}
-
-int calculateTag(NSIndexPath * indexPath, int column) {
-    static int countPerSection[] = {1, 9, 0, 1, 0, 0};
-    int result = 0;
-    // previous sections - sections above CONTACTS
-    for (int i = 0; i < indexPath.section && i < _CONTACT_SECTION_START; i++) {
-        result += countPerSection[i];
-    }
-    // CONTACTS sections
-    if (indexPath.section >= _CONTACT_SECTION_START) {
-        result += 4 * (indexPath.section - _CONTACT_SECTION_START);
-    }
-    result += indexPath.row + rowDeviation(indexPath);
-    result += column; // for rows which have more than 1 column
-    result += START_EDIT_VIEW_TAG;
-    // NSLog(@"Section: %i, Row: %i, Tag is %i", indexPath.section, indexPath.row, result);
-    if (result >= END_EDIT_VIEW_TAG) {
-        NSLog(@"Not enough tag values in 'Add New Customer' view, current tag value is %i", result);
-        return -1; // NOT ENOUGH TAG VALUES!
-    }
-    return result;
-}
-
-void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column, NSObject * modelObject, NSString * modelProp, NSString * textPlaceHolder, UIKeyboardType keyboardType, id delegate, BOOL enabled, TCAddNewCustomerVwCtl * controller) {
-    textField.font = TCFont_HNLTComLt(_TV_FIELD_FONTSIZE);
-    textField.placeholder = textPlaceHolder;
-    [textField setDataObject:modelObject dataProperty:modelProp];
-    textField.keyboardType = keyboardType;
-    if (enabled) {
-        textField.tag = [controller calc;
-    } 
-    textField.returnKeyType = UIReturnKeyNext;
-    textField.delegate = delegate;
-    textField.enabled = enabled;
-}
- */
 
 @interface TCAddNewCustomerVwCtl () {
     BOOL _isAddNew;
@@ -286,12 +237,19 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (! _isAddNew) {
+        if (indexPath.section == _GPS_SECTION) { // || indexPath.section == _AddNewNote_Section
+            return 0;
+        }
+    }
     return _TV_ROW_HEIGHT;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 2) { //section ==2 --> button section
-        return 13.0;
+    if (! _isAddNew) {
+        if (section == _GPS_SECTION) { // || indexPath.section == _AddNewNote_Section
+            return 0.1;
+        }
     }
     return 5.0;
 }
@@ -299,6 +257,11 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return  10.0;
+    }
+    if (! _isAddNew) {
+        if (section == _GPS_SECTION) {
+            return 0.1;
+        }
     }
     return 5.0;
 }
@@ -350,68 +313,71 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
         cell = [tblVw dequeueReusableCellWithIdentifier:btnCellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:btnCellIdentifier];
-            UIView * bgVw = [[UIView alloc] initWithFrame:CGRectZero];
-            bgVw.backgroundColor = [UIColor clearColor];
-            cell.backgroundView = bgVw;
-            // cell.backgroundColor = [UIColor clearColor];
-            // cell.contentView.backgroundColor = [UIColor clearColor];
-            CGRect btnFrame = CGRectMake(0, 0, cell.contentView.bounds.size.width - 18, CGRectGetHeight(cell.contentView.bounds));
-            UIButton * btn = [[UIButton alloc] initWithFrame:btnFrame]; // CGRectInset(cell.bounds, 5, 5)
-            btn.titleLabel.font = TCFont_HNLTComBd(14);
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [btn setTitle:[self localString:@"addnewcustomer.obtainGPSInfo"] forState:UIControlStateNormal];
-            [btn setBackgroundImage:[UIImage imageNamed:@"bluebutton.png"] forState:UIControlStateNormal];
-            [btn addTarget:self action:@selector(requestLocation) forControlEvents:UIControlEventTouchUpInside];
-            [cell.contentView addSubview:btn];
+            if (_isAddNew) {
+                UIView * bgVw = [[UIView alloc] initWithFrame:CGRectZero];
+                bgVw.backgroundColor = [UIColor clearColor];
+                cell.backgroundView = bgVw;
+                CGRect btnFrame = CGRectMake(0, 0, 302, 35);
+                UIButton * btn = [[UIButton alloc] initWithFrame:btnFrame]; // CGRectInset(cell.bounds, 5, 5)
+                btn.titleLabel.font = TCFont_HNLTComBd(14);
+                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [btn setTitle:[self localString:@"addnewcustomer.obtainGPSInfo"] forState:UIControlStateNormal];
+                [btn setBackgroundImage:[UIImage imageNamed:@"bluebutton.png"] forState:UIControlStateNormal];
+                [btn addTarget:self action:@selector(requestLocation) forControlEvents:UIControlEventTouchUpInside];
+                [cell.contentView addSubview:btn];
+            } else {
+                cell.hidden = YES;
+            }
         }
     } else if (indexPath.section == 3) {
         editCell = [self singleTextCell];
         [self customizeField:editCell.centerField path:indexPath column:0 modelObj:self.customer modelProp:@"rfc" placeHolder:[self localString:@"addnewcustomer.rfc"] kbType:UIKeyboardTypeDefault];
     } else if (indexPath.section == 4) {
         editCell = [self comboCell:@[@"Text1", @"Text2"]];
-        editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO1;
-        [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"customerType" placeHolder:[self localString:@"addnewcustomer.typeOfClient"] kbType:UIKeyboardTypeDefault enabled:NO];
         editCell.userInteractionEnabled = _isAddNew;
+        editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO1;
+        [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"customerType" placeHolder:[self localString:@"addnewcustomer.typeOfClient"] kbType:UIKeyboardTypeDefault];
+        editCell.leftField.tag = 0; //avoid jump to this field
     } else if (indexPath.section == 5) {
         editCell = [self dateComboCell];
-        editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO2;
-        [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"visitDay" placeHolder:[self localString:@"addnewcustomer.visitingDay"] kbType:UIKeyboardTypeDefault enabled:NO];
         editCell.userInteractionEnabled = _isAddNew;
+        editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO2;
+        [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"visitDay" placeHolder:[self localString:@"addnewcustomer.visitingDay"] kbType:UIKeyboardTypeDefault];
+        editCell.leftField.tag = 0; //avoid jump to this field
     } else if (indexPath.section == _AddNewContact_Section || indexPath.section == _AddNewNote_Section) {
         static NSString * addCellIdentifier = @"addCell";
         cell = [tblVw dequeueReusableCellWithIdentifier:addCellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:addCellIdentifier];
-            cell.imageView.image = [UIImage imageNamed:@"focus.png"];
             cell.textLabel.font = TCFont_HNLTComBd(_TV_FIELD_FONTSIZE);
-            cell.textLabel.textColor = TCColor_DarkBlue();
-            if (! _isAddNew) {
+            cell.userInteractionEnabled = _isAddNew;
+            if (_isAddNew) {
+                cell.imageView.image = [UIImage imageNamed:@"focus.png"];
+                cell.textLabel.textColor = TCColor_DarkBlue();
+            } else {
                 cell.textLabel.textColor = [UIColor lightGrayColor];
-                cell.userInteractionEnabled = _isAddNew;
             }
         }
         if (indexPath.section == _AddNewContact_Section) {
             cell.textLabel.text = [self localString:@"addnewcustomer.addContact"];
         } else {
             cell.textLabel.text = [self localString:@"addnewcustomer.addNote"];
+            // cell.hidden = ! _isAddNew;
         }
     } else { // if we have contacts section if (self.contacts.count > 0) 
         TCContact *contact = self.contacts[indexPath.section - _CONTACT_SECTION_START];
+        editCell = [self singleTextCell];
         switch (indexPath.row) {
             case 0:
-                editCell = [self singleTextCell];
                 [self customizeField:editCell.centerField path:indexPath column:0 modelObj:contact modelProp:@"name" placeHolder:[self localString:@"addnewcustomer.name"] kbType:UIKeyboardTypeDefault enabled:YES];
                 break;
             case 1:
-                editCell = [self singleTextCell];
                 [self customizeField:editCell.centerField path:indexPath column:0 modelObj:contact modelProp:@"surname" placeHolder:[self localString:@"addnewcustomer.surname"] kbType:UIKeyboardTypeDefault enabled:YES];
                 break;
             case 2:
-                editCell = [self singleTextCell];
                 [self customizeField:editCell.centerField path:indexPath column:0 modelObj:contact modelProp:@"position" placeHolder:[self localString:@"addnewcustomer.position"] kbType:UIKeyboardTypeDefault enabled:YES];
                 break;
             case 3:
-                editCell = [self singleTextCell];
                 [self customizeField:editCell.centerField path:indexPath column:0 modelObj:contact modelProp:@"phone" placeHolder:[self localString:@"addnewcustomer.phone"] kbType:UIKeyboardTypePhonePad enabled:YES];
                 break;
             default:
@@ -524,12 +490,15 @@ void customizeField(DRTextField * textField, NSIndexPath * indexPath, int column
     textField.returnKeyType = UIReturnKeyNext;
     [textField setDataObject:modelObject dataProperty:modelProp];
     textField.enabled = enabled;
+    textField.delegate = self;
+    // need to reset value since field might be reused among different sections
     if (enabled) {
         textField.tag = [self calTag:indexPath column:columnInRow];
+        textField.textColor = [UIColor blackColor];
     } else {
+        textField.tag = 0;
         textField.textColor = [UIColor grayColor];
     }
-    textField.delegate = self;
 }
 
 - (void) customizeField:(DRTextField *)textField path:(NSIndexPath *)indexPath column:(NSInteger)columnInRow

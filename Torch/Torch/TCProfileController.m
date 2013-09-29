@@ -100,6 +100,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     // alert view is shown in a window different from our main window;
+    setStoreInCall(nil);
     [self toLogin];
 }
 
