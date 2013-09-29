@@ -29,6 +29,7 @@
 		1C40315617C5FB1F007D58CC /* client-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C40315517C5FB1F007D58CC /* client-pin.png */; };
 		1C4064D817F7C39900481E17 /* TCDataStatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4064D617F7C39900481E17 /* TCDataStatusController.m */; };
 		1C4064D917F7C39900481E17 /* TCDataStatusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C4064D717F7C39900481E17 /* TCDataStatusController.xib */; };
+		1C4064DC17F7C5E100481E17 /* UIViewController+MGBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4064DB17F7C5E100481E17 /* UIViewController+MGBox.m */; };
 		1C65E2E417C33CE100FA94B2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C65E2E317C33CE100FA94B2 /* MapKit.framework */; };
 		1C65E2E617C33D6700FA94B2 /* TCRouteMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */; };
 		1C65E2E817C3416B00FA94B2 /* TCRouteTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */; };
@@ -233,6 +234,8 @@
 		1C4064D517F7C39900481E17 /* TCDataStatusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDataStatusController.h; sourceTree = "<group>"; };
 		1C4064D617F7C39900481E17 /* TCDataStatusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDataStatusController.m; sourceTree = "<group>"; };
 		1C4064D717F7C39900481E17 /* TCDataStatusController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCDataStatusController.xib; sourceTree = "<group>"; };
+		1C4064DA17F7C5E100481E17 /* UIViewController+MGBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MGBox.h"; sourceTree = "<group>"; };
+		1C4064DB17F7C5E100481E17 /* UIViewController+MGBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MGBox.m"; sourceTree = "<group>"; };
 		1C65E2E317C33CE100FA94B2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1C65E2E517C33D6700FA94B2 /* TCRouteMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRouteMapView.xib; sourceTree = "<group>"; };
 		1C65E2E717C3416B00FA94B2 /* TCRouteTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCRouteTableView.xib; sourceTree = "<group>"; };
@@ -743,6 +746,8 @@
 				1C6FD3E917F2741D0049FFFF /* TCAddNoteController.m */,
 				1C4064D517F7C39900481E17 /* TCDataStatusController.h */,
 				1C4064D617F7C39900481E17 /* TCDataStatusController.m */,
+				1C4064DA17F7C5E100481E17 /* UIViewController+MGBox.h */,
+				1C4064DB17F7C5E100481E17 /* UIViewController+MGBox.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1258,6 +1263,7 @@
 				DC56020C17F28195009BA08C /* _Product.m in Sources */,
 				DC56020D17F28195009BA08C /* Product.m in Sources */,
 				1C4064D817F7C39900481E17 /* TCDataStatusController.m in Sources */,
+				1C4064DC17F7C5E100481E17 /* UIViewController+MGBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
