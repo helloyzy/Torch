@@ -85,6 +85,8 @@
 
 #pragma mark - customized navigation bar
 
+#define JUMP_BTN_TAG 101
+
 + (void) setNavbarBgImg:(UINavigationBar *)navBar {
     // need a image sized 320 * 44 (or even bigger)
     UIImage * navBgImg = [UIImage imageNamed:@"navbar_bg.png"];
@@ -103,8 +105,11 @@
     jump.titleLabel.font = [UIFont systemFontOfSize:13];
     [jump setTitle:@"Tap to return to  call in progress" forState:UIControlStateNormal];
     [jump addTarget:self action:@selector(jumpToCallInProgress:) forControlEvents:UIControlEventTouchUpInside];
+    jump.hidden = YES;
+    jump.tag = JUMP_BTN_TAG;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMyDayWillShow:) name:MYDAY_WILLAPPEAR_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMyDayWillHide:) name:MYDAY_WILLDISAPPEAR_NOTIFICATION object:nil];
     [navBar addSubview:jump];
-    [navBar bringSubviewToFront:jump];
 //    UIView * bottomSeparator = [[UIView alloc] initWithFrame:CGRectMake(0, navBar.bounds.size.height - 1, navBar.bounds.size.width, 1)];
 //    bottomSeparator.userInteractionEnabled = NO;
 //    bottomSeparator.backgroundColor = [UIColor colorWithRed:134/255.0f green:134/255.0f blue:134/255.0f alpha:1];
@@ -112,19 +117,39 @@
 
 }
 
++ (UINavigationController *)findGlobalNavController {
+    UIViewController *root = WINDOW().rootViewController;
+    if ([root isKindOfClass:[IIViewDeckController class]]) {
+        IIViewDeckController *rootDeck = (IIViewDeckController *)root;
+        return (UINavigationController *)rootDeck.centerController;
+    }
+    return nil;
+}
+
++ (UIButton *)findJumpBtn {
+    UINavigationBar *bar = [self findGlobalNavController].navigationBar;
+    return (UIButton *)[bar viewWithTag:JUMP_BTN_TAG];
+}
+
++ (void)onMyDayWillShow:(NSNotification *)noti {
+    if (storeInCall()) {
+        [self findJumpBtn].hidden = NO;
+    }
+}
+
++ (void)onMyDayWillHide:(NSNotification *)noti {
+    [self findJumpBtn].hidden = YES;
+}
+
 + (void)jumpToCallInProgress:(id)sender {
     Store *store = storeInCall();
     if (store) {
-        UIViewController *root = WINDOW().rootViewController;
-        if ([root isKindOfClass:[IIViewDeckController class]]) {
-            IIViewDeckController *rootDeck = (IIViewDeckController *)root;
-            UINavigationController *nav = (UINavigationController *)rootDeck.centerController;
-            [nav popToRootViewControllerAnimated:NO];
-            TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
-            controller.currentStore = store;
-            controller.currentIndex =  store.sequenceNum;
-            [nav pushViewController:controller animated:YES];
-        }
+        UINavigationController *nav = [self findGlobalNavController];
+        [nav popToRootViewControllerAnimated:NO];
+        TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
+        controller.currentStore = store;
+        controller.currentIndex =  store.sequenceNum;
+        [nav pushViewController:controller animated:YES];
     }
 }
 
