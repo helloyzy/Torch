@@ -14,7 +14,7 @@
 #import "TCUtils.h"
 #import "TCLoginViewController.h"
 #import "TCSysRes.h"
-#import "Order.h";
+#import "Order.h"
 
 @interface TCProfileController ()
 

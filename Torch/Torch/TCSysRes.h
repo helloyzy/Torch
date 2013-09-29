@@ -26,6 +26,7 @@ UIColor * TCColor_DarkBlue();
 
 // extend the label with the Title style
 UILabel * TCLbl_Title_Ext(UILabel * lbl);
+void TCLbl_TextUnderline(UILabel *lbl, NSString *text); // make lbl text underline
 
 // table view section header
 UIView * TCVw_TblVw_SectHeader(NSString * titleKey);
