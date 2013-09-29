@@ -11,6 +11,8 @@
 
 @implementation Product
 
+@synthesize productPrice;
+
 // Custom logic goes here.
 
 + (RKEntityMapping *)objectMapping

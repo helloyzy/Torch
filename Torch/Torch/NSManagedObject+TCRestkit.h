@@ -15,5 +15,6 @@
 + (RKEntityMapping *)objectMapping;
 + (id)newInstance;
 + (void)save;
+- (void)deleteObj;
 
 @end

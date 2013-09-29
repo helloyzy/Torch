@@ -29,10 +29,22 @@
 }
 
 - (void)initData {
-    PromotionItem * item1 = [PromotionItem newPromotion:@"1"];
-    PromotionItem * item2 = [PromotionItem newPromotion:@"2"];
-    PromotionItem * item3 = [PromotionItem newPromotion:@"3"];
-    data = @[item1, item2, item3];
+    PromotionItem *p_10 = [PromotionItem newPromotion:@"10% single"];
+    p_10.type = PromotionTypeNormal;
+    p_10.discountPercentage = 0.1;
+    PromotionItem *p_15 = [PromotionItem newPromotion:@"15% single"];
+    p_15.type = PromotionTypeNormal;
+    p_15.discountPercentage = 0.15;
+    PromotionItem *p_FreeGift = [PromotionItem newPromotion:@"free item"];
+    p_FreeGift.type = PromotionTypeNormal;
+    p_FreeGift.discountPercentage = 0;
+    PromotionItem *p_w_10 = [PromotionItem newPromotion:@"10% whole order"];
+    p_w_10.type = PromotionTypeDiscountOrder;
+    p_w_10.discountPercentage = 0.1;
+    PromotionItem *p_w_15 = [PromotionItem newPromotion:@"15% whole order"];
+    p_w_15.type = PromotionTypeDiscountOrder;
+    p_w_15.discountPercentage = 0.15;
+    data = @[p_10, p_15, p_FreeGift, p_w_10, p_w_15];
 }
 
 - (void)initTopView {

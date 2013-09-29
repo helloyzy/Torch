@@ -19,6 +19,7 @@
 #import "Note.h"
 #import "TCUtils.h"
 #import "TCAddNoteController.h"
+#import "UIViewController+MGBox.h"
 
 @interface TCSummaryViewController ()
 
@@ -59,36 +60,6 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
 
     }
     return self;
-}
-
-- (MGLine *)lineWithHeight:(int)height color:(UIColor *)color {
-    MGLine *pad = [MGLine lineWithSize:(CGSize){320, height}];
-    pad.backgroundColor = color;
-    return pad;
-}
-
-- (UILabel *)cell:(NSString *)text numberOfLines:(int)numberOfLines textColor:(UIColor *)textColor size:(CGSize const)size {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, size.width, size.height)];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.numberOfLines = numberOfLines;
-    label.backgroundColor = [UIColor clearColor];
-    label.textColor = textColor;
-    label.text = text;
-    label.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:16];
-    return label;
-}
-
-- (MGLine *)sectionHeader:(NSString *)title backgroundColor:(UIColor *)backgroundColor underlineColor:(UIColor *)underlineColor fontName:(NSString *)fontName {
-    UILabel* label = [self cell:title numberOfLines:1 textColor:TCColorLineBlue size:(CGSize){280, 20}];
-    label.font = [UIFont fontWithName:fontName size:17];
-    label.textAlignment = NSTextAlignmentLeft;
-
-    MGLine *line = [MGLine lineWithLeft:label right:nil size:rowSize];
-    line.topPadding = line.leftPadding = 16;    
-    line.borderStyle = MGBorderEtchedBottom;
-    line.backgroundColor = backgroundColor;
-    line.bottomBorderColor = underlineColor;
-    return line;
 }
 
 - (void)viewDidLoad

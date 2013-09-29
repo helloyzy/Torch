@@ -77,6 +77,11 @@
 
 "storeInCall.alert" = "Already has a call in progress!";
 
+"profile.myday" = "My Day";
+"profile.datastatus" = "Data Status";
+"profile.logout" = "Logout";
+"profile.logout.warning" = "You need to send out the order data first!";
+
 /*Bo*/
 "priority.title" = "Priorities";
 
