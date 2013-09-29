@@ -12,6 +12,7 @@
 #import <MGScrollView.h>
 #import <MGLine.h>
 #import "GraphicsUtils.h"
+#import <Reachability.h>
 
 @interface TCDataStatusController ()
 
@@ -62,8 +63,11 @@
     MGLine *text = [self getLine:@"You do not currently have a connection. Please connect to WiFi or cellular netowrk to enable sending of data." backgroundColor:[UIColor whiteColor] underlineColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15] size:(CGSize) {280, 70} numberOfLines:3];
     text.height = 100;
     
-    [scroller.boxes addObject:text];
-    
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+
+    if (reach.isReachable) {
+        [scroller.boxes addObject:text];
+    }
     [scroller layout];
     [self.view addSubview:scroller];
 }
