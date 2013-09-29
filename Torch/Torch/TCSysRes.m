@@ -60,6 +60,11 @@ UILabel * TCLbl_Title_Ext(UILabel * lbl) {
     return lbl;
 }
 
+void TCLbl_TextUnderline(UILabel *lbl, NSString *text) {
+    NSDictionary *underlineAttr = @{NSUnderlineStyleAttributeName : @1};
+    lbl.attributedText = [[NSAttributedString alloc]initWithString:text attributes:underlineAttr];
+}
+
 /**
  UILabel * TCLbl_Title(CGRect frame) {
  UILabel * result = [[UILabel alloc] initWithFrame:frame];

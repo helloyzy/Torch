@@ -92,7 +92,7 @@
 #ifdef TC_DEBUG
     [self initDB];
     // [self serviceTest];
-    self.viewController = [[TCDataStatusController alloc] init];
+    self.viewController = [self loginController];
     // self.viewController = [self controllerWithinNavCtr];
 #else
     if ([self isLoginRequired]) {

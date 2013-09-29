@@ -299,8 +299,8 @@ static NSString *kViewControllerKey = @"viewController";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundView = backgroundView;
         }
-    } else if (indexPath.section ==1) {
-        static NSString *storeHomeSec2Identifier = @"storeHomeSection2";
+    } else if (indexPath.section ==1) { // contact section
+        static NSString *storeHomeSec2Identifier = @"CONTACT_SECTION";
         cell = [tableView dequeueReusableCellWithIdentifier:storeHomeSec2Identifier];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:storeHomeSec2Identifier];
@@ -317,25 +317,31 @@ static NSString *kViewControllerKey = @"viewController";
             _txtTitle.enabled = NO;
             _txtTitle.textAlignment = NSTextAlignmentLeft;
             _txtTitle.tag = TAG_SECTION2_TITLE;
-            UITextField *_txtPhone=[[UITextField alloc]initWithFrame:CGRectMake(160.0, 2.0, 130.0, ROW_HEIGHT/2)];
-            // [_txtPhone setPlaceholder:[self getContactorPhone:indexPath.row]];
-            _txtPhone.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:14];
-            _txtPhone.textAlignment = NSTextAlignmentRight;
-            _txtPhone.enabled = NO;
-            _txtPhone.tag = TAG_SECTION2_PHONE;
+            UILabel *_lblPhone = [[UILabel alloc]initWithFrame:CGRectMake(160.0, 2.0, 130.0, ROW_HEIGHT/2)];
+            _lblPhone.font =  TCFont_HNLTComLt(14);
+            _lblPhone.textAlignment = NSTextAlignmentRight;
+            _lblPhone.tag = TAG_SECTION2_PHONE;
+            _lblPhone.textColor = [UIColor lightGrayColor];
+            [self setupClickRecognizerForView:_lblPhone action:@selector(tapContactPhone)];
             cell.backgroundView = backgroundView;
             [cell addSubview:_txtName];
             [cell addSubview:_txtTitle];
-            [cell addSubview:_txtPhone];
+            [cell addSubview:_lblPhone];
             cell.selectionStyle = UITableViewCellEditingStyleNone;
         }
         UITextField *nameField = (UITextField *)[cell viewWithTag:TAG_SECTION2_NAME];
         nameField.placeholder = [self getContactorName:indexPath.row];
         UITextField *titleField = (UITextField *)[cell viewWithTag:TAG_SECTION2_TITLE];
         titleField.placeholder = [self getContactorTitle:indexPath.row];
-        UITextField *phoneField = (UITextField *)[cell viewWithTag:TAG_SECTION2_PHONE];
-        phoneField.placeholder = [self getContactorPhone:indexPath.row];
-        
+        UILabel *phoneField = (UILabel *)[cell viewWithTag:TAG_SECTION2_PHONE];
+        NSString *phone = [self getContactorPhone:indexPath.row];
+        if ([self.currentStore callInProgress]) {
+            phoneField.textColor = [UIColor lightGrayColor];
+            phoneField.attributedText = [[NSAttributedString alloc]initWithString:phone attributes:nil];
+        } else {
+            phoneField.textColor = [UIColor blueColor];
+            TCLbl_TextUnderline(phoneField, phone);
+        }
     } else {
         // If no cell is available, create a new one using the given identifier.
         static NSString *storeHomeSec3Identifier = @"storeHomeSection3";
@@ -354,21 +360,39 @@ static NSString *kViewControllerKey = @"viewController";
 	return cell;
 }
 
+- (void)setupClickRecognizerForView:(UIView *)view action:(SEL)action{
+    UITapGestureRecognizer * clickRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:action];
+    [clickRecognizer setNumberOfTapsRequired:1];
+    [clickRecognizer setNumberOfTouchesRequired:1];
+    clickRecognizer.cancelsTouchesInView = YES;
+    [view setUserInteractionEnabled:YES];
+    [view addGestureRecognizer:clickRecognizer];
+}
 
+- (void)tapContactPhone {
+    // start call
+    if (! [self.currentStore callInProgress]) {
+        [self sliderDidSlideToEnd:nil];
+    }
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"UIButton was selected");
-
-       UIViewController *targetViewController = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kViewControllerKey];
     switch (indexPath.section) {
         case 0:
             break;
         case 1:
-            break;  
-        default:
+            break;
+        case 2: {
+            UIViewController *targetViewController = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kViewControllerKey];
             [[self navigationController] pushViewController:targetViewController animated:YES];
             break;
-    }	}
+        }
+        default:
+            break;
+    }
+}
+
 + (UIButton *)newButtonWithTitle:(NSString *)title
                           target:(id)target
                         selector:(SEL)selector
