@@ -26,6 +26,7 @@
 #import "TCAddNewCustomerVwCtl.h"
 #import "TCOrderHistory.h"
 #import "HersheySSOUtils.h"
+#import "TCDataStatusController.h"
 
 #import "TCDBUtils.h"
 #import "TCSvcUtils.h"
@@ -91,7 +92,7 @@
 #ifdef TC_DEBUG
     [self initDB];
     // [self serviceTest];
-    self.viewController = [self loginController];
+    self.viewController = [[TCDataStatusController alloc] init];
     // self.viewController = [self controllerWithinNavCtr];
 #else
     if ([self isLoginRequired]) {

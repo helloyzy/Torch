@@ -25,11 +25,17 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
     return label;
 }
 
-- (MGLine *)sectionHeader:(NSString *)title backgroundColor:(UIColor *)backgroundColor underlineColor:(UIColor *)underlineColor fontName:(NSString *)fontName {
-    UILabel* label = [self cell:title numberOfLines:1 textColor:TCColorLineBlue size:(CGSize){280, 20}];
-    label.font = [UIFont fontWithName:fontName size:17];
+- (MGLine *)sectionHeader:(NSString *)title backgroundColor:(UIColor *)backgroundColor underlineColor:(UIColor *)underlineColor fontName:(NSString *)font {
+    CGSize size = (CGSize) {280, 20};
+    return [self getLine:title backgroundColor:backgroundColor underlineColor:underlineColor font:[UIFont fontWithName:font size:17] size:size numberOfLines:1];
+
+}
+
+- (MGLine *)getLine:(NSString *)title backgroundColor:(UIColor *)backgroundColor underlineColor:(UIColor *)underlineColor font:(UIFont *)font size:(CGSize)size numberOfLines:(int)numberOfLines {
+    UILabel* label = [self cell:title numberOfLines:numberOfLines textColor:TCColorLineBlue size:size];
+    label.font = font;
     label.textAlignment = NSTextAlignmentLeft;
-    
+
     MGLine *line = [MGLine lineWithLeft:label right:nil size:rowSize];
     line.topPadding = line.leftPadding = 16;
     line.borderStyle = MGBorderEtchedBottom;
