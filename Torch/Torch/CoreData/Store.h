@@ -5,6 +5,8 @@
 // Custom logic goes here.
 
 - (StoreCall *)callInProgress;
+
 @property(nonatomic, copy)NSString *sequenceNum;
+@property(nonatomic, assign)CGFloat taxRate;
 
 @end

@@ -8,11 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    PromotionTypeNormal,
+    PromotionTypeDiscountOrder
+} PromotionType;
+
 @interface PromotionItem : NSObject
 
 + (PromotionItem *) newPromotion:(NSString *)key;
 
 @property(nonatomic, copy)NSString * key;
+@property(nonatomic, assign)PromotionType type;
+@property(nonatomic, assign)CGFloat discountPercentage;
 @property(nonatomic, copy)NSString * name;
 @property(nonatomic, copy)NSString * description;
 @property(nonatomic, copy)NSDate * expiration;

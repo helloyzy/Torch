@@ -13,7 +13,7 @@
 
 @implementation Store
 
-@synthesize sequenceNum;
+@synthesize sequenceNum, taxRate;
 
 + (RKEntityMapping *)objectMapping
 {
