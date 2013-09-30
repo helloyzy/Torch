@@ -58,7 +58,6 @@
 
 }
 -(BOOL)isDiscountPromotionItemExist {
-    
     BOOL discountPromotionItemExist = NO;
     for (NSString *promotionSN in displayPromotionItems) {
         PromotionItem *promotionObject = (PromotionItem *) [promotionItems objectForKey:promotionSN];
@@ -102,9 +101,23 @@
     [self refreshTableView];
 }
 
+-(BOOL)isPromotionItemAllreadyExisting: (NSString *)promotionKey {
+    NSObject *promotionObject = [promotionItems objectForKey:promotionKey];
+    if (promotionObject == nil) {
+        return NO;
+    }
+    return YES;
+}
+
 -(void)setSelectedPromotionItem:(PromotionItem *)promotionItem {
     if(!promotionItems) promotionItems = [[NSMutableDictionary alloc] init];
      currentPromotionItem = promotionItem;
+    
+    if ([self isPromotionItemAllreadyExisting:promotionItem.key]) {
+        // if promotion item already existing, not need to do anything;
+        return;
+    }
+    
     // if the overall discount promotion exist, prompt for replace
     if ([self isDiscountPromotionItemExist] && promotionItem.type == PromotionTypeDiscountOrder) {
         [self showDiscountPromotionReplacementConfirmationWindow];
@@ -912,7 +925,7 @@
         ProductItemObject *productObject = (ProductItemObject *)[productCollection objectForKey:productSN];
         if (![productObject.productUnitNum isEqualToString: @"0"]) {
             self.fproductTotal += [productObject.productUnitNum doubleValue]*[productObject.productPrice doubleValue];
-            self.fproductTotal += [productObject.productUnitNum doubleValue]*1;
+            //self.fproductTotal += [productObject.productUnitNum doubleValue]*1;
         }
 
     }

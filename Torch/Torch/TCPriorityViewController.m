@@ -49,7 +49,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSLog(@"%@",self.currentStore.name);
     self.storeNameLable.text = self.currentStore.name;
     tableData = [self populatePriorityData];
 
