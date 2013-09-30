@@ -188,6 +188,9 @@ static NSString *kViewControllerKey = @"viewController";
         
         headerLbl.backgroundColor = [UIColor clearColor];
         headerLbl.text = self.currentStore.name;
+        headerLbl.adjustsLetterSpacingToFitWidth = YES;
+        headerLbl.adjustsFontSizeToFitWidth = YES;
+        headerLbl.minimumScaleFactor = 0.5;
         headerImage.frame = CGRectMake(8, 20, tableView.bounds.size.width-14, 2);
         headerLbl.font =[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
         headerLbl.textColor =[UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
