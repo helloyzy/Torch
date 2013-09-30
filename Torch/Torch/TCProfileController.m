@@ -15,6 +15,7 @@
 #import "TCLoginViewController.h"
 #import "TCSysRes.h"
 #import "Order.h"
+#import "HersheySSOUtils.h"
 
 @interface TCProfileController ()
 
@@ -90,18 +91,23 @@
 }
 
 - (void)logout {
-    if ([Order activeOrderCount] > 0) {
-        showAlert(nil, [self localString:@"profile.logout.warning"], self);
-        return;
-    } else {
-        [self toLogin];
-    }   
+//    if ([Order activeOrderCount] > 0) {
+//        showAlert(nil, [self localString:@"profile.logout.warning"], self);
+//        return;
+//    } else {
+//        [self _logout];
+//    }
+    [self _logout];
+}
+
+- (void)_logout {
+    [HersheySSOUtils logout];
+    setStoreInCall(nil);
+    [self toLogin];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     // alert view is shown in a window different from our main window;
-    setStoreInCall(nil);
-    [self toLogin];
 }
 
 - (void)toLogin {
