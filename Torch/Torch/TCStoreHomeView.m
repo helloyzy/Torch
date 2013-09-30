@@ -321,7 +321,8 @@ static NSString *kViewControllerKey = @"viewController";
             _lblPhone.font =  TCFont_HNLTComLt(14);
             _lblPhone.textAlignment = NSTextAlignmentRight;
             _lblPhone.tag = TAG_SECTION2_PHONE;
-            [self setupClickRecognizerForView:_lblPhone action:@selector(tapContactPhone)];
+            _lblPhone.textColor = [UIColor blackColor];
+            [self setupClickRecognizerForView:_lblPhone action:@selector(tapContactPhone:)];
             cell.backgroundView = backgroundView;
             [cell addSubview:_txtName];
             [cell addSubview:_txtTitle];
@@ -334,14 +335,15 @@ static NSString *kViewControllerKey = @"viewController";
         titleField.placeholder = [self getContactorTitle:indexPath.row];
         UILabel *phoneField = (UILabel *)[cell viewWithTag:TAG_SECTION2_PHONE];
         NSString *phone = [self getContactorPhone:indexPath.row];
-        if (isCallInProgress) {
-            phoneField.textColor = [UIColor lightGrayColor];
-            phoneField.attributedText = [[NSAttributedString alloc]initWithString:phone attributes:nil];
-        } else {
-            phoneField.textColor = [UIColor blueColor];
-            TCLbl_TextUnderline(phoneField, phone);
-        }
-        phoneField.userInteractionEnabled = ! isCallInProgress;
+        phoneField.text = phone;
+//        if (isCallInProgress) {
+//            phoneField.textColor = [UIColor lightGrayColor];
+//            phoneField.attributedText = [[NSAttributedString alloc]initWithString:phone attributes:nil];
+//        } else {
+//            phoneField.textColor = [UIColor blueColor];
+//            TCLbl_TextUnderline(phoneField, phone);
+//        }
+//        phoneField.userInteractionEnabled = ! isCallInProgress;
     } else {
         // If no cell is available, create a new one using the given identifier.
         static NSString *storeHomeSec3Identifier = @"storeHomeSection3";
@@ -370,14 +372,28 @@ static NSString *kViewControllerKey = @"viewController";
     [clickRecognizer setNumberOfTapsRequired:1];
     [clickRecognizer setNumberOfTouchesRequired:1];
     clickRecognizer.cancelsTouchesInView = YES;
-    // [view setUserInteractionEnabled:YES];
+    [view setUserInteractionEnabled:YES];
     [view addGestureRecognizer:clickRecognizer];
 }
 
-- (void)tapContactPhone {
+- (void)tapContactPhone:(id)sender {
     // start call
-    [self sliderDidSlideToEnd:nil];
+    UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
+    UILabel *phoneLbl = (UILabel *)tapRecognizer.view;
+    NSString *phoneCall = [NSString stringWithFormat:@"telprompt://%@", phoneLbl.text];
+    // NSLog(@"calling %@", phoneCall);
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:phoneCall]];
+    // [self dialPhoneNumber:phoneLbl.text];
 }
+
+//- (void) dialPhoneNumber:(NSString *)aPhoneNumber {
+//    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",aPhoneNumber]];
+//    UIWebView * phoneCallWebView;
+//    if (! phoneCallWebView ) {
+//        phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+//    }
+//    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // NSLog(@"UIButton was selected");

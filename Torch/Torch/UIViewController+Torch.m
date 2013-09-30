@@ -73,11 +73,9 @@
 
 - (void) switchToNextEditingView:(UIView *) curEditingView {
     UIView * nextView = [self findNextEditingView:curEditingView];
-    if (nextView) {
-        if ([self isViewAllVisible:nextView]) {
-            [nextView becomeFirstResponder];
-            return;
-        }
+    if (nextView && [self isViewAllVisible:nextView]) {
+        [nextView becomeFirstResponder];
+        return;
     }
     [curEditingView resignFirstResponder];
 }
@@ -278,14 +276,26 @@ static UITextField *CURRENT_EDITING_TEXTFIELD = nil;
 }
 
 - (UIView *)superViewThatMove:(UIView *)view {
-    return [[UIApplication sharedApplication] keyWindow];
+    // return [[UIApplication sharedApplication] keyWindow];
+    // find the first scroll view
+    UIView *superVw = view.superview;
+    while (superVw) {
+        if ([superVw isKindOfClass:[UIScrollView class]]) {
+            return superVw;
+        }
+        superVw = superVw.superview;
+    }
+    NSLog(@"Error, cannot find a super view which fits in moving!");
+    return nil;
 }
 
 - (BOOL)isViewAllVisible:(UIView *)view {
-    UIView *sMoveView = [self superViewThatMove:view];
+    UIScrollView *sMoveView = (UIScrollView *)[self superViewThatMove:view];
+    if (!sMoveView) {
+        return NO;
+    }
     CGPoint location = [view convertPoint:view.bounds.origin toView:sMoveView];
-    // NSLog(@"View position is %f", locationInGlobalWindow.y + view.bounds.size.height);
-    return location.y + view.bounds.size.height < sMoveView.bounds.size.height;
+    return location.y + view.bounds.size.height < sMoveView.contentOffset.y + sMoveView.bounds.size.height;
 }
 
 - (void)scrollToVisible:(UIView *)view {
@@ -304,29 +314,63 @@ static UITextField *CURRENT_EDITING_TEXTFIELD = nil;
 }
 
 - (void)moveToVisibleIfNecessary:(UIView *)view {
-    UIView * sMoveView = [self superViewThatMove:view];
-    if (! [self isViewAllVisible:view]) {
-        [self scrollToVisible:view];
+    UIScrollView * sMoveView = (UIScrollView *)[self superViewThatMove:view];
+    if (!sMoveView) {
+        return;
     }
+    // visible area (in Window) should be from 0 to (Window.height - keyboard.height)
+    // CGFloat relMinY_Visible = [WINDOW() convertPoint:CGPointMake(0, 0) toView:sMoveView].y;
+    CGFloat relMinY_Visible = sMoveView.contentOffset.y;
     CGFloat kbHeight = [self keyboardHeight];
-    CGFloat maxVisibleY = sMoveView.bounds.size.height - kbHeight - view.bounds.size.height;
-    CGFloat relativeLocY = [view convertPoint:view.bounds.origin toView:sMoveView].y;
-    CGFloat y = 0;
-    if (relativeLocY > maxVisibleY) {
-        y = relativeLocY - maxVisibleY;
+    CGFloat maxY = WINDOW_HEIGHT() - kbHeight - VIEW_B_H(view); // in window coordinates
+    CGFloat relMaxY_Visible = [WINDOW() convertPoint:CGPointMake(0, maxY) toView:sMoveView].y;
+    CGFloat relY = [view convertPoint:view.bounds.origin toView:sMoveView].y;
+    CGFloat move = 0;
+    if (relY > relMaxY_Visible) {
+        move = relY - relMaxY_Visible;
+        CGSize newSize = CGSizeMake(sMoveView.contentSize.width, sMoveView.contentSize.height + move);
+        sMoveView.contentSize = newSize;
+    } else if (relY < relMinY_Visible) {
+        move = relY - relMinY_Visible;
     }
-    CGRect newFrame = IB_RECT_WITH_Y(sMoveView.frame, -y);
-    [UIView animateWithDuration:.3f animations:^{
-        sMoveView.frame = newFrame;
-    }];
+    CGPoint newOffset = CGPointMake(sMoveView.contentOffset.x, sMoveView.contentOffset.y + move);
+    [sMoveView setContentOffset:newOffset animated:YES];
+//    if (! [self isViewAllVisible:view]) {
+//        [self scrollToVisible:view];
+//    }
+//    CGFloat kbHeight = [self keyboardHeight];
+//    CGFloat maxVisibleY = sMoveView.bounds.size.height - kbHeight - view.bounds.size.height;
+//    CGFloat relativeLocY = [view convertPoint:view.bounds.origin toView:sMoveView].y;
+//    CGFloat y = 0;
+//    if (relativeLocY > maxVisibleY) {
+//        y = relativeLocY - maxVisibleY;
+//    }
+//    CGRect newFrame = IB_RECT_WITH_Y(sMoveView.frame, -y);
+//    [UIView animateWithDuration:.3f animations:^{
+//        sMoveView.frame = newFrame;
+//    }];
 }
 
 - (void)backToOriginalPlaceIfNecessary:(UIView *)view {
-    UIView * sMoveView = [self superViewThatMove:view];
-    CGRect newFrame = IB_RECT_WITH_Y(sMoveView.frame, 0);
-    [UIView animateWithDuration:.3f animations:^{
-        sMoveView.frame = newFrame;
-    }];
+    UIScrollView * sMoveView = (UIScrollView *)[self superViewThatMove:view];
+    if (!sMoveView) {
+        return;
+    }
+    CGFloat contentHeight = sMoveView.contentSize.height;
+    CGSize fitSize = [sMoveView sizeThatFits:sMoveView.contentSize];
+    CGFloat fitSizeHeight = fitSize.height;
+    if (contentHeight > fitSizeHeight) {
+        CGFloat maxOffsetY = fitSizeHeight - VIEW_B_H(sMoveView);
+        if (sMoveView.contentOffset.y > maxOffsetY) {
+            [sMoveView setContentOffset:CGPointMake(sMoveView.contentOffset.x, maxOffsetY) animated:YES];
+        }
+        [sMoveView setContentSize:fitSize];
+    }
+    
+//    CGRect newFrame = IB_RECT_WITH_Y(sMoveView.frame, 0);
+//    [UIView animateWithDuration:.3f animations:^{
+//        sMoveView.frame = newFrame;
+//    }];
 }
 
 @end
