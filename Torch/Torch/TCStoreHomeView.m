@@ -77,6 +77,7 @@ static NSString *kViewControllerKey = @"viewController";
 	// object in the menu
 	TCPriorityViewController *tcPriorityViewController =
     [[TCPriorityViewController alloc] initWithNibName:@"TCPriorityViewController" bundle:nil];
+    tcPriorityViewController.currentStore = self.currentStore;
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.priority"],
                  kExplainKey:@"go to priorities page",
           kViewControllerKey:tcPriorityViewController } ];
@@ -87,6 +88,7 @@ static NSString *kViewControllerKey = @"viewController";
           kViewControllerKey:tcInventoryViewController } ];
     TCOrderViewController *tcOrderViewController =
     [[TCOrderViewController alloc] initWithNibName:@"TCOrderViewController" bundle:nil];
+    tcOrderViewController.currentStore = self.currentStore;
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.createOrder"],
                  kExplainKey:@"create order",
           kViewControllerKey:tcOrderViewController } ];
@@ -103,7 +105,6 @@ static NSString *kViewControllerKey = @"viewController";
                  kExplainKey:@"Visit summary and notes",
           kViewControllerKey:tcSummaryViewController } ];
     
-//    contacts = [self.currentStore.contacts allObjects];
     
 
 }
@@ -456,7 +457,8 @@ static NSString *kViewControllerKey = @"viewController";
             [StoreCall newInstance:self.currentStore];
             self.currentStore.sequenceNum = self.currentIndex;
             setStoreInCall(self.currentStore);
-            UIViewController *targetViewController = [[TCPriorityViewController alloc]init];
+            TCPriorityViewController *targetViewController = [[TCPriorityViewController alloc]init];
+            targetViewController.currentStore = self.currentStore;
             [[self navigationController] pushViewController:targetViewController animated:YES];
             return;
         }

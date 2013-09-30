@@ -8,7 +8,7 @@
 
 #import "TCPriorityViewController.h"
 #import "TCPriorityObject.h"
-
+#import "Store.h"
 @interface TCPriorityViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *storeNameLable;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -49,7 +49,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.storeNameLable.text = @"BOHU STORE";
+    NSLog(@"%@",self.currentStore.name);
+    self.storeNameLable.text = self.currentStore.name;
     tableData = [self populatePriorityData];
 
 

@@ -10,6 +10,8 @@
 #import "UIViewController+Utils.h"
 #import "TCNavVwCtl.h"
 
+@class Store;
 @interface TCPriorityViewController : TCNavVwCtl <UITableViewDelegate , UITableViewDataSource>
 
+@property (nonatomic,strong) Store *currentStore;
 @end

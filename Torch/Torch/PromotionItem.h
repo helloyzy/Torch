@@ -23,5 +23,6 @@ typedef enum {
 @property(nonatomic, copy)NSString * name;
 @property(nonatomic, copy)NSString * description;
 @property(nonatomic, copy)NSDate * expiration;
+@property(nonatomic) float unitNum;
 
 @end
