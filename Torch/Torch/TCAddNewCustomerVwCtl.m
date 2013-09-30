@@ -27,8 +27,10 @@
 #define _TV_FIELD_FONTSIZE 14
 #define WIDTH(x) x.size.width
 #define HEIGHT(x) x.size.height
-#define _TAG_BTN_SHOWCOMBO1 10098
-#define _TAG_BTN_SHOWCOMBO2 10099
+#define _TAG_VIEW_SHOWCOMBO1 10095
+#define _TAG_BTN_SHOWCOMBO1 10096
+#define _TAG_VIEW_SHOWCOMBO2 10097
+#define _TAG_BTN_SHOWCOMBO2 10098
 #define _CUSTOMER_DETAIL_SECTION 1
 #define _GPS_SECTION 2
 #define _CONTACT_SECTION_START 6
@@ -36,6 +38,10 @@
 #define _AddNewNote_Section [self sectionFromContact:1]
 #define _AlertViewTag_CancelConfirmation 100
 #define _AlertViewTag_SaveConfirmation 101
+
+static NSString * dateComboCellIdentifier = @"DateComboCell";
+static NSString * comboCellIdentifier = @"ComboCell";
+
 
 @interface TCAddNewCustomerVwCtl () {
     BOOL _isAddNew;
@@ -332,17 +338,30 @@
         editCell = [self singleTextCell];
         [self customizeField:editCell.centerField path:indexPath column:0 modelObj:self.customer modelProp:@"rfc" placeHolder:[self localString:@"addnewcustomer.rfc"] kbType:UIKeyboardTypeDefault];
     } else if (indexPath.section == 4) {
-        editCell = [self comboCell:@[@"Text1", @"Text2"]];
-        editCell.userInteractionEnabled = _isAddNew;
-        editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO1;
-        [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"customerType" placeHolder:[self localString:@"addnewcustomer.typeOfClient"] kbType:UIKeyboardTypeDefault];
-        editCell.leftField.tag = 0; //avoid jump to this field
+        editCell = (TCEditingCell *)[tblVw dequeueReusableCellWithIdentifier:comboCellIdentifier];
+        if (! editCell) {
+            editCell = [self comboCell:@[@"Text1", @"Text2"]];
+            editCell.userInteractionEnabled = _isAddNew;
+            editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO1;
+            [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"customerType" placeHolder:[self localString:@"addnewcustomer.typeOfClient"] kbType:UIKeyboardTypeDefault];
+            editCell.leftField.tag = 0; //avoid jump to this field
+            if (_isAddNew) {
+                // [self addClickGesture:cell.contentView tagVal:_TAG_BTN_SHOWCOMBO1];
+                [self addControlInView:editCell.contentView tagVal:_TAG_VIEW_SHOWCOMBO1];
+            }
+        }
     } else if (indexPath.section == 5) {
-        editCell = [self dateComboCell];
-        editCell.userInteractionEnabled = _isAddNew;
-        editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO2;
-        [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"visitDay" placeHolder:[self localString:@"addnewcustomer.visitingDay"] kbType:UIKeyboardTypeDefault];
-        editCell.leftField.tag = 0; //avoid jump to this field
+        editCell = (TCEditingCell *)[tblVw dequeueReusableCellWithIdentifier:dateComboCellIdentifier];
+        if (! editCell) {
+            editCell = [self dateComboCell];
+            editCell.userInteractionEnabled = _isAddNew;
+            editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO2;
+            [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"visitDay" placeHolder:[self localString:@"addnewcustomer.visitingDay"] kbType:UIKeyboardTypeDefault];
+            editCell.leftField.tag = 0; //avoid jump to this field
+            if (_isAddNew) {
+                [self addControlInView:editCell.contentView tagVal:_TAG_VIEW_SHOWCOMBO2];
+            }
+        }
     } else if (indexPath.section == _AddNewContact_Section || indexPath.section == _AddNewNote_Section) {
         static NSString * addCellIdentifier = @"addCell";
         cell = [tblVw dequeueReusableCellWithIdentifier:addCellIdentifier];
@@ -393,7 +412,24 @@
     return nil;
 }
 
-- (void)showCombo:(UITableView *)tbVw tag:(NSInteger)tag indexPath:(NSIndexPath *)indexPath {
+- (void)addControlInView:(UIView *)view tagVal:(NSInteger)tagVal {
+    UIControl *innerControl = [[UIControl alloc]initWithFrame:CGRectMake(0, 0, 302, 35)];
+    innerControl.tag = tagVal;
+    innerControl.backgroundColor = [UIColor clearColor];
+    [innerControl addTarget:self action:@selector(showCombo:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:innerControl];
+}
+
+- (void)showCombo:(id)sender {
+    UIView *view = (UIView *)sender;
+    if (view.tag == _TAG_VIEW_SHOWCOMBO1) {
+        [self showCombo:tblVw tag:_TAG_BTN_SHOWCOMBO1];
+    } else {
+        [self showCombo:tblVw tag:_TAG_BTN_SHOWCOMBO2];
+    }
+}
+
+- (void)showCombo:(UITableView *)tbVw tag:(NSInteger)tag {
     UIButton * btn = (UIButton *)[tbVw viewWithTag:tag];
     [btn sendActionsForControlEvents:UIControlEventTouchUpInside];
 }
@@ -402,9 +438,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // NSLog(@"%@_%@_%i", self.customer.storeName, self.customer.streetName, [self.customer isModified]);
     if (indexPath.section == 4) {
-        [self showCombo:tableView tag:_TAG_BTN_SHOWCOMBO1 indexPath:indexPath];
+        // [self showCombo:tableView tag:_TAG_BTN_SHOWCOMBO1];
     } else if (indexPath.section == 5) {
-        [self showCombo:tableView tag:_TAG_BTN_SHOWCOMBO2 indexPath:indexPath];
+        // [self showCombo:tableView tag:_TAG_BTN_SHOWCOMBO2];
     } else if (indexPath.section == _AddNewContact_Section) { // just after contact section
         // NSLog(@"Add new contact!!");
         [self addNewContact];
@@ -525,14 +561,12 @@
 }
 
 - (TCEditingCell *)comboCell:(NSArray *)ds {
-    static NSString * comboCellIdentifier = @"ComboCell";
     TCEditingCell * cell = [self editingCell:TCEditingCellStyleCombo reuseIdentifier:comboCellIdentifier];
     [cell.comboVw setDataSource:ds];
     return cell;
 }
 
 - (TCEditingCell *)dateComboCell {
-    static NSString * dateComboCellIdentifier = @"DateComboCell";
     TCEditingCell * cell = [self editingCell:TCEditingCellStyleDateCombo reuseIdentifier:dateComboCellIdentifier];
     return cell;
 }

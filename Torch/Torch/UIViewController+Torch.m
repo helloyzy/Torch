@@ -319,9 +319,10 @@ static UITextField *CURRENT_EDITING_TEXTFIELD = nil;
         return;
     }
     // visible area (in Window) should be from 0 to (Window.height - keyboard.height)
-    CGFloat relMinY_Visible = [WINDOW() convertPoint:CGPointMake(0, 0) toView:sMoveView].y;
+    // CGFloat relMinY_Visible = [WINDOW() convertPoint:CGPointMake(0, 0) toView:sMoveView].y;
+    CGFloat relMinY_Visible = sMoveView.contentOffset.y;
     CGFloat kbHeight = [self keyboardHeight];
-    CGFloat maxY = WINDOW_HEIGHT() - kbHeight - VIEW_B_H(view);
+    CGFloat maxY = WINDOW_HEIGHT() - kbHeight - VIEW_B_H(view); // in window coordinates
     CGFloat relMaxY_Visible = [WINDOW() convertPoint:CGPointMake(0, maxY) toView:sMoveView].y;
     CGFloat relY = [view convertPoint:view.bounds.origin toView:sMoveView].y;
     CGFloat move = 0;
@@ -366,9 +367,6 @@ static UITextField *CURRENT_EDITING_TEXTFIELD = nil;
         [sMoveView setContentSize:fitSize];
     }
     
-//    CGSize fitSize = [sMoveView sizeThatFits:sMoveView.contentSize];
-//    NSLog(@"Content size(%f,%f), size fit(%f,%f)", sMoveView.contentSize.width, sMoveView.contentSize.height, fitSize.width, fitSize.height);
-//    [sMoveView setContentSize:fitSize];
 //    CGRect newFrame = IB_RECT_WITH_Y(sMoveView.frame, 0);
 //    [UIView animateWithDuration:.3f animations:^{
 //        sMoveView.frame = newFrame;
