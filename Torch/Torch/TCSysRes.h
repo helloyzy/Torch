@@ -12,6 +12,7 @@
 
 @class Store;
 
+// global resources
 Store *storeInCall();
 void setStoreInCall(Store *store);
 

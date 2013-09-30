@@ -33,6 +33,9 @@
 #import "IBFunctions.h"
 #import "DateUtils.h"
 #import "TCUtils.h"
+#import "TCSysRes.h"
+
+#import "Store.h"
 
 @implementation TCAppDelegate
 
@@ -78,6 +81,10 @@
     // [TCSvcUtils orderRequestService];
 }
 
+- (void)setStoreInCallInNecessary {
+    setStoreInCall([Store storeInCall]);
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // NSLog(@"Documents dir %@", IB_DOCUMENTS_DIR());
@@ -99,6 +106,7 @@
         self.viewController = [self loginController];
     } else {
         [TCDBUtils initDB];
+        [self setStoreInCallInNecessary];
         self.viewController = [UIViewController myDayDeckAsRoot];
     }
     // self.viewController = [self isLoginRequired] ? [self loginController] : [UIViewController myDayDeckAsRoot];

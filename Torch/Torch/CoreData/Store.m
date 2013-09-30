@@ -59,4 +59,14 @@
     return result;
 }
 
++ (Store *)storeInCall {
+    NSArray *stores = [self all];
+    for (Store *store in stores) {
+        if ([store callInProgress]) {
+            return store;
+        }
+    }
+    return nil;
+}
+
 @end
