@@ -468,21 +468,16 @@ static NSString *kViewControllerKey = @"viewController";
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        // [_tcSliderView changeDirection:YES];
-        if (storeInCall()) {
-            showAlert(nil, [self localString:@"storeInCall.alert"], nil);
-        } else {
-            [StoreCall newInstance:self.currentStore];
-            self.currentStore.sequenceNum = self.currentIndex;
-            setStoreInCall(self.currentStore);
-            TCPriorityViewController *targetViewController = [[TCPriorityViewController alloc]init];
-            targetViewController.currentStore = self.currentStore;
-            [[self navigationController] pushViewController:targetViewController animated:YES];
-            return;
-        }
+    [StoreCall newInstance:self.currentStore];
+    self.currentStore.sequenceNum = self.currentIndex;
+    setStoreInCall(self.currentStore);
+    if (buttonIndex == 1) { // jump to priority view
+        TCPriorityViewController *targetViewController = [[TCPriorityViewController alloc]init];
+        targetViewController.currentStore = self.currentStore;
+        [[self navigationController] pushViewController:targetViewController animated:YES];
+    } else { // just change direction
+        [_tcSliderView changeDirection:YES];
     }
-    [_tcSliderView changeDirection:NO];
 }
 
 - (BOOL)isCallInProgress {
@@ -491,6 +486,13 @@ static NSString *kViewControllerKey = @"viewController";
 
 
 - (void) sliderDidSlideToEnd:(TCSliderView *)slideView {
+    // check whether already have a store in call
+    if (storeInCall()) {
+        showAlert(nil, [self localString:@"storeInCall.alert"], nil);
+        [_tcSliderView changeDirection:NO];
+        return;
+    }
+    
     // open a alert with an OK and cancel button
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[self localString:@"store.startcall.title"]
                                                     message:[self localString:@"store.startcall.text"]
