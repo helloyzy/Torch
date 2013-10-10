@@ -73,7 +73,9 @@
 - (void) initDB {
     [TCDBUtils copySeed];
     [TCDBUtils initDB];
+    
     // [TCDBUtils seed];
+    // [TCDBUtils adjustStoreSchedule];
 }
 
 - (void) serviceTest {
@@ -111,6 +113,7 @@
     }
     // self.viewController = [self isLoginRequired] ? [self loginController] : [UIViewController myDayDeckAsRoot];
 #endif
+    
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

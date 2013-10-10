@@ -1,5 +1,5 @@
 #import "Priority.h"
-
+#import <RKEntityMapping.h>
 
 @interface Priority ()
 
@@ -10,6 +10,14 @@
 
 @implementation Priority
 
-// Custom logic goes here.
++ (RKEntityMapping *)objectMapping {
+    RKEntityMapping *mapping = [super objectMapping];
+    [mapping addAttributeMappingsFromArray:@[
+     PriorityAttributes.accountId,
+     PriorityAttributes.title
+     ]];
+    [mapping addAttributeMappingsFromDictionary:@{@"description" : PriorityAttributes.desp}];
+    return mapping;
+}
 
 @end

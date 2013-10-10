@@ -84,6 +84,11 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"scheduleValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"schedule"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -302,6 +307,25 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 @dynamic schedule;
 
+
+
+- (double)scheduleValue {
+	NSNumber *result = [self schedule];
+	return [result doubleValue];
+}
+
+- (void)setScheduleValue:(double)value_ {
+	[self setSchedule:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveScheduleValue {
+	NSNumber *result = [self primitiveSchedule];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveScheduleValue:(double)value_ {
+	[self setPrimitiveSchedule:[NSNumber numberWithDouble:value_]];
+}
 
 
 

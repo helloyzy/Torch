@@ -202,7 +202,6 @@
 		DCDBBE5117E6A0130078F71B /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = DCDBBE5017E6A0130078F71B /* login.json */; };
 		DCDBBE5317E6CE700078F71B /* CoreDataStore.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DCDBBE5217E6CE700078F71B /* CoreDataStore.sqlite */; };
 		DCDBBE5717E700730078F71B /* TCUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DCDBBE5617E700720078F71B /* TCUtils.m */; };
-		DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D9EC17D468EF00823475 /* PromotionItem.m */; };
 		DCF4A3C418067FC200DF8F64 /* _Priority.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF4A3B518067FC200DF8F64 /* _Priority.m */; };
 		DCF4A3C518067FC200DF8F64 /* _Promotion.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF4A3B718067FC200DF8F64 /* _Promotion.m */; };
 		DCF4A3C618067FC200DF8F64 /* _PromotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF4A3B918067FC200DF8F64 /* _PromotionItem.m */; };
@@ -211,6 +210,8 @@
 		DCF4A3D518067FFD00DF8F64 /* Promotion.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF4A3CF18067FFD00DF8F64 /* Promotion.m */; };
 		DCF4A3D618067FFD00DF8F64 /* PromotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF4A3D118067FFD00DF8F64 /* PromotionItem.m */; };
 		DCF4A3D718067FFD00DF8F64 /* Survey.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF4A3D318067FFD00DF8F64 /* Survey.m */; };
+		DCF4A3DA18068C1800DF8F64 /* TCPromotionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF4A3D918068C1800DF8F64 /* TCPromotionItem.m */; };
+		DCF4A3DC1806937200DF8F64 /* fetchmexico.json in Resources */ = {isa = PBXBuildFile; fileRef = DCF4A3DB1806937200DF8F64 /* fetchmexico.json */; };
 		DCFB9D3017E939FE00326521 /* TCRKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB9D2F17E939FE00326521 /* TCRKObjectMapping.m */; };
 		DCFB9D3217E94FC900326521 /* disclaimation_es.txt in Resources */ = {isa = PBXBuildFile; fileRef = DCFB9D3117E94FC900326521 /* disclaimation_es.txt */; };
 		DCFB9D3517E97A9C00326521 /* TCLoginCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB9D3417E97A9C00326521 /* TCLoginCredential.m */; };
@@ -493,8 +494,6 @@
 		DCDBBE5217E6CE700078F71B /* CoreDataStore.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = CoreDataStore.sqlite; sourceTree = "<group>"; };
 		DCDBBE5517E700720078F71B /* TCUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUtils.h; sourceTree = "<group>"; };
 		DCDBBE5617E700720078F71B /* TCUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUtils.m; sourceTree = "<group>"; };
-		DCE1D9EB17D468EF00823475 /* PromotionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromotionItem.h; sourceTree = "<group>"; };
-		DCE1D9EC17D468EF00823475 /* PromotionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionItem.m; sourceTree = "<group>"; };
 		DCF4A3B418067FC200DF8F64 /* _Priority.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Priority.h; sourceTree = "<group>"; };
 		DCF4A3B518067FC200DF8F64 /* _Priority.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Priority.m; sourceTree = "<group>"; };
 		DCF4A3B618067FC200DF8F64 /* _Promotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Promotion.h; sourceTree = "<group>"; };
@@ -511,6 +510,9 @@
 		DCF4A3D118067FFD00DF8F64 /* PromotionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromotionItem.m; sourceTree = "<group>"; };
 		DCF4A3D218067FFD00DF8F64 /* Survey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Survey.h; sourceTree = "<group>"; };
 		DCF4A3D318067FFD00DF8F64 /* Survey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Survey.m; sourceTree = "<group>"; };
+		DCF4A3D818068C1700DF8F64 /* TCPromotionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPromotionItem.h; sourceTree = "<group>"; };
+		DCF4A3D918068C1800DF8F64 /* TCPromotionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPromotionItem.m; sourceTree = "<group>"; };
+		DCF4A3DB1806937200DF8F64 /* fetchmexico.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fetchmexico.json; sourceTree = "<group>"; };
 		DCFB9D2E17E939FE00326521 /* TCRKObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRKObjectMapping.h; sourceTree = "<group>"; };
 		DCFB9D2F17E939FE00326521 /* TCRKObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRKObjectMapping.m; sourceTree = "<group>"; };
 		DCFB9D3117E94FC900326521 /* disclaimation_es.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = disclaimation_es.txt; sourceTree = "<group>"; };
@@ -611,6 +613,7 @@
 		1C713BF617C2058100A903A6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DCF4A3DB1806937200DF8F64 /* fetchmexico.json */,
 				DC56020617F27C6A009BA08C /* product.json */,
 				DCA4663417E82040008D634D /* order.json */,
 				DCDBBE5217E6CE700078F71B /* CoreDataStore.sqlite */,
@@ -961,8 +964,6 @@
 			children = (
 				D6C5A31217C7014400C0C657 /* ProductItemObject.h */,
 				D6C5A31317C7014400C0C657 /* ProductItemObject.m */,
-				DCE1D9EB17D468EF00823475 /* PromotionItem.h */,
-				DCE1D9EC17D468EF00823475 /* PromotionItem.m */,
 				DC11568917E1C597000ABC64 /* TCContact.h */,
 				DC11568A17E1C597000ABC64 /* TCContact.m */,
 				DC76817717DD75C50039DE1B /* TCCustomer.h */,
@@ -973,6 +974,8 @@
 				D6831BC717D84E7100718881 /* TCOrderObject.m */,
 				D6CD428317CC706100A499A4 /* TCPriorityObject.h */,
 				D6CD428417CC706100A499A4 /* TCPriorityObject.m */,
+				DCF4A3D818068C1700DF8F64 /* TCPromotionItem.h */,
+				DCF4A3D918068C1800DF8F64 /* TCPromotionItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1143,6 +1146,7 @@
 				1C6FD3EC17F2741D0049FFFF /* TCAddNoteController.xib in Resources */,
 				DC56020717F27C6A009BA08C /* product.json in Resources */,
 				1C4064D917F7C39900481E17 /* TCDataStatusController.xib in Resources */,
+				DCF4A3DC1806937200DF8F64 /* fetchmexico.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1255,7 +1259,6 @@
 				DCB2381D17D0454C000CC087 /* TCPromotionVwCtl.m in Sources */,
 				DCB2382217D0741A000CC087 /* TCPromotionDetailVwCtl.m in Sources */,
 				DCB2382617D088EC000CC087 /* DateUtils.m in Sources */,
-				DCE1D9ED17D468EF00823475 /* PromotionItem.m in Sources */,
 				D6D68DFA17D47C8F00477060 /* TCPromotionTableCell.m in Sources */,
 				DC6CB0BD17D5B2490091EFAB /* TCPrinterCtl.m in Sources */,
 				1CFE598117D6C7950041FF95 /* TCSurveyController.m in Sources */,
@@ -1312,6 +1315,7 @@
 				DCF4A3D518067FFD00DF8F64 /* Promotion.m in Sources */,
 				DCF4A3D618067FFD00DF8F64 /* PromotionItem.m in Sources */,
 				DCF4A3D718067FFD00DF8F64 /* Survey.m in Sources */,
+				DCF4A3DA18068C1800DF8F64 /* TCPromotionItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

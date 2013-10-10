@@ -9,7 +9,7 @@
 #import "TCPromotionVwCtl.h"
 #import "TCSysRes.h"
 #import "TCPromotionDetailVwCtl.h"
-#import "PromotionItem.h"
+#import "TCPromotionItem.h"
 
 @interface TCPromotionVwCtl () {
     NSArray * data;
@@ -29,19 +29,19 @@
 }
 
 - (void)initData {
-    PromotionItem *p_10 = [PromotionItem newPromotion:@"10% single"];
+    TCPromotionItem *p_10 = [TCPromotionItem newPromotion:@"10% single"];
     p_10.type = PromotionTypeNormal;
     p_10.discountPercentage = 0.1;
-    PromotionItem *p_15 = [PromotionItem newPromotion:@"15% single"];
+    TCPromotionItem *p_15 = [TCPromotionItem newPromotion:@"15% single"];
     p_15.type = PromotionTypeNormal;
     p_15.discountPercentage = 0.15;
-    PromotionItem *p_FreeGift = [PromotionItem newPromotion:@"free item"];
+    TCPromotionItem *p_FreeGift = [TCPromotionItem newPromotion:@"free item"];
     p_FreeGift.type = PromotionTypeNormal;
     p_FreeGift.discountPercentage = 0;
-    PromotionItem *p_w_10 = [PromotionItem newPromotion:@"10% whole order"];
+    TCPromotionItem *p_w_10 = [TCPromotionItem newPromotion:@"10% whole order"];
     p_w_10.type = PromotionTypeDiscountOrder;
     p_w_10.discountPercentage = 0.1;
-    PromotionItem *p_w_15 = [PromotionItem newPromotion:@"15% whole order"];
+    TCPromotionItem *p_w_15 = [TCPromotionItem newPromotion:@"15% whole order"];
     p_w_15.type = PromotionTypeDiscountOrder;
     p_w_15.discountPercentage = 0.15;
     data = @[p_10, p_15, p_FreeGift, p_w_10, p_w_15];
@@ -87,7 +87,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell = TCTblVwCell_SubtitleStyle(tableView, @"PromotionCell");
-    PromotionItem * item = data[indexPath.row];
+    TCPromotionItem * item = data[indexPath.row];
 //    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	cell.textLabel.text = item.name;
     cell.detailTextLabel.text = item.description;

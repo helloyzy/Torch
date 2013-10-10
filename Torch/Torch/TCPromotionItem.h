@@ -1,8 +1,8 @@
 //
-//  PromotionItem.h
+//  TCPromotionItem.h
 //  Torch
 //
-//  Created by Whitman Yang on 9/2/13.
+//  Created by Whitman Yang on 10/10/13.
 //  Copyright (c) 2013 Hershey. All rights reserved.
 //
 
@@ -13,9 +13,9 @@ typedef enum {
     PromotionTypeDiscountOrder
 } PromotionType;
 
-@interface PromotionItem : NSObject
+@interface TCPromotionItem : NSObject
 
-+ (PromotionItem *) newPromotion:(NSString *)key;
++ (TCPromotionItem *) newPromotion:(NSString *)key;
 
 @property(nonatomic, copy)NSString * key;
 @property(nonatomic, assign)PromotionType type;
@@ -24,5 +24,6 @@ typedef enum {
 @property(nonatomic, copy)NSString * description;
 @property(nonatomic, copy)NSDate * expiration;
 @property(nonatomic) float unitNum;
+
 
 @end

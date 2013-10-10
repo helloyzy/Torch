@@ -1,17 +1,17 @@
 //
-//  PromotionItem.m
+//  TCPromotionItem.m
 //  Torch
 //
-//  Created by Whitman Yang on 9/2/13.
+//  Created by Whitman Yang on 10/10/13.
 //  Copyright (c) 2013 Hershey. All rights reserved.
 //
 
-#import "PromotionItem.h"
+#import "TCPromotionItem.h"
 
-@implementation PromotionItem
+@implementation TCPromotionItem
 
-+ (PromotionItem *) newPromotion:(NSString *)key {
-    PromotionItem * result = [PromotionItem new];
++ (TCPromotionItem *) newPromotion:(NSString *)key {
+    TCPromotionItem *result = [TCPromotionItem new];
     result.key = key;
     result.name = [NSString stringWithFormat:@"Promotion %@", key];
     result.description = [NSString stringWithFormat:@"Promotion %@ description", key];

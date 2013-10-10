@@ -14,7 +14,7 @@
 @implementation NSManagedObject (TCRestkit)
 
 + (RKEntityMapping *)objectMapping {
-    return nil;
+    return [RKEntityMapping mappingForEntityForName:NSStringFromClass([self class]) inManagedObjectStore:[RKManagedObjectStore defaultStore]];
 }
 
 + (id)newInstance {

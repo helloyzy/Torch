@@ -40,7 +40,7 @@
     NSMutableArray *displayPromotionItems;
     NSArray *productItems;
     float currentDiscount;
-    PromotionItem *currentPromotionItem;
+    TCPromotionItem *currentPromotionItem;
 
 }
 
@@ -52,7 +52,7 @@
 -(void)regenerateDisplayPromotionItemArray {
     displayPromotionItems = [[NSMutableArray alloc] init];
     for (id key in promotionItems) {
-        PromotionItem *promotionObject = (PromotionItem *)[promotionItems objectForKey:key];
+        TCPromotionItem *promotionObject = (TCPromotionItem *)[promotionItems objectForKey:key];
         [displayPromotionItems addObject:promotionObject.key];
     }
 
@@ -60,7 +60,7 @@
 -(BOOL)isDiscountPromotionItemExist {
     BOOL discountPromotionItemExist = NO;
     for (NSString *promotionSN in displayPromotionItems) {
-        PromotionItem *promotionObject = (PromotionItem *) [promotionItems objectForKey:promotionSN];
+        TCPromotionItem *promotionObject = (TCPromotionItem *) [promotionItems objectForKey:promotionSN];
         if (promotionObject.type == PromotionTypeDiscountOrder) {
             discountPromotionItemExist = YES;
         }
@@ -72,7 +72,7 @@
 -(CGFloat)getDiscountPercentage {
     CGFloat discountPercentage = 0;
     for (NSString *promotionSN in displayPromotionItems) {
-        PromotionItem *promotionObject = (PromotionItem *) [promotionItems objectForKey:promotionSN];
+        TCPromotionItem *promotionObject = (TCPromotionItem *) [promotionItems objectForKey:promotionSN];
         if (promotionObject.type == PromotionTypeDiscountOrder) {
             discountPercentage = promotionObject.discountPercentage;
         }
@@ -89,7 +89,7 @@
 
 -(void)replaceTheDiscountPromotionItem {
     for (NSString *promotionSN in displayPromotionItems) {
-        PromotionItem *promotionObject = (PromotionItem *) [promotionItems objectForKey:promotionSN];
+        TCPromotionItem *promotionObject = (TCPromotionItem *) [promotionItems objectForKey:promotionSN];
         if (promotionObject.type == PromotionTypeDiscountOrder) {
             [promotionItems removeObjectForKey:promotionSN];
         }
@@ -109,7 +109,7 @@
     return YES;
 }
 
--(void)setSelectedPromotionItem:(PromotionItem *)promotionItem {
+-(void)setSelectedPromotionItem:(TCPromotionItem *)promotionItem {
     if(!promotionItems) promotionItems = [[NSMutableDictionary alloc] init];
      currentPromotionItem = promotionItem;
     
@@ -454,7 +454,7 @@
 }
 
 -(void)updatePromotion:(NSString *)promotionKey withQuantity:(float)Quantity {
-    PromotionItem *promotionitem  = [promotionItems objectForKey:promotionKey];
+    TCPromotionItem *promotionitem  = [promotionItems objectForKey:promotionKey];
     if (promotionitem) {
         promotionitem.unitNum = Quantity;
         [promotionItems setObject:promotionitem forKey:promotionKey];
@@ -548,7 +548,7 @@
     NSInteger indexInPromotionArray = indexPath.row - [displayData count];
     itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
     
-    PromotionItem *promotionitem  = [promotionItems objectForKey:itemKey];
+    TCPromotionItem *promotionitem  = [promotionItems objectForKey:itemKey];
     if (promotionitem) {
         [promotionItems removeObjectForKey:itemKey];
     }
@@ -569,7 +569,7 @@
     NSInteger indexInPromotionArray = indexPath.row - [displayData count];
     itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
     
-    PromotionItem *promotionitem  = [promotionItems objectForKey:itemKey];
+    TCPromotionItem *promotionitem  = [promotionItems objectForKey:itemKey];
     if (promotionitem) {
         [promotionItems removeObjectForKey:itemKey];
     }
@@ -594,7 +594,7 @@
 }
 
 -(UITableViewCell *)populatePromotionCell:(InventoryTableCell *)cell withKeyName:(NSString *)keyName {
-    PromotionItem *promotion = [promotionItems objectForKey:keyName];
+    TCPromotionItem *promotion = [promotionItems objectForKey:keyName];
     if(promotion) {
         cell.productName.text = promotion.name;
         UILabel *promotionDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 30, 165, 80)];
@@ -708,7 +708,7 @@
         NSString *itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
         
         if (itemKey) {
-            PromotionItem *pi = [promotionItems objectForKey:itemKey];
+            TCPromotionItem *pi = [promotionItems objectForKey:itemKey];
             if (pi && pi.type == PromotionTypeDiscountOrder) {
                 // this is total discount order promotion item, use promotion table cell to render
                 TCPromotionTableCell *cell = (TCPromotionTableCell *)[tableView dequeueReusableCellWithIdentifier:@"TCPromotionTableCell"];
@@ -830,7 +830,7 @@
     NSString *itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
     
     if (itemKey) {
-        PromotionItem *pi = [promotionItems objectForKey:itemKey];
+        TCPromotionItem *pi = [promotionItems objectForKey:itemKey];
         if (pi && pi.type == PromotionTypeDiscountOrder) {
             isDiscountItem = YES;
         }

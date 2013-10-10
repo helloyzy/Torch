@@ -16,6 +16,7 @@
 +(void) seed;
 +(void) copySeed;
 +(void) resetDB;
++(void) adjustStoreSchedule;
 
 +(IBCoreDataStore *) ibDataStore;
 

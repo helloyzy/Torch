@@ -17,6 +17,8 @@ typedef void (^TC_SVC_BLOCK_FAILURE)(RKObjectRequestOperation * operation, NSErr
 
 + (void)syncDataService:(TC_SVC_BLOCK_SUCCESS)success
                 failure:(TC_SVC_BLOCK_FAILURE)failure;
++ (void)fetchMexicoDataService:(TC_SVC_BLOCK_SUCCESS)success
+                       failure:(TC_SVC_BLOCK_FAILURE)failure;
 + (void)orderRequestService;
 
 @end

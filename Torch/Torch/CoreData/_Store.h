@@ -286,9 +286,13 @@ extern const struct StoreFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* schedule;
+@property (nonatomic, strong) NSNumber* schedule;
 
 
+
+@property double scheduleValue;
+- (double)scheduleValue;
+- (void)setScheduleValue:(double)value_;
 
 //- (BOOL)validateSchedule:(id*)value_ error:(NSError**)error_;
 
@@ -493,8 +497,11 @@ extern const struct StoreFetchedProperties {
 
 
 
-- (NSString*)primitiveSchedule;
-- (void)setPrimitiveSchedule:(NSString*)value;
+- (NSNumber*)primitiveSchedule;
+- (void)setPrimitiveSchedule:(NSNumber*)value;
+
+- (double)primitiveScheduleValue;
+- (void)setPrimitiveScheduleValue:(double)value_;
 
 
 

@@ -220,7 +220,7 @@
         <attribute name="products" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pstTaxNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="schedule" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="schedule" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="soldToName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="soldToNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
@@ -259,13 +259,13 @@
         <element name="Order" positionX="621" positionY="608" width="128" height="163"/>
         <element name="OrderCredit" positionX="799" positionY="378" width="128" height="403"/>
         <element name="OrderCreditItem" positionX="1015" positionY="881" width="128" height="208"/>
-        <element name="Product" positionX="385" positionY="252" width="128" height="540"/>
-        <element name="SalesRep" positionX="585" positionY="27" width="135" height="208"/>
-        <element name="Store" positionX="1000" positionY="0" width="135" height="433"/>
-        <element name="StoreCall" positionX="1206" positionY="72" width="135" height="240"/>
-        <element name="Survey" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Priority" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Product" positionX="385" positionY="252" width="128" height="540"/>
         <element name="Promotion" positionX="160" positionY="192" width="128" height="180"/>
         <element name="PromotionItem" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="SalesRep" positionX="585" positionY="27" width="135" height="208"/>
+        <element name="Store" positionX="1000" positionY="0" width="135" height="435"/>
+        <element name="StoreCall" positionX="1206" positionY="72" width="135" height="240"/>
+        <element name="Survey" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

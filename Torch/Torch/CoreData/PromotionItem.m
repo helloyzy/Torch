@@ -1,4 +1,5 @@
 #import "PromotionItem.h"
+#import <RestKit/RestKit.h>
 
 
 @interface PromotionItem ()
@@ -10,6 +11,12 @@
 
 @implementation PromotionItem
 
-// Custom logic goes here.
-
++ (RKEntityMapping *)objectMapping {
+    RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"PromotionItem" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
+    [mapping addAttributeMappingsFromArray:@[PromotionItemAttributes.productDescription,
+     PromotionItemAttributes.productNumber,
+     PromotionItemAttributes.promotionItemListPrice,
+     PromotionItemAttributes.salesPrice]];
+    return mapping;
+}
 @end
