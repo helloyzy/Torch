@@ -130,18 +130,22 @@
 }
 
 + (void)onMyDayWillShow:(NSNotification *)noti {
-    if (storeInCall()) {
-        [self findJumpBtn].hidden = NO;
-    }
+    [self findJumpBtn].hidden = !storeInCall();
 }
 
 + (void)onMyDayWillHide:(NSNotification *)noti {
+    NSObject *store = [noti object];
+    if (store && storeInCall() && store != storeInCall()) {
+        [self findJumpBtn].hidden = NO;
+        return;
+    }
     [self findJumpBtn].hidden = YES;
 }
 
 + (void)jumpToCallInProgress:(id)sender {
     Store *store = storeInCall();
     if (store) {
+        [self findJumpBtn].hidden = YES;
         UINavigationController *nav = [self findGlobalNavController];
         [nav popToRootViewControllerAnimated:NO];
         TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];

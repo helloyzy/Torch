@@ -52,7 +52,7 @@
 - (StoreCall *)callInProgress {
     StoreCall *result = nil;
     for (StoreCall *temp in self.storeCalls) {
-        if ((! temp.externalId)) {
+        if ([temp isCallInProgress]) {
             result = temp;
             break;
         }
