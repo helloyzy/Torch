@@ -15,7 +15,7 @@
 #define kCredentialUsername @"HersheySSOUsernameToken"
 #define kCredentialPassword @"HersheySSOPasswordToken"
 #define kCredentialExpiration @"HersheySSOCredentialsExpirationDate"
-#define kExpirationTimeout 20.0    // 30 minute timeout
+#define kExpirationTimeout 43200    // 30 days timeout
 
 NSString* const CREDENTIALS_SAVED = @"CREDENTIALS_SAVED";
 NSString* const CREDENTIALS_ERROR = @"CREDENTIALS_ERROR";
