@@ -80,7 +80,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLAPPEAR_NOTIFICATION object:nil];
-    _stores = [Store allInStore:[TCDBUtils ibDataStore]];    
+    _stores = [Store sortedStores];
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     //[df setDateStyle:NSDateFormatterFullStyle];
     df.locale = [[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]];

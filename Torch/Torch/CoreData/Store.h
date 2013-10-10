@@ -7,6 +7,7 @@
 - (StoreCall *)callInProgress;
 
 + (Store *)storeInCall;
++ (NSArray *)sortedStores;
 
 @property(nonatomic, copy)NSString *sequenceNum;
 @property(nonatomic, assign)CGFloat taxRate;
