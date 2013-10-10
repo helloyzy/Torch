@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCSurveyController : UIViewController
+@interface TCSurveyController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
 
 @end
