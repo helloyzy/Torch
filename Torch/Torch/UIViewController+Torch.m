@@ -98,9 +98,9 @@
     [navBar addSubview:bottomView];
     UIButton* jump = [UIButton buttonWithType:UIButtonTypeCustom];
     jump.layer.cornerRadius = 8.0;    
-    jump.frame = (CGRect) {50, -8, 220, 45};
+    jump.frame = (CGRect) {60, -8, 200, 45};
     jump.backgroundColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.5 alpha:0.5];
-    jump.titleLabel.font = [UIFont systemFontOfSize:13];
+    jump.titleLabel.font = TCFont_HNLTComLt(12);
     [jump setTitle:@"Tap to return to  call in progress" forState:UIControlStateNormal];
     [jump addTarget:self action:@selector(jumpToCallInProgress:) forControlEvents:UIControlEventTouchUpInside];
     jump.hidden = YES;
