@@ -12,6 +12,7 @@ extern const struct SalesRepAttributes {
 	__unsafe_unretained NSString *managerNetworkId;
 	__unsafe_unretained NSString *networkId;
 	__unsafe_unretained NSString *remoteKey;
+	__unsafe_unretained NSString *salesOrg;
 	__unsafe_unretained NSString *startDate;
 	__unsafe_unretained NSString *status;
 } SalesRepAttributes;
@@ -24,6 +25,7 @@ extern const struct SalesRepFetchedProperties {
 } SalesRepFetchedProperties;
 
 @class Banner;
+
 
 
 
@@ -126,6 +128,16 @@ extern const struct SalesRepFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* salesOrg;
+
+
+
+//- (BOOL)validateSalesOrg:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* startDate;
 
 
@@ -216,6 +228,12 @@ extern const struct SalesRepFetchedProperties {
 
 - (NSString*)primitiveRemoteKey;
 - (void)setPrimitiveRemoteKey:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveSalesOrg;
+- (void)setPrimitiveSalesOrg:(NSString*)value;
 
 
 

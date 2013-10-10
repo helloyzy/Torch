@@ -129,6 +129,11 @@
         <relationship name="calItem" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CalItem" inverseName="orderCreditItem" inverseEntity="CalItem" syncable="YES"/>
         <relationship name="orderCredit" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OrderCredit" inverseName="orderCreditItems" inverseEntity="OrderCredit" syncable="YES"/>
     </entity>
+    <entity name="Priority" representedClassName="Priority" syncable="YES">
+        <attribute name="accountId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Product" representedClassName="Product" syncable="YES">
         <attribute name="brand_Cd" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="brand_Description" optional="YES" attributeType="String" syncable="YES"/>
@@ -164,6 +169,24 @@
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weight_unit_of_Measure" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Promotion" representedClassName="Promotion" syncable="YES">
+        <attribute name="accountId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="discountAmount" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="discountPercentage" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="orderItemDiscount" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="promotionItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PromotionItem" inverseName="promotion" inverseEntity="PromotionItem" syncable="YES"/>
+    </entity>
+    <entity name="PromotionItem" representedClassName="PromotionItem" syncable="YES">
+        <attribute name="productDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="promotionItemListPrice" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="salesPrice" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="promotion" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Promotion" inverseName="promotionItem" inverseEntity="Promotion" syncable="YES"/>
+    </entity>
     <entity name="SalesRep" representedClassName="SalesRep" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -172,6 +195,7 @@
         <attribute name="managerNetworkId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="networkId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="salesOrg" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="banners" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Banner" inverseName="salesRep" inverseEntity="Banner" syncable="YES"/>
@@ -219,6 +243,13 @@
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="storeCall" inverseEntity="Note" syncable="YES"/>
         <relationship name="store" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="storeCalls" inverseEntity="Store" syncable="YES"/>
     </entity>
+    <entity name="Survey" representedClassName="Survey" syncable="YES">
+        <attribute name="accountId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="answers" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questionType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questionTypeId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Account" positionX="763" positionY="860" width="128" height="268"/>
         <element name="Banner" positionX="792" positionY="81" width="135" height="148"/>
@@ -228,9 +259,13 @@
         <element name="Order" positionX="621" positionY="608" width="128" height="163"/>
         <element name="OrderCredit" positionX="799" positionY="378" width="128" height="403"/>
         <element name="OrderCreditItem" positionX="1015" positionY="881" width="128" height="208"/>
-        <element name="SalesRep" positionX="585" positionY="27" width="135" height="193"/>
+        <element name="Product" positionX="385" positionY="252" width="128" height="540"/>
+        <element name="SalesRep" positionX="585" positionY="27" width="135" height="208"/>
         <element name="Store" positionX="1000" positionY="0" width="135" height="433"/>
         <element name="StoreCall" positionX="1206" positionY="72" width="135" height="240"/>
-        <element name="Product" positionX="385" positionY="252" width="128" height="540"/>
+        <element name="Survey" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Priority" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="Promotion" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="PromotionItem" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>
