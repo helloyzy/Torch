@@ -18,6 +18,7 @@
 #import <NSManagedObject+InnerBand.h>
 #import "TCDBUtils.h"
 #import <OCTotallyLazy.h>
+#import <Foundation/NSBundle.h>
 
 @interface TCMyDayController () {
     Store *_selectedStore;
@@ -91,7 +92,8 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
     df.locale = [[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]];
     [df setDateFormat:@"EEEE, MMMM dd, YYYY "];
     NSString* str= [[df stringFromDate: [[NSDate alloc] init]] uppercaseString];
-    _header.text = [@"  Mi día - " stringByAppendingString:str];
+    
+    _header.text = [Lo(myday.title) stringByAppendingString:str];
     
     [_tableView reloadData];
 }
