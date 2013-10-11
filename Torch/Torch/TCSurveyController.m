@@ -10,7 +10,9 @@
 #import "DDProgressView.h"
 #import "GraphicsUtils.h"
 #import "MGTableBox.h"
+#import "Survey.h"
 #import <OCTotallyLazy.h>
+#import "UIViewController+MGBox.h"
 
 @interface TCSurveyController ()
 
@@ -18,6 +20,7 @@
 @property (atomic) CGRect pickerHeight;
 @property (atomic) BOOL pickerSingle;
 @property (nonatomic, retain) NSMutableSet* selected;
+@property (atomic) NSArray* questions;
 
 @end
 
@@ -55,6 +58,8 @@ CGSize pickerConstraint = (CGSize){265, FLT_MAX};
     self.pickerHeight = (CGRect) {0, 0, 265, height};
 
     MGTableBox *table = [MGTableBox boxWithSize:self.view.size];
+    
+    [table.topLines addObject:[self sectionHeader:@"de Marketing" backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor] fontName:@"HelveticaNeueLTCom-Md"]];
 
     DDProgressView *progressBar = [[DDProgressView alloc] initWithFrame:CGRectMake(15.0f, 20.0f, self.view.bounds.size.width - 30.0f, 100.0f)];
     progressBar.outerColor = [UIColor clearColor];
@@ -64,21 +69,42 @@ CGSize pickerConstraint = (CGSize){265, FLT_MAX};
 
     UILabel *progressText = [[UILabel alloc] initWithFrame:(CGRect) {0, 5, progressBar.bounds.size.width, progressBar.bounds.size.height-5}];
     progressText.adjustsFontSizeToFitWidth = NO;
-    progressText.textAlignment = NSTextAlignmentCenter;
+    progressText.textAlignment = NSTextAlignmentLeft;
     progressText.numberOfLines = 1;
     progressText.textColor = [UIColor whiteColor];
     progressText.backgroundColor = [UIColor clearColor];
-    progressText.text = @"8 of 10";
+    progressText.text = [NSString stringWithFormat:@"   Pregunta %d de %d", 8, 10];
     progressText.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14];
     [progressBar addSubview:progressText];
 
-    [table.topLines addObject:mgline(progressBar)];
+    [table.topLines addObject:padding(mgline(progressBar))];
+    
+    [table.topLines addObject:[self sectionHeader:@"Promp" backgroundColor:[UIColor clearColor] underlineColor:[UIColor clearColor] fontName:@"HelveticaNeueLTCom-Md"]];
 
     UIPickerView *picker = [[UIPickerView alloc] initWithFrame:(CGRect) {0, 0, 320, 300}];
     picker.delegate = self;
     picker.showsSelectionIndicator = YES;
     picker.dataSource = self;
-    [table.topLines addObject:mgline(picker)];
+    //[table.topLines addObject:mgline(picker)];
+    
+    UITextField *textField = [[UITextField alloc] initWithFrame:(CGRect) {0, 0, 300, 30}];
+    textField.placeholder = @"Answer";
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    [table.topLines addObject:padding(mgline(textField))];
+    
+    UITextView *textView = [[UITextView alloc] initWithFrame:(CGRect) {0, 0, 300, 60}];
+    textView.editable = YES;
+    textView.layer.cornerRadius = 5;
+    textView.clipsToBounds = YES;
+    [textView.layer setBackgroundColor: [[UIColor whiteColor] CGColor]];
+    [textView.layer setBorderColor: [[UIColor grayColor] CGColor]];
+    [textView.layer setBorderWidth: 1.0];
+    [textView.layer setCornerRadius:8.0f];
+    [textView.layer setMasksToBounds:YES];
+    
+    [table.topLines addObject:padding(mgline(textView))];
+    [table.topLines addObject:padding(mgline(blueButton(@"Next")))];
+    
     [table layout];
     [self.view addSubview:table];
 }
@@ -96,7 +122,7 @@ CGSize pickerConstraint = (CGSize){265, FLT_MAX};
 
 // tell the picker the title for a given component
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [self.surveyOptions objectAtIndex:row];
+    return self.surveyOptions[row];
 }
 
 // tell the picker the width of each row for a given component
@@ -110,7 +136,7 @@ CGSize pickerConstraint = (CGSize){265, FLT_MAX};
 
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    NSString* obj = [self.surveyOptions objectAtIndex:row];
+    NSString* obj = self.surveyOptions[row];
     if ([self.selected containsObject:obj]) {
         [self.selected removeObject:obj];
         [pickerView reloadAllComponents];
@@ -124,7 +150,7 @@ CGSize pickerConstraint = (CGSize){265, FLT_MAX};
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    NSString* str = [self.surveyOptions objectAtIndex:row];
+    NSString* str = self.surveyOptions[row];
     if (!self.pickerSingle && [self.selected containsObject:str]) {
         str = [str stringByAppendingString:@" ✔"];
     }

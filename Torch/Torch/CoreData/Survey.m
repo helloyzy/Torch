@@ -3,7 +3,7 @@
 
 @interface Survey ()
 
-// Private interface goes here.
+@property (getter=answersFromString, readonly) NSArray* answerArray;
 
 @end
 
@@ -18,6 +18,11 @@
      SurveyAttributes.questionType,
      SurveyAttributes.questionTypeId]];
     return mapping;
+}
+
+- (NSArray*) answersFromString {
+    assert(self.answers != NULL);
+    return [self.answers componentsSeparatedByString:@","];
 }
 
 @end
