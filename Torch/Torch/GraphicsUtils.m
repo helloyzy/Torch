@@ -46,3 +46,20 @@ UIImage * clearColorImage(CGRect rect) {
 MGLine *mgline(UIView* leftView) {
     return [MGLine lineWithLeft:leftView right:nil size:leftView.size];
 }
+
+MGLine *padding(MGLine* line) {
+    int k = 10;
+    line.padding = (UIEdgeInsets) {k,k,0,0};
+    line.frame = (CGRect) {line.frame.origin.x, line.frame.origin.y, line.frame.size.width+k, line.frame.size.height+k};
+    return line;
+}
+
+UIButton *blueButton(NSString* title) {
+CGRect btnFrame = CGRectMake(0, 0, 302, 35);
+UIButton * btn = [[UIButton alloc] initWithFrame:btnFrame];
+    //btn.titleLabel.font = TCFont_HNLTComBd(14);
+[btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+[btn setTitle:title forState:UIControlStateNormal];
+[btn setBackgroundImage:[UIImage imageNamed:@"bluebutton.png"] forState:UIControlStateNormal];
+    return btn;
+}

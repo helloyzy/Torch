@@ -22,3 +22,5 @@ void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor
 UIImage * clearColorImage(CGRect rect);
 
 MGLine *mgline(UIView* leftView);
+MGLine *padding(MGLine* line);
+UIButton *blueButton(NSString* title);
