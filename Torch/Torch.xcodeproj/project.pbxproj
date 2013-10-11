@@ -42,9 +42,9 @@
 		1C713BFA17C2058100A903A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C713BF817C2058100A903A6 /* InfoPlist.strings */; };
 		1C713BFC17C2058100A903A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C713BFB17C2058100A903A6 /* main.m */; };
 		1C713C0017C2058100A903A6 /* TCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C713BFF17C2058100A903A6 /* TCAppDelegate.m */; };
-		1C713C0217C2058100A903A6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C713C0117C2058100A903A6 /* Default.png */; };
-		1C713C0417C2058100A903A6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C713C0317C2058100A903A6 /* Default@2x.png */; };
-		1C713C0617C2058100A903A6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C713C0517C2058100A903A6 /* Default-568h@2x.png */; };
+		1C713C0217C2058100A903A6 /* Default1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C713C0117C2058100A903A6 /* Default1.png */; };
+		1C713C0417C2058100A903A6 /* Default@2x1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C713C0317C2058100A903A6 /* Default@2x1.png */; };
+		1C713C0617C2058100A903A6 /* Default-568h@2x1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C713C0517C2058100A903A6 /* Default-568h@2x1.png */; };
 		1C713C0917C2058100A903A6 /* TCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C713C0817C2058100A903A6 /* TCViewController.m */; };
 		1C713C0C17C2058100A903A6 /* TCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C713C0A17C2058100A903A6 /* TCViewController.xib */; };
 		1C713C1417C2058100A903A6 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713C1317C2058100A903A6 /* SenTestingKit.framework */; };
@@ -173,6 +173,9 @@
 		DC76817917DD75C50039DE1B /* TCCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = DC76817817DD75C50039DE1B /* TCCustomer.m */; };
 		DC76817C17DD76DF0039DE1B /* DRTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = DC76817B17DD76DF0039DE1B /* DRTextField.m */; };
 		DC76817F17DD8F9F0039DE1B /* TCEditingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC76817E17DD8F9F0039DE1B /* TCEditingCell.m */; };
+		DC7C75511807CEE600C76CD0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7C75501807CEE600C76CD0 /* Default.png */; };
+		DC7C75541807D01600C76CD0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7C75521807D01600C76CD0 /* Default-568h@2x.png */; };
+		DC7C75551807D01600C76CD0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7C75531807D01600C76CD0 /* Default@2x.png */; };
 		DC96805017CF22700079D230 /* TCSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC96804F17CF22700079D230 /* TCSliderView.m */; };
 		DC96805317CF2E320079D230 /* TCSysRes.m in Sources */ = {isa = PBXBuildFile; fileRef = DC96805217CF2E320079D230 /* TCSysRes.m */; };
 		DC9979C317C5D4510044C917 /* navbar_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9979C117C5D4510044C917 /* navbar_bg.png */; };
@@ -263,9 +266,9 @@
 		1C713BFD17C2058100A903A6 /* Torch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Torch-Prefix.pch"; sourceTree = "<group>"; };
 		1C713BFE17C2058100A903A6 /* TCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCAppDelegate.h; sourceTree = "<group>"; };
 		1C713BFF17C2058100A903A6 /* TCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCAppDelegate.m; sourceTree = "<group>"; };
-		1C713C0117C2058100A903A6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		1C713C0317C2058100A903A6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		1C713C0517C2058100A903A6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1C713C0117C2058100A903A6 /* Default1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default1.png; sourceTree = "<group>"; };
+		1C713C0317C2058100A903A6 /* Default@2x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x1.png"; sourceTree = "<group>"; };
+		1C713C0517C2058100A903A6 /* Default-568h@2x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x1.png"; sourceTree = "<group>"; };
 		1C713C0717C2058100A903A6 /* TCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCViewController.h; sourceTree = "<group>"; };
 		1C713C0817C2058100A903A6 /* TCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCViewController.m; sourceTree = "<group>"; };
 		1C713C0B17C2058100A903A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TCViewController.xib; sourceTree = "<group>"; };
@@ -452,6 +455,9 @@
 		DC76817B17DD76DF0039DE1B /* DRTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRTextField.m; sourceTree = "<group>"; };
 		DC76817D17DD8F9F0039DE1B /* TCEditingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCEditingCell.h; sourceTree = "<group>"; };
 		DC76817E17DD8F9F0039DE1B /* TCEditingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEditingCell.m; sourceTree = "<group>"; };
+		DC7C75501807CEE600C76CD0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Res/Default.png; sourceTree = "<group>"; };
+		DC7C75521807D01600C76CD0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DC7C75531807D01600C76CD0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		DC96804E17CF22700079D230 /* TCSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSliderView.h; sourceTree = "<group>"; };
 		DC96804F17CF22700079D230 /* TCSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSliderView.m; sourceTree = "<group>"; };
 		DC96805117CF2E320079D230 /* TCSysRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSysRes.h; sourceTree = "<group>"; };
@@ -613,6 +619,9 @@
 		1C713BF617C2058100A903A6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DC7C75521807D01600C76CD0 /* Default-568h@2x.png */,
+				DC7C75531807D01600C76CD0 /* Default@2x.png */,
+				DC7C75501807CEE600C76CD0 /* Default.png */,
 				DCF4A3DB1806937200DF8F64 /* fetchmexico.json */,
 				DC56020617F27C6A009BA08C /* product.json */,
 				DCA4663417E82040008D634D /* order.json */,
@@ -622,9 +631,9 @@
 				1C713BF817C2058100A903A6 /* InfoPlist.strings */,
 				1C713BFB17C2058100A903A6 /* main.m */,
 				1C713BFD17C2058100A903A6 /* Torch-Prefix.pch */,
-				1C713C0117C2058100A903A6 /* Default.png */,
-				1C713C0317C2058100A903A6 /* Default@2x.png */,
-				1C713C0517C2058100A903A6 /* Default-568h@2x.png */,
+				1C713C0117C2058100A903A6 /* Default1.png */,
+				1C713C0317C2058100A903A6 /* Default@2x1.png */,
+				1C713C0517C2058100A903A6 /* Default-568h@2x1.png */,
 				DC0383CE17C3469700BBD02A /* Localizable.strings */,
 				DCFB9D3117E94FC900326521 /* disclaimation_es.txt */,
 			);
@@ -1057,9 +1066,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C713BFA17C2058100A903A6 /* InfoPlist.strings in Resources */,
-				1C713C0217C2058100A903A6 /* Default.png in Resources */,
-				1C713C0417C2058100A903A6 /* Default@2x.png in Resources */,
-				1C713C0617C2058100A903A6 /* Default-568h@2x.png in Resources */,
+				1C713C0217C2058100A903A6 /* Default1.png in Resources */,
+				1C713C0417C2058100A903A6 /* Default@2x1.png in Resources */,
+				1C713C0617C2058100A903A6 /* Default-568h@2x1.png in Resources */,
 				1C713C0C17C2058100A903A6 /* TCViewController.xib in Resources */,
 				DC0383A417C3044300BBD02A /* HersheysLogo.png in Resources */,
 				DC0383A917C3067B00BBD02A /* TCLoginViewController.xib in Resources */,
@@ -1147,6 +1156,9 @@
 				DC56020717F27C6A009BA08C /* product.json in Resources */,
 				1C4064D917F7C39900481E17 /* TCDataStatusController.xib in Resources */,
 				DCF4A3DC1806937200DF8F64 /* fetchmexico.json in Resources */,
+				DC7C75511807CEE600C76CD0 /* Default.png in Resources */,
+				DC7C75541807D01600C76CD0 /* Default-568h@2x.png in Resources */,
+				DC7C75551807D01600C76CD0 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
