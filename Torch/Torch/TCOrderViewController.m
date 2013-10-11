@@ -695,97 +695,89 @@
 }
 
 
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *orderTableCell = @"InventoryTableCell";
-    NSInteger sectionId = [indexPath section];
-     
-    if ([self isPromotionItem:indexPath inSection:sectionId]) {
-        //generate promotionItemCell and return Here;
-               
-        NSInteger indexInPromotionArray = indexPath.row - [displayData count];
-        NSString *itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
-        
-        if (itemKey) {
-            PromotionItem *pi = [promotionItems objectForKey:itemKey];
-            if (pi && pi.type == PromotionTypeDiscountOrder) {
-                // this is total discount order promotion item, use promotion table cell to render
-                TCPromotionTableCell *cell = (TCPromotionTableCell *)[tableView dequeueReusableCellWithIdentifier:@"TCPromotionTableCell"];
-                if (!cell) {
-                    NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"TCPromotionTableCell" owner:self options:nil];
-                    cell = [nib objectAtIndex:0];
-                    [cell.contentView sendSubviewToBack:cell.deleteButton];
-                    cell.deleteButton.hidden = YES;
-                }
-
-                cell.promotionTitle.text = pi.name;
-                cell.promotionDetails.text=pi.description;
-                //add swipe gesture to delete
-                UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(promotionCellSwiped:)];
-                [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
-                [cell addGestureRecognizer:sgr];
-                
-                UISwipeGestureRecognizer *sgr1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(promotionCellDeleteCancelled:)];
-                [sgr1 setDirection:UISwipeGestureRecognizerDirectionRight];
-                [cell addGestureRecognizer:sgr1];
-                UIButton *deleteButton = cell.deleteButton;
-                [deleteButton addTarget:self action:@selector(deleteCurrentPromotionItem:) forControlEvents:UIControlEventTouchDown];
-                UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
-                UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 78, 295, 1)];
-                seperate2.backgroundColor = [UIColor grayColor];
-                [cellSeperatorLine addSubview:seperate2];
-                cell.backgroundView = cellSeperatorLine;
-                
-                return cell;
-            } else {
-                // is common promotion item, need the cell style with steppers
-                InventoryTableCell *cell = (InventoryTableCell *)[tableView dequeueReusableCellWithIdentifier:@"promotionCommonCell"];
-                if(cell ==nil) {
-                    cell = [[InventoryTableCell  alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"promotionCommonCell"];
-                    cell = [[[NSBundle mainBundle] loadNibNamed:orderTableCell owner:nil options:nil] lastObject];
-                    //cell = [nib objectAtIndex:0];
-                    [cell.contentView sendSubviewToBack:cell.vwDelete];
-                    cell.vwDelete.hidden=YES;
-                }
-                
-                UIStepper *numStepper1 = cell.stepper;
-                [numStepper1 addTarget:self action:@selector(updatePromotionUnit:) forControlEvents:UIControlEventValueChanged];
-                UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
-                UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 110, 295, 1)];
-                seperate2.backgroundColor = [UIColor grayColor];
-                [cellSeperatorLine addSubview:seperate2];
-                cell.backgroundView = cellSeperatorLine;
-                [self populatePromotionCell:cell withKeyName:itemKey];
-                
-                
-                //add swipe gesture to delete
-                UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
-                [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
-                [cell addGestureRecognizer:sgr];
-                
-                UISwipeGestureRecognizer *sgr1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellDeleteCancelled:)];
-                [sgr1 setDirection:UISwipeGestureRecognizerDirectionRight];
-                [cell addGestureRecognizer:sgr1];
-
-                UIButton *deleteButton = cell.deleteButton;
-                [deleteButton addTarget:self action:@selector(deleteCurrentCommonPromotionItem:) forControlEvents:UIControlEventTouchDown];
-
-                
-                return cell;
-            }
-            
+-(UITableViewCell *)createNormalPromotionItemCell:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath withItemKey:(NSString *)itemkey {
+    // this is total discount order promotion item, use promotion table cell to render
+    PromotionItem *pi = [promotionItems objectForKey:itemkey];
+    
+    if (!pi) {
+        TCPromotionTableCell *cell = (TCPromotionTableCell *)[tableView dequeueReusableCellWithIdentifier:@"TCPromotionTableCell"];
+        if (!cell) {
+            NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"TCPromotionTableCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+            [cell.contentView sendSubviewToBack:cell.deleteButton];
+            cell.deleteButton.hidden = YES;
         }
         
+        cell.promotionTitle.text = pi.name;
+        cell.promotionDetails.text=pi.description;
+        //add swipe gesture to delete
+        UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(promotionCellSwiped:)];
+        [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
+        [cell addGestureRecognizer:sgr];
         
-    }else {
-        
+        UISwipeGestureRecognizer *sgr1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(promotionCellDeleteCancelled:)];
+        [sgr1 setDirection:UISwipeGestureRecognizerDirectionRight];
+        [cell addGestureRecognizer:sgr1];
+        UIButton *deleteButton = cell.deleteButton;
+        [deleteButton addTarget:self action:@selector(deleteCurrentPromotionItem:) forControlEvents:UIControlEventTouchDown];
+        UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
+        UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 78, 295, 1)];
+        seperate2.backgroundColor = [UIColor grayColor];
+        [cellSeperatorLine addSubview:seperate2];
+        cell.backgroundView = cellSeperatorLine;
+        return cell;
+    }
+    return nil;
+    
+}
+
+
+
+-(UITableViewCell *)createPromotionItemCellWithStepper:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath withItemKey:(NSString *)itemKey {
+    
+    InventoryTableCell *cell = (InventoryTableCell *)[tableView dequeueReusableCellWithIdentifier:@"promotionCommonCell"];
+    if(cell ==nil) {
+        cell = [[InventoryTableCell  alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"promotionCommonCell"];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"InventoryTableCell" owner:nil options:nil] lastObject];
+        //cell = [nib objectAtIndex:0];
+        [cell.contentView sendSubviewToBack:cell.vwDelete];
+        cell.vwDelete.hidden=YES;
+    }
+    
+    UIStepper *numStepper1 = cell.stepper;
+    [numStepper1 addTarget:self action:@selector(updatePromotionUnit:) forControlEvents:UIControlEventValueChanged];
+    UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
+    UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 110, 295, 1)];
+    seperate2.backgroundColor = [UIColor grayColor];
+    [cellSeperatorLine addSubview:seperate2];
+    cell.backgroundView = cellSeperatorLine;
+    [self populatePromotionCell:cell withKeyName:itemKey];
+    
+    
+    //add swipe gesture to delete
+    UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
+    [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [cell addGestureRecognizer:sgr];
+    
+    UISwipeGestureRecognizer *sgr1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellDeleteCancelled:)];
+    [sgr1 setDirection:UISwipeGestureRecognizerDirectionRight];
+    [cell addGestureRecognizer:sgr1];
+    
+    UIButton *deleteButton = cell.deleteButton;
+    [deleteButton addTarget:self action:@selector(deleteCurrentCommonPromotionItem:) forControlEvents:UIControlEventTouchDown];
+    
+    return cell;
+
+}
+
+-(UITableViewCell *)createOrderItemCellWithStepper:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+        NSInteger sectionId = [indexPath section];
     InventoryTableCell *cell = (InventoryTableCell *)[tableView dequeueReusableCellWithIdentifier:@"orderProductItemCell"];
     if(cell ==nil) {
-       // NSArray *nib = [[NSBundle mainBundle] loadNibNamed:orderTableCell owner:self options:nil] ;
-       // cell = [nib objectAtIndex:0];
+        // NSArray *nib = [[NSBundle mainBundle] loadNibNamed:orderTableCell owner:self options:nil] ;
+        // cell = [nib objectAtIndex:0];
         cell = [[InventoryTableCell  alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"orderProductItemCell"];
-        cell = [[[NSBundle mainBundle] loadNibNamed:orderTableCell owner:nil options:nil] lastObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"InventoryTableCell" owner:nil options:nil] lastObject];
         [cell.contentView sendSubviewToBack:cell.vwDelete];
         cell.vwDelete.hidden=YES;
     }
@@ -813,13 +805,41 @@
     }
     
     [self populateCell:cell withKeyName:itemKey];
-        
+    
     UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
     UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 110, 295, 1)];
     seperate2.backgroundColor = [UIColor grayColor];
     [cellSeperatorLine addSubview:seperate2];
     cell.backgroundView = cellSeperatorLine;
     return cell;
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger sectionId = [indexPath section];
+    
+    if ([self isPromotionItem:indexPath inSection:sectionId]) {
+        //generate promotionItemCell and return Here;
+        
+        NSInteger indexInPromotionArray = indexPath.row - [displayData count];
+        NSString *itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
+        
+        if (itemKey) {
+            PromotionItem *pi = [promotionItems objectForKey:itemKey];
+            if (pi && pi.type == PromotionTypeDiscountOrder) {
+                    // this is total discount order promotion item, use promotion table cell to render
+                return [self createNormalPromotionItemCell:tableView cellForRowAtIndexPath:indexPath withItemKey:itemKey];
+            } else {
+                // is common promotion item, need the cell style with steppers
+                return [self createPromotionItemCellWithStepper:tableView cellForRowAtIndexPath:indexPath withItemKey:itemKey];
+               
+            }
+            
+        }
+    }else {
+        // create normal product item in order cell
+        return [self createOrderItemCellWithStepper:tableView cellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
