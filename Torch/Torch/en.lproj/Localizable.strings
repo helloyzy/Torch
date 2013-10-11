@@ -123,7 +123,7 @@
 "order.summary.subTotal" = "Subtotal";
 "order.summary.tax" = "Tax";
 "order.summary.orderTotal" = "Order Total";
-
+"order.summary.discountDallar" = "Discount ($)";
 "order.discountpromotion.alert.title" = "Discount Replacement Confirm";
 "order.discountpromotion.alert.text" = "There is one overall discount promotion item in the list, do you want to replace with current one?";
 
