@@ -127,7 +127,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
         UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NewCustomerCell];
         cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Roman" size:16];
         cell.textLabel.textColor = TCColorLineBlue;
-        cell.textLabel.text = @"add new customer";
+        cell.textLabel.text = Lo(myday.add);
         //[tableView dequeueReusableCellWithIdentifier:NewCustomerCell forIndexPath:indexPath];
         return cell;
     }
