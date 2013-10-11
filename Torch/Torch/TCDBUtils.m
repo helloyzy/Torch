@@ -7,11 +7,16 @@
 //
 
 #import "TCDBUtils.h"
+#import "TCUtils.h"
 #import "IBCoreDataStore.h"
 
 #import "SalesRep.h"
 #import "Order.h"
 #import "Product.h"
+#import "Priority.h"
+#import "Promotion.h"
+#import "Survey.h"
+#import "Store.h"
 #import <RestKit/RestKit.h>
 
 #import "NSManagedObject+InnerBand.h"
@@ -93,6 +98,22 @@ static IBCoreDataStore * ibDataStore;
                                   keyPath:nil
                                     error:&error];
     
+    RKEntityMapping *priorityMapping = [Priority objectMapping];
+    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"fetchmexico" ofType:@"json"]
+                              withMapping:priorityMapping
+                                  keyPath:@"priorities"
+                                    error:&error];
+    RKEntityMapping *promotionMapping = [Promotion objectMapping];
+    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"fetchmexico" ofType:@"json"]
+                              withMapping:promotionMapping
+                                  keyPath:@"promotions"
+                                    error:&error];
+    RKEntityMapping *surveyMapping = [Survey objectMapping];
+    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"fetchmexico" ofType:@"json"]
+                              withMapping:surveyMapping
+                                  keyPath:@"survey"
+                                    error:&error];
+    
     BOOL success = [importer finishImporting:&error];
     if (success) {
         [importer logSeedingInfo];
@@ -104,6 +125,17 @@ static IBCoreDataStore * ibDataStore;
     NSString * fromPath = [[NSBundle mainBundle] pathForResource:@"CoreDataStore" ofType:@"sqlite"];
     NSLog(@"Copy database from %@ to %@", fromPath, TC_DB_PATH);
     [[NSFileManager defaultManager] copyItemAtPath:fromPath toPath:TC_DB_PATH error:nil];
+}
+
++(void) adjustStoreSchedule {
+    NSArray *stores = [Store all];
+    NSNumber *temp = curdateToMilliseconds();
+    double tempValue = [temp doubleValue];
+    for (Store *store in stores) {
+        store.schedule = [NSNumber numberWithDouble:tempValue];
+        tempValue += 1;
+    }
+    [Store save];
 }
 
 

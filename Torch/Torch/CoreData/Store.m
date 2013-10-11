@@ -3,6 +3,7 @@
 #import "StoreCall.h"
 #import "Contact.h"
 #import <NSManagedObject+InnerBand.h>
+#import "TCDBUtils.h"
 
 @interface Store ()
 
@@ -51,7 +52,7 @@
 - (StoreCall *)callInProgress {
     StoreCall *result = nil;
     for (StoreCall *temp in self.storeCalls) {
-        if ((! temp.externalId)) {
+        if ([temp isCallInProgress]) {
             result = temp;
             break;
         }
@@ -60,13 +61,18 @@
 }
 
 + (Store *)storeInCall {
-    NSArray *stores = [self all];
+    NSArray *stores = [self allInStore:[TCDBUtils ibDataStore]];
     for (Store *store in stores) {
         if ([store callInProgress]) {
             return store;
         }
     }
     return nil;
+}
+
+/* sort by schedule */
++ (NSArray *)sortedStores {
+    return [self allOrderedBy:StoreAttributes.schedule ascending:YES inStore:[TCDBUtils ibDataStore]];
 }
 
 @end

@@ -979,6 +979,10 @@ table tr:nth-child(even),table td:nth-child(even)
 </body>
 </html>
 
+## SKBindingManager
+
+Copyright (C) 2012 Slavko Krucaj. All Rights Reserved.
+
 ## SOCKit
 
 

@@ -9,7 +9,7 @@
 #import "TCPromotionDetailVwCtl.h"
 #import "TCSysRes.h"
 #import "DateUtils.h"
-#import "PromotionItem.h"
+#import "TCPromotionItem.h"
 #import "TCOrderViewController.h"
 
 @interface TCPromotionDetailVwCtl ()

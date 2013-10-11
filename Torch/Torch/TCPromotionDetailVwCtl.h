@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TCNavVwCtl.h"
 
-@class PromotionItem;
+@class TCPromotionItem;
 
 @interface TCPromotionDetailVwCtl : TCNavVwCtl {
     
@@ -25,6 +25,6 @@
 
 - (IBAction)addPromoToOrder:(id)sender;
 
-@property(nonatomic,strong)PromotionItem * item;
+@property(nonatomic,strong)TCPromotionItem * item;
 
 @end

@@ -2,6 +2,7 @@
 #import <RestKit/RestKit.h>
 #import "OrderCredit.h"
 #import <NSManagedObject+InnerBand.h>
+#import "TCDBUtils.h"
 
 @interface Order ()
 
@@ -26,7 +27,7 @@
 }
 
 + (NSArray *)activeOrders {
-    return [self all];
+    return [self allInStore:[TCDBUtils ibDataStore]];
 }
 
 + (NSInteger)activeOrderCount {

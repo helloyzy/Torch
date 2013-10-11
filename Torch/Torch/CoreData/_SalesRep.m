@@ -11,6 +11,7 @@ const struct SalesRepAttributes SalesRepAttributes = {
 	.managerNetworkId = @"managerNetworkId",
 	.networkId = @"networkId",
 	.remoteKey = @"remoteKey",
+	.salesOrg = @"salesOrg",
 	.startDate = @"startDate",
 	.status = @"status",
 };
@@ -151,6 +152,13 @@ const struct SalesRepFetchedProperties SalesRepFetchedProperties = {
 
 
 @dynamic remoteKey;
+
+
+
+
+
+
+@dynamic salesOrg;
 
 
 

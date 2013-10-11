@@ -13,6 +13,9 @@
 
 #import "SalesRep.h"
 #import "Order.h"
+#import "Priority.h"
+#import "Promotion.h"
+#import "Survey.h"
 #import "TCRKObjectMapping.h"
 #import "TCLoginCredential.h"
 
@@ -20,6 +23,7 @@
 #define TC_SVC_BASE_URL [NSURL URLWithString:TC_SVC_BASE]
 #define TC_SVC_LOGIN [TC_SVC_BASE stringByAppendingPathComponent:@"fetchData"]
 #define TC_SVC_SUCCESS_CODE RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)
+#define TC_SVC_FETCHMEXICO @"https://hmuled01.hersheys.com:10040/torch/v3/mx/fetchmexico"
 
 @implementation TCSvcUtils
 
@@ -61,6 +65,38 @@
     //    [RKObjectManager setSharedManager:objectManager];
     //    [objectManager addResponseDescriptor:responseDescriptor];
     //    [objectManager getObjectsAtPath:@"/torch/v1/fetchData" parameters:nil success:nil failure:nil];
+}
+
++ (void)fetchMexicoDataService:(TC_SVC_BLOCK_SUCCESS)success
+                failure:(TC_SVC_BLOCK_FAILURE)failure {
+    RKEntityMapping *priorityMapping = [Priority objectMapping];
+    RKResponseDescriptor *priorityResponse = [RKResponseDescriptor responseDescriptorWithMapping:priorityMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"priorities" statusCodes:TC_SVC_SUCCESS_CODE];
+    
+    RKEntityMapping *promotionMapping = [Promotion objectMapping];
+    RKResponseDescriptor *promotionResponse = [RKResponseDescriptor responseDescriptorWithMapping:promotionMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"promotions" statusCodes:TC_SVC_SUCCESS_CODE];
+    
+    RKEntityMapping *surveyMapping = [Survey objectMapping];
+    RKResponseDescriptor *surveyResponse = [RKResponseDescriptor responseDescriptorWithMapping:surveyMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"survey" statusCodes:TC_SVC_SUCCESS_CODE];
+    
+    NSURLRequest * request = [NSURLRequest requestWithURL:IB_URL(TC_SVC_FETCHMEXICO)];
+    RKManagedObjectRequestOperation * operation = [[RKManagedObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[priorityResponse, promotionResponse, surveyResponse]];
+    [operation.HTTPRequestOperation setWillSendRequestForAuthenticationChallengeBlock:^(NSURLConnection * conn, NSURLAuthenticationChallenge * challenge) {
+        NSLog(@"Sync data service receive credential challege.");
+        if ([challenge previousFailureCount] == 0) {
+            TCLoginCredential *credential = [TCLoginCredential sharedInstance];
+            NSURLCredential * newCred = [NSURLCredential credentialWithUser:credential.username password:credential.password persistence:NSURLCredentialPersistenceForSession];
+            [[challenge sender] useCredential:newCred forAuthenticationChallenge:challenge];
+        } else {
+            [[challenge sender] cancelAuthenticationChallenge:challenge];
+        }
+    }];
+    
+    RKManagedObjectStore * managedObjectStore = [RKManagedObjectStore defaultStore];
+    operation.managedObjectContext = managedObjectStore.mainQueueManagedObjectContext;
+    operation.managedObjectCache = managedObjectStore.managedObjectCache;
+    [operation setCompletionBlockWithSuccess:success failure:failure];
+    NSOperationQueue * operationQueue = [NSOperationQueue new];
+    [operationQueue addOperation:operation];
 }
 
 + (void)orderRequestService {

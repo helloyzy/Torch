@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+Utils.h"
 #import "TCNavVwCtl.h"
-#import "PromotionItem.h"
+#import "TCPromotionItem.h"
 @class Store;
 
 @interface TCOrderViewController : TCNavVwCtl <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 
--(void)setSelectedPromotionItem:(PromotionItem *)promotionItem;
+-(void)setSelectedPromotionItem:(TCPromotionItem *)promotionItem;
 @property (nonatomic,strong) Store *currentStore;
 
 @end

@@ -32,7 +32,7 @@
 
 @implementation TCOrderViewController
 {
-
+    
     NSMutableArray *displayData;
     NSArray *searchResults;
     NSMutableDictionary *productCollection;
@@ -40,8 +40,8 @@
     NSMutableArray *displayPromotionItems;
     NSArray *productItems;
     float currentDiscount;
-    PromotionItem *currentPromotionItem;
-
+    TCPromotionItem *currentPromotionItem;
+    
 }
 
 -(void) refreshTableView {
@@ -52,27 +52,27 @@
 -(void)regenerateDisplayPromotionItemArray {
     displayPromotionItems = [[NSMutableArray alloc] init];
     for (id key in promotionItems) {
-        PromotionItem *promotionObject = (PromotionItem *)[promotionItems objectForKey:key];
+        TCPromotionItem *promotionObject = (TCPromotionItem *)[promotionItems objectForKey:key];
         [displayPromotionItems addObject:promotionObject.key];
     }
-
+    
 }
 -(BOOL)isDiscountPromotionItemExist {
     BOOL discountPromotionItemExist = NO;
     for (NSString *promotionSN in displayPromotionItems) {
-        PromotionItem *promotionObject = (PromotionItem *) [promotionItems objectForKey:promotionSN];
+        TCPromotionItem *promotionObject = (TCPromotionItem *) [promotionItems objectForKey:promotionSN];
         if (promotionObject.type == PromotionTypeDiscountOrder) {
             discountPromotionItemExist = YES;
         }
     }
     return discountPromotionItemExist;
-
+    
 }
 
 -(CGFloat)getDiscountPercentage {
     CGFloat discountPercentage = 0;
     for (NSString *promotionSN in displayPromotionItems) {
-        PromotionItem *promotionObject = (PromotionItem *) [promotionItems objectForKey:promotionSN];
+        TCPromotionItem *promotionObject = (TCPromotionItem *) [promotionItems objectForKey:promotionSN];
         if (promotionObject.type == PromotionTypeDiscountOrder) {
             discountPercentage = promotionObject.discountPercentage;
         }
@@ -89,7 +89,7 @@
 
 -(void)replaceTheDiscountPromotionItem {
     for (NSString *promotionSN in displayPromotionItems) {
-        PromotionItem *promotionObject = (PromotionItem *) [promotionItems objectForKey:promotionSN];
+        TCPromotionItem *promotionObject = (TCPromotionItem *) [promotionItems objectForKey:promotionSN];
         if (promotionObject.type == PromotionTypeDiscountOrder) {
             [promotionItems removeObjectForKey:promotionSN];
         }
@@ -109,9 +109,9 @@
     return YES;
 }
 
--(void)setSelectedPromotionItem:(PromotionItem *)promotionItem {
+-(void)setSelectedPromotionItem:(TCPromotionItem *)promotionItem {
     if(!promotionItems) promotionItems = [[NSMutableDictionary alloc] init];
-     currentPromotionItem = promotionItem;
+    currentPromotionItem = promotionItem;
     
     if ([self isPromotionItemAllreadyExisting:promotionItem.key]) {
         // if promotion item already existing, not need to do anything;
@@ -122,7 +122,7 @@
     if ([self isDiscountPromotionItemExist] && promotionItem.type == PromotionTypeDiscountOrder) {
         [self showDiscountPromotionReplacementConfirmationWindow];
     } else if(promotionItem) {
-        NSString *key = promotionItem.key; 
+        NSString *key = promotionItem.key;
         [promotionItems setObject:promotionItem forKey:key];
         [self regenerateDisplayPromotionItemArray];
         [self refreshTableView];
@@ -209,7 +209,7 @@
     orderAmountLabel.text = orderAmount;
     [orderAmountLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:16]];
     orderAmountLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
-
+    
     
     [customView addSubview:orderSummarylabel];
     [customView addSubview:orderAmountLabel];
@@ -253,20 +253,20 @@
         }
     } else {
         //this is confirm from printprompt alertview
-            if (buttonIndex==1) {
-                //confirm button clicked, populate the order data;
-                TCPrinterCtl *printScreen = [[TCPrinterCtl alloc] init];
-                [self.navigationController pushViewController:printScreen animated:YES];
-            }
-
+        if (buttonIndex==1) {
+            //confirm button clicked, populate the order data;
+            TCPrinterCtl *printScreen = [[TCPrinterCtl alloc] init];
+            [self.navigationController pushViewController:printScreen animated:YES];
+        }
+        
     }
-   
+    
 }
 
 - (UIView *)drawFooterSummaryView {
     
     UIView *summaryView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 300, 120)];
-
+    
     UILabel *productTotalLable = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
     [productTotalLable setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     //productTotalLable.textColor = [UIColor blackColor];
@@ -295,7 +295,7 @@
     UILabel *orderTotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 90, 100, 20)];
     [orderTotalLabel setFont:[UIFont fontWithName:@"Helvetica Neue Bold" size:14]];
     [orderTotalLabel setText:[self localString:@"order.summary.orderTotal"]];
-     [orderTotalLabel setTextColor: [UIColor darkGrayColor]];
+    [orderTotalLabel setTextColor: [UIColor darkGrayColor]];
     
     [summaryView addSubview:productTotalLable];
     [summaryView addSubview:discountLabel];
@@ -308,33 +308,33 @@
     [productTotalPriceLable setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [productTotalPriceLable setText: [NSString stringWithFormat:@"$%1.2f", self.fproductTotal]];
     [productTotalPriceLable setTextAlignment:NSTextAlignmentRight];
-       [productTotalPriceLable setTextColor: [UIColor darkGrayColor]];
+    [productTotalPriceLable setTextColor: [UIColor darkGrayColor]];
     
     
     UILabel *discountPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 30, 80, 20)];
     [discountPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [discountPriceLabel setText:[NSString stringWithFormat:@"-$%1.2f", self.fdiscount]];
     [discountPriceLabel setTextAlignment:NSTextAlignmentRight];
-       [discountPriceLabel setTextColor: [UIColor darkGrayColor]];
+    [discountPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     UILabel *subtotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 50, 80, 20)];
     [subtotalPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [subtotalPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.fsubtotal]];
     [subtotalPriceLabel setTextAlignment:NSTextAlignmentRight];
-       [subtotalPriceLabel setTextColor: [UIColor darkGrayColor]];
+    [subtotalPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     UILabel *taxPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 70, 80, 20)];
     [taxPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [taxPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.ftax]];
     [taxPriceLabel setTextAlignment:NSTextAlignmentRight];
-       [taxPriceLabel setTextColor: [UIColor darkGrayColor]];
+    [taxPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     
     UILabel *orderTotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 90, 80, 20)];
     [orderTotalPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue Bold" size:14]];
     [orderTotalPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.fordertotal]];
     [orderTotalPriceLabel setTextAlignment:NSTextAlignmentRight];
-       [orderTotalPriceLabel setTextColor: [UIColor darkGrayColor]];
+    [orderTotalPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     [summaryView addSubview:productTotalPriceLable];
     [summaryView addSubview:discountPriceLabel];
@@ -351,7 +351,7 @@
     [footerView addSubview:[self drawFooterSummaryView]];
     UIButton *promotionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 140, 290, 30)];
     [promotionButton setBackgroundImage:[UIImage imageNamed:@"bluebutton"] forState:UIControlStateNormal];
-
+    
     [promotionButton setTitle:[self localString:@"order.viewPromotion"] forState:UIControlStateNormal];
     [promotionButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14]];
     //completionButton.contentHorizontalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -371,7 +371,7 @@
         [orderCompletionButton setTitleEdgeInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
         [footerView addSubview:orderCompletionButton];
     }
-
+    
     [footerView addSubview:promotionButton];
     
     return footerView;
@@ -384,8 +384,8 @@
     
     UIView *seperator = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 320, 2)];
     seperator.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
-
-
+    
+    
     [self.view addSubview:seperator];
     [self popupProductItems];
     //[self showInitialORProductTableListView];
@@ -454,7 +454,7 @@
 }
 
 -(void)updatePromotion:(NSString *)promotionKey withQuantity:(float)Quantity {
-    PromotionItem *promotionitem  = [promotionItems objectForKey:promotionKey];
+    TCPromotionItem *promotionitem  = [promotionItems objectForKey:promotionKey];
     if (promotionitem) {
         promotionitem.unitNum = Quantity;
         [promotionItems setObject:promotionitem forKey:promotionKey];
@@ -510,8 +510,8 @@
     indexPath = [self.tableView indexPathForCell:currentCell];
     NSInteger indexInPromotionArray = indexPath.row - [displayData count];
     itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
-
-
+    
+    
     
     [self updatePromotion:itemKey withQuantity:(float)sender.value];
     
@@ -520,16 +520,16 @@
 
 -(void) deleteCurrentOrderItem:(UIButton *)sender {
     
-
+    
     InventoryTableCell *currentCell = (InventoryTableCell *)sender.superview.superview.superview;
     
     NSIndexPath *indexPath;
     NSString *itemKey;
     
     indexPath = [self.tableView indexPathForCell:currentCell];
-
+    
     itemKey = [displayData objectAtIndex:indexPath.row];
-
+    
     
     [self deleteOrderItem:itemKey];
     [self hideTheDeleteButton:currentCell hidden:YES];
@@ -548,7 +548,7 @@
     NSInteger indexInPromotionArray = indexPath.row - [displayData count];
     itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
     
-    PromotionItem *promotionitem  = [promotionItems objectForKey:itemKey];
+    TCPromotionItem *promotionitem  = [promotionItems objectForKey:itemKey];
     if (promotionitem) {
         [promotionItems removeObjectForKey:itemKey];
     }
@@ -569,7 +569,7 @@
     NSInteger indexInPromotionArray = indexPath.row - [displayData count];
     itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
     
-    PromotionItem *promotionitem  = [promotionItems objectForKey:itemKey];
+    TCPromotionItem *promotionitem  = [promotionItems objectForKey:itemKey];
     if (promotionitem) {
         [promotionItems removeObjectForKey:itemKey];
     }
@@ -594,7 +594,7 @@
 }
 
 -(UITableViewCell *)populatePromotionCell:(InventoryTableCell *)cell withKeyName:(NSString *)keyName {
-    PromotionItem *promotion = [promotionItems objectForKey:keyName];
+    TCPromotionItem *promotion = [promotionItems objectForKey:keyName];
     if(promotion) {
         cell.productName.text = promotion.name;
         UILabel *promotionDescLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 30, 165, 80)];
@@ -637,7 +637,7 @@
         NSInteger sectionId = [indexPath section];
         if (![self isInSearchResultSection:sectionId]) {
             // [self slideInDeletionButton:cell];
-        [self hideTheDeleteButton:cell hidden:NO];
+            [self hideTheDeleteButton:cell hidden:NO];
         }
     }
 }
@@ -651,7 +651,7 @@
             // [self slideInDeletionButton:cell];
             [self hideTheDeleteButton:cell hidden:YES];
         }
-       
+        
     }
 }
 
@@ -697,7 +697,7 @@
 
 -(UITableViewCell *)createNormalPromotionItemCell:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath withItemKey:(NSString *)itemkey {
     // this is total discount order promotion item, use promotion table cell to render
-    PromotionItem *pi = [promotionItems objectForKey:itemkey];
+    TCPromotionItem *pi = [promotionItems objectForKey:itemkey];
     
     if (!pi) {
         TCPromotionTableCell *cell = (TCPromotionTableCell *)[tableView dequeueReusableCellWithIdentifier:@"TCPromotionTableCell"];
@@ -767,11 +767,11 @@
     [deleteButton addTarget:self action:@selector(deleteCurrentCommonPromotionItem:) forControlEvents:UIControlEventTouchDown];
     
     return cell;
-
+    
 }
 
 -(UITableViewCell *)createOrderItemCellWithStepper:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-        NSInteger sectionId = [indexPath section];
+    NSInteger sectionId = [indexPath section];
     InventoryTableCell *cell = (InventoryTableCell *)[tableView dequeueReusableCellWithIdentifier:@"orderProductItemCell"];
     if(cell ==nil) {
         // NSArray *nib = [[NSBundle mainBundle] loadNibNamed:orderTableCell owner:self options:nil] ;
@@ -826,14 +826,14 @@
         NSString *itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
         
         if (itemKey) {
-            PromotionItem *pi = [promotionItems objectForKey:itemKey];
+            TCPromotionItem *pi = [promotionItems objectForKey:itemKey];
             if (pi && pi.type == PromotionTypeDiscountOrder) {
-                    // this is total discount order promotion item, use promotion table cell to render
+                // this is total discount order promotion item, use promotion table cell to render
                 return [self createNormalPromotionItemCell:tableView cellForRowAtIndexPath:indexPath withItemKey:itemKey];
             } else {
                 // is common promotion item, need the cell style with steppers
                 return [self createPromotionItemCellWithStepper:tableView cellForRowAtIndexPath:indexPath withItemKey:itemKey];
-               
+                
             }
             
         }
@@ -850,13 +850,13 @@
     NSString *itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
     
     if (itemKey) {
-        PromotionItem *pi = [promotionItems objectForKey:itemKey];
+        TCPromotionItem *pi = [promotionItems objectForKey:itemKey];
         if (pi && pi.type == PromotionTypeDiscountOrder) {
             isDiscountItem = YES;
         }
     }
     return isDiscountItem;
-
+    
 }
 
 
@@ -868,7 +868,7 @@
     }else {
         return 114;
     }
-   
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -877,8 +877,8 @@
     } else {
         return [displayData count]+[promotionItems count];
     }
-
-
+    
+    
 }
 
 -(BOOL) textFieldShouldClear:(UITextField *)textField {
@@ -937,7 +937,7 @@
 -(void) calculatePrice {
     [self clearPrice];
     [self calculateOrderTotal];
-
+    
 }
 
 -(void) calculateProductsPrice {
@@ -947,7 +947,7 @@
             self.fproductTotal += [productObject.productUnitNum doubleValue]*[productObject.productPrice doubleValue];
             //self.fproductTotal += [productObject.productUnitNum doubleValue]*1;
         }
-
+        
     }
 }
 

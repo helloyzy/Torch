@@ -19,7 +19,9 @@
 #import "TCDBUtils.h"
 #import <OCTotallyLazy.h>
 
-@interface TCMyDayController ()
+@interface TCMyDayController () {
+    Store *_selectedStore;
+}
 
 @end
 
@@ -79,20 +81,23 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
+    _selectedStore = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLAPPEAR_NOTIFICATION object:nil];
-    _stores = [Store allInStore:[TCDBUtils ibDataStore]];    
+    
+    _stores = [Store sortedStores];
+    
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    //[df setDateStyle:NSDateFormatterFullStyle];
     df.locale = [[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]];
     [df setDateFormat:@"EEEE, MMMM dd, YYYY "];
-
     NSString* str= [[df stringFromDate: [[NSDate alloc] init]] uppercaseString];
     _header.text = [@"  Mi día - " stringByAppendingString:str];
+    
     [_tableView reloadData];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLDISAPPEAR_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLDISAPPEAR_NOTIFICATION object:_selectedStore];
     [super viewWillDisappear:animated];
 }
 
@@ -183,8 +188,9 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
         return;
     }
     
+    _selectedStore = [_stores objectAtIndex:indexPath.row-1];
     TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
-    controller.currentStore = [_stores objectAtIndex:indexPath.row-1];
+    controller.currentStore = _selectedStore;
     controller.currentIndex =  [NSString stringWithFormat:@"#%@", [NSNumber numberWithInteger:indexPath.row]];
     [self.navigationController pushViewController:controller animated:YES];
 }

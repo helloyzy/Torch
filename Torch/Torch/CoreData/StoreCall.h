@@ -6,5 +6,6 @@
 
 + (StoreCall *)newInstance:(Store *)store;
 - (void)endCall;
+- (BOOL)isCallInProgress;
 
 @end

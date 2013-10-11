@@ -23,7 +23,8 @@
      SalesRepAttributes.networkId,
      SalesRepAttributes.remoteKey,
      SalesRepAttributes.startDate,
-     SalesRepAttributes.status
+     SalesRepAttributes.status,
+     SalesRepAttributes.salesOrg
      ]];
     // mapping.identificationAttributes = @[SalesRepAttributes.remoteKey];
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"banners" toKeyPath:@"banners" withMapping:[Banner objectMapping]]];
