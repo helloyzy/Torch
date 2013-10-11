@@ -263,6 +263,14 @@
     
 }
 
+- (NSString *)formatPriceString: (float)price {
+    if (price >= 0) {
+        return [NSString stringWithFormat:@"$%1.2f", price];
+    } else {
+        return [NSString stringWithFormat:@"-$%1.2f", fabsf(price)];
+    }
+}
+
 - (UIView *)drawFooterSummaryView {
     
     UIView *summaryView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 300, 130)];
@@ -333,20 +341,20 @@
     
     UILabel *subtotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 70, 80, 20)];
     [subtotalPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
-    [subtotalPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.fsubtotal]];
+    [subtotalPriceLabel setText:[self formatPriceString:self.fsubtotal]];
     [subtotalPriceLabel setTextAlignment:NSTextAlignmentRight];
     [subtotalPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     UILabel *taxPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 90, 80, 20)];
     [taxPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
-    [taxPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.ftax]];
+    [taxPriceLabel setText:[self formatPriceString:self.ftax]];
     [taxPriceLabel setTextAlignment:NSTextAlignmentRight];
     [taxPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     
     UILabel *orderTotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 110, 80, 20)];
     [orderTotalPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue Bold" size:14]];
-    [orderTotalPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.fordertotal]];
+    [orderTotalPriceLabel setText:[self formatPriceString:self.fordertotal]];
     [orderTotalPriceLabel setTextAlignment:NSTextAlignmentRight];
     [orderTotalPriceLabel setTextColor: [UIColor darkGrayColor]];
     
@@ -959,7 +967,7 @@
         ProductItemObject *productObject = (ProductItemObject *)[productCollection objectForKey:productSN];
         if (![productObject.productUnitNum isEqualToString: @"0"]) {
             self.fproductTotal += [productObject.productUnitNum doubleValue]*[productObject.productPrice doubleValue];
-            self.fproductTotal += [productObject.productUnitNum doubleValue]*1;
+            //self.fproductTotal += [productObject.productUnitNum doubleValue]*1;
         }
         
     }
@@ -993,7 +1001,12 @@
 -(void) calculateTax {
     [self calculateSubtotal];
     CGFloat taxRate = self.currentStore.taxRate;
-    self.ftax = self.fsubtotal * taxRate;
+    if (self.fsubtotal>0) {
+         self.ftax = self.fsubtotal * taxRate;
+    } else {
+        self.ftax = 0;
+    }
+   
 }
 
 -(void) calculateSubtotal {
