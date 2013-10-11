@@ -29,13 +29,13 @@
 }
 
 - (void)initData {
-    TCPromotionItem *p_10 = [TCPromotionItem newPromotion:@"10% single"];
-    p_10.type = PromotionTypeNormal;
-    p_10.discountPercentage = 0.1;
-    TCPromotionItem *p_15 = [TCPromotionItem newPromotion:@"15% single"];
-    p_15.type = PromotionTypeNormal;
-    p_15.discountPercentage = 0.15;
-    TCPromotionItem *p_FreeGift = [TCPromotionItem newPromotion:@"free item"];
+    TCPromotionItem *p_1_off = [TCPromotionItem newPromotion:@"1 dollar off"];
+    p_1_off.type = PromotionTypeDollarOff;
+    p_1_off.discountAmount = 1.0;
+    TCPromotionItem *p_half_off = [TCPromotionItem newPromotion:@"0.5 dollar off"];
+    p_half_off.type = PromotionTypeDollarOff;
+    p_half_off.discountAmount = 0.5;
+    TCPromotionItem *p_FreeGift = [TCPromotionItem newPromotion:@"Buy 5 get 1 free"];
     p_FreeGift.type = PromotionTypeNormal;
     p_FreeGift.discountPercentage = 0;
     TCPromotionItem *p_w_10 = [TCPromotionItem newPromotion:@"10% whole order"];
@@ -44,7 +44,7 @@
     TCPromotionItem *p_w_15 = [TCPromotionItem newPromotion:@"15% whole order"];
     p_w_15.type = PromotionTypeDiscountOrder;
     p_w_15.discountPercentage = 0.15;
-    data = @[p_10, p_15, p_FreeGift, p_w_10, p_w_15];
+    data = @[p_1_off, p_half_off, p_FreeGift, p_w_10, p_w_15];
 }
 
 - (void)initTopView {

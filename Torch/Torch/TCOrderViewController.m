@@ -32,7 +32,7 @@
 
 @implementation TCOrderViewController
 {
-
+    
     NSMutableArray *displayData;
     NSArray *searchResults;
     NSMutableDictionary *productCollection;
@@ -41,7 +41,7 @@
     NSArray *productItems;
     float currentDiscount;
     TCPromotionItem *currentPromotionItem;
-
+    
 }
 
 -(void) refreshTableView {
@@ -55,7 +55,7 @@
         TCPromotionItem *promotionObject = (TCPromotionItem *)[promotionItems objectForKey:key];
         [displayPromotionItems addObject:promotionObject.key];
     }
-
+    
 }
 -(BOOL)isDiscountPromotionItemExist {
     BOOL discountPromotionItemExist = NO;
@@ -66,7 +66,7 @@
         }
     }
     return discountPromotionItemExist;
-
+    
 }
 
 -(CGFloat)getDiscountPercentage {
@@ -111,7 +111,7 @@
 
 -(void)setSelectedPromotionItem:(TCPromotionItem *)promotionItem {
     if(!promotionItems) promotionItems = [[NSMutableDictionary alloc] init];
-     currentPromotionItem = promotionItem;
+    currentPromotionItem = promotionItem;
     
     if ([self isPromotionItemAllreadyExisting:promotionItem.key]) {
         // if promotion item already existing, not need to do anything;
@@ -122,7 +122,7 @@
     if ([self isDiscountPromotionItemExist] && promotionItem.type == PromotionTypeDiscountOrder) {
         [self showDiscountPromotionReplacementConfirmationWindow];
     } else if(promotionItem) {
-        NSString *key = promotionItem.key; 
+        NSString *key = promotionItem.key;
         [promotionItems setObject:promotionItem forKey:key];
         [self regenerateDisplayPromotionItemArray];
         [self refreshTableView];
@@ -209,7 +209,7 @@
     orderAmountLabel.text = orderAmount;
     [orderAmountLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:16]];
     orderAmountLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
-
+    
     
     [customView addSubview:orderSummarylabel];
     [customView addSubview:orderAmountLabel];
@@ -253,20 +253,20 @@
         }
     } else {
         //this is confirm from printprompt alertview
-            if (buttonIndex==1) {
-                //confirm button clicked, populate the order data;
-                TCPrinterCtl *printScreen = [[TCPrinterCtl alloc] init];
-                [self.navigationController pushViewController:printScreen animated:YES];
-            }
-
+        if (buttonIndex==1) {
+            //confirm button clicked, populate the order data;
+            TCPrinterCtl *printScreen = [[TCPrinterCtl alloc] init];
+            [self.navigationController pushViewController:printScreen animated:YES];
+        }
+        
     }
-   
+    
 }
 
 - (UIView *)drawFooterSummaryView {
     
     UIView *summaryView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 300, 120)];
-
+    
     UILabel *productTotalLable = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
     [productTotalLable setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     //productTotalLable.textColor = [UIColor blackColor];
@@ -295,7 +295,7 @@
     UILabel *orderTotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 90, 100, 20)];
     [orderTotalLabel setFont:[UIFont fontWithName:@"Helvetica Neue Bold" size:14]];
     [orderTotalLabel setText:[self localString:@"order.summary.orderTotal"]];
-     [orderTotalLabel setTextColor: [UIColor darkGrayColor]];
+    [orderTotalLabel setTextColor: [UIColor darkGrayColor]];
     
     [summaryView addSubview:productTotalLable];
     [summaryView addSubview:discountLabel];
@@ -308,33 +308,33 @@
     [productTotalPriceLable setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [productTotalPriceLable setText: [NSString stringWithFormat:@"$%1.2f", self.fproductTotal]];
     [productTotalPriceLable setTextAlignment:NSTextAlignmentRight];
-       [productTotalPriceLable setTextColor: [UIColor darkGrayColor]];
+    [productTotalPriceLable setTextColor: [UIColor darkGrayColor]];
     
     
     UILabel *discountPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 30, 80, 20)];
     [discountPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [discountPriceLabel setText:[NSString stringWithFormat:@"-$%1.2f", self.fdiscount]];
     [discountPriceLabel setTextAlignment:NSTextAlignmentRight];
-       [discountPriceLabel setTextColor: [UIColor darkGrayColor]];
+    [discountPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     UILabel *subtotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 50, 80, 20)];
     [subtotalPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [subtotalPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.fsubtotal]];
     [subtotalPriceLabel setTextAlignment:NSTextAlignmentRight];
-       [subtotalPriceLabel setTextColor: [UIColor darkGrayColor]];
+    [subtotalPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     UILabel *taxPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 70, 80, 20)];
     [taxPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [taxPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.ftax]];
     [taxPriceLabel setTextAlignment:NSTextAlignmentRight];
-       [taxPriceLabel setTextColor: [UIColor darkGrayColor]];
+    [taxPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     
     UILabel *orderTotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 90, 80, 20)];
     [orderTotalPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue Bold" size:14]];
     [orderTotalPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.fordertotal]];
     [orderTotalPriceLabel setTextAlignment:NSTextAlignmentRight];
-       [orderTotalPriceLabel setTextColor: [UIColor darkGrayColor]];
+    [orderTotalPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     [summaryView addSubview:productTotalPriceLable];
     [summaryView addSubview:discountPriceLabel];
@@ -351,7 +351,7 @@
     [footerView addSubview:[self drawFooterSummaryView]];
     UIButton *promotionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 140, 290, 30)];
     [promotionButton setBackgroundImage:[UIImage imageNamed:@"bluebutton"] forState:UIControlStateNormal];
-
+    
     [promotionButton setTitle:[self localString:@"order.viewPromotion"] forState:UIControlStateNormal];
     [promotionButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14]];
     //completionButton.contentHorizontalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -371,7 +371,7 @@
         [orderCompletionButton setTitleEdgeInsets:UIEdgeInsetsMake(8.0f, 0, 0, 0)];
         [footerView addSubview:orderCompletionButton];
     }
-
+    
     [footerView addSubview:promotionButton];
     
     return footerView;
@@ -384,8 +384,8 @@
     
     UIView *seperator = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 320, 2)];
     seperator.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
-
-
+    
+    
     [self.view addSubview:seperator];
     [self popupProductItems];
     //[self showInitialORProductTableListView];
@@ -510,8 +510,8 @@
     indexPath = [self.tableView indexPathForCell:currentCell];
     NSInteger indexInPromotionArray = indexPath.row - [displayData count];
     itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
-
-
+    
+    
     
     [self updatePromotion:itemKey withQuantity:(float)sender.value];
     
@@ -520,16 +520,16 @@
 
 -(void) deleteCurrentOrderItem:(UIButton *)sender {
     
-
+    
     InventoryTableCell *currentCell = (InventoryTableCell *)sender.superview.superview.superview;
     
     NSIndexPath *indexPath;
     NSString *itemKey;
     
     indexPath = [self.tableView indexPathForCell:currentCell];
-
+    
     itemKey = [displayData objectAtIndex:indexPath.row];
-
+    
     
     [self deleteOrderItem:itemKey];
     [self hideTheDeleteButton:currentCell hidden:YES];
@@ -637,7 +637,7 @@
         NSInteger sectionId = [indexPath section];
         if (![self isInSearchResultSection:sectionId]) {
             // [self slideInDeletionButton:cell];
-        [self hideTheDeleteButton:cell hidden:NO];
+            [self hideTheDeleteButton:cell hidden:NO];
         }
     }
 }
@@ -651,7 +651,7 @@
             // [self slideInDeletionButton:cell];
             [self hideTheDeleteButton:cell hidden:YES];
         }
-       
+        
     }
 }
 
@@ -695,97 +695,89 @@
 }
 
 
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *orderTableCell = @"InventoryTableCell";
-    NSInteger sectionId = [indexPath section];
-     
-    if ([self isPromotionItem:indexPath inSection:sectionId]) {
-        //generate promotionItemCell and return Here;
-               
-        NSInteger indexInPromotionArray = indexPath.row - [displayData count];
-        NSString *itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
-        
-        if (itemKey) {
-            TCPromotionItem *pi = [promotionItems objectForKey:itemKey];
-            if (pi && pi.type == PromotionTypeDiscountOrder) {
-                // this is total discount order promotion item, use promotion table cell to render
-                TCPromotionTableCell *cell = (TCPromotionTableCell *)[tableView dequeueReusableCellWithIdentifier:@"TCPromotionTableCell"];
-                if (!cell) {
-                    NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"TCPromotionTableCell" owner:self options:nil];
-                    cell = [nib objectAtIndex:0];
-                    [cell.contentView sendSubviewToBack:cell.deleteButton];
-                    cell.deleteButton.hidden = YES;
-                }
-
-                cell.promotionTitle.text = pi.name;
-                cell.promotionDetails.text=pi.description;
-                //add swipe gesture to delete
-                UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(promotionCellSwiped:)];
-                [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
-                [cell addGestureRecognizer:sgr];
-                
-                UISwipeGestureRecognizer *sgr1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(promotionCellDeleteCancelled:)];
-                [sgr1 setDirection:UISwipeGestureRecognizerDirectionRight];
-                [cell addGestureRecognizer:sgr1];
-                UIButton *deleteButton = cell.deleteButton;
-                [deleteButton addTarget:self action:@selector(deleteCurrentPromotionItem:) forControlEvents:UIControlEventTouchDown];
-                UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
-                UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 78, 295, 1)];
-                seperate2.backgroundColor = [UIColor grayColor];
-                [cellSeperatorLine addSubview:seperate2];
-                cell.backgroundView = cellSeperatorLine;
-                
-                return cell;
-            } else {
-                // is common promotion item, need the cell style with steppers
-                InventoryTableCell *cell = (InventoryTableCell *)[tableView dequeueReusableCellWithIdentifier:@"promotionCommonCell"];
-                if(cell ==nil) {
-                    cell = [[InventoryTableCell  alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"promotionCommonCell"];
-                    cell = [[[NSBundle mainBundle] loadNibNamed:orderTableCell owner:nil options:nil] lastObject];
-                    //cell = [nib objectAtIndex:0];
-                    [cell.contentView sendSubviewToBack:cell.vwDelete];
-                    cell.vwDelete.hidden=YES;
-                }
-                
-                UIStepper *numStepper1 = cell.stepper;
-                [numStepper1 addTarget:self action:@selector(updatePromotionUnit:) forControlEvents:UIControlEventValueChanged];
-                UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
-                UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 110, 295, 1)];
-                seperate2.backgroundColor = [UIColor grayColor];
-                [cellSeperatorLine addSubview:seperate2];
-                cell.backgroundView = cellSeperatorLine;
-                [self populatePromotionCell:cell withKeyName:itemKey];
-                
-                
-                //add swipe gesture to delete
-                UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
-                [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
-                [cell addGestureRecognizer:sgr];
-                
-                UISwipeGestureRecognizer *sgr1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellDeleteCancelled:)];
-                [sgr1 setDirection:UISwipeGestureRecognizerDirectionRight];
-                [cell addGestureRecognizer:sgr1];
-
-                UIButton *deleteButton = cell.deleteButton;
-                [deleteButton addTarget:self action:@selector(deleteCurrentCommonPromotionItem:) forControlEvents:UIControlEventTouchDown];
-
-                
-                return cell;
-            }
-            
+-(UITableViewCell *)createNormalPromotionItemCell:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath withItemKey:(NSString *)itemkey {
+    // this is total discount order promotion item, use promotion table cell to render
+    TCPromotionItem *pi = [promotionItems objectForKey:itemkey];
+    
+    if (!pi) {
+        TCPromotionTableCell *cell = (TCPromotionTableCell *)[tableView dequeueReusableCellWithIdentifier:@"TCPromotionTableCell"];
+        if (!cell) {
+            NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"TCPromotionTableCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+            [cell.contentView sendSubviewToBack:cell.deleteButton];
+            cell.deleteButton.hidden = YES;
         }
         
+        cell.promotionTitle.text = pi.name;
+        cell.promotionDetails.text=pi.description;
+        //add swipe gesture to delete
+        UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(promotionCellSwiped:)];
+        [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
+        [cell addGestureRecognizer:sgr];
         
-    }else {
-        
+        UISwipeGestureRecognizer *sgr1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(promotionCellDeleteCancelled:)];
+        [sgr1 setDirection:UISwipeGestureRecognizerDirectionRight];
+        [cell addGestureRecognizer:sgr1];
+        UIButton *deleteButton = cell.deleteButton;
+        [deleteButton addTarget:self action:@selector(deleteCurrentPromotionItem:) forControlEvents:UIControlEventTouchDown];
+        UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
+        UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 78, 295, 1)];
+        seperate2.backgroundColor = [UIColor grayColor];
+        [cellSeperatorLine addSubview:seperate2];
+        cell.backgroundView = cellSeperatorLine;
+        return cell;
+    }
+    return nil;
+    
+}
+
+
+
+-(UITableViewCell *)createPromotionItemCellWithStepper:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath withItemKey:(NSString *)itemKey {
+    
+    InventoryTableCell *cell = (InventoryTableCell *)[tableView dequeueReusableCellWithIdentifier:@"promotionCommonCell"];
+    if(cell ==nil) {
+        cell = [[InventoryTableCell  alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"promotionCommonCell"];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"InventoryTableCell" owner:nil options:nil] lastObject];
+        //cell = [nib objectAtIndex:0];
+        [cell.contentView sendSubviewToBack:cell.vwDelete];
+        cell.vwDelete.hidden=YES;
+    }
+    
+    UIStepper *numStepper1 = cell.stepper;
+    [numStepper1 addTarget:self action:@selector(updatePromotionUnit:) forControlEvents:UIControlEventValueChanged];
+    UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
+    UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 110, 295, 1)];
+    seperate2.backgroundColor = [UIColor grayColor];
+    [cellSeperatorLine addSubview:seperate2];
+    cell.backgroundView = cellSeperatorLine;
+    [self populatePromotionCell:cell withKeyName:itemKey];
+    
+    
+    //add swipe gesture to delete
+    UISwipeGestureRecognizer *sgr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellSwiped:)];
+    [sgr setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [cell addGestureRecognizer:sgr];
+    
+    UISwipeGestureRecognizer *sgr1 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cellDeleteCancelled:)];
+    [sgr1 setDirection:UISwipeGestureRecognizerDirectionRight];
+    [cell addGestureRecognizer:sgr1];
+    
+    UIButton *deleteButton = cell.deleteButton;
+    [deleteButton addTarget:self action:@selector(deleteCurrentCommonPromotionItem:) forControlEvents:UIControlEventTouchDown];
+    
+    return cell;
+    
+}
+
+-(UITableViewCell *)createOrderItemCellWithStepper:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger sectionId = [indexPath section];
     InventoryTableCell *cell = (InventoryTableCell *)[tableView dequeueReusableCellWithIdentifier:@"orderProductItemCell"];
     if(cell ==nil) {
-       // NSArray *nib = [[NSBundle mainBundle] loadNibNamed:orderTableCell owner:self options:nil] ;
-       // cell = [nib objectAtIndex:0];
+        // NSArray *nib = [[NSBundle mainBundle] loadNibNamed:orderTableCell owner:self options:nil] ;
+        // cell = [nib objectAtIndex:0];
         cell = [[InventoryTableCell  alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"orderProductItemCell"];
-        cell = [[[NSBundle mainBundle] loadNibNamed:orderTableCell owner:nil options:nil] lastObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"InventoryTableCell" owner:nil options:nil] lastObject];
         [cell.contentView sendSubviewToBack:cell.vwDelete];
         cell.vwDelete.hidden=YES;
     }
@@ -813,13 +805,41 @@
     }
     
     [self populateCell:cell withKeyName:itemKey];
-        
+    
     UIView *cellSeperatorLine = [[UIView alloc] initWithFrame:cell.bounds];
     UIView *seperate2 = [[UIView alloc] initWithFrame:CGRectMake(5, 110, 295, 1)];
     seperate2.backgroundColor = [UIColor grayColor];
     [cellSeperatorLine addSubview:seperate2];
     cell.backgroundView = cellSeperatorLine;
     return cell;
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger sectionId = [indexPath section];
+    
+    if ([self isPromotionItem:indexPath inSection:sectionId]) {
+        //generate promotionItemCell and return Here;
+        
+        NSInteger indexInPromotionArray = indexPath.row - [displayData count];
+        NSString *itemKey = [displayPromotionItems objectAtIndex:indexInPromotionArray];
+        
+        if (itemKey) {
+            TCPromotionItem *pi = [promotionItems objectForKey:itemKey];
+            if (pi && pi.type == PromotionTypeDiscountOrder) {
+                // this is total discount order promotion item, use promotion table cell to render
+                return [self createNormalPromotionItemCell:tableView cellForRowAtIndexPath:indexPath withItemKey:itemKey];
+            } else {
+                // is common promotion item, need the cell style with steppers
+                return [self createPromotionItemCellWithStepper:tableView cellForRowAtIndexPath:indexPath withItemKey:itemKey];
+                
+            }
+            
+        }
+    }else {
+        // create normal product item in order cell
+        return [self createOrderItemCellWithStepper:tableView cellForRowAtIndexPath:indexPath];
     }
     return nil;
 }
@@ -836,7 +856,7 @@
         }
     }
     return isDiscountItem;
-
+    
 }
 
 
@@ -848,7 +868,7 @@
     }else {
         return 114;
     }
-   
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -857,8 +877,8 @@
     } else {
         return [displayData count]+[promotionItems count];
     }
-
-
+    
+    
 }
 
 -(BOOL) textFieldShouldClear:(UITextField *)textField {
@@ -917,7 +937,7 @@
 -(void) calculatePrice {
     [self clearPrice];
     [self calculateOrderTotal];
-
+    
 }
 
 -(void) calculateProductsPrice {
@@ -927,7 +947,7 @@
             self.fproductTotal += [productObject.productUnitNum doubleValue]*[productObject.productPrice doubleValue];
             //self.fproductTotal += [productObject.productUnitNum doubleValue]*1;
         }
-
+        
     }
 }
 

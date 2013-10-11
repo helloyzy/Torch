@@ -10,7 +10,8 @@
 
 typedef enum {
     PromotionTypeNormal,
-    PromotionTypeDiscountOrder
+    PromotionTypeDiscountOrder,
+    PromotionTypeDollarOff
 } PromotionType;
 
 @interface TCPromotionItem : NSObject
@@ -20,6 +21,7 @@ typedef enum {
 @property(nonatomic, copy)NSString * key;
 @property(nonatomic, assign)PromotionType type;
 @property(nonatomic, assign)CGFloat discountPercentage;
+@property(nonatomic, assign)CGFloat discountAmount;
 @property(nonatomic, copy)NSString * name;
 @property(nonatomic, copy)NSString * description;
 @property(nonatomic, copy)NSDate * expiration;
