@@ -127,8 +127,13 @@ static IBCoreDataStore * ibDataStore;
     [[NSFileManager defaultManager] copyItemAtPath:fromPath toPath:TC_DB_PATH error:nil];
 }
 
++(void) prepareMockData {
+    // [self adjustStoreSchedule];
+    [self prepareSurveyData];
+}
+
 +(void) adjustStoreSchedule {
-    NSArray *stores = [Store all];
+    NSArray *stores = [Store sortedStores];
     NSNumber *temp = curdateToMilliseconds();
     double tempValue = [temp doubleValue];
     for (Store *store in stores) {
@@ -136,6 +141,15 @@ static IBCoreDataStore * ibDataStore;
         tempValue += 1;
     }
     [Store save];
+}
+
++(void) prepareSurveyData {
+    // only prepare data for the first scheduled store
+    NSArray *stores = [Store sortedStores];
+    Store *firstStore = [stores objectAtIndex:0];
+    NSString *accountId = [firstStore remoteKey];
+    [Survey generateMockSurveys:accountId];
+    
 }
 
 
