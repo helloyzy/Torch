@@ -12,7 +12,7 @@
 #import "TCInventoryViewController.h"
 #import "TCOrderViewController.h"
 #import "TCSummaryViewController.h"
-#import "TCOrderHistory.h"
+#import "TCSurveyController.h"
 #import "TCStoreNoVisit.h"
 #import "Contact.h"
 #import "TCAddNewCustomerVwCtl.h"
@@ -92,11 +92,11 @@ static NSString *kViewControllerKey = @"viewController";
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.createOrder"],
                  kExplainKey:@"create order",
           kViewControllerKey:tcOrderViewController } ];
-    TCOrderHistory *tcOrderHistory =
-    [[TCOrderHistory alloc] initWithNibName:@"TCOrderHistory" bundle:nil];
-	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.orderHistory"],
+    TCSurveyController *survey =
+    [[TCSurveyController alloc] init];
+	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.survey"],
                  kExplainKey:@"Order History",
-          kViewControllerKey:tcOrderHistory } ];
+          kViewControllerKey:survey } ];
 
     TCSummaryViewController *tcSummaryViewController =
     [[TCSummaryViewController alloc] initWithNibName:@"TCSummaryViewController" bundle:nil];

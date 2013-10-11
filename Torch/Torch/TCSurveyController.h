@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCNavVwCtl.h"
 
-@interface TCSurveyController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface TCSurveyController : TCNavVwCtl<UIPickerViewDataSource, UIPickerViewDelegate>
 
 @end

@@ -13,6 +13,9 @@
 #import "Survey.h"
 #import <OCTotallyLazy.h>
 #import "UIViewController+MGBox.h"
+#import <MGScrollView.h>
+#import <UIView+MGEasyFrame.h>
+#import <UIKit/UITextField.h>
 
 @interface TCSurveyController ()
 
@@ -46,8 +49,8 @@ CGSize pickerConstraint = (CGSize){265, FLT_MAX};
     
     pickerFont = [UIFont boldSystemFontOfSize:24.0];
     self.selected = [[NSMutableSet alloc] init];
-    self.pickerSingle = NO;
-    self.surveyOptions = @[@"A little late, this works a charm, to use the default keyboard height, specify a height of 0", @"B", @"C"];
+    self.pickerSingle = YES;
+    self.surveyOptions = @[@"A little late", @"B", @"C"];
     CGFloat height = [[[self.surveyOptions map:^(NSString* str) {
         return [NSNumber numberWithFloat:
                 [str sizeWithFont:pickerFont
@@ -57,9 +60,11 @@ CGSize pickerConstraint = (CGSize){265, FLT_MAX};
     }] floatValue];
     self.pickerHeight = (CGRect) {0, 0, 265, height};
 
-    MGTableBox *table = [MGTableBox boxWithSize:self.view.size];
+//    MGTableBox *table = [MGTableBox boxWithSize:self.view.size];
+    MGScrollView *table = [MGScrollView scrollerWithSize:self.view.size];
+    table.height = 420;
     
-    [table.topLines addObject:[self sectionHeader:@"de Marketing" backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor] fontName:@"HelveticaNeueLTCom-Md"]];
+    [table.boxes addObject:[self sectionHeader:@"de Marketing" backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor] fontName:@"HelveticaNeueLTCom-Md"]];
 
     DDProgressView *progressBar = [[DDProgressView alloc] initWithFrame:CGRectMake(15.0f, 20.0f, self.view.bounds.size.width - 30.0f, 100.0f)];
     progressBar.outerColor = [UIColor clearColor];
@@ -77,20 +82,22 @@ CGSize pickerConstraint = (CGSize){265, FLT_MAX};
     progressText.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14];
     [progressBar addSubview:progressText];
 
-    [table.topLines addObject:padding(mgline(progressBar))];
+    [table.boxes addObject:padding(mgline(progressBar))];
     
-    [table.topLines addObject:[self sectionHeader:@"Promp" backgroundColor:[UIColor clearColor] underlineColor:[UIColor clearColor] fontName:@"HelveticaNeueLTCom-Md"]];
+    [table.boxes addObject:[self sectionHeader:@"Promp" backgroundColor:[UIColor clearColor] underlineColor:[UIColor clearColor] fontName:@"HelveticaNeueLTCom-Md"]];
 
-    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:(CGRect) {0, 0, 320, 300}];
+    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:(CGRect) {0, 0, 320, 100}];
     picker.delegate = self;
     picker.showsSelectionIndicator = YES;
     picker.dataSource = self;
-    //[table.topLines addObject:mgline(picker)];
+    [table.boxes addObject:mgline(picker)];
     
     UITextField *textField = [[UITextField alloc] initWithFrame:(CGRect) {0, 0, 300, 30}];
     textField.placeholder = @"Answer";
     textField.borderStyle = UITextBorderStyleRoundedRect;
-    [table.topLines addObject:padding(mgline(textField))];
+    textField.returnKeyType = UIReturnKeyNext;
+    textField.delegate = self;
+    [table.boxes addObject:padding(mgline(textField))];
     
     UITextView *textView = [[UITextView alloc] initWithFrame:(CGRect) {0, 0, 300, 60}];
     textView.editable = YES;
@@ -102,8 +109,9 @@ CGSize pickerConstraint = (CGSize){265, FLT_MAX};
     [textView.layer setCornerRadius:8.0f];
     [textView.layer setMasksToBounds:YES];
     
-    [table.topLines addObject:padding(mgline(textView))];
-    [table.topLines addObject:padding(mgline(blueButton(@"Next")))];
+    [table.boxes addObject:padding(mgline(textView))];
+    UIButton *button = blueButton(@"Next");
+    [table.boxes addObject:padding(mgline(button))];
     
     [table layout];
     [self.view addSubview:table];
@@ -134,6 +142,10 @@ CGSize pickerConstraint = (CGSize){265, FLT_MAX};
     return self.pickerHeight.size.height;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     NSString* obj = self.surveyOptions[row];
