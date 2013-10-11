@@ -27,7 +27,7 @@
 @property (nonatomic) float ftax;
 @property (nonatomic) float fsubtotal;
 @property (nonatomic) float fordertotal;
-
+@property (nonatomic) float fdiscountInDollar;
 @end
 
 @implementation TCOrderViewController
@@ -265,7 +265,7 @@
 
 - (UIView *)drawFooterSummaryView {
     
-    UIView *summaryView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 300, 120)];
+    UIView *summaryView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 300, 130)];
     
     UILabel *productTotalLable = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
     [productTotalLable setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
@@ -273,7 +273,12 @@
     [productTotalLable setText:[self localString:@"order.summary.productTotal"]];
     [productTotalLable setTextColor: [UIColor darkGrayColor]];
     
-    UILabel *discountLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 100, 20)];
+    UILabel *directDiscountLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 100, 20)];
+    [directDiscountLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [directDiscountLabel setText:[self localString:@"order.summary.discountDallar"]];
+    [directDiscountLabel setTextColor:[UIColor darkGrayColor]];
+    
+    UILabel *discountLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, 100, 20)];
     [discountLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     
     NSString *discountPercentage = [NSString stringWithFormat:@"%.0f%%",[self getDiscountPercentage]*100];
@@ -282,22 +287,25 @@
     [discountLabel setTextColor: [UIColor darkGrayColor]];
     
     
-    UILabel *subtotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, 100, 20)];
+    UILabel *subtotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, 100, 20)];
     [subtotalLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [subtotalLabel setText:[self localString:@"order.summary.subTotal"]];
     [subtotalLabel setTextColor: [UIColor darkGrayColor]];
     
-    UILabel *taxLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, 100, 20)];
+    
+    NSString *taxRate = [NSString stringWithFormat:@"%.2f%%",self.currentStore.taxRate*100];
+    UILabel *taxLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 90, 100, 20)];
     [taxLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
-    [taxLabel setText:[self localString:@"order.summary.tax"]];
+    [taxLabel setText:[NSString stringWithFormat:@"%@ (%@)",[self localString:@"order.summary.tax"], taxRate]];
     [taxLabel setTextColor: [UIColor darkGrayColor]];
     
-    UILabel *orderTotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 90, 100, 20)];
+    UILabel *orderTotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 110, 100, 20)];
     [orderTotalLabel setFont:[UIFont fontWithName:@"Helvetica Neue Bold" size:14]];
     [orderTotalLabel setText:[self localString:@"order.summary.orderTotal"]];
     [orderTotalLabel setTextColor: [UIColor darkGrayColor]];
     
     [summaryView addSubview:productTotalLable];
+    [summaryView addSubview:directDiscountLabel];
     [summaryView addSubview:discountLabel];
     [summaryView addSubview:subtotalLabel];
     [summaryView addSubview:taxLabel];
@@ -310,33 +318,40 @@
     [productTotalPriceLable setTextAlignment:NSTextAlignmentRight];
     [productTotalPriceLable setTextColor: [UIColor darkGrayColor]];
     
+    UILabel *directDiscountPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 30, 80, 20)];
+    [directDiscountPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
+    [directDiscountPriceLabel setText:[NSString stringWithFormat:@"-$%1.2f", self.fdiscountInDollar]];
+    [directDiscountPriceLabel setTextAlignment:NSTextAlignmentRight];
+    [directDiscountPriceLabel setTextColor: [UIColor darkGrayColor]];
     
-    UILabel *discountPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 30, 80, 20)];
+    
+    UILabel *discountPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 50, 80, 20)];
     [discountPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [discountPriceLabel setText:[NSString stringWithFormat:@"-$%1.2f", self.fdiscount]];
     [discountPriceLabel setTextAlignment:NSTextAlignmentRight];
     [discountPriceLabel setTextColor: [UIColor darkGrayColor]];
     
-    UILabel *subtotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 50, 80, 20)];
+    UILabel *subtotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 70, 80, 20)];
     [subtotalPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [subtotalPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.fsubtotal]];
     [subtotalPriceLabel setTextAlignment:NSTextAlignmentRight];
     [subtotalPriceLabel setTextColor: [UIColor darkGrayColor]];
     
-    UILabel *taxPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 70, 80, 20)];
+    UILabel *taxPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 90, 80, 20)];
     [taxPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [taxPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.ftax]];
     [taxPriceLabel setTextAlignment:NSTextAlignmentRight];
     [taxPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     
-    UILabel *orderTotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 90, 80, 20)];
+    UILabel *orderTotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 110, 80, 20)];
     [orderTotalPriceLabel setFont:[UIFont fontWithName:@"Helvetica Neue Bold" size:14]];
     [orderTotalPriceLabel setText:[NSString stringWithFormat:@"$%1.2f", self.fordertotal]];
     [orderTotalPriceLabel setTextAlignment:NSTextAlignmentRight];
     [orderTotalPriceLabel setTextColor: [UIColor darkGrayColor]];
     
     [summaryView addSubview:productTotalPriceLable];
+    [summaryView addSubview:directDiscountPriceLabel];
     [summaryView addSubview:discountPriceLabel];
     [summaryView addSubview:subtotalPriceLabel];
     [summaryView addSubview:taxPriceLabel];
@@ -349,7 +364,7 @@
     UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, 300, 320)];
     
     [footerView addSubview:[self drawFooterSummaryView]];
-    UIButton *promotionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 140, 290, 30)];
+    UIButton *promotionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 150, 290, 30)];
     [promotionButton setBackgroundImage:[UIImage imageNamed:@"bluebutton"] forState:UIControlStateNormal];
     
     [promotionButton setTitle:[self localString:@"order.viewPromotion"] forState:UIControlStateNormal];
@@ -361,7 +376,7 @@
     
     
     if ([displayData count] >0) {
-        UIButton *orderCompletionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 180, 290, 29)];
+        UIButton *orderCompletionButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 190, 290, 29)];
         [orderCompletionButton setBackgroundImage:[UIImage imageNamed:@"bluebutton"] forState:UIControlStateNormal];
         
         [orderCompletionButton setTitle:[self localString:@"order.completionButton"] forState:UIControlStateNormal];
@@ -698,8 +713,7 @@
 -(UITableViewCell *)createNormalPromotionItemCell:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath withItemKey:(NSString *)itemkey {
     // this is total discount order promotion item, use promotion table cell to render
     TCPromotionItem *pi = [promotionItems objectForKey:itemkey];
-    
-    if (!pi) {
+
         TCPromotionTableCell *cell = (TCPromotionTableCell *)[tableView dequeueReusableCellWithIdentifier:@"TCPromotionTableCell"];
         if (!cell) {
             NSArray *nib  = [[NSBundle mainBundle] loadNibNamed:@"TCPromotionTableCell" owner:self options:nil];
@@ -726,8 +740,6 @@
         [cellSeperatorLine addSubview:seperate2];
         cell.backgroundView = cellSeperatorLine;
         return cell;
-    }
-    return nil;
     
 }
 
@@ -932,6 +944,7 @@
     self.ftax = 0.0;
     self.fdiscount = 0.0;
     self.fsubtotal = 0.0;
+    self.fdiscountInDollar = 0.0;
 }
 
 -(void) calculatePrice {
@@ -940,21 +953,41 @@
     
 }
 
+
 -(void) calculateProductsPrice {
     for (NSString *productSN in displayData) {
         ProductItemObject *productObject = (ProductItemObject *)[productCollection objectForKey:productSN];
         if (![productObject.productUnitNum isEqualToString: @"0"]) {
             self.fproductTotal += [productObject.productUnitNum doubleValue]*[productObject.productPrice doubleValue];
-            //self.fproductTotal += [productObject.productUnitNum doubleValue]*1;
+            self.fproductTotal += [productObject.productUnitNum doubleValue]*1;
         }
         
     }
 }
 
--(void) calculateDiscounts {
+-(void) calculateDirectDiscountInDallar {
     [self calculateProductsPrice];
+    CGFloat discountInDollar = 0;
+    for (NSString *promotionSN in displayPromotionItems) {
+        TCPromotionItem *promotionObject = (TCPromotionItem *) [promotionItems objectForKey:promotionSN];
+        if (promotionObject.type == PromotionTypeDollarOff) {
+            discountInDollar += promotionObject.discountAmount * promotionObject.unitNum;
+        }
+    }
+    self.fdiscountInDollar = discountInDollar;
+    
+}
+
+-(void) calculateDiscounts {
+    [self calculateDirectDiscountInDallar];
     CGFloat discountPercentage = [self getDiscountPercentage];
-    self.fdiscount = discountPercentage * self.fproductTotal;
+    double productPriceSubtotal = self.fproductTotal-self.fdiscountInDollar;
+    if (productPriceSubtotal > 0) {
+        self.fdiscount = discountPercentage * productPriceSubtotal;
+    } else {
+        self.fdiscount = 0;
+    }
+    
 }
 
 -(void) calculateTax {
@@ -965,7 +998,7 @@
 
 -(void) calculateSubtotal {
     [self calculateDiscounts];
-    self.fsubtotal = self.fproductTotal - self.fdiscount;
+    self.fsubtotal = self.fproductTotal - self.fdiscount-self.fdiscountInDollar;
 }
 -(void) calculateOrderTotal {
     [self calculateTax];
