@@ -1,5 +1,7 @@
 #import "Survey.h"
+#import "Store.h"
 #import <RestKit/RestKit.h>
+#import <NSManagedObject+InnerBand.h>
 
 #define MARKETING_SURVEY @"1"
 #define SEGMENTATION_SURVEY @"2"
@@ -52,6 +54,23 @@
     }
 }
 
+#pragma mark - retrieving different type of questions
+
++ (NSArray *)marketingSurveyQuestions:(Store *)store {
+    NSString *storeId = store.remoteKey;
+    return [self retrieveSurveyQuestions:storeId surveyType:MARKETING_SURVEY];
+}
+
++ (NSArray *)segmentationSurveyQuestions:(Store *)store {
+    NSString *storeId = store.remoteKey;
+    return [self retrieveSurveyQuestions:storeId surveyType:SEGMENTATION_SURVEY];
+}
+
++ (NSArray *)retrieveSurveyQuestions:(NSString *)storeId surveyType:(NSString *)surveyType {
+    NSString * predicate = [NSString stringWithFormat:@"%@ = '%@' and %@ = '%@'", SurveyAttributes.accountId, storeId, SurveyAttributes.questionTypeId, surveyType];
+    return [self allForPredicate:[NSPredicate predicateWithFormat:predicate] inStore:[self dataStore]];
+}
+
 #pragma mark - mock data
 
 + (void)generateMockSurveys:(NSString *)storeId groupId:(NSString *)groupId {
@@ -61,21 +80,21 @@
     survey.questionType = CHOICE_QUESTION;
     survey.question = @"Choice question";
     survey.answers = @"Yes,No";
-    [Survey save];
+    [self save];
     survey = [Survey newInstance];
     survey.accountId = storeId;
     survey.questionTypeId = groupId;
     survey.questionType = NUMERIC_QUESTION;
     survey.question = @"Numeric question";
     survey.answers = @"";
-    [Survey save];
+    [self save];
     survey = [Survey newInstance];
     survey.accountId = storeId;
     survey.questionTypeId = groupId;
     survey.questionType = TEXT_QUESTION;
     survey.question = @"Text question";
     survey.answers = @"";
-    [Survey save];
+    [self save];
 }
 
 + (void)generateMockMarketingSurveys:(NSString *)storeId {

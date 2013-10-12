@@ -8,13 +8,14 @@
 
 #import <CoreData/CoreData.h>
 
-@class RKEntityMapping;
+@class RKEntityMapping, IBCoreDataStore;
 
 @interface NSManagedObject (TCRestkit)
 
 + (RKEntityMapping *)objectMapping;
 + (id)newInstance;
 + (void)save;
++ (IBCoreDataStore *)dataStore;
 - (void)deleteObj;
 
 @end
