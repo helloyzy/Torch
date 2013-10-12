@@ -97,6 +97,10 @@ static IBCoreDataStore * ibDataStore;
                               withMapping:productMapping
                                   keyPath:nil
                                     error:&error];
+//    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"productNew" ofType:@"json"]
+//                              withMapping:productMapping
+//                                  keyPath:nil
+//                                    error:&error];
     
     RKEntityMapping *priorityMapping = [Priority objectMapping];
     [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"fetchmexico" ofType:@"json"]
@@ -128,7 +132,7 @@ static IBCoreDataStore * ibDataStore;
 }
 
 +(void) prepareMockData {
-    // [self adjustStoreSchedule];
+    [self adjustStoreSchedule];
     [self prepareSurveyData];
 }
 

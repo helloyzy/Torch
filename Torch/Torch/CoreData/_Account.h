@@ -8,13 +8,17 @@ extern const struct AccountAttributes {
 	__unsafe_unretained NSString *accountRecordType;
 	__unsafe_unretained NSString *address;
 	__unsafe_unretained NSString *city;
+	__unsafe_unretained NSString *coachId;
 	__unsafe_unretained NSString *currency;
 	__unsafe_unretained NSString *fax;
+	__unsafe_unretained NSString *latitude;
+	__unsafe_unretained NSString *longitude;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *phone;
 	__unsafe_unretained NSString *postalcode;
 	__unsafe_unretained NSString *recordType;
 	__unsafe_unretained NSString *remoteKey;
+	__unsafe_unretained NSString *repId;
 	__unsafe_unretained NSString *state;
 	__unsafe_unretained NSString *street;
 	__unsafe_unretained NSString *streetref1;
@@ -29,6 +33,10 @@ extern const struct AccountFetchedProperties {
 } AccountFetchedProperties;
 
 @class OrderCredit;
+
+
+
+
 
 
 
@@ -88,6 +96,16 @@ extern const struct AccountFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* coachId;
+
+
+
+//- (BOOL)validateCoachId:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* currency;
 
 
@@ -103,6 +121,26 @@ extern const struct AccountFetchedProperties {
 
 
 //- (BOOL)validateFax:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* latitude;
+
+
+
+//- (BOOL)validateLatitude:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* longitude;
+
+
+
+//- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -153,6 +191,16 @@ extern const struct AccountFetchedProperties {
 
 
 //- (BOOL)validateRemoteKey:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* repId;
+
+
+
+//- (BOOL)validateRepId:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -233,6 +281,12 @@ extern const struct AccountFetchedProperties {
 
 
 
+- (NSString*)primitiveCoachId;
+- (void)setPrimitiveCoachId:(NSString*)value;
+
+
+
+
 - (NSString*)primitiveCurrency;
 - (void)setPrimitiveCurrency:(NSString*)value;
 
@@ -241,6 +295,18 @@ extern const struct AccountFetchedProperties {
 
 - (NSString*)primitiveFax;
 - (void)setPrimitiveFax:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveLatitude;
+- (void)setPrimitiveLatitude:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveLongitude;
+- (void)setPrimitiveLongitude:(NSString*)value;
 
 
 
@@ -271,6 +337,12 @@ extern const struct AccountFetchedProperties {
 
 - (NSString*)primitiveRemoteKey;
 - (void)setPrimitiveRemoteKey:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveRepId;
+- (void)setPrimitiveRepId:(NSString*)value;
 
 
 

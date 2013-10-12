@@ -23,7 +23,11 @@
      AccountAttributes.postalcode,
      AccountAttributes.state,
      AccountAttributes.remoteKey,
-     AccountAttributes.accountRecordType
+     AccountAttributes.accountRecordType,
+     AccountAttributes.repId,
+     AccountAttributes.coachId,
+     AccountAttributes.longitude,
+     AccountAttributes.latitude
      ]];
     return mapping;
 }

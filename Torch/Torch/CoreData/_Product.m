@@ -20,8 +20,11 @@ const struct ProductAttributes ProductAttributes = {
 	.name = @"name",
 	.overbrand_Cd = @"overbrand_Cd",
 	.overbrand_description = @"overbrand_description",
+	.packtypeDescription = @"packtypeDescription",
 	.packtype_Cd = @"packtype_Cd",
 	.packtype_Description = @"packtype_Description",
+	.price = @"price",
+	.productNumber = @"productNumber",
 	.product_Number = @"product_Number",
 	.product_code = @"product_code",
 	.product_division = @"product_division",
@@ -31,10 +34,12 @@ const struct ProductAttributes ProductAttributes = {
 	.season_Cd = @"season_Cd",
 	.season_Description = @"season_Description",
 	.short_material_number = @"short_material_number",
+	.spanishDescription = @"spanishDescription",
 	.subPacktype_Cd = @"subPacktype_Cd",
 	.subpacktype_description = @"subpacktype_description",
 	.uPC_GROUP_PRODUCT_UOM_maybe = @"uPC_GROUP_PRODUCT_UOM_maybe",
 	.uPC_maybe = @"uPC_maybe",
+	.upc = @"upc",
 	.version = @"version",
 	.weight_unit_of_Measure = @"weight_unit_of_Measure",
 };
@@ -93,6 +98,11 @@ const struct ProductFetchedProperties ProductFetchedProperties = {
 	}
 	if ([key isEqualToString:@"item_lengthValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"item_length"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"priceValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"price"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -310,6 +320,13 @@ const struct ProductFetchedProperties ProductFetchedProperties = {
 
 
 
+@dynamic packtypeDescription;
+
+
+
+
+
+
 @dynamic packtype_Cd;
 
 
@@ -318,6 +335,39 @@ const struct ProductFetchedProperties ProductFetchedProperties = {
 
 
 @dynamic packtype_Description;
+
+
+
+
+
+
+@dynamic price;
+
+
+
+- (double)priceValue {
+	NSNumber *result = [self price];
+	return [result doubleValue];
+}
+
+- (void)setPriceValue:(double)value_ {
+	[self setPrice:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitivePriceValue {
+	NSNumber *result = [self primitivePrice];
+	return [result doubleValue];
+}
+
+- (void)setPrimitivePriceValue:(double)value_ {
+	[self setPrimitivePrice:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic productNumber;
 
 
 
@@ -387,6 +437,13 @@ const struct ProductFetchedProperties ProductFetchedProperties = {
 
 
 
+@dynamic spanishDescription;
+
+
+
+
+
+
 @dynamic subPacktype_Cd;
 
 
@@ -409,6 +466,13 @@ const struct ProductFetchedProperties ProductFetchedProperties = {
 
 
 @dynamic uPC_maybe;
+
+
+
+
+
+
+@dynamic upc;
 
 
 

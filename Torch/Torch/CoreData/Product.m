@@ -34,6 +34,13 @@
      ProductAttributes.item_Width,
      ProductAttributes.item_length
      ]];
+    [mapping addAttributeMappingsFromArray:@[
+     ProductAttributes.spanishDescription,
+     ProductAttributes.productNumber,
+     ProductAttributes.packtypeDescription,
+     ProductAttributes.price,
+     ProductAttributes.upc
+     ]];
     NSArray *attrNeedToMapping = @[
                                    ProductAttributes.season_Description,
                                    ProductAttributes.overbrand_Cd,
