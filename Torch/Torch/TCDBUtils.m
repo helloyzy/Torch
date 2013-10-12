@@ -17,6 +17,9 @@
 #import "Promotion.h"
 #import "Survey.h"
 #import "Store.h"
+#import "Priority.h"
+#import "Promotion.h"
+#import "PromotionItem.h"
 #import <RestKit/RestKit.h>
 
 #import "NSManagedObject+InnerBand.h"
@@ -134,6 +137,7 @@ static IBCoreDataStore * ibDataStore;
 +(void) prepareMockData {
     [self adjustStoreSchedule];
     [self prepareSurveyData];
+    [self preparePriority];
 }
 
 +(void) adjustStoreSchedule {
@@ -154,6 +158,13 @@ static IBCoreDataStore * ibDataStore;
     NSString *accountId = [firstStore remoteKey];
     [Survey generateMockSurveys:accountId];
     
+}
+
++(void) preparePriority {
+    NSArray *stores = [Store sortedStores];
+    for(Store *store in stores) {
+        [Priority generateMockData:store.remoteKey];
+    }
 }
 
 

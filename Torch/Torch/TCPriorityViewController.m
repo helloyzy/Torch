@@ -7,8 +7,10 @@
 //
 
 #import "TCPriorityViewController.h"
-#import "TCPriorityObject.h"
+// #import "TCPriorityObject.h"
 #import "Store.h"
+#import "Priority.h"
+
 @interface TCPriorityViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *storeNameLable;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -21,19 +23,20 @@
 }
 
 -(NSArray *)populatePriorityData {
-    NSMutableArray *priorityDataArray = [[NSMutableArray alloc] init];
-    
-    TCPriorityObject *priority1 = [TCPriorityObject new];
-    priority1.priorityTitle =   @"Helloworld";
-    priority1.priorityDescription = @"This is a new fancy world, do you like it or now? welcome to the world of ios";
-    [priorityDataArray addObject:priority1];
-    
-    TCPriorityObject *priority2 = [TCPriorityObject new];
-    priority2.priorityTitle =   @"Nota Anaota";
-    priority2.priorityDescription = @"$345 value product should be checked without hesitation";
-    [priorityDataArray addObject:priority2];
-    
-    return priorityDataArray;
+    return [Priority prioritiesPerStore:self.currentStore];
+//    NSMutableArray *priorityDataArray = [[NSMutableArray alloc] init];
+//    
+//    TCPriorityObject *priority1 = [TCPriorityObject new];
+//    priority1.priorityTitle =   @"Helloworld";
+//    priority1.priorityDescription = @"This is a new fancy world, do you like it or now? welcome to the world of ios";
+//    [priorityDataArray addObject:priority1];
+//    
+//    TCPriorityObject *priority2 = [TCPriorityObject new];
+//    priority2.priorityTitle =   @"Nota Anaota";
+//    priority2.priorityDescription = @"$345 value product should be checked without hesitation";
+//    [priorityDataArray addObject:priority2];
+//    
+//    return priorityDataArray;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -102,18 +105,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PriorityCell"];
     }
    
-    TCPriorityObject *priorityObject = [tableData objectAtIndex:indexPath.row];
-	cell.textLabel.text = priorityObject.priorityTitle;
+    Priority *priorityObject = [tableData objectAtIndex:indexPath.row];
+	cell.textLabel.text = priorityObject.title;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:17];
-    cell.detailTextLabel.text = priorityObject.priorityDescription;
+    cell.detailTextLabel.text = priorityObject.desp;
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Lt" size:12];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-     TCPriorityObject *priorityObject = [tableData objectAtIndex:indexPath.row];
-    UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:priorityObject.priorityTitle message:priorityObject.priorityDescription delegate:nil cancelButtonTitle:[self localString:@"priority.buttonName"] otherButtonTitles:nil, nil];
+     Priority *priorityObject = [tableData objectAtIndex:indexPath.row];
+    UIAlertView *messageAlert = [[UIAlertView alloc] initWithTitle:priorityObject.title message:priorityObject.desp delegate:nil cancelButtonTitle:[self localString:@"priority.buttonName"] otherButtonTitles:nil, nil];
      //   UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HersheysBG"]];
     //image.frame = CGRectMake(0, 0, messageAlert.frame.size.height,messageAlert.frame.size.width);
     //image.contentMode = UIViewContentModeScaleToFill;
