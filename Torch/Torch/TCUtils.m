@@ -15,9 +15,13 @@
 #pragma mark - date to milliseconds conversion
 
 NSString *millisecondToDateStr(double milliseconds) {
-    double seconds = milliseconds / 1000.0;
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:seconds];
+    NSDate *date = millisecondToDate(milliseconds);
     return [DateUtils stringFromDate:date withFormat:kDateFormatShort];
+}
+
+NSDate *millisecondToDate(double milliseconds) {
+    double seconds = milliseconds / 1000.0;
+    return [NSDate dateWithTimeIntervalSince1970:seconds];
 }
 
 NSNumber *dateStrToMilliseconds(NSString * dateStr) {

@@ -223,7 +223,8 @@
 }
 
 -(void)gotoPromotionScreen {
-    UIViewController *targetViewController = [[TCPromotionVwCtl alloc]init];
+    TCPromotionVwCtl *targetViewController = [[TCPromotionVwCtl alloc]init];
+    targetViewController.currentStore = self.currentStore;
 	[[self navigationController] pushViewController:targetViewController animated:YES];
 }
 

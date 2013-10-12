@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "TCNavVwCtl.h"
 
+@class Store;
+
 @interface TCPromotionVwCtl : TCNavVwCtl <UITableViewDataSource, UITableViewDelegate> {
     
     __weak IBOutlet UIView *vwTop;
     __weak IBOutlet UILabel *lblTitle;
     __weak IBOutlet UITableView *tblVw;
 }
+
+@property (nonatomic, strong)Store *currentStore;
 
 @end

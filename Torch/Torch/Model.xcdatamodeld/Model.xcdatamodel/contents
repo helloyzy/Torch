@@ -197,7 +197,7 @@
         <attribute name="endDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="orderItemDiscount" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="promotionItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PromotionItem" inverseName="promotion" inverseEntity="PromotionItem" syncable="YES"/>
     </entity>
     <entity name="PromotionItem" representedClassName="PromotionItem" syncable="YES">

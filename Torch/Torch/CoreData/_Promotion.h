@@ -136,13 +136,9 @@ extern const struct PromotionFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* title;
+@property (nonatomic, strong) NSString* title;
 
 
-
-@property double titleValue;
-- (double)titleValue;
-- (void)setTitleValue:(double)value_;
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
 
@@ -229,11 +225,8 @@ extern const struct PromotionFetchedProperties {
 
 
 
-- (NSNumber*)primitiveTitle;
-- (void)setPrimitiveTitle:(NSNumber*)value;
-
-- (double)primitiveTitleValue;
-- (void)setPrimitiveTitleValue:(double)value_;
+- (NSString*)primitiveTitle;
+- (void)setPrimitiveTitle:(NSString*)value;
 
 
 

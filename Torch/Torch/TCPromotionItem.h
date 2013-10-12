@@ -26,6 +26,9 @@ typedef enum {
 @property(nonatomic, copy)NSString * description;
 @property(nonatomic, copy)NSDate * expiration;
 @property(nonatomic) float unitNum;
-
+@property(nonatomic, copy)NSString *productDescription;
+@property(nonatomic, copy)NSString *productNumber;
+@property(nonatomic, assign)CGFloat promotionItemListPrice;
+@property(nonatomic, assign)CGFloat salesPrice;
 
 @end

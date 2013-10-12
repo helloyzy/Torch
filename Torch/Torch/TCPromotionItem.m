@@ -7,6 +7,8 @@
 //
 
 #import "TCPromotionItem.h"
+#import <IBFunctions.h>
+#import "TCUtils.h"
 
 @implementation TCPromotionItem
 
@@ -18,5 +20,7 @@
     result.expiration = [NSDate date];
     return result;
 }
+
+
 
 @end

@@ -138,6 +138,7 @@ static IBCoreDataStore * ibDataStore;
     [self adjustStoreSchedule];
     [self prepareSurveyData];
     [self preparePriority];
+    [self preparePromotion];
 }
 
 +(void) adjustStoreSchedule {
@@ -164,6 +165,13 @@ static IBCoreDataStore * ibDataStore;
     NSArray *stores = [Store sortedStores];
     for(Store *store in stores) {
         [Priority generateMockData:store.remoteKey];
+    }
+}
+
++(void) preparePromotion {
+    NSArray *stores = [Store sortedStores];
+    for(Store *store in stores) {
+        [Promotion generateMockData:store.remoteKey];
     }
 }
 

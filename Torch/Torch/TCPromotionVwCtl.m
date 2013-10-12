@@ -9,6 +9,7 @@
 #import "TCPromotionVwCtl.h"
 #import "TCSysRes.h"
 #import "TCPromotionDetailVwCtl.h"
+#import "Promotion.h"
 #import "TCPromotionItem.h"
 
 @interface TCPromotionVwCtl () {
@@ -29,22 +30,23 @@
 }
 
 - (void)initData {
-    TCPromotionItem *p_1_off = [TCPromotionItem newPromotion:@"1 dollar off"];
-    p_1_off.type = PromotionTypeDollarOff;
-    p_1_off.discountAmount = 1.0;
-    TCPromotionItem *p_half_off = [TCPromotionItem newPromotion:@"0.5 dollar off"];
-    p_half_off.type = PromotionTypeDollarOff;
-    p_half_off.discountAmount = 0.5;
-    TCPromotionItem *p_FreeGift = [TCPromotionItem newPromotion:@"Buy 5 get 1 free"];
-    p_FreeGift.type = PromotionTypeNormal;
-    p_FreeGift.discountPercentage = 0;
-    TCPromotionItem *p_w_10 = [TCPromotionItem newPromotion:@"10% whole order"];
-    p_w_10.type = PromotionTypeDiscountOrder;
-    p_w_10.discountPercentage = 0.1;
-    TCPromotionItem *p_w_15 = [TCPromotionItem newPromotion:@"15% whole order"];
-    p_w_15.type = PromotionTypeDiscountOrder;
-    p_w_15.discountPercentage = 0.15;
-    data = @[p_1_off, p_half_off, p_FreeGift, p_w_10, p_w_15];
+//    TCPromotionItem *p_1_off = [TCPromotionItem newPromotion:@"1 dollar off"];
+//    p_1_off.type = PromotionTypeDollarOff;
+//    p_1_off.discountAmount = 1.0;
+//    TCPromotionItem *p_half_off = [TCPromotionItem newPromotion:@"0.5 dollar off"];
+//    p_half_off.type = PromotionTypeDollarOff;
+//    p_half_off.discountAmount = 0.5;
+//    TCPromotionItem *p_FreeGift = [TCPromotionItem newPromotion:@"Buy 5 get 1 free"];
+//    p_FreeGift.type = PromotionTypeNormal;
+//    p_FreeGift.discountPercentage = 0;
+//    TCPromotionItem *p_w_10 = [TCPromotionItem newPromotion:@"10% whole order"];
+//    p_w_10.type = PromotionTypeDiscountOrder;
+//    p_w_10.discountPercentage = 0.1;
+//    TCPromotionItem *p_w_15 = [TCPromotionItem newPromotion:@"15% whole order"];
+//    p_w_15.type = PromotionTypeDiscountOrder;
+//    p_w_15.discountPercentage = 0.15;
+//    data = @[p_1_off, p_half_off, p_FreeGift, p_w_10, p_w_15];
+    data = [Promotion promotionsPerStore:self.currentStore];
 }
 
 - (void)initTopView {

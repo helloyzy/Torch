@@ -14,6 +14,7 @@
 
 @protocol CLLocationManagerDelegate;
 
+NSDate *millisecondToDate(double milliseconds);
 NSString *millisecondToDateStr(double milliseconds);
 NSNumber *dateStrToMilliseconds(NSString * dateStr);
 NSNumber *curdateToMilliseconds();

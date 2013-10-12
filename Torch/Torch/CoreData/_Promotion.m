@@ -72,11 +72,6 @@ const struct PromotionFetchedProperties PromotionFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"titleValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"title"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 
 	return keyPaths;
 }
@@ -230,25 +225,6 @@ const struct PromotionFetchedProperties PromotionFetchedProperties = {
 
 @dynamic title;
 
-
-
-- (double)titleValue {
-	NSNumber *result = [self title];
-	return [result doubleValue];
-}
-
-- (void)setTitleValue:(double)value_ {
-	[self setTitle:[NSNumber numberWithDouble:value_]];
-}
-
-- (double)primitiveTitleValue {
-	NSNumber *result = [self primitiveTitle];
-	return [result doubleValue];
-}
-
-- (void)setPrimitiveTitleValue:(double)value_ {
-	[self setPrimitiveTitle:[NSNumber numberWithDouble:value_]];
-}
 
 
 
