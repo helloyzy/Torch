@@ -76,7 +76,8 @@ NSArray* _titles;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TCSurveyController *survey =
     [[TCSurveyController alloc] init];
-    survey.questions = [Survey allForPredicate:[NSPredicate predicateWithFormat:@"NOT(questionType = nil)"]];
+    survey.questions = /*[Survey allForPredicate:[NSPredicate predicateWithFormat:@"NOT(questionType = nil)"]];*/
+    indexPath.row == 0 ? [Survey marketingSurveyQuestions:self.store] : [Survey segmentationSurveyQuestions:self.store];
     survey.index = 0;
     survey.subtitle = _titles[indexPath.row];
     [self.navigationController pushViewController:survey animated:YES];

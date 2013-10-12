@@ -8,9 +8,11 @@
 
 #import "TCViewController.h"
 #import "TCNavVwCtl.h"
+#import "Store.h"
 
 @interface TCSurveyListController : TCNavVwCtl
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) Store* store;
 
 @end

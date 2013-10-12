@@ -96,6 +96,7 @@ static NSString *kViewControllerKey = @"viewController";
                  kExplainKey:@"create order",
           kViewControllerKey:tcOrderViewController } ];
     TCSurveyListController *surveyList = [[TCSurveyListController alloc] initWithNibName:@"TCStoreHomeView" bundle:nil];
+    surveyList.store = self.currentStore;
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.survey"],
                  kExplainKey:@"Order History",
           kViewControllerKey:surveyList } ];
