@@ -7,13 +7,17 @@ const struct AccountAttributes AccountAttributes = {
 	.accountRecordType = @"accountRecordType",
 	.address = @"address",
 	.city = @"city",
+	.coachId = @"coachId",
 	.currency = @"currency",
 	.fax = @"fax",
+	.latitude = @"latitude",
+	.longitude = @"longitude",
 	.name = @"name",
 	.phone = @"phone",
 	.postalcode = @"postalcode",
 	.recordType = @"recordType",
 	.remoteKey = @"remoteKey",
+	.repId = @"repId",
 	.state = @"state",
 	.street = @"street",
 	.streetref1 = @"streetref1",
@@ -81,6 +85,13 @@ const struct AccountFetchedProperties AccountFetchedProperties = {
 
 
 
+@dynamic coachId;
+
+
+
+
+
+
 @dynamic currency;
 
 
@@ -89,6 +100,20 @@ const struct AccountFetchedProperties AccountFetchedProperties = {
 
 
 @dynamic fax;
+
+
+
+
+
+
+@dynamic latitude;
+
+
+
+
+
+
+@dynamic longitude;
 
 
 
@@ -124,6 +149,13 @@ const struct AccountFetchedProperties AccountFetchedProperties = {
 
 
 @dynamic remoteKey;
+
+
+
+
+
+
+@dynamic repId;
 
 
 

@@ -6,12 +6,16 @@
 const struct OrderCreditAttributes OrderCreditAttributes = {
 	.actualEndDate = @"actualEndDate",
 	.approvalRequiredReason = @"approvalRequiredReason",
+	.callId = @"callId",
 	.callTimeAdjustment = @"callTimeAdjustment",
 	.checkNumber = @"checkNumber",
 	.confirmationType = @"confirmationType",
 	.creditType = @"creditType",
 	.customerReferenceNumber = @"customerReferenceNumber",
+	.discountPercent = @"discountPercent",
 	.hersheyReferenceNumber = @"hersheyReferenceNumber",
+	.latitude = @"latitude",
+	.longitude = @"longitude",
 	.orderCreditId = @"orderCreditId",
 	.orderType = @"orderType",
 	.paymentAmount = @"paymentAmount",
@@ -24,11 +28,13 @@ const struct OrderCreditAttributes OrderCreditAttributes = {
 	.rejectionReason = @"rejectionReason",
 	.signature = @"signature",
 	.status = @"status",
+	.totalDiscountAmount = @"totalDiscountAmount",
 };
 
 const struct OrderCreditRelationships OrderCreditRelationships = {
 	.account = @"account",
 	.contact = @"contact",
+	.notes = @"notes",
 	.order = @"order",
 	.orderCreditItems = @"orderCreditItems",
 };
@@ -72,6 +78,21 @@ const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"discountPercentValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"discountPercent"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"latitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"latitude"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"longitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"longitude"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"paymentAmountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"paymentAmount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -84,6 +105,11 @@ const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
 	}
 	if ([key isEqualToString:@"plannedStartDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"plannedStartDate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"totalDiscountAmountValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"totalDiscountAmount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -121,6 +147,13 @@ const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
 
 
 @dynamic approvalRequiredReason;
+
+
+
+
+
+
+@dynamic callId;
 
 
 
@@ -181,8 +214,86 @@ const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
 
 
 
+@dynamic discountPercent;
+
+
+
+- (double)discountPercentValue {
+	NSNumber *result = [self discountPercent];
+	return [result doubleValue];
+}
+
+- (void)setDiscountPercentValue:(double)value_ {
+	[self setDiscountPercent:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveDiscountPercentValue {
+	NSNumber *result = [self primitiveDiscountPercent];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveDiscountPercentValue:(double)value_ {
+	[self setPrimitiveDiscountPercent:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
 @dynamic hersheyReferenceNumber;
 
+
+
+
+
+
+@dynamic latitude;
+
+
+
+- (double)latitudeValue {
+	NSNumber *result = [self latitude];
+	return [result doubleValue];
+}
+
+- (void)setLatitudeValue:(double)value_ {
+	[self setLatitude:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveLatitudeValue {
+	NSNumber *result = [self primitiveLatitude];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveLatitudeValue:(double)value_ {
+	[self setPrimitiveLatitude:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic longitude;
+
+
+
+- (double)longitudeValue {
+	NSNumber *result = [self longitude];
+	return [result doubleValue];
+}
+
+- (void)setLongitudeValue:(double)value_ {
+	[self setLongitude:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveLongitudeValue {
+	NSNumber *result = [self primitiveLongitude];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveLongitudeValue:(double)value_ {
+	[self setPrimitiveLongitude:[NSNumber numberWithDouble:value_]];
+}
 
 
 
@@ -329,11 +440,41 @@ const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
 
 
 
+@dynamic totalDiscountAmount;
+
+
+
+- (double)totalDiscountAmountValue {
+	NSNumber *result = [self totalDiscountAmount];
+	return [result doubleValue];
+}
+
+- (void)setTotalDiscountAmountValue:(double)value_ {
+	[self setTotalDiscountAmount:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveTotalDiscountAmountValue {
+	NSNumber *result = [self primitiveTotalDiscountAmount];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveTotalDiscountAmountValue:(double)value_ {
+	[self setPrimitiveTotalDiscountAmount:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
 @dynamic account;
 
 	
 
 @dynamic contact;
+
+	
+
+@dynamic notes;
 
 	
 

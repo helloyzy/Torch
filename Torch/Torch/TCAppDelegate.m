@@ -75,7 +75,7 @@
     [TCDBUtils initDB];
     
     // [TCDBUtils seed];
-    // [TCDBUtils adjustStoreSchedule];
+    // [TCDBUtils prepareMockData];
 }
 
 - (void) serviceTest {

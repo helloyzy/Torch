@@ -141,3 +141,7 @@
 "storehome.menu.notes"="Notes";
 "storehome.button.novisit"= "Could not visit this Customer";
 "storehome.button.instructions"= "Instruction";
+
+/*Ronald Mai*/
+"myday.title" = "  My day - ";
+"myday.add" = "add new customer";

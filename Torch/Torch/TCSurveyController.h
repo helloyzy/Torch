@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCNavVwCtl.h"
 
-@interface TCSurveyController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface TCSurveyController : TCNavVwCtl<UIPickerViewDataSource, UIPickerViewDelegate>
+
+@property (atomic, strong) NSArray* questions;
+@property (atomic) NSInteger index;
+@property (atomic, strong) NSString* subtitle;
 
 @end

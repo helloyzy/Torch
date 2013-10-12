@@ -55,11 +55,12 @@ MGLine *padding(MGLine* line) {
 }
 
 UIButton *blueButton(NSString* title) {
-CGRect btnFrame = CGRectMake(0, 0, 302, 35);
-UIButton * btn = [[UIButton alloc] initWithFrame:btnFrame];
+    CGRect btnFrame = CGRectMake(0, 0, 302, 35);
+    UIButton * btn = [[UIButton alloc] initWithFrame:btnFrame];
     //btn.titleLabel.font = TCFont_HNLTComBd(14);
-[btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-[btn setTitle:title forState:UIControlStateNormal];
-[btn setBackgroundImage:[UIImage imageNamed:@"bluebutton.png"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"bluebutton.png"] forState:UIControlStateNormal];
+    btn.userInteractionEnabled = YES;
     return btn;
 }

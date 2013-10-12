@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MGLine.h"
+#import <Foundation/NSBundle.h>
 
 #define TCColorLineBlue [UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1]
 #define TCColorSubtitleGray [UIColor colorWithWhite:0.667 alpha:1.000]
@@ -15,6 +16,7 @@
 #define TCColorTitleGray  [UIColor colorWithWhite:73.0/255 alpha:1]
 #define TCColorProgressBlue [UIColor colorWithRed:61.0/255 green:111.0/255 blue:153.0/255 alpha:1]
 #define TCColorProgressLtBlue [UIColor colorWithRed:139.0/255 green:181.0/255 blue:205.0/255 alpha:1]
+#define Lo(x) NSLocalizedString(@ #x, nil)
 
 void drawLinearGradient(CGContextRef context, CGRect rect, CGColorRef startColor, CGColorRef endColor);
 

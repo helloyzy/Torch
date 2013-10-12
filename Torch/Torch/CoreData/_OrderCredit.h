@@ -7,12 +7,16 @@
 extern const struct OrderCreditAttributes {
 	__unsafe_unretained NSString *actualEndDate;
 	__unsafe_unretained NSString *approvalRequiredReason;
+	__unsafe_unretained NSString *callId;
 	__unsafe_unretained NSString *callTimeAdjustment;
 	__unsafe_unretained NSString *checkNumber;
 	__unsafe_unretained NSString *confirmationType;
 	__unsafe_unretained NSString *creditType;
 	__unsafe_unretained NSString *customerReferenceNumber;
+	__unsafe_unretained NSString *discountPercent;
 	__unsafe_unretained NSString *hersheyReferenceNumber;
+	__unsafe_unretained NSString *latitude;
+	__unsafe_unretained NSString *longitude;
 	__unsafe_unretained NSString *orderCreditId;
 	__unsafe_unretained NSString *orderType;
 	__unsafe_unretained NSString *paymentAmount;
@@ -25,11 +29,13 @@ extern const struct OrderCreditAttributes {
 	__unsafe_unretained NSString *rejectionReason;
 	__unsafe_unretained NSString *signature;
 	__unsafe_unretained NSString *status;
+	__unsafe_unretained NSString *totalDiscountAmount;
 } OrderCreditAttributes;
 
 extern const struct OrderCreditRelationships {
 	__unsafe_unretained NSString *account;
 	__unsafe_unretained NSString *contact;
+	__unsafe_unretained NSString *notes;
 	__unsafe_unretained NSString *order;
 	__unsafe_unretained NSString *orderCreditItems;
 } OrderCreditRelationships;
@@ -39,8 +45,14 @@ extern const struct OrderCreditFetchedProperties {
 
 @class Account;
 @class Contact;
+@class NoteResponse;
 @class Order;
 @class OrderCreditItem;
+
+
+
+
+
 
 
 
@@ -100,6 +112,16 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* callId;
+
+
+
+//- (BOOL)validateCallId:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* callTimeAdjustment;
 
 
@@ -154,11 +176,53 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* discountPercent;
+
+
+
+@property double discountPercentValue;
+- (double)discountPercentValue;
+- (void)setDiscountPercentValue:(double)value_;
+
+//- (BOOL)validateDiscountPercent:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* hersheyReferenceNumber;
 
 
 
 //- (BOOL)validateHersheyReferenceNumber:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* latitude;
+
+
+
+@property double latitudeValue;
+- (double)latitudeValue;
+- (void)setLatitudeValue:(double)value_;
+
+//- (BOOL)validateLatitude:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* longitude;
+
+
+
+@property double longitudeValue;
+- (double)longitudeValue;
+- (void)setLongitudeValue:(double)value_;
+
+//- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -296,6 +360,20 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* totalDiscountAmount;
+
+
+
+@property double totalDiscountAmountValue;
+- (double)totalDiscountAmountValue;
+- (void)setTotalDiscountAmountValue:(double)value_;
+
+//- (BOOL)validateTotalDiscountAmount:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) Account *account;
 
 //- (BOOL)validateAccount:(id*)value_ error:(NSError**)error_;
@@ -306,6 +384,13 @@ extern const struct OrderCreditFetchedProperties {
 @property (nonatomic, strong) Contact *contact;
 
 //- (BOOL)validateContact:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NoteResponse *notes;
+
+//- (BOOL)validateNotes:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -354,6 +439,12 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
+- (NSString*)primitiveCallId;
+- (void)setPrimitiveCallId:(NSString*)value;
+
+
+
+
 - (NSNumber*)primitiveCallTimeAdjustment;
 - (void)setPrimitiveCallTimeAdjustment:(NSNumber*)value;
 
@@ -387,8 +478,35 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
+- (NSNumber*)primitiveDiscountPercent;
+- (void)setPrimitiveDiscountPercent:(NSNumber*)value;
+
+- (double)primitiveDiscountPercentValue;
+- (void)setPrimitiveDiscountPercentValue:(double)value_;
+
+
+
+
 - (NSString*)primitiveHersheyReferenceNumber;
 - (void)setPrimitiveHersheyReferenceNumber:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveLatitude;
+- (void)setPrimitiveLatitude:(NSNumber*)value;
+
+- (double)primitiveLatitudeValue;
+- (void)setPrimitiveLatitudeValue:(double)value_;
+
+
+
+
+- (NSNumber*)primitiveLongitude;
+- (void)setPrimitiveLongitude:(NSNumber*)value;
+
+- (double)primitiveLongitudeValue;
+- (void)setPrimitiveLongitudeValue:(double)value_;
 
 
 
@@ -474,6 +592,15 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
+- (NSNumber*)primitiveTotalDiscountAmount;
+- (void)setPrimitiveTotalDiscountAmount:(NSNumber*)value;
+
+- (double)primitiveTotalDiscountAmountValue;
+- (void)setPrimitiveTotalDiscountAmountValue:(double)value_;
+
+
+
+
 
 - (Account*)primitiveAccount;
 - (void)setPrimitiveAccount:(Account*)value;
@@ -482,6 +609,11 @@ extern const struct OrderCreditFetchedProperties {
 
 - (Contact*)primitiveContact;
 - (void)setPrimitiveContact:(Contact*)value;
+
+
+
+- (NoteResponse*)primitiveNotes;
+- (void)setPrimitiveNotes:(NoteResponse*)value;
 
 
 

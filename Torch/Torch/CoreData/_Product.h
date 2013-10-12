@@ -21,8 +21,11 @@ extern const struct ProductAttributes {
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *overbrand_Cd;
 	__unsafe_unretained NSString *overbrand_description;
+	__unsafe_unretained NSString *packtypeDescription;
 	__unsafe_unretained NSString *packtype_Cd;
 	__unsafe_unretained NSString *packtype_Description;
+	__unsafe_unretained NSString *price;
+	__unsafe_unretained NSString *productNumber;
 	__unsafe_unretained NSString *product_Number;
 	__unsafe_unretained NSString *product_code;
 	__unsafe_unretained NSString *product_division;
@@ -32,10 +35,12 @@ extern const struct ProductAttributes {
 	__unsafe_unretained NSString *season_Cd;
 	__unsafe_unretained NSString *season_Description;
 	__unsafe_unretained NSString *short_material_number;
+	__unsafe_unretained NSString *spanishDescription;
 	__unsafe_unretained NSString *subPacktype_Cd;
 	__unsafe_unretained NSString *subpacktype_description;
 	__unsafe_unretained NSString *uPC_GROUP_PRODUCT_UOM_maybe;
 	__unsafe_unretained NSString *uPC_maybe;
+	__unsafe_unretained NSString *upc;
 	__unsafe_unretained NSString *version;
 	__unsafe_unretained NSString *weight_unit_of_Measure;
 } ProductAttributes;
@@ -45,6 +50,11 @@ extern const struct ProductRelationships {
 
 extern const struct ProductFetchedProperties {
 } ProductFetchedProperties;
+
+
+
+
+
 
 
 
@@ -274,6 +284,16 @@ extern const struct ProductFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* packtypeDescription;
+
+
+
+//- (BOOL)validatePacktypeDescription:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* packtype_Cd;
 
 
@@ -289,6 +309,30 @@ extern const struct ProductFetchedProperties {
 
 
 //- (BOOL)validatePacktype_Description:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* price;
+
+
+
+@property double priceValue;
+- (double)priceValue;
+- (void)setPriceValue:(double)value_;
+
+//- (BOOL)validatePrice:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* productNumber;
+
+
+
+//- (BOOL)validateProductNumber:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -384,6 +428,16 @@ extern const struct ProductFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* spanishDescription;
+
+
+
+//- (BOOL)validateSpanishDescription:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* subPacktype_Cd;
 
 
@@ -419,6 +473,16 @@ extern const struct ProductFetchedProperties {
 
 
 //- (BOOL)validateUPC_maybe:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* upc;
+
+
+
+//- (BOOL)validateUpc:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -565,6 +629,12 @@ extern const struct ProductFetchedProperties {
 
 
 
+- (NSString*)primitivePacktypeDescription;
+- (void)setPrimitivePacktypeDescription:(NSString*)value;
+
+
+
+
 - (NSString*)primitivePacktype_Cd;
 - (void)setPrimitivePacktype_Cd:(NSString*)value;
 
@@ -573,6 +643,21 @@ extern const struct ProductFetchedProperties {
 
 - (NSString*)primitivePacktype_Description;
 - (void)setPrimitivePacktype_Description:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitivePrice;
+- (void)setPrimitivePrice:(NSNumber*)value;
+
+- (double)primitivePriceValue;
+- (void)setPrimitivePriceValue:(double)value_;
+
+
+
+
+- (NSString*)primitiveProductNumber;
+- (void)setPrimitiveProductNumber:(NSString*)value;
 
 
 
@@ -631,6 +716,12 @@ extern const struct ProductFetchedProperties {
 
 
 
+- (NSString*)primitiveSpanishDescription;
+- (void)setPrimitiveSpanishDescription:(NSString*)value;
+
+
+
+
 - (NSString*)primitiveSubPacktype_Cd;
 - (void)setPrimitiveSubPacktype_Cd:(NSString*)value;
 
@@ -651,6 +742,12 @@ extern const struct ProductFetchedProperties {
 
 - (NSString*)primitiveUPC_maybe;
 - (void)setPrimitiveUPC_maybe:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveUpc;
+- (void)setPrimitiveUpc:(NSString*)value;
 
 
 

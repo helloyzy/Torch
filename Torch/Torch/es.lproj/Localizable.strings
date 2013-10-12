@@ -142,3 +142,7 @@
 "storehome.menu.notes"="Notas";
 "storehome.button.novisit"= "No Pude Visitar Este Cliente";
 "storehome.button.instructions"= "Instrucciones";
+
+/*Ronald Mai*/
+"myday.title" = "  Mi día - ";
+"myday.add" = "add new customer";

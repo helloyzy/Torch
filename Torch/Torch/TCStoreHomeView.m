@@ -12,13 +12,16 @@
 #import "TCInventoryViewController.h"
 #import "TCOrderViewController.h"
 #import "TCSummaryViewController.h"
-#import "TCOrderHistory.h"
+#import "TCSurveyController.h"
+#import "TCSurveyListController.h"
 #import "TCStoreNoVisit.h"
 #import "Contact.h"
 #import "TCAddNewCustomerVwCtl.h"
 #import "TCSysRes.h"
 #import "Store.h"
 #import "StoreCall.h"
+#import "Survey.h"
+#import <InnerBand.h>
 #import "TCUtils.h"
 #import <IBFunctions.h>
 
@@ -92,11 +95,11 @@ static NSString *kViewControllerKey = @"viewController";
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.createOrder"],
                  kExplainKey:@"create order",
           kViewControllerKey:tcOrderViewController } ];
-    TCOrderHistory *tcOrderHistory =
-    [[TCOrderHistory alloc] initWithNibName:@"TCOrderHistory" bundle:nil];
-	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.orderHistory"],
+    TCSurveyListController *surveyList = [[TCSurveyListController alloc] initWithNibName:@"TCStoreHomeView" bundle:nil];
+    surveyList.store = self.currentStore;
+	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.survey"],
                  kExplainKey:@"Order History",
-          kViewControllerKey:tcOrderHistory } ];
+          kViewControllerKey:surveyList } ];
 
     TCSummaryViewController *tcSummaryViewController =
     [[TCSummaryViewController alloc] initWithNibName:@"TCSummaryViewController" bundle:nil];
@@ -477,6 +480,7 @@ static NSString *kViewControllerKey = @"viewController";
         [[self navigationController] pushViewController:targetViewController animated:YES];
     } else { // just change direction
         [_tcSliderView changeDirection:YES];
+        [self.tableView reloadData];
     }
 }
 
