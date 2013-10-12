@@ -19,6 +19,8 @@
 #import "TCSysRes.h"
 #import "Store.h"
 #import "StoreCall.h"
+#import "Survey.h"
+#import <InnerBand.h>
 #import "TCUtils.h"
 #import <IBFunctions.h>
 
@@ -94,6 +96,8 @@ static NSString *kViewControllerKey = @"viewController";
           kViewControllerKey:tcOrderViewController } ];
     TCSurveyController *survey =
     [[TCSurveyController alloc] init];
+    survey.questions = [Survey allForPredicate:[NSPredicate predicateWithFormat:@"NOT(questionType = nil)"]];
+    survey.index = 0;
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.survey"],
                  kExplainKey:@"Order History",
           kViewControllerKey:survey } ];

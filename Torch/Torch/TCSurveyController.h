@@ -11,4 +11,7 @@
 
 @interface TCSurveyController : TCNavVwCtl<UIPickerViewDataSource, UIPickerViewDelegate>
 
+@property (atomic, retain) NSArray* questions;
+@property (atomic) NSInteger index;
+
 @end

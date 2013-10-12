@@ -10,8 +10,6 @@
 
 @interface Survey ()
 
-@property (getter=answersFromString, readonly) NSArray* answerArray;
-
 @end
 
 
@@ -38,6 +36,10 @@
     } else {
         return SegmentationSurvey;
     }
+}
+
+- (SEL) selector {
+    return NSSelectorFromString([self.questionType stringByAppendingString:@"Survey"]);
 }
 
 - (SurveyQuestionType)surveyQuestionType {

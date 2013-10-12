@@ -13,7 +13,9 @@ typedef enum {
 } SurveyQuestionType;
 
 @interface Survey : _Survey {}
-// Custom logic goes here.
+
+@property (getter=answersFromString, readonly) NSArray* answerArray;
+@property (readonly) SEL selector;
 
 - (SurveyType)surveyType;
 - (SurveyQuestionType)surveyQuestionType;
