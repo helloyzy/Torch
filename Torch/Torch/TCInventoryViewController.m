@@ -50,13 +50,13 @@
     productCollection = [[NSMutableDictionary alloc] initWithCapacity:[productItems count]];
     ProductItemObject *productItem;
     for (Product *product in productItems) {
-            productItem = [ProductItemObject alloc];
-            productItem.productName = product.packtype_Description;
-            productItem.productSN = [NSString stringWithFormat:@"%@ %@", @"#", product.short_material_number];
-            productItem.productUnit = [self localString:@"product.itemunit"];
-            productItem.productPrice = @"$4.32 per box";
-            productItem.productUnitNum = @"0";
-            productItem.productDescription = product.desp;
+        productItem = [ProductItemObject alloc];
+        productItem.productName = product.packtype_Description;
+        productItem.productSN = [NSString stringWithFormat:@"%@%@", @"#", product.name];
+        productItem.productUnit = [self localString:@"product.itemunit"];
+        productItem.productPrice = [NSString stringWithFormat:@"$%1.2f %@",product.productPrice, product.uPC_GROUP_PRODUCT_UOM_maybe];
+        productItem.productUnitNum = @"0";
+        productItem.productDescription = product.desp;
             
             [productCollection setObject:productItem forKey:productItem.productSN];
     }
@@ -100,7 +100,7 @@
    
     
     NSArray *searchArray = [productCollection allValues];
-    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"productName CONTAINS[cd] %@ OR productSN CONTAINS[cd] %@ OR productDescription CONTAINS[cd] %@", searchText,searchText,searchText];
+    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"productName CONTAINS[cd] %@ OR productSN CONTAINS[cd] %@", searchText,searchText];
     
     NSArray *filterArray = [searchArray filteredArrayUsingPredicate:predicate1];
     NSMutableArray *searchResultsMutableArray = [[NSMutableArray alloc] init];
@@ -135,8 +135,36 @@
 -(void)updateProduct:(NSString *)productSN withQuantity:(NSString *)productQuantity {
       ProductItemObject *productItem = [productCollection objectForKey:productSN];
     if (productItem) {
-        productItem.productUnitNum = productQuantity;
+        
+        float longpressed = [self isLongPress:productQuantity withOldValue:productItem.productUnitNum];
+        if (longpressed >0) {
+            productItem.productUnitNum = [NSString stringWithFormat:@"%d", [productItem.productUnitNum intValue]+10];
+        } else if (longpressed <0) {
+            productItem.productUnitNum =[NSString stringWithFormat:@"%d", [productItem.productUnitNum intValue]-10];
+        } else {
+            productItem.productUnitNum = productQuantity;
+        }
+        
+        if ([productItem.productUnitNum intValue] < 0) {
+            productItem.productUnitNum = @"0";
+        }
+
         [productCollection setObject:productItem forKey:productSN];
+    }
+}
+
+-(float)isLongPress:(NSString *)currentValue withOldValue:(NSString *)oldValue {
+    
+    float fcurrentValue = [currentValue floatValue];
+    float foldValue = [oldValue floatValue];
+    if (fcurrentValue-foldValue>=2) {
+        // + button longpressed
+        return 1.0;
+    } else if (foldValue - fcurrentValue >=2) {
+        // - button longpressed
+        return -1.0;
+    } else {
+        return 0;
     }
 }
 
@@ -265,7 +293,7 @@
     }
     UIStepper *numStepper = cell.stepper;
     [numStepper addTarget:self action:@selector(updateUnitLabel:) forControlEvents:UIControlEventValueChanged];
-    
+    [numStepper setContinuous:NO];
     NSString *itemKey;
     
     if(tableView ==self.searchDisplayController.searchResultsTableView) {

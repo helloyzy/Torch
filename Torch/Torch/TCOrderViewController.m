@@ -141,7 +141,7 @@
     displayData = [[NSMutableArray alloc] init];
     for (id key in productCollection) {
         ProductItemObject *productObject = (ProductItemObject *)[productCollection objectForKey:key];
-        if (![productObject.productUnitNum isEqualToString: @"0"]) {
+        if (![productObject.productUnitNum isEqualToString:@"0" ]) {
             [displayData addObject:productObject.productSN];
         }
     }
@@ -159,9 +159,9 @@
     for (Product *product in productItems) {
         productItem = [ProductItemObject alloc];
         productItem.productName = product.packtype_Description;
-        productItem.productSN = [NSString stringWithFormat:@"%@ %@", @"#", product.short_material_number];
+        productItem.productSN = [NSString stringWithFormat:@"%@%@", @"#", product.name];
         productItem.productUnit = [self localString:@"product.itemunit"];
-        productItem.productPrice = [NSString stringWithFormat:@"$%1.2f",product.productPrice];
+        productItem.productPrice = [NSString stringWithFormat:@"$%1.2f %@",product.productPrice, product.uPC_GROUP_PRODUCT_UOM_maybe];
         productItem.productUnitNum = @"0";
         productItem.productDescription = product.desp;
         
@@ -437,7 +437,7 @@
 - (void) filterInventoryContentForSearch:(NSString *)searchText{
     
     NSArray *searchArray = [productCollection allValues];
-    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"productName CONTAINS[cd] %@ OR productSN CONTAINS[cd] %@ OR productDescription CONTAINS[cd] %@", searchText,searchText,searchText];
+    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"productName CONTAINS[cd] %@ OR productSN CONTAINS[cd] %@", searchText,searchText];
     
     NSArray *filterArray = [searchArray filteredArrayUsingPredicate:predicate1];
     NSMutableArray *searchResultsMutableArray = [[NSMutableArray alloc] init];
@@ -475,19 +475,52 @@
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     
 }
+-(float)isLongPress:(NSString *)currentValue withOldValue:(NSString *)oldValue {
+    
+    float fcurrentValue = [currentValue floatValue];
+    float foldValue = [oldValue floatValue];
+    if (fcurrentValue-foldValue>=2) {
+        // + button longpressed
+        return 1.0;
+    } else if (foldValue - fcurrentValue >=2) {
+        // - button longpressed
+        return -1.0;
+    } else {
+        return 0;
+    }
+}
 
 -(void)updatePromotion:(NSString *)promotionKey withQuantity:(float)Quantity {
     TCPromotionItem *promotionitem  = [promotionItems objectForKey:promotionKey];
     if (promotionitem) {
         promotionitem.unitNum = Quantity;
+        if (promotionitem.unitNum <0) {
+            promotionitem.unitNum = 0;
+        }
         [promotionItems setObject:promotionitem forKey:promotionKey];
     }
     
 }
+
+
+
+
 -(void)updateProduct:(NSString *)productSN withQuantity:(NSString *)productQuantity {
     ProductItemObject *productItem = [productCollection objectForKey:productSN];
     if (productItem) {
-        productItem.productUnitNum = productQuantity;
+        float longpressed = [self isLongPress:productQuantity withOldValue:productItem.productUnitNum];
+        if (longpressed >0) {
+           productItem.productUnitNum = [NSString stringWithFormat:@"%d", [productItem.productUnitNum intValue]+10];
+        } else if (longpressed <0) {
+            productItem.productUnitNum =[NSString stringWithFormat:@"%d", [productItem.productUnitNum intValue]-10];
+        } else {
+            productItem.productUnitNum = productQuantity;
+         }
+        
+        if ([productItem.productUnitNum intValue] < 0) {
+            productItem.productUnitNum = @"0";
+        }
+
         [productCollection setObject:productItem forKey:productSN];
     }
 }
@@ -665,6 +698,12 @@
     }
 }
 
+-(void)longPress:(UIGestureRecognizer *)gestureRecognizer {
+    if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        NSLog(@"long press detected");
+       
+    }
+}
 -(void)cellDeleteCancelled:(UIGestureRecognizer *)gestureRecognizer {
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         InventoryTableCell *cell = (InventoryTableCell *)gestureRecognizer.view;
@@ -790,6 +829,8 @@
     
 }
 
+
+
 -(UITableViewCell *)createOrderItemCellWithStepper:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger sectionId = [indexPath section];
     InventoryTableCell *cell = (InventoryTableCell *)[tableView dequeueReusableCellWithIdentifier:@"orderProductItemCell"];
@@ -802,8 +843,13 @@
         cell.vwDelete.hidden=YES;
     }
     
-    UIStepper *numStepper = cell.stepper;
-    [numStepper addTarget:self action:@selector(updateUnitLabel:) forControlEvents:UIControlEventValueChanged];
+    [cell.stepper addTarget:self action:@selector(updateUnitLabel:) forControlEvents:UIControlEventValueChanged];
+    [cell.stepper setAutorepeat:YES];
+    [cell.stepper setContinuous:NO];
+    
+    //UILongPressGestureRecognizer *longgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+    //[numStepper addGestureRecognizer:longgr];
+    
     NSString *itemKey;
     if ([self isInSearchResultSection:sectionId]) {
         itemKey = [searchResults objectAtIndex:indexPath.row];
@@ -965,7 +1011,7 @@
 -(void) calculateProductsPrice {
     for (NSString *productSN in displayData) {
         ProductItemObject *productObject = (ProductItemObject *)[productCollection objectForKey:productSN];
-        if (![productObject.productUnitNum isEqualToString: @"0"]) {
+        if (![productObject.productUnitNum isEqualToString:@"0"]) {
             self.fproductTotal += [productObject.productUnitNum doubleValue]*[productObject.productPrice doubleValue];
             //self.fproductTotal += [productObject.productUnitNum doubleValue]*1;
         }
