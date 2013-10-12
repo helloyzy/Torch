@@ -99,7 +99,8 @@
     [operationQueue addOperation:operation];
 }
 
-+ (void)orderRequestService {
++ (void)orderRequestService:(TC_SVC_BLOCK_SUCCESS)success
+                    failure:(TC_SVC_BLOCK_FAILURE)failure {
     RKObjectMapping * mapping = [TCRKObjectMapping tcInverseMapping:[Order objectMapping]];    
     RKRequestDescriptor * requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:mapping objectClass:[Order class] rootKeyPath:nil method:RKRequestMethodAny];
     
@@ -108,12 +109,15 @@
     [manager addRequestDescriptor:requestDescriptor];
     manager.requestSerializationMIMEType = RKMIMETypeJSON;
     
+    //Replacing this with the blocks given by TCLoginViewController
     // RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
-    [[RKObjectManager sharedManager] postObject:order path:@"order" parameters:nil success:^(RKObjectRequestOperation * operation, RKMappingResult * result) {
-        NSLog(@"Order request succeed!");
-    } failure:^(RKObjectRequestOperation * operation, NSError * error) {
-        NSLog(@"Failed with error: %@", [error localizedDescription]);
-    }];
+//    [[RKObjectManager sharedManager] postObject:order path:@"order" parameters:nil success:^(RKObjectRequestOperation * operation, RKMappingResult * result) {
+//        NSLog(@"Order request succeed!");
+//    } failure:^(RKObjectRequestOperation * operation, NSError * error) {
+//        NSLog(@"Failed with error: %@", [error localizedDescription]);
+    
+    [[RKObjectManager sharedManager] postObject:order path:@"order" parameters:nil success:success failure:failure];
+
 
 }
 
