@@ -52,6 +52,8 @@
 		1C713C1617C2058100A903A6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C713BF117C2058100A903A6 /* Foundation.framework */; };
 		1C713C1E17C2058100A903A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C713C1C17C2058100A903A6 /* InfoPlist.strings */; };
 		1C713C2117C2058100A903A6 /* TorchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C713C2017C2058100A903A6 /* TorchTests.m */; };
+		1C80017F1808F155007B8B6A /* TCSurveyListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C80017D1808F155007B8B6A /* TCSurveyListController.m */; };
+		1C8001801808F155007B8B6A /* TCSurveyListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C80017E1808F155007B8B6A /* TCSurveyListController.xib */; };
 		1C8187A517C4569D00AF7AF0 /* TCMyDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187A417C4569D00AF7AF0 /* TCMyDayCell.xib */; };
 		1C8187A817C45A0B00AF7AF0 /* TCMyDayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */; };
 		1C8187AB17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C8187AA17C490CA00AF7AF0 /* HelveticaNeueLTCom-Lt.ttf */; };
@@ -278,6 +280,9 @@
 		1C713C1D17C2058100A903A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1C713C1F17C2058100A903A6 /* TorchTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorchTests.h; sourceTree = "<group>"; };
 		1C713C2017C2058100A903A6 /* TorchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TorchTests.m; sourceTree = "<group>"; };
+		1C80017C1808F155007B8B6A /* TCSurveyListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSurveyListController.h; sourceTree = "<group>"; };
+		1C80017D1808F155007B8B6A /* TCSurveyListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSurveyListController.m; sourceTree = "<group>"; };
+		1C80017E1808F155007B8B6A /* TCSurveyListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCSurveyListController.xib; sourceTree = "<group>"; };
 		1C8187A417C4569D00AF7AF0 /* TCMyDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCMyDayCell.xib; sourceTree = "<group>"; };
 		1C8187A617C45A0B00AF7AF0 /* TCMyDayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMyDayController.h; sourceTree = "<group>"; };
 		1C8187A717C45A0B00AF7AF0 /* TCMyDayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMyDayController.m; sourceTree = "<group>"; };
@@ -781,6 +786,8 @@
 				1CFE597F17D6C7950041FF95 /* TCSurveyController.m */,
 				1C713C0717C2058100A903A6 /* TCViewController.h */,
 				1C713C0817C2058100A903A6 /* TCViewController.m */,
+				1C80017C1808F155007B8B6A /* TCSurveyListController.h */,
+				1C80017D1808F155007B8B6A /* TCSurveyListController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -826,6 +833,7 @@
 				1C28602E17CDC967002E4CD0 /* TCSummaryViewController.xib */,
 				1CFE598017D6C7950041FF95 /* TCSurveyController.xib */,
 				1C713C0A17C2058100A903A6 /* TCViewController.xib */,
+				1C80017E1808F155007B8B6A /* TCSurveyListController.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1159,6 +1167,7 @@
 				DC7C75511807CEE600C76CD0 /* Default.png in Resources */,
 				DC7C75541807D01600C76CD0 /* Default-568h@2x.png in Resources */,
 				DC7C75551807D01600C76CD0 /* Default@2x.png in Resources */,
+				1C8001801808F155007B8B6A /* TCSurveyListController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1328,6 +1337,7 @@
 				DCF4A3D618067FFD00DF8F64 /* PromotionItem.m in Sources */,
 				DCF4A3D718067FFD00DF8F64 /* Survey.m in Sources */,
 				DCF4A3DA18068C1800DF8F64 /* TCPromotionItem.m in Sources */,
+				1C80017F1808F155007B8B6A /* TCSurveyListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
