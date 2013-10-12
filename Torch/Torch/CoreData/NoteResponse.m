@@ -1,5 +1,5 @@
 #import "NoteResponse.h"
-
+#import <RKEntityMapping.h>
 
 @interface NoteResponse ()
 
@@ -10,6 +10,11 @@
 
 @implementation NoteResponse
 
-// Custom logic goes here.
++ (RKEntityMapping *)objectMapping {
+    RKEntityMapping *mapping = [super objectMapping];
+    [mapping addAttributeMappingsFromArray:@[NoteResponseAttributes.message,
+     NoteResponseAttributes.type]];
+    return mapping;
+}
 
 @end

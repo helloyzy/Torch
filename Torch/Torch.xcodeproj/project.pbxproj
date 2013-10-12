@@ -166,6 +166,8 @@
 		DC20E24F17D85C5A009FFC84 /* TCComboVw.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20E24E17D85C5A009FFC84 /* TCComboVw.m */; };
 		DC51EA0B17C5A2BE00E5DD3C /* UIViewController+Torch.m in Sources */ = {isa = PBXBuildFile; fileRef = DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */; };
 		DC549DB8180928230026D5E0 /* productNew.json in Resources */ = {isa = PBXBuildFile; fileRef = DC549DB7180928230026D5E0 /* productNew.json */; };
+		DC549DBD18092A9B0026D5E0 /* _NoteResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DC549DBA18092A9B0026D5E0 /* _NoteResponse.m */; };
+		DC549DBE18092A9B0026D5E0 /* NoteResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DC549DBC18092A9B0026D5E0 /* NoteResponse.m */; };
 		DC56020717F27C6A009BA08C /* product.json in Resources */ = {isa = PBXBuildFile; fileRef = DC56020617F27C6A009BA08C /* product.json */; };
 		DC56020C17F28195009BA08C /* _Product.m in Sources */ = {isa = PBXBuildFile; fileRef = DC56020917F28195009BA08C /* _Product.m */; };
 		DC56020D17F28195009BA08C /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = DC56020B17F28195009BA08C /* Product.m */; };
@@ -444,6 +446,10 @@
 		DC51EA0917C5A2BE00E5DD3C /* UIViewController+Torch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Torch.h"; sourceTree = "<group>"; };
 		DC51EA0A17C5A2BE00E5DD3C /* UIViewController+Torch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Torch.m"; sourceTree = "<group>"; };
 		DC549DB7180928230026D5E0 /* productNew.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = productNew.json; sourceTree = "<group>"; };
+		DC549DB918092A9B0026D5E0 /* _NoteResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _NoteResponse.h; sourceTree = "<group>"; };
+		DC549DBA18092A9B0026D5E0 /* _NoteResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _NoteResponse.m; sourceTree = "<group>"; };
+		DC549DBB18092A9B0026D5E0 /* NoteResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteResponse.h; sourceTree = "<group>"; };
+		DC549DBC18092A9B0026D5E0 /* NoteResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteResponse.m; sourceTree = "<group>"; };
 		DC56020617F27C6A009BA08C /* product.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = product.json; sourceTree = "<group>"; };
 		DC56020817F28195009BA08C /* _Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Product.h; sourceTree = "<group>"; };
 		DC56020917F28195009BA08C /* _Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Product.m; sourceTree = "<group>"; };
@@ -877,6 +883,10 @@
 		DC16559F17DF092500DD57D6 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				DC549DB918092A9B0026D5E0 /* _NoteResponse.h */,
+				DC549DBA18092A9B0026D5E0 /* _NoteResponse.m */,
+				DC549DBB18092A9B0026D5E0 /* NoteResponse.h */,
+				DC549DBC18092A9B0026D5E0 /* NoteResponse.m */,
 				DC1655A017DF092500DD57D6 /* _Account.h */,
 				DC1655A117DF092500DD57D6 /* _Account.m */,
 				DC1655A217DF092500DD57D6 /* _Banner.h */,
@@ -1342,6 +1352,8 @@
 				DCF4A3D718067FFD00DF8F64 /* Survey.m in Sources */,
 				DCF4A3DA18068C1800DF8F64 /* TCPromotionItem.m in Sources */,
 				1C80017F1808F155007B8B6A /* TCSurveyListController.m in Sources */,
+				DC549DBD18092A9B0026D5E0 /* _NoteResponse.m in Sources */,
+				DC549DBE18092A9B0026D5E0 /* NoteResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
