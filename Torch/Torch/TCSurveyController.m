@@ -9,7 +9,7 @@
 #import "TCSurveyController.h"
 #import "DDProgressView.h"
 #import "GraphicsUtils.h"
-#import "MGTableBox.h"
+#import <MGTableBox.h>
 #import "Survey.h"
 #import <OCTotallyLazy.h>
 #import "UIViewController+MGBox.h"
@@ -86,7 +86,7 @@ Survey* _survey;
     table = [MGScrollView scrollerWithSize:self.view.size];
     table.height = 420;
     
-    [table.boxes addObject:[self sectionHeader:@"de Marketing" backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor] fontName:@"HelveticaNeueLTCom-Md"]];
+    [table.boxes addObject:[self sectionHeader:self.subtitle backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor] fontName:@"HelveticaNeueLTCom-Md"]];
 
     DDProgressView *progressBar = [[DDProgressView alloc] initWithFrame:CGRectMake(15.0f, 20.0f, self.view.bounds.size.width - 30.0f, 100.0f)];
     progressBar.outerColor = [UIColor clearColor];

@@ -13,6 +13,7 @@
 #import "TCOrderViewController.h"
 #import "TCSummaryViewController.h"
 #import "TCSurveyController.h"
+#import "TCSurveyListController.h"
 #import "TCStoreNoVisit.h"
 #import "Contact.h"
 #import "TCAddNewCustomerVwCtl.h"
@@ -94,13 +95,10 @@ static NSString *kViewControllerKey = @"viewController";
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.createOrder"],
                  kExplainKey:@"create order",
           kViewControllerKey:tcOrderViewController } ];
-    TCSurveyController *survey =
-    [[TCSurveyController alloc] init];
-    survey.questions = [Survey allForPredicate:[NSPredicate predicateWithFormat:@"NOT(questionType = nil)"]];
-    survey.index = 0;
+    TCSurveyListController *surveyList = [[TCSurveyListController alloc] initWithNibName:@"TCStoreHomeView" bundle:nil];
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.survey"],
                  kExplainKey:@"Order History",
-          kViewControllerKey:survey } ];
+          kViewControllerKey:surveyList } ];
 
     TCSummaryViewController *tcSummaryViewController =
     [[TCSummaryViewController alloc] initWithNibName:@"TCSummaryViewController" bundle:nil];

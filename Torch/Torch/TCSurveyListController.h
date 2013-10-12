@@ -7,7 +7,10 @@
 //
 
 #import "TCViewController.h"
+#import "TCNavVwCtl.h"
 
-@interface TCSurveyListController : TCViewController
+@interface TCSurveyListController : TCNavVwCtl
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
