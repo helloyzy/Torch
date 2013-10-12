@@ -480,6 +480,7 @@ static NSString *kViewControllerKey = @"viewController";
         [[self navigationController] pushViewController:targetViewController animated:YES];
     } else { // just change direction
         [_tcSliderView changeDirection:YES];
+        [self.tableView reloadData];
     }
 }
 
