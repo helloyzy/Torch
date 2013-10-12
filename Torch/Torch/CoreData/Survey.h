@@ -12,6 +12,8 @@ typedef enum {
     TextQuestion
 } SurveyQuestionType;
 
+@class Store;
+
 @interface Survey : _Survey {}
 
 @property (getter=answersFromString, readonly) NSArray* answerArray;
@@ -19,6 +21,9 @@ typedef enum {
 
 - (SurveyType)surveyType;
 - (SurveyQuestionType)surveyQuestionType;
+
++ (NSArray *)marketingSurveyQuestions:(Store *)store;
++ (NSArray *)segmentationSurveyQuestions:(Store *)store;
 
 + (void)generateMockSurveys:(NSString *)storeId;
 

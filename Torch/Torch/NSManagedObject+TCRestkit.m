@@ -18,11 +18,15 @@
 }
 
 + (id)newInstance {
-    return [self createInStore:[TCDBUtils ibDataStore]];
+    return [self createInStore:[self dataStore]];
 }
 
 + (void)save {
-    [[TCDBUtils ibDataStore] save];
+    [[self dataStore] save];
+}
+
++ (IBCoreDataStore *)dataStore {
+    return [TCDBUtils ibDataStore];
 }
 
 - (void)deleteObj {
