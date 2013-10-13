@@ -97,7 +97,9 @@
 - (void)_signIn {
     [self setSharedLoginCredential];
     [TCDBUtils resetDB];
-    [self syncData];
+    //[self syncData];
+    //!!!:Since the services are not returing data, instead of syncing on login, we now go straight to the myday screen
+    [self jumpToMyDay];
 }
 
 //This beins the sync data process. If we get a 202 we try again, if we fail we go to the failure handler, if we are successful we fetch the mexico data
