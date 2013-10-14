@@ -285,22 +285,10 @@ static NSString *kViewControllerKey = @"viewController";
             lblNumber.backgroundColor =[UIColor clearColor];
             [lblNumber setTextAlignment:NSTextAlignmentLeft];
             [mapImage addSubview:lblNumber];
-            UIImage *buttonBackground = [UIImage imageNamed:@"directionbtn.png"];
-            UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"directionbtn_pressed.png"];
-            
-            CGRect frame = CGRectMake(205, 80, 100, 25);
-            
-            _btnDirection = [TCStoreHomeView newButtonWithTitle:[self localString:@"storehome.button.instructions"]
-                                                             target:self
-                                                           selector:@selector(viewDirection:)
-                                                              frame:frame
-                                                              image:buttonBackground
-                                                       imagePressed:buttonBackgroundPressed];
-
-
+ 
             [cell.contentView addSubview:mapImage];
             [cell.contentView addSubview:txtStoreDetail];
-            [cell.contentView addSubview:_btnDirection];
+            
 
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundView = backgroundView;
