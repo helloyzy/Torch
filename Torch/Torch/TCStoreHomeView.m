@@ -24,6 +24,7 @@
 #import <InnerBand.h>
 #import "TCUtils.h"
 #import <IBFunctions.h>
+#import <MapKit/MapKit.h>
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -259,6 +260,21 @@ static NSString *kViewControllerKey = @"viewController";
     return [NSString stringWithFormat:@"%@", contactor.phoneNumber];
 }
 
+- (void) showDirections:(UITapGestureRecognizer *)sender {    
+    [[[CLGeocoder alloc] init]
+     geocodeAddressString: ((UITextView *)sender.view).text
+     completionHandler:^(NSArray *placemarks, NSError *error) {
+         CLPlacemark *geocodedPlacemark = [placemarks objectAtIndex:0];
+         MKMapItem *dest = [[MKMapItem alloc]
+                            initWithPlacemark:[[MKPlacemark alloc]
+                                               initWithCoordinate:geocodedPlacemark.location.coordinate
+                                               addressDictionary:geocodedPlacemark.addressDictionary]];
+         [dest setName:geocodedPlacemark.name];
+         [MKMapItem openMapsWithItems:@[[MKMapItem mapItemForCurrentLocation], dest]
+                        launchOptions:@{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving}];
+     }];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     UITableViewCell *cell;
@@ -273,6 +289,8 @@ static NSString *kViewControllerKey = @"viewController";
             [txtStoreDetail setFont:[UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:14]];
             txtStoreDetail.textColor = [UIColor colorWithRed:0.478 green:0.478 blue:0.478 alpha:1];
             txtStoreDetail.editable = NO;
+            txtStoreDetail.userInteractionEnabled = YES;
+            [txtStoreDetail addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDirections:)]];
 
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:storeHomeSec1Identifier];
             UIImageView *mapImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mapwithhint.png"]];
