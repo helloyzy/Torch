@@ -60,6 +60,13 @@
     return result;
 }
 
+- (BOOL)hasLocation {
+    if (self.longitude && self.latitude) {
+        return YES;
+    }
+    return NO;
+}
+
 + (Store *)storeInCall {
     NSArray *stores = [self allInStore:[TCDBUtils ibDataStore]];
     for (Store *store in stores) {

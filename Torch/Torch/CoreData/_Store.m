@@ -4,6 +4,7 @@
 #import "_Store.h"
 
 const struct StoreAttributes StoreAttributes = {
+	.accountRecordType = @"accountRecordType",
 	.address = @"address",
 	.analytics = @"analytics",
 	.callFrequency = @"callFrequency",
@@ -11,22 +12,33 @@ const struct StoreAttributes StoreAttributes = {
 	.country = @"country",
 	.creditAddress = @"creditAddress",
 	.creditType = @"creditType",
+	.currency = @"currency",
+	.customerType = @"customerType",
 	.distributor = @"distributor",
 	.faxNumber = @"faxNumber",
 	.gstTaxNumber = @"gstTaxNumber",
+	.isSendInvoice = @"isSendInvoice",
 	.lastModifiedDate = @"lastModifiedDate",
+	.latitude = @"latitude",
+	.longitude = @"longitude",
 	.modelTime = @"modelTime",
+	.municipality = @"municipality",
 	.name = @"name",
 	.number = @"number",
+	.phone = @"phone",
 	.postalCode = @"postalCode",
 	.priority = @"priority",
 	.products = @"products",
 	.pstTaxNumber = @"pstTaxNumber",
 	.remoteKey = @"remoteKey",
+	.rfc = @"rfc",
 	.schedule = @"schedule",
 	.soldToName = @"soldToName",
 	.soldToNumber = @"soldToNumber",
 	.state = @"state",
+	.street = @"street",
+	.streetRef1 = @"streetRef1",
+	.streetRef2 = @"streetRef2",
 };
 
 const struct StoreRelationships StoreRelationships = {
@@ -69,8 +81,23 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"isSendInvoiceValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"isSendInvoice"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"lastModifiedDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"lastModifiedDate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"latitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"latitude"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"longitudeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"longitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -92,6 +119,13 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic accountRecordType;
+
+
 
 
 
@@ -164,6 +198,20 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 
 
+@dynamic currency;
+
+
+
+
+
+
+@dynamic customerType;
+
+
+
+
+
+
 @dynamic distributor;
 
 
@@ -180,6 +228,32 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 @dynamic gstTaxNumber;
 
+
+
+
+
+
+@dynamic isSendInvoice;
+
+
+
+- (BOOL)isSendInvoiceValue {
+	NSNumber *result = [self isSendInvoice];
+	return [result boolValue];
+}
+
+- (void)setIsSendInvoiceValue:(BOOL)value_ {
+	[self setIsSendInvoice:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveIsSendInvoiceValue {
+	NSNumber *result = [self primitiveIsSendInvoice];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIsSendInvoiceValue:(BOOL)value_ {
+	[self setPrimitiveIsSendInvoice:[NSNumber numberWithBool:value_]];
+}
 
 
 
@@ -205,6 +279,58 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 - (void)setPrimitiveLastModifiedDateValue:(double)value_ {
 	[self setPrimitiveLastModifiedDate:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic latitude;
+
+
+
+- (double)latitudeValue {
+	NSNumber *result = [self latitude];
+	return [result doubleValue];
+}
+
+- (void)setLatitudeValue:(double)value_ {
+	[self setLatitude:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveLatitudeValue {
+	NSNumber *result = [self primitiveLatitude];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveLatitudeValue:(double)value_ {
+	[self setPrimitiveLatitude:[NSNumber numberWithDouble:value_]];
+}
+
+
+
+
+
+@dynamic longitude;
+
+
+
+- (double)longitudeValue {
+	NSNumber *result = [self longitude];
+	return [result doubleValue];
+}
+
+- (void)setLongitudeValue:(double)value_ {
+	[self setLongitude:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveLongitudeValue {
+	NSNumber *result = [self primitiveLongitude];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveLongitudeValue:(double)value_ {
+	[self setPrimitiveLongitude:[NSNumber numberWithDouble:value_]];
 }
 
 
@@ -237,6 +363,13 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 
 
+@dynamic municipality;
+
+
+
+
+
+
 @dynamic name;
 
 
@@ -245,6 +378,13 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 
 @dynamic number;
+
+
+
+
+
+
+@dynamic phone;
 
 
 
@@ -305,6 +445,13 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 
 
+@dynamic rfc;
+
+
+
+
+
+
 @dynamic schedule;
 
 
@@ -346,6 +493,27 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 
 
 @dynamic state;
+
+
+
+
+
+
+@dynamic street;
+
+
+
+
+
+
+@dynamic streetRef1;
+
+
+
+
+
+
+@dynamic streetRef2;
 
 
 

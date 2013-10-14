@@ -11,6 +11,7 @@ extern const struct AccountAttributes {
 	__unsafe_unretained NSString *coachId;
 	__unsafe_unretained NSString *currency;
 	__unsafe_unretained NSString *fax;
+	__unsafe_unretained NSString *invoice;
 	__unsafe_unretained NSString *latitude;
 	__unsafe_unretained NSString *longitude;
 	__unsafe_unretained NSString *name;
@@ -33,6 +34,7 @@ extern const struct AccountFetchedProperties {
 } AccountFetchedProperties;
 
 @class OrderCredit;
+
 
 
 
@@ -121,6 +123,20 @@ extern const struct AccountFetchedProperties {
 
 
 //- (BOOL)validateFax:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* invoice;
+
+
+
+@property BOOL invoiceValue;
+- (BOOL)invoiceValue;
+- (void)setInvoiceValue:(BOOL)value_;
+
+//- (BOOL)validateInvoice:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -295,6 +311,15 @@ extern const struct AccountFetchedProperties {
 
 - (NSString*)primitiveFax;
 - (void)setPrimitiveFax:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveInvoice;
+- (void)setPrimitiveInvoice:(NSNumber*)value;
+
+- (BOOL)primitiveInvoiceValue;
+- (void)setPrimitiveInvoiceValue:(BOOL)value_;
 
 
 

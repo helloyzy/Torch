@@ -92,6 +92,8 @@
 "addnewcustomer.requestGPS.message" = "Solicitar coordenadas GPS";
 "addnewcustomer.requestGPS.success" = "Coordenadas GPS Guardado";
 "addnewcustomer.requestGPS.failure" = "No se pudo obtener las coordenadas GPS";
+"addnewcustomer.sendInvoice" = "Send Invoices?";
+"addnewcustomer.noteditable" = "(Not editable)";
 
 "editcustomer.title" = "Editar cliente";
 

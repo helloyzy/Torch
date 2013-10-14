@@ -21,6 +21,11 @@
     [NSManagedObject save];
 }
 
+- (void)deleteObj {
+    [[TCDBUtils ibDataStore] removeEntity:self];
+    [NSManagedObject save];
+}
+
 + (id)newInstance {
     return [self createInStore:[self dataStore]];
 }
@@ -32,11 +37,6 @@
 
 + (IBCoreDataStore *)dataStore {
     return [TCDBUtils ibDataStore];
-}
-
-- (void)deleteObj {
-    [[TCDBUtils ibDataStore] removeEntity:self];
-    [NSManagedObject save];
 }
 
 @end

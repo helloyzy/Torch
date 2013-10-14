@@ -10,6 +10,7 @@ const struct AccountAttributes AccountAttributes = {
 	.coachId = @"coachId",
 	.currency = @"currency",
 	.fax = @"fax",
+	.invoice = @"invoice",
 	.latitude = @"latitude",
 	.longitude = @"longitude",
 	.name = @"name",
@@ -57,6 +58,11 @@ const struct AccountFetchedProperties AccountFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"invoiceValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"invoice"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -101,6 +107,32 @@ const struct AccountFetchedProperties AccountFetchedProperties = {
 
 @dynamic fax;
 
+
+
+
+
+
+@dynamic invoice;
+
+
+
+- (BOOL)invoiceValue {
+	NSNumber *result = [self invoice];
+	return [result boolValue];
+}
+
+- (void)setInvoiceValue:(BOOL)value_ {
+	[self setInvoice:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveInvoiceValue {
+	NSNumber *result = [self primitiveInvoice];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveInvoiceValue:(BOOL)value_ {
+	[self setPrimitiveInvoice:[NSNumber numberWithBool:value_]];
+}
 
 
 

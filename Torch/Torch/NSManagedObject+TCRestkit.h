@@ -13,11 +13,11 @@
 @interface NSManagedObject (TCRestkit)
 
 - (void)save;
+- (void)deleteObj;
 
 + (RKEntityMapping *)objectMapping;
 + (id)newInstance;
 + (void)save;
 + (IBCoreDataStore *)dataStore;
-- (void)deleteObj;
 
 @end

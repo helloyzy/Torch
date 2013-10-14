@@ -5,6 +5,7 @@
 
 
 extern const struct StoreAttributes {
+	__unsafe_unretained NSString *accountRecordType;
 	__unsafe_unretained NSString *address;
 	__unsafe_unretained NSString *analytics;
 	__unsafe_unretained NSString *callFrequency;
@@ -12,22 +13,33 @@ extern const struct StoreAttributes {
 	__unsafe_unretained NSString *country;
 	__unsafe_unretained NSString *creditAddress;
 	__unsafe_unretained NSString *creditType;
+	__unsafe_unretained NSString *currency;
+	__unsafe_unretained NSString *customerType;
 	__unsafe_unretained NSString *distributor;
 	__unsafe_unretained NSString *faxNumber;
 	__unsafe_unretained NSString *gstTaxNumber;
+	__unsafe_unretained NSString *isSendInvoice;
 	__unsafe_unretained NSString *lastModifiedDate;
+	__unsafe_unretained NSString *latitude;
+	__unsafe_unretained NSString *longitude;
 	__unsafe_unretained NSString *modelTime;
+	__unsafe_unretained NSString *municipality;
 	__unsafe_unretained NSString *name;
 	__unsafe_unretained NSString *number;
+	__unsafe_unretained NSString *phone;
 	__unsafe_unretained NSString *postalCode;
 	__unsafe_unretained NSString *priority;
 	__unsafe_unretained NSString *products;
 	__unsafe_unretained NSString *pstTaxNumber;
 	__unsafe_unretained NSString *remoteKey;
+	__unsafe_unretained NSString *rfc;
 	__unsafe_unretained NSString *schedule;
 	__unsafe_unretained NSString *soldToName;
 	__unsafe_unretained NSString *soldToNumber;
 	__unsafe_unretained NSString *state;
+	__unsafe_unretained NSString *street;
+	__unsafe_unretained NSString *streetRef1;
+	__unsafe_unretained NSString *streetRef2;
 } StoreAttributes;
 
 extern const struct StoreRelationships {
@@ -67,6 +79,18 @@ extern const struct StoreFetchedProperties {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 @interface StoreID : NSManagedObjectID {}
 @end
 
@@ -75,6 +99,16 @@ extern const struct StoreFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (StoreID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSString* accountRecordType;
+
+
+
+//- (BOOL)validateAccountRecordType:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -154,6 +188,26 @@ extern const struct StoreFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* currency;
+
+
+
+//- (BOOL)validateCurrency:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* customerType;
+
+
+
+//- (BOOL)validateCustomerType:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* distributor;
 
 
@@ -184,6 +238,20 @@ extern const struct StoreFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* isSendInvoice;
+
+
+
+@property BOOL isSendInvoiceValue;
+- (BOOL)isSendInvoiceValue;
+- (void)setIsSendInvoiceValue:(BOOL)value_;
+
+//- (BOOL)validateIsSendInvoice:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* lastModifiedDate;
 
 
@@ -198,6 +266,34 @@ extern const struct StoreFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* latitude;
+
+
+
+@property double latitudeValue;
+- (double)latitudeValue;
+- (void)setLatitudeValue:(double)value_;
+
+//- (BOOL)validateLatitude:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* longitude;
+
+
+
+@property double longitudeValue;
+- (double)longitudeValue;
+- (void)setLongitudeValue:(double)value_;
+
+//- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* modelTime;
 
 
@@ -207,6 +303,16 @@ extern const struct StoreFetchedProperties {
 - (void)setModelTimeValue:(double)value_;
 
 //- (BOOL)validateModelTime:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* municipality;
+
+
+
+//- (BOOL)validateMunicipality:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -227,6 +333,16 @@ extern const struct StoreFetchedProperties {
 
 
 //- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* phone;
+
+
+
+//- (BOOL)validatePhone:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -286,6 +402,16 @@ extern const struct StoreFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* rfc;
+
+
+
+//- (BOOL)validateRfc:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSNumber* schedule;
 
 
@@ -330,6 +456,36 @@ extern const struct StoreFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* street;
+
+
+
+//- (BOOL)validateStreet:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* streetRef1;
+
+
+
+//- (BOOL)validateStreetRef1:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* streetRef2;
+
+
+
+//- (BOOL)validateStreetRef2:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) Banner *banner;
 
 //- (BOOL)validateBanner:(id*)value_ error:(NSError**)error_;
@@ -369,6 +525,12 @@ extern const struct StoreFetchedProperties {
 @end
 
 @interface _Store (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSString*)primitiveAccountRecordType;
+- (void)setPrimitiveAccountRecordType:(NSString*)value;
+
+
 
 
 - (NSString*)primitiveAddress;
@@ -416,6 +578,18 @@ extern const struct StoreFetchedProperties {
 
 
 
+- (NSString*)primitiveCurrency;
+- (void)setPrimitiveCurrency:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveCustomerType;
+- (void)setPrimitiveCustomerType:(NSString*)value;
+
+
+
+
 - (NSString*)primitiveDistributor;
 - (void)setPrimitiveDistributor:(NSString*)value;
 
@@ -434,11 +608,38 @@ extern const struct StoreFetchedProperties {
 
 
 
+- (NSNumber*)primitiveIsSendInvoice;
+- (void)setPrimitiveIsSendInvoice:(NSNumber*)value;
+
+- (BOOL)primitiveIsSendInvoiceValue;
+- (void)setPrimitiveIsSendInvoiceValue:(BOOL)value_;
+
+
+
+
 - (NSNumber*)primitiveLastModifiedDate;
 - (void)setPrimitiveLastModifiedDate:(NSNumber*)value;
 
 - (double)primitiveLastModifiedDateValue;
 - (void)setPrimitiveLastModifiedDateValue:(double)value_;
+
+
+
+
+- (NSNumber*)primitiveLatitude;
+- (void)setPrimitiveLatitude:(NSNumber*)value;
+
+- (double)primitiveLatitudeValue;
+- (void)setPrimitiveLatitudeValue:(double)value_;
+
+
+
+
+- (NSNumber*)primitiveLongitude;
+- (void)setPrimitiveLongitude:(NSNumber*)value;
+
+- (double)primitiveLongitudeValue;
+- (void)setPrimitiveLongitudeValue:(double)value_;
 
 
 
@@ -452,6 +653,12 @@ extern const struct StoreFetchedProperties {
 
 
 
+- (NSString*)primitiveMunicipality;
+- (void)setPrimitiveMunicipality:(NSString*)value;
+
+
+
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
@@ -460,6 +667,12 @@ extern const struct StoreFetchedProperties {
 
 - (NSString*)primitiveNumber;
 - (void)setPrimitiveNumber:(NSString*)value;
+
+
+
+
+- (NSString*)primitivePhone;
+- (void)setPrimitivePhone:(NSString*)value;
 
 
 
@@ -497,6 +710,12 @@ extern const struct StoreFetchedProperties {
 
 
 
+- (NSString*)primitiveRfc;
+- (void)setPrimitiveRfc:(NSString*)value;
+
+
+
+
 - (NSNumber*)primitiveSchedule;
 - (void)setPrimitiveSchedule:(NSNumber*)value;
 
@@ -520,6 +739,24 @@ extern const struct StoreFetchedProperties {
 
 - (NSString*)primitiveState;
 - (void)setPrimitiveState:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveStreet;
+- (void)setPrimitiveStreet:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveStreetRef1;
+- (void)setPrimitiveStreetRef1:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveStreetRef2;
+- (void)setPrimitiveStreetRef2:(NSString*)value;
 
 
 

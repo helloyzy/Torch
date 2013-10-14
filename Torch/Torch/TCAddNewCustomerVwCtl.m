@@ -20,6 +20,7 @@
 #import "Contact.h"
 
 #import "NSManagedObject+InnerBand.h"
+#import "NSManagedObject+TCRestkit.h"
 #import "IBCoreDataStore.h"
 
 
@@ -31,11 +32,14 @@
 #define _TAG_BTN_SHOWCOMBO1 10096
 #define _TAG_VIEW_SHOWCOMBO2 10097
 #define _TAG_BTN_SHOWCOMBO2 10098
+
+#define TOTAL_SECTION_EXCLUDINGCONTACTS 9
 #define _CUSTOMER_DETAIL_SECTION 1
 #define _GPS_SECTION 2
 #define _CONTACT_SECTION_START 6
-#define _AddNewContact_Section [self sectionFromContact:0]
-#define _AddNewNote_Section [self sectionFromContact:1]
+#define _SendInvoice_Section [self sectionFromContact:0]
+#define _AddNewContact_Section [self sectionFromContact:1]
+#define _AddNewNote_Section [self sectionFromContact:2]
 #define _AlertViewTag_CancelConfirmation 100
 #define _AlertViewTag_SaveConfirmation 101
 
@@ -45,6 +49,8 @@ static NSString * comboCellIdentifier = @"ComboCell";
 
 @interface TCAddNewCustomerVwCtl () {
     BOOL _isAddNew;
+    BOOL _isSendInvoice;
+    CLLocation *_storeLocation;
 }
 
 @property (nonatomic, strong) TCCustomer * customer;
@@ -77,6 +83,8 @@ static NSString * comboCellIdentifier = @"ComboCell";
     self.customer = [[TCCustomer alloc] init];
     self.contacts = [[NSMutableArray alloc] init];
     _isAddNew = YES;
+    _isSendInvoice = NO;
+    _storeLocation = nil;
     if (self.store) {
         _isAddNew = NO;
         self.customer.storeName = self.store.name;
@@ -84,13 +92,13 @@ static NSString * comboCellIdentifier = @"ComboCell";
         self.customer.city = self.store.city;
         self.customer.state = self.store.state;
         self.customer.postcode = self.store.postalCode;
-        // ? Municipality
         self.customer.country = self.store.country;
-        // ? Street Ref 1
-        // ? Street Ref 2
-        // ? Phone
-        // ? RFC
-        // ? CustomerType
+        self.customer.municipality = self.store.municipality;
+        self.customer.streetRef1 = self.store.streetRef1;
+        self.customer.streetRef2 = self.store.streetRef2;
+        self.customer.storePhoneNum = self.store.phone;
+        self.customer.rfc = self.store.rfc;
+        self.customer.customerType = self.store.customerType;
         if (self.store.lastModifiedDate) {
             self.customer.visitDay = millisecondToDateStr(self.store.lastModifiedDateValue);
         }
@@ -179,7 +187,12 @@ static NSString * comboCellIdentifier = @"ComboCell";
     } else if (alertView.tag == _AlertViewTag_SaveConfirmation) { // save?
         if (buttonIndex == 0) { // confirm on save
             if (!self.store) {
-                self.store = [Store createInStore:[TCDBUtils ibDataStore]];
+                self.store = [Store newInstance];
+            }
+            self.store.isSendInvoiceValue = _isSendInvoice;
+            if (_storeLocation) {
+                self.store.latitudeValue = [_storeLocation coordinate].latitude;
+                self.store.longitudeValue = [_storeLocation coordinate].longitude;
             }
             self.store.name = self.customer.storeName;
             self.store.address = self.customer.streetName;
@@ -190,10 +203,15 @@ static NSString * comboCellIdentifier = @"ComboCell";
             if (self.customer.visitDay) {
                 self.store.lastModifiedDate = dateStrToMilliseconds(self.customer.visitDay);
             }
-            
+            self.store.municipality = self.customer.municipality;
+            self.store.streetRef1 = self.customer.streetRef1;
+            self.store.streetRef2 = self.customer.streetRef2;
+            self.store.phone = self.customer.storePhoneNum;
+            self.store.rfc = self.customer.rfc;
+            self.store.customerType = self.customer.customerType;
             NSMutableSet * tempContacts = [[NSMutableSet alloc] init];
             for (TCContact *tempTCContact in self.contacts) {
-                Contact *tempContact = [Contact create];
+                Contact *tempContact = [Contact newInstance];
                 tempContact.firstName = tempTCContact.name;
                 tempContact.lastName = tempTCContact.surname;
                 tempContact.phoneNumber = tempTCContact.phone;
@@ -202,10 +220,10 @@ static NSString * comboCellIdentifier = @"ComboCell";
             }
             NSSet *originalContacts = [self.store.contacts copy];
             for (Contact *tempContact in originalContacts) {
-                [[TCDBUtils ibDataStore] removeEntity:tempContact];
+                [tempContact deleteObj];
             }
             self.store.contacts = tempContacts;
-            [[TCDBUtils ibDataStore] save];
+            [Store save];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             // do nothing
@@ -216,7 +234,7 @@ static NSString * comboCellIdentifier = @"ComboCell";
 #pragma mark - table view delegate 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 8 + self.contacts.count;
+    return TOTAL_SECTION_EXCLUDINGCONTACTS + self.contacts.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -236,7 +254,7 @@ static NSString * comboCellIdentifier = @"ComboCell";
         default:
             break;
     }
-    if (section == _AddNewContact_Section || section == _AddNewNote_Section) {
+    if (section >= _SendInvoice_Section) {
         return 1;
     }
     return 4; // contact section
@@ -317,9 +335,13 @@ static NSString * comboCellIdentifier = @"ComboCell";
     } else if (indexPath.section == 2) {
         static NSString * btnCellIdentifier = @"btnCell";
         cell = [tblVw dequeueReusableCellWithIdentifier:btnCellIdentifier];
+        BOOL shouldShowGPSBtn = YES;
+        if (! _isAddNew && [self.store hasLocation]) {
+            shouldShowGPSBtn = NO;
+        }
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:btnCellIdentifier];
-            if (_isAddNew) {
+            if (shouldShowGPSBtn) { // TODO ALSO NEED TO SHOW IT IF EXISTING CUSTOMER DOESNOT HAVE GPS INFO
                 UIView * bgVw = [[UIView alloc] initWithFrame:CGRectZero];
                 bgVw.backgroundColor = [UIColor clearColor];
                 cell.backgroundView = bgVw;
@@ -333,7 +355,7 @@ static NSString * comboCellIdentifier = @"ComboCell";
                 [cell.contentView addSubview:btn];
             }
         }
-        cell.hidden = !_isAddNew;
+        cell.hidden = !shouldShowGPSBtn;
     } else if (indexPath.section == 3) {
         editCell = [self singleTextCell];
         [self customizeField:editCell.centerField path:indexPath column:0 modelObj:self.customer modelProp:@"rfc" placeHolder:[self localString:@"addnewcustomer.rfc"] kbType:UIKeyboardTypeDefault];
@@ -361,6 +383,25 @@ static NSString * comboCellIdentifier = @"ComboCell";
             if (_isAddNew) {
                 [self addControlInView:editCell.contentView tagVal:_TAG_VIEW_SHOWCOMBO2];
             }
+        }
+    } else if (indexPath.section == _SendInvoice_Section) {
+        static NSString * sendInvoiceCellIdentifier = @"sendInvoiceCell";
+        cell = [tblVw dequeueReusableCellWithIdentifier:sendInvoiceCellIdentifier];
+        if (! cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sendInvoiceCellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            CGRect lblFrame = CGRectMake(0, 0, 180, 35);
+            UILabel *lbl = [[UILabel alloc]initWithFrame:lblFrame];
+            lbl.font = TCFont_HNLTComBd(14);
+            lbl.textAlignment = NSTextAlignmentRight;
+            lbl.backgroundColor = [UIColor clearColor];
+            lbl.text = [self localString:@"addnewcustomer.sendInvoice"];
+            [cell.contentView addSubview:lbl];
+            
+            CGRect switchFrame = CGRectMake(190, 5, 120, 35);
+            UISwitch *switchCtl = [[UISwitch alloc]initWithFrame:switchFrame];
+            [switchCtl addTarget:self action:@selector(onSwitchCtrlClicked:) forControlEvents:UIControlEventValueChanged];
+            [cell.contentView addSubview:switchCtl];
         }
     } else if (indexPath.section == _AddNewContact_Section || indexPath.section == _AddNewNote_Section) {
         static NSString * addCellIdentifier = @"addCell";
@@ -410,6 +451,10 @@ static NSString * comboCellIdentifier = @"ComboCell";
         return editCell;
     }
     return nil;
+}
+
+- (void)onSwitchCtrlClicked:(id)sender {
+    _isSendInvoice = ((UISwitch *)sender).on;
 }
 
 - (void)addControlInView:(UIView *)view tagVal:(NSInteger)tagVal {
@@ -522,17 +567,20 @@ static NSString * comboCellIdentifier = @"ComboCell";
     textField.font = TCFont_HNLTComLt(_TV_FIELD_FONTSIZE);
     textField.placeholder = placeHolder;
     textField.keyboardType = keyboardType;
-    textField.returnKeyType = UIReturnKeyNext;
+    textField.returnKeyType = UIReturnKeyDone;
     [textField setDataObject:modelObject dataProperty:modelProp];
     textField.enabled = enabled;
     textField.delegate = self;
     // need to reset value since field might be reused among different sections
     if (enabled) {
-        textField.tag = [self calTag:indexPath column:columnInRow];
+        textField.tag = 0; // [self calTag:indexPath column:columnInRow];
         textField.textColor = [UIColor blackColor];
     } else {
         textField.tag = 0;
         textField.textColor = [UIColor grayColor];
+        if (! _isAddNew) {
+            textField.placeholder = @""; // [self localString:@"addnewcustomer.noteditable"];
+        }
     }
 }
 
@@ -573,11 +621,9 @@ static NSString * comboCellIdentifier = @"ComboCell";
 
 #pragma mark - text field delegate
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    // [super textFieldDidBeginEditing:textField];
-    // NSLog(@"did begin");
-    // [tblVw scrollRectToVisible:textField.frame animated:YES];
-    // [tblVw scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - location manager delegate
@@ -588,7 +634,8 @@ static NSString * comboCellIdentifier = @"ComboCell";
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    // CLLocation *location = [locations lastObject];
+    CLLocation *location = [locations lastObject];
+    _storeLocation = location;
     // NSLog(@"%f,%f", location.coordinate.latitude, location.coordinate.longitude);
     [manager stopUpdatingLocation];
     hideProgressIndicator();

@@ -4,6 +4,7 @@
 @interface Store : _Store {}
 // Custom logic goes here.
 
+- (BOOL)hasLocation;
 - (StoreCall *)callInProgress;
 
 + (Store *)storeInCall;

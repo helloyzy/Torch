@@ -4,6 +4,7 @@
 #import "OrderCreditItem.h"
 #import "Account.h"
 #import "Contact.h"
+#import "Store.h"
 
 @interface OrderCredit ()
 
@@ -46,6 +47,17 @@
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"contact" toKeyPath:@"contact" withMapping:[Contact objectMappingForOrder]]];
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"account" toKeyPath:@"account" withMapping:[Account objectMapping]]];
     return mapping;
+}
+
+- (void)fillInfoFromStore:(Store *)store {
+    Account *account = [Account newInstance];
+    account.remoteKey = store.remoteKey;
+    account.name = store.name;
+    account.phone = @""; // store.p
+    account.accountRecordType = @""; //?
+    account.street = @""; // store.str
+    // TODO
+    // account.
 }
 
 @end
