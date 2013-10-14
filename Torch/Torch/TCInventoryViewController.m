@@ -227,7 +227,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     // capture inventory take time
     StoreCall *call = [self.currentStore callInProgress];
-    if (call && ! call.inventoryTime) {
+    if (call) {
         call.inventoryTime = curdateToMilliseconds();
         [StoreCall save];
     }

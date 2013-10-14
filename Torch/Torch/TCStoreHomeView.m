@@ -25,6 +25,7 @@
 #import "TCUtils.h"
 #import <IBFunctions.h>
 #import <MapKit/MapKit.h>
+#import "TCCallSummary.h"
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -519,7 +520,10 @@ static NSString *kViewControllerKey = @"viewController";
     [call endCall];
     setStoreInCall(nil);
     // Go to summary page
-    UIViewController *targetViewController = [[TCSummaryViewController alloc]init];
+    OrderCredit *order = [call associatedOrderObject];
+    TCCallSummary *summary = [TCCallSummary instance:order call:call];
+    TCSummaryViewController *targetViewController = [[TCSummaryViewController alloc]init];
+    targetViewController.callSummary = summary;
     [[self navigationController] pushViewController:targetViewController animated:YES];
     [_tcSliderView changeDirection:YES];
 }

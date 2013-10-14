@@ -17,9 +17,14 @@
     return [RKEntityMapping mappingForEntityForName:NSStringFromClass([self class]) inManagedObjectStore:[RKManagedObjectStore defaultStore]];
 }
 
+- (void)save {
+    [NSManagedObject save];
+}
+
 + (id)newInstance {
     return [self createInStore:[self dataStore]];
 }
+
 
 + (void)save {
     [[self dataStore] save];

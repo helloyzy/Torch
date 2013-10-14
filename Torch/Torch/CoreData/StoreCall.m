@@ -4,6 +4,9 @@
 #import "Store.h"
 #import "TCUtils.h"
 #import <IBFunctions.h>
+#import "OrderCredit.h"
+#import "NSManagedObject+TCRestkit.h"
+#import <NSManagedObject+InnerBand.h>
 
 @interface StoreCall ()
 
@@ -57,6 +60,12 @@ static NSString *STORECALL_ENDCALL = @"_END_CALL_";
 
 - (BOOL)isCallInProgress {
     return [self.externalId isEqualToString:STORECALL_INPROGRESS];
+}
+
+- (OrderCredit *)associatedOrderObject {
+    NSString *predicate = [NSString stringWithFormat:@"%@ = '%@'", OrderCreditAttributes.hersheyReferenceNumber, self.associatedOrder];
+    NSArray *result = [OrderCredit allForPredicate:[NSPredicate predicateWithFormat:predicate] inStore:[OrderCredit dataStore]];
+    return result.count > 0 ? [result objectAtIndex:0] : nil;
 }
 
 @end

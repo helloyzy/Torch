@@ -12,6 +12,8 @@
 
 @interface NSManagedObject (TCRestkit)
 
+- (void)save;
+
 + (RKEntityMapping *)objectMapping;
 + (id)newInstance;
 + (void)save;

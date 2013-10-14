@@ -6,6 +6,7 @@
 const struct StoreCallAttributes StoreCallAttributes = {
 	.actualEndDate = @"actualEndDate",
 	.actualStartDate = @"actualStartDate",
+	.associatedOrder = @"associatedOrder",
 	.callTimeAdjustment = @"callTimeAdjustment",
 	.externalId = @"externalId",
 	.inventoryTime = @"inventoryTime",
@@ -158,6 +159,13 @@ const struct StoreCallFetchedProperties StoreCallFetchedProperties = {
 - (void)setPrimitiveActualStartDateValue:(double)value_ {
 	[self setPrimitiveActualStartDate:[NSNumber numberWithDouble:value_]];
 }
+
+
+
+
+
+@dynamic associatedOrder;
+
 
 
 

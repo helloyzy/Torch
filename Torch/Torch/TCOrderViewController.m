@@ -21,7 +21,7 @@
 #import "SalesRep.h"
 #import "NSManagedObject+TCRestkit.h"
 #import "CalItem.h"
-
+#import "StoreCall.h"
 
 @interface TCOrderViewController ()
 
@@ -278,6 +278,11 @@
     }
     [OrderCredit save];
     
+    StoreCall *call = [self.currentStore callInProgress];
+    if (call) {
+        call.associatedOrder = order.hersheyReferenceNumber;
+        [call save];
+    }
     
 }
 
