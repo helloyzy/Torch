@@ -128,6 +128,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
         cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Roman" size:16];
         cell.textLabel.textColor = TCColorLineBlue;
         cell.textLabel.text = Lo(myday.add);
+        cell.imageView.image = [UIImage imageNamed:@"focus.png"];
         //[tableView dequeueReusableCellWithIdentifier:NewCustomerCell forIndexPath:indexPath];
         return cell;
     }
