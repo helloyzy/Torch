@@ -72,10 +72,11 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
     MGBox *summary = [MGBox boxWithSize:(CGSize) {320, 100}];
     summary.contentLayoutMode = MGLayoutGridStyle;
     summary.leftPadding = summary.rightPadding = 16;
+
     [summary.boxes addObjectsFromArray:[@[
-                                        [self cell:@"$354" numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
-                                        [self cell:@"3" numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
-                                        [self cell:@"21min" numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
+                                        [self cell:[NSString stringWithFormat:@"$%d", [self.callSummary totalAmountInteger]] numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
+                                        [self cell:[NSString stringWithFormat:@"%.0f", [self.callSummary totalWeight]] numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
+                                        [self cell:[NSString stringWithFormat:@"%dmin", [self.callSummary callDuration]] numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
                                         [self cell:@"Retail Ordered Total" numberOfLines:2 textColor:TCColorSubtitleGray size:cellSize],
                                         [self cell:@"Out of Stocks Filled" numberOfLines:2 textColor:TCColorSubtitleGray size:cellSize],
                                         [self cell:@"Call Time" numberOfLines:1 textColor:TCColorSubtitleGray size:cellSize]

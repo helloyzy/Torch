@@ -524,6 +524,7 @@ static NSString *kViewControllerKey = @"viewController";
     TCCallSummary *summary = [TCCallSummary instance:order call:call];
     TCSummaryViewController *targetViewController = [[TCSummaryViewController alloc]init];
     targetViewController.callSummary = summary;
+    targetViewController.store = self.currentStore;
     [[self navigationController] pushViewController:targetViewController animated:YES];
     [_tcSliderView changeDirection:YES];
 }
