@@ -99,6 +99,8 @@
 "profile.logout" = "Logout";
 "profile.logout.warning" = "You need to send out the order data first!";
 
+"requestGPS.message" = "Requesting GPS coordinates";
+
 /*Bo*/
 "priority.title" = "Priorities";
 

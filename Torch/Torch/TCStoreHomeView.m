@@ -41,12 +41,15 @@ static NSString *kTitleKey = @"title";
 static NSString *kExplainKey = @"explanation";
 static NSString *kViewControllerKey = @"viewController";
 
-@interface TCStoreHomeView () <UIAlertViewDelegate, UIActionSheetDelegate>
+@interface TCStoreHomeView () <UIAlertViewDelegate, UIActionSheetDelegate> {
+    CLLocation *_location;
+}
 
 @property (nonatomic, strong) NSMutableArray *menuList;
 @property (nonatomic, strong) UIButton *btnDirection;
 @property (nonatomic, strong) UIButton *btnNovisit;
 @property (nonatomic, strong) TCSliderView *tcSliderView;
+
 @end
 
 @implementation TCStoreHomeView {
@@ -477,7 +480,12 @@ static NSString *kViewControllerKey = @"viewController";
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    [StoreCall newInstance:self.currentStore];
+    StoreCall *call = [StoreCall newInstance:self.currentStore];
+    if (_location) {
+        call.latitudeValue = _location.coordinate.latitude;
+        call.longitudeValue = _location.coordinate.longitude;
+        [StoreCall save];
+    }
     self.currentStore.sequenceNum = self.currentIndex;
     setStoreInCall(self.currentStore);
     if (buttonIndex == 1) { // jump to priority view
@@ -502,14 +510,8 @@ static NSString *kViewControllerKey = @"viewController";
         [_tcSliderView changeDirection:NO];
         return;
     }
+    [self requestLocation];
     
-    // open a alert with an OK and cancel button
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[self localString:@"store.startcall.title"]
-                                                    message:[self localString:@"store.startcall.text"]
-                                                   delegate:self
-                                          cancelButtonTitle:[self localString:@"Cancel"]
-                                          otherButtonTitles:[self localString:@"OK"],nil];
-	[alert show];
 }
 - (void) sliderDidSlideToStart:(TCSliderView *)slideView {
     StoreCall *call = [self.currentStore callInProgress];
@@ -521,6 +523,34 @@ static NSString *kViewControllerKey = @"viewController";
     [_tcSliderView changeDirection:YES];
 }
 
+#pragma mark - location manager delegate
 
+- (void)requestLocation {
+    _location = nil;
+    registerLocationService(self);
+    showProgressIndicator(nil, [self localString:@"requestGPS.message"]);
+}
+
+- (void)onLocationInfo:(CLLocationManager *)manager location:(CLLocation *)location {
+    _location = location;
+    [manager stopUpdatingLocation];
+    hideProgressIndicator();
+    // open a alert with an OK and cancel button
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[self localString:@"store.startcall.title"]
+                                                    message:[self localString:@"store.startcall.text"]
+                                                   delegate:self
+                                          cancelButtonTitle:[self localString:@"Cancel"]
+                                          otherButtonTitles:[self localString:@"OK"],nil];
+	[alert show];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = [locations lastObject];
+    [self onLocationInfo:manager location:location];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    [self onLocationInfo:manager location:nil];
+}
 
 @end

@@ -59,8 +59,11 @@ void showProgressIndicator(NSString * title, NSString * message) {
     }
     gProgressHUD.labelText = title;
     gProgressHUD.detailsLabelText = message;
-    [TC_WINDOW addSubview:gProgressHUD];
-    [gProgressHUD show:YES];
+    if ([gProgressHUD isHidden]) {
+        [TC_WINDOW addSubview:gProgressHUD];
+        [gProgressHUD show:YES];
+
+    }
 }
 
 void hideProgressIndicator() {

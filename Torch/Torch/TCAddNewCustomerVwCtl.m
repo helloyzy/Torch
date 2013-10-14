@@ -588,8 +588,8 @@ static NSString * comboCellIdentifier = @"ComboCell";
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation *location = [locations lastObject];
-    NSLog(@"%f,%f", location.coordinate.latitude, location.coordinate.longitude);
+    // CLLocation *location = [locations lastObject];
+    // NSLog(@"%f,%f", location.coordinate.latitude, location.coordinate.longitude);
     [manager stopUpdatingLocation];
     hideProgressIndicator();
     showAlert(nil, [self localString:@"addnewcustomer.requestGPS.success"], nil);

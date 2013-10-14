@@ -10,6 +10,8 @@ extern const struct StoreCallAttributes {
 	__unsafe_unretained NSString *callTimeAdjustment;
 	__unsafe_unretained NSString *externalId;
 	__unsafe_unretained NSString *lastModifiedDate;
+	__unsafe_unretained NSString *latitude;
+	__unsafe_unretained NSString *longitude;
 	__unsafe_unretained NSString *plannedEndDate;
 	__unsafe_unretained NSString *plannedStartDate;
 	__unsafe_unretained NSString *remoteKey;
@@ -28,6 +30,8 @@ extern const struct StoreCallFetchedProperties {
 
 @class Note;
 @class Store;
+
+
 
 
 
@@ -115,6 +119,34 @@ extern const struct StoreCallFetchedProperties {
 - (void)setLastModifiedDateValue:(double)value_;
 
 //- (BOOL)validateLastModifiedDate:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* latitude;
+
+
+
+@property double latitudeValue;
+- (double)latitudeValue;
+- (void)setLatitudeValue:(double)value_;
+
+//- (BOOL)validateLatitude:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* longitude;
+
+
+
+@property double longitudeValue;
+- (double)longitudeValue;
+- (void)setLongitudeValue:(double)value_;
+
+//- (BOOL)validateLongitude:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -259,6 +291,24 @@ extern const struct StoreCallFetchedProperties {
 
 - (double)primitiveLastModifiedDateValue;
 - (void)setPrimitiveLastModifiedDateValue:(double)value_;
+
+
+
+
+- (NSNumber*)primitiveLatitude;
+- (void)setPrimitiveLatitude:(NSNumber*)value;
+
+- (double)primitiveLatitudeValue;
+- (void)setPrimitiveLatitudeValue:(double)value_;
+
+
+
+
+- (NSNumber*)primitiveLongitude;
+- (void)setPrimitiveLongitude:(NSNumber*)value;
+
+- (double)primitiveLongitudeValue;
+- (void)setPrimitiveLongitudeValue:(double)value_;
 
 
 
