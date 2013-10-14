@@ -106,6 +106,8 @@
 		C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */; };
 		C5C26C5017C4A5E70090CDC1 /* TCStoreHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */; };
 		C5C26C5417C5A5200090CDC1 /* sliderbg.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C5317C5A5200090CDC1 /* sliderbg.png */; };
+		D61ADB34180B97F800C8FB8F /* icon_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = D61ADB32180B97F800C8FB8F /* icon_edit.png */; };
+		D61ADB35180B97F800C8FB8F /* icon_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D61ADB33180B97F800C8FB8F /* icon_edit@2x.png */; };
 		D6831BC817D84E7100718881 /* TCOrderObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D6831BC717D84E7100718881 /* TCOrderObject.m */; };
 		D6831BCA17D872D600718881 /* TCOrderHistoryDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6831BC917D872D600718881 /* TCOrderHistoryDetailCell.xib */; };
 		D6831BCD17D8730700718881 /* TCOrderHistoryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6831BCC17D8730700718881 /* TCOrderHistoryDetailCell.m */; };
@@ -261,7 +263,7 @@
 		1C6FD3E817F2741D0049FFFF /* TCAddNoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAddNoteController.h; sourceTree = "<group>"; };
 		1C6FD3E917F2741D0049FFFF /* TCAddNoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAddNoteController.m; sourceTree = "<group>"; };
 		1C6FD3EA17F2741D0049FFFF /* TCAddNoteController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCAddNoteController.xib; sourceTree = "<group>"; };
-		1C713BEC17C2058000A903A6 /* Torch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Torch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C713BEC17C2058000A903A6 /* Neon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C713BEF17C2058100A903A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C713BF117C2058100A903A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1C713BF317C2058100A903A6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -343,6 +345,8 @@
 		C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStoreHomeView.m; sourceTree = "<group>"; };
 		C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCStoreHomeView.xib; sourceTree = "<group>"; };
 		C5C26C5317C5A5200090CDC1 /* sliderbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderbg.png; sourceTree = "<group>"; };
+		D61ADB32180B97F800C8FB8F /* icon_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_edit.png; sourceTree = "<group>"; };
+		D61ADB33180B97F800C8FB8F /* icon_edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_edit@2x.png"; sourceTree = "<group>"; };
 		D6831BC617D84E7100718881 /* TCOrderObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOrderObject.h; sourceTree = "<group>"; };
 		D6831BC717D84E7100718881 /* TCOrderObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCOrderObject.m; sourceTree = "<group>"; };
 		D6831BC917D872D600718881 /* TCOrderHistoryDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCOrderHistoryDetailCell.xib; sourceTree = "<group>"; };
@@ -588,7 +592,7 @@
 		1C713BED17C2058000A903A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1C713BEC17C2058000A903A6 /* Torch.app */,
+				1C713BEC17C2058000A903A6 /* Neon.app */,
 				1C713C1217C2058100A903A6 /* TorchTests.octest */,
 			);
 			name = Products;
@@ -687,6 +691,8 @@
 		DC0383A117C3044300BBD02A /* Res */ = {
 			isa = PBXGroup;
 			children = (
+				D61ADB32180B97F800C8FB8F /* icon_edit.png */,
+				D61ADB33180B97F800C8FB8F /* icon_edit@2x.png */,
 				C51E9B5117D826CD006E99B9 /* cancel.png */,
 				C51E9B5217D826CD006E99B9 /* cancel@2x.png */,
 				C51E9B5317D826CD006E99B9 /* focus.png */,
@@ -1029,7 +1035,7 @@
 			);
 			name = Torch;
 			productName = Torch;
-			productReference = 1C713BEC17C2058000A903A6 /* Torch.app */;
+			productReference = 1C713BEC17C2058000A903A6 /* Neon.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1C713C1117C2058100A903A6 /* TorchTests */ = {
@@ -1182,6 +1188,8 @@
 				DC7C75551807D01600C76CD0 /* Default@2x.png in Resources */,
 				1C8001801808F155007B8B6A /* TCSurveyListController.xib in Resources */,
 				DC549DB8180928230026D5E0 /* productNew.json in Resources */,
+				D61ADB34180B97F800C8FB8F /* icon_edit.png in Resources */,
+				D61ADB35180B97F800C8FB8F /* icon_edit@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1478,7 +1486,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Torch/Torch-Prefix.pch";
 				INFOPLIST_FILE = "Torch/Torch-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Neon;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1491,7 +1499,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Torch/Torch-Prefix.pch";
 				INFOPLIST_FILE = "Torch/Torch-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Neon;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
