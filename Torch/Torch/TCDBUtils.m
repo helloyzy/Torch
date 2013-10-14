@@ -96,14 +96,14 @@ static IBCoreDataStore * ibDataStore;
                                   keyPath:nil
                                     error:&error];
     RKEntityMapping *productMapping = [Product objectMapping];
-    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"product" ofType:@"json"]
-                              withMapping:productMapping
-                                  keyPath:nil
-                                    error:&error];
-//    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"productNew" ofType:@"json"]
+//    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"product" ofType:@"json"]
 //                              withMapping:productMapping
 //                                  keyPath:nil
 //                                    error:&error];
+    [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"productNew" ofType:@"json"]
+                              withMapping:productMapping
+                                  keyPath:nil
+                                    error:&error];
     
     RKEntityMapping *priorityMapping = [Priority objectMapping];
     [importer importObjectsFromItemAtPath:[mainBundle pathForResource:@"fetchmexico" ofType:@"json"]
