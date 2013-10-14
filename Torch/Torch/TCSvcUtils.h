@@ -20,9 +20,12 @@ typedef void (^TC_SVC_BLOCK_FAILURE)(RKObjectRequestOperation * operation, NSErr
 + (void)fetchMexicoDataService:(TC_SVC_BLOCK_SUCCESS)success
                        failure:(TC_SVC_BLOCK_FAILURE)failure;
 
-//Adding success and failure blocks to this service because I want it to hit my failure block in TCLoginViewController if it should fail
-//That failure block handles the UI for informing the user of service issues and allowing them to retry the service calls.
-+ (void)orderRequestService:(TC_SVC_BLOCK_SUCCESS)success
-                    failure:(TC_SVC_BLOCK_FAILURE)failure;
+//Added to call darby's product service and pull the data in from it. This is the third service call made in the sequence on the login screen
++ (void)syncProductData:(TC_SVC_BLOCK_SUCCESS)success
+                failure:(TC_SVC_BLOCK_FAILURE)failure;
+
+
+//Removing the success and failure blocks, as this call is not part of the initial batch
++ (void)orderRequestService;
 
 @end

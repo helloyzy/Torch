@@ -17,7 +17,7 @@
 "No" = "No";
 
 "login.username" = "User Name";
-"login.username.placeholder" = "HFXXXXXX";
+"login.username.placeholder" = "Username";
 "login.password" = "Password";
 "login.signIn" = "Sign In";
 "login.readMore" = "Read More..";
@@ -26,6 +26,23 @@
 "login.syncData" = "Updating...";
 "login.syncDataSuccess" = "Updating completed";
 "login.syncDataFailure" = "An error has occured";
+
+/* Beginning Chris Hayes Edits 10-13-13 */
+
+"login.syncDataResponse202" = "Request accepted but processing not completed";
+"login.syncDataResponse204" = "No content returned from service";
+"login.syncDataResponse400" = "The request could not be understood";
+"login.syncDataResponse401" = "Unauthorized request";
+"login.syncDataResponse403" = "Forbidden request";
+"login.syncDataResponse404" = "Service not found";
+"login.syncDataResponse405" = "Service method not allowed";
+"login.syncDataResponse408" = "Service request timed out";
+"login.syncDataResponse500" = "Service server error";
+"login.syncDataResponse501" = "Service not implemented";
+"login.syncDataResponse503" = "Service unavailable";
+
+/* End Chris Hayes Edits */
+
 
 "disclaimation.fileName" = "disclaimation_es";
 
@@ -66,16 +83,16 @@
 "addnewcustomer.addContact" = "Add Contact";
 "addnewcustomer.addNote" = "Add Note";
 
-"addnewcustomer.saveConfirmation" = "Are you sure to save?";
-"addnewcustomer.cancelConfirmation" = "Are you sure to cancel this operation?";
+"addnewcustomer.saveConfirmation" = "Save this customer?";
+"addnewcustomer.cancelConfirmation" = "Are you sure you want to cancel?";
 
-"addnewcustomer.requestGPS.message" = "Request GPS coordinates..";
-"addnewcustomer.requestGPS.success" = "Succeeded in getting GPS coordinates!";
-"addnewcustomer.requestGPS.failure" = "Failed to get GPS coordinates!";
+"addnewcustomer.requestGPS.message" = "Requesting GPS coordinates";
+"addnewcustomer.requestGPS.success" = "GPS Coordinates Saved";
+"addnewcustomer.requestGPS.failure" = "Failed to get GPS coordinates";
 
-"editcustomer.title" = "Edit Existing Client";
+"editcustomer.title" = "Edit Customer";
 
-"storeInCall.alert" = "Already has a call in progress!";
+"storeInCall.alert" = "There is already a call in progress. You must finish that call before starting another one.";
 
 "profile.myday" = "My Day";
 "profile.datastatus" = "Data Status";
@@ -124,7 +141,7 @@
 "order.summary.tax" = "Tax";
 "order.summary.orderTotal" = "Order Total";
 "order.summary.discountDallar" = "Discount ($)";
-"order.discountpromotion.alert.title" = "Discount Replacement Confirm";
+"order.discountpromotion.alert.title" = "Discount Replacement Confirmation";
 "order.discountpromotion.alert.text" = "There is one overall discount promotion item in the list, do you want to replace with current one?";
 
 /*daxian*/

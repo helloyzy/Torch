@@ -39,7 +39,8 @@
      ProductAttributes.productNumber,
      ProductAttributes.packtypeDescription,
      ProductAttributes.price,
-     ProductAttributes.upc
+     ProductAttributes.upc,
+     ProductAttributes.name
      ]];
     NSArray *attrNeedToMapping = @[
                                    ProductAttributes.season_Description,
@@ -49,7 +50,7 @@
                                    ProductAttributes.combined_Packtype_Cd,
                                    ProductAttributes.uPC_GROUP_PRODUCT_UOM_maybe,
                                    ProductAttributes.subPacktype_Cd,
-                                   ProductAttributes.name,
+                                   
                                    ProductAttributes.uPC_maybe,
                                    ProductAttributes.item_Status_code,
                                    ProductAttributes.item_Weight,

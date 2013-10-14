@@ -95,11 +95,12 @@
 
 // invoked after credential info has been stored in local keychain
 - (void)_signIn {
+    //This now sets to the credentials entered on the screen
     [self setSharedLoginCredential];
     [TCDBUtils resetDB];
-    //[self syncData];
+    [self syncData];
     //!!!:Since the services are not returing data, instead of syncing on login, we now go straight to the myday screen
-    [self jumpToMyDay];
+    //[self jumpToMyDay];
 }
 
 //This beins the sync data process. If we get a 202 we try again, if we fail we go to the failure handler, if we are successful we fetch the mexico data
@@ -126,6 +127,16 @@
     syncDataFlag = YES;
     if (operation.HTTPRequestOperation.response.statusCode == 202) {
         //TODO: Change the syncDataService call to be able to customize the header with "Refresh:True" values if we need to refesh the cache after a 202 response.
+        
+        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse202"]);
+        double delayInSeconds = 5.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self syncData];
+        });
+    }
+    else if (operation.HTTPRequestOperation.response.statusCode == 204){
+        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse204"]);
         double delayInSeconds = 5.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -167,6 +178,15 @@
     syncDataFlag = YES;
     if (operation.HTTPRequestOperation.response.statusCode == 202) {
         //TODO: Change the syncDataService call to be able to customize the header with "Refresh:True" values if we need to refesh the cache after a 202 response.
+        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse202"]);
+        double delayInSeconds = 5.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self syncMexicoData];
+        });
+    }
+    else if (operation.HTTPRequestOperation.response.statusCode == 204){
+        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse204"]);
         double delayInSeconds = 5.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -174,23 +194,23 @@
         });
     }
     else{
-        [self syncOrderRequestData];
+        [self syncProductData];
         
     }
 }
 
 //Handles the syncing of the order request data. If sucess, check for 202, if failure, display failure message for the failure.
-- (void)syncOrderRequestData{
+- (void)syncProductData{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         TC_SVC_BLOCK_SUCCESS success = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-            [self orderRequestSyncSuccess:operation];
+            [self productSyncSuccess:operation];
         };
         TC_SVC_BLOCK_FAILURE failure = ^(RKObjectRequestOperation * operation, NSError * error) {
             [self syncDataFailure:operation withError:error];
         };
         //[TCSvcUtils fetchMexicoDataService:success failure:failure];
         
-        [TCSvcUtils orderRequestService:success failure:failure];
+        [TCSvcUtils syncProductData:success failure:failure];
         
         //        [NSThread sleepForTimeInterval:2];
         //        [self syncDataFailure];
@@ -199,15 +219,24 @@
 }
 
 //Handles the sucess of the orderRequest service. If we get a 202, wait 5 seconds and retry. Otherwise, jump to the my day screen
-- (void)orderRequestSyncSuccess:(RKObjectRequestOperation *)operation{
+- (void)productSyncSuccess:(RKObjectRequestOperation *)operation{
     syncDataFlag = YES;
     if (operation.HTTPRequestOperation.response.statusCode == 202) {
         //TODO: Change the syncDataService call to be able to customize the header with "Refresh:True" values if we need to refesh the cache after a 202 response.
         //If we get a 202 response, wait 5 seconds and try again
+        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse202"]);
         double delayInSeconds = 5.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self syncMexicoData];
+            [self syncProductData];
+        });
+    }
+    else if (operation.HTTPRequestOperation.response.statusCode == 204){
+        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse204"]);
+        double delayInSeconds = 5.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self syncProductData];
         });
     }
     else{
@@ -233,21 +262,30 @@
                                                otherButtonTitles:[self localString:@"Retry"], nil];
         switch (operation.HTTPRequestOperation.response.statusCode) {
             case 400:
-                [alert setTitle:@"Bad Request"];
-                [alert setMessage:@"Unfortunately, the server didn't understand our request. Please try again"];
+                [alert setMessage:[self localString:@"login.syncDataResponse400"]];
                 break;
             case 401:
                 //TODO: Have the user authenticate again before retrying
-                [alert setTitle:@"Unauthorized"];
-                [alert setMessage:@"We're sorry, we are unable to authenticate you. Please try again"];
+                [alert setMessage:[self localString:@"login.syncDataResponse401"]];
+                break;
+            case 403:
+                [alert setMessage:[self localString:@"login.syncDataResponse403"]];
                 break;
             case 405:
-                [alert setTitle:@"Not Allowed"];
-                [alert setMessage:@"Unfortunately, the server does not allow the method we tried. Please try again"];
+                [alert setMessage:[self localString:@"login.syncDataResponse405"]];
+                break;
+            case 408:
+                [alert setMessage:[self localString:@"login.syncDataResponse408"]];
                 break;
             case 500:
-                [alert setTitle:@"Server Error"];
-                [alert setMessage:@"Unfortunately, the server had an internal error while processing your request. Please try again"];
+                [alert setMessage:[self localString:@"login.syncDataResponse500"]];
+                break;
+            case 501:
+                [alert setMessage:[self localString:@"login.syncDataResponse501"]];
+                break;
+            case 503:
+                [alert setMessage:[self localString:@"login.syncDataResponse503"]];
+                break;
             default:
                 break;
         }
@@ -258,10 +296,10 @@
 
 - (void)setSharedLoginCredential {
     TCLoginCredential *credential = [TCLoginCredential sharedInstance];
-//    credential.username = txtUsername.text;
-//    credential.password = txtPwd.text;
-    credential.username = @"HCTMM300";
-    credential.password = @"Welcome1";
+    credential.username = txtUsername.text;
+    credential.password = txtPwd.text;
+    //credential.username = @"HCTMM300";
+   // credential.password = @"Welcome1";
 }
 
 #pragma mark - alert view delegate
