@@ -1,4 +1,6 @@
-/* 
+
+
+/*
   Localizable.strings
   Torch
 
@@ -27,6 +29,23 @@
 "login.syncDataSuccess" = "Actualizando completa";
 "login.syncDataFailure" = "Un error ha ocurrido";
 
+/* Beginning Chris Hayes Edits 10-13-13 */
+
+"login.syncDataResponse202" = "Solicitud aceptada pero el proceso no se ha completado";
+"login.syncDataResponse204" = "Contenidos regresó del servicio";
+"login.syncDataResponse400" = "La solicitud no puede ser entendida";
+"login.syncDataResponse401" = "Solicitud no autorizada";
+"login.syncDataResponse403" = "Solicitud Prohibida";
+"login.syncDataResponse404" = "Servicio no encontrado";
+"login.syncDataResponse405" = "Método de servicio no permitido";
+"login.syncDataResponse408" = "Consultas técnicas tiempo de espera agotado";
+"login.syncDataResponse500" = "Error de servidor del servicio";
+"login.syncDataResponse501" = "El servicio no implementado";
+"login.syncDataResponse503" = "Servicio no disponible";
+
+/* End Chris Hayes Edits */
+
+
 /* DON'T TRANSLATE THIS AS THIS IS JUST A FILE PATH */
 "disclaimation.fileName" = "disclaimation_es";
 
@@ -36,8 +55,8 @@
 "promotion.title" = "Store Name";
 "promotion.section.title" = "Promociones";
 
-"promotion.detail.title" = "Promotion detail_tobechanged";
-"promotion.detail.section.title" = "Promotion detail_tobechanged";
+"promotion.detail.title" = "Detalle de la promoción";
+"promotion.detail.section.title" = "Detalle de la promoción";
 "promotion.detail.btn.addpromotion" = "Añadir esta promoción al orden";
 
 "printer.title" = "Impresión de Tickets";
@@ -67,16 +86,16 @@
 "addnewcustomer.addContact" = "Añadir Contacto";
 "addnewcustomer.addNote" = "Añadir Nota";
 
-"addnewcustomer.saveConfirmation" = "Are you sure to save?";
-"addnewcustomer.cancelConfirmation" = "Are you sure to cancel this operation?";
+"addnewcustomer.saveConfirmation" = "¿Guardar este cliente?";
+"addnewcustomer.cancelConfirmation" = "¿Está seguro que desea cancelar?";
 
-"addnewcustomer.requestGPS.message" = "Request GPS coordinates..";
-"addnewcustomer.requestGPS.success" = "Succeeded in getting GPS coordinates!";
-"addnewcustomer.requestGPS.failure" = "Failed to get GPS coordinates!";
+"addnewcustomer.requestGPS.message" = "Solicitar coordenadas GPS";
+"addnewcustomer.requestGPS.success" = "Coordenadas GPS Guardado";
+"addnewcustomer.requestGPS.failure" = "No se pudo obtener las coordenadas GPS";
 
-"editcustomer.title" = "Edit Existing Client";
+"editcustomer.title" = "Editar cliente";
 
-"storeInCall.alert" = "Already has a call in progress!";
+"storeInCall.alert" = "Ya hay una visita en curso. Debes terminar esa visita antes de comenzar otro.";
 
 "profile.myday" = "My Day";
 "profile.datastatus" = "Data Status";
@@ -120,14 +139,14 @@
 "store.startcall.title" = "Revisión de Prioridades";
 "store.startcall.text" = "Por favor revise la prioridades para este cliente antes de realizar cualquier otra tarea";
 
-"order.summary.productTotal" = "Products Total";
-"order.summary.discountLabel" = "Discount";
-"order.summary.subTotal" = "Subtotal";
-"order.summary.tax" = "Tax";
-"order.summary.orderTotal" = "Order Total";
-"order.summary.discountDallar" = "Discount ($)";
-"order.discountpromotion.alert.title" = "Discount Replacement Confirm";
-"order.discountpromotion.alert.text" = "There is one overall discount promotion item in the list, do you want to replace with current one?";
+"order.summary.productTotal" = "Productos Total";
+"order.summary.discountLabel" = "Descuento";
+"order.summary.subTotal" = "Total Parcial";
+"order.summary.tax" = "Impuesto";
+"order.summary.orderTotal" = "Total del Pedido";
+"order.summary.discountDallar" = "Descuento ($)";
+"order.discountpromotion.alert.title" = "Descuento Confirmación Reemplazo";
+"order.discountpromotion.alert.text" = "Hay un artículo de la promoción descuento global en la lista, ¿Desea reemplazar con actual?";
 
 /*daxian*/
 
@@ -145,4 +164,4 @@
 
 /*Ronald Mai*/
 "myday.title" = "  Mi día - ";
-"myday.add" = "add new customer";
+"myday.add" = "añadir nuevo cliente";

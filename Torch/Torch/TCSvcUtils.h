@@ -19,6 +19,13 @@ typedef void (^TC_SVC_BLOCK_FAILURE)(RKObjectRequestOperation * operation, NSErr
                 failure:(TC_SVC_BLOCK_FAILURE)failure;
 + (void)fetchMexicoDataService:(TC_SVC_BLOCK_SUCCESS)success
                        failure:(TC_SVC_BLOCK_FAILURE)failure;
+
+//Added to call darby's product service and pull the data in from it. This is the third service call made in the sequence on the login screen
++ (void)syncProductData:(TC_SVC_BLOCK_SUCCESS)success
+                failure:(TC_SVC_BLOCK_FAILURE)failure;
+
+
+//Removing the success and failure blocks, as this call is not part of the initial batch
 + (void)orderRequestService;
 
 @end
