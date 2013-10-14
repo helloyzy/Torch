@@ -78,8 +78,8 @@
 
 - (IBAction)signIn:(id)sender {
 #ifdef TC_DEBUG
-    //[self jumpToMyDay];
-    [self _signIn];
+    [self jumpToMyDay];
+    // [self _signIn];
 #else
     if (txtUsername.text.length>0) {
         if ([HersheySSOUtils setKeychainWithUsername:txtUsername.text andPassword:txtPwd.text]) {
