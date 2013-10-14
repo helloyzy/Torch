@@ -4,6 +4,6 @@
 @interface Product : _Product {}
 // Custom logic goes here.
 
-@property(nonatomic, assign)CGFloat productPrice;
+@property(nonatomic, readonly)CGFloat productPrice;
 
 @end

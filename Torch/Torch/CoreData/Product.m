@@ -15,6 +15,10 @@
 
 // Custom logic goes here.
 
+- (CGFloat)productPrice {
+    return self.priceValue;
+}
+
 + (RKEntityMapping *)objectMapping
 {
     RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"Product" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
