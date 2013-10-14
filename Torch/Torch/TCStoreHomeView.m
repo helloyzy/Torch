@@ -184,7 +184,7 @@ static NSString *kViewControllerKey = @"viewController";
     if (section == 0) {
         
         UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(280, 0, 17, 17)];
-        [editButton setBackgroundImage:[UIImage imageNamed:@"focus"] forState:UIControlStateNormal];
+        [editButton setBackgroundImage:[UIImage imageNamed:@"icon_edit"] forState:UIControlStateNormal];
         
         [editButton addTarget:self action:@selector(goEditCustomer) forControlEvents:UIControlEventTouchDown];
         editButton.enabled = [self isCallInProgress];
