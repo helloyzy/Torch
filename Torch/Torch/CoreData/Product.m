@@ -19,6 +19,15 @@
 {
     RKEntityMapping *mapping = [RKEntityMapping mappingForEntityForName:@"Product" inManagedObjectStore:[RKManagedObjectStore defaultStore]];
     [mapping addAttributeMappingsFromArray:@[
+     ProductAttributes.spanishDescription,
+     ProductAttributes.productNumber,
+     ProductAttributes.packtypeDescription,
+     ProductAttributes.price,
+     ProductAttributes.upc,
+     ProductAttributes.name
+     ]];
+    /**
+    [mapping addAttributeMappingsFromArray:@[
      ProductAttributes.product_division,
      ProductAttributes.dimension_unit,
      ProductAttributes.weight_unit_of_Measure,
@@ -33,14 +42,6 @@
      ProductAttributes.overbrand_description,
      ProductAttributes.item_Width,
      ProductAttributes.item_length
-     ]];
-    [mapping addAttributeMappingsFromArray:@[
-     ProductAttributes.spanishDescription,
-     ProductAttributes.productNumber,
-     ProductAttributes.packtypeDescription,
-     ProductAttributes.price,
-     ProductAttributes.upc,
-     ProductAttributes.name
      ]];
     NSArray *attrNeedToMapping = @[
                                    ProductAttributes.season_Description,
@@ -64,6 +65,7 @@
                                    ];
     [mapping addAttributeMappingsFromDictionary:[self _productAttributeMappingFromArray:attrNeedToMapping]];
     [mapping addAttributeMappingsFromDictionary:@{@"Description" : ProductAttributes.desp}];
+     */
     return mapping;
 }
 

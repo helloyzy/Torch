@@ -96,6 +96,16 @@
     [self save];
     
     promotion = [Promotion newInstance];
+    promotion.orderItemDiscountValue = YES;
+    promotion.discountAmount = IB_BOX_DOUBLE(0.0);
+    promotion.discountPercentage = IB_BOX_DOUBLE(1.0);
+    promotion.title = @"15 percent off";
+    promotion.desp = @"15 percent off promotion";
+    promotion.endDate = curdateToMilliseconds();
+    promotion.accountId = storeId;
+    [self save];
+    
+    promotion = [Promotion newInstance];
     promotion.orderItemDiscountValue = NO;
     promotion.discountAmount = IB_BOX_DOUBLE(0.0);
     promotion.discountPercentage = IB_BOX_DOUBLE(0.0);
