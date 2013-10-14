@@ -16,6 +16,12 @@
 #import <NSManagedObject+InnerBand.h>
 #import "TCDBUtils.h"
 #import "Store.h"
+#import "OrderCredit.h"
+#import "OrderCreditItem.h"
+#import "SalesRep.h"
+#import "NSManagedObject+TCRestkit.h"
+#import "CalItem.h"
+
 
 @interface TCOrderViewController ()
 
@@ -158,13 +164,14 @@
     ProductItemObject *productItem;
     for (Product *product in productItems) {
         productItem = [ProductItemObject alloc];
-        productItem.productName = product.packtype_Description;
-        productItem.productSN = [NSString stringWithFormat:@"%@%@", @"#", product.name];
+        productItem.productName = product.name;
+        productItem.productSN = [NSString stringWithFormat:@"%@%@", @"#", product.productNumber];
         productItem.productUnit = [self localString:@"product.itemunit"];
-        productItem.productPrice = [NSString stringWithFormat:@"$%1.2f %@",product.productPrice, product.uPC_GROUP_PRODUCT_UOM_maybe];
+        productItem.productPriceLabel = [NSString stringWithFormat:@"$%1.2f %@",product.productPrice, product.uPC_GROUP_PRODUCT_UOM_maybe];
+        productItem.productPrice = [NSString stringWithFormat:@"%f", product.productPrice];
         productItem.productUnitNum = @"0";
-        productItem.productDescription = product.desp;
-        
+        productItem.productDescription = product.packtypeDescription;
+        productItem.currentProduct = product;
         [productCollection setObject:productItem forKey:productItem.productSN];
     }
     
@@ -218,8 +225,60 @@
     
 }
 
+-(NSString *)generateReferenceNumber {
+    NSString *repId = [SalesRep getRepId];
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
+    [dateformat setDateFormat:@"yyyyMMdd"];
+    NSString *dateString = [dateformat stringFromDate:date];
+    
+    int randomNumber = (arc4random()%(99999-1))+1;
+    return [NSString stringWithFormat:@"%@%@%d",dateString,repId,randomNumber];
+}
+
 -(void)generateOrderJSONData {
-    NSLog(@"create Jason Data now");
+
+    OrderCredit *order = [OrderCredit newInstance];
+    order.paymentAmountValue = self.fproductTotal;
+    order.paymentType = @"Deduction";
+    order.recordType = @"MX Orders";
+    order.hersheyReferenceNumber = [self generateReferenceNumber];
+    order.status = @"NEW";
+    order.discountPercentValue = [self getDiscountPercentage]*100;
+    order.totalDiscountAmountValue = self.fdiscountInDollar;
+    
+    for (NSString *productSN in displayData) {
+        ProductItemObject *productObject = (ProductItemObject *)[productCollection objectForKey:productSN];
+        if (![productObject.productUnitNum isEqualToString:@"0"]) {
+            OrderCreditItem *orderItem = [OrderCreditItem newInstance];
+            orderItem.quantityValue = [productObject.productUnitNum doubleValue];
+            orderItem.overridePriceValue = 0;
+            orderItem.distributedItemNumber = @"N/A";
+            orderItem.discountPercentageValue = 0;
+            orderItem.totalValue = [productObject.productPrice doubleValue] * [productObject.productUnitNum doubleValue];
+            orderItem.nettAmountValue = orderItem.totalValue;
+            orderItem.maxMarkdownPercentageValue = 0;
+            orderItem.shortItemNumber = @"#N/A";
+            //populate calitem from origin product info
+            Product *productStored = productObject.currentProduct;
+            CalItem *citem = [CalItem newInstance];
+
+            citem.productNumber = productStored.productNumber;
+            citem.uom = productStored.uPC_GROUP_PRODUCT_UOM_maybe;
+            citem.name=productStored.name;
+            citem.packtypeDescription = productStored.packtypeDescription;
+            citem.priceValue = productStored.priceValue;
+            citem.upc = productStored.upc;
+            [CalItem save];
+            orderItem.calItem  = citem;
+            [OrderCreditItem save];
+            [order addOrderCreditItemsObject:orderItem];
+        }
+        
+    }
+    [OrderCredit save];
+    
+    
 }
 
 -(void)gotoPromotionScreen {
@@ -276,18 +335,18 @@
     
     UIView *summaryView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 300, 130)];
     
-    UILabel *productTotalLable = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
+    UILabel *productTotalLable = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 150, 20)];
     [productTotalLable setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     //productTotalLable.textColor = [UIColor blackColor];
     [productTotalLable setText:[self localString:@"order.summary.productTotal"]];
     [productTotalLable setTextColor: [UIColor darkGrayColor]];
     
-    UILabel *directDiscountLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 100, 20)];
+    UILabel *directDiscountLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 150, 20)];
     [directDiscountLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [directDiscountLabel setText:[self localString:@"order.summary.discountDallar"]];
     [directDiscountLabel setTextColor:[UIColor darkGrayColor]];
     
-    UILabel *discountLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, 100, 20)];
+    UILabel *discountLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, 150, 20)];
     [discountLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     
     NSString *discountPercentage = [NSString stringWithFormat:@"%.0f%%",[self getDiscountPercentage]*100];
@@ -296,19 +355,19 @@
     [discountLabel setTextColor: [UIColor darkGrayColor]];
     
     
-    UILabel *subtotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, 100, 20)];
+    UILabel *subtotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, 150, 20)];
     [subtotalLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [subtotalLabel setText:[self localString:@"order.summary.subTotal"]];
     [subtotalLabel setTextColor: [UIColor darkGrayColor]];
     
     
     NSString *taxRate = [NSString stringWithFormat:@"%.2f%%",self.currentStore.taxRate*100];
-    UILabel *taxLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 90, 100, 20)];
+    UILabel *taxLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 90, 150, 20)];
     [taxLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:14]];
     [taxLabel setText:[NSString stringWithFormat:@"%@ (%@)",[self localString:@"order.summary.tax"], taxRate]];
     [taxLabel setTextColor: [UIColor darkGrayColor]];
     
-    UILabel *orderTotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 110, 100, 20)];
+    UILabel *orderTotalLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 110, 150, 20)];
     [orderTotalLabel setFont:[UIFont fontWithName:@"Helvetica Neue Bold" size:14]];
     [orderTotalLabel setText:[self localString:@"order.summary.orderTotal"]];
     [orderTotalLabel setTextColor: [UIColor darkGrayColor]];
@@ -642,7 +701,7 @@
         cell.productQuantityUnitLabel.text = productItem.productUnit;
         cell.productDescription.text = productItem.productDescription;
         cell.productSequenceNum.text = productItem.productSN;
-        cell.unitPrice.text = productItem.productPrice;
+        cell.unitPrice.text = productItem.productPriceLabel;
         cell.productQuantity.text = productItem.productUnitNum;
         cell.stepper.value = [productItem.productUnitNum doubleValue];
     }
@@ -699,12 +758,7 @@
     }
 }
 
--(void)longPress:(UIGestureRecognizer *)gestureRecognizer {
-    if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"long press detected");
-       
-    }
-}
+
 -(void)cellDeleteCancelled:(UIGestureRecognizer *)gestureRecognizer {
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         InventoryTableCell *cell = (InventoryTableCell *)gestureRecognizer.view;
@@ -848,8 +902,6 @@
     [cell.stepper setAutorepeat:YES];
     [cell.stepper setContinuous:NO];
     
-    //UILongPressGestureRecognizer *longgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-    //[numStepper addGestureRecognizer:longgr];
     
     NSString *itemKey;
     if ([self isInSearchResultSection:sectionId]) {

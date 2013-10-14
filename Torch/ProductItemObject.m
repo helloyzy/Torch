@@ -12,11 +12,12 @@
 
 @synthesize productName;
 @synthesize productSN;
-@synthesize productPrice;
+@synthesize productPriceLabel;
 @synthesize productDescription;
 @synthesize productUnitNum;
 @synthesize productUnit;
 @synthesize productTotalPrice;
+@synthesize productPrice;
 
 
 @end

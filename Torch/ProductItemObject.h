@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Product.h"
 
 @interface ProductItemObject : NSObject
 
@@ -17,4 +18,6 @@
 @property (nonatomic,copy) NSString *productUnitNum;
 @property (nonatomic,copy) NSString *productUnit;
 @property (nonatomic,copy) NSString *productTotalPrice;
+@property (nonatomic,copy) NSString *productPriceLabel;
+@property (nonatomic,strong) Product *currentProduct;
 @end

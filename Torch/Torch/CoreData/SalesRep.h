@@ -4,4 +4,6 @@
 @interface SalesRep : _SalesRep {}
 // Custom logic goes here.
 
++ (NSString *)getRepId;
+
 @end
