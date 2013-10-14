@@ -261,7 +261,7 @@
 		1C6FD3E817F2741D0049FFFF /* TCAddNoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAddNoteController.h; sourceTree = "<group>"; };
 		1C6FD3E917F2741D0049FFFF /* TCAddNoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAddNoteController.m; sourceTree = "<group>"; };
 		1C6FD3EA17F2741D0049FFFF /* TCAddNoteController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCAddNoteController.xib; sourceTree = "<group>"; };
-		1C713BEC17C2058000A903A6 /* Torch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Torch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C713BEC17C2058000A903A6 /* Neon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C713BEF17C2058100A903A6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C713BF117C2058100A903A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1C713BF317C2058100A903A6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -588,7 +588,7 @@
 		1C713BED17C2058000A903A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1C713BEC17C2058000A903A6 /* Torch.app */,
+				1C713BEC17C2058000A903A6 /* Neon.app */,
 				1C713C1217C2058100A903A6 /* TorchTests.octest */,
 			);
 			name = Products;
@@ -1029,7 +1029,7 @@
 			);
 			name = Torch;
 			productName = Torch;
-			productReference = 1C713BEC17C2058000A903A6 /* Torch.app */;
+			productReference = 1C713BEC17C2058000A903A6 /* Neon.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1C713C1117C2058100A903A6 /* TorchTests */ = {
@@ -1478,7 +1478,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Torch/Torch-Prefix.pch";
 				INFOPLIST_FILE = "Torch/Torch-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Neon;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1491,7 +1491,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Torch/Torch-Prefix.pch";
 				INFOPLIST_FILE = "Torch/Torch-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Neon;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
