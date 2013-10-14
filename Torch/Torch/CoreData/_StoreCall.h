@@ -9,6 +9,7 @@ extern const struct StoreCallAttributes {
 	__unsafe_unretained NSString *actualStartDate;
 	__unsafe_unretained NSString *callTimeAdjustment;
 	__unsafe_unretained NSString *externalId;
+	__unsafe_unretained NSString *inventoryTime;
 	__unsafe_unretained NSString *lastModifiedDate;
 	__unsafe_unretained NSString *latitude;
 	__unsafe_unretained NSString *longitude;
@@ -30,6 +31,7 @@ extern const struct StoreCallFetchedProperties {
 
 @class Note;
 @class Store;
+
 
 
 
@@ -105,6 +107,20 @@ extern const struct StoreCallFetchedProperties {
 
 
 //- (BOOL)validateExternalId:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* inventoryTime;
+
+
+
+@property double inventoryTimeValue;
+- (double)inventoryTimeValue;
+- (void)setInventoryTimeValue:(double)value_;
+
+//- (BOOL)validateInventoryTime:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -282,6 +298,15 @@ extern const struct StoreCallFetchedProperties {
 
 - (NSString*)primitiveExternalId;
 - (void)setPrimitiveExternalId:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveInventoryTime;
+- (void)setPrimitiveInventoryTime:(NSNumber*)value;
+
+- (double)primitiveInventoryTimeValue;
+- (void)setPrimitiveInventoryTimeValue:(double)value_;
 
 
 

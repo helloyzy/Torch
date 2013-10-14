@@ -8,6 +8,7 @@ const struct StoreCallAttributes StoreCallAttributes = {
 	.actualStartDate = @"actualStartDate",
 	.callTimeAdjustment = @"callTimeAdjustment",
 	.externalId = @"externalId",
+	.inventoryTime = @"inventoryTime",
 	.lastModifiedDate = @"lastModifiedDate",
 	.latitude = @"latitude",
 	.longitude = @"longitude",
@@ -65,6 +66,11 @@ const struct StoreCallFetchedProperties StoreCallFetchedProperties = {
 	}
 	if ([key isEqualToString:@"callTimeAdjustmentValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"callTimeAdjustment"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"inventoryTimeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"inventoryTime"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -185,6 +191,32 @@ const struct StoreCallFetchedProperties StoreCallFetchedProperties = {
 
 @dynamic externalId;
 
+
+
+
+
+
+@dynamic inventoryTime;
+
+
+
+- (double)inventoryTimeValue {
+	NSNumber *result = [self inventoryTime];
+	return [result doubleValue];
+}
+
+- (void)setInventoryTimeValue:(double)value_ {
+	[self setInventoryTime:[NSNumber numberWithDouble:value_]];
+}
+
+- (double)primitiveInventoryTimeValue {
+	NSNumber *result = [self primitiveInventoryTime];
+	return [result doubleValue];
+}
+
+- (void)setPrimitiveInventoryTimeValue:(double)value_ {
+	[self setPrimitiveInventoryTime:[NSNumber numberWithDouble:value_]];
+}
 
 
 

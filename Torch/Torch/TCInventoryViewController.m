@@ -12,6 +12,9 @@
 #import "Product.h"
 #import <NSManagedObject+InnerBand.h>
 #import "TCDBUtils.h"
+#import "Store.h"
+#import "StoreCall.h"
+#import "TCUtils.h"
 
 @interface TCInventoryViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *inventoryLabel;
@@ -219,6 +222,16 @@
         self.tableView.hidden = NO;
         seperator1.hidden = YES;
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    // capture inventory take time
+    StoreCall *call = [self.currentStore callInProgress];
+    if (call && ! call.inventoryTime) {
+        call.inventoryTime = curdateToMilliseconds();
+        [StoreCall save];
+    }
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidLoad

@@ -253,6 +253,7 @@
         <attribute name="actualStartDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="callTimeAdjustment" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="externalId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inventoryTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="lastModifiedDate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -288,7 +289,7 @@
         <element name="PromotionItem" positionX="160" positionY="192" width="128" height="120"/>
         <element name="SalesRep" positionX="585" positionY="27" width="135" height="208"/>
         <element name="Store" positionX="1000" positionY="0" width="135" height="435"/>
-        <element name="StoreCall" positionX="1206" positionY="72" width="135" height="270"/>
+        <element name="StoreCall" positionX="1206" positionY="72" width="135" height="285"/>
         <element name="Survey" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

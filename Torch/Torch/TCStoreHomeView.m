@@ -90,6 +90,7 @@ static NSString *kViewControllerKey = @"viewController";
           kViewControllerKey:tcPriorityViewController } ];
     TCInventoryViewController *tcInventoryViewController =
     [[TCInventoryViewController alloc] initWithNibName:@"TCInventoryViewController" bundle:nil];
+    tcInventoryViewController.currentStore = self.currentStore;
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.takeInventory"],
                  kExplainKey:@"go to inventory page",
           kViewControllerKey:tcInventoryViewController } ];
@@ -415,7 +416,7 @@ static NSString *kViewControllerKey = @"viewController";
     switch (indexPath.section) {
         case 0:
             break;
-        case 1:
+        case 1: 
             break;
         case 2: {
             if ([self isCallInProgress]) {
