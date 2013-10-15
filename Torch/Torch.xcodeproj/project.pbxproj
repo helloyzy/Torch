@@ -170,7 +170,6 @@
 		DC56020717F27C6A009BA08C /* product.json in Resources */ = {isa = PBXBuildFile; fileRef = DC56020617F27C6A009BA08C /* product.json */; };
 		DC56020C17F28195009BA08C /* _Product.m in Sources */ = {isa = PBXBuildFile; fileRef = DC56020917F28195009BA08C /* _Product.m */; };
 		DC56020D17F28195009BA08C /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = DC56020B17F28195009BA08C /* Product.m */; };
-		DC571B40180BCD5C0066CFA4 /* TCCallSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = DC571B3F180BCD5C0066CFA4 /* TCCallSummary.m */; };
 		DC571B45180C06580066CFA4 /* _SurveyResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DC571B42180C06570066CFA4 /* _SurveyResponse.m */; };
 		DC571B46180C06580066CFA4 /* SurveyResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DC571B44180C06580066CFA4 /* SurveyResponse.m */; };
 		DC6CB0BD17D5B2490091EFAB /* TCPrinterCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6CB0BB17D5B2490091EFAB /* TCPrinterCtl.m */; };
@@ -456,8 +455,6 @@
 		DC56020917F28195009BA08C /* _Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Product.m; sourceTree = "<group>"; };
 		DC56020A17F28195009BA08C /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
 		DC56020B17F28195009BA08C /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
-		DC571B3E180BCD5C0066CFA4 /* TCCallSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCallSummary.h; sourceTree = "<group>"; };
-		DC571B3F180BCD5C0066CFA4 /* TCCallSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCallSummary.m; sourceTree = "<group>"; };
 		DC571B41180C06570066CFA4 /* _SurveyResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SurveyResponse.h; sourceTree = "<group>"; };
 		DC571B42180C06570066CFA4 /* _SurveyResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SurveyResponse.m; sourceTree = "<group>"; };
 		DC571B43180C06570066CFA4 /* SurveyResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyResponse.h; sourceTree = "<group>"; };
@@ -1016,8 +1013,6 @@
 				D6CD428417CC706100A499A4 /* TCPriorityObject.m */,
 				DCF4A3D818068C1700DF8F64 /* TCPromotionItem.h */,
 				DCF4A3D918068C1800DF8F64 /* TCPromotionItem.m */,
-				DC571B3E180BCD5C0066CFA4 /* TCCallSummary.h */,
-				DC571B3F180BCD5C0066CFA4 /* TCCallSummary.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1365,7 +1360,6 @@
 				1C80017F1808F155007B8B6A /* TCSurveyListController.m in Sources */,
 				DC549DBD18092A9B0026D5E0 /* _NoteResponse.m in Sources */,
 				DC549DBE18092A9B0026D5E0 /* NoteResponse.m in Sources */,
-				DC571B40180BCD5C0066CFA4 /* TCCallSummary.m in Sources */,
 				DC571B45180C06580066CFA4 /* _SurveyResponse.m in Sources */,
 				DC571B46180C06580066CFA4 /* SurveyResponse.m in Sources */,
 			);

@@ -25,7 +25,6 @@
 #import "TCUtils.h"
 #import <IBFunctions.h>
 #import <MapKit/MapKit.h>
-#import "TCCallSummary.h"
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -110,12 +109,10 @@ static NSString *kViewControllerKey = @"viewController";
     TCSummaryViewController *tcSummaryViewController =
     [[TCSummaryViewController alloc] initWithNibName:@"TCSummaryViewController" bundle:nil];
     tcSummaryViewController.store = self.currentStore;
+    tcSummaryViewController.storeCall = [self.currentStore callInProgress];
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.notes"],
                  kExplainKey:@"Visit summary and notes",
           kViewControllerKey:tcSummaryViewController } ];
-    
-    
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -520,11 +517,9 @@ static NSString *kViewControllerKey = @"viewController";
     [call endCall];
     setStoreInCall(nil);
     // Go to summary page
-    OrderCredit *order = [call associatedOrderObject];
-    TCCallSummary *summary = [TCCallSummary instance:order call:call];
     TCSummaryViewController *targetViewController = [[TCSummaryViewController alloc]init];
-    targetViewController.callSummary = summary;
     targetViewController.store = self.currentStore;
+    targetViewController.storeCall = call;
     [[self navigationController] pushViewController:targetViewController animated:YES];
     [_tcSliderView changeDirection:YES];
 }

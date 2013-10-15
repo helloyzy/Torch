@@ -10,5 +10,7 @@
 - (void)endCall;
 - (BOOL)isCallInProgress;
 - (OrderCredit *)associatedOrderObject;
+- (NSInteger)callDuration;
+- (NSArray*) decriptions;
 
 @end

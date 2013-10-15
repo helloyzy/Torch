@@ -2,7 +2,8 @@
 #import "NSManagedObject+TCRestkit.h"
 
 @interface Note : _Note {}
-// Custom logic goes here.
 
++ (Note*) noteWithType: (NSString*) type title: (NSString*) title;
 
 @end
+

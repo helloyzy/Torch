@@ -68,4 +68,15 @@ static NSString *STORECALL_ENDCALL = @"_END_CALL_";
     return result.count > 0 ? [result objectAtIndex:0] : nil;
 }
 
+- (NSInteger)callDuration {
+    CGFloat durationInMilliseconds = self.actualEndDateValue - self.actualStartDateValue;
+    return (NSInteger) durationInMilliseconds / (1000.0 * 60.0);
+}
+
+- (NSArray*) decriptions {
+    return @[[Note noteWithType:@"title" title: millisecondToDateStr(self.actualStartDateValue)],
+             [Note noteWithType:@"title" title: millisecondToDateStr(self.inventoryTimeValue)],
+             [Note noteWithType:@"title" title: millisecondToDateStr(self.actualEndDateValue)]];
+}
+
 @end

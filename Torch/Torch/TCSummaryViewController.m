@@ -20,9 +20,11 @@
 #import "TCUtils.h"
 #import "TCAddNoteController.h"
 #import "UIViewController+MGBox.h"
-#import "TCCallSummary.h"
+#import "OrderCredit.h"
 
 @interface TCSummaryViewController ()
+
+@property (nonatomic, strong) OrderCredit *order;
 
 @end
 
@@ -65,18 +67,20 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
 
 - (void)viewDidLoad
 {
-//    assert(store != NULL);
-//    StoreCall * storeCall = store.storeCalls.anyObject;
+    assert(store != NULL);
+    assert(self.storeCall != NULL);
 
     [super viewDidLoad];
+    self.order = self.storeCall.associatedOrderObject;
+    
     MGBox *summary = [MGBox boxWithSize:(CGSize) {320, 100}];
     summary.contentLayoutMode = MGLayoutGridStyle;
     summary.leftPadding = summary.rightPadding = 16;
 
     [summary.boxes addObjectsFromArray:[@[
-                                        [self cell:[NSString stringWithFormat:@"$%d", [self.callSummary totalAmountInteger]] numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
-                                        [self cell:[NSString stringWithFormat:@"%.0f", [self.callSummary totalWeight]] numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
-                                        [self cell:[NSString stringWithFormat:@"%dmin", [self.callSummary callDuration]] numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
+                                        [self cell:[NSString stringWithFormat:@"$%d", (NSInteger)self.storeCall.associatedOrderObject.paymentAmountValue] numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
+                                        [self cell:[NSString stringWithFormat:@"%.0f", 99.0] numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
+                                        [self cell:[NSString stringWithFormat:@"%dmin", [self.storeCall callDuration]] numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
                                         [self cell:@"Retail Ordered Total" numberOfLines:2 textColor:TCColorSubtitleGray size:cellSize],
                                         [self cell:@"Out of Stocks Filled" numberOfLines:2 textColor:TCColorSubtitleGray size:cellSize],
                                         [self cell:@"Call Time" numberOfLines:1 textColor:TCColorSubtitleGray size:cellSize]
@@ -95,10 +99,10 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
      [self sectionHeader:@"Call Highlights" backgroundColor:TCColorTitleBlue underlineColor:TCColorSubtitleGray fontName:@"HelveticaNeueLTCom-Bd"]]];
     
     //millisecondToDateStr(note.createdDateValue)
-//    [scroller.boxes addObjectsFromArray:[[storeCall.notes map:^(Note* note) {
-//        return [self callItemWithTitle:note.type
-//                              subtitle:note.title];
-//    } ] asArray]];
+    [scroller.boxes addObjectsFromArray:[[[self.storeCall decriptions] map:^(Note* note) {
+        return [self callItemWithTitle:note.type
+                              subtitle:note.title];
+    } ] asArray]];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = (CGRect) {0, 0, 300, 48};

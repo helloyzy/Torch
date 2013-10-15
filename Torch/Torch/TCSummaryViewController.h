@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Store.h"
+#import "StoreCall.h"
+#import "OrderCredit.h"
 
 @class TCCallSummary;
 
 @interface TCSummaryViewController : UIViewController {
-    Store *store;
 }
-@property(nonatomic, strong) Store *store;
-@property(nonatomic, strong) TCCallSummary *callSummary;
+@property (nonatomic, strong) Store *store;
+@property (nonatomic, strong) StoreCall *storeCall;
 
 @end
