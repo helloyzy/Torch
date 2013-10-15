@@ -17,6 +17,7 @@
 #import "Order.h"
 #import "HersheySSOUtils.h"
 #import "TCDBUtils.h"
+#import "SalesRep.h"
 
 @interface TCProfileController ()
 
@@ -46,6 +47,10 @@
     
     lblName.font = TCFont_HNLTComBd(17);
     lblUserDetailed.font = TCFont_HNLTComMd(12);
+    SalesRep *rep = [SalesRep salesRep];
+    lblName.text = [NSString stringWithFormat:@"%@ %@", rep.firstName, rep.lastName];
+    lblUserDetailed.text = [NSString stringWithFormat:@"%@ (%@ - %@)", rep.salesOrg, rep.managerNetworkId, rep.networkId];
+    
     lblMyDay.font = TCFont_HNLTComMd(17);
     lblMyDay.text = [self localString:@"profile.myday"];
     lblDataStatus.font = TCFont_HNLTComMd(17);

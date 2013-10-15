@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StoreCall.h"
+
+@class StoreCall, Contact;
 
 @interface TCAddNoteController : UIViewController<UITextViewDelegate>
 
@@ -17,6 +18,7 @@
 @property (nonatomic, strong) IBOutlet UISwitch* externalSwitch;
 @property (nonatomic, strong) IBOutlet UIButton* button;
 @property (nonatomic, strong) StoreCall* call;
+// @property (nonatomic, assign) BOOL addContactNoteFlag;
 
 - (IBAction) addNote: (id) sender;
 

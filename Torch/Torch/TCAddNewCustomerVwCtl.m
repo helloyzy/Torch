@@ -18,10 +18,13 @@
 #import "TCDBUtils.h"
 #import "Store.h"
 #import "Contact.h"
+#import "Note.h"
 
 #import "NSManagedObject+InnerBand.h"
 #import "NSManagedObject+TCRestkit.h"
 #import "IBCoreDataStore.h"
+
+#import "TCAddNoteController.h"
 
 
 #define _TV_ROW_HEIGHT 36
@@ -223,6 +226,14 @@ static NSString * comboCellIdentifier = @"ComboCell";
                 [tempContact deleteObj];
             }
             self.store.contacts = tempContacts;
+            // save notes for contacts (associated to any contact we may find)
+            if (self.store.contacts.count > 0) {
+                Contact *contact = [self.store.contacts anyObject];
+                NSArray *notes = [Note getContactNotes];
+                for (Note *note in notes) {
+                    [contact addNotesObject:note];
+                }
+            }
             [Store save];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
@@ -492,10 +503,10 @@ static NSString * comboCellIdentifier = @"ComboCell";
     } else if (indexPath.section == 5) {
         // [self showCombo:tableView tag:_TAG_BTN_SHOWCOMBO2];
     } else if (indexPath.section == _AddNewContact_Section) { // just after contact section
-        // NSLog(@"Add new contact!!");
         [self addNewContact];
     } else if (indexPath.section == _AddNewNote_Section) {
-        NSLog(@"Add new note");
+        TCAddNoteController *addNoteCtrl = [[TCAddNoteController alloc]init];
+        [self.navigationController pushViewController:addNoteCtrl animated:YES];
     }
 }
 
