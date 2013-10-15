@@ -71,7 +71,7 @@
    // [temp popViewControllerAnimated:NO];
    // [temp popViewControllerAnimated:YES];
     NSInteger count = [[self.navigationController viewControllers] count];
-    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:count-3] animated:YES];
+    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:count-2] animated:YES];
 }
 
 @end

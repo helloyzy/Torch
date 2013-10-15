@@ -88,7 +88,7 @@
     promotion = [Promotion newInstance];
     promotion.orderItemDiscountValue = YES;
     promotion.discountAmount = IB_BOX_DOUBLE(0.0);
-    promotion.discountPercentage = IB_BOX_DOUBLE(1.0);
+    promotion.discountPercentage = IB_BOX_DOUBLE(0.1);
     promotion.title = @"10 percent off";
     promotion.desp = @"10 percent off promotion";
     promotion.endDate = curdateToMilliseconds();
@@ -98,7 +98,7 @@
     promotion = [Promotion newInstance];
     promotion.orderItemDiscountValue = YES;
     promotion.discountAmount = IB_BOX_DOUBLE(0.0);
-    promotion.discountPercentage = IB_BOX_DOUBLE(1.0);
+    promotion.discountPercentage = IB_BOX_DOUBLE(0.15);
     promotion.title = @"15 percent off";
     promotion.desp = @"15 percent off promotion";
     promotion.endDate = curdateToMilliseconds();

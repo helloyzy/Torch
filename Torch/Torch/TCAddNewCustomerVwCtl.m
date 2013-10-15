@@ -261,7 +261,7 @@ static NSString * comboCellIdentifier = @"ComboCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (! _isAddNew) {
+    if (! [self shouldShowGPSSection]) {
         if (indexPath.section == _GPS_SECTION) { // || indexPath.section == _AddNewNote_Section
             return 0;
         }
@@ -270,7 +270,7 @@ static NSString * comboCellIdentifier = @"ComboCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (! _isAddNew) {
+    if (! [self shouldShowGPSSection]) {
         if (section == _GPS_SECTION) { // || indexPath.section == _AddNewNote_Section
             return 0.1;
         }
@@ -282,12 +282,20 @@ static NSString * comboCellIdentifier = @"ComboCell";
     if (section == 0) {
         return  10.0;
     }
-    if (! _isAddNew) {
+    if (! [self shouldShowGPSSection]) {
         if (section == _GPS_SECTION) {
             return 0.1;
         }
     }
     return 5.0;
+}
+
+- (BOOL)shouldShowGPSSection {
+    BOOL result = YES;
+    if (! _isAddNew && [self.store hasLocation]) {
+        result = NO;
+    }
+    return result;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -335,10 +343,7 @@ static NSString * comboCellIdentifier = @"ComboCell";
     } else if (indexPath.section == 2) {
         static NSString * btnCellIdentifier = @"btnCell";
         cell = [tblVw dequeueReusableCellWithIdentifier:btnCellIdentifier];
-        BOOL shouldShowGPSBtn = YES;
-        if (! _isAddNew && [self.store hasLocation]) {
-            shouldShowGPSBtn = NO;
-        }
+        BOOL shouldShowGPSBtn = [self shouldShowGPSSection];
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:btnCellIdentifier];
             if (shouldShowGPSBtn) { // TODO ALSO NEED TO SHOW IT IF EXISTING CUSTOMER DOESNOT HAVE GPS INFO
@@ -579,7 +584,7 @@ static NSString * comboCellIdentifier = @"ComboCell";
         textField.tag = 0;
         textField.textColor = [UIColor grayColor];
         if (! _isAddNew) {
-            textField.placeholder = @""; // [self localString:@"addnewcustomer.noteditable"];
+            textField.placeholder = [self localString:@"addnewcustomer.noteditable"];
         }
     }
 }
