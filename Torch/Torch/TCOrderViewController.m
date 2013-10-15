@@ -50,6 +50,15 @@
     
 }
 
+-(void) clearOrderList {
+    [displayPromotionItems removeAllObjects];
+    [displayData removeAllObjects];
+    [promotionItems removeAllObjects];
+    [self prepareForDisplay];
+    [self refreshTableView];
+    
+}
+
 -(void) refreshTableView {
     [self calculatePrice];
     [self.tableView reloadData];
@@ -327,6 +336,7 @@
             TCPrinterCtl *printScreen = [[TCPrinterCtl alloc] init];
             [self.navigationController pushViewController:printScreen animated:YES];
         }
+        [self clearOrderList];
         
     }
     
@@ -469,10 +479,7 @@
     return footerView;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+-(void) prepareForDisplay {
     
     UIView *seperator = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 320, 2)];
     seperator.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
@@ -494,6 +501,13 @@
     self.tableView.separatorColor = [UIColor blueColor];
     self.createOrderLabel.text = [self localString:@"order.title"];
     [self.searchBar setPlaceholder:[self localString:@"order.searchplaceholder"]];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    [self prepareForDisplay];
 }
 
 - (void)didReceiveMemoryWarning
@@ -1079,6 +1093,7 @@
         }
         
     }
+        self.fproductTotal = round(self.fproductTotal*100.0)/100.0;
 }
 
 -(void) calculateDirectDiscountInDallar {
@@ -1103,6 +1118,7 @@
     } else {
         self.fdiscount = 0;
     }
+    self.fdiscount = round(self.fdiscount*100.0)/100.0;
     
 }
 
@@ -1114,15 +1130,18 @@
     } else {
         self.ftax = 0;
     }
+    self.ftax = round(self.ftax*100.0)/100.0;
    
 }
 
 -(void) calculateSubtotal {
     [self calculateDiscounts];
     self.fsubtotal = self.fproductTotal - self.fdiscount-self.fdiscountInDollar;
+    self.fsubtotal= round(self.fsubtotal*100.0)/100.0;
 }
 -(void) calculateOrderTotal {
     [self calculateTax];
     self.fordertotal = self.fsubtotal + self.ftax;
+    self.fordertotal = round(self.fordertotal*100.0)/100.0;
 }
 @end
