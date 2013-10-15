@@ -5,16 +5,22 @@
 
 
 extern const struct SurveyResponseAttributes {
+	__unsafe_unretained NSString *accountId;
 	__unsafe_unretained NSString *pickAnswer;
 	__unsafe_unretained NSString *questionId;
 	__unsafe_unretained NSString *textAnswer;
 } SurveyResponseAttributes;
 
 extern const struct SurveyResponseRelationships {
+	__unsafe_unretained NSString *orderCredit;
+	__unsafe_unretained NSString *storeCall;
 } SurveyResponseRelationships;
 
 extern const struct SurveyResponseFetchedProperties {
 } SurveyResponseFetchedProperties;
+
+@class OrderCredit;
+@class StoreCall;
 
 
 
@@ -29,6 +35,16 @@ extern const struct SurveyResponseFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (SurveyResponseID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSString* accountId;
+
+
+
+//- (BOOL)validateAccountId:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -64,6 +80,20 @@ extern const struct SurveyResponseFetchedProperties {
 
 
 
+@property (nonatomic, strong) OrderCredit *orderCredit;
+
+//- (BOOL)validateOrderCredit:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) StoreCall *storeCall;
+
+//- (BOOL)validateStoreCall:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -72,6 +102,12 @@ extern const struct SurveyResponseFetchedProperties {
 @end
 
 @interface _SurveyResponse (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSString*)primitiveAccountId;
+- (void)setPrimitiveAccountId:(NSString*)value;
+
+
 
 
 - (NSString*)primitivePickAnswer;
@@ -90,6 +126,16 @@ extern const struct SurveyResponseFetchedProperties {
 - (void)setPrimitiveTextAnswer:(NSString*)value;
 
 
+
+
+
+- (OrderCredit*)primitiveOrderCredit;
+- (void)setPrimitiveOrderCredit:(OrderCredit*)value;
+
+
+
+- (StoreCall*)primitiveStoreCall;
+- (void)setPrimitiveStoreCall:(StoreCall*)value;
 
 
 @end

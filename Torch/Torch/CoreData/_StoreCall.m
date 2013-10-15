@@ -24,6 +24,7 @@ const struct StoreCallAttributes StoreCallAttributes = {
 const struct StoreCallRelationships StoreCallRelationships = {
 	.notes = @"notes",
 	.store = @"store",
+	.surveyResponses = @"surveyResponses",
 };
 
 const struct StoreCallFetchedProperties StoreCallFetchedProperties = {
@@ -422,6 +423,19 @@ const struct StoreCallFetchedProperties StoreCallFetchedProperties = {
 
 @dynamic store;
 
+	
+
+@dynamic surveyResponses;
+
+	
+- (NSMutableSet*)surveyResponsesSet {
+	[self willAccessValueForKey:@"surveyResponses"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"surveyResponses"];
+  
+	[self didAccessValueForKey:@"surveyResponses"];
+	return result;
+}
 	
 
 

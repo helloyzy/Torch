@@ -34,8 +34,15 @@
 }
 
 + (NSString *)getRepId {
-    SalesRep *salesRep = (SalesRep *)[[self allInStore:[self dataStore]] objectAtIndex:0];
-    return salesRep.remoteKey;
+    return [self salesRep].networkId;
+}
+
++ (NSString *)getCoachId {
+    return [self salesRep].managerNetworkId;
+}
+
++ (SalesRep *)salesRep {
+    return (SalesRep *)[[self allInStore:[self dataStore]] objectAtIndex:0];
 }
 
 @end

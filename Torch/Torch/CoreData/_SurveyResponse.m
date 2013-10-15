@@ -4,12 +4,15 @@
 #import "_SurveyResponse.h"
 
 const struct SurveyResponseAttributes SurveyResponseAttributes = {
+	.accountId = @"accountId",
 	.pickAnswer = @"pickAnswer",
 	.questionId = @"questionId",
 	.textAnswer = @"textAnswer",
 };
 
 const struct SurveyResponseRelationships SurveyResponseRelationships = {
+	.orderCredit = @"orderCredit",
+	.storeCall = @"storeCall",
 };
 
 const struct SurveyResponseFetchedProperties SurveyResponseFetchedProperties = {
@@ -48,6 +51,13 @@ const struct SurveyResponseFetchedProperties SurveyResponseFetchedProperties = {
 
 
 
+@dynamic accountId;
+
+
+
+
+
+
 @dynamic pickAnswer;
 
 
@@ -68,6 +78,14 @@ const struct SurveyResponseFetchedProperties SurveyResponseFetchedProperties = {
 
 
 
+
+@dynamic orderCredit;
+
+	
+
+@dynamic storeCall;
+
+	
 
 
 

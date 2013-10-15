@@ -25,6 +25,7 @@ extern const struct StoreCallAttributes {
 extern const struct StoreCallRelationships {
 	__unsafe_unretained NSString *notes;
 	__unsafe_unretained NSString *store;
+	__unsafe_unretained NSString *surveyResponses;
 } StoreCallRelationships;
 
 extern const struct StoreCallFetchedProperties {
@@ -32,6 +33,7 @@ extern const struct StoreCallFetchedProperties {
 
 @class Note;
 @class Store;
+@class SurveyResponse;
 
 
 
@@ -266,6 +268,13 @@ extern const struct StoreCallFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *surveyResponses;
+
+- (NSMutableSet*)surveyResponsesSet;
+
+
+
+
 
 @end
 
@@ -275,6 +284,11 @@ extern const struct StoreCallFetchedProperties {
 - (void)removeNotes:(NSSet*)value_;
 - (void)addNotesObject:(Note*)value_;
 - (void)removeNotesObject:(Note*)value_;
+
+- (void)addSurveyResponses:(NSSet*)value_;
+- (void)removeSurveyResponses:(NSSet*)value_;
+- (void)addSurveyResponsesObject:(SurveyResponse*)value_;
+- (void)removeSurveyResponsesObject:(SurveyResponse*)value_;
 
 @end
 
@@ -409,6 +423,11 @@ extern const struct StoreCallFetchedProperties {
 
 - (Store*)primitiveStore;
 - (void)setPrimitiveStore:(Store*)value;
+
+
+
+- (NSMutableSet*)primitiveSurveyResponses;
+- (void)setPrimitiveSurveyResponses:(NSMutableSet*)value;
 
 
 @end

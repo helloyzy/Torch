@@ -3,6 +3,7 @@
 #import <RestKit/RestKit.h>
 #import <NSManagedObject+InnerBand.h>
 
+
 #define MARKETING_SURVEY @"1"
 #define SEGMENTATION_SURVEY @"2"
 
@@ -105,9 +106,13 @@
     [self generateMockSurveys:storeId groupId:SEGMENTATION_SURVEY];
 }
 
-+ (void)generateMockSurveys:(NSString *)storeId {
-    [self generateMockSurveys:storeId groupId:MARKETING_SURVEY];
-    [self generateMockSurveys:storeId groupId:SEGMENTATION_SURVEY];
++ (void)generateMockSurveys {
+    NSArray *stores = [Store sortedStores];
+    for (Store *store in stores) {
+        NSString *storeId = store.remoteKey;
+        [self generateMockSurveys:storeId groupId:MARKETING_SURVEY];
+        [self generateMockSurveys:storeId groupId:SEGMENTATION_SURVEY];
+    }
 }
 
 @end

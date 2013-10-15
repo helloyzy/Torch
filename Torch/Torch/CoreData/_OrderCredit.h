@@ -38,6 +38,7 @@ extern const struct OrderCreditRelationships {
 	__unsafe_unretained NSString *notes;
 	__unsafe_unretained NSString *order;
 	__unsafe_unretained NSString *orderCreditItems;
+	__unsafe_unretained NSString *surveyResponse;
 } OrderCreditRelationships;
 
 extern const struct OrderCreditFetchedProperties {
@@ -48,6 +49,7 @@ extern const struct OrderCreditFetchedProperties {
 @class NoteResponse;
 @class Order;
 @class OrderCreditItem;
+@class SurveyResponse;
 
 
 
@@ -388,9 +390,9 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-@property (nonatomic, strong) NoteResponse *notes;
+@property (nonatomic, strong) NSSet *notes;
 
-//- (BOOL)validateNotes:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)notesSet;
 
 
 
@@ -409,15 +411,32 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *surveyResponse;
+
+- (NSMutableSet*)surveyResponseSet;
+
+
+
+
 
 @end
 
 @interface _OrderCredit (CoreDataGeneratedAccessors)
 
+- (void)addNotes:(NSSet*)value_;
+- (void)removeNotes:(NSSet*)value_;
+- (void)addNotesObject:(NoteResponse*)value_;
+- (void)removeNotesObject:(NoteResponse*)value_;
+
 - (void)addOrderCreditItems:(NSSet*)value_;
 - (void)removeOrderCreditItems:(NSSet*)value_;
 - (void)addOrderCreditItemsObject:(OrderCreditItem*)value_;
 - (void)removeOrderCreditItemsObject:(OrderCreditItem*)value_;
+
+- (void)addSurveyResponse:(NSSet*)value_;
+- (void)removeSurveyResponse:(NSSet*)value_;
+- (void)addSurveyResponseObject:(SurveyResponse*)value_;
+- (void)removeSurveyResponseObject:(SurveyResponse*)value_;
 
 @end
 
@@ -612,8 +631,8 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-- (NoteResponse*)primitiveNotes;
-- (void)setPrimitiveNotes:(NoteResponse*)value;
+- (NSMutableSet*)primitiveNotes;
+- (void)setPrimitiveNotes:(NSMutableSet*)value;
 
 
 
@@ -624,6 +643,11 @@ extern const struct OrderCreditFetchedProperties {
 
 - (NSMutableSet*)primitiveOrderCreditItems;
 - (void)setPrimitiveOrderCreditItems:(NSMutableSet*)value;
+
+
+
+- (NSMutableSet*)primitiveSurveyResponse;
+- (void)setPrimitiveSurveyResponse:(NSMutableSet*)value;
 
 
 @end

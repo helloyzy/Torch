@@ -25,6 +25,6 @@ typedef enum {
 + (NSArray *)marketingSurveyQuestions:(Store *)store;
 + (NSArray *)segmentationSurveyQuestions:(Store *)store;
 
-+ (void)generateMockSurveys:(NSString *)storeId;
++ (void)generateMockSurveys;
 
 @end

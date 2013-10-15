@@ -246,8 +246,21 @@
 }
 
 -(void)generateOrderJSONData {
-
+    // reuse the same order object if possible
+    /**
+    OrderCredit *order = nil;
+    StoreCall *call = [self.currentStore callInProgress];
+    if (call && call.associatedOrder) {
+        order = [call associatedOrderObject];
+    }
+    if (! order) {
+        order = [OrderCredit newInstance];
+    }
+     */
+    
     OrderCredit *order = [OrderCredit newInstance];
+    StoreCall *call = [self.currentStore callInProgress];
+    
     order.paymentAmountValue = self.fproductTotal;
     order.paymentType = @"Deduction";
     order.recordType = @"MX Orders";
@@ -278,24 +291,19 @@
             citem.packtypeDescription = productStored.packtypeDescription;
             citem.priceValue = productStored.priceValue;
             citem.upc = productStored.upc;
-            [CalItem save];
+            // [CalItem save];
             orderItem.calItem  = citem;
-            [OrderCreditItem save];
+            // [OrderCreditItem save];
             [order addOrderCreditItemsObject:orderItem];
         }
         
     }
     
-    // TODO: acccount from Store
-    
-    
-    [OrderCredit save];
-    
-    StoreCall *call = [self.currentStore callInProgress];
     if (call) {
         call.associatedOrder = order.hersheyReferenceNumber;
-        [call save];
     }
+    
+    [order save];
     
 }
 

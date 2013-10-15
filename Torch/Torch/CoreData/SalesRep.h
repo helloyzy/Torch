@@ -5,5 +5,8 @@
 // Custom logic goes here.
 
 + (NSString *)getRepId;
++ (NSString *)getCoachId;
+
++ (SalesRep *)salesRep;
 
 @end

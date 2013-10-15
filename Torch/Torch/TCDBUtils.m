@@ -153,12 +153,7 @@ static IBCoreDataStore * ibDataStore;
 }
 
 +(void) prepareSurveyData {
-    // only prepare data for the first scheduled store
-    NSArray *stores = [Store sortedStores];
-    Store *firstStore = [stores objectAtIndex:0];
-    NSString *accountId = [firstStore remoteKey];
-    [Survey generateMockSurveys:accountId];
-    
+    [Survey generateMockSurveys];
 }
 
 +(void) preparePriority {

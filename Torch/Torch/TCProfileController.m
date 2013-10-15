@@ -16,6 +16,7 @@
 #import "TCSysRes.h"
 #import "Order.h"
 #import "HersheySSOUtils.h"
+#import "TCDBUtils.h"
 
 @interface TCProfileController ()
 
@@ -103,6 +104,7 @@
 - (void)_logout {
     [HersheySSOUtils logout];
     setStoreInCall(nil);
+    [TCDBUtils removeDB];
     [self toLogin];
 }
 

@@ -37,6 +37,7 @@ const struct OrderCreditRelationships OrderCreditRelationships = {
 	.notes = @"notes",
 	.order = @"order",
 	.orderCreditItems = @"orderCreditItems",
+	.surveyResponse = @"surveyResponse",
 };
 
 const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
@@ -477,6 +478,15 @@ const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
 @dynamic notes;
 
 	
+- (NSMutableSet*)notesSet {
+	[self willAccessValueForKey:@"notes"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"notes"];
+  
+	[self didAccessValueForKey:@"notes"];
+	return result;
+}
+	
 
 @dynamic order;
 
@@ -491,6 +501,19 @@ const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"orderCreditItems"];
   
 	[self didAccessValueForKey:@"orderCreditItems"];
+	return result;
+}
+	
+
+@dynamic surveyResponse;
+
+	
+- (NSMutableSet*)surveyResponseSet {
+	[self willAccessValueForKey:@"surveyResponse"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"surveyResponse"];
+  
+	[self didAccessValueForKey:@"surveyResponse"];
 	return result;
 }
 	

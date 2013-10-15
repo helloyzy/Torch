@@ -5,6 +5,11 @@
 #import "Account.h"
 #import "Contact.h"
 #import "Store.h"
+#import "StoreCall.h"
+#import "SalesRep.h"
+#import "SurveyResponse.h"
+#import "NoteResponse.h"
+#import <IBFunctions.h>
 
 @interface OrderCredit ()
 
@@ -46,18 +51,55 @@
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"orderCreditItems" toKeyPath:@"orderCreditItems" withMapping:[OrderCreditItem objectMapping]]];
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"contact" toKeyPath:@"contact" withMapping:[Contact objectMappingForOrder]]];
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"account" toKeyPath:@"account" withMapping:[Account objectMapping]]];
+    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"surveyResponse" toKeyPath:@"surveyResponse" withMapping:[SurveyResponse objectMapping]]];
     return mapping;
 }
 
-- (void)fillInfoFromStore:(Store *)store {
+/**
+ * Contruct order info from store and call
+ * From store: account and contacts and contacts' notes
+ * From call: call notes and survey and GPS info when starting call
+ */
+- (void)fillInfoFromStore:(Store *)store call:(StoreCall *)call{
+    // GPS info from call
+    self.latitudeValue = call.latitudeValue;
+    self.longitudeValue = call.longitudeValue;
+    // call notes
+    for (Note *callNote in call.notes) {
+        [self addNotesObject:[NoteResponse fromNote:callNote]];
+    }
+    // survey responses binding to the call
+    for (SurveyResponse *survey in call.surveyResponses) {
+        [self addSurveyResponseObject:survey];
+    }
+    
+    // account
     Account *account = [Account newInstance];
     account.remoteKey = store.remoteKey;
     account.name = store.name;
-    account.phone = @""; // store.p
-    account.accountRecordType = @""; //?
-    account.street = @""; // store.str
-    // TODO
-    // account.
+    account.phone = store.phone; 
+    account.accountRecordType = store.accountRecordType; 
+    account.street = store.street;
+    account.city = store.city;
+    account.state = store.state;
+    account.postalcode = store.postalCode;
+    account.currency = store.currency;
+    account.repId = [SalesRep getRepId];
+    account.coachId = [SalesRep getCoachId];
+    account.longitude = IB_STRINGIFY_DOUBLE(store.longitudeValue);
+    account.latitude = IB_STRINGIFY_DOUBLE(store.latitudeValue);
+    account.invoiceValue = store.isSendInvoiceValue;
+    self.account = account;
+    // contacts and notes, only one contact in the Order? TBD
+    for (Contact *contact in store.contacts) {
+        self.contact = contact;
+        for (Note *contactNote in contact.notes) {
+            [self addNotesObject:[NoteResponse fromNote:contactNote]];
+        }
+        break;
+    }    
+    
+    [self save];
 }
 
 @end

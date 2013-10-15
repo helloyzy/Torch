@@ -15,6 +15,7 @@
 +(void) initDB;
 +(void) seed;
 +(void) copySeed;
++(void) removeDB;
 +(void) resetDB;
 // +(void) adjustStoreSchedule;
 +(void) prepareMockData;

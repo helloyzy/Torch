@@ -128,9 +128,10 @@
         <attribute name="totalDiscountAmount" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="account" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="orderCredit" inverseEntity="Account" syncable="YES"/>
         <relationship name="contact" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="orderCredit" inverseEntity="Contact" syncable="YES"/>
-        <relationship name="notes" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="NoteResponse" inverseName="orderCredit" inverseEntity="NoteResponse" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NoteResponse" inverseName="orderCredit" inverseEntity="NoteResponse" syncable="YES"/>
         <relationship name="order" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="orderCredits" inverseEntity="Order" syncable="YES"/>
         <relationship name="orderCreditItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderCreditItem" inverseName="orderCredit" inverseEntity="OrderCreditItem" syncable="YES"/>
+        <relationship name="surveyResponse" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SurveyResponse" inverseName="orderCredit" inverseEntity="SurveyResponse" syncable="YES"/>
     </entity>
     <entity name="OrderCreditItem" representedClassName="OrderCreditItem" syncable="YES">
         <attribute name="discountPercentage" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
@@ -279,6 +280,7 @@
         <attribute name="routed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="storeCall" inverseEntity="Note" syncable="YES"/>
         <relationship name="store" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="storeCalls" inverseEntity="Store" syncable="YES"/>
+        <relationship name="surveyResponses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SurveyResponse" inverseName="storeCall" inverseEntity="SurveyResponse" syncable="YES"/>
     </entity>
     <entity name="Survey" representedClassName="Survey" syncable="YES">
         <attribute name="accountId" optional="YES" attributeType="String" syncable="YES"/>
@@ -288,9 +290,12 @@
         <attribute name="questionTypeId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="SurveyResponse" representedClassName="SurveyResponse" syncable="YES">
+        <attribute name="accountId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pickAnswer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="questionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="textAnswer" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="orderCredit" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="OrderCredit" inverseName="surveyResponse" inverseEntity="OrderCredit" syncable="YES"/>
+        <relationship name="storeCall" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="StoreCall" inverseName="surveyResponses" inverseEntity="StoreCall" syncable="YES"/>
     </entity>
     <elements>
         <element name="Account" positionX="763" positionY="860" width="128" height="345"/>
@@ -300,7 +305,7 @@
         <element name="Note" positionX="1179" positionY="369" width="135" height="195"/>
         <element name="NoteResponse" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Order" positionX="621" positionY="608" width="128" height="163"/>
-        <element name="OrderCredit" positionX="799" positionY="378" width="128" height="495"/>
+        <element name="OrderCredit" positionX="799" positionY="378" width="128" height="510"/>
         <element name="OrderCreditItem" positionX="1015" positionY="881" width="128" height="208"/>
         <element name="Priority" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Product" positionX="385" positionY="252" width="128" height="615"/>
@@ -308,8 +313,8 @@
         <element name="PromotionItem" positionX="160" positionY="192" width="128" height="120"/>
         <element name="SalesRep" positionX="585" positionY="27" width="135" height="208"/>
         <element name="Store" positionX="1000" positionY="0" width="135" height="615"/>
-        <element name="StoreCall" positionX="1206" positionY="72" width="135" height="300"/>
+        <element name="StoreCall" positionX="1206" positionY="72" width="135" height="315"/>
         <element name="Survey" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="SurveyResponse" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="SurveyResponse" positionX="160" positionY="192" width="128" height="135"/>
     </elements>
 </model>

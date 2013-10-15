@@ -1,5 +1,5 @@
 #import "SurveyResponse.h"
-
+#import <RKEntityMapping.h>
 
 @interface SurveyResponse ()
 
@@ -10,6 +10,12 @@
 
 @implementation SurveyResponse
 
-// Custom logic goes here.
-
++ (RKEntityMapping *)objectMapping {
+    RKEntityMapping *mapping = [super objectMapping];
+    [mapping addAttributeMappingsFromArray:@[SurveyResponseAttributes.questionId,
+     SurveyResponseAttributes.accountId,
+     SurveyResponseAttributes.pickAnswer,
+     SurveyResponseAttributes.textAnswer]];
+    return mapping;
+}
 @end
