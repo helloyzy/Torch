@@ -166,3 +166,6 @@
 /*Ronald Mai*/
 "myday.title" = "  My day - ";
 "myday.add" = "add new customer";
+"addnote.title" = "Añadir Nota";
+"addnote.switch" = "Imprimir en el ticket?";
+"addnote.button" = "Guardar";

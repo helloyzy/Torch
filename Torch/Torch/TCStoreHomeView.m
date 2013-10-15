@@ -56,7 +56,7 @@ static NSString *kViewControllerKey = @"viewController";
     NSArray *contacts;
 }
 
-
+StoreCall *call;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -109,7 +109,6 @@ static NSString *kViewControllerKey = @"viewController";
     TCSummaryViewController *tcSummaryViewController =
     [[TCSummaryViewController alloc] initWithNibName:@"TCSummaryViewController" bundle:nil];
     tcSummaryViewController.store = self.currentStore;
-    tcSummaryViewController.storeCall = [self.currentStore callInProgress];
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.notes"],
                  kExplainKey:@"Visit summary and notes",
           kViewControllerKey:tcSummaryViewController } ];
@@ -479,7 +478,7 @@ static NSString *kViewControllerKey = @"viewController";
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    StoreCall *call = [StoreCall newInstance:self.currentStore];
+    call = [StoreCall newInstance:self.currentStore];
     if (_location) {
         call.latitudeValue = _location.coordinate.latitude;
         call.longitudeValue = _location.coordinate.longitude;
@@ -513,7 +512,6 @@ static NSString *kViewControllerKey = @"viewController";
     
 }
 - (void) sliderDidSlideToStart:(TCSliderView *)slideView {
-    StoreCall *call = [self.currentStore callInProgress];
     [call endCall];
     setStoreInCall(nil);
     // Go to summary page

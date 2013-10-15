@@ -68,15 +68,20 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
 - (void)viewDidLoad
 {
     assert(store != NULL);
-    assert(self.storeCall != NULL);
+    //assert(self.storeCall != NULL);
+    if (self.storeCall == NULL) {
+        self.storeCall = [store callInProgress];
+    }
 
     [super viewDidLoad];
-    self.order = self.storeCall.associatedOrderObject;
-    
+    self.order = self.storeCall.associatedOrderObject;         
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     MGBox *summary = [MGBox boxWithSize:(CGSize) {320, 100}];
     summary.contentLayoutMode = MGLayoutGridStyle;
     summary.leftPadding = summary.rightPadding = 16;
-
+    
     [summary.boxes addObjectsFromArray:[@[
                                         [self cell:[NSString stringWithFormat:@"$%d", (NSInteger)self.storeCall.associatedOrderObject.paymentAmountValue] numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
                                         [self cell:[NSString stringWithFormat:@"%.0f", 99.0] numberOfLines:1 textColor:TCColorTitleGray size:cellSize],
@@ -103,6 +108,11 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
         return [self callItemWithTitle:note.type
                               subtitle:note.title];
     } ] asArray]];
+
+    [scroller.boxes addObjectsFromArray:[[self.storeCall.notes map:^(Note* note) {
+        return [self callItemWithTitle:note.type
+                              subtitle:note.title];
+    } ] asArray]];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = (CGRect) {0, 0, 300, 48};
@@ -123,18 +133,16 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
     line.topPadding = 40;
     [scroller.boxes addObject:line];
     [scroller layout];
-    [self.view addSubview:scroller];        
+    if (self.view.subviews.count > 0) {
+        [self.view.subviews[0] removeFromSuperview];
+    }
+    [self.view addSubview:scroller];
 }
 
 - (void)addNote {
     TCAddNoteController *controller = [[TCAddNoteController alloc] init];
+    controller.call = self.storeCall;
     [self.navigationController pushViewController:controller animated:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-
 }
 
 @end
