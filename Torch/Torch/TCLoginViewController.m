@@ -45,8 +45,11 @@
     txtPwd.placeholder = @""; // [self localString:@"login.password"];
     [btnSignIn setTitle:[self localString:@"login.signIn"] forState:UIControlStateNormal];
     [btnReadMore setTitle:[self localString:@"login.readMore"] forState:UIControlStateNormal];
-    lblDisclaim.text = [self localString:@"login.disclaimation"];
-    
+    // lblDisclaim.text = [self localString:@"login.disclaimation"];
+    NSString * fileName = [self localString:@"disclaimation.fileName"];
+    NSString * filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"txt"];
+    NSString * content = [[NSString alloc]initWithContentsOfFile:filePath  encoding:NSUTF8StringEncoding error:nil];
+    lblDisclaim.text = content;
     [self initTextFields];
 }
 

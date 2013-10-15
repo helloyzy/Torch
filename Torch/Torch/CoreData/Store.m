@@ -61,7 +61,7 @@
 }
 
 - (BOOL)hasLocation {
-    if (self.longitude && self.latitude) {
+    if (self.longitude && self.longitudeValue > 0 && self.latitude && self.latitudeValue > 0) {
         return YES;
     }
     return NO;
