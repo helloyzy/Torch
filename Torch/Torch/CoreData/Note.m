@@ -1,5 +1,6 @@
 #import "Note.h"
 #import <RestKit/RestKit.h>
+#import <InnerBand/NSManagedObject+InnerBand.h>
 
 @interface Note ()
 
@@ -24,6 +25,13 @@
      NoteAttributes.externalId
      ]];
     return mapping;
+}
+
++ (Note*) noteWithType: (NSString*) type title: (NSString*) title {
+    Note* note = [Note create];
+    note.type = type;
+    note.title = title;
+    return note;
 }
 
 @end

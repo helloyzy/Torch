@@ -153,7 +153,7 @@
 
 /*David Xu*/
 
-"storehome.contactors"= "Contactors";
+"storehome.contactors"= "Contacts";
 "storehome.menu.priority" = "Priorities";
 "storehome.menu.takeInventory"= "Take Inventory";
 "storehome.menu.createOrder" = "Create Order";
@@ -166,3 +166,6 @@
 /*Ronald Mai*/
 "myday.title" = "  My day - ";
 "myday.add" = "add new customer";
+"addnote.title" = "Añadir Nota";
+"addnote.switch" = "Imprimir en el ticket?";
+"addnote.button" = "Guardar";
