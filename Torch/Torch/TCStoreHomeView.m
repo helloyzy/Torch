@@ -17,6 +17,7 @@
 #import "TCStoreNoVisit.h"
 #import "Contact.h"
 #import "TCAddNewCustomerVwCtl.h"
+#import "TCAddNoteController.h"
 #import "TCSysRes.h"
 #import "Store.h"
 #import "StoreCall.h"
@@ -106,12 +107,11 @@ StoreCall *call;
                  kExplainKey:@"Order History",
           kViewControllerKey:surveyList } ];
 
-    TCSummaryViewController *tcSummaryViewController =
-    [[TCSummaryViewController alloc] initWithNibName:@"TCSummaryViewController" bundle:nil];
-    tcSummaryViewController.store = self.currentStore;
+    TCAddNoteController *addNote = [[TCAddNoteController alloc] init];
+    addNote.store = self.currentStore;
 	[self.menuList addObject:@{ kTitleKey:[self localString:@"storehome.menu.notes"],
                  kExplainKey:@"Visit summary and notes",
-          kViewControllerKey:tcSummaryViewController } ];
+          kViewControllerKey:addNote } ];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
