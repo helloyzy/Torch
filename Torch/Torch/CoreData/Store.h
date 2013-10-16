@@ -1,7 +1,8 @@
 #import "_Store.h"
 #import "NSManagedObject+TCRestkit.h"
+#import <MapKit/MapKit.h>
 
-@interface Store : _Store {}
+@interface Store : _Store<MKAnnotation> {}
 // Custom logic goes here.
 
 - (BOOL)hasLocation;

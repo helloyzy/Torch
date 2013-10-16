@@ -14,7 +14,19 @@
 
 @implementation Store
 
-@synthesize sequenceNum, taxRate;
+@synthesize sequenceNum, taxRate;//, coordinate = _coordinate, title, subtitle;
+
+- (CLLocationCoordinate2D) coordinate {
+    return (CLLocationCoordinate2D) {self.latitudeValue, self.longitudeValue};
+}
+
+- (NSString*) title {
+    return self.name;
+}
+
+- (NSString*) subtitle {
+    return self.street;
+}
 
 + (RKEntityMapping *)objectMapping
 {

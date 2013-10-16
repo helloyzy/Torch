@@ -8,12 +8,17 @@
 
 #import "TCRouteMapViewController.h"
 #import <MapKit/MapKit.h>
+#import "Store.h"
+#import <OCTotallyLazy.h>
 
 @interface TCRouteMapViewController ()
 
 @end
 
-@implementation TCRouteMapViewController
+@implementation TCRouteMapViewController {
+    NSArray *_stores;
+    Store *_store;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,29 +33,44 @@
 {
     [super viewDidLoad];
     self.mapView.delegate = self;
-    CLLocationCoordinate2D endingCoord = CLLocationCoordinate2DMake(30.446947, 120.047607);
+    /* CLLocationCoordinate2D endingCoord = CLLocationCoordinate2DMake(30.446947, 120.047607);
     MKPlacemark *endLocation = [[MKPlacemark alloc] initWithCoordinate:endingCoord addressDictionary:nil];
     MKMapItem *endingItem = [[MKMapItem alloc] initWithPlacemark:endLocation];
     
     NSMutableDictionary *launchOptions = [[NSMutableDictionary alloc] init];
     [launchOptions setObject:MKLaunchOptionsDirectionsModeDriving forKey:MKLaunchOptionsDirectionsModeKey];
-    
+    */
     // [endingItem openInMapsWithLaunchOptions:launchOptions];
 }
 
 - (void)centerMap {
+    _stores = [Store sortedStores];
+    _store = _stores[0];
+    
     MKPointAnnotation* poi = [[MKPointAnnotation alloc] init];
-     poi.coordinate = (CLLocationCoordinate2D) {30.0, 120.0};
+     poi.coordinate = (CLLocationCoordinate2D) {_store.latitudeValue, _store.longitudeValue};
      poi.title = @"Hello";
      poi.subtitle = @"World";
      
      [self.mapView setRegion: [self.mapView regionThatFits: MKCoordinateRegionMakeWithDistance(poi.coordinate, 500, 500)]
      animated:true];
-     [self.mapView addAnnotation:poi];
+    if (self.mapView.annotations.count > 0) {
+        [self.mapView removeAnnotations:self.mapView.annotations];
+    }
+    NSArray* storesHasLocation = [[_stores filter:^BOOL(Store *each) {
+        return each.latitudeValue > 0;
+    }] asArray];
+    if (storesHasLocation.count > 0) {
+        [self.mapView addAnnotations:storesHasLocation];
+        [self.mapView setRegion:
+         (MKCoordinateRegion){((id<MKAnnotation>) storesHasLocation[0]).coordinate,
+             (MKCoordinateSpan){12.7, 12.7}} animated:NO];        
+    }
     
+
     CLLocationCoordinate2D center;
-	center.latitude = 30.34203;
-	center.longitude = 30.08611;
+	center.latitude = _store.latitudeValue;
+	center.longitude = _store.longitudeValue;
 	
 	//declare span of map (height and width in degrees)
 	MKCoordinateSpan span;
@@ -68,21 +88,18 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    //[self centerMap];
-    [self performSelector:@selector(centerMap) withObject:nil afterDelay:3.01];
+    if (_stores.count > 0) { // Need to delay loading the first time
+        [self centerMap];
+    } else {
+        [self performSelector:@selector(centerMap) withObject:nil afterDelay:3.01];
+    }
     [super viewDidAppear:animated];
     
-    CLLocationCoordinate2D centerLocation =
-    CLLocationCoordinate2DMake(39.016740, -5.93504);
+    /*CLLocationCoordinate2D centerLocation =
+    CLLocationCoordinate2DMake(_store.latitudeValue, _store.longitudeValue);
     MKCoordinateSpan span = MKCoordinateSpanMake(12.7, 12.7);
     MKCoordinateRegion region = MKCoordinateRegionMake(centerLocation, span);
-    [self.mapView setRegion:region animated:NO];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.mapView setRegion:region animated:NO];*/
 }
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -91,7 +108,12 @@
     annView.canShowCallout = YES;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,0, annView.frame.size.width,annView.frame.size.height-10)];
     label.backgroundColor = [UIColor clearColor];
-    label.text = @"#1";
+    if ([_stores containsObject:annotation]) {
+        label.text = [NSString stringWithFormat:@"#%d", [_stores indexOfObject:annotation]+1];        
+        NSLog(@"anno: %f %f %@", [annotation coordinate].latitude, [annotation coordinate].longitude, label.text);
+    } else {
+        return nil;
+    }
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
     [annView addSubview:label];
