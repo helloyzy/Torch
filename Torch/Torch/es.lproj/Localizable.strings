@@ -172,3 +172,8 @@
 "addnote.title" = "Añadir Nota";
 "addnote.switch" = "Imprimir en el ticket?";
 "addnote.button" = "Guardar";
+
+"survey.list.title" = "Encuestas";
+"survey.list.noSurvey" = "No hay encuestas";
+"survey.marketing.title" = "Encuesta de Marketing";
+"survey.segmentation.title" = "Encuesta de Segmentación";
