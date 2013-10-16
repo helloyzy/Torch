@@ -12,8 +12,11 @@
 #import <InnerBand/InnerBand.h>
 #import "UIViewController+MGBox.h"
 #import <MGTableBox.h>
+#import "TCSysRes.h"
 
-@interface TCSurveyListController ()
+@interface TCSurveyListController () {
+    NSInteger _availableSurveyType;
+}
 
 @property (nonatomic, strong) MGTableBox* table;
 
@@ -38,46 +41,56 @@ NSArray* _titles;
 {
     [super viewDidLoad];
     
-    _titles = @[@"Encuesta de Marketing", @"Encuesta de Segmentación"];
+    _titles = @[[self localString:@"survey.marketing.title"],[self localString:@"survey.segmentation.title"]];
     
-    table = [MGTableBox boxWithSize:self.view.size];
-    table.height = 200;
+    _availableSurveyType = 0;
+    if ([Survey marketingSurveyQuestions:self.store].count > 0) {
+        _availableSurveyType ++;
+    }
+    if ([Survey segmentationSurveyQuestions:self.store].count > 0) {
+        _availableSurveyType ++;
+    }
     
-    [table.topLines addObject:[self sectionHeader:@"Almacene nombre aquí" backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor] fontName:@"HelveticaNeueLTCom-Md"]];
-    [table.topLines addObject:[self sectionHeader:@"Encuestas" backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor] fontName:@"HelveticaNeueLTCom-Md"]];
+    CGRect frame = CGRectMake(0, 8, self.view.size.width, 200);
+    table = [[MGTableBox alloc] initWithFrame:frame];
+        
+    [table.topLines addObject:[self sectionHeader:self.store.name backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor]]];
+    NSString *sectionHeader = [self localString:@"survey.list.title"];
+    if (_availableSurveyType == 0) {
+        sectionHeader = [self localString:@"survey.list.noSurvey"];
+    }
+    [table.topLines addObject:[self sectionHeader:sectionHeader backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor]]];
     [table layout];
     
     [self.view addSubview:table];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+	return _availableSurveyType > 0 ? 1 : 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return _availableSurveyType;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {	
     UITableViewCell *cell;
-        static NSString *storeHomeSec3Identifier = @"storeHomeSection3";
-        cell = [tableView dequeueReusableCellWithIdentifier:storeHomeSec3Identifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:storeHomeSec3Identifier];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        }
+    static NSString *surveyCellIdentifier = @"surveyCellIdentifier";
+    cell = [tableView dequeueReusableCellWithIdentifier:surveyCellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:surveyCellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    }
     cell.textLabel.text = _titles[indexPath.row];
-        //cell.textLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kTitleKey];
-            cell.textLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
+    cell.textLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TCSurveyController *survey =
     [[TCSurveyController alloc] init];
-    survey.questions = /*[Survey allForPredicate:[NSPredicate predicateWithFormat:@"NOT(questionType = nil)"]];*/
-    indexPath.row == 0 ? [Survey marketingSurveyQuestions:self.store] : [Survey segmentationSurveyQuestions:self.store];
+    survey.questions = indexPath.row == 0 ? [Survey marketingSurveyQuestions:self.store] : [Survey segmentationSurveyQuestions:self.store];
     survey.index = 0;
     survey.subtitle = _titles[indexPath.row];
     [self.navigationController pushViewController:survey animated:YES];

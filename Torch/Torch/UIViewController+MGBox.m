@@ -8,6 +8,7 @@
 
 #import "UIViewController+MGBox.h"
 #import "GraphicsUtils.h"
+#import "TCSysRes.h"
 
 static const CGSize rowSize = (CGSize){320, 35};
 static const CGSize cellSize = (CGSize){(320-32)/3, 50};
@@ -21,14 +22,19 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
     label.backgroundColor = [UIColor clearColor];
     label.textColor = textColor;
     label.text = text;
-    label.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:16];
+    label.font = TCFont_HNLTComBd(16);
     return label;
 }
 
 - (MGLine *)sectionHeader:(NSString *)title backgroundColor:(UIColor *)backgroundColor underlineColor:(UIColor *)underlineColor fontName:(NSString *)font {
     CGSize size = (CGSize) {280, 20};
     return [self getLine:title backgroundColor:backgroundColor underlineColor:underlineColor font:[UIFont fontWithName:font size:17] size:size numberOfLines:1];
+}
 
+- (MGLine *)sectionHeader:(NSString *)title backgroundColor:(UIColor *)backgroundColor underlineColor:(UIColor *)underlineColor {
+    CGSize size = (CGSize) {280, 20};
+    UIFont *font = TCFont_HNLTComMd(17);
+    return [self getLine:title backgroundColor:backgroundColor underlineColor:underlineColor font:font size:size numberOfLines:1];
 }
 
 - (MGLine *)getLine:(NSString *)title backgroundColor:(UIColor *)backgroundColor underlineColor:(UIColor *)underlineColor font:(UIFont *)font size:(CGSize)size numberOfLines:(int)numberOfLines {
