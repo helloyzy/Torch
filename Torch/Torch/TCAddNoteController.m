@@ -12,6 +12,7 @@
 #import <UIKit/UIKit.h>
 #import "Contact.h"
 #import "StoreCall.h"
+#import "Store.h"
 
 @interface TCAddNoteController ()
 
@@ -31,6 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.call == nil && self.store != nil) {
+        self.call = [self.store callInProgress];
+    }
     UIView *sepertor = [[UIView alloc] initWithFrame:CGRectMake(0, 43, 320, 2)];
     sepertor.backgroundColor = [UIColor colorWithRed:0.188 green:0.376 blue:0.565 alpha:1];
     [self.view addSubview:sepertor];
