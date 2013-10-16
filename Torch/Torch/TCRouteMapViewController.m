@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "Store.h"
 #import <OCTotallyLazy.h>
+#import <MGBox2/UIControl+MGEvents.h>
 
 @interface TCRouteMapViewController ()
 
@@ -103,6 +104,7 @@
 }
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    Store* store = annotation;
     MKAnnotationView *annView = [[MKAnnotationView alloc ] initWithAnnotation:annotation reuseIdentifier:@"ClientPin"];
     annView.image = [UIImage imageNamed:@"client-pin.png"];
     annView.canShowCallout = YES;
@@ -119,7 +121,15 @@
     [annView addSubview:label];
     annView.calloutOffset = (CGPoint) {0, 48};
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//    [rightButton addTarget:nil action:nil forControlEvents:UIControlEventTouchUpInside];
+    [rightButton onControlEvent:UIControlEventTouchUpInside do:^(void) {
+        MKMapItem *dest = [[MKMapItem alloc]
+                           initWithPlacemark:[[MKPlacemark alloc]
+                                              initWithCoordinate:store.coordinate
+                                              addressDictionary:@{}]];
+        [dest setName:store.name];
+        [MKMapItem openMapsWithItems:@[[MKMapItem mapItemForCurrentLocation], dest]
+                       launchOptions:@{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving}];
+    }];
     annView.rightCalloutAccessoryView = rightButton;
     return annView;
 }

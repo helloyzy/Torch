@@ -25,7 +25,7 @@
 }
 
 - (NSString*) subtitle {
-    return self.street;
+    return [NSString stringWithFormat:@"%@ %@, %@ %@", self.address, self.city, self.country, self.postalCode];
 }
 
 + (RKEntityMapping *)objectMapping
