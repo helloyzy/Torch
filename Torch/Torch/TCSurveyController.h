@@ -9,10 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "TCNavVwCtl.h"
 
+@class TCStoreHomeView, Store;
+
 @interface TCSurveyController : TCNavVwCtl<UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (atomic, strong) NSArray* questions;
 @property (atomic) NSInteger index;
 @property (atomic, strong) NSString* subtitle;
+
+@property (nonatomic, strong) Store *store;
+@property (nonatomic, weak) TCStoreHomeView *storeHomeView;
+@property (nonatomic, strong) NSMutableDictionary *questionAnswers;
 
 @end

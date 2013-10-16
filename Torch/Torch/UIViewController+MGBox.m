@@ -31,9 +31,8 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
     return [self getLine:title backgroundColor:backgroundColor underlineColor:underlineColor font:[UIFont fontWithName:font size:17] size:size numberOfLines:1];
 }
 
-- (MGLine *)sectionHeader:(NSString *)title backgroundColor:(UIColor *)backgroundColor underlineColor:(UIColor *)underlineColor {
+- (MGLine *)sectionHeader:(NSString *)title backgroundColor:(UIColor *)backgroundColor underlineColor:(UIColor *)underlineColor font:(UIFont *)font {
     CGSize size = (CGSize) {280, 20};
-    UIFont *font = TCFont_HNLTComMd(17);
     return [self getLine:title backgroundColor:backgroundColor underlineColor:underlineColor font:font size:size numberOfLines:1];
 }
 

@@ -17,6 +17,7 @@
 "Retry" = "Reintentar";
 "Yes" = "Sí";
 "No" = "No";
+"Next" = "Próximo";
 
 "login.username" = "Nombre de usuario";
 "login.username.placeholder" = "HFXXXXXX";
@@ -177,3 +178,8 @@
 "survey.list.noSurvey" = "No hay encuestas";
 "survey.marketing.title" = "Encuesta de Marketing";
 "survey.segmentation.title" = "Encuesta de Segmentación";
+
+"survey.textquestion.placeholder" = "Responder";
+"survey.progressinfo" = "   Pregunta %d de %d";
+"survey.completeSurvey" = "Finalizar Encuesta";
+"survey.provideAnswer" = "Por favor, dar una respuesta a la pregunta!";

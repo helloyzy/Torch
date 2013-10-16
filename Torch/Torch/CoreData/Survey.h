@@ -17,7 +17,6 @@ typedef enum {
 @interface Survey : _Survey {}
 
 @property (getter=answersFromString, readonly) NSArray* answerArray;
-@property (readonly) SEL selector;
 
 - (SurveyType)surveyType;
 - (SurveyQuestionType)surveyQuestionType;

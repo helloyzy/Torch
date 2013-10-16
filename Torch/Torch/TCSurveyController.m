@@ -16,8 +16,16 @@
 #import <MGScrollView.h>
 #import <UIView+MGEasyFrame.h>
 #import <UIKit/UITextField.h>
+#import "TCSysRes.h"
+#import "TCStoreHomeView.h"
+#import "Store.h"
+#import "TCUtils.h"
+#import <IBFunctions.h>
 
-@interface TCSurveyController ()
+@interface TCSurveyController () {
+    __weak UITextField *_textField;
+    __weak UIPickerView *_picker;
+}
 
 @property (atomic) CGRect pickerHeight;
 //@property (atomic) BOOL pickerSingle;
@@ -43,36 +51,19 @@ Survey* _survey;
     return self;
 }
 
-- (void) choiceSurvey {
-    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:(CGRect) {0, 0, 320, 100}];
-    picker.delegate = self;
-    picker.showsSelectionIndicator = YES;
-    picker.dataSource = self;
-    [self.table.boxes addObject:mgline(picker)];
-}
-
-- (void) textSurvey {
-    UITextField *textField = [[UITextField alloc] initWithFrame:(CGRect) {0, 0, 300, 30}];
-    textField.placeholder = @"Answer";
-    textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.returnKeyType = UIReturnKeyNext;
-    textField.delegate = self;
-    [table.boxes addObject:padding(mgline(textField))];
-}
-
-- (void) numericSurvey {
-    [self textSurvey];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _survey = self.questions[self.index];
     
-    pickerFont = [UIFont boldSystemFontOfSize:24.0];
+    if (self.index == 0) {
+        self.questionAnswers = [[NSMutableDictionary alloc]init];
+    }
+    
+    _survey = self.questions[self.index];
     self.selected = [[NSMutableSet alloc] init];
+    
     //self.pickerSingle = YES;
-    //self.surveyOptions = _survey.answerArray;//  @[@"A little late", @"B", @"C"];
+    pickerFont = TCFont_HNLTComBd(28);
     CGFloat height = [[[_survey.answerArray map:^(NSString* str) {
         return [NSNumber numberWithFloat:
                 [str sizeWithFont:pickerFont
@@ -82,11 +73,10 @@ Survey* _survey;
     }] floatValue];
     self.pickerHeight = (CGRect) {0, 0, 265, height};
 
-//    MGTableBox *table = [MGTableBox boxWithSize:self.view.size];
     table = [MGScrollView scrollerWithSize:self.view.size];
-    table.height = 420;
+    // table.height = 420;
     
-    [table.boxes addObject:[self sectionHeader:self.subtitle backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor] fontName:@"HelveticaNeueLTCom-Md"]];
+    [table.boxes addObject:[self sectionHeader:self.subtitle backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor] font:TCFont_HNLTComMd(17)]];
 
     DDProgressView *progressBar = [[DDProgressView alloc] initWithFrame:CGRectMake(15.0f, 20.0f, self.view.bounds.size.width - 30.0f, 100.0f)];
     progressBar.outerColor = [UIColor clearColor];
@@ -94,19 +84,19 @@ Survey* _survey;
     progressBar.progress = (self.index+1.0) / (self.questions.count + 0.000001);
     progressBar.innerColor = TCColorProgressBlue;
 
-    UILabel *progressText = [[UILabel alloc] initWithFrame:(CGRect) {0, 5, progressBar.bounds.size.width, progressBar.bounds.size.height-5}];
+    UILabel *progressText = [[UILabel alloc] initWithFrame:(CGRect) {0, 3, progressBar.bounds.size.width, progressBar.bounds.size.height - 6}];
     progressText.adjustsFontSizeToFitWidth = NO;
     progressText.textAlignment = NSTextAlignmentLeft;
     progressText.numberOfLines = 1;
     progressText.textColor = [UIColor whiteColor];
     progressText.backgroundColor = [UIColor clearColor];
-    progressText.text = [NSString stringWithFormat:@"   Pregunta %d de %d", self.index+1, self.questions.count];
-    progressText.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:14];
+    progressText.text = [NSString stringWithFormat:[self localString:@"survey.progressinfo"], self.index+1, self.questions.count];
+    progressText.font = TCFont_HNLTComBd(15);
     [progressBar addSubview:progressText];
 
     [table.boxes addObject:padding(mgline(progressBar))];
     
-    [table.boxes addObject:[self sectionHeader:_survey.question backgroundColor:[UIColor clearColor] underlineColor:[UIColor clearColor] fontName:@"HelveticaNeueLTCom-Md"]];
+    [table.boxes addObject:[self sectionHeader:_survey.question backgroundColor:[UIColor clearColor] underlineColor:[UIColor clearColor] font:TCFont_HNLTComMd(17)]];
     
     UITextView *textView = [[UITextView alloc] initWithFrame:(CGRect) {0, 0, 300, 60}];
     textView.editable = YES;
@@ -118,20 +108,113 @@ Survey* _survey;
     [textView.layer setCornerRadius:8.0f];
     [textView.layer setMasksToBounds:YES];
     
-    [self performSelector:[_survey selector]];
-
+    switch ([_survey surveyQuestionType]) {
+        case NumericQuestion:
+        case TextQuestion:
+            [self textSurvey];
+            break;
+        case ChoiceQuestion:
+            [self choiceSurvey];
+            break;
+        default:
+            break;
+    }
+    
     //[table.boxes addObject:padding(mgline(textView))];
     
-    UIButton *button = blueButton(@"Next");
+    NSString *buttonText = [self localString:@"Next"];
+    if ([self isLastQuestion]) {
+        buttonText = [self localString:@"survey.completeSurvey"];
+    }
+    UIButton *button = blueButton(buttonText);
     [table.boxes addObject:padding(padding(mgline(button)))];
     [button addTarget:self action:@selector(moveToNext) forControlEvents:UIControlEventTouchUpInside];
     [table layout];
     [self.view addSubview:table];
 }
 
+- (void) moveToNext {
+    if (! [self collectAnswer]) {
+        showAlert(nil, [self localString:@"survey.provideAnswer"], nil);
+        return;
+    }
+    if (! [self isLastQuestion]) {
+        TCSurveyController *next = [[TCSurveyController alloc] init];
+        next.index = self.index + 1;
+        next.storeHomeView = self.storeHomeView;
+        next.store = self.store;
+        next.questions = self.questions;
+        next.questionAnswers = self.questionAnswers;
+        next.subtitle = self.subtitle;
+        [self.navigationController pushViewController:next animated:YES];
+    } else {
+        // save questions - TODO
+        [self.navigationController popToViewController:self.storeHomeView animated:YES];
+    }
+}
+
+- (BOOL)collectAnswer {
+    NSString *answer = nil;
+    switch ([_survey surveyQuestionType]) {
+        case NumericQuestion:
+        case TextQuestion:
+            [_textField resignFirstResponder];
+            answer = _textField.text;
+            break;
+        case ChoiceQuestion:
+            answer = _survey.answerArray[[_picker selectedRowInComponent:0]];
+            break;
+        default:
+            break;
+    }
+    if (answer) {
+        [self.questionAnswers setObject:answer forKey:IB_STRINGIFY_INT(self.index)];
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (BOOL)isLastQuestion {
+    return self.index + 1 >= self.questions.count;
+}
+
+- (void) choiceSurvey {
+    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:(CGRect) {0, 0, 320, 100}];
+    picker.delegate = self;
+    picker.showsSelectionIndicator = YES;
+    picker.dataSource = self;
+    [self.table.boxes addObject:mgline(picker)];
+    _picker = picker;
+}
+
+- (void) textSurvey {
+    UITextField *textField = [[UITextField alloc] initWithFrame:(CGRect) {0, 0, 300, 30}];
+    textField.placeholder = [self localString:@"survey.textquestion.placeholder"];
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    textField.returnKeyType = UIReturnKeyDone;
+    textField.delegate = self;
+    textField.font = TCFont_HNLTComMd(17);
+    [table.boxes addObject:padding(mgline(textField))];
+    _textField = textField;
+}
+
+- (void) numericSurvey {
+    [self textSurvey];
+}
+
+#pragma mark - text field delegate 
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    // [self moveToNext];
+    return YES;
+}
+
+#pragma mark - picker delegate
+
 // tell the picker how many rows are available for a given component
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    assert(_survey.answerArray != NULL);
     return [_survey.answerArray count];
 }
 
@@ -154,33 +237,18 @@ Survey* _survey;
     return self.pickerHeight.size.height;
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    [self moveToNext];
-    return YES;
-}
-
-- (void) moveToNext {
-    if (self.index+1 < self.questions.count) {
-        TCSurveyController *next = [[TCSurveyController alloc] init];
-        next.questions = self.questions;
-        next.index = self.index+1;
-        [self.navigationController pushViewController:next animated:YES];
-    }
-}
-
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    NSString* obj = _survey.answerArray[row];
-    if ([self.selected containsObject:obj]) {
-        [self.selected removeObject:obj];
-        [pickerView reloadAllComponents];
-        return;
-    }
-   /* if (self.pickerSingle) {
-        [self.selected removeAllObjects];
-    } */
-    [self.selected addObject:obj];
-    [pickerView reloadAllComponents];
+//    NSString* obj = _survey.answerArray[row];
+//    if ([self.selected containsObject:obj]) {
+//        [self.selected removeObject:obj];
+//        // [pickerView reloadAllComponents];
+//        return;
+//    }
+//   /* if (self.pickerSingle) {
+//        [self.selected removeAllObjects];
+//    } */
+//    [self.selected addObject:obj];
+//    // [pickerView reloadAllComponents];
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
@@ -190,7 +258,7 @@ Survey* _survey;
    // }
     UILabel *pickerLabel = [[UILabel alloc] initWithFrame:self.pickerHeight];
     [pickerLabel setBackgroundColor:[UIColor clearColor]];
-    [pickerLabel setFont:[UIFont boldSystemFontOfSize:24.0]];
+    [pickerLabel setFont:TCFont_HNLTComBd(24)];
     [pickerLabel setNumberOfLines:0];
     [pickerLabel setText:str];
     return pickerLabel;

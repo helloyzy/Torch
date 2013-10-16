@@ -15,6 +15,7 @@
 "Retry" = "Retry";
 "Yes" = "Yes";
 "No" = "No";
+"Next" = "Next";
 
 "login.username" = "User Name";
 "login.username.placeholder" = "Username";
@@ -174,3 +175,8 @@
 "survey.list.noSurvey" = "No Available Surveys";
 "survey.marketing.title" = "Marketing Survey";
 "survey.segmentation.title" = "Segmentation Survey";
+
+"survey.textquestion.placeholder" = "Answer";
+"survey.progressinfo" = "   Question %d of %d";
+"survey.completeSurvey" = "Complete Survey";
+"survey.provideAnswer" = "Please provide an answer for the question!";

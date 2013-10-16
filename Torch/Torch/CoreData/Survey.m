@@ -41,10 +41,6 @@
     }
 }
 
-- (SEL) selector {
-    return NSSelectorFromString([self.questionType stringByAppendingString:@"Survey"]);
-}
-
 - (SurveyQuestionType)surveyQuestionType {
     if ([self.questionType isEqualToString:CHOICE_QUESTION]) {
         return ChoiceQuestion;

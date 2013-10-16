@@ -54,12 +54,12 @@ NSArray* _titles;
     CGRect frame = CGRectMake(0, 8, self.view.size.width, 200);
     table = [[MGTableBox alloc] initWithFrame:frame];
         
-    [table.topLines addObject:[self sectionHeader:self.store.name backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor]]];
+    [table.topLines addObject:[self sectionHeader:self.store.name backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor] font:TCFont_HNLTComBd(17)]];
     NSString *sectionHeader = [self localString:@"survey.list.title"];
     if (_availableSurveyType == 0) {
         sectionHeader = [self localString:@"survey.list.noSurvey"];
     }
-    [table.topLines addObject:[self sectionHeader:sectionHeader backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor]]];
+    [table.topLines addObject:[self sectionHeader:sectionHeader backgroundColor:[UIColor clearColor] underlineColor:[UIColor blackColor] font:TCFont_HNLTComBd(17)]];
     [table layout];
     
     [self.view addSubview:table];
@@ -83,16 +83,18 @@ NSArray* _titles;
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
     cell.textLabel.text = _titles[indexPath.row];
+    cell.textLabel.font = TCFont_HNLTComMd(17);
     cell.textLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    TCSurveyController *survey =
-    [[TCSurveyController alloc] init];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    TCSurveyController *survey = [[TCSurveyController alloc] init];
     survey.questions = indexPath.row == 0 ? [Survey marketingSurveyQuestions:self.store] : [Survey segmentationSurveyQuestions:self.store];
     survey.index = 0;
     survey.subtitle = _titles[indexPath.row];
+    survey.storeHomeView = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2];
     [self.navigationController pushViewController:survey animated:YES];
 }
 
