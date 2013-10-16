@@ -52,17 +52,20 @@
     
     productCollection = [[NSMutableDictionary alloc] initWithCapacity:[productItems count]];
     ProductItemObject *productItem;
+    
     for (Product *product in productItems) {
         productItem = [ProductItemObject alloc];
-        productItem.productName = product.packtype_Description;
-        productItem.productSN = [NSString stringWithFormat:@"%@%@", @"#", product.name];
+        productItem.productName = product.name;
+        productItem.productSN = [NSString stringWithFormat:@"%@%@", @"#", product.productNumber];
         productItem.productUnit = [self localString:@"product.itemunit"];
-        productItem.productPrice = [NSString stringWithFormat:@"$%1.2f %@",product.productPrice, product.uPC_GROUP_PRODUCT_UOM_maybe];
+        productItem.productPriceLabel = [NSString stringWithFormat:@"$%1.2f %@",product.productPrice, product.uPC_GROUP_PRODUCT_UOM_maybe];
+        productItem.productPrice = [NSString stringWithFormat:@"%f", product.productPrice];
         productItem.productUnitNum = @"0";
-        productItem.productDescription = product.desp;
-            
-            [productCollection setObject:productItem forKey:productItem.productSN];
+        productItem.productDescription = product.packtypeDescription;
+        productItem.currentProduct = product;
+        [productCollection setObject:productItem forKey:productItem.productSN];
     }
+
     
     //create an array to used in tablecell loop
     NSMutableArray *productArray = [[NSMutableArray alloc] initWithCapacity:1];
@@ -285,9 +288,10 @@
         cell.productQuantityUnitLabel.text = productItem.productUnit;
         cell.productDescription.text = productItem.productDescription;
         cell.productSequenceNum.text = productItem.productSN;
-        cell.unitPrice.text = productItem.productPrice;
+        cell.unitPrice.text = productItem.productPriceLabel;
         cell.productQuantity.text = productItem.productUnitNum;
         cell.stepper.value = [productItem.productUnitNum doubleValue];
+
     }
 
     return cell;
@@ -344,6 +348,8 @@
             NSLog(@"product SN===%@",productObject.productSN);
         }
     }
+    NSInteger count = [[self.navigationController viewControllers] count];
+    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:count-2] animated:YES];
 
 }
 

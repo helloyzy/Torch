@@ -110,7 +110,7 @@
 "inventory.summaryAmount" = "$0.00";
 "inventory.summaryText" = "0 Element In Inventory";
 "priority.buttonName" = "Close";
-"inventory.completionButtonText" = "Inventory Completion";
+"inventory.completionButtonText" = "Complete Inventory";
 "order.orderSummary" = " Elements In Order";
 "order.summaryAmount" = "$0.00";
 "order.viewPromotion" = "View Promotion";
