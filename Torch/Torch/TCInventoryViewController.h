@@ -12,7 +12,7 @@
 
 @class Store;
 
-@interface TCInventoryViewController : TCNavVwCtl <UITableViewDelegate , UITableViewDataSource>
+@interface TCInventoryViewController : TCNavVwCtl <UITableViewDelegate , UITableViewDataSource,UISearchBarDelegate>
 
 @property (nonatomic, strong)Store *currentStore;
 
