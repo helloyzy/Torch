@@ -42,15 +42,16 @@
 }
 
 + (NSArray *)convertToTCPromotions:(NSArray *)promotions {
-    double keyVal = [curdateToMilliseconds() doubleValue];
+    // double keyVal = [curdateToMilliseconds() doubleValue];
     NSMutableArray *result = [[NSMutableArray alloc]init];
     for (Promotion *promotion in promotions) {
         TCPromotionItem * item = [TCPromotionItem new];
-        item.key = IB_STRINGIFY_DOUBLE(keyVal);
-        keyVal += 1;
+        // item.key = IB_STRINGIFY_DOUBLE(keyVal++);
+        item.key = [NSString stringWithFormat:@"%@,%@", promotion.title, promotion.desp];
         item.name = promotion.title;
         item.description = promotion.desp;
-        item.expiration = millisecondToDate(promotion.endDateValue);
+        // item.expiration = millisecondToDate(promotion.endDateValue);
+        item.endDate = promotion.endDate;
         item.type = promotion.type;
         item.discountPercentage = promotion.discountPercentageValue;
         item.discountAmount = promotion.discountAmountValue;
@@ -81,7 +82,7 @@
     promotion.discountPercentage = IB_BOX_DOUBLE(0.0);
     promotion.title = @"1 dollar off";
     promotion.desp = @"1 dollar off promotion";
-    promotion.endDate = curdateToMilliseconds();
+    promotion.endDate = @"2013-10-15"; //curdateToMilliseconds();
     promotion.accountId = storeId;
     [self save];
     
@@ -91,7 +92,7 @@
     promotion.discountPercentage = IB_BOX_DOUBLE(0.1);
     promotion.title = @"10 percent off";
     promotion.desp = @"10 percent off promotion";
-    promotion.endDate = curdateToMilliseconds();
+    promotion.endDate = @"2013-10-15"; //curdateToMilliseconds();
     promotion.accountId = storeId;
     [self save];
     
@@ -101,7 +102,7 @@
     promotion.discountPercentage = IB_BOX_DOUBLE(0.15);
     promotion.title = @"15 percent off";
     promotion.desp = @"15 percent off promotion";
-    promotion.endDate = curdateToMilliseconds();
+    promotion.endDate = @"2013-10-15"; //curdateToMilliseconds();
     promotion.accountId = storeId;
     [self save];
     
@@ -111,7 +112,7 @@
     promotion.discountPercentage = IB_BOX_DOUBLE(0.0);
     promotion.title = @"Buy 5 get 1 free";
     promotion.desp = @"Buy 5 get 1 free";
-    promotion.endDate = curdateToMilliseconds();
+    promotion.endDate = @"2013-10-15"; //curdateToMilliseconds();
     promotion.accountId = storeId;
     PromotionItem *item = [PromotionItem newInstance];
     item.productNumber = @"product number";

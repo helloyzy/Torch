@@ -94,13 +94,9 @@ extern const struct PromotionFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* endDate;
+@property (nonatomic, strong) NSString* endDate;
 
 
-
-@property double endDateValue;
-- (double)endDateValue;
-- (void)setEndDateValue:(double)value_;
 
 //- (BOOL)validateEndDate:(id*)value_ error:(NSError**)error_;
 
@@ -122,13 +118,9 @@ extern const struct PromotionFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* startDate;
+@property (nonatomic, strong) NSString* startDate;
 
 
-
-@property double startDateValue;
-- (double)startDateValue;
-- (void)setStartDateValue:(double)value_;
 
 //- (BOOL)validateStartDate:(id*)value_ error:(NSError**)error_;
 
@@ -198,11 +190,8 @@ extern const struct PromotionFetchedProperties {
 
 
 
-- (NSNumber*)primitiveEndDate;
-- (void)setPrimitiveEndDate:(NSNumber*)value;
-
-- (double)primitiveEndDateValue;
-- (void)setPrimitiveEndDateValue:(double)value_;
+- (NSString*)primitiveEndDate;
+- (void)setPrimitiveEndDate:(NSString*)value;
 
 
 
@@ -216,11 +205,8 @@ extern const struct PromotionFetchedProperties {
 
 
 
-- (NSNumber*)primitiveStartDate;
-- (void)setPrimitiveStartDate:(NSNumber*)value;
-
-- (double)primitiveStartDateValue;
-- (void)setPrimitiveStartDateValue:(double)value_;
+- (NSString*)primitiveStartDate;
+- (void)setPrimitiveStartDate:(NSString*)value;
 
 
 

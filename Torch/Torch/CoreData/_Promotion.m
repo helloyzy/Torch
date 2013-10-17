@@ -57,18 +57,8 @@ const struct PromotionFetchedProperties PromotionFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"endDateValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"endDate"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
 	if ([key isEqualToString:@"orderItemDiscountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"orderItemDiscount"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"startDateValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"startDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -149,25 +139,6 @@ const struct PromotionFetchedProperties PromotionFetchedProperties = {
 
 
 
-- (double)endDateValue {
-	NSNumber *result = [self endDate];
-	return [result doubleValue];
-}
-
-- (void)setEndDateValue:(double)value_ {
-	[self setEndDate:[NSNumber numberWithDouble:value_]];
-}
-
-- (double)primitiveEndDateValue {
-	NSNumber *result = [self primitiveEndDate];
-	return [result doubleValue];
-}
-
-- (void)setPrimitiveEndDateValue:(double)value_ {
-	[self setPrimitiveEndDate:[NSNumber numberWithDouble:value_]];
-}
-
-
 
 
 
@@ -199,25 +170,6 @@ const struct PromotionFetchedProperties PromotionFetchedProperties = {
 
 @dynamic startDate;
 
-
-
-- (double)startDateValue {
-	NSNumber *result = [self startDate];
-	return [result doubleValue];
-}
-
-- (void)setStartDateValue:(double)value_ {
-	[self setStartDate:[NSNumber numberWithDouble:value_]];
-}
-
-- (double)primitiveStartDateValue {
-	NSNumber *result = [self primitiveStartDate];
-	return [result doubleValue];
-}
-
-- (void)setPrimitiveStartDateValue:(double)value_ {
-	[self setPrimitiveStartDate:[NSNumber numberWithDouble:value_]];
-}
 
 
 

@@ -21,6 +21,8 @@
 + (RKEntityMapping *)objectMapping {
     RKEntityMapping *mapping = [super objectMapping];
     [mapping addAttributeMappingsFromArray:@[SurveyAttributes.accountId,
+     SurveyAttributes.questionId,
+     SurveyAttributes.recordType,
      SurveyAttributes.answers,
      SurveyAttributes.question,
      SurveyAttributes.questionType,
