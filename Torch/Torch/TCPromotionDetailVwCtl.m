@@ -66,7 +66,7 @@
 - (void) databind {
     lblPromoName.text = self.item.name;
     lblPromoDesp.text = self.item.description;
-    lblExpDate.text = [DateUtils stringFromDate:self.item.expiration withFormat:kDateFormatShort];
+    lblExpDate.text = self.item.endDate; // [DateUtils stringFromDate:self.item.expiration withFormat:kDateFormatShort];
 }
 
 - (void)didReceiveMemoryWarning

@@ -134,6 +134,8 @@ static IBCoreDataStore * ibDataStore;
     [[NSFileManager defaultManager] copyItemAtPath:fromPath toPath:TC_DB_PATH error:nil];
 }
 
+#pragma mark - mock data
+
 +(void) prepareMockData {
     [self adjustStoreSchedule];
     [self prepareSurveyData];
@@ -170,5 +172,18 @@ static IBCoreDataStore * ibDataStore;
     }
 }
 
+
+#pragma mark - test
+
++ (void)testData {
+    [self testSurvey];
+}
+
++ (void)testSurvey {
+    // NSString *predicate = [NSString stringWithFormat:@"%@ = '%@' and %@ = '%@'", SurveyAttributes.accountId, @"001M000000SMnFcIAL", SurveyAttributes.recordType, @"Market Survey"];
+    NSString *predicate = [NSString stringWithFormat:@"%@ = '%@'", SurveyAttributes.recordType, @"Market Survey"];
+    NSArray *result = [Survey allForPredicate:[NSPredicate predicateWithFormat:predicate] inStore:[Survey dataStore]];
+    NSLog(@"%d", result.count);
+}
 
 @end
