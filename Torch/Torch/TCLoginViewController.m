@@ -18,6 +18,10 @@
 #import "TCSvcUtils.h"
 #import <RestKit/RestKit.h>
 
+#define LOGIN_AUTHENTICATION_ERROR -1012
+#define NO_NETWORK_ERROR -1009
+
+typedef void (^login_retry_block)(void);
 
 @interface TCLoginViewController () {
     BOOL syncDataFlag;
@@ -85,9 +89,7 @@
     // [self _signIn];
 #else
     if (txtUsername.text.length>0) {
-        if ([HersheySSOUtils setKeychainWithUsername:txtUsername.text andPassword:txtPwd.text]) {
-            [self _signIn];
-        }
+        [self _signIn];
     }
 #endif
 }
@@ -110,7 +112,7 @@
 - (void)syncData {
     syncDataFlag = NO;
     [self.view setUserInteractionEnabled:NO];
-    showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncData"]);
+    showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncData.fetch"]);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
         TC_SVC_BLOCK_SUCCESS success = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             [self syncDataSuccess:operation];
@@ -119,38 +121,17 @@
             [self syncDataFailure:operation withError:error];
         };
         [TCSvcUtils syncDataService:success failure:failure];
-        
-//        [NSThread sleepForTimeInterval:2];
-//        [self syncDataFailure];
     });
 }
 
 //Success Handler for initial fetch. If we get a 202, we try again after 5 seconds. Otherwise, we go on and sync the mexican specific data
 - (void)syncDataSuccess:(RKObjectRequestOperation *)operation {
-    syncDataFlag = YES;
-    if (operation.HTTPRequestOperation.response.statusCode == 202) {
-        //TODO: Change the syncDataService call to be able to customize the header with "Refresh:True" values if we need to refesh the cache after a 202 response.
-        
-        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse202"]);
-        double delayInSeconds = 5.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self syncData];
-        });
-    }
-    else if (operation.HTTPRequestOperation.response.statusCode == 204){
-        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse204"]);
-        double delayInSeconds = 5.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self syncData];
-        });
-    }
-    else{
-        
+    login_retry_block retryBlock = ^(void) {
+        [self syncData];
+    };
+    if ([self checkSuccessResponseCode:operation callback:retryBlock]) {
         [self syncMexicoData];
     }
-    
     
 //Instead of hiding the progress indicator, after the first service is sucessful I'm calling the FetchMexico service
 //    dispatch_async(dispatch_get_main_queue(), ^(void) {
@@ -162,6 +143,7 @@
 //Calls the service to sync the mexican specifc data. If that fails, show the failure alert view
 - (void)syncMexicoData{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncData.fetchMexico"]);
         TC_SVC_BLOCK_SUCCESS success = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             [self mexicoSyncSuccess:operation];
         };
@@ -169,83 +151,70 @@
             [self syncDataFailure: operation withError:error];
         };
         [TCSvcUtils fetchMexicoDataService:success failure:failure];
-        
-        //        [NSThread sleepForTimeInterval:2];
-        //        [self syncDataFailure];
     });
 
 }
 
 //Handles the sucess for the mexico specfic data. If 202, retry in 5 seconds, otherwise sync the order request data
 - (void)mexicoSyncSuccess:(RKObjectRequestOperation *)operation{
-    syncDataFlag = YES;
-    if (operation.HTTPRequestOperation.response.statusCode == 202) {
-        //TODO: Change the syncDataService call to be able to customize the header with "Refresh:True" values if we need to refesh the cache after a 202 response.
-        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse202"]);
-        double delayInSeconds = 5.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self syncMexicoData];
-        });
-    }
-    else if (operation.HTTPRequestOperation.response.statusCode == 204){
-        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse204"]);
-        double delayInSeconds = 5.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self syncMexicoData];
-        });
-    }
-    else{
+    login_retry_block retryBlock = ^(void) {
+        [self syncMexicoData];
+    };
+    if ([self checkSuccessResponseCode:operation callback:retryBlock]) {
         [self syncProductData];
-        
     }
 }
 
 //Handles the syncing of the order request data. If sucess, check for 202, if failure, display failure message for the failure.
 - (void)syncProductData{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
+        showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncData.product"]);
         TC_SVC_BLOCK_SUCCESS success = ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             [self productSyncSuccess:operation];
         };
         TC_SVC_BLOCK_FAILURE failure = ^(RKObjectRequestOperation * operation, NSError * error) {
             [self syncDataFailure:operation withError:error];
-        };
-        //[TCSvcUtils fetchMexicoDataService:success failure:failure];
-        
+        };        
         [TCSvcUtils syncProductData:success failure:failure];
-        
-        //        [NSThread sleepForTimeInterval:2];
-        //        [self syncDataFailure];
     });
 
 }
 
 //Handles the sucess of the orderRequest service. If we get a 202, wait 5 seconds and retry. Otherwise, jump to the my day screen
 - (void)productSyncSuccess:(RKObjectRequestOperation *)operation{
-    syncDataFlag = YES;
+    login_retry_block retryBlock = ^(void) {
+        [self syncProductData];
+    };
+    if ([self checkSuccessResponseCode:operation callback:retryBlock]) {
+        syncDataFlag = YES;
+        hideProgressIndicator();
+        [HersheySSOUtils setKeychainWithUsername:txtUsername.text andPassword:txtPwd.text];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:[self localString:@"login.syncData.title"]
+                                                         message:[self localString:@"login.syncDataSuccess"]
+                                                        delegate:self
+                                               cancelButtonTitle:[self localString:@"OK"]
+                                               otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (BOOL)checkSuccessResponseCode:(RKObjectRequestOperation *)operation callback:(login_retry_block)retryBlock{
     if (operation.HTTPRequestOperation.response.statusCode == 202) {
-        //TODO: Change the syncDataService call to be able to customize the header with "Refresh:True" values if we need to refesh the cache after a 202 response.
-        //If we get a 202 response, wait 5 seconds and try again
         showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse202"]);
-        double delayInSeconds = 5.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self syncProductData];
-        });
-    }
-    else if (operation.HTTPRequestOperation.response.statusCode == 204){
+        [self loginRetry:retryBlock];
+        return NO;
+    } else if (operation.HTTPRequestOperation.response.statusCode == 204) {
         showProgressIndicator([self localString:@"login.syncData.title"],[self localString:@"login.syncDataResponse204"]);
-        double delayInSeconds = 5.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self syncProductData];
-        });
+        [self loginRetry:retryBlock];
+        return NO;
     }
-    else{
-        [self jumpToMyDay];
-        
-    }
+    return YES;
+}
+
+- (void)loginRetry:(login_retry_block)retryBlock {
+    double delayInSeconds = 5.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), retryBlock);
 }
 
 //Handles faliure messages for syncs. These are tied to the HTTP response codes
@@ -263,6 +232,8 @@
                                                         delegate:self
                                                cancelButtonTitle:[self localString:@"Cancel"]
                                                otherButtonTitles:[self localString:@"Retry"], nil];
+        // NSLog(@"status code:%d", operation.HTTPRequestOperation.response.statusCode);
+        NSLog(@"error code:%d", error.code);
         switch (operation.HTTPRequestOperation.response.statusCode) {
             case 400:
                 [alert setMessage:[self localString:@"login.syncDataResponse400"]];
@@ -291,6 +262,11 @@
                 break;
             default:
                 break;
+        }
+        if (error.code == LOGIN_AUTHENTICATION_ERROR) {
+            [alert setMessage:[self localString:@"login.syncData.error.auth"]];
+        } else if (error.code == NO_NETWORK_ERROR) {
+            [alert setMessage:[self localString:@"login.syncData.error.nonetwork"]];
         }
         
         [alert show];

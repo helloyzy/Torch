@@ -27,8 +27,13 @@
 "login.disclaimation" = "This Application and the material it contains is owned by The Hershey Company. Use of this Application is subject to the following terms and conditions. Your use of the Application constitutes...";
 "login.syncData.title" = "Sincronización de Datos";
 "login.syncData" = "Actualizando...";
+"login.syncData.fetch" = "Descarga de Visitas";
+"login.syncData.fetchMexico" = "Prioridades Descarga, Promociones y Encuestas";
+"login.syncData.product" = "Descarga de Productos";
 "login.syncDataSuccess" = "Actualizando completa";
 "login.syncDataFailure" = "Un error ha ocurrido";
+"login.syncData.error.auth" = "Registrarse Error!";
+"login.syncData.error.nonetwork" = "No hay red, por favor intente de nuevo más tarde!";
 
 /* Beginning Chris Hayes Edits 10-13-13 */
 
