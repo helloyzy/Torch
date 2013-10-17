@@ -21,6 +21,8 @@
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UILabel *summaryText;
 @property (nonatomic, weak) IBOutlet UILabel *summaryAmount;
+@property (nonatomic,weak) IBOutlet UISearchBar *searchBar;
+@property  (nonatomic) BOOL isInSearchMode;
 
 
 @end
@@ -28,7 +30,7 @@
 @implementation TCInventoryViewController {
     UIView *seperator1;
     NSMutableArray *displayData;
-    NSArray *searchResults;
+    NSMutableArray *searchResults;
     NSMutableDictionary *productCollection;
     NSArray *productItems;
 }
@@ -94,13 +96,13 @@
 
 -(BOOL) doesTableViewDisplayRequired {
     BOOL display = NO;
-    if ([displayData count] > 0) {
+    if ([displayData count] > 0 || [searchResults count]>0) {
         display = YES;
     }
     return display;
 }
 
-- (void) filterInventoryContentForSearch:(NSString *)searchText scope:(NSString *)scope {
+- (void) filterInventoryContentForSearch:(NSString *)searchText {
     
     //NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", searchText];
    
@@ -123,20 +125,6 @@
  
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    
-    [self filterInventoryContentForSearch:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    
-    
-    if (![self doesTableViewDisplayRequired]) {
-        self.tableView.hidden = YES;
-    } else {
-
-        self.tableView.hidden = NO;
-    }
-
-    return YES;
-}
 
 -(void)updateProduct:(NSString *)productSN withQuantity:(NSString *)productQuantity {
       ProductItemObject *productItem = [productCollection objectForKey:productSN];
@@ -159,6 +147,44 @@
     }
 }
 
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if ([searchText length] ==0) {
+        [searchBar resignFirstResponder];
+        self.isInSearchMode = NO;
+    } else {
+        self.tableView.hidden = NO;
+        seperator1.hidden = YES;
+        [self filterInventoryContentForSearch:searchText];
+        self.isInSearchMode = YES;
+        [self.tableView reloadData];
+    }
+}
+
+
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+  
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    searchResults=nil;
+    [self generateDisplayDataArray];
+    self.isInSearchMode = NO;
+    [self.tableView reloadData];
+    //scroll the tableview to the top
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    [self showInitialORProductTableListView];
+    
+}
+
+-(BOOL) textFieldShouldClear:(UITextField *)textField {
+    [self performSelector:@selector(searchBarCancelButtonClicked:) withObject:self.searchBar afterDelay:0];
+    return YES;
+}
+
 -(float)isLongPress:(NSString *)currentValue withOldValue:(NSString *)oldValue {
     
     float fcurrentValue = [currentValue floatValue];
@@ -178,17 +204,13 @@
     
     NSString *productQuantityValue = [NSString stringWithFormat:@"%g",sender.value];
     InventoryTableCell *currentCell = (InventoryTableCell *)[sender.superview superview];
-    BOOL isUnderSearchResultView = NO;
     NSIndexPath *indexPath;
     NSString *itemKey;
     
     
-    if ([self.searchDisplayController isActive]) {
-        isUnderSearchResultView = YES;
-    }
     
-    if(isUnderSearchResultView) {
-        indexPath = [self.searchDisplayController.searchResultsTableView indexPathForCell:currentCell];
+    if(self.isInSearchMode) {
+        indexPath = [self.tableView indexPathForCell:currentCell];
         itemKey = [searchResults objectAtIndex:indexPath.row];
 
     }else {
@@ -199,8 +221,6 @@
     
     [self updateProduct:itemKey withQuantity:productQuantityValue];
     
-
-    [self.searchDisplayController.searchResultsTableView reloadData];
     [self.tableView reloadData];
 
 }
@@ -234,6 +254,7 @@
         call.inventoryTime = curdateToMilliseconds();
         [StoreCall save];
     }
+    [self showInitialORProductTableListView];
     [super viewDidDisappear:animated];
 }
 
@@ -263,8 +284,16 @@
     
     [self popupProductItems];
     [self showInitialORProductTableListView];
-    [self.searchDisplayController.searchBar setPlaceholder:[self localString:@"order.searchplaceholder"]];
-}
+    [self.searchBar setPlaceholder:[self localString:@"order.searchplaceholder"]];
+    self.isInSearchMode = NO;
+    for (UIView *view in [self.searchBar subviews]) {
+        if ([view isKindOfClass:[UITextField class]]) {
+            UITextField *tf = (UITextField *)view;
+            tf.delegate = self;
+            break;
+        }
+    }
+    }
 
 
 - (void)didReceiveMemoryWarning
@@ -274,7 +303,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(tableView == self.searchDisplayController.searchResultsTableView) {
+    if(self.isInSearchMode) {
         return [searchResults count];
     } else {
         return [displayData count];
@@ -313,7 +342,7 @@
     [numStepper setContinuous:NO];
     NSString *itemKey;
     
-    if(tableView ==self.searchDisplayController.searchResultsTableView) {
+    if(self.isInSearchMode) {
         itemKey = [searchResults objectAtIndex:indexPath.row];
     } else {
        itemKey = [displayData objectAtIndex:indexPath.row];
@@ -329,15 +358,12 @@
 }
 
 
-- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView {
-    [self generateDisplayDataArray];
-
-    [self.tableView reloadData];
-    [self showInitialORProductTableListView];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 50;
+}
+
+-(void)resetProductData {
+    
 }
 
 -(void)inventoryCompletionButtonClicked:(UIButton *)sender {
@@ -348,6 +374,10 @@
             NSLog(@"product SN===%@",productObject.productSN);
         }
     }
+    [displayData removeAllObjects];
+    [searchResults removeAllObjects];
+    [self.tableView reloadData];
+    [self popupProductItems];
     NSInteger count = [[self.navigationController viewControllers] count];
     [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:count-2] animated:YES];
 
@@ -370,7 +400,5 @@
 
     return footerView;
 }
-
-
 
 @end
