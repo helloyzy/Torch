@@ -4,8 +4,8 @@
 #import <NSManagedObject+InnerBand.h>
 
 
-#define MARKETING_SURVEY @"1"
-#define SEGMENTATION_SURVEY @"2"
+#define MARKETING_SURVEY @"Market Survey"
+#define SEGMENTATION_SURVEY @"Segmentation Survey"
 
 #define CHOICE_QUESTION @"choice"
 #define NUMERIC_QUESTION @"numeric"
@@ -30,11 +30,11 @@
 
 - (NSArray*) answersFromString {
     assert(self.answers != NULL);
-    return [self.answers componentsSeparatedByString:@","];
+    return [self.answers componentsSeparatedByString:@";"];
 }
 
 - (SurveyType)surveyType {
-    if ([self.questionTypeId isEqualToString:MARKETING_SURVEY]) {
+    if ([self.recordType isEqualToString:MARKETING_SURVEY]) {
         return MarketingSurvey;
     } else {
         return SegmentationSurvey;
@@ -42,12 +42,17 @@
 }
 
 - (SurveyQuestionType)surveyQuestionType {
-    if ([self.questionType isEqualToString:CHOICE_QUESTION]) {
-        return ChoiceQuestion;
-    } else if ([self.questionType isEqualToString:NUMERIC_QUESTION]) {
-        return NumericQuestion;
-    } else {
+//    if ([self.questionType isEqualToString:CHOICE_QUESTION]) {
+//        return ChoiceQuestion;
+//    } else if ([self.questionType isEqualToString:NUMERIC_QUESTION]) {
+//        return NumericQuestion;
+//    } else {
+//        return TextQuestion;
+//    }
+    if ([self surveyType] == MarketingSurvey) {
         return TextQuestion;
+    } else {
+        return ChoiceQuestion;
     }
 }
 
@@ -64,13 +69,14 @@
 }
 
 + (NSArray *)retrieveSurveyQuestions:(NSString *)storeId surveyType:(NSString *)surveyType {
-    NSString * predicate = [NSString stringWithFormat:@"%@ = '%@' and %@ = '%@'", SurveyAttributes.accountId, storeId, SurveyAttributes.questionTypeId, surveyType];
+    NSString * predicate = [NSString stringWithFormat:@"%@ = '%@' and %@ = '%@'", SurveyAttributes.accountId, storeId, SurveyAttributes.recordType, surveyType];
     return [self allForPredicate:[NSPredicate predicateWithFormat:predicate] inStore:[self dataStore]];
 }
 
 #pragma mark - mock data
 
 + (void)generateMockSurveys:(NSString *)storeId groupId:(NSString *)groupId {
+    /**
     Survey *survey = [Survey newInstance];
     survey.accountId = storeId;
     survey.questionTypeId = groupId;
@@ -92,6 +98,34 @@
     survey.question = @"Text question";
     survey.answers = @"";
     [self save];
+     */
+    int key = 1;
+    if ([groupId isEqualToString:MARKETING_SURVEY]) { // all text questions
+        for (int i = 1; i <= 3; i++) {
+            Survey *survey = [Survey newInstance];
+            survey.questionId = [NSString stringWithFormat:@"%i", key++];
+            survey.accountId = storeId;
+            survey.recordType = groupId;
+            survey.question = [NSString stringWithFormat:@"Cuantas barras de la competencia hay de 14 gr? -  %d", i];
+            [self save];
+        }
+        Survey *survey = [Survey newInstance];
+        survey.questionId = [NSString stringWithFormat:@"%i", key++];
+        survey.accountId = storeId;
+        survey.recordType = groupId;
+        survey.question = @"A very loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong text question?";
+        [self save];
+    } else {
+        for (int i = 1; i <= 3; i++) {
+            Survey *survey = [Survey newInstance];
+            survey.questionId = [NSString stringWithFormat:@"%i", key++];
+            survey.accountId = storeId;
+            survey.recordType = groupId;
+            survey.question = [NSString stringWithFormat:@"¿Tiene productos de coca? -- %d", i];
+            survey.answers = @"Yes;No;N/A";
+            [self save];
+        }
+    }
 }
 
 + (void)generateMockMarketingSurveys:(NSString *)storeId {

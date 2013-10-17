@@ -11,7 +11,7 @@
 
 @class TCStoreHomeView, Store;
 
-@interface TCSurveyController : TCNavVwCtl<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface TCSurveyController : TCNavVwCtl<UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate>
 
 @property (atomic, strong) NSArray* questions;
 @property (atomic) NSInteger index;

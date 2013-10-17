@@ -286,8 +286,10 @@
         <attribute name="accountId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="answers" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="questionType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="questionTypeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordType" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="SurveyResponse" representedClassName="SurveyResponse" syncable="YES">
         <attribute name="accountId" optional="YES" attributeType="String" syncable="YES"/>
@@ -314,7 +316,7 @@
         <element name="SalesRep" positionX="585" positionY="27" width="135" height="208"/>
         <element name="Store" positionX="1000" positionY="0" width="135" height="615"/>
         <element name="StoreCall" positionX="1206" positionY="72" width="135" height="315"/>
-        <element name="Survey" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Survey" positionX="160" positionY="192" width="128" height="150"/>
         <element name="SurveyResponse" positionX="160" positionY="192" width="128" height="135"/>
     </elements>
 </model>

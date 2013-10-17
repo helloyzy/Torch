@@ -7,8 +7,10 @@ const struct SurveyAttributes SurveyAttributes = {
 	.accountId = @"accountId",
 	.answers = @"answers",
 	.question = @"question",
+	.questionId = @"questionId",
 	.questionType = @"questionType",
 	.questionTypeId = @"questionTypeId",
+	.recordType = @"recordType",
 };
 
 const struct SurveyRelationships SurveyRelationships = {
@@ -71,6 +73,13 @@ const struct SurveyFetchedProperties SurveyFetchedProperties = {
 
 
 
+@dynamic questionId;
+
+
+
+
+
+
 @dynamic questionType;
 
 
@@ -79,6 +88,13 @@ const struct SurveyFetchedProperties SurveyFetchedProperties = {
 
 
 @dynamic questionTypeId;
+
+
+
+
+
+
+@dynamic recordType;
 
 
 

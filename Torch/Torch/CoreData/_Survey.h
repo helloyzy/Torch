@@ -8,8 +8,10 @@ extern const struct SurveyAttributes {
 	__unsafe_unretained NSString *accountId;
 	__unsafe_unretained NSString *answers;
 	__unsafe_unretained NSString *question;
+	__unsafe_unretained NSString *questionId;
 	__unsafe_unretained NSString *questionType;
 	__unsafe_unretained NSString *questionTypeId;
+	__unsafe_unretained NSString *recordType;
 } SurveyAttributes;
 
 extern const struct SurveyRelationships {
@@ -17,6 +19,8 @@ extern const struct SurveyRelationships {
 
 extern const struct SurveyFetchedProperties {
 } SurveyFetchedProperties;
+
+
 
 
 
@@ -68,6 +72,16 @@ extern const struct SurveyFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* questionId;
+
+
+
+//- (BOOL)validateQuestionId:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* questionType;
 
 
@@ -83,6 +97,16 @@ extern const struct SurveyFetchedProperties {
 
 
 //- (BOOL)validateQuestionTypeId:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* recordType;
+
+
+
+//- (BOOL)validateRecordType:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -116,6 +140,12 @@ extern const struct SurveyFetchedProperties {
 
 
 
+- (NSString*)primitiveQuestionId;
+- (void)setPrimitiveQuestionId:(NSString*)value;
+
+
+
+
 - (NSString*)primitiveQuestionType;
 - (void)setPrimitiveQuestionType:(NSString*)value;
 
@@ -124,6 +154,12 @@ extern const struct SurveyFetchedProperties {
 
 - (NSString*)primitiveQuestionTypeId;
 - (void)setPrimitiveQuestionTypeId:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveRecordType;
+- (void)setPrimitiveRecordType:(NSString*)value;
 
 
 
