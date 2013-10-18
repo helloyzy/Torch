@@ -58,6 +58,10 @@ static NSString *STORECALL_ENDCALL = @"_END_CALL_";
     [StoreCall save];
 }
 
+- (BOOL) isFinsihed {
+    return [STORECALL_ENDCALL isEqualToString:self.externalId];
+}
+
 - (BOOL)isCallInProgress {
     return [self.externalId isEqualToString:STORECALL_INPROGRESS];
 }

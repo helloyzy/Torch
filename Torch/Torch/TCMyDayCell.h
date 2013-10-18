@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class Store;
+@class StoreCall;
 
 @interface TCMyDayCell : UITableViewCell
 
-- (TCMyDayCell*) cellWithData: (Store*) store cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (TCMyDayCell*) cellWithData: (StoreCall*) call cellForRowAtIndexPath:(NSInteger)index;
 
 @end

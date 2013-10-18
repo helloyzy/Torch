@@ -10,11 +10,11 @@
 
 #define TC_TblVw_SectHeader_Height 42
 
-@class Store;
+@class StoreCall;
 
 // global resources
-Store *storeInCall();
-void setStoreInCall(Store *store);
+StoreCall *storeInCall();
+void setStoreInCall(StoreCall *store);
 
 // font HelveticaNeueLTCom-Bd
 UIFont * TCFont_HNLTComBd(CGFloat size);

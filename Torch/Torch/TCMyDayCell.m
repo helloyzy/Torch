@@ -8,6 +8,7 @@
 
 #import "TCMyDayCell.h"
 #import "Store.h"
+#import "StoreCall.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation TCMyDayCell {
@@ -75,10 +76,12 @@
     return self;
 }
 
-- (TCMyDayCell*) cellWithData: (Store*) store cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (TCMyDayCell*) cellWithData: (StoreCall*) call cellForRowAtIndexPath:(NSInteger)index {
+    Store* store = call.store;
     storeLabel.text = store.name;
     addressLabel.text = [NSString stringWithFormat:@"%@\n%@ , %@ %@", store.address, store.city, store.country, store.postalCode];
-    numberLabel.text = [NSString stringWithFormat:@"#%@", [NSNumber numberWithInteger:indexPath.row]];
+    [numberLabel setHidden:(index < 0)];
+    numberLabel.text = [NSString stringWithFormat:@"#%@", [NSNumber numberWithInteger:index+1]];
     return self;
 }
 

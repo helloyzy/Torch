@@ -12,5 +12,6 @@
 - (OrderCredit *)associatedOrderObject;
 - (NSInteger)callDuration;
 - (NSArray*) decriptions;
+- (BOOL) isFinsihed;
 
 @end

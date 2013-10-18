@@ -50,6 +50,7 @@ static NSString *kViewControllerKey = @"viewController";
 @property (nonatomic, strong) UIButton *btnDirection;
 @property (nonatomic, strong) UIButton *btnNovisit;
 @property (nonatomic, strong) TCSliderView *tcSliderView;
+@property (nonatomic,strong) Store *currentStore;
 
 @end
 
@@ -57,7 +58,7 @@ static NSString *kViewControllerKey = @"viewController";
     NSArray *contacts;
 }
 
-StoreCall *call;
+@synthesize call;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -71,6 +72,7 @@ StoreCall *call;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentStore = call.store;
     UIImageView *topView  =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,320,72)];
     topView.image = [UIImage imageNamed:@"slideback.png"];
     [self.view addSubview:topView];
@@ -478,7 +480,6 @@ StoreCall *call;
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    call = [StoreCall newInstance:self.currentStore];
     if (_location) {
         call.latitudeValue = _location.coordinate.latitude;
         call.longitudeValue = _location.coordinate.longitude;

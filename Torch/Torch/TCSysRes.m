@@ -7,17 +7,17 @@
 //
 
 #import "TCSysRes.h"
-#import "Store.h"
+#import "StoreCall.h"
 
 #pragma mark - global resources
 
-static Store *gStoreInCall = nil;
+static StoreCall *gStoreInCall = nil;
 
-Store *storeInCall() {
+StoreCall *storeInCall() {
     return gStoreInCall;
 }
 
-void setStoreInCall(Store *store) {
+void setStoreInCall(StoreCall *store) {
     gStoreInCall = store;
 }
 

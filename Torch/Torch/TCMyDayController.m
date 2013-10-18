@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TCStoreHomeView.h"
 #import "Store.h"
+#import "StoreCall.h"
 #import "Banner.h"
 #import "SalesRep.h"
 #import <NSManagedObject+InnerBand.h>
@@ -21,13 +22,18 @@
 #import <Foundation/NSBundle.h>
 
 @interface TCMyDayController () {
-    Store *_selectedStore;
+    StoreCall *_selectedStore;
 }
 
 @end
 
 @implementation TCMyDayController {
     NSArray *_stores;
+    NSArray *_todayStores;
+    NSArray *_finishedStores;
+    NSArray *_futureStores;
+    NSArray *_sections;
+    NSDictionary *_sectionNames;
 }
 @synthesize tableView = _tableView;
 @synthesize header = _header;
@@ -85,9 +91,26 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
     
     _selectedStore = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLAPPEAR_NOTIFICATION object:nil];
+
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *plusOneDay = [[NSDateComponents alloc] init];
+    [plusOneDay setDay:-2];
+    NSDate* today = [cal dateFromComponents:
+     [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+            fromDate:[NSDate date]]];    
+    NSDate* tomorrow = [cal dateByAddingComponents:plusOneDay toDate:today options:0];
+    NSPredicate* todayFilter = [NSPredicate predicateWithFormat:@"(plannedStartDate >= %f) AND (plannedStartDate < %f)", [tomorrow timeIntervalSince1970] * 1000,
+                         [today timeIntervalSince1970] * 1000];
+    NSPredicate* tomorrowFilter = [NSPredicate predicateWithFormat:@"plannedStartDate >= %f", [tomorrow timeIntervalSince1970] * 1000];
     
-    _stores = [Store sortedStores];
+    _todayStores = [StoreCall allForPredicate:todayFilter orderBy:StoreCallAttributes.plannedStartDate ascending:YES];
+    //StoreCall * call;
+    _stores = [_todayStores filter:^BOOL(StoreCall* call) { return ![call isFinsihed]; }];
+    _finishedStores = [_todayStores filter:^BOOL(StoreCall* call) { return [call isFinsihed]; }];
+    _futureStores = [StoreCall allForPredicate:tomorrowFilter orderBy:StoreCallAttributes.plannedStartDate ascending:YES];
     
+    _sections = @[_stores, _finishedStores ,_futureStores];
+    _sectionNames = @{_finishedStores: @"Finished", _futureStores: @"Future"};
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     df.locale = [[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]];
     [df setDateFormat:@"EEEE, MMMM dd, YYYY "];
@@ -113,17 +136,31 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return _sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _stores.count + 1;
+    NSArray* array = _sections[section];
+    return array.count + ((section == 0) ? 1 : 0);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return section == 0 ? 0.0 : 50.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return nil;
+    }
+    UILabel* header = [[UILabel alloc] initWithFrame:(CGRect) {0,0, 50, 50}];
+    header.text = _sectionNames[_sections[section]];
+    return header;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0 && indexPath.section == 0) {
         UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NewCustomerCell];
         cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Roman" size:16];
         cell.textLabel.textColor = TCColorLineBlue;
@@ -132,8 +169,11 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
         //[tableView dequeueReusableCellWithIdentifier:NewCustomerCell forIndexPath:indexPath];
         return cell;
     }
+    NSInteger index = (indexPath.section == 0) ? indexPath.row-1 : indexPath.row;
+    NSArray *array = _sections[indexPath.section];
     TCMyDayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    [cell cellWithData:[_stores objectAtIndex:indexPath.row-1] cellForRowAtIndexPath:indexPath];
+    id item = array[index];
+    [cell cellWithData:array[index] cellForRowAtIndexPath:[_todayStores indexOfObject:item]];
     return cell;
 }
 
@@ -179,21 +219,22 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 #pragma mark - Table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	return indexPath.row == 0 ? 45 : 93;
+{    
+	return (indexPath.row == 0 && indexPath.section == 0) ? 45 : 93;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0 && indexPath.section == 0) {
         TCAddNewCustomerVwCtl *controller = [[TCAddNewCustomerVwCtl alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
         return;
     }
-    
-    _selectedStore = [_stores objectAtIndex:indexPath.row-1];
+    NSInteger index = indexPath.section == 0 ? indexPath.row-1 : indexPath.row;
+    NSArray *array = _sections[indexPath.section];
+    _selectedStore = array[index];
     TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
-    controller.currentStore = _selectedStore;
+    controller.call = _selectedStore;
     controller.currentIndex =  [NSString stringWithFormat:@"#%@", [NSNumber numberWithInteger:indexPath.row]];
     [self.navigationController pushViewController:controller animated:YES];
 }

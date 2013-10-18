@@ -18,6 +18,7 @@
 #import <IBFunctions.h>
 #import <objc/runtime.h>
 #import "TCStoreHomeView.h"
+#import "StoreCall.h"
 #import "Store.h"
 
 @implementation UIViewController (Torch)
@@ -143,14 +144,14 @@
 }
 
 + (void)jumpToCallInProgress:(id)sender {
-    Store *store = storeInCall();
-    if (store) {
+    StoreCall *call = storeInCall();
+    if (call) {
         [self findJumpBtn].hidden = YES;
         UINavigationController *nav = [self findGlobalNavController];
         [nav popToRootViewControllerAnimated:NO];
         TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
-        controller.currentStore = store;
-        controller.currentIndex =  store.sequenceNum;
+        controller.call = call;
+        controller.currentIndex = call.store.sequenceNum;
         [nav pushViewController:controller animated:YES];
     }
 }
