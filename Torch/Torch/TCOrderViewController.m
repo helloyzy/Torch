@@ -261,7 +261,7 @@
     OrderCredit *order = [OrderCredit newInstance];
     StoreCall *call = [self.currentStore callInProgress];
     
-    order.paymentAmountValue = self.fproductTotal;
+    order.paymentAmountValue = self.fordertotal;
     order.paymentType = @"Deduction";
     order.recordType = @"MX Orders";
     order.hersheyReferenceNumber = [self generateReferenceNumber];
@@ -340,10 +340,10 @@
     } else {
         //this is confirm from printprompt alertview
         if (buttonIndex==1) {
-            //confirm button clicked, populate the order data;
             TCPrinterCtl *printScreen = [[TCPrinterCtl alloc] init];
             [self.navigationController pushViewController:printScreen animated:YES];
         }
+        
         [self clearOrderList];
         
     }
