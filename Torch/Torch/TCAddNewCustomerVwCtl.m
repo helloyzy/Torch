@@ -19,6 +19,7 @@
 #import "Store.h"
 #import "Contact.h"
 #import "Note.h"
+#import "StoreCall.h"
 
 #import "NSManagedObject+InnerBand.h"
 #import "NSManagedObject+TCRestkit.h"
@@ -235,6 +236,8 @@ static NSString * comboCellIdentifier = @"ComboCell";
                 }
             }
             [Store save];
+            // initial a new call
+            [StoreCall newInstance:self.store];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             // do nothing
