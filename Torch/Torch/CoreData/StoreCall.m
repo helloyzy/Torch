@@ -36,26 +36,32 @@
     return mapping;
 }
 
-static NSString *STORECALL_INPROGRESS = @"_CALL_IN_PROGRESS_";
+static NSString *STORECALL_CREATED = @"_CALL_CREATED_";
 
 + (StoreCall *)newInstance:(Store *)store {
     StoreCall *result = [self newInstance];
     result.store = store;
     result.plannedStartDate = curdateToMilliseconds();
-    result.actualStartDate = result.plannedStartDate;
     result.callTimeAdjustment = IB_BOX_DOUBLE(0);
-    result.externalId = STORECALL_INPROGRESS;
+    result.externalId = STORECALL_CREATED; 
     [self save];
     return result;
+}
+
+static NSString *STORECALL_INPROGRESS = @"_CALL_IN_PROGRESS_";
+
+- (void)startCall {
+    self.actualStartDate = curdateToMilliseconds();
+    self.externalId = STORECALL_INPROGRESS;
+    [self save];
 }
 
 static NSString *STORECALL_ENDCALL = @"_END_CALL_";
 
 - (void)endCall {
-    self.plannedEndDate = curdateToMilliseconds();
     self.actualEndDate = self.plannedEndDate;
     self.externalId = STORECALL_ENDCALL;
-    [StoreCall save];
+    [self save];
 }
 
 - (BOOL) isFinsihed {
