@@ -86,31 +86,34 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    _selectedStore = nil;
-    [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLAPPEAR_NOTIFICATION object:nil];
-
+- (void)initSections {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *plusOneDay = [[NSDateComponents alloc] init];
-    [plusOneDay setDay:-2];
+    [plusOneDay setDay:-2]; //TODO: waiting for correct json data
     NSDate* today = [cal dateFromComponents:
-     [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-            fromDate:[NSDate date]]];    
+                     [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                            fromDate:[NSDate date]]];    
     NSDate* tomorrow = [cal dateByAddingComponents:plusOneDay toDate:today options:0];
     NSPredicate* todayFilter = [NSPredicate predicateWithFormat:@"(plannedStartDate >= %f) AND (plannedStartDate < %f)", [tomorrow timeIntervalSince1970] * 1000,
-                         [today timeIntervalSince1970] * 1000];
+                                [today timeIntervalSince1970] * 1000];
     NSPredicate* tomorrowFilter = [NSPredicate predicateWithFormat:@"plannedStartDate >= %f", [tomorrow timeIntervalSince1970] * 1000];
     
     _todayStores = [StoreCall allForPredicate:todayFilter orderBy:StoreCallAttributes.plannedStartDate ascending:YES];
-    //StoreCall * call;
     _stores = [_todayStores filter:^BOOL(StoreCall* call) { return ![call isFinsihed]; }];
     _finishedStores = [_todayStores filter:^BOOL(StoreCall* call) { return [call isFinsihed]; }];
     _futureStores = [StoreCall allForPredicate:tomorrowFilter orderBy:StoreCallAttributes.plannedStartDate ascending:YES];
     
     _sections = @[_stores, _finishedStores ,_futureStores];
     _sectionNames = @{_finishedStores: @"Finished", _futureStores: @"Future"};
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    _selectedStore = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLAPPEAR_NOTIFICATION object:nil];
+
+    [self initSections];
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     df.locale = [[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]];
     [df setDateFormat:@"EEEE, MMMM dd, YYYY "];
@@ -172,6 +175,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
     NSInteger index = (indexPath.section == 0) ? indexPath.row-1 : indexPath.row;
     NSArray *array = _sections[indexPath.section];
     TCMyDayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    [cell setUserInteractionEnabled:array == _stores];
     id item = array[index];
     [cell cellWithData:array[index] cellForRowAtIndexPath:[_todayStores indexOfObject:item]];
     return cell;
