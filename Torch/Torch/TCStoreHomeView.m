@@ -26,6 +26,7 @@
 #import "TCUtils.h"
 #import <IBFunctions.h>
 #import <MapKit/MapKit.h>
+#import "OrderCredit.h"
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -44,6 +45,7 @@ static NSString *kViewControllerKey = @"viewController";
 
 @interface TCStoreHomeView () <UIAlertViewDelegate, UIActionSheetDelegate> {
     CLLocation *_location;
+    StoreCall *_call;
 }
 
 @property (nonatomic, strong) NSMutableArray *menuList;
@@ -56,8 +58,6 @@ static NSString *kViewControllerKey = @"viewController";
 @implementation TCStoreHomeView {
     NSArray *contacts;
 }
-
-StoreCall *call;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -478,11 +478,18 @@ StoreCall *call;
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    call = [StoreCall newInstance:self.currentStore];
+    if (! _call) {
+        _call = [self.currentStore.storeCalls anyObject];// [StoreCall newInstance:self.currentStore];
+    }
+    
+    OrderCredit *orderCredit = [OrderCredit newInstance:_call];
     if (_location) {
-        call.latitudeValue = _location.coordinate.latitude;
-        call.longitudeValue = _location.coordinate.longitude;
-        [StoreCall save];
+        _call.latitudeValue = _location.coordinate.latitude;
+        _call.longitudeValue = _location.coordinate.longitude;
+        [_call save];
+        orderCredit.latitudeValue = _call.latitudeValue;
+        orderCredit.longitudeValue = _call.longitudeValue;
+        [orderCredit save];
     }
     self.currentStore.sequenceNum = self.currentIndex;
     setStoreInCall(self.currentStore);
@@ -512,14 +519,25 @@ StoreCall *call;
     
 }
 - (void) sliderDidSlideToStart:(TCSliderView *)slideView {
-    [call endCall];
+    [_call endCall];
     setStoreInCall(nil);
     // Go to summary page
     TCSummaryViewController *targetViewController = [[TCSummaryViewController alloc]init];
     targetViewController.store = self.currentStore;
-    targetViewController.storeCall = call;
+    targetViewController.storeCall = _call;
     [[self navigationController] pushViewController:targetViewController animated:YES];
     [_tcSliderView changeDirection:YES];
+}
+
+#pragma mark - data setter
+
+- (StoreCall *)currentCall {
+    return _call;
+}
+
+- (void)setCurrentCall:(StoreCall *)currentCall {
+    _call = currentCall;
+    self.currentStore = _call.store;
 }
 
 #pragma mark - location manager delegate

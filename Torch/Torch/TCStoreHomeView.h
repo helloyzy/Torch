@@ -11,13 +11,14 @@
 #import "TCSliderView.h"
 #import <CoreLocation/CoreLocation.h>
 
-@class Store;
+@class Store, StoreCall;
 
 @interface TCStoreHomeView : TCNavVwCtl<TCSliderViewDelegate, CLLocationManagerDelegate> {
     
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) Store *currentStore;
+@property (nonatomic,strong) StoreCall *currentCall;
 @property (nonatomic,strong) NSString *currentIndex;
 
 @end

@@ -11,6 +11,8 @@
 #import "NoteResponse.h"
 #import <IBFunctions.h>
 
+#define ORDER_STATUS_FINAL @"NEW"
+
 @interface OrderCredit ()
 
 // Private interface goes here.
@@ -100,6 +102,28 @@
     }    
     
     [self save];
+}
+
++ (OrderCredit *)newInstance:(StoreCall *)call {
+    OrderCredit *result = [self newInstance];
+    result.paymentType = @"Deduction";
+    result.recordType = @"MX Orders";
+    result.hersheyReferenceNumber = [self generateReferenceNumber];
+    result.status = ORDER_STATUS_FINAL;
+    call.associatedOrder = result.hersheyReferenceNumber;
+    [result save];
+    return result;
+}
+
++ (NSString *)generateReferenceNumber {
+    NSString *repId = [SalesRep getRepId];
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
+    [dateformat setDateFormat:@"yyyyMMdd"];
+    NSString *dateString = [dateformat stringFromDate:date];
+    
+    int randomNumber = (arc4random()%(99999-1))+1;
+    return [NSString stringWithFormat:@"%@%@%d",dateString,repId,randomNumber];
 }
 
 @end
