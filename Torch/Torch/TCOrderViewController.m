@@ -234,17 +234,6 @@
     
 }
 
--(NSString *)generateReferenceNumber {
-    NSString *repId = [SalesRep getRepId];
-    NSDate *date = [NSDate date];
-    NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
-    [dateformat setDateFormat:@"yyyyMMdd"];
-    NSString *dateString = [dateformat stringFromDate:date];
-    
-    int randomNumber = (arc4random()%(99999-1))+1;
-    return [NSString stringWithFormat:@"%@%@%d",dateString,repId,randomNumber];
-}
-
 -(void)generateOrderJSONData {
     // reuse the same order object if possible
     /**
@@ -257,15 +246,14 @@
         order = [OrderCredit newInstance];
     }
      */
+    OrderCredit *order = [[self.currentStore callInProgress] associatedOrderObject];
+    // OrderCredit *order = [OrderCredit newInstance];
     
-    OrderCredit *order = [OrderCredit newInstance];
-    StoreCall *call = [self.currentStore callInProgress];
-    
-    order.paymentAmountValue = self.fproductTotal;
-    order.paymentType = @"Deduction";
-    order.recordType = @"MX Orders";
-    order.hersheyReferenceNumber = [self generateReferenceNumber];
-    order.status = @"NEW";
+    order.paymentAmountValue = self.fordertotal;
+    // order.paymentType = @"Deduction";
+    // order.recordType = @"MX Orders";
+    // order.hersheyReferenceNumber = [self generateReferenceNumber];
+    // order.status = @"NEW";
     order.discountPercentValue = [self getDiscountPercentage]*100;
     order.totalDiscountAmountValue = self.fdiscountInDollar;
     
@@ -297,10 +285,6 @@
             [order addOrderCreditItemsObject:orderItem];
         }
         
-    }
-    
-    if (call) {
-        call.associatedOrder = order.hersheyReferenceNumber;
     }
     
     [order save];
@@ -340,10 +324,10 @@
     } else {
         //this is confirm from printprompt alertview
         if (buttonIndex==1) {
-            //confirm button clicked, populate the order data;
             TCPrinterCtl *printScreen = [[TCPrinterCtl alloc] init];
             [self.navigationController pushViewController:printScreen animated:YES];
         }
+        
         [self clearOrderList];
         
     }

@@ -185,3 +185,8 @@
 "survey.progressinfo" = "   Question %d of %d";
 "survey.completeSurvey" = "Complete Survey";
 "survey.provideAnswer" = "Please provide an answer for the question!";
+
+"datastatus.title" = "Data Status";
+"datastatus.nodata" = "There is no data waiting to be sent";
+"datastatus.storesWithOrder" = "The following customers have data waiting to be sent:";
+"datastatus.senddata" = "Send Data";

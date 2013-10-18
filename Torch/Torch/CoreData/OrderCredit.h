@@ -8,4 +8,6 @@
 
 - (void)fillInfoFromStore:(Store *)store call:(StoreCall *)call;
 
++ (OrderCredit *)newInstance:(StoreCall *)call;
+
 @end
