@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class RKObjectRequestOperation, RKMappingResult;
+@class RKObjectRequestOperation, RKMappingResult, OrderCredit;
 
 typedef void (^TC_SVC_BLOCK_SUCCESS)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult);
 typedef void (^TC_SVC_BLOCK_FAILURE)(RKObjectRequestOperation * operation, NSError * error);
@@ -26,6 +26,6 @@ typedef void (^TC_SVC_BLOCK_FAILURE)(RKObjectRequestOperation * operation, NSErr
 
 
 //Removing the success and failure blocks, as this call is not part of the initial batch
-+ (void)orderRequestService;
++ (void)orderRequestService:(OrderCredit *)order;
 
 @end

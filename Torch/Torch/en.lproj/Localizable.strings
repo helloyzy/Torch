@@ -190,3 +190,6 @@
 "datastatus.nodata" = "There is no data waiting to be sent";
 "datastatus.storesWithOrder" = "The following customers have data waiting to be sent:";
 "datastatus.senddata" = "Send Data";
+
+"myday.todayFinishedCalls" = "Today's Completed Calls";
+"myday.futureCalls" = "Future Calls";

@@ -7,11 +7,14 @@
 // Custom logic goes here.
 
 + (StoreCall *)newInstance:(Store *)store;
+- (void)startCall;
 - (void)endCall;
 - (BOOL)isCallInProgress;
 - (OrderCredit *)associatedOrderObject;
 - (NSInteger)callDuration;
 - (NSArray*) decriptions;
 - (BOOL) isFinsihed;
+
++ (StoreCall *)callInProgress;
 
 @end

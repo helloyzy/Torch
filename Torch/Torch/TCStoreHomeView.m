@@ -27,6 +27,7 @@
 #import <IBFunctions.h>
 #import <MapKit/MapKit.h>
 #import "OrderCredit.h"
+#import "TCSvcUtils.h"
 
 #define ROW_HEIGHT_MAX 110
 #define ROW_HEIGHT 40
@@ -117,7 +118,7 @@ static NSString *kViewControllerKey = @"viewController";
 
 - (void)viewWillAppear:(BOOL)animated {
     // check whether has storeCall in progress
-    if ([self.currentStore callInProgress]) {
+    if ([self isCallInProgress]) {
         _tcSliderView.direction = TCSliderViewDirectionBackward;
     }
     contacts = [self.currentStore.contacts allObjects];
@@ -479,11 +480,16 @@ static NSString *kViewControllerKey = @"viewController";
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    _call = [StoreCall newInstance:self.currentStore];
+    // _call = [StoreCall newInstance:self.currentStore];
+    [_call startCall];
+    OrderCredit *order = [OrderCredit newInstance:_call];
     if (_location) {
         _call.latitudeValue = _location.coordinate.latitude;
         _call.longitudeValue = _location.coordinate.longitude;
         [_call save];
+        order.latitudeValue = _location.coordinate.latitude;
+        order.longitudeValue = _location.coordinate.longitude;
+        [order save];
     }
     self.currentStore.sequenceNum = self.currentIndex;
     setStoreInCall(_call);
@@ -498,9 +504,8 @@ static NSString *kViewControllerKey = @"viewController";
 }
 
 - (BOOL)isCallInProgress {
-    return [self.currentStore callInProgress] != nil;
+    return [_call isCallInProgress];
 }
-
 
 - (void) sliderDidSlideToEnd:(TCSliderView *)slideView {
     // check whether already have a store in call
@@ -515,6 +520,9 @@ static NSString *kViewControllerKey = @"viewController";
 - (void) sliderDidSlideToStart:(TCSliderView *)slideView {
     [_call endCall];
     setStoreInCall(nil);
+    OrderCredit *order = [_call associatedOrderObject];
+    [order fillInfoFromCall:_call];
+    // [TCSvcUtils orderRequestService:order];
     // Go to summary page
     TCSummaryViewController *targetViewController = [[TCSummaryViewController alloc]init];
     targetViewController.store = self.currentStore;
@@ -539,13 +547,13 @@ static NSString *kViewControllerKey = @"viewController";
 - (void)requestLocation {
     _location = nil;
     registerLocationService(self);
-    showProgressIndicator(nil, [self localString:@"requestGPS.message"]);
+    // showProgressIndicator(nil, [self localString:@"requestGPS.message"]);
 }
 
 - (void)onLocationInfo:(CLLocationManager *)manager location:(CLLocation *)location {
     _location = location;
     [manager stopUpdatingLocation];
-    hideProgressIndicator();
+    // hideProgressIndicator();
     // open a alert with an OK and cancel button
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[self localString:@"store.startcall.title"]
                                                     message:[self localString:@"store.startcall.text"]

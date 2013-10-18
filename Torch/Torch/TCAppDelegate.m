@@ -36,6 +36,7 @@
 #import "TCSysRes.h"
 
 #import "Store.h"
+#import "StoreCall.h"
 
 @implementation TCAppDelegate
 
@@ -84,7 +85,7 @@
 }
 
 - (void)setStoreInCallInNecessary {
-    setStoreInCall([Store storeInCall]);
+    setStoreInCall([StoreCall callInProgress]);
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

@@ -20,24 +20,25 @@
 #import "TCDBUtils.h"
 #import <OCTotallyLazy.h>
 #import <Foundation/NSBundle.h>
+#import "TCSysRes.h"
+
+#define SECTION_TODAY_CALLS 0
 
 @interface TCMyDayController () {
-    StoreCall *_selectedCall;
-}
-
-@end
-
-@implementation TCMyDayController {
     NSArray *_stores;
     NSArray *_todayStores;
     NSArray *_finishedStores;
     NSArray *_futureStores;
-    NSArray *_sections;
-    NSDictionary *_sectionNames;
+    NSMutableArray *_sections;
+    NSMutableArray *_sectionNames;
+    StoreCall *_selectedCall;
+    NSInteger _sectionCompletedCalls;
+    NSInteger _sectionFutureCalls;
 }
-@synthesize tableView = _tableView;
-@synthesize header = _header;
-@synthesize shadow = _shadow;
+
+@end
+
+@implementation TCMyDayController
 
 static NSString *CellIdentifier = @"MyDayCell";
 static NSString *NewCustomerCell = @"NewCustomerCell";
@@ -103,8 +104,24 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
     _finishedStores = [_todayStores filter:^BOOL(StoreCall* call) { return [call isFinsihed]; }];
     _futureStores = [StoreCall allForPredicate:tomorrowFilter orderBy:StoreCallAttributes.plannedStartDate ascending:YES];
     
-    _sections = @[_stores, _finishedStores ,_futureStores];
-    _sectionNames = @{_finishedStores: @"Finished", _futureStores: @"Future"};
+    _sections = [[NSMutableArray alloc]init];
+    _sectionNames = [[NSMutableArray alloc]init];
+    [_sections addObject:_stores];
+    [_sectionNames addObject:@""]; // just a placeholder to be the equal size with _sections
+    // reset 
+    _sectionCompletedCalls = -1;
+    _sectionFutureCalls = -1;
+    if (_finishedStores.count > 0) {
+        [_sections addObject:_finishedStores];
+        [_sectionNames addObject:[self localString:@"myday.todayFinishedCalls"]];
+        _sectionCompletedCalls = 1;
+    }
+    if (_futureStores.count > 0) {
+        [_sections addObject:_futureStores];
+        [_sectionNames addObject:[self localString:@"myday.futureCalls"]];
+        // depend on whether we have finishedCall section
+        _sectionFutureCalls = (_sectionCompletedCalls > 0) ? 2 : 1;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -145,20 +162,30 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray* array = _sections[section];
-    return array.count + ((section == 0) ? 1 : 0);
+    return array.count + ((section == SECTION_TODAY_CALLS) ? 1 : 0);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return section == 0 ? 0.0 : 50.0;
+    return section == SECTION_TODAY_CALLS ? 0.0 : 35.0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width - 5, tableView.sectionHeaderHeight)];
+    // UIImageView *headerImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"divide.png"]];
+    UILabel *headerLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.bounds.size.width - 100, 25)];
+    if (section == SECTION_TODAY_CALLS) {
         return nil;
+    } else {
+        headerLbl.backgroundColor = [UIColor clearColor];
+        headerLbl.text = _sectionNames[section];
+        // headerImage.frame = CGRectMake(8, 25, tableView.bounds.size.width - 14, 2);
+        headerLbl.font = TCFont_HNLTComBd(17);
+        headerLbl.textColor =[UIColor colorWithRed:48.0/255 green:96.0/255 blue:144.0/255 alpha:1];
+        [headerView addSubview:headerLbl];
+        // [headerView addSubview:headerImage];
     }
-    UILabel* header = [[UILabel alloc] initWithFrame:(CGRect) {0,0, 50, 50}];
-    header.text = _sectionNames[_sections[section]];
-    return header;
+    
+    return headerView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -172,10 +199,20 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
         //[tableView dequeueReusableCellWithIdentifier:NewCustomerCell forIndexPath:indexPath];
         return cell;
     }
-    NSInteger index = (indexPath.section == 0) ? indexPath.row-1 : indexPath.row;
-    NSArray *array = _sections[indexPath.section];
     TCMyDayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    [cell setUserInteractionEnabled:array == _stores];
+    NSArray *array = _sections[indexPath.section];
+    BOOL isTodayCallsSection = indexPath.section == SECTION_TODAY_CALLS;
+    BOOL isCompletedCallsSection = indexPath.section == _sectionCompletedCalls;
+    // only todayCalls section is enabled
+    [cell setUserInteractionEnabled:isTodayCallsSection];
+    if (isTodayCallsSection) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (isCompletedCallsSection) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    NSInteger index = (indexPath.section == 0) ? indexPath.row - 1 : indexPath.row; // we have "Add new customer" cell for the first section
     id item = array[index];
     [cell cellWithData:array[index] cellForRowAtIndexPath:[_todayStores indexOfObject:item]];
     return cell;

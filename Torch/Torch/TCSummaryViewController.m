@@ -67,14 +67,11 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
 
 - (void)viewDidLoad
 {
-    assert(store != NULL);
-    //assert(self.storeCall != NULL);
-    if (self.storeCall == NULL) {
+    [super viewDidLoad];
+    if (! self.storeCall) {
         self.storeCall = [store callInProgress];
     }
-
-    [super viewDidLoad];
-    self.order = self.storeCall.associatedOrderObject;         
+    self.order = self.storeCall.associatedOrderObject;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

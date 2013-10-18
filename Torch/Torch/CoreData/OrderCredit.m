@@ -62,7 +62,7 @@
  * From store: account and contacts and contacts' notes
  * From call: call notes and survey and GPS info when starting call
  */
-- (void)fillInfoFromStore:(Store *)store call:(StoreCall *)call{
+- (void)fillInfoFromCall:(StoreCall *)call{
     // GPS info from call
     self.latitudeValue = call.latitudeValue;
     self.longitudeValue = call.longitudeValue;
@@ -76,6 +76,7 @@
     }
     
     // account
+    Store *store = call.store;
     Account *account = [Account newInstance];
     account.remoteKey = store.remoteKey;
     account.name = store.name;

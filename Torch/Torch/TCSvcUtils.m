@@ -133,24 +133,21 @@
     [operationQueue addOperation:operation];
 }
 
-+ (void)orderRequestService
++ (void)orderRequestService:(OrderCredit *)order
 {
     RKObjectMapping * mapping = [TCRKObjectMapping tcInverseMapping:[OrderCredit objectMapping]];
-    RKRequestDescriptor * requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:mapping objectClass:[Order class] rootKeyPath:nil method:RKRequestMethodAny];
+    RKRequestDescriptor * requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:mapping objectClass:[OrderCredit class] rootKeyPath:nil method:RKRequestMethodAny];
     
-    Order * order = [[Order all] objectAtIndex:0];
     RKObjectManager *manager = [RKObjectManager managerWithBaseURL:IB_URL(TC_SVC_ORDER)];
     [manager addRequestDescriptor:requestDescriptor];
     manager.requestSerializationMIMEType = RKMIMETypeJSON;
     
-    // RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
-   [[RKObjectManager sharedManager] postObject:order path:nil parameters:nil success:^(RKObjectRequestOperation * operation, RKMappingResult * result) {
-       NSLog(@"Order request succeed!");
-   } failure:^(RKObjectRequestOperation * operation, NSError * error) {
-       NSLog(@"Failed with error: %@", [error localizedDescription]);
-    
-
-   }];
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    [[RKObjectManager sharedManager] postObject:order path:nil parameters:nil success:^(RKObjectRequestOperation * operation, RKMappingResult * result) {
+        NSLog(@"Order request succeed!");
+    } failure:^(RKObjectRequestOperation * operation, NSError * error) {
+        NSLog(@"Failed with error: %@", [error localizedDescription]);
+    }];
 
 }
 
