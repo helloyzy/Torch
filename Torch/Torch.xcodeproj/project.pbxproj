@@ -103,6 +103,8 @@
 		C5C26C4F17C4A5E70090CDC1 /* TCStoreHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */; };
 		C5C26C5017C4A5E70090CDC1 /* TCStoreHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */; };
 		C5C26C5417C5A5200090CDC1 /* sliderbg.png in Resources */ = {isa = PBXBuildFile; fileRef = C5C26C5317C5A5200090CDC1 /* sliderbg.png */; };
+		D6112B101811172400BDE040 /* TCDailySummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6112B0E1811172400BDE040 /* TCDailySummaryViewController.m */; };
+		D6112B111811172400BDE040 /* TCDailySummaryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6112B0F1811172400BDE040 /* TCDailySummaryViewController.xib */; };
 		D61ADB34180B97F800C8FB8F /* icon_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = D61ADB32180B97F800C8FB8F /* icon_edit.png */; };
 		D61ADB35180B97F800C8FB8F /* icon_edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D61ADB33180B97F800C8FB8F /* icon_edit@2x.png */; };
 		D6831BC817D84E7100718881 /* TCOrderObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D6831BC717D84E7100718881 /* TCOrderObject.m */; };
@@ -341,6 +343,9 @@
 		C5C26C4D17C4A5E70090CDC1 /* TCStoreHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCStoreHomeView.m; sourceTree = "<group>"; };
 		C5C26C4E17C4A5E70090CDC1 /* TCStoreHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCStoreHomeView.xib; sourceTree = "<group>"; };
 		C5C26C5317C5A5200090CDC1 /* sliderbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderbg.png; sourceTree = "<group>"; };
+		D6112B0D1811172400BDE040 /* TCDailySummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDailySummaryViewController.h; sourceTree = "<group>"; };
+		D6112B0E1811172400BDE040 /* TCDailySummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDailySummaryViewController.m; sourceTree = "<group>"; };
+		D6112B0F1811172400BDE040 /* TCDailySummaryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TCDailySummaryViewController.xib; sourceTree = "<group>"; };
 		D61ADB32180B97F800C8FB8F /* icon_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_edit.png; sourceTree = "<group>"; };
 		D61ADB33180B97F800C8FB8F /* icon_edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_edit@2x.png"; sourceTree = "<group>"; };
 		D6831BC617D84E7100718881 /* TCOrderObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCOrderObject.h; sourceTree = "<group>"; };
@@ -752,6 +757,8 @@
 				D6CB682617C5A98A00D290D7 /* InventoryTableCell.m */,
 				DC20E24817D85BE1009FFC84 /* TCAddNewCustomerVwCtl.h */,
 				DC20E24917D85BE1009FFC84 /* TCAddNewCustomerVwCtl.m */,
+				D6112B0D1811172400BDE040 /* TCDailySummaryViewController.h */,
+				D6112B0E1811172400BDE040 /* TCDailySummaryViewController.m */,
 				1C6FD3E817F2741D0049FFFF /* TCAddNoteController.h */,
 				1C6FD3E917F2741D0049FFFF /* TCAddNoteController.m */,
 				1C4064D517F7C39900481E17 /* TCDataStatusController.h */,
@@ -807,6 +814,7 @@
 		DC0383A717C305C800BBD02A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D6112B0F1811172400BDE040 /* TCDailySummaryViewController.xib */,
 				DC76817A17DD76DF0039DE1B /* DRTextField.h */,
 				DC76817B17DD76DF0039DE1B /* DRTextField.m */,
 				D6CB682317C5A65600D290D7 /* InventoryTableCell.xib */,
@@ -1188,6 +1196,7 @@
 				DC549DB8180928230026D5E0 /* productNew.json in Resources */,
 				D61ADB34180B97F800C8FB8F /* icon_edit.png in Resources */,
 				D61ADB35180B97F800C8FB8F /* icon_edit@2x.png in Resources */,
+				D6112B111811172400BDE040 /* TCDailySummaryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1362,6 +1371,7 @@
 				DC549DBE18092A9B0026D5E0 /* NoteResponse.m in Sources */,
 				DC571B45180C06580066CFA4 /* _SurveyResponse.m in Sources */,
 				DC571B46180C06580066CFA4 /* SurveyResponse.m in Sources */,
+				D6112B101811172400BDE040 /* TCDailySummaryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
