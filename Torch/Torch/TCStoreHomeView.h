@@ -17,7 +17,7 @@
     
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic,strong) StoreCall *call;
+@property (nonatomic,strong) StoreCall *currentCall;
 @property (nonatomic,strong) NSString *currentIndex;
 
 @end

@@ -22,7 +22,7 @@
 #import <Foundation/NSBundle.h>
 
 @interface TCMyDayController () {
-    StoreCall *_selectedStore;
+    StoreCall *_selectedCall;
 }
 
 @end
@@ -89,7 +89,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    _selectedStore = nil;
+    _selectedCall = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLAPPEAR_NOTIFICATION object:nil];
 
     NSCalendar *cal = [NSCalendar currentCalendar];
@@ -122,7 +122,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLDISAPPEAR_NOTIFICATION object:_selectedStore];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MYDAY_WILLDISAPPEAR_NOTIFICATION object:_selectedCall];
     [super viewWillDisappear:animated];
 }
 
@@ -232,9 +232,9 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
     }
     NSInteger index = indexPath.section == 0 ? indexPath.row-1 : indexPath.row;
     NSArray *array = _sections[indexPath.section];
-    _selectedStore = array[index];
+    _selectedCall = array[index];
     TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
-    controller.call = _selectedStore;
+    controller.currentCall = _selectedCall;
     controller.currentIndex =  [NSString stringWithFormat:@"#%@", [NSNumber numberWithInteger:indexPath.row]];
     [self.navigationController pushViewController:controller animated:YES];
 }

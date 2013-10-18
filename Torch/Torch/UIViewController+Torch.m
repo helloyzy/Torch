@@ -135,8 +135,8 @@
 }
 
 + (void)onMyDayWillHide:(NSNotification *)noti {
-    NSObject *store = [noti object];
-    if (store && storeInCall() && store != storeInCall()) {
+    NSObject *storeCall = [noti object];
+    if (storeCall && storeInCall() && storeCall != storeInCall()) {
         [self findJumpBtn].hidden = NO;
         return;
     }
@@ -150,7 +150,7 @@
         UINavigationController *nav = [self findGlobalNavController];
         [nav popToRootViewControllerAnimated:NO];
         TCStoreHomeView *controller = [[TCStoreHomeView alloc] init];
-        controller.call = call;
+        controller.currentCall = call;
         controller.currentIndex = call.store.sequenceNum;
         [nav pushViewController:controller animated:YES];
     }

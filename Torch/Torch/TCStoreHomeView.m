@@ -60,8 +60,6 @@ static NSString *kViewControllerKey = @"viewController";
     NSArray *contacts;
 }
 
-@synthesize call;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -74,7 +72,6 @@ static NSString *kViewControllerKey = @"viewController";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.currentStore = call.store;
     UIImageView *topView  =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,320,72)];
     topView.image = [UIImage imageNamed:@"slideback.png"];
     [self.view addSubview:topView];
@@ -482,14 +479,14 @@ static NSString *kViewControllerKey = @"viewController";
 
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    call = [StoreCall newInstance:self.currentStore];
+    _call = [StoreCall newInstance:self.currentStore];
     if (_location) {
         _call.latitudeValue = _location.coordinate.latitude;
         _call.longitudeValue = _location.coordinate.longitude;
         [_call save];
     }
     self.currentStore.sequenceNum = self.currentIndex;
-    setStoreInCall(self.call);
+    setStoreInCall(_call);
     if (buttonIndex == 1) { // jump to priority view
         TCPriorityViewController *targetViewController = [[TCPriorityViewController alloc]init];
         targetViewController.currentStore = self.currentStore;
