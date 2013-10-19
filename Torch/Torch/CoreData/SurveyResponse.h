@@ -6,5 +6,6 @@
 
 + (NSArray *)surveyResponsesToSend;
 + (void)markAsDelivered:(NSArray *)surveyResponses;
++ (NSSet *)storeNamesForSurveyResponses;
 
 @end

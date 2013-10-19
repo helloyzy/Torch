@@ -193,6 +193,7 @@
 "datastatus.nodata" = "There is no data waiting to be sent";
 "datastatus.storesWithOrder" = "The following customers have data waiting to be sent:";
 "datastatus.senddata" = "Send Data";
+"datastatus.nonetworkTip" = "You do not currently have a connection. Please connect to WiFi or cellular netowrk to enable sending of data.";
 
 "myday.todayFinishedCalls" = "Today's Completed Calls";
 "myday.futureCalls" = "Future Calls";
