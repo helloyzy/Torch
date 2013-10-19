@@ -8,6 +8,9 @@
 
 #import <CoreData/CoreData.h>
 
+#define LOCAL_STATUS_NEW @"NEW"
+#define LOCAL_STATUS_DELIVERED @"DELIVERED"
+
 @class RKEntityMapping, IBCoreDataStore;
 
 @interface NSManagedObject (TCRestkit)

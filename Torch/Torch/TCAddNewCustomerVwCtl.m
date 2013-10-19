@@ -25,6 +25,7 @@
 #import "IBCoreDataStore.h"
 
 #import "TCAddNoteController.h"
+#import "StoreCall.h"
 
 
 #define _TV_ROW_HEIGHT 36
@@ -54,6 +55,8 @@ static NSString * comboCellIdentifier = @"ComboCell";
     BOOL _isAddNew;
     BOOL _isSendInvoice;
     CLLocation *_storeLocation;
+    NSMutableArray *_addedContacts;
+    NSMutableArray *_addedNotes;
 }
 
 @property (nonatomic, strong) TCCustomer * customer;
@@ -85,6 +88,8 @@ static NSString * comboCellIdentifier = @"ComboCell";
     [super viewDidLoad];
     self.customer = [[TCCustomer alloc] init];
     self.contacts = [[NSMutableArray alloc] init];
+    _addedContacts = [[NSMutableArray alloc] init];
+    _addedNotes = [[NSMutableArray alloc] init];
     _isAddNew = YES;
     _isSendInvoice = NO;
     _storeLocation = nil;
@@ -189,8 +194,12 @@ static NSString * comboCellIdentifier = @"ComboCell";
         }
     } else if (alertView.tag == _AlertViewTag_SaveConfirmation) { // save?
         if (buttonIndex == 0) { // confirm on save
+            StoreCall *call = nil;
             if (!self.store) {
                 self.store = [Store newInstance];
+                call = [StoreCall newInstance:self.store];
+            } else {
+                call = [self.store callInProgress];
             }
             self.store.isSendInvoiceValue = _isSendInvoice;
             if (_storeLocation) {
@@ -212,27 +221,31 @@ static NSString * comboCellIdentifier = @"ComboCell";
             self.store.phone = self.customer.storePhoneNum;
             self.store.rfc = self.customer.rfc;
             self.store.customerType = self.customer.customerType;
-            NSMutableSet * tempContacts = [[NSMutableSet alloc] init];
-            for (TCContact *tempTCContact in self.contacts) {
-                Contact *tempContact = [Contact newInstance];
-                tempContact.firstName = tempTCContact.name;
-                tempContact.lastName = tempTCContact.surname;
-                tempContact.phoneNumber = tempTCContact.phone;
-                tempContact.title = tempTCContact.position;
-                [tempContacts addObject:tempContact];
-            }
-            NSSet *originalContacts = [self.store.contacts copy];
-            for (Contact *tempContact in originalContacts) {
-                [tempContact deleteObj];
-            }
-            self.store.contacts = tempContacts;
-            // save notes for contacts (associated to any contact we may find)
-            if (self.store.contacts.count > 0) {
-                Contact *contact = [self.store.contacts anyObject];
-                NSArray *notes = [Note getContactNotes];
-                for (Note *note in notes) {
-                    [contact addNotesObject:note];
+            // copy values to existing contacts and add new
+            if (self.store.contacts) {
+                int i = 0;
+                for (Contact *tempContact in self.store.contacts) {
+                    TCContact *tempTCContact = self.contacts[i++];
+                    tempContact.firstName = tempTCContact.name;
+                    tempContact.lastName = tempTCContact.surname;
+                    tempContact.phoneNumber = tempTCContact.phone;
+                    tempContact.title = tempTCContact.position;
                 }
+            }
+            if (_addedContacts.count > 0) {
+                for (TCContact *tempTCContact in _addedContacts) {
+                    Contact *tempContact = [Contact newInstance];
+                    tempContact.firstName = tempTCContact.name;
+                    tempContact.lastName = tempTCContact.surname;
+                    tempContact.phoneNumber = tempTCContact.phone;
+                    tempContact.title = tempTCContact.position;
+                    [self.store addContactsObject:tempContact];
+                }
+            }
+            
+            // save notes for call since notes for contact is not straightforward. TBD?
+            for (Note *note in _addedNotes) {
+                [call addNotesObject:note];
             }
             [Store save];
             [self.navigationController popViewControllerAnimated:YES];
@@ -378,7 +391,7 @@ static NSString * comboCellIdentifier = @"ComboCell";
     } else if (indexPath.section == 4) {
         editCell = (TCEditingCell *)[tblVw dequeueReusableCellWithIdentifier:comboCellIdentifier];
         if (! editCell) {
-            editCell = [self comboCell:@[@"Text1", @"Text2"]];
+            editCell = [self comboCell:@[@"Manager", @"Sales"]];
             editCell.userInteractionEnabled = _isAddNew;
             editCell.rightBtn.tag = _TAG_BTN_SHOWCOMBO1;
             [self customizeField:editCell.leftField path:indexPath column:0 modelObj:self.customer modelProp:@"customerType" placeHolder:[self localString:@"addnewcustomer.typeOfClient"] kbType:UIKeyboardTypeDefault];
@@ -416,6 +429,7 @@ static NSString * comboCellIdentifier = @"ComboCell";
             
             CGRect switchFrame = CGRectMake(190, 5, 120, 35);
             UISwitch *switchCtl = [[UISwitch alloc]initWithFrame:switchFrame];
+            switchCtl.on = self.store.isSendInvoiceValue;
             [switchCtl addTarget:self action:@selector(onSwitchCtrlClicked:) forControlEvents:UIControlEventValueChanged];
             [cell.contentView addSubview:switchCtl];
         }
@@ -425,13 +439,15 @@ static NSString * comboCellIdentifier = @"ComboCell";
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:addCellIdentifier];
             cell.textLabel.font = TCFont_HNLTComBd(_TV_FIELD_FONTSIZE);
-            cell.userInteractionEnabled = _isAddNew;
-            if (_isAddNew) {
-                cell.imageView.image = [UIImage imageNamed:@"focus.png"];
-                cell.textLabel.textColor = TCColor_DarkBlue();
-            } else {
-                cell.textLabel.textColor = [UIColor lightGrayColor];
-            }
+            cell.imageView.image = [UIImage imageNamed:@"focus.png"];
+            cell.textLabel.textColor = TCColor_DarkBlue();
+//            cell.userInteractionEnabled = _isAddNew;
+//            if (_isAddNew) {
+//                cell.imageView.image = [UIImage imageNamed:@"focus.png"];
+//                cell.textLabel.textColor = TCColor_DarkBlue();
+//            } else {
+//                cell.textLabel.textColor = [UIColor lightGrayColor];
+//            }
         }
         if (indexPath.section == _AddNewContact_Section) {
             cell.textLabel.text = [self localString:@"addnewcustomer.addContact"];
@@ -506,6 +522,7 @@ static NSString * comboCellIdentifier = @"ComboCell";
         [self addNewContact];
     } else if (indexPath.section == _AddNewNote_Section) {
         TCAddNoteController *addNoteCtrl = [[TCAddNoteController alloc]init];
+        addNoteCtrl.delegate = self;
         [self.navigationController pushViewController:addNoteCtrl animated:YES];
     }
 }
@@ -517,6 +534,7 @@ static NSString * comboCellIdentifier = @"ComboCell";
 - (void)addNewContact {
     TCContact * contact = [[TCContact alloc] init];
     [self.contacts addObject:contact];
+    [_addedContacts addObject:contact];
     // [tblVw reloadData];
     
     NSIndexSet * indexSetToAdd = [NSIndexSet indexSetWithIndex:_CONTACT_SECTION_START + self.contacts.count - 1];
@@ -633,6 +651,12 @@ static NSString * comboCellIdentifier = @"ComboCell";
 - (TCEditingCell *)dateComboCell {
     TCEditingCell * cell = [self editingCell:TCEditingCellStyleDateCombo reuseIdentifier:dateComboCellIdentifier];
     return cell;
+}
+
+#pragma mark - add note delegate
+
+- (void)noteAdded:(Note *)note {
+    [_addedNotes addObject:note];
 }
 
 #pragma mark - text field delegate

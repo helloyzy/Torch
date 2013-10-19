@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "TCBaseVwCtl.h"
 #import <CoreLocation/CoreLocation.h>
+#import "TCAddNoteController.h"
 
-@class Store;
+@class Store, StoreCall;
 
-@interface TCAddNewCustomerVwCtl : TCBaseVwCtl <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate> {
+@interface TCAddNewCustomerVwCtl : TCBaseVwCtl <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, CLLocationManagerDelegate, TCAddNoteDelegate> {
     __weak IBOutlet UILabel *lblTitle;
     __weak IBOutlet UITableView *tblVw;
     
 }
 
 @property(nonatomic, strong)Store *store;
+@property(nonatomic, strong)StoreCall *storeCall;
 
 @end

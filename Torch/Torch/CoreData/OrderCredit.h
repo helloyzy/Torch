@@ -8,6 +8,9 @@
 
 - (void)orderDelivered;
 - (void)completeOrder:(StoreCall *)call;
+// Whether user has created an order
+- (BOOL)isOrderCreated;
+
 
 + (OrderCredit *)newInstance:(StoreCall *)call;
 + (OrderCredit *)nextOrderToDeliver;

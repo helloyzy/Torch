@@ -58,4 +58,11 @@
 
 }
 
++ (id)newInstance {
+    Contact *result = [super newInstance];
+    result.localStatus = LOCAL_STATUS_NEW;
+    [result save];
+    return result;
+}
+
 @end

@@ -89,14 +89,17 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 
 - (void)initSections {
     NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *minusDay = [[NSDateComponents alloc] init];
+    [minusDay setDay:-3]; //TODO: waiting for correct json data
     NSDateComponents *plusOneDay = [[NSDateComponents alloc] init];
-    [plusOneDay setDay:-3]; //TODO: waiting for correct json data
+    [plusOneDay setDay:1]; //TODO: waiting for correct json data
     NSDate* today = [cal dateFromComponents:
                      [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                            fromDate:[NSDate date]]];    
+                            fromDate:[NSDate date]]];
     NSDate* tomorrow = [cal dateByAddingComponents:plusOneDay toDate:today options:0];
-    NSPredicate* todayFilter = [NSPredicate predicateWithFormat:@"(plannedStartDate >= %f) AND (plannedStartDate < %f)", [tomorrow timeIntervalSince1970] * 1000,
-                                [today timeIntervalSince1970] * 1000];
+    today = [cal dateByAddingComponents:minusDay toDate:today options:0];
+    NSPredicate* todayFilter = [NSPredicate predicateWithFormat:@"(plannedStartDate >= %f) AND (plannedStartDate < %f)", [today timeIntervalSince1970] * 1000,
+                                [tomorrow timeIntervalSince1970] * 1000];
     NSPredicate* tomorrowFilter = [NSPredicate predicateWithFormat:@"plannedStartDate >= %f", [tomorrow timeIntervalSince1970] * 1000];
     
     _todayStores = [StoreCall allForPredicate:todayFilter orderBy:StoreCallAttributes.plannedStartDate ascending:YES];

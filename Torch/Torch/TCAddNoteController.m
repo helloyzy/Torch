@@ -53,17 +53,17 @@
 }
 
 - (IBAction) addNote: (id) sender {
+    Note *note = [Note newInstance:self.externalSwitch.on];
+    note.title = self.notes.text;
+    note.body = self.notes.text;
+    // note.type = @"Nota Añadida";
     if (self.call) {
-        Note *note = [Note newInstance];
-        note.type = @"Nota Añadida";
-        note.title = self.notes.text;
         [self.call addNotesObject:note];
-    } else {
-        Note *contactNote = [Note contactNote];
-        contactNote.type = @"Nota Añadida";
-        contactNote.title = self.notes.text;
     }
-    [Note save];
+    if (self.delegate) {
+        [self.delegate noteAdded:note];
+    }
+    [note save];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

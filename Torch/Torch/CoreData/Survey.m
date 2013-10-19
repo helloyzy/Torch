@@ -75,6 +75,13 @@
     return [self allForPredicate:[NSPredicate predicateWithFormat:predicate] inStore:[self dataStore]];
 }
 
++ (id)newInstance {
+    Survey *result = [super newInstance];
+    result.localStatus = LOCAL_STATUS_NEW;
+    [result save];
+    return result;
+}
+
 #pragma mark - mock data
 
 + (void)generateMockSurveys:(NSString *)storeId groupId:(NSString *)groupId {

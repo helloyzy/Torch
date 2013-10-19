@@ -94,4 +94,11 @@
     return [self allOrderedBy:StoreAttributes.schedule ascending:YES inStore:[TCDBUtils ibDataStore]];
 }
 
++ (id)newInstance {
+    Store *result = [super newInstance];
+    result.localStatus = LOCAL_STATUS_NEW;
+    [result save];
+    return result;
+}
+
 @end

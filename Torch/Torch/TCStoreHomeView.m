@@ -259,8 +259,11 @@ static NSString *kViewControllerKey = @"viewController";
 
 - (NSString *)getContactorPhone:(NSInteger)index {
     Contact *contactor = [contacts objectAtIndex:index];
-    
-    return [NSString stringWithFormat:@"%@", contactor.phoneNumber];
+    if (contactor.phoneNumber) {
+        return [NSString stringWithFormat:@"%@", contactor.phoneNumber];
+    } else {
+        return nil;
+    }
 }
 
 - (void) showDirections:(UITapGestureRecognizer *)sender {    
@@ -324,8 +327,10 @@ static NSString *kViewControllerKey = @"viewController";
             // [_txtName setPlaceholder:[self getContactorName:indexPath.row]];
             _txtName.enabled = NO;
             _txtName.textAlignment = NSTextAlignmentLeft;
-            _txtName.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Bd" size:15];
+            _txtName.font =  TCFont_HNLTComBd(15);
             _txtName.tag = TAG_SECTION2_NAME;
+            _txtName.adjustsFontSizeToFitWidth = YES;
+            _txtName.minimumFontSize = 12;
             UITextField *_txtTitle=[[UITextField alloc]initWithFrame:CGRectMake(14.0, (ROW_HEIGHT/2)+2, 150.0, ROW_HEIGHT/2)];
             // [_txtTitle setPlaceholder:[self getContactorTitle:indexPath.row]];
             _txtTitle.font =  [UIFont fontWithName:@"HelveticaNeueLTCom-Md" size:12];
@@ -350,7 +355,16 @@ static NSString *kViewControllerKey = @"viewController";
         titleField.placeholder = [self getContactorTitle:indexPath.row];
         UILabel *phoneField = (UILabel *)[cell viewWithTag:TAG_SECTION2_PHONE];
         NSString *phone = [self getContactorPhone:indexPath.row];
-        phoneField.text = phone;
+        if (phone) {
+            phoneField.textColor = [UIColor blackColor];
+            phoneField.text = phone;
+            phoneField.userInteractionEnabled = YES;
+        } else {
+            phoneField.textColor = [UIColor lightGrayColor];
+            phoneField.text = @"";
+            phoneField.userInteractionEnabled = NO;
+        }
+        
 //        if (isCallInProgress) {
 //            phoneField.textColor = [UIColor lightGrayColor];
 //            phoneField.attributedText = [[NSAttributedString alloc]initWithString:phone attributes:nil];
@@ -359,7 +373,7 @@ static NSString *kViewControllerKey = @"viewController";
 //            TCLbl_TextUnderline(phoneField, phone);
 //        }
 //        phoneField.userInteractionEnabled = ! isCallInProgress;
-    } else {
+    } else { // menu items
         // If no cell is available, create a new one using the given identifier.
         static NSString *storeHomeSec3Identifier = @"storeHomeSection3";
         cell = [tableView dequeueReusableCellWithIdentifier:storeHomeSec3Identifier];
@@ -372,12 +386,20 @@ static NSString *kViewControllerKey = @"viewController";
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
         cell.textLabel.text = [[self.menuList objectAtIndex:indexPath.row] objectForKey:kTitleKey];
+        cell.userInteractionEnabled = isCallInProgress;
+        cell.accessoryType = UITableViewCellAccessoryNone;
         if (isCallInProgress) {
             cell.textLabel.textColor = [UIColor colorWithRed:0.239 green:0.435 blue:0.6 alpha:1];
+            if (indexPath.row == 2) { // create order 
+                if ([[_call associatedOrderObject] isOrderCreated]) {
+                    cell.userInteractionEnabled = NO;
+                    cell.textLabel.textColor = [UIColor lightGrayColor];
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                }
+            }
         } else {
             cell.textLabel.textColor = [UIColor lightGrayColor];
         }
-        cell.userInteractionEnabled = isCallInProgress;
     }
 	return cell;
 }

@@ -108,6 +108,7 @@
 
 + (OrderCredit *)newInstance:(StoreCall *)call {
     OrderCredit *result = [self newInstance];
+    result.callId = call.remoteKey;
     result.paymentType = @"Deduction";
     result.recordType = @"MX Orders";
     result.hersheyReferenceNumber = [self generateReferenceNumber];
@@ -126,6 +127,10 @@
 - (void)orderDelivered {
     self.status = ORDER_STATUS_DELIVERED;
     [self save];
+}
+
+- (BOOL)isOrderCreated {
+    return self.orderCreditItems && self.orderCreditItems.count > 0;
 }
 
 + (OrderCredit *)nextOrderToDeliver {

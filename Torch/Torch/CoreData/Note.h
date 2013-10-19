@@ -4,9 +4,10 @@
 @interface Note : _Note {}
 
 + (Note*) noteWithType: (NSString*) type title: (NSString*) title;
-+ (Note *)contactNote;
-+ (NSArray *)getContactNotes;
+//+ (Note *)contactNote;
+//+ (NSArray *)getContactNotes;
 
++ (id)newInstance:(BOOL)isExternal;
 
 @end
 

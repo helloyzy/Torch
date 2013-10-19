@@ -8,18 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
-@class StoreCall, Contact, Store;
+@class StoreCall, Contact, Store, Note;
+
+@protocol TCAddNoteDelegate <NSObject>
+
+- (void)noteAdded:(Note *)note;
+
+@end
 
 @interface TCAddNoteController : UIViewController<UITextViewDelegate>
 
-@property (nonatomic, strong) IBOutlet UILabel* titleLabel;
-@property (nonatomic, strong) IBOutlet UILabel* titleSwitch;
-@property (nonatomic, strong) IBOutlet UITextView* notes;
-@property (nonatomic, strong) IBOutlet UISwitch* externalSwitch;
-@property (nonatomic, strong) IBOutlet UIButton* button;
+@property (nonatomic, weak) IBOutlet UILabel* titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel* titleSwitch;
+@property (nonatomic, weak) IBOutlet UITextView* notes;
+@property (nonatomic, weak) IBOutlet UISwitch* externalSwitch;
+@property (nonatomic, weak) IBOutlet UIButton* button;
 @property (nonatomic, strong) StoreCall* call;
 @property (nonatomic ,strong) Store* store;
 // @property (nonatomic, assign) BOOL addContactNoteFlag;
+@property (nonatomic, weak) id<TCAddNoteDelegate> delegate;
 
 - (IBAction) addNote: (id) sender;
 
