@@ -46,43 +46,36 @@ const struct OrderCreditItemFetchedProperties OrderCreditItemFetchedProperties =
 	return (OrderCreditItemID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"discountPercentageValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"discountPercentage"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"markdownPercentageValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"markdownPercentage"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"maxMarkdownPercentageValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"maxMarkdownPercentage"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"nettAmountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"nettAmount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"overridePriceValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"overridePrice"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"quantityValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"quantity"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"totalValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"total"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;

@@ -41,9 +41,7 @@ extern const struct BannerFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* analytics;
-
 
 
 //- (BOOL)validateAnalytics:(id*)value_ error:(NSError**)error_;
@@ -51,9 +49,7 @@ extern const struct BannerFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* bannerId;
-
 
 
 //- (BOOL)validateBannerId:(id*)value_ error:(NSError**)error_;
@@ -61,9 +57,7 @@ extern const struct BannerFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* bannerName;
-
 
 
 //- (BOOL)validateBannerName:(id*)value_ error:(NSError**)error_;
@@ -71,9 +65,7 @@ extern const struct BannerFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* lastModifiedDate;
-
 
 
 @property double lastModifiedDateValue;
@@ -85,9 +77,7 @@ extern const struct BannerFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* remoteKey;
-
 
 
 //- (BOOL)validateRemoteKey:(id*)value_ error:(NSError**)error_;
@@ -96,14 +86,14 @@ extern const struct BannerFetchedProperties {
 
 
 
-@property (nonatomic, strong) SalesRep *salesRep;
+@property (nonatomic, strong) SalesRep* salesRep;
 
 //- (BOOL)validateSalesRep:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) NSSet *stores;
+@property (nonatomic, strong) NSSet* stores;
 
 - (NSMutableSet*)storesSet;
 

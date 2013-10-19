@@ -65,9 +65,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* active;
-
 
 
 @property BOOL activeValue;
@@ -79,9 +77,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* customerItemNumber;
-
 
 
 //- (BOOL)validateCustomerItemNumber:(id*)value_ error:(NSError**)error_;
@@ -89,9 +85,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* discontinued;
-
 
 
 @property BOOL discontinuedValue;
@@ -103,9 +97,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* distributorItem;
-
 
 
 @property BOOL distributorItemValue;
@@ -117,9 +109,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* effectiveEndDate;
-
 
 
 @property double effectiveEndDateValue;
@@ -131,9 +121,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* effectiveStartDate;
-
 
 
 @property double effectiveStartDateValue;
@@ -145,9 +133,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* maxMarkdown;
-
 
 
 @property double maxMarkdownValue;
@@ -159,9 +145,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* name;
-
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -169,9 +153,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* packtypeDescription;
-
 
 
 //- (BOOL)validatePacktypeDescription:(id*)value_ error:(NSError**)error_;
@@ -179,9 +161,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* price;
-
 
 
 @property double priceValue;
@@ -193,9 +173,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* productNumber;
-
 
 
 //- (BOOL)validateProductNumber:(id*)value_ error:(NSError**)error_;
@@ -203,9 +181,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* remoteKey;
-
 
 
 //- (BOOL)validateRemoteKey:(id*)value_ error:(NSError**)error_;
@@ -213,9 +189,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* schedule;
-
 
 
 //- (BOOL)validateSchedule:(id*)value_ error:(NSError**)error_;
@@ -223,9 +197,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* segment;
-
 
 
 //- (BOOL)validateSegment:(id*)value_ error:(NSError**)error_;
@@ -233,9 +205,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* tdNumber;
-
 
 
 //- (BOOL)validateTdNumber:(id*)value_ error:(NSError**)error_;
@@ -243,9 +213,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* uom;
-
 
 
 //- (BOOL)validateUom:(id*)value_ error:(NSError**)error_;
@@ -253,9 +221,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* upc;
-
 
 
 //- (BOOL)validateUpc:(id*)value_ error:(NSError**)error_;
@@ -263,9 +229,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* weight;
-
 
 
 @property double weightValue;
@@ -278,7 +242,7 @@ extern const struct CalItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) OrderCreditItem *orderCreditItem;
+@property (nonatomic, strong) OrderCreditItem* orderCreditItem;
 
 //- (BOOL)validateOrderCreditItem:(id*)value_ error:(NSError**)error_;
 

@@ -45,9 +45,7 @@ extern const struct PromotionFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* accountId;
-
 
 
 //- (BOOL)validateAccountId:(id*)value_ error:(NSError**)error_;
@@ -55,9 +53,7 @@ extern const struct PromotionFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* desp;
-
 
 
 //- (BOOL)validateDesp:(id*)value_ error:(NSError**)error_;
@@ -65,9 +61,7 @@ extern const struct PromotionFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* discountAmount;
-
 
 
 @property double discountAmountValue;
@@ -79,9 +73,7 @@ extern const struct PromotionFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* discountPercentage;
-
 
 
 @property double discountPercentageValue;
@@ -93,9 +85,7 @@ extern const struct PromotionFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* endDate;
-
 
 
 //- (BOOL)validateEndDate:(id*)value_ error:(NSError**)error_;
@@ -103,9 +93,7 @@ extern const struct PromotionFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* orderItemDiscount;
-
 
 
 @property BOOL orderItemDiscountValue;
@@ -117,9 +105,7 @@ extern const struct PromotionFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* startDate;
-
 
 
 //- (BOOL)validateStartDate:(id*)value_ error:(NSError**)error_;
@@ -127,9 +113,7 @@ extern const struct PromotionFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* title;
-
 
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
@@ -138,7 +122,7 @@ extern const struct PromotionFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *promotionItem;
+@property (nonatomic, strong) NSSet* promotionItem;
 
 - (NSMutableSet*)promotionItemSet;
 

@@ -33,9 +33,7 @@ extern const struct PriorityFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* accountId;
-
 
 
 //- (BOOL)validateAccountId:(id*)value_ error:(NSError**)error_;
@@ -43,9 +41,7 @@ extern const struct PriorityFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* desp;
-
 
 
 //- (BOOL)validateDesp:(id*)value_ error:(NSError**)error_;
@@ -53,9 +49,7 @@ extern const struct PriorityFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* title;
-
 
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;

@@ -66,53 +66,44 @@ const struct OrderCreditFetchedProperties OrderCreditFetchedProperties = {
 	return (OrderCreditID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"actualEndDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"actualEndDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"callTimeAdjustmentValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"callTimeAdjustment"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"discountPercentValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"discountPercent"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"latitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"latitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"longitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"longitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"paymentAmountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"paymentAmount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"plannedEndDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"plannedEndDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"plannedStartDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"plannedStartDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"totalDiscountAmountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"totalDiscountAmount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;

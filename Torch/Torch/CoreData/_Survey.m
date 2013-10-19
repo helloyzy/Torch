@@ -6,6 +6,7 @@
 const struct SurveyAttributes SurveyAttributes = {
 	.accountId = @"accountId",
 	.answers = @"answers",
+	.localStatus = @"localStatus",
 	.question = @"question",
 	.questionId = @"questionId",
 	.questionType = @"questionType",
@@ -42,7 +43,7 @@ const struct SurveyFetchedProperties SurveyFetchedProperties = {
 	return (SurveyID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 
@@ -60,6 +61,13 @@ const struct SurveyFetchedProperties SurveyFetchedProperties = {
 
 
 @dynamic answers;
+
+
+
+
+
+
+@dynamic localStatus;
 
 
 

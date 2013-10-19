@@ -39,9 +39,7 @@ extern const struct SurveyResponseFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* accountId;
-
 
 
 //- (BOOL)validateAccountId:(id*)value_ error:(NSError**)error_;
@@ -49,9 +47,7 @@ extern const struct SurveyResponseFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* pickAnswer;
-
 
 
 //- (BOOL)validatePickAnswer:(id*)value_ error:(NSError**)error_;
@@ -59,9 +55,7 @@ extern const struct SurveyResponseFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* questionId;
-
 
 
 //- (BOOL)validateQuestionId:(id*)value_ error:(NSError**)error_;
@@ -69,9 +63,7 @@ extern const struct SurveyResponseFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* textAnswer;
-
 
 
 //- (BOOL)validateTextAnswer:(id*)value_ error:(NSError**)error_;
@@ -80,14 +72,14 @@ extern const struct SurveyResponseFetchedProperties {
 
 
 
-@property (nonatomic, strong) OrderCredit *orderCredit;
+@property (nonatomic, strong) OrderCredit* orderCredit;
 
 //- (BOOL)validateOrderCredit:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) StoreCall *storeCall;
+@property (nonatomic, strong) StoreCall* storeCall;
 
 //- (BOOL)validateStoreCall:(id*)value_ error:(NSError**)error_;
 

@@ -43,38 +43,32 @@ const struct OrderFetchedProperties OrderFetchedProperties = {
 	return (OrderID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"actualEndDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"actualEndDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"actualStartDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"actualStartDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"callTimeAdjustmentValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"callTimeAdjustment"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"paymentAmountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"paymentAmount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"plannedEndDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"plannedEndDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"plannedStartDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"plannedStartDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;

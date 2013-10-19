@@ -47,9 +47,7 @@ extern const struct NoteFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* body;
-
 
 
 //- (BOOL)validateBody:(id*)value_ error:(NSError**)error_;
@@ -57,9 +55,7 @@ extern const struct NoteFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* createdDate;
-
 
 
 @property double createdDateValue;
@@ -71,9 +67,7 @@ extern const struct NoteFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* externalDate;
-
 
 
 @property double externalDateValue;
@@ -85,9 +79,7 @@ extern const struct NoteFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* externalId;
-
 
 
 //- (BOOL)validateExternalId:(id*)value_ error:(NSError**)error_;
@@ -95,9 +87,7 @@ extern const struct NoteFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* lastModifiedDate;
-
 
 
 @property double lastModifiedDateValue;
@@ -109,9 +99,7 @@ extern const struct NoteFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* remoteKey;
-
 
 
 //- (BOOL)validateRemoteKey:(id*)value_ error:(NSError**)error_;
@@ -119,9 +107,7 @@ extern const struct NoteFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* title;
-
 
 
 //- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
@@ -129,9 +115,7 @@ extern const struct NoteFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* type;
-
 
 
 //- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
@@ -140,14 +124,14 @@ extern const struct NoteFetchedProperties {
 
 
 
-@property (nonatomic, strong) Contact *contact;
+@property (nonatomic, strong) Contact* contact;
 
 //- (BOOL)validateContact:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) StoreCall *storeCall;
+@property (nonatomic, strong) StoreCall* storeCall;
 
 //- (BOOL)validateStoreCall:(id*)value_ error:(NSError**)error_;
 

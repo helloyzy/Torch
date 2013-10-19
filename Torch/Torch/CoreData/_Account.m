@@ -55,13 +55,12 @@ const struct AccountFetchedProperties AccountFetchedProperties = {
 	return (AccountID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"invoiceValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"invoice"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;

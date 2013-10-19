@@ -20,6 +20,7 @@ const struct StoreAttributes StoreAttributes = {
 	.isSendInvoice = @"isSendInvoice",
 	.lastModifiedDate = @"lastModifiedDate",
 	.latitude = @"latitude",
+	.localStatus = @"localStatus",
 	.longitude = @"longitude",
 	.modelTime = @"modelTime",
 	.municipality = @"municipality",
@@ -73,48 +74,40 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 	return (StoreID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"callFrequencyValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"callFrequency"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"isSendInvoiceValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"isSendInvoice"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"lastModifiedDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"lastModifiedDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"latitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"latitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"longitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"longitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"modelTimeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"modelTime"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"priorityValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"priority"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"scheduleValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"schedule"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;
@@ -306,6 +299,13 @@ const struct StoreFetchedProperties StoreFetchedProperties = {
 - (void)setPrimitiveLatitudeValue:(double)value_ {
 	[self setPrimitiveLatitude:[NSNumber numberWithDouble:value_]];
 }
+
+
+
+
+
+@dynamic localStatus;
+
 
 
 

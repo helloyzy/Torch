@@ -38,7 +38,7 @@ const struct NoteResponseFetchedProperties NoteResponseFetchedProperties = {
 	return (NoteResponseID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 

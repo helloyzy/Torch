@@ -13,6 +13,7 @@ const struct ContactAttributes ContactAttributes = {
 	.firstName = @"firstName",
 	.isKdm = @"isKdm",
 	.lastName = @"lastName",
+	.localStatus = @"localStatus",
 	.mobilePhone = @"mobilePhone",
 	.phoneNumber = @"phoneNumber",
 	.picture = @"picture",
@@ -54,23 +55,20 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 	return (ContactID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"bestDaysValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"bestDays"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"bestTimesValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"bestTimes"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"isKdmValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"isKdm"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;
@@ -193,6 +191,13 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 
 
 @dynamic lastName;
+
+
+
+
+
+
+@dynamic localStatus;
 
 
 

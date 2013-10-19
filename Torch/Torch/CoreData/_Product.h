@@ -103,9 +103,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* brand_Cd;
-
 
 
 //- (BOOL)validateBrand_Cd:(id*)value_ error:(NSError**)error_;
@@ -113,9 +111,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* brand_Description;
-
 
 
 //- (BOOL)validateBrand_Description:(id*)value_ error:(NSError**)error_;
@@ -123,9 +119,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* combined_Packtype_Cd;
-
 
 
 //- (BOOL)validateCombined_Packtype_Cd:(id*)value_ error:(NSError**)error_;
@@ -133,9 +127,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* combined_Packtype_Description;
-
 
 
 //- (BOOL)validateCombined_Packtype_Description:(id*)value_ error:(NSError**)error_;
@@ -143,9 +135,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* desp;
-
 
 
 //- (BOOL)validateDesp:(id*)value_ error:(NSError**)error_;
@@ -153,9 +143,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* dimension_unit;
-
 
 
 //- (BOOL)validateDimension_unit:(id*)value_ error:(NSError**)error_;
@@ -163,9 +151,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* item_Id;
-
 
 
 @property double item_IdValue;
@@ -177,9 +163,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* item_Status_Description;
-
 
 
 //- (BOOL)validateItem_Status_Description:(id*)value_ error:(NSError**)error_;
@@ -187,9 +171,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* item_Status_code;
-
 
 
 //- (BOOL)validateItem_Status_code:(id*)value_ error:(NSError**)error_;
@@ -197,9 +179,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* item_Weight;
-
 
 
 @property double item_WeightValue;
@@ -211,9 +191,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* item_Width;
-
 
 
 @property double item_WidthValue;
@@ -225,9 +203,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* item_height;
-
 
 
 @property double item_heightValue;
@@ -239,9 +215,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* item_length;
-
 
 
 @property double item_lengthValue;
@@ -253,9 +227,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* name;
-
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -263,9 +235,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* overbrand_Cd;
-
 
 
 //- (BOOL)validateOverbrand_Cd:(id*)value_ error:(NSError**)error_;
@@ -273,9 +243,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* overbrand_description;
-
 
 
 //- (BOOL)validateOverbrand_description:(id*)value_ error:(NSError**)error_;
@@ -283,9 +251,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* packtypeDescription;
-
 
 
 //- (BOOL)validatePacktypeDescription:(id*)value_ error:(NSError**)error_;
@@ -293,9 +259,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* packtype_Cd;
-
 
 
 //- (BOOL)validatePacktype_Cd:(id*)value_ error:(NSError**)error_;
@@ -303,9 +267,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* packtype_Description;
-
 
 
 //- (BOOL)validatePacktype_Description:(id*)value_ error:(NSError**)error_;
@@ -313,9 +275,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* price;
-
 
 
 @property double priceValue;
@@ -327,9 +287,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* productNumber;
-
 
 
 //- (BOOL)validateProductNumber:(id*)value_ error:(NSError**)error_;
@@ -337,9 +295,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* product_Number;
-
 
 
 //- (BOOL)validateProduct_Number:(id*)value_ error:(NSError**)error_;
@@ -347,9 +303,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* product_code;
-
 
 
 //- (BOOL)validateProduct_code:(id*)value_ error:(NSError**)error_;
@@ -357,9 +311,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* product_division;
-
 
 
 //- (BOOL)validateProduct_division:(id*)value_ error:(NSError**)error_;
@@ -367,9 +319,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* product_division_description;
-
 
 
 //- (BOOL)validateProduct_division_description:(id*)value_ error:(NSError**)error_;
@@ -377,9 +327,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* sAP_Material_Type_FERT;
-
 
 
 //- (BOOL)validateSAP_Material_Type_FERT:(id*)value_ error:(NSError**)error_;
@@ -387,9 +335,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* sales_org;
-
 
 
 //- (BOOL)validateSales_org:(id*)value_ error:(NSError**)error_;
@@ -397,9 +343,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* season_Cd;
-
 
 
 //- (BOOL)validateSeason_Cd:(id*)value_ error:(NSError**)error_;
@@ -407,9 +351,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* season_Description;
-
 
 
 //- (BOOL)validateSeason_Description:(id*)value_ error:(NSError**)error_;
@@ -417,9 +359,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* short_material_number;
-
 
 
 //- (BOOL)validateShort_material_number:(id*)value_ error:(NSError**)error_;
@@ -427,9 +367,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* spanishDescription;
-
 
 
 //- (BOOL)validateSpanishDescription:(id*)value_ error:(NSError**)error_;
@@ -437,9 +375,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* subPacktype_Cd;
-
 
 
 //- (BOOL)validateSubPacktype_Cd:(id*)value_ error:(NSError**)error_;
@@ -447,9 +383,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* subpacktype_description;
-
 
 
 //- (BOOL)validateSubpacktype_description:(id*)value_ error:(NSError**)error_;
@@ -457,9 +391,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* uPC_GROUP_PRODUCT_UOM_maybe;
-
 
 
 //- (BOOL)validateUPC_GROUP_PRODUCT_UOM_maybe:(id*)value_ error:(NSError**)error_;
@@ -467,9 +399,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* uPC_maybe;
-
 
 
 //- (BOOL)validateUPC_maybe:(id*)value_ error:(NSError**)error_;
@@ -477,9 +407,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* upc;
-
 
 
 //- (BOOL)validateUpc:(id*)value_ error:(NSError**)error_;
@@ -487,9 +415,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* version;
-
 
 
 //- (BOOL)validateVersion:(id*)value_ error:(NSError**)error_;
@@ -497,9 +423,7 @@ extern const struct ProductFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* weight_unit_of_Measure;
-
 
 
 //- (BOOL)validateWeight_unit_of_Measure:(id*)value_ error:(NSError**)error_;

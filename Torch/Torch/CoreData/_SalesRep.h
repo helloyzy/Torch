@@ -49,9 +49,7 @@ extern const struct SalesRepFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* firstName;
-
 
 
 //- (BOOL)validateFirstName:(id*)value_ error:(NSError**)error_;
@@ -59,9 +57,7 @@ extern const struct SalesRepFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* lastModifiedDate;
-
 
 
 @property double lastModifiedDateValue;
@@ -73,9 +69,7 @@ extern const struct SalesRepFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* lastName;
-
 
 
 //- (BOOL)validateLastName:(id*)value_ error:(NSError**)error_;
@@ -83,9 +77,7 @@ extern const struct SalesRepFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* lastUpdated;
-
 
 
 @property double lastUpdatedValue;
@@ -97,9 +89,7 @@ extern const struct SalesRepFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* managerNetworkId;
-
 
 
 //- (BOOL)validateManagerNetworkId:(id*)value_ error:(NSError**)error_;
@@ -107,9 +97,7 @@ extern const struct SalesRepFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* networkId;
-
 
 
 //- (BOOL)validateNetworkId:(id*)value_ error:(NSError**)error_;
@@ -117,9 +105,7 @@ extern const struct SalesRepFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* remoteKey;
-
 
 
 //- (BOOL)validateRemoteKey:(id*)value_ error:(NSError**)error_;
@@ -127,9 +113,7 @@ extern const struct SalesRepFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* salesOrg;
-
 
 
 //- (BOOL)validateSalesOrg:(id*)value_ error:(NSError**)error_;
@@ -137,9 +121,7 @@ extern const struct SalesRepFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* startDate;
-
 
 
 @property double startDateValue;
@@ -151,9 +133,7 @@ extern const struct SalesRepFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* status;
-
 
 
 //- (BOOL)validateStatus:(id*)value_ error:(NSError**)error_;
@@ -162,7 +142,7 @@ extern const struct SalesRepFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *banners;
+@property (nonatomic, strong) NSSet* banners;
 
 - (NSMutableSet*)bannersSet;
 

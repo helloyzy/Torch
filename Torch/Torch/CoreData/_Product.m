@@ -73,38 +73,32 @@ const struct ProductFetchedProperties ProductFetchedProperties = {
 	return (ProductID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"item_IdValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"item_Id"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"item_WeightValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"item_Weight"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"item_WidthValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"item_Width"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"item_heightValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"item_height"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"item_lengthValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"item_length"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"priceValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"price"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;

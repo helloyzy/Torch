@@ -45,23 +45,20 @@ const struct NoteFetchedProperties NoteFetchedProperties = {
 	return (NoteID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"createdDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"createdDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"externalDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"externalDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"lastModifiedDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"lastModifiedDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;

@@ -43,9 +43,7 @@ extern const struct OrderFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* actualEndDate;
-
 
 
 @property double actualEndDateValue;
@@ -57,9 +55,7 @@ extern const struct OrderFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* actualStartDate;
-
 
 
 @property double actualStartDateValue;
@@ -71,9 +67,7 @@ extern const struct OrderFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* callTimeAdjustment;
-
 
 
 @property double callTimeAdjustmentValue;
@@ -85,9 +79,7 @@ extern const struct OrderFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* paymentAmount;
-
 
 
 @property double paymentAmountValue;
@@ -99,9 +91,7 @@ extern const struct OrderFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* plannedEndDate;
-
 
 
 @property double plannedEndDateValue;
@@ -113,9 +103,7 @@ extern const struct OrderFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* plannedStartDate;
-
 
 
 @property double plannedStartDateValue;
@@ -127,9 +115,7 @@ extern const struct OrderFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* remoteKey;
-
 
 
 //- (BOOL)validateRemoteKey:(id*)value_ error:(NSError**)error_;
@@ -138,7 +124,7 @@ extern const struct OrderFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *orderCredits;
+@property (nonatomic, strong) NSSet* orderCredits;
 
 - (NSMutableSet*)orderCreditsSet;
 

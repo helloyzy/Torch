@@ -7,6 +7,7 @@
 extern const struct SurveyAttributes {
 	__unsafe_unretained NSString *accountId;
 	__unsafe_unretained NSString *answers;
+	__unsafe_unretained NSString *localStatus;
 	__unsafe_unretained NSString *question;
 	__unsafe_unretained NSString *questionId;
 	__unsafe_unretained NSString *questionType;
@@ -29,6 +30,7 @@ extern const struct SurveyFetchedProperties {
 
 
 
+
 @interface SurveyID : NSManagedObjectID {}
 @end
 
@@ -41,9 +43,7 @@ extern const struct SurveyFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* accountId;
-
 
 
 //- (BOOL)validateAccountId:(id*)value_ error:(NSError**)error_;
@@ -51,9 +51,7 @@ extern const struct SurveyFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* answers;
-
 
 
 //- (BOOL)validateAnswers:(id*)value_ error:(NSError**)error_;
@@ -61,9 +59,15 @@ extern const struct SurveyFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* localStatus;
+
+
+//- (BOOL)validateLocalStatus:(id*)value_ error:(NSError**)error_;
+
+
+
 
 @property (nonatomic, strong) NSString* question;
-
 
 
 //- (BOOL)validateQuestion:(id*)value_ error:(NSError**)error_;
@@ -71,9 +75,7 @@ extern const struct SurveyFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* questionId;
-
 
 
 //- (BOOL)validateQuestionId:(id*)value_ error:(NSError**)error_;
@@ -81,9 +83,7 @@ extern const struct SurveyFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* questionType;
-
 
 
 //- (BOOL)validateQuestionType:(id*)value_ error:(NSError**)error_;
@@ -91,9 +91,7 @@ extern const struct SurveyFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* questionTypeId;
-
 
 
 //- (BOOL)validateQuestionTypeId:(id*)value_ error:(NSError**)error_;
@@ -101,9 +99,7 @@ extern const struct SurveyFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* recordType;
-
 
 
 //- (BOOL)validateRecordType:(id*)value_ error:(NSError**)error_;
@@ -130,6 +126,12 @@ extern const struct SurveyFetchedProperties {
 
 - (NSString*)primitiveAnswers;
 - (void)setPrimitiveAnswers:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveLocalStatus;
+- (void)setPrimitiveLocalStatus:(NSString*)value;
 
 
 

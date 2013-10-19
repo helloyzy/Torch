@@ -46,23 +46,20 @@ const struct SalesRepFetchedProperties SalesRepFetchedProperties = {
 	return (SalesRepID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"lastModifiedDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"lastModifiedDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"lastUpdatedValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"lastUpdated"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"startDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"startDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;

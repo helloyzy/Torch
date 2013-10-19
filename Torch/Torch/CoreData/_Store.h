@@ -21,6 +21,7 @@ extern const struct StoreAttributes {
 	__unsafe_unretained NSString *isSendInvoice;
 	__unsafe_unretained NSString *lastModifiedDate;
 	__unsafe_unretained NSString *latitude;
+	__unsafe_unretained NSString *localStatus;
 	__unsafe_unretained NSString *longitude;
 	__unsafe_unretained NSString *modelTime;
 	__unsafe_unretained NSString *municipality;
@@ -91,6 +92,7 @@ extern const struct StoreFetchedProperties {
 
 
 
+
 @interface StoreID : NSManagedObjectID {}
 @end
 
@@ -103,9 +105,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* accountRecordType;
-
 
 
 //- (BOOL)validateAccountRecordType:(id*)value_ error:(NSError**)error_;
@@ -113,9 +113,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* address;
-
 
 
 //- (BOOL)validateAddress:(id*)value_ error:(NSError**)error_;
@@ -123,9 +121,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* analytics;
-
 
 
 //- (BOOL)validateAnalytics:(id*)value_ error:(NSError**)error_;
@@ -133,9 +129,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* callFrequency;
-
 
 
 @property double callFrequencyValue;
@@ -147,9 +141,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* city;
-
 
 
 //- (BOOL)validateCity:(id*)value_ error:(NSError**)error_;
@@ -157,9 +149,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* country;
-
 
 
 //- (BOOL)validateCountry:(id*)value_ error:(NSError**)error_;
@@ -167,9 +157,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* creditAddress;
-
 
 
 //- (BOOL)validateCreditAddress:(id*)value_ error:(NSError**)error_;
@@ -177,9 +165,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* creditType;
-
 
 
 //- (BOOL)validateCreditType:(id*)value_ error:(NSError**)error_;
@@ -187,9 +173,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* currency;
-
 
 
 //- (BOOL)validateCurrency:(id*)value_ error:(NSError**)error_;
@@ -197,9 +181,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* customerType;
-
 
 
 //- (BOOL)validateCustomerType:(id*)value_ error:(NSError**)error_;
@@ -207,9 +189,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* distributor;
-
 
 
 //- (BOOL)validateDistributor:(id*)value_ error:(NSError**)error_;
@@ -217,9 +197,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* faxNumber;
-
 
 
 //- (BOOL)validateFaxNumber:(id*)value_ error:(NSError**)error_;
@@ -227,9 +205,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* gstTaxNumber;
-
 
 
 //- (BOOL)validateGstTaxNumber:(id*)value_ error:(NSError**)error_;
@@ -237,9 +213,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* isSendInvoice;
-
 
 
 @property BOOL isSendInvoiceValue;
@@ -251,9 +225,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* lastModifiedDate;
-
 
 
 @property double lastModifiedDateValue;
@@ -265,9 +237,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* latitude;
-
 
 
 @property double latitudeValue;
@@ -279,9 +249,15 @@ extern const struct StoreFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* localStatus;
+
+
+//- (BOOL)validateLocalStatus:(id*)value_ error:(NSError**)error_;
+
+
+
 
 @property (nonatomic, strong) NSNumber* longitude;
-
 
 
 @property double longitudeValue;
@@ -293,9 +269,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* modelTime;
-
 
 
 @property double modelTimeValue;
@@ -307,9 +281,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* municipality;
-
 
 
 //- (BOOL)validateMunicipality:(id*)value_ error:(NSError**)error_;
@@ -317,9 +289,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* name;
-
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
@@ -327,9 +297,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* number;
-
 
 
 //- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
@@ -337,9 +305,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* phone;
-
 
 
 //- (BOOL)validatePhone:(id*)value_ error:(NSError**)error_;
@@ -347,9 +313,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* postalCode;
-
 
 
 //- (BOOL)validatePostalCode:(id*)value_ error:(NSError**)error_;
@@ -357,9 +321,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* priority;
-
 
 
 @property BOOL priorityValue;
@@ -371,9 +333,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* products;
-
 
 
 //- (BOOL)validateProducts:(id*)value_ error:(NSError**)error_;
@@ -381,9 +341,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* pstTaxNumber;
-
 
 
 //- (BOOL)validatePstTaxNumber:(id*)value_ error:(NSError**)error_;
@@ -391,9 +349,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* remoteKey;
-
 
 
 //- (BOOL)validateRemoteKey:(id*)value_ error:(NSError**)error_;
@@ -401,9 +357,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* rfc;
-
 
 
 //- (BOOL)validateRfc:(id*)value_ error:(NSError**)error_;
@@ -411,9 +365,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* schedule;
-
 
 
 @property double scheduleValue;
@@ -425,9 +377,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* soldToName;
-
 
 
 //- (BOOL)validateSoldToName:(id*)value_ error:(NSError**)error_;
@@ -435,9 +385,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* soldToNumber;
-
 
 
 //- (BOOL)validateSoldToNumber:(id*)value_ error:(NSError**)error_;
@@ -445,9 +393,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* state;
-
 
 
 //- (BOOL)validateState:(id*)value_ error:(NSError**)error_;
@@ -455,9 +401,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* street;
-
 
 
 //- (BOOL)validateStreet:(id*)value_ error:(NSError**)error_;
@@ -465,9 +409,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* streetRef1;
-
 
 
 //- (BOOL)validateStreetRef1:(id*)value_ error:(NSError**)error_;
@@ -475,9 +417,7 @@ extern const struct StoreFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* streetRef2;
-
 
 
 //- (BOOL)validateStreetRef2:(id*)value_ error:(NSError**)error_;
@@ -486,21 +426,21 @@ extern const struct StoreFetchedProperties {
 
 
 
-@property (nonatomic, strong) Banner *banner;
+@property (nonatomic, strong) Banner* banner;
 
 //- (BOOL)validateBanner:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) NSSet *contacts;
+@property (nonatomic, strong) NSSet* contacts;
 
 - (NSMutableSet*)contactsSet;
 
 
 
 
-@property (nonatomic, strong) NSSet *storeCalls;
+@property (nonatomic, strong) NSSet* storeCalls;
 
 - (NSMutableSet*)storeCallsSet;
 
@@ -631,6 +571,12 @@ extern const struct StoreFetchedProperties {
 
 - (double)primitiveLatitudeValue;
 - (void)setPrimitiveLatitudeValue:(double)value_;
+
+
+
+
+- (NSString*)primitiveLocalStatus;
+- (void)setPrimitiveLocalStatus:(NSString*)value;
 
 
 

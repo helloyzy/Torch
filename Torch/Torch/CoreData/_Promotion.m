@@ -44,23 +44,20 @@ const struct PromotionFetchedProperties PromotionFetchedProperties = {
 	return (PromotionID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"discountAmountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"discountAmount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"discountPercentageValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"discountPercentage"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"orderItemDiscountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"orderItemDiscount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;

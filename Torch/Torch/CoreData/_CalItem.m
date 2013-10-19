@@ -54,48 +54,40 @@ const struct CalItemFetchedProperties CalItemFetchedProperties = {
 	return (CalItemID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"activeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"active"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"discontinuedValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"discontinued"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"distributorItemValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"distributorItem"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"effectiveEndDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"effectiveEndDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"effectiveStartDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"effectiveStartDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"maxMarkdownValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"maxMarkdown"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"priceValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"price"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"weightValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"weight"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;

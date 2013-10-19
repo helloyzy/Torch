@@ -89,9 +89,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* actualEndDate;
-
 
 
 @property double actualEndDateValue;
@@ -103,9 +101,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* approvalRequiredReason;
-
 
 
 //- (BOOL)validateApprovalRequiredReason:(id*)value_ error:(NSError**)error_;
@@ -113,9 +109,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* callId;
-
 
 
 //- (BOOL)validateCallId:(id*)value_ error:(NSError**)error_;
@@ -123,9 +117,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* callTimeAdjustment;
-
 
 
 @property double callTimeAdjustmentValue;
@@ -137,9 +129,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* checkNumber;
-
 
 
 //- (BOOL)validateCheckNumber:(id*)value_ error:(NSError**)error_;
@@ -147,9 +137,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* confirmationType;
-
 
 
 //- (BOOL)validateConfirmationType:(id*)value_ error:(NSError**)error_;
@@ -157,9 +145,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* creditType;
-
 
 
 //- (BOOL)validateCreditType:(id*)value_ error:(NSError**)error_;
@@ -167,9 +153,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* customerReferenceNumber;
-
 
 
 //- (BOOL)validateCustomerReferenceNumber:(id*)value_ error:(NSError**)error_;
@@ -177,9 +161,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* discountPercent;
-
 
 
 @property double discountPercentValue;
@@ -191,9 +173,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* hersheyReferenceNumber;
-
 
 
 //- (BOOL)validateHersheyReferenceNumber:(id*)value_ error:(NSError**)error_;
@@ -201,9 +181,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* latitude;
-
 
 
 @property double latitudeValue;
@@ -215,9 +193,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* longitude;
-
 
 
 @property double longitudeValue;
@@ -229,9 +205,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* orderCreditId;
-
 
 
 //- (BOOL)validateOrderCreditId:(id*)value_ error:(NSError**)error_;
@@ -239,9 +213,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* orderType;
-
 
 
 //- (BOOL)validateOrderType:(id*)value_ error:(NSError**)error_;
@@ -249,9 +221,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* paymentAmount;
-
 
 
 @property double paymentAmountValue;
@@ -263,9 +233,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* paymentMethod;
-
 
 
 //- (BOOL)validatePaymentMethod:(id*)value_ error:(NSError**)error_;
@@ -273,9 +241,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* paymentType;
-
 
 
 //- (BOOL)validatePaymentType:(id*)value_ error:(NSError**)error_;
@@ -283,9 +249,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* plannedEndDate;
-
 
 
 @property double plannedEndDateValue;
@@ -297,9 +261,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* plannedStartDate;
-
 
 
 @property double plannedStartDateValue;
@@ -311,9 +273,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* reasonCode;
-
 
 
 //- (BOOL)validateReasonCode:(id*)value_ error:(NSError**)error_;
@@ -321,9 +281,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* recordType;
-
 
 
 //- (BOOL)validateRecordType:(id*)value_ error:(NSError**)error_;
@@ -331,9 +289,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* rejectionReason;
-
 
 
 //- (BOOL)validateRejectionReason:(id*)value_ error:(NSError**)error_;
@@ -341,9 +297,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* signature;
-
 
 
 //- (BOOL)validateSignature:(id*)value_ error:(NSError**)error_;
@@ -351,9 +305,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* status;
-
 
 
 //- (BOOL)validateStatus:(id*)value_ error:(NSError**)error_;
@@ -361,9 +313,7 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* totalDiscountAmount;
-
 
 
 @property double totalDiscountAmountValue;
@@ -376,42 +326,42 @@ extern const struct OrderCreditFetchedProperties {
 
 
 
-@property (nonatomic, strong) Account *account;
+@property (nonatomic, strong) Account* account;
 
 //- (BOOL)validateAccount:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) Contact *contact;
+@property (nonatomic, strong) Contact* contact;
 
 //- (BOOL)validateContact:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) NSSet *notes;
+@property (nonatomic, strong) NSSet* notes;
 
 - (NSMutableSet*)notesSet;
 
 
 
 
-@property (nonatomic, strong) Order *order;
+@property (nonatomic, strong) Order* order;
 
 //- (BOOL)validateOrder:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) NSSet *orderCreditItems;
+@property (nonatomic, strong) NSSet* orderCreditItems;
 
 - (NSMutableSet*)orderCreditItemsSet;
 
 
 
 
-@property (nonatomic, strong) NSSet *surveyResponse;
+@property (nonatomic, strong) NSSet* surveyResponse;
 
 - (NSMutableSet*)surveyResponseSet;
 

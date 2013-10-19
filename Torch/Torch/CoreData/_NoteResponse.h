@@ -33,9 +33,7 @@ extern const struct NoteResponseFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* message;
-
 
 
 //- (BOOL)validateMessage:(id*)value_ error:(NSError**)error_;
@@ -43,9 +41,7 @@ extern const struct NoteResponseFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* type;
-
 
 
 //- (BOOL)validateType:(id*)value_ error:(NSError**)error_;
@@ -54,7 +50,7 @@ extern const struct NoteResponseFetchedProperties {
 
 
 
-@property (nonatomic, strong) OrderCredit *orderCredit;
+@property (nonatomic, strong) OrderCredit* orderCredit;
 
 //- (BOOL)validateOrderCredit:(id*)value_ error:(NSError**)error_;
 

@@ -53,58 +53,48 @@ const struct StoreCallFetchedProperties StoreCallFetchedProperties = {
 	return (StoreCallID*)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
 	if ([key isEqualToString:@"actualEndDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"actualEndDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"actualStartDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"actualStartDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"callTimeAdjustmentValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"callTimeAdjustment"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"inventoryTimeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"inventoryTime"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"lastModifiedDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"lastModifiedDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"latitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"latitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"longitudeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"longitude"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"plannedEndDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"plannedEndDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"plannedStartDateValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"plannedStartDate"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 	if ([key isEqualToString:@"routedValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"routed"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
 	}
 
 	return keyPaths;

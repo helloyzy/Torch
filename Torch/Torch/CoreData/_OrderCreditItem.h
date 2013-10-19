@@ -49,9 +49,7 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* discountPercentage;
-
 
 
 @property double discountPercentageValue;
@@ -63,9 +61,7 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* distributedItemNumber;
-
 
 
 //- (BOOL)validateDistributedItemNumber:(id*)value_ error:(NSError**)error_;
@@ -73,9 +69,7 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* markdownPercentage;
-
 
 
 @property double markdownPercentageValue;
@@ -87,9 +81,7 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* maxMarkdownPercentage;
-
 
 
 @property double maxMarkdownPercentageValue;
@@ -101,9 +93,7 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* nettAmount;
-
 
 
 @property double nettAmountValue;
@@ -115,9 +105,7 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* overridePrice;
-
 
 
 @property double overridePriceValue;
@@ -129,9 +117,7 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* quantity;
-
 
 
 @property double quantityValue;
@@ -143,9 +129,7 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* shortItemNumber;
-
 
 
 //- (BOOL)validateShortItemNumber:(id*)value_ error:(NSError**)error_;
@@ -153,9 +137,7 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* total;
-
 
 
 @property double totalValue;
@@ -168,14 +150,14 @@ extern const struct OrderCreditItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) CalItem *calItem;
+@property (nonatomic, strong) CalItem* calItem;
 
 //- (BOOL)validateCalItem:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) OrderCredit *orderCredit;
+@property (nonatomic, strong) OrderCredit* orderCredit;
 
 //- (BOOL)validateOrderCredit:(id*)value_ error:(NSError**)error_;
 

@@ -37,9 +37,7 @@ extern const struct PromotionItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* productDescription;
-
 
 
 //- (BOOL)validateProductDescription:(id*)value_ error:(NSError**)error_;
@@ -47,9 +45,7 @@ extern const struct PromotionItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* productNumber;
-
 
 
 //- (BOOL)validateProductNumber:(id*)value_ error:(NSError**)error_;
@@ -57,9 +53,7 @@ extern const struct PromotionItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* promotionItemListPrice;
-
 
 
 @property double promotionItemListPriceValue;
@@ -71,9 +65,7 @@ extern const struct PromotionItemFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* salesPrice;
-
 
 
 @property double salesPriceValue;
@@ -86,7 +78,7 @@ extern const struct PromotionItemFetchedProperties {
 
 
 
-@property (nonatomic, strong) Promotion *promotion;
+@property (nonatomic, strong) Promotion* promotion;
 
 //- (BOOL)validatePromotion:(id*)value_ error:(NSError**)error_;
 

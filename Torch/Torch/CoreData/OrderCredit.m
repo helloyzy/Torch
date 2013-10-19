@@ -56,7 +56,7 @@
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"orderCreditItems" toKeyPath:@"orderCreditItems" withMapping:[OrderCreditItem objectMapping]]];
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"contact" toKeyPath:@"contact" withMapping:[Contact objectMappingForOrder]]];
     [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"account" toKeyPath:@"account" withMapping:[Account objectMapping]]];
-    [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"surveyResponse" toKeyPath:@"surveyResponse" withMapping:[SurveyResponse objectMapping]]];
+    // [mapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"surveyResponse" toKeyPath:@"surveyResponse" withMapping:[SurveyResponse objectMapping]]];
     return mapping;
 }
 

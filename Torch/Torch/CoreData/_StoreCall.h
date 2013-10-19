@@ -63,9 +63,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* actualEndDate;
-
 
 
 @property double actualEndDateValue;
@@ -77,9 +75,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* actualStartDate;
-
 
 
 @property double actualStartDateValue;
@@ -91,9 +87,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* associatedOrder;
-
 
 
 //- (BOOL)validateAssociatedOrder:(id*)value_ error:(NSError**)error_;
@@ -101,9 +95,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* callTimeAdjustment;
-
 
 
 @property double callTimeAdjustmentValue;
@@ -115,9 +107,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* externalId;
-
 
 
 //- (BOOL)validateExternalId:(id*)value_ error:(NSError**)error_;
@@ -125,9 +115,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* inventoryTime;
-
 
 
 @property double inventoryTimeValue;
@@ -139,9 +127,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* lastModifiedDate;
-
 
 
 @property double lastModifiedDateValue;
@@ -153,9 +139,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* latitude;
-
 
 
 @property double latitudeValue;
@@ -167,9 +151,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* longitude;
-
 
 
 @property double longitudeValue;
@@ -181,9 +163,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* plannedEndDate;
-
 
 
 @property double plannedEndDateValue;
@@ -195,9 +175,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* plannedStartDate;
-
 
 
 @property double plannedStartDateValue;
@@ -209,9 +187,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* remoteKey;
-
 
 
 //- (BOOL)validateRemoteKey:(id*)value_ error:(NSError**)error_;
@@ -219,9 +195,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* rider1;
-
 
 
 //- (BOOL)validateRider1:(id*)value_ error:(NSError**)error_;
@@ -229,9 +203,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSString* rider2;
-
 
 
 //- (BOOL)validateRider2:(id*)value_ error:(NSError**)error_;
@@ -239,9 +211,7 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-
 @property (nonatomic, strong) NSNumber* routed;
-
 
 
 @property BOOL routedValue;
@@ -254,21 +224,21 @@ extern const struct StoreCallFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *notes;
+@property (nonatomic, strong) NSSet* notes;
 
 - (NSMutableSet*)notesSet;
 
 
 
 
-@property (nonatomic, strong) Store *store;
+@property (nonatomic, strong) Store* store;
 
 //- (BOOL)validateStore:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) NSSet *surveyResponses;
+@property (nonatomic, strong) NSSet* surveyResponses;
 
 - (NSMutableSet*)surveyResponsesSet;
 
