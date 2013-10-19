@@ -10,8 +10,11 @@
 #import "SurveyResponse.h"
 #import "NoteResponse.h"
 #import <IBFunctions.h>
+#import <NSManagedObject+InnerBand.h>
 
-#define ORDER_STATUS_FINAL @"NEW"
+#define ORDER_STATUS_INITIAL @"CREATED"
+#define ORDER_STATUS_NEW @"NEW"
+#define ORDER_STATUS_DELIVERED @"DELIVERED"
 
 @interface OrderCredit ()
 
@@ -101,8 +104,6 @@
         }
         break;
     }    
-    
-    [self save];
 }
 
 + (OrderCredit *)newInstance:(StoreCall *)call {
@@ -110,12 +111,32 @@
     result.paymentType = @"Deduction";
     result.recordType = @"MX Orders";
     result.hersheyReferenceNumber = [self generateReferenceNumber];
-    result.status = ORDER_STATUS_FINAL;
+    result.status = ORDER_STATUS_INITIAL;
     call.associatedOrder = result.hersheyReferenceNumber;
     [result save];
     return result;
 }
 
+- (void)completeOrder:(StoreCall *)call {
+    self.status = ORDER_STATUS_NEW;
+    [self fillInfoFromCall:call];
+    [self save];
+}
+
+- (void)orderDelivered {
+    self.status = ORDER_STATUS_DELIVERED;
+    [self save];
+}
+
++ (OrderCredit *)nextOrderToDeliver {
+    NSString *predicate = [NSString stringWithFormat:@"%@ = '%@'", OrderCreditAttributes.status, ORDER_STATUS_NEW];
+    NSArray *ordersToDeliver = [self allForPredicate:[NSPredicate predicateWithFormat:predicate] inStore:[self dataStore]];
+    return [ordersToDeliver objectAtIndex:0];
+}
+
+#pragma mark - helper methods
+
+/* DATE + REPID + RANDOM 5 DIGITS */
 + (NSString *)generateReferenceNumber {
     NSString *repId = [SalesRep getRepId];
     NSDate *date = [NSDate date];

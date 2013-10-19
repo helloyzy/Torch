@@ -6,8 +6,11 @@
 @interface OrderCredit : _OrderCredit {}
 // Custom logic goes here.
 
-- (void)fillInfoFromCall:(StoreCall *)call;
+- (void)orderDelivered;
+- (void)completeOrder:(StoreCall *)call;
 
 + (OrderCredit *)newInstance:(StoreCall *)call;
++ (OrderCredit *)nextOrderToDeliver;
+
 
 @end

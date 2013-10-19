@@ -38,6 +38,9 @@
 #import "Store.h"
 #import "StoreCall.h"
 
+#import "OrderCredit.h"
+#import <NSManagedObject+InnerBand.h>
+
 @implementation TCAppDelegate
 
 - (UIViewController *)newDeckController
@@ -81,7 +84,8 @@
 
 - (void) serviceTest {
     // [TCSvcUtils syncDataService];
-    // [TCSvcUtils orderRequestService];
+    // OrderCredit *order = [[OrderCredit all]objectAtIndex:0];
+    // [TCSvcUtils orderRequestService:order];
 }
 
 - (void)setStoreInCallInNecessary {

@@ -521,7 +521,7 @@ static NSString *kViewControllerKey = @"viewController";
     [_call endCall];
     setStoreInCall(nil);
     OrderCredit *order = [_call associatedOrderObject];
-    [order fillInfoFromCall:_call];
+    [order completeOrder:_call];
     // [TCSvcUtils orderRequestService:order];
     // Go to summary page
     TCSummaryViewController *targetViewController = [[TCSummaryViewController alloc]init];

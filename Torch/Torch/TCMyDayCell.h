@@ -14,4 +14,8 @@
 
 - (TCMyDayCell*) cellWithData: (StoreCall*) call cellForRowAtIndexPath:(NSInteger)index;
 
+- (void)setTodayCallsStyle;
+- (void)setCompletedCallsStyle;
+- (void)setFutureCallsStyle;
+
 @end

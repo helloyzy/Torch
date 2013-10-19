@@ -90,7 +90,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 - (void)initSections {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *plusOneDay = [[NSDateComponents alloc] init];
-    [plusOneDay setDay:-2]; //TODO: waiting for correct json data
+    [plusOneDay setDay:-3]; //TODO: waiting for correct json data
     NSDate* today = [cal dateFromComponents:
                      [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                             fromDate:[NSDate date]]];    
@@ -201,20 +201,16 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
     }
     TCMyDayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSArray *array = _sections[indexPath.section];
-    BOOL isTodayCallsSection = indexPath.section == SECTION_TODAY_CALLS;
-    BOOL isCompletedCallsSection = indexPath.section == _sectionCompletedCalls;
-    // only todayCalls section is enabled
-    [cell setUserInteractionEnabled:isTodayCallsSection];
-    if (isTodayCallsSection) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else if (isCompletedCallsSection) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
     NSInteger index = (indexPath.section == 0) ? indexPath.row - 1 : indexPath.row; // we have "Add new customer" cell for the first section
     id item = array[index];
     [cell cellWithData:array[index] cellForRowAtIndexPath:[_todayStores indexOfObject:item]];
+    if (indexPath.section == SECTION_TODAY_CALLS) {
+        [cell setTodayCallsStyle];
+    } else if (indexPath.section == _sectionCompletedCalls) {
+        [cell setCompletedCallsStyle];
+    } else {
+        [cell setFutureCallsStyle];
+    }
     return cell;
 }
 
