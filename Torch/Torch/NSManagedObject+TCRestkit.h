@@ -8,8 +8,8 @@
 
 #import <CoreData/CoreData.h>
 
-#define LOCAL_STATUS_NEW @"NEW"
-#define LOCAL_STATUS_DELIVERED @"DELIVERED"
+#define LOCAL_STATUS_NEW @"_NEW_"
+#define LOCAL_STATUS_DELIVERED @"_DELIVERED_"
 
 @class RKEntityMapping, IBCoreDataStore;
 
@@ -22,5 +22,6 @@
 + (id)newInstance;
 + (void)save;
 + (IBCoreDataStore *)dataStore;
++ (NSString *)generateUDID;
 
 @end

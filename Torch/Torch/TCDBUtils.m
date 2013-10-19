@@ -17,6 +17,7 @@
 #import "Promotion.h"
 #import "Survey.h"
 #import "Store.h"
+#import "StoreCall.h"
 #import "Priority.h"
 #import "Promotion.h"
 #import "PromotionItem.h"
@@ -137,10 +138,11 @@ static IBCoreDataStore * ibDataStore;
 #pragma mark - mock data
 
 +(void) prepareMockData {
-    [self adjustStoreSchedule];
-    [self prepareSurveyData];
-    [self preparePriority];
-    [self preparePromotion];
+//    [self adjustStoreSchedule];
+//    [self prepareSurveyData];
+//    [self preparePriority];
+//    [self preparePromotion];
+    [self adjustCallPlannedStartDate];
 }
 
 +(void) adjustStoreSchedule {
@@ -152,6 +154,29 @@ static IBCoreDataStore * ibDataStore;
         tempValue += 1;
     }
     [Store save];
+}
+
++ (void)adjustCallPlannedStartDate {
+    Survey * survey = [[Survey allInStore:[Survey dataStore]] objectAtIndex:0];
+    NSString *accountId = survey.accountId;
+
+    NSArray *stores = [Store sortedStores];
+    Store *store = [stores objectAtIndex:0];
+    for (Store *tempStore in stores) {
+        if ([tempStore.remoteKey isEqualToString:accountId]) {
+            store = tempStore;
+            break;
+        }
+    }
+    
+    NSNumber *temp = curdateToMilliseconds();
+    double tempValue = [temp doubleValue];
+    StoreCall *call = [StoreCall newInstance:store];
+    call.plannedStartDateValue = tempValue;
+    [call save];
+    call = [StoreCall newInstance:store];
+    call.plannedStartDateValue = tempValue + 24 * 60 * 60 * 1000;
+    [call save];
 }
 
 +(void) prepareSurveyData {

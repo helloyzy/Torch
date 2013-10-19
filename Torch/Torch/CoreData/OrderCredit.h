@@ -14,6 +14,7 @@
 
 + (OrderCredit *)newInstance:(StoreCall *)call;
 + (OrderCredit *)nextOrderToDeliver;
++ (NSSet *)storeNamesForOrdersToDeliver;
 
 
 @end

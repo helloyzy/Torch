@@ -20,6 +20,7 @@
 #import "TCRKObjectMapping.h"
 #import "TCLoginCredential.h"
 #import "Product.h"
+#import "SurveyResponse.h"
 
 // #define TC_SVC_BASE_URL [NSURL URLWithString:TC_SVC_BASE]
 // #define TC_SVC_LOGIN [TC_SVC_BASE stringByAppendingPathComponent:@"fetchData"]
@@ -30,6 +31,7 @@
 #define TC_SVC_PRODUCTS @"https://hmuled01.hersheys.com:10040/torch/v3/mx/pull/products"
 #define TC_SVC_ORDER @"https://hmuled01.hersheys.com:10040/torch/v3/mx/ordercredit"
 #define TC_SVC_ORDER_PATH @"mx/ordercredit"
+#define TC_SVC_SURVEY_PATH @"mx/surveys"
 
 @implementation TCSvcUtils
 
@@ -128,7 +130,7 @@
 //    [operationQueue addOperation:operation];
 }
 
-+ (void)orderRequestService:(OrderCredit *)order
++ (void)orderPostService:(OrderCredit *)order
 {
     RKObjectMapping * mapping = [TCRKObjectMapping tcInverseMapping:[OrderCredit objectMapping]];
     RKRequestDescriptor * requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:mapping objectClass:[OrderCredit class] rootKeyPath:nil method:RKRequestMethodAny];
@@ -143,11 +145,30 @@
     RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
     
     [manager postObject:order path:TC_SVC_ORDER_PATH parameters:nil success:^(RKObjectRequestOperation * operation, RKMappingResult * result) {
-        NSLog(@"Order request succeed!");
+        NSLog(@"Order post succeed!");
     } failure:^(RKObjectRequestOperation * operation, NSError * error) {
         NSLog(@"Failed with error: %@", [error localizedDescription]);
     }];
 
+}
+
++ (void)surveyPostService:(NSArray *)surveys
+{
+    RKObjectMapping * mapping = [TCRKObjectMapping tcInverseMapping:[SurveyResponse objectMapping]];
+    RKRequestDescriptor * requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:mapping objectClass:[SurveyResponse class] rootKeyPath:nil method:RKRequestMethodAny];
+    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:IB_URL(TC_SVC_BASE)];
+    [manager addRequestDescriptor:requestDescriptor];
+    manager.requestSerializationMIMEType = RKMIMETypeJSON;
+    
+    TCLoginCredential *credential = [TCLoginCredential sharedInstance];
+    [manager.HTTPClient setAuthorizationHeaderWithUsername:credential.username password:credential.password];
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    [manager postObject:surveys path:TC_SVC_SURVEY_PATH parameters:nil success:^(RKObjectRequestOperation * operation, RKMappingResult * result) {
+        NSLog(@"Survey post succeed!");
+    } failure:^(RKObjectRequestOperation * operation, NSError * error) {
+        NSLog(@"Failed with error: %@", [error localizedDescription]);
+    }];
+    
 }
 
 #pragma mark - helper methods

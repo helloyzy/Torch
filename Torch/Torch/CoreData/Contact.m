@@ -65,4 +65,8 @@
     return result;
 }
 
+- (BOOL)isContactNew {
+    return [self.localStatus isEqualToString:LOCAL_STATUS_NEW];
+}
+
 @end

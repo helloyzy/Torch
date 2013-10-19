@@ -378,4 +378,14 @@ static UITextField *CURRENT_EDITING_TEXTFIELD = nil;
 //    }];
 }
 
+#pragma mark - navigation transitions
+
+- (void)removePreviousCtrlInNavStack {
+    if (self.navigationController) {
+        NSMutableArray *array = [[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+        [array removeObjectAtIndex:array.count - 2];
+        self.navigationController.viewControllers = array;
+    }
+}
+
 @end

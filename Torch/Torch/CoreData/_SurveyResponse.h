@@ -6,6 +6,8 @@
 
 extern const struct SurveyResponseAttributes {
 	__unsafe_unretained NSString *accountId;
+	__unsafe_unretained NSString *accountName;
+	__unsafe_unretained NSString *localStatus;
 	__unsafe_unretained NSString *pickAnswer;
 	__unsafe_unretained NSString *questionId;
 	__unsafe_unretained NSString *textAnswer;
@@ -21,6 +23,8 @@ extern const struct SurveyResponseFetchedProperties {
 
 @class OrderCredit;
 @class StoreCall;
+
+
 
 
 
@@ -43,6 +47,22 @@ extern const struct SurveyResponseFetchedProperties {
 
 
 //- (BOOL)validateAccountId:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NSString* accountName;
+
+
+//- (BOOL)validateAccountName:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) NSString* localStatus;
+
+
+//- (BOOL)validateLocalStatus:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -98,6 +118,18 @@ extern const struct SurveyResponseFetchedProperties {
 
 - (NSString*)primitiveAccountId;
 - (void)setPrimitiveAccountId:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveAccountName;
+- (void)setPrimitiveAccountName:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveLocalStatus;
+- (void)setPrimitiveLocalStatus:(NSString*)value;
 
 
 

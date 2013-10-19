@@ -96,9 +96,14 @@
 
 + (id)newInstance {
     Store *result = [super newInstance];
+    result.remoteKey = [self generateUDID];
     result.localStatus = LOCAL_STATUS_NEW;
     [result save];
     return result;
+}
+
+- (BOOL)isStoreNew {
+    return [self.localStatus isEqualToString:LOCAL_STATUS_NEW];
 }
 
 @end

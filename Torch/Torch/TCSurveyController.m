@@ -21,6 +21,7 @@
 #import "Store.h"
 #import "TCUtils.h"
 #import <IBFunctions.h>
+#import "SurveyResponse.h"
 
 @interface TCSurveyController () {
     __weak UITextView *_textField;
@@ -129,6 +130,20 @@ Survey* _survey;
         [self.navigationController pushViewController:next animated:YES];
     } else {
         // save questions - TODO
+        int i = 0;
+        for (Survey *survey in self.questions) {
+            NSString *surveyAnswer = [self.questionAnswers objectForKey:IB_STRINGIFY_INT(i++)];
+            SurveyResponse *response = [SurveyResponse newInstance];
+            response.questionId = survey.questionId;
+            response.accountId = survey.accountId;
+            response.accountName = self.store.name;
+            if ([survey surveyQuestionType] == ChoiceQuestion) {
+                response.pickAnswer = surveyAnswer;
+            } else {
+                response.textAnswer = surveyAnswer;
+            }
+            [response save];
+        }
         [self.navigationController popToViewController:self.storeHomeView animated:YES];
     }
 }

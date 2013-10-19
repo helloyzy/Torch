@@ -41,4 +41,6 @@
 - (void)moveToVisibleIfNecessary:(UIView *)view;
 - (void)backToOriginalPlaceIfNecessary:(UIView *)view;
 
+- (void)removePreviousCtrlInNavStack;
+
 @end

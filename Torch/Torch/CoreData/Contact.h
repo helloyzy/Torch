@@ -4,6 +4,8 @@
 @interface Contact : _Contact {}
 // Custom logic goes here.
 
+- (BOOL)isContactNew;
+
 + (RKEntityMapping *)objectMappingForOrder;
 
 @end

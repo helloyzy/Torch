@@ -27,7 +27,8 @@
      AccountAttributes.repId,
      AccountAttributes.coachId,
      AccountAttributes.longitude,
-     AccountAttributes.latitude
+     AccountAttributes.latitude,
+     AccountAttributes.invoice
      ]];
     return mapping;
 }

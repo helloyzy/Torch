@@ -493,9 +493,12 @@ static NSString *kViewControllerKey = @"viewController";
 
 
 }
+
 - (void) notAbleVisit:(id)sender
 {
-    UIViewController *targetViewController = [[TCStoreNoVisit alloc]init];
+    [self endCall];
+    TCStoreNoVisit *targetViewController = [[TCStoreNoVisit alloc]init];
+    targetViewController.storeCall = _call;
 	[[self navigationController] pushViewController:targetViewController animated:YES];
 }
 
@@ -539,17 +542,24 @@ static NSString *kViewControllerKey = @"viewController";
     [self requestLocation];
     
 }
+
 - (void) sliderDidSlideToStart:(TCSliderView *)slideView {
+    [self endCall];
+    OrderCredit *order = [_call associatedOrderObject];
+    if ([order isOrderCreated]) {
+        // go to summary page
+        TCSummaryViewController *targetViewController = [[TCSummaryViewController alloc]init];
+        targetViewController.store = self.currentStore;
+        targetViewController.storeCall = _call;
+        [[self navigationController] pushViewController:targetViewController animated:YES];
+    } else {
+        // go to no sale page
+    }
+}
+
+- (void)endCall {
     [_call endCall];
     setStoreInCall(nil);
-    OrderCredit *order = [_call associatedOrderObject];
-    [order completeOrder:_call];
-    // [TCSvcUtils orderRequestService:order];
-    // Go to summary page
-    TCSummaryViewController *targetViewController = [[TCSummaryViewController alloc]init];
-    targetViewController.store = self.currentStore;
-    targetViewController.storeCall = _call;
-    [[self navigationController] pushViewController:targetViewController animated:YES];
     [_tcSliderView changeDirection:YES];
 }
 

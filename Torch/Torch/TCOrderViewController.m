@@ -23,6 +23,9 @@
 #import "CalItem.h"
 #import "StoreCall.h"
 
+#define TAG_ORDER_COMPLETE 10
+#define TAG_PRING 20
+
 @interface TCOrderViewController ()
 
 @property (nonatomic,weak) IBOutlet UILabel *createOrderLabel;
@@ -300,18 +303,18 @@
 -(void)orderCompleted {
     UIAlertView *confirmView = [[UIAlertView alloc]initWithTitle:[self localString:@"order.confirmAlertTitle"] message:[self localString:@"order.confirmMessage"] delegate:self cancelButtonTitle:[self localString:@"order.confirmNoButton"] otherButtonTitles:[self localString:@"order.confirmYesButton"], nil];
     //give a tag as 10 to indicate current alertview
-    [confirmView setTag:10];
+    [confirmView setTag:TAG_ORDER_COMPLETE];
     [confirmView show];
 }
 
 -(void)promptPrint {
     UIAlertView *printView = [[UIAlertView alloc]initWithTitle:[self localString:@"order.printAlertTitle"] message:[self localString:@"order.printAlertMessage"] delegate:self cancelButtonTitle:[self localString:@"order.confirmNoButton"] otherButtonTitles:[self localString:@"order.confirmYesButton"], nil];
-    [printView setTag:20];
+    [printView setTag:TAG_PRING];
     [printView show];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([alertView tag] ==10) {
+    if ([alertView tag] == TAG_ORDER_COMPLETE) {
         if (buttonIndex==1) {
             //confirm button clicked, populate the order data;
             [self generateOrderJSONData];
@@ -322,14 +325,16 @@
             [self replaceTheDiscountPromotionItem];
         }
     } else {
+        [self clearOrderList];
         //this is confirm from printprompt alertview
         if (buttonIndex==1) {
             TCPrinterCtl *printScreen = [[TCPrinterCtl alloc] init];
             [self.navigationController pushViewController:printScreen animated:YES];
+        } else {
+            // go to store home
+            [self.navigationController popViewControllerAnimated:NO];
+            [self.navigationController popViewControllerAnimated:YES];
         }
-        
-        [self clearOrderList];
-        
     }
     
 }

@@ -5,6 +5,8 @@
 
 const struct SurveyResponseAttributes SurveyResponseAttributes = {
 	.accountId = @"accountId",
+	.accountName = @"accountName",
+	.localStatus = @"localStatus",
 	.pickAnswer = @"pickAnswer",
 	.questionId = @"questionId",
 	.textAnswer = @"textAnswer",
@@ -52,6 +54,20 @@ const struct SurveyResponseFetchedProperties SurveyResponseFetchedProperties = {
 
 
 @dynamic accountId;
+
+
+
+
+
+
+@dynamic accountName;
+
+
+
+
+
+
+@dynamic localStatus;
 
 
 

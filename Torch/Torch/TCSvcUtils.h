@@ -26,6 +26,8 @@ typedef void (^TC_SVC_BLOCK_FAILURE)(RKObjectRequestOperation * operation, NSErr
 
 
 //Removing the success and failure blocks, as this call is not part of the initial batch
-+ (void)orderRequestService:(OrderCredit *)order;
++ (void)orderPostService:(OrderCredit *)order;
+
++ (void)surveyPostService:(NSArray *)surveys;
 
 @end

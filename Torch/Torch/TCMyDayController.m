@@ -89,15 +89,15 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 
 - (void)initSections {
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *minusDay = [[NSDateComponents alloc] init];
-    [minusDay setDay:-3]; //TODO: waiting for correct json data
+//    NSDateComponents *minusDay = [[NSDateComponents alloc] init];
+//    [minusDay setDay:-3]; //TODO: waiting for correct json data
     NSDateComponents *plusOneDay = [[NSDateComponents alloc] init];
-    [plusOneDay setDay:1]; //TODO: waiting for correct json data
+    [plusOneDay setDay:1]; 
     NSDate* today = [cal dateFromComponents:
                      [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                             fromDate:[NSDate date]]];
     NSDate* tomorrow = [cal dateByAddingComponents:plusOneDay toDate:today options:0];
-    today = [cal dateByAddingComponents:minusDay toDate:today options:0];
+//    today = [cal dateByAddingComponents:minusDay toDate:today options:0];
     NSPredicate* todayFilter = [NSPredicate predicateWithFormat:@"(plannedStartDate >= %f) AND (plannedStartDate < %f)", [today timeIntervalSince1970] * 1000,
                                 [tomorrow timeIntervalSince1970] * 1000];
     NSPredicate* tomorrowFilter = [NSPredicate predicateWithFormat:@"plannedStartDate >= %f", [tomorrow timeIntervalSince1970] * 1000];
@@ -195,7 +195,7 @@ static NSString *NewCustomerCell = @"NewCustomerCell";
 {
     if (indexPath.row == 0 && indexPath.section == 0) {
         UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NewCustomerCell];
-        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeueLTCom-Roman" size:16];
+        cell.textLabel.font = TCFont_HNLTComMd(16); //[UIFont fontWithName:@"HelveticaNeueLTCom-Roman" size:16];
         cell.textLabel.textColor = TCColorLineBlue;
         cell.textLabel.text = Lo(myday.add);
         cell.imageView.image = [UIImage imageNamed:@"focus.png"];

@@ -39,4 +39,14 @@
     return [TCDBUtils ibDataStore];
 }
 
++ (NSString *)generateUDID {
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
+    [dateformat setDateFormat:@"yyyyMMddHHmmss"];
+    NSString *dateString = [dateformat stringFromDate:date];
+    
+    int randomNumber = (arc4random()%(99999-1))+1;
+    return [NSString stringWithFormat:@"%@%d",dateString,randomNumber];
+}
+
 @end

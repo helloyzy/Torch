@@ -37,7 +37,10 @@
         storeLabel.opaque = NO;
         storeLabel.shadowOffset = CGSizeMake(0.0, -1.0);
         storeLabel.text = @"Store Name Here";
-        storeLabel.font = TCFont_HNLTComBd(16);
+        storeLabel.font = TCFont_HNLTComBd(15);
+        storeLabel.adjustsFontSizeToFitWidth = YES;
+        storeLabel.adjustsLetterSpacingToFitWidth = YES;
+        storeLabel.minimumScaleFactor = 0.6;
         
         addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(20.0, 30.0, 209.0, 63.0)];
         addressLabel.backgroundColor = [UIColor clearColor];
@@ -52,7 +55,10 @@
         addressLabel.opaque = NO;
         addressLabel.shadowOffset = CGSizeMake(0.0, -1.0);
         addressLabel.text = @"Line1\nLine2\nLine3";
-        addressLabel.font = TCFont_HNLTComMd(16);
+        addressLabel.font = TCFont_HNLTComMd(14);
+        addressLabel.adjustsFontSizeToFitWidth = YES;
+        addressLabel.adjustsLetterSpacingToFitWidth = YES;
+        addressLabel.minimumScaleFactor = 0.6;
         addressLabel.textColor = [UIColor colorWithWhite:0.667 alpha:1.000];
         
         numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(237.0, 30.0, 40.0, 33.0)];

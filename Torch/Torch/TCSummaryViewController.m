@@ -21,6 +21,8 @@
 #import "TCAddNoteController.h"
 #import "UIViewController+MGBox.h"
 #import "OrderCredit.h"
+#import "UIViewController+Torch.h"
+#import "TCSvcUtils.h"
 
 @interface TCSummaryViewController ()
 
@@ -72,6 +74,9 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
         self.storeCall = [store callInProgress];
     }
     self.order = self.storeCall.associatedOrderObject;
+    // remove StorehomeView from the stack to direct back to the myDay
+    [self removePreviousCtrlInNavStack];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -134,6 +139,15 @@ static const CGSize cellSize = (CGSize){(320-32)/3, 50};
         [self.view.subviews[0] removeFromSuperview];
     }
     [self.view addSubview:scroller];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    // place order
+    OrderCredit *order = [self.storeCall associatedOrderObject];
+    [order completeOrder:self.storeCall];
+    // send out order, TODO
+    // [TCSvcUtils orderRequestService:order];
+    [super viewDidDisappear:animated];
 }
 
 - (void)addNote {

@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "TCNavVwCtl.h"
 
-@interface TCStoreNoVisit : TCNavVwCtl <UIPickerViewDataSource,UIPickerViewDelegate >
+@class StoreCall;
+
+@interface TCStoreNoVisit : TCNavVwCtl <UIPickerViewDataSource,UIPickerViewDelegate>
+
+@property (nonatomic, strong)StoreCall * storeCall;
 
 @end

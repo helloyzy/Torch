@@ -39,6 +39,7 @@
 #import "StoreCall.h"
 
 #import "OrderCredit.h"
+#import "SurveyResponse.h"
 #import <NSManagedObject+InnerBand.h>
 
 @implementation TCAppDelegate
@@ -86,6 +87,8 @@
     // [TCSvcUtils syncDataService];
     // OrderCredit *order = [[OrderCredit all]objectAtIndex:0];
     // [TCSvcUtils orderRequestService:order];
+    NSArray *surveys = [SurveyResponse surveyResponsesToSend];
+    [TCSvcUtils surveyPostService:surveys];
 }
 
 - (void)setStoreInCallInNecessary {

@@ -8,6 +8,9 @@
 
 #import "TCStoreNoVisit.h"
 #import "TCStoreHomeView.h"
+#import "StoreCall.h"
+#import "OrderCredit.h"
+#import "TCSvcUtils.h"
 
 @interface TCStoreNoVisit ()
 
@@ -37,6 +40,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    // remove StorehomeView from the stack to direct back to the myDay
+    [self removePreviousCtrlInNavStack];
+    
     self.novisitTitle.text = [self localString:@"store.novisit.title"];
     self.novisitHint.text = [self localString:@"store.novisit.hint"];
     [self.confirmButton setTitle:[self localString:@"store.novisit.confirm"] forState:UIControlStateNormal];
@@ -46,6 +52,15 @@
     
     noVisitReasonArray = [[NSArray alloc] initWithObjects:[self localString:@"store.novisit.reason1"],[self localString:@"store.novisit.reason2"], nil];
 
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    // place order
+    OrderCredit *order = [self.storeCall associatedOrderObject];
+    [order completeOrder:self.storeCall];
+    // send out order, TODO
+    // [TCSvcUtils orderRequestService:order];
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning

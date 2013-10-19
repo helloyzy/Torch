@@ -7,6 +7,7 @@
 
 - (BOOL)hasLocation;
 - (StoreCall *)callInProgress;
+- (BOOL)isStoreNew;
 
 + (Store *)storeInCall;
 + (NSArray *)sortedStores;

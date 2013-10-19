@@ -3,4 +3,8 @@
 
 @interface SurveyResponse : _SurveyResponse {}
 // Custom logic goes here.
+
++ (NSArray *)surveyResponsesToSend;
++ (void)markAsDelivered:(NSArray *)surveyResponses;
+
 @end

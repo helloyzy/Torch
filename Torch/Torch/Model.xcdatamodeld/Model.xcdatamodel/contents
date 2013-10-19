@@ -296,6 +296,8 @@
     </entity>
     <entity name="SurveyResponse" representedClassName="SurveyResponse" syncable="YES">
         <attribute name="accountId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="accountName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localStatus" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pickAnswer" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="questionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="textAnswer" optional="YES" attributeType="String" syncable="YES"/>
@@ -320,6 +322,6 @@
         <element name="Store" positionX="1000" positionY="0" width="135" height="630"/>
         <element name="StoreCall" positionX="1206" positionY="72" width="135" height="315"/>
         <element name="Survey" positionX="160" positionY="192" width="128" height="165"/>
-        <element name="SurveyResponse" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="SurveyResponse" positionX="160" positionY="192" width="128" height="165"/>
     </elements>
 </model>

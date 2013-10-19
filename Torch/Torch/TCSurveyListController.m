@@ -93,6 +93,7 @@ NSArray* _titles;
     TCSurveyController *survey = [[TCSurveyController alloc] init];
     survey.questions = indexPath.row == 0 ? [Survey marketingSurveyQuestions:self.store] : [Survey segmentationSurveyQuestions:self.store];
     survey.index = 0;
+    survey.store = self.store;
     survey.subtitle = _titles[indexPath.row];
     survey.storeHomeView = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2];
     [self.navigationController pushViewController:survey animated:YES];
